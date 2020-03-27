@@ -108,5 +108,3 @@ The test harness uses the `coverage` package in Python to produce a test coverag
 
 After you have developed a new feature in Metaflow, use the line-by-line coverage report to confirm that all lines related the new feature are touched by the tests.
 
-
-
