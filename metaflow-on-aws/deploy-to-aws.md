@@ -70,7 +70,37 @@ The [metaflow service](http://github.com/netflix/metaflow-service) is a simple [
 
 ![4. Add to the Route Table](https://lh5.googleusercontent.com/Txv6RweUwTlZwX3fUdbhn_JgmPPDRDSFQTFHzdfQFpMGrG3IZOE4sKGCa-hDwmFN3X6F0wfXpo2p1kmmzk6H0USVEOZaO6-t3Vx4hhuXQ264MX-6C4wjBdFH3vNz0T7UbWAwpi3s)
 
+### Create Security Groups
+
+Select EC2 from services
+
+Navigate to Security Groups from left pane
+
+![](../.gitbook/assets/screen-shot-2020-04-06-at-10.42.53-am.png)
+
+Select vpc that was created in the previous step from drop down
+
+**Create ECS Security Group**
+
+This security group will allow inbound api access to metadata service
+
+Add rule to make port 8080 accessible
+
+![](../.gitbook/assets/screen-shot-2020-04-06-at-2.51.58-pm.png)
+
+Record ecs security group id for use in next step
+
+**Create RDS security group**
+
+Create another security group within same vpc. This group will be used to allow postgres access from ECS \(i.e. allow the metadata service to read from the DB\)
+
+Add rule to make port 5432 accessible \(type postgres\) and attach to ECS security group
+
+![](../.gitbook/assets/screen-shot-2020-04-06-at-3.15.29-pm.png)
+
 ### Create RDS
+
+Note: Currently we only support Postgres as the backend DB
 
 
 
@@ -84,6 +114,14 @@ The [metaflow service](http://github.com/netflix/metaflow-service) is a simple [
 
 ![](https://lh5.googleusercontent.com/cMaCoBmHIchDHXidmkw8mUvlOfBG5tuwHpv71hq5ozmf4EuRL95lXLkJIPdXLPuDSka1dcM6BFInhjY3qc32Na1ZYDteuXBkJd1abzvpKfDYfCD-Ee-8NjZDZCIXbyAewpPVOsO_)
 
+under "Additional connectivity configuration" add the security group that was previously created \(ECS -&gt; 5432\)
+
+![](../.gitbook/assets/screen-shot-2020-04-06-at-3.43.55-pm.png)
+
+Finally under "Additional Configuration" at the bottom of the page. Configure the initial database name. By default the Metadata Service expects the db name to be "metaflow". Although this is configurable via environment variables.
+
+![](../.gitbook/assets/screen-shot-2020-04-06-at-3.43.12-pm.png)
+
 ### Create ECS Service Cluster
 
 ![1. Set up a cluster using Fargate](https://lh6.googleusercontent.com/L9ldq4TsC1kyfDHlNCpv7NOqX6i1QDz118AX2thKqtKnKd3oKuaLMiiavNL41B4HzHRPtMDoH8hcQogWS4ZzCyOymtSoAVjovgNKn0F6Ocp3qfzeTDRdZ8oQJsJ59kajeMsPlwVk)
@@ -96,6 +134,10 @@ The [metaflow service](http://github.com/netflix/metaflow-service) is a simple [
 
 ![](https://lh3.googleusercontent.com/UdyNLGbPsE710D9PHaWUSvkxfEXb1SbDxv5V9O4BrnSeWsTihCALvj_JHEiAN2MCuPq9c_TznlMYuHrwxAQrENfBAbd6GSQ0tVEneorK6Vi965PhNpGbQZlemqpFJfkVi5dNo4BG)
 
+
+
+
+
 ![](https://lh6.googleusercontent.com/Ol78Io994kZnr358VGo8RjOWV7j4e2z1m_ZarRNTRS5OPNIJ9Zgbk1rpWGKRD8fHmHw9Ud8ZhKuc5K_RE-dxy49q9_auWy59fnEef-qkKsyKcBxwTjC_yT51edxWpqtP2tMbUG8A)
 
 ![2. Note the environment variables needed.](https://lh4.googleusercontent.com/SRf3NxB1FDRJKf1TnJHvrynWLBkAxvGxG4ksw9zY08YYYl-098IDTnnoimWMoapmPq-l5gNrVdbCevHBKTbtoJtz_E03Lj_ke0zvhaIgZjmyTtj_FnaM4wr0lkpAo3Tusj0MrDgQ)
@@ -105,6 +147,8 @@ The [metaflow service](http://github.com/netflix/metaflow-service) is a simple [
 ### Create Metaflow Service
 
 ![1. Navigate to ECS in console, select Create from Services tab and select Task Definition created previously.](https://lh5.googleusercontent.com/e9JFgTVPn01LX0aJu2zOX_5n5kOJYbslflbclXOYOCHm5r5eWEkkz6CtZifq4GWM8hj7xfZ1N_Vo2HfJTEf1Th8j1yBuwLEUl_QFYf_gCOmOvNUtSpL2nl5VsHtZruBmj0tA5J3G)
+
+Note: Be sure to select security group created in previous step \([0.0.0.0/0](http://0.0.0.0/0) -&gt; 8080\)
 
 ![2. Select VPC created previously and add both the Subnets created previously as well. Optionally configure a LoadBalancer if needed.](https://lh3.googleusercontent.com/2wP2xZWDwjN26UTBSvSt6wmuKrZFiher7K0JDWC1T5iSARDJ5i-zxkNNqva2I2dv8PTxJJr_C2rvhygsZNddkYZVjVG_ulFMLctekgayVv55HWVOSW_7VyVqrt19AW5QRxpXhrl7)
 
