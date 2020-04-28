@@ -4,17 +4,62 @@ Read below how Metaflow has improved over time.
 
 We take backwards compatibility very seriously. In the vast majority of cases you can upgrade Metaflow without expecting changes in your existing code. In the rare cases when breaking changes are absolutely necessary, usually due to bug fixes, you can take a look at minor breaking changes below before you upgrade.
 
+## 2.0.4 \(Apr 28th, 2020\)
+
+The Metaflow 2.0.4 release is a minor patch release.
+
+* **Improvements**
+  * Expose `retry_count` in [`Current`](https://docs.metaflow.org/metaflow/tagging#accessing-current-ids-in-a-flow)
+  * Mute superfluous `ThrottleExceptions` in AWS Batch job logs
+* **Bug Fixes**
+  * Set proper thresholds for retrying `DescribeJobs` API for AWS Batch
+  * Explicitly override `PYTHONNOUSERSITE` for `conda` environments
+  * Preempt AWS Batch job log collection when the job fails to get into a `RUNNING` state
+
+### Improvements <a id="2-0-4-improvements"></a>
+
+#### Expose `retry_count` in `Current`
+
+You can now use the [`current`](https://docs.metaflow.org/metaflow/tagging#accessing-current-ids-in-a-flow) singleton to access the `retry_count` of your task. The first attempt of the task will have `retry_count` as 0 and subsequent retries will increment the `retry_count`. As an example:
+
+```python
+@retry
+@step
+def my_step(self):
+    from metaflow import current
+    print("retry_count: %s" % current.retry_count)
+    self.next(self.a)
+```
+
+#### Mute superfluous `ThrottleExceptions` in AWS Batch job logs
+
+The AWS Logs API for `get_log_events` has a global hard limit on 10 requests per sec. While we have retry logic in place to respect this limit, some of the `ThrottleExceptions` usually end up in the job logs causing confusion to the end-user. This release addresses this issue \(also documented in \#184\).
+
+### Bug Fixes
+
+#### Set proper thresholds for retrying `DescribeJobs` API for AWS Batch
+
+The AWS Batch API for `describe_jobs` throws `ThrottleExceptions` when managing a flow with a very wide `for-each` step. This release adds retry behavior with backoffs to add proper resiliency \(addresses \#138\).
+
+#### Explicitly override `PYTHONNOUSERSITE` for `conda` environments
+
+In certain user environments, to properly isolate `conda` environments, we have to explicitly override `PYTHONNOUSERSITE` rather than simply relying on `python -s` \(addresses \#178\).
+
+#### Preempt AWS Batch job log collection when the job fails to get into a `RUNNING` state
+
+Fixes a bug where if the AWS Batch job crashes before entering the `RUNNING` state \(often due to incorrect IAM perms\), the previous log collection behavior would fail to print the correct error message making it harder to debug the issue \(addresses \#185\).
+
 ## 2.0.3 \(Mar 6th, 2020\)
 
 The Metaflow 2.0.3 release is a minor patch release.
 
-* [Improvements](release-notes.md#improvements)
+* \*\*\*\*[**Improvements**](release-notes.md#improvements)\*\*\*\*
   * Parameter listing
   * Ability to specify S3 endpoint
   * Usability improvements
-* [Performance](release-notes.md#performance)
+* \*\*\*\*[**Performance**](release-notes.md#performance)\*\*\*\*
   * Conda
-* [Bug Fixes](release-notes.md#bug-fixes)
+* [**Bug Fixes**](release-notes.md#bug-fixes)\*\*\*\*
   * Executing on AWS Batch
 
 ### Improvements
