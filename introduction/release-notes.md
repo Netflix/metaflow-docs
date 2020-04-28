@@ -8,10 +8,10 @@ We take backwards compatibility very seriously. In the vast majority of cases yo
 
 The Metaflow 2.0.4 release is a minor patch release.
 
-* **Improvements**
+* \*\*\*\*[**Improvements**](https://docs.metaflow.org/introduction/release-notes#2-0-4-improvements)\*\*\*\*
   * Expose `retry_count` in [`Current`](https://docs.metaflow.org/metaflow/tagging#accessing-current-ids-in-a-flow)
   * Mute superfluous `ThrottleExceptions` in AWS Batch job logs
-* **Bug Fixes**
+* \*\*\*\*[**Bug Fixes**](https://docs.metaflow.org/introduction/release-notes#2-0-4-bug-fixes)
   * Set proper thresholds for retrying `DescribeJobs` API for AWS Batch
   * Explicitly override `PYTHONNOUSERSITE` for `conda` environments
   * Preempt AWS Batch job log collection when the job fails to get into a `RUNNING` state
@@ -35,7 +35,7 @@ def my_step(self):
 
 The AWS Logs API for `get_log_events` has a global hard limit on 10 requests per sec. While we have retry logic in place to respect this limit, some of the `ThrottleExceptions` usually end up in the job logs causing confusion to the end-user. This release addresses this issue \(also documented in \#184\).
 
-### Bug Fixes
+### Bug Fixes <a id="2-0-4-bug-fixes"></a>
 
 #### Set proper thresholds for retrying `DescribeJobs` API for AWS Batch
 
