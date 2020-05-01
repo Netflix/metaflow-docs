@@ -4,6 +4,33 @@ Read below how Metaflow has improved over time.
 
 We take backwards compatibility very seriously. In the vast majority of cases you can upgrade Metaflow without expecting changes in your existing code. In the rare cases when breaking changes are absolutely necessary, usually due to bug fixes, you can take a look at minor breaking changes below before you upgrade.
 
+## 2.0.5 \(Apr 30th, 2020\)
+
+The Metaflow 2.0.5 release is a minor patch release.
+
+* \*\*\*\*[**Improvements**](release-notes.md#2-0-5-improvements)\*\*\*\*
+  * Fix logging of prefixes in `datatools.S3._read_many_files`. 
+  * Increase retry count for AWS Batch logs streaming. 
+  * Upper-bound `pylint` version to `< 2.5.0` for compatibility issues.
+
+The Metaflow 2.0.5 release is a minor patch release.
+
+### Improvements <a id="2-0-5-improvements"></a>
+
+#### Fix logging of prefixes in datatools.S3.\_read\_many\_files
+
+Avoid a cryptic error message when `datatools.S3._read_many_files` is unsuccessful by converting `prefixes` from a generator to a list.
+
+#### Increase retry count for AWS Batch logs streaming.
+
+Modify the retry behavior for log fetching on AWS Batch by adding jitters to exponential backoffs as well as reset the retry counter for every successful request.
+
+Additionally, fail the Metaflow task when we fail to stream the task logs back to the user's terminal even if AWS Batch task succeeds.
+
+#### Upper-bound pylint version to &lt; 2.5.0.
+
+`pylint` version `2.5.0` would mark Metaflow's `self.next()` syntax as an error. As a result, `python helloworld.py run` would fail at the pylint check step unless we run with `--no-pylint`. This version upper-bound is supposed to automatically downgrade `pylint` during `metaflow` installation if `pylint==2.5.0` has been installed.
+
 ## 2.0.4 \(Apr 28th, 2020\)
 
 The Metaflow 2.0.4 release is a minor patch release.
