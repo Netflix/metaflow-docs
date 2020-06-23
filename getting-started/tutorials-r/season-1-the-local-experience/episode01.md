@@ -18,12 +18,13 @@ in an R Markdown Notebook.**
 5. Open ```01-playlist/playlist.Rmd``` in RStudio.
 
 #### Dataset and flow script
-The dataset looks like this
+The dataset ```movies.csv``` looks like this
 |movie_title|title_year|genre|gross|
 |-----------|----------|------|-----|
 |Avatar | 2009 | Sci-Fi |760505847
 |Pirates of the Caribbean: At World's End | 2007 | Fantasy | 309404152
 |Spectre | 2015 | Thriller | 200074175
+|... | ... | ... |...
 
 
 The flow script below performs the following steps:
