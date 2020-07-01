@@ -117,8 +117,7 @@ If you want to know if a task was retried, you can retrieve retry timestamps fro
 ```R
 library(metaflow)
 
-start_step <- flow_client$new("RetryFlow")$run("181")$step("start")
-task <- start_step$task(start_step$tasks)
+task <- task_client$new("RetryFlow/181/start/1076")
 print(task$metadata_dict$attempt)
 ```
 

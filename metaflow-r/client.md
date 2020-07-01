@@ -19,12 +19,18 @@ flow <- flow_client$new("HelloWorldFlow")
 
 # Run object
 run <- run_client$new(flow, run_id)  
+# run_id is 12
+run <- run_client$new("HelloWorldFlow/12") 
 
 # Step object
 step <- step_client$new(run, step_name)
+# step_name is start
+step <- step_client$new("HelloWorldFlow/12/start") 
 
 # Task object
 task <- task_client$new(step, task_id)
+# task_id is 12345678 
+task <- task_client$new("HelloWorldFlow/12/start/12345678") 
 
 # Data Artifact
 task$artifact("my_var")
@@ -71,8 +77,8 @@ Often you are only interested in the value of an artifact. For this typical use 
 For instance, this the shortest way to access a value produced by a step in a run:
 
 ```R
-flow <- flow_client$new("DebugFlow")
-print(flow$run("2")$step("compute")$task("123").artifact("my_var"))
+task <- task_client$new("DebugFlow/2/compute/123")
+print(task$artifact("my_var"))
 ```
 
 Here, we print the value of `self$my_varx` in the step `compute` of the run `2`, task `123` of the flow `DebugFlow`.

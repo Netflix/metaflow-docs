@@ -153,8 +153,8 @@ For example, running this in RStudio or Jupyter Notebook lets you check intermed
 
 ```R
 library(metaflow)
-flow <- flow_client$new("DebugFlow")
-print(flow$run("153")$step("a")$task("1002").artifact("var"))
+task <- task_client$new("DebugFlow/153/a/1002")
+print(task$artifact("var"))
 ```
 
 For more details about the client API, see the [Client API](client.md).
