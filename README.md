@@ -1,8 +1,8 @@
 ---
-description: Build and manage real-life data science projects with ease.
+description: How to operate Metaflow at scale
 ---
 
-# Welcome to Metaflow
+# Administering Metaflow
 
 ## Introduction
 
