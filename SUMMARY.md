@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Welcome to Metaflow](README.md)
+* [Administrator's Guide to Metaflow](README.md)
 
 ## Introduction
 

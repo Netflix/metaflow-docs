@@ -149,5 +149,3 @@ Metaflow provides a highly **usable** Python API to access results of previous r
 * [`metaflow.client` - client subpackage](https://github.com/Netflix/metaflow/tree/master/metaflow/client)
 * [`core.py` - core objects for the client](https://github.com/Netflix/metaflow/blob/master/metaflow/client/core.py)
 
-
-

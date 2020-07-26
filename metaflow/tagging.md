@@ -189,7 +189,7 @@ The `current` singleton also provides programmatic access to the CLI option `--o
 
 If a user explicitly overrides the CLI option `--origin-run-id`, the `current` singleton would reflect that value.
 
-If not, it would be the id of the last invocation of `run` \(successful or not\). 
+If not, it would be the id of the last invocation of `run` \(successful or not\).
 
 {% hint style="info" %}
 This value would remain the same even after multiple successful `resume` invocations. If you don't want this behavior, you can always override the CLI option `origin-run-id` and `resume` a specific run.

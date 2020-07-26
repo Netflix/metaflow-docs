@@ -1,6 +1,6 @@
 # Deploying to AWS
 
-Metaflow comes bundled with [first class support for various services on AWS](metaflow-on-aws.md#amazon-web-services). This guide gives a walk-through of how to configure Metaflow in your own AWS account. 
+Metaflow comes bundled with [first class support for various services on AWS](metaflow-on-aws.md#amazon-web-services). This guide gives a walk-through of how to configure Metaflow in your own AWS account.
 
 To get Metaflow up and running in your AWS account, configuration needs to be instrumented for :
 
@@ -14,7 +14,7 @@ You can mix and match these services, Metaflow places no requirements that all o
 
 ## Datastore: S3
 
-Metaflow stores all data artifacts, code packages and library dependencies in [S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html). Minimally, you need to [create at least one S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html) to store these objects. 
+Metaflow stores all data artifacts, code packages and library dependencies in [S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html). Minimally, you need to [create at least one S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html) to store these objects.
 
 ### [Configuration parameters](https://github.com/Netflix/metaflow/blob/master/metaflow/metaflow_config.py)
 
@@ -102,8 +102,6 @@ Add rule to make port 5432 accessible \(type postgres\) and attach to ECS securi
 
 Note: Currently we only support Postgres as the backend DB
 
-
-
 ![1. Create DB Subnet Group](https://lh6.googleusercontent.com/15Cq-B-nixgUc9s3gs1ue5IJKGMJoaBlT6tlCBq88LOHkaOQ2FprYzXBgzgviHIw12-DgPwrAShNJMTTgayFpVM0xInFrIGks5xz-APdpKlrgRquBJRjKcRvYGdGmokK4cKq2YB5)
 
 ![2. Create RDS instance](https://lh5.googleusercontent.com/gAaTCnTzpryGhMnj3-JGnmHtoDa77limKTkBPmqUgoN-odrc4VPkiiGyYnHiN6wU0jn0cZRtqR_G7cAkAVcTbT9TWsS5ZSkO16R1IxvyIMr22LGuZQcEusmH3n3g7OsSRkeHo6-H)
@@ -133,10 +131,6 @@ Finally under "Additional Configuration" at the bottom of the page. Configure th
 ![1. Use Fargate template for Task definition](https://lh5.googleusercontent.com/Ab-pnS9MTXqMbyp12QuZPyzic4_fYzZm-YlBQ7uZCcN9BiXiylTMHPhzBeMfRkGPm6iXyxfQx4efqNIgG6KdtRbNrPTQx5QIgmd0xf2M1gIMhjXl8kiDKQfTE5FYwkoBTMHpzoUA)
 
 ![](https://lh3.googleusercontent.com/UdyNLGbPsE710D9PHaWUSvkxfEXb1SbDxv5V9O4BrnSeWsTihCALvj_JHEiAN2MCuPq9c_TznlMYuHrwxAQrENfBAbd6GSQ0tVEneorK6Vi965PhNpGbQZlemqpFJfkVi5dNo4BG)
-
-
-
-
 
 ![](https://lh6.googleusercontent.com/Ol78Io994kZnr358VGo8RjOWV7j4e2z1m_ZarRNTRS5OPNIJ9Zgbk1rpWGKRD8fHmHw9Ud8ZhKuc5K_RE-dxy49q9_auWy59fnEef-qkKsyKcBxwTjC_yT51edxWpqtP2tMbUG8A)
 

@@ -2,7 +2,7 @@
 description: How to operate Metaflow at scale
 ---
 
-# Administering Metaflow
+# Administrator's Guide to Metaflow
 
 ## Introduction
 

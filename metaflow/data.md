@@ -6,7 +6,7 @@ Besides the mundane concern of loading data, there is also the question of how t
 
 In a perfect world, the data scientist could design and test features without having to concern themselves with the underlying mechanics of data transfer and processing. Unfortunately the larger the dataset, the more intermingled the two concerns become.
 
-Metaflow can not make the world perfect yet. However, we recommend that data science workflows try to keep the two concerns as separate as possible. In practice, you should use the solutions presented in this chapter purely to load a clean dataset in your workflow. Then, you should perform any model-specific data transformations in your Python code. In particular, we recommend that you use SQL only for data access, not for model-specific data manipulation. 
+Metaflow can not make the world perfect yet. However, we recommend that data science workflows try to keep the two concerns as separate as possible. In practice, you should use the solutions presented in this chapter purely to load a clean dataset in your workflow. Then, you should perform any model-specific data transformations in your Python code. In particular, we recommend that you use SQL only for data access, not for model-specific data manipulation.
 
 There are multiple benefits in keeping data access separate from model-specific data manipulation:
 
@@ -16,7 +16,7 @@ There are multiple benefits in keeping data access separate from model-specific 
 * Instead of having data manipulation code in two places \(SQL and Python\), all code can be clearly laid out in a single place, in a single language, for maximum readability.
 * It is easier to optimize your code for performance when IO bottlenecks can be profiled separately from CPU bottlenecks.
 
-Keep this guideline in mind when choosing the right data access method below. 
+Keep this guideline in mind when choosing the right data access method below.
 
 ## Data in Tables
 
@@ -384,6 +384,4 @@ You can specify the file to use using:
 ```bash
 python hash_flow.py run --myfile '/path/to/input/file'
 ```
-
-
 

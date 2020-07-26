@@ -59,28 +59,28 @@ You can express parallel steps with **a branch**. In the figure below, `start` t
 from metaflow import FlowSpec, step
 
 class BranchFlow(FlowSpec):
-  
+
     @step
     def start(self):
         self.next(self.a, self.b)
-    
+
     @step
     def a(self):
         self.x = 1
         self.next(self.join)
-    
+
     @step
     def b(self):
         self.x = 2
         self.next(self.join)
-    
+
     @step
     def join(self, inputs):
         print('a is %s' % inputs.a.x)
         print('b is %s' % inputs.b.x)
         print('total is %d' % sum(input.x for input in inputs))
         self.next(self.end)
-    
+
     @step
     def end(self):
         pass
@@ -91,7 +91,7 @@ if __name__ == '__main__':
 
 Every branch must be joined. The join step does not need to be called `join` as above but it must take an extra argument, like `inputs` above.
 
-In the example above, the value of `x` above is ambiguous: `a` sets it to `1` and `b` to `2`. To disambiguate the branches, the join step can refer to a specific step in the branch, like `inputs.a.x` above. For convenience, you can also iterate over all steps in the branch using `inputs`, as done in the last print statement in the above  `join` step. For more details, see the section about [data flow through the graph](basics.md#data-flow-through-the-graph).
+In the example above, the value of `x` above is ambiguous: `a` sets it to `1` and `b` to `2`. To disambiguate the branches, the join step can refer to a specific step in the branch, like `inputs.a.x` above. For convenience, you can also iterate over all steps in the branch using `inputs`, as done in the last print statement in the above `join` step. For more details, see the section about [data flow through the graph](basics.md#data-flow-through-the-graph).
 
 Note that you can nest branches arbitrarily, that is, you can branch inside a branch. Just remember to join all the branches that you create.
 
@@ -116,24 +116,23 @@ class ForeachFlow(FlowSpec):
                        'House of Cards',
                        'Narcos']
         self.next(self.a, foreach='titles')
-    
+
     @step
     def a(self):
         self.title = '%s processed' % self.input
         self.next(self.join)
-    
+
     @step
     def join(self, inputs):
         self.results = [input.title for input in inputs]
         self.next(self.end)
-    
+
     @step
     def end(self):
         print('\n'.join(self.results))
 
 if __name__ == '__main__':
     ForeachFlow()
-
 ```
 
 The foreach loop is initialized by specifying a keyword argument `foreach` in `self.next()`. The `foreach` argument takes a string that is the name of a list stored in an instance variable, like `titles` above.

@@ -8,7 +8,7 @@ Metaflow makes it easy to move back and forth between the local and remote modes
 
 When you set up a cloud-based object store as the datastore, Metaflow snapshots all data and code in the cloud automatically. This means that you can [inspect](../metaflow/client.md), [resume](../metaflow/debugging.md#how-to-use-the-resume-command), and restore any previous Metaflow execution without having to worry that the fruits of your hard work get lost.
 
-### Amazon Web Services
+## Amazon Web Services
 
 While technically Metaflow could work with any cloud provider, currently Metaflow supports only [Amazon Web Services](https://aws.amazon.com) as the remote backend, thanks to Netflix's decade-long experience with AWS.
 
@@ -34,7 +34,7 @@ The following table summarizes the integration between Metaflow and AWS:
 * **Large-scale ML** is useful for training large-scale models.
 * **Hosting** allows you to deploy results of Metaflow runs as a microservice, so the results can be consumed by other application programmatically.
 
-### Using Metaflow with AWS
+## Using Metaflow with AWS
 
 When you `pip install metaflow`for the first time, you start in the local mode. Artifacts and metadata are stored in a local directory and computation is performed with local processes. This mode is perfectly fine for personal use but if your use case involves more people and/or data, we recommend that you configure Metaflow to use AWS.
 
@@ -42,7 +42,7 @@ Even after Metaflow has been configured to use AWS, users can still choose to us
 
 Netflix uses this setup internally. To make the experience smoother, Netflix's data scientists are provided with a \(shared\) EC2 instance where they can develop and test Metaflow code with minimal latency between their development environment and S3. Note that many IDEs such as [VSCode](https://code.visualstudio.com/) or [PyCharm](https://www.jetbrains.com/pycharm/) support execution on a remote instance natively.
 
-### Next Steps
+## Next Steps
 
 If your organization doesn't have an AWS account already, we provide a hosted sandbox environment where you can test Metaflow using your own code and data, to get a feel of the benefits of AWS. Read more in the section about [Metaflow Sandbox](metaflow-sandbox.md).
 
