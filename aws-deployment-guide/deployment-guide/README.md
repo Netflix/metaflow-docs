@@ -10,7 +10,30 @@ Metaflow comes bundled with [first-class support for various services on AWS](..
 metaflow configure aws
 ```
 
-This will launch an interactive workflow and prompt you for various resource parameters like Amazon S3 Bucket \(for storage\), AWS Batch Job Queue \(for compute\), etc. The precise set of parameters that this workflow will ask for depends on the capabilities that you want to enable. For example, you can choose to use Amazon S3 as your storage backend, without any need to configure AWS Batch for compute, if you intend to execute all your workloads locally.
+This will launch an interactive workflow and prompt you for various resource parameters like Amazon S3 Bucket \(for storage\), AWS Batch Job Queue \(for compute\), etc. The precise set of parameters that this workflow will ask for depends on the capabilities that you want to enable. For example, you can choose to use Amazon S3 as your storage backend, without any need to configure AWS Batch for compute, if you intend to execute all your workloads locally. 
+
+All the specified parameters are stored as a JSON file and read before any Metaflow execution - 
+
+```python
+{
+    "METAFLOW_BATCH_CONTAINER_REGISTRY": "...",
+    "METAFLOW_BATCH_JOB_QUEUE": "...",
+    "METAFLOW_DATASTORE_SYSROOT_S3": "...",
+    "METAFLOW_ECS_S3_ACCESS_IAM_ROLE": "...",
+    "METAFLOW_EVENTS_SFN_ACCESS_IAM_ROLE": "...",
+    "METAFLOW_SERVICE_URL": "...",
+    "METAFLOW_SFN_IAM_ROLE": "...",
+    "...": "..."
+}
+```
+
+You can override any of the parameters by exporting them to your environment -
+
+```text
+METAFLOW_JOB_QUEUE_NAME=my-queue python myflow.py run --with batch
+```
+
+This will execute all steps of your flow in the `my-queue` AWS Batch job queue irrespective of what was configured using the command line.
 
 ### Named Profiles
 
