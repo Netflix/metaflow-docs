@@ -1,2 +1,2 @@
-# Deploying with CloudFormation
+# Deploying with AWS CloudFormation
 
