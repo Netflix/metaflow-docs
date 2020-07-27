@@ -9,6 +9,7 @@ To get Metaflow up and running in your AWS account, configuration needs to be in
 | **Datastore** | [S3](https://aws.amazon.com/s3/) |
 | **Compute** | [Batch](https://aws.amazon.com/batch/) |
 | **Metadata** | [Metaflow Metadata Service](https://github.com/Netflix/metaflow-service) / [RDS](https://aws.amazon.com/rds/) |
+| **Scheduling** | [Step Functions](https://aws.amazon.com/step-functions/) + [EventBridge](https://aws.amazon.com/eventbridge/) |
 
 You can mix and match these services, Metaflow places no requirements that all of these be stood up. Currently, the only limitation Metaflow places is that S3 as Datastore be configured if you intend to use AWS Batch as your Compute service. The following sections walk you through how to stand up these services and configure Metaflow to use them as well as a [CloudFormation template](deploy-to-aws.md#cloudformation-template) to automate this process:
 

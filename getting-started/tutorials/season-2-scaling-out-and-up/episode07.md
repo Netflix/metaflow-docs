@@ -8,18 +8,20 @@ You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/t
 
 **Showcasing:**
 
-* The metaflow [Client API](../../../metaflow/client.md).
+* The Metaflow [Client API](../../../metaflow/client.md).
 
 **Before playing this episode:**
 
-1. Configure your sandbox: [https://docs.metaflow.org/metaflow-on-aws/metaflow-sandbox](https://docs.metaflow.org/metaflow-on-aws/metaflow-sandbox)
-2. `python -m pip install notebook`
+1. `python -m pip install notebook`
+2. This tutorial requires access to compute and storage resources on AWS, which can be configured by 
+   1. Following the instructions at [https://docs.metaflow.org/metaflow-on-aws/deploy-to-aws](https://docs.metaflow.org/metaflow-on-aws/deploy-to-aws) or 
+   2. Requesting a sandbox at [https://docs.metaflow.org/metaflow-on-aws/metaflow-sandbox](https://docs.metaflow.org/metaflow-on-aws/metaflow-sandbox)
 
 **To play this episode:**
 
 1. `cd metaflow-tutorials`
 2. `jupyter-notebook 07-worldview/worldview.ipynb`
-3. Open _**worldview.ipynb**_ in your remote Sagemaker notebook
+3. Open _**worldview.ipynb**_ in your remote Sagemaker notebook.
 
 {% page-ref page="../" %}
 

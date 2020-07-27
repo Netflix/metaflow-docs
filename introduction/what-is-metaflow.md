@@ -84,7 +84,9 @@ You can find more details about Metaflow's approach to various parts of the stac
       </td>
     </tr>
   </tbody>
-</table>## Presentations about Metaflow 
+</table>
+
+## Presentations about Metaflow 
 
 If you want to learn more, the Machine Learning Infrastructure team at Netflix has given a number of public presentations about Metaflow prior to its open-sourcing. You can find links to these presentations below.
 
