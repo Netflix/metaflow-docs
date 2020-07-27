@@ -14,12 +14,10 @@ You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/t
 
 **Before playing this episode:**
 
-1. `python -m pip install pandas`
-2. `python -m pip install notebook`
-3. `python -m pip install matplotlib`
-4. This tutorial requires access to compute and storage resources on AWS, which can be configured by 
-   1. Following the instructions at [https://docs.metaflow.org/metaflow-on-aws/deploy-to-aws](https://docs.metaflow.org/metaflow-on-aws/deploy-to-aws) or 
-   2. Requesting a sandbox at [https://docs.metaflow.org/metaflow-on-aws/metaflow-sandbox](https://docs.metaflow.org/metaflow-on-aws/metaflow-sandbox)
+1. Configure your sandbox: [https://docs.metaflow.org/metaflow-on-aws/metaflow-sandbox](https://docs.metaflow.org/metaflow-on-aws/metaflow-sandbox)
+2. `python -m pip install pandas`
+3. `python -m pip install notebook`
+4. `python -m pip install matplotlib`
 
 **To play this episode:**
 
@@ -29,7 +27,7 @@ You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/t
 4. Open _**stats.ipynb**_ in your remote Sagemaker notebook
 
 {% hint style="warning" %}
-Note for _**Python 2.7**_ users: when opening the _**stats.ipynb**_ in a Sagemaker notebook you will need to change the python kernel by clicking _**Kernel -&gt; Change Kernel -&gt; conda\_python2**_ from the drop-down menu. This ensures the Pandas dataframe will deserialize correctly. 
+Note for _**Python 2.7**_ users: when opening the _**stats.ipynb**_ in a Sagemaker notebook you will need to change the python kernel by clicking _**Kernel -&gt; Change Kernel -&gt; conda\_python2**_ from the pull down menu. This ensures the Pandas dataframe will deserialize correctly. 
 {% endhint %}
 
 {% page-ref page="../" %}
