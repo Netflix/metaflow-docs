@@ -33,5 +33,14 @@ Once complete, you'll find an _Outputs_ tab that contains values for the compone
 
 ![](../../.gitbook/assets/screencapture-us-west-2-console-aws-amazon-cloudformation-home-2020-07-27-14_28_17.png)
 
-Using these values, you can [configure your metaflow installation](./#configuring-metaflow).
+### Additional Configuration
+
+Did you choose to enable _APIBasicAuth_ and/or _CustomRole_ and are wondering how they work? Below are some details on what happens when those features are enabled and how to make use of them.
+
+* **APIBasicAuth** - In addition to TLS termination, Amazon API Gateway provides the ability to generate an API key that restricts access only to requests that pass that API key in the 'x-api-key' HTTP header. This is useful in that it restricts access to flow information from the general Internet while still allowing remote connectivity to authenticated clients. However, enabling this feature means that you'll need to request the API Key from Amazon API Gateway, as exposing a credential as an output from CloudFormation is a potential security problem. CloudFormation does, however, output the ID of the API Key that correlates to your stack, making is easy to get the key and pass it to Metaflow. Follow one of the two instructions below to get `METAFLOW_SERVICE_AUTH_KEY`.
+  1. From the AWS CLI, run the following: `aws apigateway get-api-key --api-key <YOUR_KEY_ID_FROM_CFN> --include-value | grep value`
+  2. From the AWS Console, navigate to _Services_ and select _API Gateway_ from _Networking & Content Delivery_ \(or search for it in the search bar\). Click on your API, select _API Keys_ from the left side, select the API that corresponds to your Stack name, and click _show_ next to _API Key_.
+* **CustomRole** - This template can create an optional role that can be assumed by users \(or applications\) that includes limited permissions to only the resources required by Metaflow, including access only to the Amazon S3 bucket, AWS Batch Compute Environment, and Amazon Sagemaker Notebook Instance created by this template. You will, however, need to modify the trust policy for the role to grant access to the principals \(users/roles/accounts\) who will assume it, and you'll also need to have your users configure an appropriate role-assumption profile. The ARN of the Custom Role can be found in the _Output_ tab of the CloudFormation stack under `MetaflowUserRoleArn`. To modify the trust policy to allow new principals, follow the directions [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/roles-managingrole-editing-console.html#roles-managingrole_edit-trust-policy). Once you've granted access to the principals of your choice, have your users create a new Profile for the AWS CLI that assumes the role ARN by following the directions [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-role.html).
+
+Once you have followed all these steps, you can [configure your metaflow installation](./#configuring-metaflow) using the outputs from the CloudFormation stack.
 
