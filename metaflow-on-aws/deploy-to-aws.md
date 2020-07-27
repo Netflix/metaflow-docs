@@ -1,4 +1,4 @@
-# Deploying to AWS
+# Deploying to AWS \(OLD\)
 
 Metaflow comes bundled with [first class support for various services on AWS](metaflow-on-aws.md#amazon-web-services). This guide gives a walk-through of how to configure Metaflow in your own AWS account.
 

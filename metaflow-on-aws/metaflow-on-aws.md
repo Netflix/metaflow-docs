@@ -1,12 +1,12 @@
-# Metaflow on AWS
+# Metaflow on AWS \(OLD\)
 
 Traditionally, there has been a tension between local \(e.g. on a laptop\) and remote \(e.g. on a cluster or a cloud\) development and execution: Developing on a laptop is fast, whereas iterating with a remote cluster is slower. A laptop is a severely resource constrained environment whereas a cluster can have virtually unlimited resources. Worse, simple local scripts may need to be translated to a new paradigm that is understood by a cluster.
 
 Metaflow tries to combine the best of the both worlds. Most importantly, we support the same idiomatic Python scripts both locally and remotely. No changes in code or libraries needed. However, Metaflow doesn't try to abstract away the fact that code is executed remotely. We believe that this is crucial in making troubleshooting easier.
 
-Metaflow makes it easy to move back and forth between the local and remote modes of execution. You can even use a hybrid of the two approaches in a single workflow. This means that you can develop and test your Metaflow code similarly to any local Python script - simply and easily. When you need to [process larger amounts of data](../metaflow/scaling.md), or you want to deploy your workflow to production, you can do it with a single line of code or a single command.
+Metaflow makes it easy to move back and forth between the local and remote modes of execution. You can even use a hybrid of the two approaches in a single workflow. This means that you can develop and test your Metaflow code similarly to any local Python script - simply and easily. When you need to [process larger amounts of data](), or you want to deploy your workflow to production, you can do it with a single line of code or a single command.
 
-When you set up a cloud-based object store as the datastore, Metaflow snapshots all data and code in the cloud automatically. This means that you can [inspect](../metaflow/client.md), [resume](../metaflow/debugging.md#how-to-use-the-resume-command), and restore any previous Metaflow execution without having to worry that the fruits of your hard work get lost.
+When you set up a cloud-based object store as the datastore, Metaflow snapshots all data and code in the cloud automatically. This means that you can [inspect](), [resume](), and restore any previous Metaflow execution without having to worry that the fruits of your hard work get lost.
 
 ## Amazon Web Services
 
@@ -24,12 +24,12 @@ The following table summarizes the integration between Metaflow and AWS:
 | **Large-scale ML** | - | [Sagemaker Models](https://aws.amazon.com/sagemaker/)\* |
 | **Hosting** | - | \* |
 
-\(\*\) [available later](../introduction/roadmap.md)
+\(\*\) [available later]()
 
-* **Metadata** refers to the backend that powers the [Metaflow Client API](../metaflow/client.md).
-* **Datastore** is the storage backend for all code and [data artifacts](../metaflow/basics.md#linear).
-* **Compute** is the [compute backend for Metaflow tasks](../metaflow/scaling.md).
-* **Notebooks** allow you to to [inspect results of Metaflow runs](../metaflow/client.md).
+* **Metadata** refers to the backend that powers the [Metaflow Client API]().
+* **Datastore** is the storage backend for all code and [data artifacts]().
+* **Compute** is the [compute backend for Metaflow tasks]().
+* **Notebooks** allow you to to [inspect results of Metaflow runs]().
 * **Scheduling** allows you to execute Metaflow workflows automatically without human intervention. This is typical for production workflows.
 * **Large-scale ML** is useful for training large-scale models.
 * **Hosting** allows you to deploy results of Metaflow runs as a microservice, so the results can be consumed by other application programmatically.
@@ -44,7 +44,7 @@ Netflix uses this setup internally. To make the experience smoother, Netflix's d
 
 ## Next Steps
 
-If your organization doesn't have an AWS account already, we provide a hosted sandbox environment where you can test Metaflow using your own code and data, to get a feel of the benefits of AWS. Read more in the section about [Metaflow Sandbox](metaflow-sandbox.md).
+If your organization doesn't have an AWS account already, we provide a hosted sandbox environment where you can test Metaflow using your own code and data, to get a feel of the benefits of AWS. Read more in the section about [Metaflow Sandbox]().
 
 If you organization has an AWS account already, see [Deploying to AWS](deploy-to-aws.md) for detailed instructions on how to configure your account for Metaflow.
 
