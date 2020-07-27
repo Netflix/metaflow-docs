@@ -24,7 +24,3 @@
   * [Manual Deployment](aws-deployment-guide/deployment-guide/manual-deployment.md)
   * [Frequently Asked Questions](aws-deployment-guide/deployment-guide/frequently-asked-questions.md)
 
-## test
-
-* [Untitled](test/untitled.md)
-
