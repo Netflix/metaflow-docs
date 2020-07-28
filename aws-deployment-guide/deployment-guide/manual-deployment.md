@@ -46,41 +46,27 @@ Compute resources in your compute environments need external network access to c
 
 #### Create a VPC
 
-1. Create an Elastic IP Address for Your NAT Gateway
-   1. Open the [Amazon VPC console](https://console.aws.amazon.com/vpc/).
-   2. In the left navigation pane, choose _Elastic IPs_.
-   3. Choose _Allocate new address, Allocate, Close_.
-   4. Note the _Allocation ID_ for your newly created Elastic IP address; you will need this later in the VPC wizard.
-2. Run the VPC Wizard
-   1. In the left navigation pane, choose _VPC Dashboard_.
-   2. Choose _Launch VPC Wizard, VPC with Public and Private Subnets, Select._
+1. Run the VPC Wizard
+   1. Open the [Amazon VPC console](https://console.aws.amazon.com/vpc/) and in the left navigation pane, choose _VPC Dashboard_.
+   2. Choose _Launch VPC Wizard, VPC with a Single Public Subnet, Select._
    3. For _VPC name_, give your VPC a unique name.
    4. For _Elastic IP Allocation ID_, choose the ID of the Elastic IP address that you created earlier.
    5. Choose _Create VPC_.
    6. When the wizard is finished, choose _OK_. Note the Availability Zone in which your VPC subnets were created. Your additional subnets should be created in a different Availability Zone. These subnets are not auto-assigned public IPv4 addresses. Instances launched in the public subnet must be assigned a public IPv4 address to communicate with the Amazon ECS service endpoint.
-3. Create Additional Subnets
+2. Create Additional Subnets
 
-   The wizard in Step 2. creates a VPC with a single public and a single private subnet in a single Availability Zone. For greater availability, you should create at least one more of each subnet type in a different Availability Zone so that your VPC has both public and private subnets across two Availability Zones.
+   The wizard in Step 2. creates a VPC with a single public in a single Availability Zone. For greater availability, you should create at least one more subnet in a different Availability Zone so that your VPC has public subnets across two Availability Zones. To create an additional public subnet
 
-   1. To create an additional private subnet
-      1. In the left navigation pane, choose _Subnets_.
-      2. Choose _Create Subnet_.
-      3. For _Name tag_, enter a name for your subnet, such as _Private subnet_.
-      4. For _VPC_, choose the VPC that you created earlier.
-      5. For _Availability Zone_, choose a different Availability Zone than your original subnets in the VPC.
-      6. For _IPv4 CIDR block_, enter a valid CIDR block. For example, the wizard creates CIDR blocks in 10.0.0.0/24 and 10.0.1.0/24 by default. You could use 10.0.3.0/24 for your second private subnet.
-      7. Choose _Yes, Create_.
-   2. To create an additional public subnet
-      1. In the left navigation pane, choose _Subnets_ and then _Create Subnet_.
-      2. For _Name tag_, enter a name for your subnet, such as _Public subnet_.
-      3. For _VPC_, choose the VPC that you created earlier.
-      4. For _Availability Zone_, choose the same Availability Zone as the additional private subnet that you created in the previous procedure.
-      5. For _IPv4 CIDR block_, enter a valid CIDR block. For example, the wizard creates CIDR blocks in 10.0.0.0/24 and 10.0.1.0/24 by default. You could use 10.0.2.0/24 for your second public subnet.
-      6. Choose _Yes, Create_.
-      7. Select the public subnet that you just created and choose _Route Table, Edit._
-      8. By default, the private route table is selected. Choose the other available route table so that the _0.0.0.0/0_ destination is routed to the internet gateway \(_igw-xxxxxxxx_\) and choose _Save_.
-      9. With your second public subnet still selected, choose _Subnet Actions, Modify auto-assign IP settings_.
-      10. Select _Enable auto-assign public IPv4 address_ and choose _Save, Close_.
+   1. In the left navigation pane, choose _Subnets_ and then _Create Subnet_.
+   2. For _Name tag_, enter a name for your subnet, such as _Public subnet_.
+   3. For _VPC_, choose the VPC that you created earlier.
+   4. For _Availability Zone_, choose the same Availability Zone as the additional private subnet that you created in the previous procedure.
+   5. For _IPv4 CIDR block_, enter a valid CIDR block. For example, the wizard creates CIDR blocks in 10.0.0.0/24 and 10.0.1.0/24 by default. You could use 10.0.2.0/24 for your second public subnet.
+   6. Choose _Yes, Create_.
+   7. Select the public subnet that you just created and choose _Route Table, Edit._
+   8. By default, the private route table is selected. Choose the other available route table so that the _0.0.0.0/0_ destination is routed to the internet gateway \(_igw-xxxxxxxx_\) and choose _Save_.
+   9. With your second public subnet still selected, choose _Subnet Actions, Modify auto-assign IP settings_.
+   10. Select _Enable auto-assign public IPv4 address_ and choose _Save, Close_.
 
 ![Amazon VPC with subnets](../../.gitbook/assets/screenshot-2020-07-27-at-4.43.25-pm.png)
 
