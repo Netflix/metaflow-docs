@@ -380,5 +380,5 @@ METAFLOW_EVENTS_SFN_ACCESS_IAM_ROLE = [ARN of IAM role for AWS EventBridge]
 METAFLOW_SFN_DYNAMO_DB_TABLE = [DynamoDB table name]
 ```
 
-And that's it! Now you should have a full-blown set-up for using all the cloud functionality of Metaflow! 
+And that's it! Now you should have a full-blown set-up for using all the cloud functionality of Metaflow! In case you need any help, [get in touch](../../introduction/getting-in-touch.md).
 
