@@ -6,6 +6,7 @@ description: How to operate Metaflow at scale
 
 ## Introduction
 
+* [Why Metaflow?](introduction/why-metaflow.md)
 * [Key Concepts](introduction/key-concepts.md)
 * [Service Architecture](introduction/service-architecture.md)
 * [Release Notes](introduction/release-notes-1.md)
