@@ -2,9 +2,11 @@
 
 There are many ways \(automated and manual\) to deploy, configure, and manage AWS resources depending on your security posture and familiarity with the AWS eco-system. If you cannot use [our AWS CloudFormation template](aws-cloudformation-deployment.md), this article lists the steps for a rather straightforward deployment of AWS resources for use by Metaflow. 
 
-Please note that Metaflow can re-use existing AWS resources - for example, your existing AWS Batch job queue for job execution. The instructions listed here will create these resources from scratch. If you have a strong background in administering AWS resources, you will notice that many of the security policies are fairly permissive and are intended to serve as a starting point for more complex deployments. [Please reach out to us](https://docs.metaflow.org/introduction/getting-in-touch) if you would like to discuss more involved deployments.
+Please note that Metaflow can re-use existing AWS resources - for example, your existing AWS Batch job queue for job execution. The instructions listed here will create these resources from scratch. If you have a strong background in administering AWS resources, you will notice that many of the security policies are fairly permissive and are intended to serve as a starting point for more complex deployments. [Please reach out to us](../../introduction/getting-in-touch.md) if you would like to discuss more involved deployments.
 
 ## Steps for Manual Deployment
+
+These steps assume that the users of Metaflow have sufficient AWS credentials on their workstation to interact with the AWS resources that are spun up.
 
 ### Storage
 
@@ -34,7 +36,7 @@ METAFLOW_DATASTORE_SYSROOT_S3 = s3://metaflow-s3/data-tools
 
 ### Compute
 
-Metaflow currently supports scaling your compute via [AWS Batch](https://aws.amazon.com/batch/). Metaflow orchestrates this compute by leveraging Amazon S3 as the storage layer for code artifacts. If you want to use AWS Batch, you would have to configure Amazon S3 first following the instructions listed [previously](manual-deployment.md#storage).
+Metaflow currently supports [scaling compute](https://docs.metaflow.org/metaflow/scaling) via [AWS Batch](https://aws.amazon.com/batch/). Metaflow orchestrates this compute by leveraging Amazon S3 as the storage layer for code artifacts. If you want to use AWS Batch, you would have to configure Amazon S3 first following the instructions listed [previously](manual-deployment.md#storage).
 
 Once you have set up your Amazon S3 bucket, you would need to set up an AWS Batch job queue and an IAM role that has permission to access Amazon S3 \(and other AWS services\). Jobs launched via Metaflow on AWS Batch will assume this role so that they can communicate with Amazon S3.
 
@@ -183,4 +185,10 @@ Metaflow allows setting up some additional defaults for the docker image that AW
 METAFLOW_BATCH_CONTAINER_REGISTRY = foo
 METAFLOW_BATCH_CONTAINER_IMAGE = bar
 ```
+
+### Tracking
+
+### Scheduling
+
+Using Metaflow, workflows can be directly scheduled on [AWS Step Functions](https://aws.amazon.com/step-functions/). Moreover, from within Metaflow, time-based triggers can be set to execute these deployed workflows via [Amazon EventBridge](https://aws.amazon.com/eventbridge/).
 
