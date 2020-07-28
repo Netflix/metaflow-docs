@@ -23,9 +23,9 @@ The following instructions will create a private S3 bucket for Metaflow -
 5. In _Bucket settings for Block Public Access_, keep the values set to the defaults. By default Amazon S3 blocks all public access to your buckets. 
 6. Choose _Create bucket_.
 
-![](../../.gitbook/assets/screenshot-2020-07-21-at-11.29.01-am.png)
+![Amazon S3 Bucket](../../.gitbook/assets/screenshot-2020-07-21-at-11.29.01-am.png)
 
-In this example, we create a private bucket `metaflow-s3`. While configuring Metaflow through `metaflow configure aws`, we can set the following values when prompted -
+In this example, we created a private bucket `metaflow-s3`. While configuring Metaflow through `metaflow configure aws`, we can set the following values when prompted -
 
 ```python
 METAFLOW_DATASTORE_SYSROOT_S3 = s3://metaflow-s3/flows
@@ -36,7 +36,7 @@ METAFLOW_DATASTORE_SYSROOT_S3 = s3://metaflow-s3/data-tools
 
 Metaflow currently supports scaling your compute via [AWS Batch](https://aws.amazon.com/batch/). Metaflow orchestrates this compute by leveraging Amazon S3 as the storage layer for code artifacts. If you want to use AWS Batch, you would have to configure Amazon S3 first following the instructions listed [previously](manual-deployment.md#storage).
 
-Once you have set up your Amazon S3 bucket, you would need to set up an AWS Batch job queue and an IAM role that has access to access to Amazon S3. Jobs launched via Metaflow on AWS Batch will assume this role so that they can communicate with Amazon S3.
+Once you have set up your Amazon S3 bucket, you would need to set up an AWS Batch job queue and an IAM role that has permission to access Amazon S3 \(and other AWS services\). Jobs launched via Metaflow on AWS Batch will assume this role so that they can communicate with Amazon S3.
 
 Before you can create a [job queue](https://docs.aws.amazon.com/batch/latest/userguide/job_queues.html), you would need to set up a [compute environment](https://docs.aws.amazon.com/batch/latest/userguide/compute_environments.html) that your job queue will eventually execute jobs on. There are many ways to create a compute environment depending on your specific use case. In most cases, a managed compute environment is sufficient, where AWS manages your compute resources with sensible defaults. But, if you prefer, you can create an unmanaged compute environment by following [these instructions from AWS](https://docs.aws.amazon.com/batch/latest/userguide/create-compute-environment.html). If you want to know how to create a managed compute environment, read on!
 
@@ -80,7 +80,7 @@ Compute resources in your compute environments need external network access to c
       9. With your second public subnet still selected, choose _Subnet Actions, Modify auto-assign IP settings_.
       10. Select _Enable auto-assign public IPv4 address_ and choose _Save, Close_.
 
-![](../../.gitbook/assets/screenshot-2020-07-27-at-4.43.25-pm.png)
+![Amazon VPC with subnets](../../.gitbook/assets/screenshot-2020-07-27-at-4.43.25-pm.png)
 
 #### Create a managed AWS Batch compute environment
 
@@ -112,7 +112,7 @@ Compute resources in your compute environments need external network access to c
 6. \(Optional\) Tag your instances so that it is helpful for recognizing your AWS Batch instances in the Amazon EC2 console.
 7. Choose _Create_ to finish.
 
-![](../../.gitbook/assets/screencapture-us-west-2-console-aws-amazon-batch-home-2020-07-27-16_58_10.png)
+![AWS Batch compute environment](../../.gitbook/assets/screencapture-us-west-2-console-aws-amazon-batch-home-2020-07-27-16_58_10.png)
 
 **Create an AWS Batch job queue**
 
@@ -124,7 +124,63 @@ Compute resources in your compute environments need external network access to c
 6. In the _Connected compute environments for this queue_ section, select the [compute environment](manual-deployment.md#create-a-managed-aws-batch-compute-environment) that you just created.
 7. Choose _Create_ to finish and create your job queue.
 
-![](../../.gitbook/assets/screencapture-us-west-2-console-aws-amazon-batch-home-2020-07-27-17_03_18.png)
+![AWS Batch job queue](../../.gitbook/assets/screencapture-us-west-2-console-aws-amazon-batch-home-2020-07-27-17_03_18.png)
 
 In this example, we create an AWS Batch job queue `metaflow-queue` following the steps listed above.
+
+#### Create an IAM role
+
+1. Open the [IAM console](https://console.aws.amazon.com/iam/).
+2. In the navigation pane, choose _Policies_ and then choose _Create policy_.
+3. Use the visual editor to create the policy 
+   1. For _Service_, choose _S3_.
+4. For **Actions**, expand the **Read** option and select **GetObject**.
+5. For **Resources**, select **Add ARN** and enter the full Amazon Resource Name \(ARN\) of your Amazon S3 bucket, and then choose **Review policy**.
+6. On the **Review policy** page, for **Name** type your own unique name, such as `AmazonECSTaskS3BucketPolicy`.
+7. Choose **Create policy** to finish.
+
+**To create an IAM role for your tasks**
+
+1. Open the [IAM console](https://console.aws.amazon.com/iam/) and in the navigation pane, choose _Roles, Create role_.
+2. For _Select type of trusted entity_ section, choose _AWS service_.
+3. For _Choose the service that will use this role_, choose _Elastic Container Service_.
+4. For _Select your use case_, choose _Elastic Container Service Task_ and choose _Next: Permissions_.
+5. Next, we will create a policy for Amazon S3 and attach it to this role
+   1. Amazon S3 for data storage
+      1. Choose _Create Policy_ to open a new window.
+      2. Use the visual service editor to create the policy
+         1. For _Service_, choose _S3._
+         2. For _Actions,_ add _GetObject, PutObject, DeleteObject_ and _List Bucket_ as allowed actions
+         3. For _resources,_ for _bucket_ put in the bucket name create [earlier](manual-deployment.md#create-a-private-amazon-s3-bucket). For _object,_ use the same bucket name and choose any for _object name_. Choose _Save changes._
+         4. Choose _Review policy._ On the _Review policy_ page, for _Name_ type your own unique name and choose _Create policy_ to finish.
+   2. Amazon DynamoDB - Metaflow uses a DynamoDB table to track execution information for certain steps within AWS Step Functions. If you intend to use AWS Step Functions, you would need to create a policy for Amazon Dynamo DB as well.
+      1. In the original pane \(in Step 4.\), Choose _Create Policy_ to open a new window.
+      2. Use the visual service editor to create the policy
+         1. For _Service_, choose _DynamoDB._
+         2. For _Actions,_ add _PutItem, GetItem, DeleteObject_ and _UpdateItem_ as allowed actions
+         3. For _resources,_ for _region_ put in the region in which you will create your AWS Dynamo DB table and for _table name,_ use a table name \(that you will create later while configuring AWS Step Functions\). Choose _Save changes._
+         4. Choose _Review policy._ On the _Review policy_ page, for _Name_ type your own unique name and choose _Create policy_ to finish.
+6. Click the _refresh_ button in the original pane \(in Step 4.\) and choose the policies that you just created \(in Step 5.\). Choose _Next:tags._
+7. For _Add tags \(optional\)_, enter any metadata tags you want to associate with the IAM role, and then choose _Next: Review_.
+8. For _Role name_, enter a name for your role and then choose _Create role_ to finish. Note the ARN of the IAM role you just created.
+
+![Amazon S3 policy](../../.gitbook/assets/screencapture-console-aws-amazon-iam-home-2020-07-27-17_32_21%20%281%29.png)
+
+![Amazon DynamoDB policy](../../.gitbook/assets/screencapture-console-aws-amazon-iam-home-2020-07-27-17_47_55.png)
+
+![IAM role for AWS Batch](../../.gitbook/assets/screencapture-console-aws-amazon-iam-home-2020-07-27-17_53_28.png)
+
+In this example, we created an AWS Batch job queue `metaflow-queue` and an IAM role `metaflow-batch-role`. While configuring Metaflow through `metaflow configure aws`, we can set the following values when prompted -exit: 
+
+```text
+METAFLOW_BATCH_JOB_QUEUE = metaflow-queue
+METAFLOW_ECS_S3_ACCESS_IAM_ROLE = arn:aws:iam::xxxxxxxxxx:role/metaflow-batch-role
+```
+
+Metaflow allows setting up some additional defaults for the docker image that AWS Batch jobs execute on. By default, an appropriate Python image \(matching the minor version of Python interpreter used to launch the flow\) is pulled from docker hub. You can modify the behavior by either pointing to a specific image or a specific docker image repository using the following variables:
+
+```text
+METAFLOW_BATCH_CONTAINER_REGISTRY = foo
+METAFLOW_BATCH_CONTAINER_IMAGE = bar
+```
 
