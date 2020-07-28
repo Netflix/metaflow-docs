@@ -325,7 +325,7 @@ We will create two security groups, one for the AWS Fargate cluster and another 
 9. Choose _Next step._
 10. For _Configure network,_ 
     1. For _Cluster VPC,_ choose the VPC that you have created [previously](manual-deployment.md#create-a-vpc-1).
-    2. Choose all subnets in that VPC for _Subnets._
+    2. Choose all public subnets in that VPC for _Subnets._
     3. Choose the two _Security groups_ that you have created previously.
 11. For _Load balancing,_ choose _None_ as _Load balancer type._ In case, you would like help setting up a load balancer, [please reach out to us](../../introduction/getting-in-touch.md).
 12. Choose _Next step._
