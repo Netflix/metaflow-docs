@@ -188,6 +188,119 @@ METAFLOW_BATCH_CONTAINER_IMAGE = bar
 
 ### Tracking
 
+Metaflow ships with a Metadata service that tracks all flow executions. This service is an aiohttp service with a SQL datastore as a backend. At a high level, this service can be thought of as an index on top of all the data that Metaflow stores in its datastore. This allows users to easily share their results and collaborate with their peers. Deploying this service is not strictly necessary, you can still use Amazon S3 as your storage backend and execute your flows on AWS Batch without it. But for any production deployment, we highly recommend deploying the Metadata service since it helps in easily monitoring the state of the Metaflow universe.
+
+The Metadata service is available as a docker image in [docker hub](https://hub.docker.com/repository/docker/netflixoss/metaflow_metadata_service). There are many ways to deploy this service within AWS. Here we detail some of the steps to deploy this service on AWS Fargate with a PostgreSQL database in Amazon RDS.
+
+#### Create a VPC
+
+We will deploy the service within a VPC. You can use the same VPC that we created for AWS Batch [earlier](manual-deployment.md#create-a-vpc) or if you don't intend to use AWS Batch, you can create a VPC following [the same set of steps.](manual-deployment.md#create-a-vpc)
+
+#### Create Security Groups
+
+We will create two security groups, one for the AWS Fargate cluster and another for the AWS RDS instance.
+
+1. Open the [EC2 console](https://console.aws.amazon.com/ec2/) and from the navigation bar, select the region to use.
+2. Choose _Security Groups_ under _Resources._
+3. You will notice that a security group already exists for the VPC that you created [previously](manual-deployment.md#create-a-vpc-1). Choose _Create security group_ to create a security group for the AWS Fargate cluster that we will create shortly.
+4. Pick a name for your security group for _Security group name,_ add a _Description_ and select the VPC that you created [previously](manual-deployment.md#create-a-vpc-1) under _VPC._
+5. For _Inbound rules_, 
+   1. Select _Custom TCP_ for _Type._
+   2. Use _8080_ for _Port range._
+   3. Select _Anywhere_ for _Source type._
+6. For _Outbound rules,_
+   1. Select _All traffic_ for _Type_.
+   2. Select _Custom_ for _Destination type_.
+   3. Select _0.0.0.0/0_ for _Destination_.
+7. Choose _Create security group._
+8. Take note of the ID of the security group.
+9. Next, we will create a security group for the AWS RDS instance. Choose _Copy to new security group_.
+10. Pick a name for your security group for _Security group name_ and __add a _Description._ The correct _VPC_ is already selected for you.
+11. For _Inbound rules_, instead of _Custom TCP_ for _Type_, choose _PostgreSQL_ and under _Source_, choose the security group from Step 8.
+12. Choose _Create security group_ and take note of the ID.
+
+![Security Group for AWS Fargate](../../.gitbook/assets/screencapture-us-west-2-console-aws-amazon-ec2-v2-home-2020-07-28-10_07_27.png)
+
+![Security Group for AWS RDS](../../.gitbook/assets/screencapture-us-west-2-console-aws-amazon-ec2-v2-home-2020-07-28-10_14_20.png)
+
+#### Create an AWS RDS instance
+
+1. Open the [RDS console](https://console.aws.amazon.com/rds) and from the navigation bar, select the region to use.
+2. Choose _Subnet Groups_ under _Resources._
+3. Choose _Create DB Subnet Group_ to create a DB Subnet Group for your RDS instance within the VPC that you created [earlier](manual-deployment.md#create-a-vpc-1).
+4. Pick a name for your subnet group for _Name_, add a _Description_ and select the VPC that you created [previously](manual-deployment.md#create-a-vpc-1) under _VPC._
+5. Choose _Add all the subnets related to this VPC_ under _Add subnets_.
+6. Choose _Create_.
+7. Choose _Databases_ on the left side pane and then choose _Create database._
+   1. Choose _Standard Create_ in _Choose a database creation method._
+   2. In _Engine options,_ choose _PostgreSQL_ for _Engine type._ Leave the _Version_ untouched.
+   3. In _Templates_, choose _Production._
+   4. In _Settings_,
+      1. Pick a unique name for _DB instance identifier_.
+      2. Under _Credentials Settings,_
+         1. Pick a _Master username._
+         2. Pick a _Master password_ and use the same in _Confirm password._
+   5. In _DB instance size,_ pick the instance you are most comfortable with. _Burstable classes_ are a good option.
+   6. In _Storage_, 
+      1. Under _Storage type,_ choose _General Purpose \(SSD\)._
+      2. Allocate initial storage in _Allocated storage._ 100GiB is a good start.
+      3. Check the _Enable storage autoscaling_ is enabled. This will allow your instance to scale up when it runs out of storage.
+      4. Choose maximum storage for _Maximum storage threshold_. Your instance will scale up to a maximum of this limit. 1000GiB is a good number to begin with.
+   7. In _Availability & durability,_ ensure that _Create a standby instance_ is enabled.
+   8. In _Connectivity,_
+      1. In _Virtual private cloud \(VPC\),_ choose the VPC that you created [previously](manual-deployment.md#create-a-vpc-1).
+      2. In _Additional connectivity configuration_
+         1. For _Subnet group_, choose the subnet group you created in Step 6.
+         2. Select _No_ under _Publicly accessible_.
+         3. Under _VPC security group_, choose _Choose existing_ and add both the security groups that you created [previously](manual-deployment.md#create-security-groups) in addition to the default security group.
+         4. Choose _5432_ as the _Database port._
+   9. In _Database authentication,_ enable _Password authentication._
+   10. In _Additional configuration,_
+       1. Under _Database options,_
+          1. Set _metaflow_ as _Initial database name._
+          2. Select _default.postgres11_ as the _DB parameter group_.
+       2. Under _Backup,_
+          1. Enable _Enable automatic backups_
+          2. Choose a _Backup retention period_
+          3. Choose a _Backup window_ if you so wish, otherwise check _No preference._
+          4. Check _Copy tags to snapshots._
+       3. Under _Performance Insights,_ if you so wish, enable _Enable Performance Insights._
+       4. Under _Retention Period,_
+          1. Choose a _Retention period_.
+          2. Leave the _Master key_ to _default._  
+       5. Under _Monitoring,_
+          1. Choose _60 seconds_ for _Granularity._
+          2. Set _default_ for the _Monitoring Role._
+       6. Under _Log exports,_ you can choose to export either of the _Postgresql log_ or the _Upgrade log_.
+       7. Under _Maintenance,_ choose _Enable auto minor version upgrade_ if you so wish to.
+       8. Under _Deletion protection,_ enable _Enable deletion protection._
+   11. Choose _Create database._
+   12. Once the database spins up, note the _Endpoint & port_ under _Connectivity & security._
+
+![AWS RDS DB subnet group](../../.gitbook/assets/screencapture-us-west-2-console-aws-amazon-rds-home-2020-07-28-10_22_03.png)
+
+![AWS RDS instance](../../.gitbook/assets/screencapture-us-west-2-console-aws-amazon-rds-home-2020-07-28-10_55_33.png)
+
+
+
+1. \_\_
+2. You will notice that a security group already exists for the VPC that you created [previously](manual-deployment.md#create-a-vpc-1). Choose _Create security group_ to create a security group for the AWS Fargate cluster that we will create shortly.
+3. Pick a name for your security group for _Security group name,_ add a _Description_ and select the VPC that you created [previously](manual-deployment.md#create-a-vpc-1) under _VPC._
+4. For _Inbound rules_, 
+   1. Select _Custom TCP_ for _Type._
+   2. Use _8080_ for _Port range._
+   3. Select _Anywhere_ for _Source type._
+5. For _Outbound rules,_
+   1. Select _All traffic_ for _Type_.
+   2. Select _Custom_ for _Destination type_.
+   3. Select _0.0.0.0/0_ for _Destination_.
+6. Choose _Create security group._
+7. Take note of the ID of the security group.
+8. Next, we will create a security group for the AWS RDS instance. Choose _Copy to new security group_.
+9. Pick a name for your security group for _Security group name_ and __add a _Description._ The correct _VPC_ is already selected for you.
+10. For _Inbound rules_, instead of _Custom TCP_ for _Type_, choose _PostgreSQL_ and under _Source_, choose the security group from Step 8.
+11. Choose _Create security group_ and take note of the ID.
+
 ### Scheduling
 
 Using Metaflow, workflows can be directly scheduled on [AWS Step Functions](https://aws.amazon.com/step-functions/). Moreover, from within Metaflow, time-based triggers can be set to execute these deployed workflows via [Amazon EventBridge](https://aws.amazon.com/eventbridge/).
