@@ -1,3 +1,7 @@
+---
+description: The administrator's point of view
+---
+
 # Why Metaflow?
 
 If you are an individual data scientist who wants to give Metaflow a try, you don't need this guide. All you have to do is to [install Metaflow](https://docs.metaflow.org/getting-started/install). Over time, if you want to start using more advanced features of Metaflow, or, in particular, you want to start collaborating with your colleagues using Metaflow, this guide will come in handy.
