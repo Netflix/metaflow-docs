@@ -197,6 +197,9 @@ We will create two security groups, one for the AWS Fargate cluster and another 
    1. Select _Custom TCP_ for _Type._
    2. Use _8080_ for _Port range._
    3. Select _Anywhere_ for _Source type._
+   4. Choose _Add rule_ and select _Custom TCP_ for _Type._
+   5. Use _8082_ for _Port range._ This is needed for the migration service to work.
+   6. Select _Anywhere_ for _Source type._
 6. For _Outbound rules,_
    1. Select _All traffic_ for _Type_.
    2. Select _Custom_ for _Destination type_.
@@ -323,7 +326,7 @@ We will create two security groups, one for the AWS Fargate cluster and another 
 10. For _Configure network,_ 
     1. For _Cluster VPC,_ choose the VPC that you have created [previously](manual-deployment.md#create-a-vpc-1).
     2. Choose all subnets in that VPC for _Subnets._
-    3. Leave _Security groups_ and _Auto-assign public IP._
+    3. Choose the two _Security groups_ that you have created previously.
 11. For _Load balancing,_ choose _None_ as _Load balancer type._ In case, you would like help setting up a load balancer, [please reach out to us](../../introduction/getting-in-touch.md).
 12. Choose _Next step._
 13. You can configure _Service Auto Scaling_ if you want to do so. We will skip that for now.

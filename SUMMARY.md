@@ -23,5 +23,4 @@
 * [Deployment Guide](aws-deployment-guide/deployment-guide/README.md)
   * [AWS CloudFormation Deployment](aws-deployment-guide/deployment-guide/aws-cloudformation-deployment.md)
   * [Manual Deployment](aws-deployment-guide/deployment-guide/manual-deployment.md)
-  * [Frequently Asked Questions](aws-deployment-guide/deployment-guide/frequently-asked-questions.md)
 
