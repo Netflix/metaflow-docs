@@ -14,8 +14,8 @@ description: How to operate Metaflow at scale
 
 ## Operating Metaflow on AWS
 
-* [Deploying with CloudFormation](metaflow-on-aws/deploying-with-cloudformation.md)
-* [Deploying Manually](metaflow-on-aws/deploying-manually.md)
+* [Deploying with CloudFormation]()
+* [Deploying Manually]()
 
 
 

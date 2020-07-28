@@ -10,17 +10,11 @@
 * [Release Notes](introduction/release-notes-1.md)
 * [Get in Touch](introduction/getting-in-touch.md)
 
-## Metaflow on AWS
+## Metaflow on AWS <a id="metaflow-on-aws-1"></a>
 
-* [Deploying with AWS CloudFormation](metaflow-on-aws/deploying-with-cloudformation.md)
-* [Deploying Manually](metaflow-on-aws/deploying-manually.md)
-* [Metaflow on AWS \(OLD\)](metaflow-on-aws/metaflow-on-aws.md)
-* [Deploying to AWS \(OLD\)](metaflow-on-aws/deploy-to-aws.md)
-
-## AWS Deployment Guide
-
-* [Metaflow on AWS](aws-deployment-guide/metaflow-on-aws.md)
-* [Deployment Guide](aws-deployment-guide/deployment-guide/README.md)
-  * [AWS CloudFormation Deployment](aws-deployment-guide/deployment-guide/aws-cloudformation-deployment.md)
-  * [Manual Deployment](aws-deployment-guide/deployment-guide/manual-deployment.md)
+* [Metaflow on AWS](metaflow-on-aws-1/metaflow-on-aws.md)
+* [Operations Guide](metaflow-on-aws-1/operations-guide.md)
+* [Deployment Guide](metaflow-on-aws-1/deployment-guide/README.md)
+  * [AWS CloudFormation Deployment](metaflow-on-aws-1/deployment-guide/aws-cloudformation-deployment.md)
+  * [Manual Deployment](metaflow-on-aws-1/deployment-guide/manual-deployment.md)
 
