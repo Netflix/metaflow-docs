@@ -327,7 +327,7 @@ We will create two security groups, one for the AWS Fargate cluster and another 
 In this example, we created an AWS Fargate cluster `metaflow-metadata-service`. While configuring Metaflow through `metaflow configure aws`, we can set the following values when prompted:
 
 ```text
-METAFLOW_SERVICE_URL = xxx.xxx.xxx.xxx:8080
+METAFLOW_SERVICE_URL = http://xxx.xxx.xxx.xxx:8080
 ```
 
 The metadata service in this example is exposed to the internet. Ideally, you would want to put this service behind an API gateway and use authentication in front of it. The [AWS CloudFormation](aws-cloudformation-deployment.md) does that automatically for you. If you need help with manual installation, please [get in touch](../../introduction/getting-in-touch.md).
