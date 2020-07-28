@@ -130,7 +130,7 @@ Compute resources in your compute environments need external network access to c
 
 In this example, we create an AWS Batch job queue `metaflow-queue` following the steps listed above.
 
-#### Create an IAM role
+#### Create an IAM role for AWS Batch
 
 1. Open the [IAM console](https://console.aws.amazon.com/iam/) and in the navigation pane, choose _Roles, Create role_.
 2. For _Select type of trusted entity_ section, choose _AWS service_.
@@ -268,8 +268,6 @@ We will create two security groups, one for the AWS Fargate cluster and another 
 
 ![AWS RDS DB subnet group](../../.gitbook/assets/screencapture-us-west-2-console-aws-amazon-rds-home-2020-07-28-10_22_03.png)
 
-![AWS RDS configuration](../../.gitbook/assets/screencapture-us-west-2-console-aws-amazon-rds-home-2020-07-28-10_55_33.png)
-
 ![AWS RDS instance](../../.gitbook/assets/screencapture-us-west-2-console-aws-amazon-rds-home-2020-07-28-11_07_58.png)
 
 #### Create an IAM role for ECS Fargate Service
@@ -285,7 +283,111 @@ We will create two security groups, one for the AWS Fargate cluster and another 
 
 ![IAM role for AWS Fargate Cluster](../../.gitbook/assets/screencapture-console-aws-amazon-iam-home-2020-07-28-11_06_01.png)
 
+#### Create an AWS Fargate Cluster
+
+1. Open the [ECS console](https://console.aws.amazon.com/ecs) and from the navigation bar, select the region to use.
+2. Choose _Create Cluster_ under _Clusters._
+3. Choose _Networking only, Next step._
+4. Pick a name for _Cluster name._ Don't enable _Create VPC._ We will use the VPC we have created previously. You can choose to check _Enable Container Insights_. Choose _Create._
+5. Choose _View Cluster_ and choose _Task Definitions_ on the left side pane.
+6. Choose _Create new Task Definition_, _Fargate_ and _Next step_.
+   1. Under _Configure task and container definitions,_
+      1. Choose a _Task Definition Name_.
+      2. Choose the _Task Role_ as the one [you just created above](manual-deployment.md#create-an-iam-role-for-ecs-fargate-service)_._
+   2. Under _Task execution IAM role,_ set the _Task execution role_ to _ecsTaskExecutionRole_ if you have it already. Leave it empty otherwise.
+   3. Under _Task size,_
+      1. Choose _8 GB_ for _Task memory \(GB\)._
+      2. Choose _2 vCPU_ for _Task CPU \(vCPU\)._
+   4. Under _Container Definitions_, choose _Add container_
+      1. Set _metaflow-service_ as the _Container name._
+      2. Set _netflixoss/metaflow\_metadata\_service_ as the _Image._
+      3. Leave other options as is.
+      4. Under _Advanced container configuration,_ in _Environment variables_ add the following values
+         1. Set _Key_ as _MF\_METADATA\_DB\_HOST_ and the _Value_ as the endpoint value in Step 12. while [creating the AWS RDS instance](manual-deployment.md#create-an-aws-rds-instance).
+         2. Set _Key_ as _MF\_METADATA\_DB\_NAME_ and the _Value_ as _metaflow._
+         3. Set _Key_ as _MF\_METADATA\_DB\__PORT __and the _Value_ as _5432._
+         4. Set _Key_ as _MF\_METADATA\_DB\_USER_ and the _Value_ as the user from Step 7.4.2.1_._ while [creating the AWS RDS instance](manual-deployment.md#create-an-aws-rds-instance).
+         5. Set _Key_ as _MF\_METADATA\_DB\_PSWD_ and the _Value_ as the user from Step 7.4.2.2_._ while [creating the AWS RDS instance](manual-deployment.md#create-an-aws-rds-instance).
+      5. Choose _Add._
+   5. Choose _Create._
+7. Choose _Clusters_ in the left side pane and select the cluster you created in Step 4.
+8. Choose _Create_ under _Services,_
+   1. Choose _Fargate_ as _Lauch type._
+   2. Choose the task definition that you created in Step 6. for _Task Definition._ Pick the latest for _Revision._
+   3. For _Platform version_ choose _Latest._
+   4. Leave the _Cluster_ as is \(pointing to the cluster that you are configuring\).
+   5. Pick a name for _Service name._
+   6. Pick a number for _Number of tasks._ In this example we will use 1.
+   7. Choose _Rolling update_ for _Deployment type._
+9. Choose _Next step._
+10. For _Configure network,_ 
+    1. For _Cluster VPC,_ choose the VPC that you have created [previously](manual-deployment.md#create-a-vpc-1).
+    2. Choose all subnets in that VPC for _Subnets._
+    3. Leave _Security groups_ and _Auto-assign public IP._
+11. For _Load balancing,_ choose _None_ as _Load balancer type._ In case, you would like help setting up a load balancer, [please reach out to us](../../introduction/getting-in-touch.md).
+12. Choose _Next step._
+13. You can configure _Service Auto Scaling_ if you want to do so. We will skip that for now.
+14. Choose _Next step_ and _Create Service._
+15. Choose _View Service_  and wait for the task to get to the _running_ state.
+16. Choose the task and copy the _Public IP_. You can verify that your service is up and running by curling the `ping` endpoint - `curl xxx.xxx.xxx.xxx:8080/ping`. You should expect `pong` as the response. This public IP with the port 8080 is the url to the metadata service.
+
+![AWS Fargate cluster](../../.gitbook/assets/screencapture-us-west-2-console-aws-amazon-ecs-home-2020-07-28-11_15_30.png)
+
+![AWS Fargate cluster](../../.gitbook/assets/screencapture-us-west-2-console-aws-amazon-ecs-home-2020-07-28-13_25_54.png)
+
+In this example, we created an AWS Fargate cluster `metaflow-metadata-service`. While configuring Metaflow through `metaflow configure aws`, we can set the following values when prompted:
+
+```text
+METAFLOW_SERVICE_URL = xxx.xxx.xxx.xxx:8080
+```
+
+The metadata service in this example is exposed to the internet. Ideally, you would want to put this service behind an API gateway and use authentication in front of it. The [AWS CloudFormation](aws-cloudformation-deployment.md) does that automatically for you. If you need help with manual installation, please [get in touch](../../introduction/getting-in-touch.md).
+
 ### Scheduling
 
-Using Metaflow, workflows can be directly scheduled on [AWS Step Functions](https://aws.amazon.com/step-functions/). Moreover, from within Metaflow, time-based triggers can be set to execute these deployed workflows via [Amazon EventBridge](https://aws.amazon.com/eventbridge/).
+Using Metaflow, workflows can be directly scheduled on [AWS Step Functions](https://aws.amazon.com/step-functions/). Moreover, from within Metaflow, time-based triggers can be set to execute these deployed workflows via [Amazon EventBridge](https://aws.amazon.com/eventbridge/). Metaflow currently also has a dependency on [Amazon DynamoDB](https://aws.amazon.com/dynamodb/) for tracking metadata for executing specific steps \(foreaches\) on AWS Step Functions.
+
+#### Create an IAM role for AWS Step Functions
+
+1. Open the [IAM console](https://console.aws.amazon.com/iam/) and in the navigation pane, choose _Roles, Create role_.
+2. For _Select type of trusted entity_ section, choose _AWS service_.
+3. For _Choose the service that will use this role_, choose _Step Functions_.
+4. For _Select your use case_, choose _Step Functions_ and choose _Next: Permissions_.
+5. Choose _Next:tags._
+6. For _Add tags \(optional\)_, enter any metadata tags you want to associate with the IAM role, and then choose _Next: Review_.
+7. For _Role name_, enter a name for your role and then choose _Create role_ to finish.
+8. In the [IAM console](https://console.aws.amazon.com/iam/), choose _Roles_ and select the role you created in Step 7.
+9. Choose _Attach policies._ Attach _AmazonS3FullAccess, AWSBatchFullAccess, AmazonDynamoDBFullAccess, CloudWatchFullAccess_ and _AmazonEventBridgeFullAccess_ policies_._ Please note that Metaflow doesn't need full access to any of these resources and the [CloudFormation template](aws-cloudformation-deployment.md) tracks the exact set of permissions needed. Please [reach out to us](../../introduction/getting-in-touch.md) if you need any assistance.
+10. Click on _Attach policy_ and note the ARN of the role created.
+
+#### Create an IAM role for Amazon EventBridge
+
+1. Open the [IAM console](https://console.aws.amazon.com/iam/) and in the navigation pane, choose _Roles, Create role_.
+2. For _Select type of trusted entity_ section, choose _AWS service_.
+3. For _Choose the service that will use this role_, choose _CloudWatch Events._
+4. For _Select your use case_, choose _CloudWatch Events_ and choose _Next: Permissions_.
+5. Choose _Next:tags._
+6. For _Add tags \(optional\)_, enter any metadata tags you want to associate with the IAM role, and then choose _Next: Review_.
+7. For _Role name_, enter a name for your role and then choose _Create role_ to finish.
+8. In the [IAM console](https://console.aws.amazon.com/iam/), choose _Roles_ and select the role you created in Step 7.
+9. Choose _Attach policies._ Attach _AWSStepFunctionsFullAccess_ policy_._ Please note that Metaflow doesn't need full access to this resource and the [CloudFormation template](aws-cloudformation-deployment.md) tracks the exact set of permissions needed. Please [reach out to us](../../introduction/getting-in-touch.md) if you need any assistance.
+10. Click on _Attach policy_ and note the ARN of the role created.
+
+#### Create an Amazon DynamoDB table
+
+1. Open the [DynamoDB console](https://console.aws.amazon.com/dynamodb/) and choose _Dashboard_ from the left side pane.
+2. Choose _Create Table_.
+3. Choose a name for _Table name,_ use _pathspec_ as _Primary key_ and choose _String_ from the dropdown right next to it. Keep _Add sort key_ unchecked.
+4. Choose _Create_. After the table has been created, under _Table details,_ choose _Manage TTL_ to open the _Enable TTL_ dialog.
+5. Choose _ttl_ for _TTL attribute_ and choose _Continue._
+
+While configuring Metaflow through `metaflow configure aws`, we can set the following values when prompted:
+
+```text
+METAFLOW_SFN_IAM_ROLE = [ARN of IAM role for AWS Step Functions]
+METAFLOW_EVENTS_SFN_ACCESS_IAM_ROLE = [ARN of IAM role for AWS EventBridge]
+METAFLOW_SFN_DYNAMO_DB_TABLE = [DynamoDB table name]
+```
+
+And that's it! Now you should have a full-blown set-up for using all the cloud functionality of Metaflow! 
 
