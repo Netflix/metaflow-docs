@@ -116,7 +116,7 @@ Compute resources in your compute environments need external network access to c
 
 ![AWS Batch compute environment](../../.gitbook/assets/screencapture-us-west-2-console-aws-amazon-batch-home-2020-07-27-16_58_10.png)
 
-**Create an AWS Batch job queue**
+#### **Create an AWS Batch job queue**
 
 1. Open the [AWS Batch console](https://console.aws.amazon.com/batch/) and select the region to use.
 2. In the navigation pane, choose _Job queues, Create queue_.
@@ -131,17 +131,6 @@ Compute resources in your compute environments need external network access to c
 In this example, we create an AWS Batch job queue `metaflow-queue` following the steps listed above.
 
 #### Create an IAM role
-
-1. Open the [IAM console](https://console.aws.amazon.com/iam/).
-2. In the navigation pane, choose _Policies_ and then choose _Create policy_.
-3. Use the visual editor to create the policy 
-   1. For _Service_, choose _S3_.
-4. For **Actions**, expand the **Read** option and select **GetObject**.
-5. For **Resources**, select **Add ARN** and enter the full Amazon Resource Name \(ARN\) of your Amazon S3 bucket, and then choose **Review policy**.
-6. On the **Review policy** page, for **Name** type your own unique name, such as `AmazonECSTaskS3BucketPolicy`.
-7. Choose **Create policy** to finish.
-
-**To create an IAM role for your tasks**
 
 1. Open the [IAM console](https://console.aws.amazon.com/iam/) and in the navigation pane, choose _Roles, Create role_.
 2. For _Select type of trusted entity_ section, choose _AWS service_.
@@ -279,27 +268,22 @@ We will create two security groups, one for the AWS Fargate cluster and another 
 
 ![AWS RDS DB subnet group](../../.gitbook/assets/screencapture-us-west-2-console-aws-amazon-rds-home-2020-07-28-10_22_03.png)
 
-![AWS RDS instance](../../.gitbook/assets/screencapture-us-west-2-console-aws-amazon-rds-home-2020-07-28-10_55_33.png)
+![AWS RDS configuration](../../.gitbook/assets/screencapture-us-west-2-console-aws-amazon-rds-home-2020-07-28-10_55_33.png)
 
+![AWS RDS instance](../../.gitbook/assets/screencapture-us-west-2-console-aws-amazon-rds-home-2020-07-28-11_07_58.png)
 
+#### Create an IAM role for ECS Fargate Service
 
-1. \_\_
-2. You will notice that a security group already exists for the VPC that you created [previously](manual-deployment.md#create-a-vpc-1). Choose _Create security group_ to create a security group for the AWS Fargate cluster that we will create shortly.
-3. Pick a name for your security group for _Security group name,_ add a _Description_ and select the VPC that you created [previously](manual-deployment.md#create-a-vpc-1) under _VPC._
-4. For _Inbound rules_, 
-   1. Select _Custom TCP_ for _Type._
-   2. Use _8080_ for _Port range._
-   3. Select _Anywhere_ for _Source type._
-5. For _Outbound rules,_
-   1. Select _All traffic_ for _Type_.
-   2. Select _Custom_ for _Destination type_.
-   3. Select _0.0.0.0/0_ for _Destination_.
-6. Choose _Create security group._
-7. Take note of the ID of the security group.
-8. Next, we will create a security group for the AWS RDS instance. Choose _Copy to new security group_.
-9. Pick a name for your security group for _Security group name_ and __add a _Description._ The correct _VPC_ is already selected for you.
-10. For _Inbound rules_, instead of _Custom TCP_ for _Type_, choose _PostgreSQL_ and under _Source_, choose the security group from Step 8.
-11. Choose _Create security group_ and take note of the ID.
+1. Open the [IAM console](https://console.aws.amazon.com/iam/) and in the navigation pane, choose _Roles, Create role_.
+2. For _Select type of trusted entity_ section, choose _AWS service_.
+3. For _Choose the service that will use this role_, choose _Elastic Container Service_.
+4. For _Select your use case_, choose _Elastic Container Service Task_ and choose _Next: Permissions_.
+5. Choose _AmazonECSTaskExecutionRolePolicy._
+6. Choose _Next:tags._
+7. For _Add tags \(optional\)_, enter any metadata tags you want to associate with the IAM role, and then choose _Next: Review_.
+8. For _Role name_, enter a name for your role and then choose _Create role_ to finish. Note the ARN of the IAM role you just created.
+
+![IAM role for AWS Fargate Cluster](../../.gitbook/assets/screencapture-console-aws-amazon-iam-home-2020-07-28-11_06_01.png)
 
 ### Scheduling
 
