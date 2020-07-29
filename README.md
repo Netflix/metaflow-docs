@@ -8,9 +8,10 @@ description: How to operate Metaflow at scale
 
 * [Why Metaflow?](overview/why-metaflow.md)
 * [Service Architecture](overview/service-architecture.md)
+* [Configuring Metaflow](overview/configuring-metaflow.md)
 * [Get in Touch](overview/getting-in-touch.md)
 
-## Operating Metaflow on AWS
+## Metaflow on AWS
 
 * [Operations Guide](metaflow-on-aws/operations-guide/)
 * [Deployment Guide](metaflow-on-aws/deployment-guide/)
