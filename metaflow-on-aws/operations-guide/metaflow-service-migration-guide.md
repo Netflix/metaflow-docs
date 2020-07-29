@@ -2,7 +2,7 @@
 
 ## Metaflow 2.1.+
 
-In Metaflow 2.1.0, we introduced a new AWS service integration with AWS Step Functions. Now, users of Metaflow can easily deploy their flows to AWS Step Functions. If this is a functionality that you would like to use, depending on if/when you deployed the [metaflow service](https://app.gitbook.com/@hawkins/s/metaflow-admin/~/drafts/-MDQ9c_b9eEtHKMgoQni/metaflow-on-aws/metaflow-on-aws#metadata), you might have to take some actions to upgrade your service. If while trying to [schedule your flows](www.google.com) on AWS Step Functions via :
+In Metaflow 2.1.0, we introduced [a new AWS service integration with AWS Step Functions](https://docs.metaflow.org/going-to-production-with-metaflow/scheduling-metaflow-flows). Now, users of Metaflow can easily deploy their flows to AWS Step Functions. If this is a functionality that you would like to use, depending on if/when you deployed the [metaflow service](https://app.gitbook.com/@hawkins/s/metaflow-admin/~/drafts/-MDQ9c_b9eEtHKMgoQni/metaflow-on-aws/metaflow-on-aws#metadata), you might have to take some actions to upgrade your service. If while trying to [schedule your flows](www.google.com) on AWS Step Functions via :
 
 ```text
 python myflow.py step-functions create
