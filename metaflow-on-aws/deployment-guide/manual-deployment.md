@@ -165,7 +165,7 @@ METAFLOW_BATCH_CONTAINER_IMAGE = bar
 
 ### Metadata
 
-Metaflow ships with a [Metadata service](https://github.com/Netflix/metaflow-service) that tracks all flow executions. This service is an aiohttp service with a SQL datastore as a backend. At a high level, this service can be thought of as an index on top of all the data that Metaflow stores in its datastore. This allows users to easily share their results and collaborate with their peers. Deploying this service is not strictly necessary, you can still use Amazon S3 as your storage backend and execute your flows on AWS Batch without it. But for any production deployment, we highly recommend deploying the Metadata service since it helps in easily monitoring the state of the Metaflow universe.
+Metaflow ships with a [metaflow service](https://github.com/Netflix/metaflow-service) that tracks all flow executions. This service is an aiohttp service with a SQL datastore as a backend. At a high level, this service can be thought of as an index on top of all the data that Metaflow stores in its datastore. This allows users to easily share their results and collaborate with their peers. Deploying this service is not strictly necessary, you can still use Amazon S3 as your storage backend and execute your flows on AWS Batch without it. But for any production deployment, we highly recommend deploying the metaflow service since it helps in easily monitoring the state of the Metaflow universe.
 
 The Metadata service is available as a docker image in [docker hub](https://hub.docker.com/repository/docker/netflixoss/metaflow_metadata_service). There are many ways to deploy this service within AWS. Here we detail some of the steps to deploy this service on AWS Fargate with a PostgreSQL database in Amazon RDS.
 

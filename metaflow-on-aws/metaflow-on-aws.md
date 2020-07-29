@@ -36,15 +36,15 @@ Metaflow executes all steps in the flow as a separate local process in local mod
 
 ### Metadata
 
-Metaflow ships with a light-weight [metadata service](https://github.com/Netflix/metaflow-service) that provides a centralized place to keep track of all flow executions. This metadata service is not strictly needed. Metaflow will use a local directory to keep track of all executions from your laptop, even if you are using Amazon S3 as [datastore](metaflow-on-aws.md#datastore) or AWS Batch for [compute](metaflow-on-aws.md#compute). You can use a local Jupyter notebook to interact with data artifacts from all your previous executions as well as currently running ones. However, deploying the metadata service \(as well as Amazon S3 as datastore\) is helpful if you would like to share results with your peers and track your work without fear of losing any state. 
+Metaflow ships with a light-weight [metaflow service](https://github.com/Netflix/metaflow-service) that provides a centralized place to keep track of all flow executions. This metadata service is not strictly needed. Metaflow will use a local directory to keep track of all executions from your laptop, even if you are using Amazon S3 as [datastore](metaflow-on-aws.md#datastore) or AWS Batch for [compute](metaflow-on-aws.md#compute). You can use a local Jupyter notebook to interact with data artifacts from all your previous executions as well as currently running ones. However, deploying the metaflow service \(as well as Amazon S3 as datastore\) is helpful if you would like to share results with your peers and track your work without fear of losing any state. 
 
-At Netflix, all executions are logged in the metadata service and all data artifacts are stored in Amazon S3, so that any data scientist can interface with anybody's work via the [client](https://docs.metaflow.org/metaflow/client) and collaborate fruitfully. Also, a centralized metadata service along with a data store like Amazon S3 makes it easy for data scientists at Netflix to use hosted notebooks to easily set-up dashboards to monitors their flows.
+At Netflix, all executions are logged in the metaflow service and all data artifacts are stored in Amazon S3, so that any data scientist can interface with anybody's work via the [client](https://docs.metaflow.org/metaflow/client) and collaborate fruitfully. Also, a centralized metaflow service along with a data store like Amazon S3 makes it easy for data scientists at Netflix to use hosted notebooks to easily set-up dashboards to monitors their flows.
 
 Our [AWS CloudFormation template](deployment-guide/aws-cloudformation-deployment.md) creates all the necessary resources for the service, but if you would like to manually deploy the service on top of AWS Fargate and Amazon RDS, we have some notes for you [here](deployment-guide/manual-deployment.md#metadata).
 
 ### Notebooks
 
-We are a [big fan of Notebooks](https://netflixtechblog.com/notebook-innovation-591ee3221233) at Netflix. With Metaflow, users can easily create custom dashboards to monitor the execution of their Metaflow flows and track how their models are behaving in a very seamless manner. They can do that on their laptops with a local notebook or in the cloud with a hosted notebook solution. One such hosted solution is [Sagemaker Notebooks](https://aws.amazon.com/sagemaker/) by AWS. For notebooks hosted in the cloud, you would want to ensure that you have configured the [metadata service](metaflow-on-aws.md#metadata) and are using Amazon S3 for [datastore](metaflow-on-aws.md#datastore).
+We are a [big fan of Notebooks](https://netflixtechblog.com/notebook-innovation-591ee3221233) at Netflix. With Metaflow, users can easily create custom dashboards to monitor the execution of their Metaflow flows and track how their models are behaving in a very seamless manner. They can do that on their laptops with a local notebook or in the cloud with a hosted notebook solution. One such hosted solution is [Sagemaker Notebooks](https://aws.amazon.com/sagemaker/) by AWS. For notebooks hosted in the cloud, you would want to ensure that you have configured the [metaflow service](metaflow-on-aws.md#metadata) and are using Amazon S3 for [datastore](metaflow-on-aws.md#datastore).
 
 ### Scheduling
 
@@ -68,7 +68,7 @@ If your organization has an AWS account already, see our [deployment guide](depl
 
 {% page-ref page="deployment-guide/" %}
 
-If you are already using Metaflow in your AWS account, and want to get started with how to manage various AWS resources, take a look at our [operations guide](operations-guide.md).
+If you are already using Metaflow in your AWS account, and want to get started with how to manage various AWS resources, take a look at our [operations guide](operations-guide/).
 
-{% page-ref page="operations-guide.md" %}
+{% page-ref page="operations-guide/" %}
 
