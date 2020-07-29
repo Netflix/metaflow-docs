@@ -8,7 +8,7 @@ If you are an individual data scientist who wants to give Metaflow a try, you do
 
 Since the early days of Metaflow at Netflix, Metaflow has been designed to be the common layer that binds together infrastructure components, people, and projects. We, like many other people, observed that models are only a small part of an end-to-end data science project. Production-grade projects rely on [a thick stack of infrastructure](https://docs.metaflow.org/introduction/what-is-metaflow#infrastructure-stack-for-data-science) and collaboration across multiple data scientists. **This guide is targeted at systems administrators who want to provide such a common layer for their organization.**
 
-One of the core tenets of Metaflow is [fanatic focus on usability and ergonomics](https://docs.metaflow.org/introduction/what-is-metaflow#3-fanatic-focus-on-the-usability-and-ergonomics). Besides being delightful to use, we want Metaflow to be delightfully simple to operate at scale. From experience, we know that much of the pain related to operating modern machine learning infrastructure is caused by the complexity of large-scale distributed systems. While some of this pain is inherent in nature - complex systems are complex - there's a lot of avoidable, accidental complexity in many systems which we can avoid.
+One of the core tenets of Metaflow is [fanatic focus on usability and ergonomics](https://docs.metaflow.org/introduction/what-is-metaflow#3-fanatic-focus-on-the-usability-and-ergonomics). Besides being delightful to use, we want Metaflow to be delightfully simple to operate at scale. From experience, we know that much of the pain related to operating modern machine learning infrastructure is caused by the complexity of large-scale distributed systems. While some of this pain is inherent in nature - complex systems are complex - there's a plenty of accidental complexity in many systems which we can avoid.
 
 Metaflow comes with a number of design choices that make it easy to operate, regardless of whether you have a handful or hundreds of data scientists using Metaflow:
 
@@ -18,5 +18,5 @@ Metaflow comes with a number of design choices that make it easy to operate, reg
 * The Metaflow deployment can be easily configured to **comply with security and data governance requirements of your organization**. Metaflow relies on proven cloud-native governance concepts like IAM and S3 lifecycle policies, instead of trying to reinvent the wheel.
 * Metaflow handles both frictionless prototyping as well as production-grade deployments to a highly-available scheduler like AWS Step Functions. Metaflow’s approach makes it possible to **define organization-wide policies and best practices while leaving plenty of freedom for data scientists** to do their job well.
 
-In the next section, we outline what a Metaflow deployment looks like in practice.
+In the next section, we show what a Metaflow deployment looks like in practice.
 
