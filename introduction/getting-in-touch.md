@@ -1,6 +1,6 @@
 # Get in Touch
 
-Thank you for your interest in Metaflow. We are here to help.
+We know that deploying and operating infrastructure can be tricky. We are here to help.
 
 There are several ways to get in touch with us:
 

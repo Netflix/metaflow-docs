@@ -71,3 +71,18 @@ The following two services are optional. They provide a way to scale out Metaflo
 
 Similarly as a cloud-based object store provides a semblance of an infinitely scalable datastore, a cloud-based, elastically scalable compute cluster provides an infinitely scalable compute backend. Whereas HPC systems of the previous generation had to focus on careful management of limited resources, Metaflow takes more of a function-as-a-service approach: The user defines a function to be computed, a Metaflow task, optionally specifying resources it requires. The function can be executed locally in the Development Environment as a process or it can be shipped out to a compute cluster, which provisions resources for it on the fly.
 
+The compute cluster can support two dimensions of scalability: Vertical scalability with a large instance with tens of CPU cores, multiple GPUs, and hundreds of GBs of RAM can be the most efficient way to train a large ML model, for instance. Horizontal scalability through [Metaflow’s foreach construct](https://docs.metaflow.org/metaflow/basics#foreach) can be an efficient way to handle e.g. sharded datasets in an embarrassingly parallel fashion. The user can choose any combination of the two dimensions which best serves their workload.
+
+Currently, Metaflow provides an integration to AWS Batch as a Compute Cluster backend. The administrator can configure compute environments in Batch depending on the types of workloads that they want to support in Metaflow.
+
+### **Production Scheduler**
+
+Metaflow comes with a built-in local scheduler which makes it easy to develop and test workflows in the Development Environment. It is a great solution for use cases where quick, manual iterations are preferred over high availability and unattended execution.
+
+Data science workflows that need to run automatically without any human intervention have a different set of requirements. Most importantly, the scheduler needs to be highly available, i.e. it needs to be backed by a cluster of instances so that a failure of any single instance won’t interrupt the scheduler. Preferably it would need to be highly scalable as well, both in terms of the size of a single workflow as well as the number of concurrent workflows, which can grow to hundreds of thousands in a large deployment like at Netflix. In addition, the scheduler should provide flexible ways to trigger executions, and it should provide a plethora of tools for operational monitoring and alerting.
+
+The user can deploy their Metaflow workflow to the production scheduler with a single command - no changes in the code are required. We recognize that “deploying to production” is not a linear process. Rather, we expect the user to use both the local scheduler and the production scheduler in parallel. For instance, after the initial deployment, the data scientist typically wants to continue working on the project locally. Eventually, they might want to deploy a new, experimental version on the production scheduler to run in parallel with the production version as an A/B test. Also, things fail in production. Metaflow allows the user to reproduce issues that occur on the production scheduler locally, simply by using [the resume command](https://docs.metaflow.org/metaflow/debugging#how-to-use-the-resume-command) to continue the execution on their local machine.
+
+Currently, Metaflow supports [AWS Step Functions as the Production Scheduler](http://google.com). For more background about production schedulers, see [the release blog post for Step Functions integration](http://google.com).  
+
+
