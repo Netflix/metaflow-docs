@@ -2,11 +2,11 @@
 
 * [Administrator's Guide to Metaflow](README.md)
 
-## Introduction
+## Overview
 
-* [Why Metaflow?](introduction/why-metaflow.md)
-* [Service Architecture](introduction/service-architecture.md)
-* [Get in Touch](introduction/getting-in-touch.md)
+* [Why Metaflow?](overview/why-metaflow.md)
+* [Service Architecture](overview/service-architecture.md)
+* [Get in Touch](overview/getting-in-touch.md)
 
 ## Metaflow on AWS
 

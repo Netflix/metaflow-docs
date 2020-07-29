@@ -2,7 +2,7 @@
 
 There are many ways \(automated and manual\) to deploy, configure, and manage AWS resources depending on your security posture and familiarity with the AWS eco-system. If you cannot use [our AWS CloudFormation template](aws-cloudformation-deployment.md), this article lists the steps for a rather straightforward deployment of AWS resources for use by Metaflow. 
 
-Please note that Metaflow can re-use existing AWS resources - for example, your existing AWS Batch job queue for job execution. The instructions listed here will create these resources from scratch. If you have a strong background in administering AWS resources, you will notice that many of the security policies are fairly permissive and are intended to serve as a starting point for more complex deployments. [Please reach out to us](../../introduction/getting-in-touch.md) if you would like to discuss more involved deployments.
+Please note that Metaflow can re-use existing AWS resources - for example, your existing AWS Batch job queue for job execution. The instructions listed here will create these resources from scratch. If you have a strong background in administering AWS resources, you will notice that many of the security policies are fairly permissive and are intended to serve as a starting point for more complex deployments. [Please reach out to us](../../overview/getting-in-touch.md) if you would like to discuss more involved deployments.
 
 ## Steps for Manual Deployment
 
@@ -315,7 +315,7 @@ We will create two security groups, one for the AWS Fargate cluster and another 
     1. For _Cluster VPC,_ choose the VPC that you have created [previously](manual-deployment.md#create-a-vpc-1).
     2. Choose all public subnets in that VPC for _Subnets._
     3. Choose the two _Security groups_ that you have created previously.
-11. For _Load balancing,_ choose _None_ as _Load balancer type._ In case, you would like help setting up a load balancer, [please reach out to us](../../introduction/getting-in-touch.md).
+11. For _Load balancing,_ choose _None_ as _Load balancer type._ In case, you would like help setting up a load balancer, [please reach out to us](../../overview/getting-in-touch.md).
 12. Choose _Next step._
 13. You can configure _Service Auto Scaling_ if you want to do so. We will skip that for now.
 14. Choose _Next step_ and _Create Service._
@@ -332,7 +332,7 @@ In this example, we created an AWS Fargate cluster `metaflow-metadata-service`. 
 METAFLOW_SERVICE_URL = http://xxx.xxx.xxx.xxx:8080
 ```
 
-The metadata service in this example is exposed to the internet. Ideally, you would want to put this service behind an API gateway and use authentication in front of it. The [AWS CloudFormation](aws-cloudformation-deployment.md) does that automatically for you. If you need help with manual installation, please [get in touch](../../introduction/getting-in-touch.md).
+The metadata service in this example is exposed to the internet. Ideally, you would want to put this service behind an API gateway and use authentication in front of it. The [AWS CloudFormation](aws-cloudformation-deployment.md) does that automatically for you. If you need help with manual installation, please [get in touch](../../overview/getting-in-touch.md).
 
 ### Scheduling
 
@@ -348,7 +348,7 @@ Using Metaflow, workflows can be directly scheduled on [AWS Step Functions](http
 6. For _Add tags \(optional\)_, enter any metadata tags you want to associate with the IAM role, and then choose _Next: Review_.
 7. For _Role name_, enter a name for your role and then choose _Create role_ to finish.
 8. In the [IAM console](https://console.aws.amazon.com/iam/), choose _Roles_ and select the role you created in Step 7.
-9. Choose _Attach policies._ Attach _AmazonS3FullAccess, AWSBatchFullAccess, AmazonDynamoDBFullAccess, CloudWatchFullAccess_ and _AmazonEventBridgeFullAccess_ policies_._ Please note that Metaflow doesn't need full access to any of these resources and the [CloudFormation template](aws-cloudformation-deployment.md) tracks the exact set of permissions needed. Please [reach out to us](../../introduction/getting-in-touch.md) if you need any assistance.
+9. Choose _Attach policies._ Attach _AmazonS3FullAccess, AWSBatchFullAccess, AmazonDynamoDBFullAccess, CloudWatchFullAccess_ and _AmazonEventBridgeFullAccess_ policies_._ Please note that Metaflow doesn't need full access to any of these resources and the [CloudFormation template](aws-cloudformation-deployment.md) tracks the exact set of permissions needed. Please [reach out to us](../../overview/getting-in-touch.md) if you need any assistance.
 10. Click on _Attach policy_ and note the ARN of the role created.
 
 #### Create an IAM role for Amazon EventBridge
@@ -361,7 +361,7 @@ Using Metaflow, workflows can be directly scheduled on [AWS Step Functions](http
 6. For _Add tags \(optional\)_, enter any metadata tags you want to associate with the IAM role, and then choose _Next: Review_.
 7. For _Role name_, enter a name for your role and then choose _Create role_ to finish.
 8. In the [IAM console](https://console.aws.amazon.com/iam/), choose _Roles_ and select the role you created in Step 7.
-9. Choose _Attach policies._ Attach _AWSStepFunctionsFullAccess_ policy_._ Please note that Metaflow doesn't need full access to this resource and the [CloudFormation template](aws-cloudformation-deployment.md) tracks the exact set of permissions needed. Please [reach out to us](../../introduction/getting-in-touch.md) if you need any assistance.
+9. Choose _Attach policies._ Attach _AWSStepFunctionsFullAccess_ policy_._ Please note that Metaflow doesn't need full access to this resource and the [CloudFormation template](aws-cloudformation-deployment.md) tracks the exact set of permissions needed. Please [reach out to us](../../overview/getting-in-touch.md) if you need any assistance.
 10. Click on _Attach policy_ and note the ARN of the role created.
 
 #### Create an Amazon DynamoDB table
@@ -380,5 +380,5 @@ METAFLOW_EVENTS_SFN_ACCESS_IAM_ROLE = [ARN of IAM role for AWS EventBridge]
 METAFLOW_SFN_DYNAMO_DB_TABLE = [DynamoDB table name]
 ```
 
-And that's it! Now you should have a full-blown set-up for using all the cloud functionality of Metaflow! In case you need any help, [get in touch](../../introduction/getting-in-touch.md).
+And that's it! Now you should have a full-blown set-up for using all the cloud functionality of Metaflow! In case you need any help, [get in touch](../../overview/getting-in-touch.md).
 
