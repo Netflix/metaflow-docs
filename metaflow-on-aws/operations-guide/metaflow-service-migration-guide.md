@@ -14,13 +14,15 @@ you ran into the following error :
 
 then you would need to upgrade the deployed version of your metaflow service. This upgrade requires migration of the backing RDS instance.
 
- In this situation, the administrator should decide if and when they want to run the migration, which will incur some downtime - up to a few minutes. As a best practice, it is advisable to take a backup of the database prior to the migration which allows you to roll back the migration in case something goes wrong.
+In this situation, the administrator should decide if and when they want to run the migration, which will incur some downtime - up to a few minutes. As a best practice, it is advisable to take a backup of the database prior to the migration which allows you to roll back the migration in case something goes wrong.
 
 \[Add info about  downtime, backup and retries in bold here\]
 
 To make this database migration easy, metaflow service comes with a built-in migration service. When you deploy or restart the [latest version of the metaflow service image](https://hub.docker.com/repository/docker/netflixoss/metaflow_metadata_service), the migration service will detect the schema version of the backing database, and launch the latest version of the metaflow service that is compatible with the database schema. The migration service provides hooks to upgrade the database schema to the latest version so that you can upgrade the metaflow service to the latest version.
 
-There are two paths to upgrading your service, depending on how you first deployed the service - using our [AWS CloudFormation template](metaflow-service-migration-guide.md#aws-cloudformation-deployment) or [manually through the AWS console](metaflow-service-migration-guide.md#manual-deployment). 
+There are two paths to upgrading your service, depending on how you first deployed the service - using our [AWS CloudFormation template](metaflow-service-migration-guide.md#aws-cloudformation-deployment) or [manually through the AWS console](metaflow-service-migration-guide.md#manual-deployment).
+
+In addition to migrating the service, if you intend to use AWS Step Functions, you would need to update a few IAM roles and set up an Amazon DynamoDB table. The instructions below will walk you through those as well.
 
 ## AWS CloudFormation Deployment
 
@@ -32,7 +34,9 @@ If you originally deployed the AWS resources needed for Metaflow using our [AWS 
 2. Choose _Update_ and choose _Replace current template_ under _Prerequisite - Prepare template._ 
 3. Choose _Upload a template file_ under _Specify template_.
 4. Choose _Choose file_ and upload [this template](https://github.com/Netflix/metaflow-tools/blob/master/aws/cloudformation/metaflow-cfn-template.yml). You will have to copy the template to your laptop before you can upload it. Choose _Next._
-5. Select your parameters for your deployment
+5. Select your parameters for your deployment under _Parameters_ and choose _Next._
+6. Feel free to tag your stack in whatever way best fits your organization. When finished, choose _Next._
+7. The _Change set preview_ will log all the changes that this update to your CloudFormation stack will cause. If you were not already on the latest version, you will 
 
 
 
