@@ -10,11 +10,11 @@ Since the early days of Metaflow at Netflix, Metaflow has been designed to be th
 
 One of the core tenets of Metaflow is [fanatic focus on usability and ergonomics](https://docs.metaflow.org/introduction/what-is-metaflow#3-fanatic-focus-on-the-usability-and-ergonomics). Besides being delightful to use, we want Metaflow to be delightfully simple to operate at scale. From experience, we know that much of the pain related to modern machine learning infrastructure is related to operational pain of large-scale distributed systems. Metaflow comes with a number of design choices that make it easy to operate, regardless of whether you have a handful or hundreds of data scientists using Metaflow:
 
-1. Metaflow is designed from the ground up to leverage elastic storage and compute services available in the cloud without introducing bottlenecks. **Metaflow scales as well as your cloud provider**.
-2. All user-facing functionality is provided as a library that provides strong guarantees for backwards compatibility which **implies no migration overhead between versions**. Users can safely upgrade the library without having to fear that their projects break unintentionally.
-3. Only one simple backend service is required which tracks relatively lightweight metadata so it can scale to hundreds of users and millions of executions with **minimal operational overhead**. It is easy to deploy on various container platforms.
-4. The Metaflow deployment can be easily configured to **comply with security and data governance requirements of your organization**. Metaflow relies on proven cloud-native governance concepts like IAM and S3 lifecycle policies, instead of trying to reinvent the wheel.
-5. Metaflow handles both frictionless prototyping as well as production-grade deployments to a highly-available scheduler like AWS Step Functions. Metaflow’s approach makes it possible to **define organization-wide policies and best practices while leaving plenty of freedom for data scientists** to do their job well.
+* Metaflow is designed from the ground up to leverage elastic storage and compute services available in the cloud without introducing bottlenecks. **Metaflow scales as well as your cloud provider**.
+* All user-facing functionality is provided as a library that provides strong guarantees for backwards compatibility which **implies no migration overhead between versions**. Users can safely upgrade the library without having to fear that their projects break unintentionally.
+* Only one simple backend service is required which tracks relatively lightweight metadata so it can scale to hundreds of users and millions of executions with **minimal operational overhead**. It is easy to deploy on various container platforms.
+* The Metaflow deployment can be easily configured to **comply with security and data governance requirements of your organization**. Metaflow relies on proven cloud-native governance concepts like IAM and S3 lifecycle policies, instead of trying to reinvent the wheel.
+* Metaflow handles both frictionless prototyping as well as production-grade deployments to a highly-available scheduler like AWS Step Functions. Metaflow’s approach makes it possible to **define organization-wide policies and best practices while leaving plenty of freedom for data scientists** to do their job well.
 
-In the next section, we outline what operating Metaflow looks like in practice.
+In the next section, we outline what a Metaflow deployment looks like in practice.
 

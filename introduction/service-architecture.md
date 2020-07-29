@@ -4,6 +4,8 @@ Metaflow can be used in _the local mode,_ e.g. on a laptop_,_ without any connec
 
 To benefit from the centralized [experiment tracking and sharing via Client API](https://docs.metaflow.org/metaflow/client), [scalable computation](https://docs.metaflow.org/metaflow/scaling), [dependency management](https://docs.metaflow.org/metaflow/dependencies), and [production deployments](https://docs.metaflow.org/), we recommend that an administrator sets up infrastructure that allows Metaflow to be used in _the shared mode_.
 
+## Shared Mode Architecture
+
 The diagram below depicts the service architecture of the shared mode. The components outlined in yellow, development environment, datastore, and Metaflow service and its DB are required. The components outlined with dashed lines are optional.
 
 ![](../.gitbook/assets/service_architecture.png)
