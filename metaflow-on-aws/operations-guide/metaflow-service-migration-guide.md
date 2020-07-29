@@ -68,7 +68,10 @@ We highly recommend [taking a backup of your RDS instance](https://docs.aws.amaz
        3. Execute the command `aws lambda invoke --function-name <lambda-function-name> output.log` 
        4. Check the execution result. In the resulting JSON blob, you should see `upgrade-result` set to `upgrade success` and `is_up_to_date` in `final-status` set to `true`. Congratulations! You have upgraded your database schema successfully. You can skip Step 5. and now let's upgrade the version of the metaflow service.
        5. If you saw a failure, [restore your RDS instance using the backup](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_RestoreFromSnapshot.html) that you had generated before. Please [get in touch](../../overview/getting-in-touch.md) with us so that we can figure out what went wrong.
-12. 
+12. Open the [Amazon ECS console](https://console.aws.amazon.com/ecs) and navigate to your AWS Fargate cluster in _Clusters_ tab.
+13. Under the _Tasks_ tab, choose _Stop All._ This will stop all your tasks causing your service to reboot.
+14. Once the tasks have rebooted and entered the _RUNNING_ state, choose any task and select the public IP. Curl this public IP on port 8080 with the _version_ endpoint. curl xxx.xxx.xxx.xxx:8080/version. The response will be the version of your metaflow service and it should be &gt;= 2.0.2. Congratulations! You have successfully upgraded the service!
+
 
 
 ### Manual Deployment
