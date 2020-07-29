@@ -11,7 +11,6 @@
 
 ## Metaflow on AWS
 
-* [Metaflow on AWS](metaflow-on-aws/metaflow-on-aws.md)
 * [Deployment Guide](metaflow-on-aws/deployment-guide/README.md)
   * [AWS CloudFormation Deployment](metaflow-on-aws/deployment-guide/aws-cloudformation-deployment.md)
   * [Manual Deployment](metaflow-on-aws/deployment-guide/manual-deployment.md)
