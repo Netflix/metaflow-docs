@@ -119,5 +119,3 @@ We highly recommend [taking a backup of your RDS instance](https://docs.aws.amaz
 2. Modify the IAM role of AWS Batch so that your AWS Batch instance can access Amazin DynamoDB table. Follow the instructions listed [here](../deployment-guide/manual-deployment.md#create-an-iam-role-for-aws-batch). More specifically Step 5.2. Within the [IAM console](https://console.aws.amazon.com/iam), you can edit your existing role and add the new Amazon DynamoDB policy specified in the [Step 5.2](../deployment-guide/manual-deployment.md#create-an-iam-role-for-aws-batch).
 3. That's it! You can now [configure your Metaflow installation](../../overview/configuring-metaflow.md) with these additional resources.
 
-
-
