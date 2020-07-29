@@ -86,6 +86,8 @@ You can find more details about Metaflow's approach to various parts of the stac
   </tbody>
 </table>
 
+If you are an infrastructure person who wants to know how to deploy and operate Metaflow, take a look at [Administrator's Guide to Metaflow](https://admin-docs.metaflow.org).
+
 ## Presentations about Metaflow 
 
 If you want to learn more, the Machine Learning Infrastructure team at Netflix has given a number of public presentations about Metaflow prior to its open-sourcing. You can find links to these presentations below.
