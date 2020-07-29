@@ -30,7 +30,7 @@ There are two paths to upgrading your service, depending on how you first deploy
 
 In addition to migrating the service, if you intend to use AWS Step Functions, you would need to update a few IAM roles and set up an Amazon DynamoDB table. The instructions below will walk you through those as well.
 
-## AWS CloudFormation Deployment
+### AWS CloudFormation Deployment
 
 If you originally deployed the AWS resources needed for Metaflow using our [AWS CloudFormation template](../deployment-guide/aws-cloudformation-deployment.md), then you can use AWS CloudFormation to spin up the necessary resources for this service migration. The latest version of the AWS CloudFormation template pulls the [latest version of the metaflow service image](https://hub.docker.com/repository/docker/netflixoss/metaflow_metadata_service) which comes bundled with a migration service as well as an AWS Lambda function which you can execute manually to trigger the database migration.
 
@@ -55,5 +55,5 @@ We highly recommend [taking a backup of your RDS instance](https://docs.aws.amaz
 
 
 
-## Manual Deployment
+### Manual Deployment
 
