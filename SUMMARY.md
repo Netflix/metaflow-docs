@@ -6,7 +6,6 @@
 
 * [Why Metaflow?](introduction/why-metaflow.md)
 * [Service Architecture](introduction/service-architecture.md)
-* [Release Notes](introduction/release-notes-1.md)
 * [Get in Touch](introduction/getting-in-touch.md)
 
 ## Metaflow on AWS

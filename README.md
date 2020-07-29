@@ -7,15 +7,16 @@ description: How to operate Metaflow at scale
 ## Introduction
 
 * [Why Metaflow?](introduction/why-metaflow.md)
-* [Key Concepts]()
 * [Service Architecture](introduction/service-architecture.md)
-* [Release Notes](introduction/release-notes-1.md)
 * [Get in Touch](introduction/getting-in-touch.md)
 
 ## Operating Metaflow on AWS
 
-* [Deploying with CloudFormation]()
-* [Deploying Manually]()
+* [Metaflow on AWS](metaflow-on-aws/metaflow-on-aws.md)
+* [Operations Guide](metaflow-on-aws/operations-guide.md)
+* [Deployment Guide](metaflow-on-aws/deployment-guide/)
+  * [AWS CloudFormation Deployment](metaflow-on-aws/deployment-guide/aws-cloudformation-deployment.md)
+  * [Manual Deployment](metaflow-on-aws/deployment-guide/manual-deployment.md)
 
 
 
