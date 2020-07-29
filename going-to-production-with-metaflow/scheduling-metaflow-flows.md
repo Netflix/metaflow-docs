@@ -86,7 +86,7 @@ After you click Start Execution on the Input dialog, AWS Step Functions starts r
 
 ![](https://lh4.googleusercontent.com/zfwlsbdT-B7y_XXfi1ZrI4GweXYf1fOPjuwtxRNPSWRlMKrbT_QefbpRFdPJN0KTluYd3dqd1kJyTFznPZTKRXadsKoYUxIlWJq9cE4NEixA-suMXumd9fI0tU2j8SDG80HXZf4D)
 
-In this case, the run should succeed without problems. If there were errors, you could reproduce them locally as explained in [Debugging with Metaflow](https://docs.google.com/document/d/1OT5Pk6iyCoH-QmkNfwvrEnaPiEMxkHjlqiXZ-79VvRc/edit#heading=h.hd6nnujcxzac).
+In this case, the run should succeed without problems. If there were errors, you could reproduce them locally as explained in [Debugging with Metaflow](../metaflow/debugging.md#reproducing-production-issues-locally).
 
 **You can trigger the workflow through command line as well:**
 
