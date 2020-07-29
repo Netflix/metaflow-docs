@@ -53,7 +53,9 @@ We highly recommend [taking a backup of your RDS instance](https://docs.aws.amaz
 8. Choose _I acknowledge that AWS CloudFormation might create IAM resources_ and choose _Update stack._
 9. Wait for the stack to finish updating itself. This might take ~10 minutes.
 10. Once the stack has updated, you would notice a new key _MigrationFunctionName_ which points to the AWS Lambda function that will upgrade your database schema. Note the name of this function.
-11. Using either the [AWS Lambda console](https://console.aws.amazon.com/lambda) or AWS CLI, trigger the lambda function - 
+11. Open the [Amazon ECS console](https://console.aws.amazon.com/ecs) and navigate to your AWS Fargate cluster in _Clusters_ tab.
+12. Under the _Tasks_ tab, choose _Stop All._ This will stop all your tasks causing your service to reboot. Once the service has rebooted, your tasks will fetch the latest image of the service from docker hub and launch the migration service on port 8082.
+13. Using either the [AWS Lambda console](https://console.aws.amazon.com/lambda) or AWS CLI, trigger the lambda function from Step 10. - 
     1. AWS Lambda console
        1. Choose the function that you just deployed in Step 10.
        2. In the dropdown for _Select a test event_, choose _Configure test events._
@@ -68,12 +70,14 @@ We highly recommend [taking a backup of your RDS instance](https://docs.aws.amaz
        3. Execute the command `aws lambda invoke --function-name <lambda-function-name> output.log` 
        4. Check the execution result. In the resulting JSON blob, you should see `upgrade-result` set to `upgrade success` and `is_up_to_date` in `final-status` set to `true`. Congratulations! You have upgraded your database schema successfully. You can skip Step 5. and now let's upgrade the version of the metaflow service.
        5. If you saw a failure, [restore your RDS instance using the backup](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_RestoreFromSnapshot.html) that you had generated before. Please [get in touch](../../overview/getting-in-touch.md) with us so that we can figure out what went wrong.
-12. Open the [Amazon ECS console](https://console.aws.amazon.com/ecs) and navigate to your AWS Fargate cluster in _Clusters_ tab.
-13. Under the _Tasks_ tab, choose _Stop All._ This will stop all your tasks causing your service to reboot.
-14. Once the tasks have rebooted and entered the _RUNNING_ state, choose any task and select the public IP. Curl this public IP on port 8080 with the _version_ endpoint. curl xxx.xxx.xxx.xxx:8080/version. The response will be the version of your metaflow service and it should be &gt;= 2.0.2. Congratulations! You have successfully upgraded the service!
-15. Because you used the latest [CloudFormation template](https://github.com/Netflix/metaflow-tools/blob/master/aws/cloudformation/metaflow-cfn-template.yml), all the necessary IAM roles and permissions for AWS Step Functions for scheduling Metaflow flows are already configured for you. You can now [configure your Metaflow installation](../../overview/configuring-metaflow.md) with these additional resources.
+14. Open the [Amazon ECS console](https://console.aws.amazon.com/ecs) and navigate to your AWS Fargate cluster in _Clusters_ tab.
+15. Under the _Tasks_ tab, choose _Stop All._ This will stop all your tasks causing your service to reboot.
+16. Once the tasks have rebooted and entered the _RUNNING_ state, choose any task and select the public IP. Curl this public IP on port 8080 with the _version_ endpoint. curl xxx.xxx.xxx.xxx:8080/version. The response will be the version of your metaflow service and it should be &gt;= 2.0.2. Congratulations! You have successfully upgraded the service!
+17. Because you used the latest [CloudFormation template](https://github.com/Netflix/metaflow-tools/blob/master/aws/cloudformation/metaflow-cfn-template.yml), all the necessary IAM roles and permissions for AWS Step Functions for scheduling Metaflow flows are already configured for you. You can now [configure your Metaflow installation](../../overview/configuring-metaflow.md) with these additional resources.
 
 In case of any issues, please [get in touch](../../overview/getting-in-touch.md) with us. 
+
+![AWS Lambda execution response from AWS console](../../.gitbook/assets/screen-shot-2020-07-14-at-1.24.45-am.png)
 
 ### Manual Deployment
 
