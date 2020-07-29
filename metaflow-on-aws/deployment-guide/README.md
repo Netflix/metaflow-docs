@@ -8,7 +8,7 @@ We provide two alternative approaches for deploying Metaflow on AWS. The first o
 
 #### The simple approach: Deploy with CloudFormation
 
-Deploying and configuring AWS resources can often be non-trivial. To address that, we have an [AWS CloudFormation template](aws-cloudformation-deployment.md) that completely automates the entire process of standing up all AWS resources needed by Metaflow. 
+Deploying and configuring AWS resources can be non-trivial. To address that, we have an [AWS CloudFormation template](aws-cloudformation-deployment.md) that completely automates the entire process of standing up all AWS resources needed by Metaflow. 
 
 {% page-ref page="aws-cloudformation-deployment.md" %}
 
