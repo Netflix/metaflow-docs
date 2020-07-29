@@ -336,7 +336,7 @@ The metadata service in this example is exposed to the internet. Ideally, you wo
 
 ### Scheduling
 
-Using Metaflow, workflows can be directly scheduled on [AWS Step Functions](https://aws.amazon.com/step-functions/). Moreover, from within Metaflow, time-based triggers can be set to execute these deployed workflows via [Amazon EventBridge](https://aws.amazon.com/eventbridge/). Metaflow currently also has a dependency on [Amazon DynamoDB](https://aws.amazon.com/dynamodb/) for tracking metadata for executing specific steps \(foreaches\) on AWS Step Functions.
+Using Metaflow, [workflows can be directly scheduled](https://docs.metaflow.org/going-to-production-with-metaflow/scheduling-metaflow-flows) on [AWS Step Functions](https://aws.amazon.com/step-functions/). Moreover, from within Metaflow, time-based triggers can be set to execute these deployed workflows via [Amazon EventBridge](https://aws.amazon.com/eventbridge/). Metaflow currently also has a dependency on [Amazon DynamoDB](https://aws.amazon.com/dynamodb/) for tracking metadata for executing specific steps \(foreaches\) on AWS Step Functions.
 
 #### Create an IAM role for AWS Step Functions
 
