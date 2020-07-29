@@ -2,7 +2,66 @@
 
 Read below how Metaflow has improved over time.
 
-We take backwards compatibility very seriously. In the vast majority of cases you can upgrade Metaflow without expecting changes in your existing code. In the rare cases when breaking changes are absolutely necessary, usually due to bug fixes, you can take a look at minor breaking changes below before you upgrade.
+We take backwards compatibility very seriously. In the vast majority of cases, you can upgrade Metaflow without expecting changes in your existing code. In the rare cases when breaking changes are absolutely necessary, usually, due to bug fixes, you can take a look at minor breaking changes below before you upgrade.
+
+## 2.1.0 \(Jul 29th, 2020\)
+
+The Metaflow 2.1.0 release is a minor release and introduces [Metaflow's integration with AWS Step Functions](https://docs.metaflow.org/going-to-production-with-metaflow/scheduling-metaflow-flows).
+
+* [Features](release-notes.md#features)
+  * Add capability to schedule Metaflow flows with AWS Step Functions.
+* [Improvements](release-notes.md#improvements)
+  * Fix log indenting in Metaflow.
+  * Throw exception properly if fetching code package from Amazon S3 on AWS Batch fails.
+  * Remove millisecond information from timestamps returned by Metaflow client.
+  * Handle CloudWatchLogs resource creation delay gracefully.
+
+### Features
+
+#### Add capability to schedule Metaflow flows with AWS Step Functions.
+
+Netflix uses an [internal DAG scheduler](https://medium.com/@NetflixTechBlog/unbundling-data-science-workflows-with-metaflow-and-aws-step-functions-d454780c6280) to orchestrate most machine learning and ETL pipelines in production. Metaflow users at Netflix can seamlessly deploy and schedule their flows to this scheduler. Now, with this release, we are introducing a similar integration with [AWS Step Functions](https://aws.amazon.com/step-functions/) where Metaflow users can [easily deploy & schedule their flows](https://docs.metaflow.org/going-to-production-with-metaflow/scheduling-metaflow-flows) by simply executing
+
+```text
+python myflow.py step-functions create
+```
+
+which will create an AWS Step Functions state machine for them. With this feature, Metaflow users can now enjoy all the features of Metaflow along with a highly available, scalable, maintenance-free production scheduler without any changes in their existing code.
+
+We are also introducing a new decorator - [`@schedule`](https://docs.metaflow.org/going-to-production-with-metaflow/scheduling-metaflow-flows#scheduling-a-flow), which allows Metaflow users to instrument time-based triggers via [Amazon EventBridge](https://aws.amazon.com/eventbridge/) for their flows deployed on AWS Step Functions.
+
+With this integration, Metaflow users can [inspect](https://docs.metaflow.org/metaflow/client) their flows deployed on AWS Step Functions as before and [debug and reproduce](https://docs.metaflow.org/metaflow/debugging#reproducing-production-issues-locally) results from AWS Step Functions on their local laptop or within a notebook.
+
+[Documentation](https://docs.metaflow.org/going-to-production-with-metaflow/scheduling-metaflow-flows)  
+[Launch Blog Post](https://medium.com/@NetflixTechBlog/unbundling-data-science-workflows-with-metaflow-and-aws-step-functions-d454780c6280)
+
+PR [\#211](https://github.com/Netflix/metaflow/pull/211) addresses Issue [\#2](https://github.com/Netflix/metaflow/issues/2).
+
+### Improvements
+
+#### Fix log indenting in Metaflow.
+
+Metaflow was inadvertently removing leading whitespace from user-visible logs on the console. Now Metaflow presents user-visible logs with the correct formatting.
+
+PR [\#244](https://github.com/Netflix/metaflow/pull/244) fixed issue [\#223](https://github.com/Netflix/metaflow/issues/223).
+
+#### Throw exception properly if fetching code package from Amazon S3 on AWS Batch fails.
+
+Due to malformed permissions, AWS Batch might not be able to fetch the code package from Amazon S3 for user code execution. In such scenarios, it wasn't apparent to the user, where the code package was being pulled from, making triaging any permission issue a bit difficult. Now, the Amazon S3 file location is part of the exception stack trace.
+
+PR [\#243](https://github.com/Netflix/metaflow/pull/243) fixed issue [\#232](https://github.com/Netflix/metaflow/issues/232).
+
+#### Remove millisecond information from timestamps returned by Metaflow client.
+
+Metaflow uses `time` to store the `created_at` and `finished_at` information for the `Run` object returned by Metaflow client. `time` unfortunately does not support the [`%f` directive](https://docs.python.org/3/library/time.html#time.strftime), making it difficult to parse these fields by `datetime` or `time`. Since Metaflow doesn't expose timings at millisecond grain, this PR drops the `%f` directive.
+
+PR [\#227](https://github.com/Netflix/metaflow/pull/227) fixed issue [\#224](https://github.com/Netflix/metaflow/issues/224).
+
+#### Handle CloudWatchLogs resource creation delay gracefully.
+
+When launching jobs on AWS Batch, the CloudWatchLogStream might not be immediately created \(and may never be created if say we fail to pull the docker image for any reason whatsoever\). Metaflow will now simply retry again next time.
+
+PR [\#209](https://github.com/Netflix/metaflow/pull/209).
 
 ## 2.0.5 \(Apr 30th, 2020\)
 
