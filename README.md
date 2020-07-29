@@ -1,5 +1,5 @@
 ---
-description: How to operate Metaflow at scale
+description: How to deploy and operate Metaflow
 ---
 
 # Administrator's Guide to Metaflow
