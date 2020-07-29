@@ -1,6 +1,6 @@
 # Configuring Metaflow
 
-The client-side of Metaflow, the Metaflow library, needs to be aware of the surrounding services. This is accomplished with a central, user-specific configuration file which is stored in the user's home directory at `~/.metaflowconfig`. As of today, Metaflow supports shared mode configuration only for AWS, so we use AWS as an example below.
+The client-side of Metaflow, the Metaflow library, needs to be aware of the surrounding services. This is accomplished with a central, user-specific configuration file \(or several\) which are stored in the user's home directory at `~/.metaflowconfig/`. As of today, Metaflow supports shared mode configuration only for AWS, so we use AWS as an example below.
 
 To configure Metaflow's AWS service integrations in a development environment, you can simply type:
 
