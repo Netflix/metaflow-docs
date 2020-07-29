@@ -90,7 +90,7 @@ If you are an infrastructure person who wants to know how to deploy and operate 
 
 ## Presentations about Metaflow 
 
-If you want to learn more, the Machine Learning Infrastructure team at Netflix has given a number of public presentations about Metaflow prior to its open-sourcing. You can find links to these presentations below.
+If you want to learn more, the Machine Learning Infrastructure team at Netflix has given a number of public presentations about Metaflow prior to its open-sourcing. You can find links to these presentations below. You can also read the original [open-source release announcement in the Netflix tech blog](https://netflixtechblog.com/open-sourcing-metaflow-a-human-centric-framework-for-data-science-fa72e04a5d9).
 
 For starters, this presentation gives a comprehensive overview of Metaflow:
 
