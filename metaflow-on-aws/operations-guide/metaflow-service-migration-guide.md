@@ -52,7 +52,23 @@ We highly recommend [taking a backup of your RDS instance](https://docs.aws.amaz
    5. Updates to _BatchS3TaskRole_ and _ECSFargateService_ to allow for migration and AWS Step Functions integration.
 8. Choose _I acknowledge that AWS CloudFormation might create IAM resources_ and choose _Update stack._
 9. Wait for the stack to finish updating itself. This might take ~10 minutes.
-
+10. Once the stack has updated, you would notice a new key _MigrationFunctionName_ which points to the AWS Lambda function that will upgrade your database schema. Note the name of this function.
+11. Using either the [AWS Lambda console](https://console.aws.amazon.com/lambda) or AWS CLI, trigger the lambda function - 
+    1. AWS Lambda console
+       1. Choose the function that you just deployed in Step 10.
+       2. In the dropdown for _Select a test event_, choose _Configure test events._
+       3. In the resulting dialog, give a name to your event in _Event name_. The actual contents don't matter in this case. Choose _Create._
+       4. Make sure you have taken a backup of your RDS instance before proceeding with the next step.
+       5. Choose _Test._
+       6. Check the execution result. In the resulting JSON blob, you should see `upgrade-result` set to `upgrade success` and `is_up_to_date` in `final-status` set to `true`. Congratulations! You have upgraded your database schema successfully. You can skip Step 7. and now let's upgrade the version of the metaflow service.
+       7. If you saw a failure, [restore your RDS instance using the backup](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_RestoreFromSnapshot.html) that you had generated before. Please [get in touch](../../overview/getting-in-touch.md) with us so that we can figure out what went wrong.
+    2. AWS CLI
+       1. Make sure you have appropriate credentials to execute the AWS Lambda function on your laptop.
+       2. Make sure you have taken a backup of your RDS instance before proceeding with the next step.
+       3. Execute the command `aws lambda invoke --function-name <lambda-function-name> output.log` 
+       4. Check the execution result. In the resulting JSON blob, you should see `upgrade-result` set to `upgrade success` and `is_up_to_date` in `final-status` set to `true`. Congratulations! You have upgraded your database schema successfully. You can skip Step 5. and now let's upgrade the version of the metaflow service.
+       5. If you saw a failure, [restore your RDS instance using the backup](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_RestoreFromSnapshot.html) that you had generated before. Please [get in touch](../../overview/getting-in-touch.md) with us so that we can figure out what went wrong.
+12. 
 
 
 ### Manual Deployment
