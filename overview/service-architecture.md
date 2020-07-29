@@ -2,7 +2,7 @@
 
 Metaflow can be used in _the local mode,_ e.g. on a laptop_,_ without any connection to the outside world. The local mode is the default out-of-the-box when you `pip install metaflow`. In this mode, all computation is performed locally as subprocesses and all data and metadata is persisted in a local directory.
 
-To benefit from the centralized [experiment tracking and sharing via Client API](https://docs.metaflow.org/metaflow/client), [scalable computation](https://docs.metaflow.org/metaflow/scaling), [dependency management](https://docs.metaflow.org/metaflow/dependencies), and [production deployments](https://docs.metaflow.org/), we recommend that an administrator sets up infrastructure that allows Metaflow to be used in _the shared mode_.
+To benefit from the centralized [experiment tracking and sharing via Client API](https://docs.metaflow.org/metaflow/client), [scalable computation](https://docs.metaflow.org/metaflow/scaling), [dependency management](https://docs.metaflow.org/metaflow/dependencies), and [production deployments](https://docs.metaflow.org/going-to-production-with-metaflow/scheduling-metaflow-flows), we recommend that an administrator sets up infrastructure that allows Metaflow to be used in _the shared mode_.
 
 ## Shared Mode Architecture
 
@@ -49,7 +49,7 @@ The service is provided as [a pre-baked Docker container](https://hub.docker.com
 
 The service doesn’t have any built-in support for authentication. We assume that the service is typically deployed inside a \(virtual\) private network that provides a secure operating environment.
 
-Optionally, you can deploy multiple instances of the service behind a load balancer. The [AWS CloudFormation deployment path](http://google.com/) does this for you automatically.
+Optionally, you can deploy multiple instances of the service behind a load balancer. The [AWS CloudFormation deployment path](../metaflow-on-aws/deployment-guide/aws-cloudformation-deployment.md) does this for you automatically.
 
 #### Metadata Migrations
 
@@ -59,7 +59,7 @@ To make the administrator’s life easy, the Metaflow Service comes with a built
 
 If a new feature in the client requires a newer version of the service, a clear error message is shown. In this situation, the administrator should decide if and when they want to run the migration, which will incur some downtime - up to a few minutes. As a best practice, it is advisable to take a backup of the database prior to the migration which allows you to roll back the migration in case something goes wrong.
 
-The migration itself is just a matter of running a single command and restarting the service afterwards. How to do this exactly depends on your deployment strategy: See a separate section about [running migrations on AWS](http://google.com/).
+The migration itself is just a matter of running a single command and restarting the service afterwards. How to do this exactly depends on your deployment strategy: See a separate section about [running migrations on AWS](../metaflow-on-aws/operations-guide/).
 
 ### Datastore
 
@@ -91,7 +91,7 @@ Data science workflows that need to run automatically without any human interven
 
 The user can deploy their Metaflow workflow to Production Scheduler with a single command - no changes in the code are required. We recognize that “deploying to production” is not a linear process. Rather, we expect the user to use both the local scheduler and the production scheduler in parallel. For instance, after the initial deployment, the data scientist typically wants to continue working on the project locally. Eventually, they might want to deploy a new, experimental version on the production scheduler to run in parallel with the production version as an A/B test. Also, things fail in production. Metaflow allows the user to reproduce issues that occur on the production scheduler locally, simply by using [the resume command](https://docs.metaflow.org/metaflow/debugging#how-to-use-the-resume-command) to continue the execution on their local machine.
 
-Currently, Metaflow supports [AWS Step Functions as the Production Scheduler](http://google.com). For more background about production schedulers, see [the release blog post for Step Functions integration](http://google.com).  
+Currently, Metaflow supports [AWS Step Functions as the Production Scheduler](https://docs.metaflow.org/going-to-production-with-metaflow/scheduling-metaflow-flows). For more background about production schedulers, see [the release blog post for Step Functions integration](https://medium.com/@NetflixTechBlog/unbundling-data-science-workflows-with-metaflow-and-aws-step-functions-d454780c6280).  
 
 
 ## Security Considerations
