@@ -1,10 +1,8 @@
-# Deployment Guide
+# Configuring Metaflow
 
-This document outlines how to deploy AWS resources for Metaflow's AWS integrations and configure your Metaflow installation to interact with these resources.
+The client-side of Metaflow, the Metaflow library, needs to be aware of the surrounding services. This is accomplished with a central, user-specific configuration file which is stored in the user's home directory at `~/.metaflowconfig`. As of today, Metaflow supports shared mode configuration only for AWS, so we use AWS as an example below.
 
-## Configuring Metaflow
-
-Metaflow comes bundled with [first-class support for various services on AWS](../metaflow-on-aws.md). You can [install](https://docs.metaflow.org/getting-started/install) Metaflow directly from [PyPI](https://pypi.org/project/metaflow/) and [conda-forge](https://anaconda.org/conda-forge/metaflow). To configure Metaflow's AWS service integrations on your workstation, you can simply type:
+To configure Metaflow's AWS service integrations in a development environment, you can simply type:
 
 ```text
 metaflow configure aws
@@ -44,18 +42,4 @@ metaflow configure aws --profile my-profile
 ```
 
 You can enable this profile by simply exporting `METAFLOW_PROFILE=my-profile` to your environment.
-
-## Deploying AWS resources
-
-We understand that deploying and configuring AWS resources can often be non-trivial. To address that, we have an [AWS CloudFormation template](aws-cloudformation-deployment.md) that completely automates the entire process of standing up all AWS resources needed by Metaflow. 
-
-{% page-ref page="aws-cloudformation-deployment.md" %}
-
-We also understand that at times, for various organizational reasons, you might not be comfortable deploying an external CloudFormation template within your AWS account. To that end, we have also listed steps that can help you set up all the AWS resources needed [manually via the AWS console](manual-deployment.md). 
-
-{% page-ref page="manual-deployment.md" %}
-
-We have an [open GitHub issue for Terraform support](https://github.com/Netflix/metaflow/issues/38) if you are interested in contributing.
-
- 
 
