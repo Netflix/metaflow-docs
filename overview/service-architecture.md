@@ -92,3 +92,15 @@ The user can deploy their Metaflow workflow to Production Scheduler with a singl
 Currently, Metaflow supports [AWS Step Functions as the Production Scheduler](http://google.com). For more background about production schedulers, see [the release blog post for Step Functions integration](http://google.com).  
 
 
+## Security Considerations
+
+Metaflow relies on the security mechanisms and policies provided by the deployment environment, for instance, VPCs, Security Groups and IAM on AWS. These mechanisms allow you to define as fine-grained security policies as required by your organization.
+
+In the simplest setup, you can deploy all Metaflow services inside a common security perimeter, e.g. within a single virtual subnet. A more tightly controlled deployment is provided by our [CloudFormation template](../metaflow-on-aws/deployment-guide/aws-cloudformation-deployment.md) which creates tightly scoped IAM roles and VPCs for you automatically.
+
+Metaflow allows all users that have access to a shared Datastore and Metadata to access any data from past executions. If your organization requires more control over data governance, you can create multiple isolated Metaflow deployments.
+
+For maximum security and control, you can consider a similar setup as what we provide with [Metaflow Sandboxes](https://docs.metaflow.org/metaflow-on-aws/metaflow-sandbox). Sandboxes disallow all network ingress and egress within Compute Cluster. The user is able to execute arbitrary code, even using arbitrary library dependencies defined using [@conda](https://docs.metaflow.org/metaflow/dependencies), and they are able to process arbitrary data that is imported in Datastore either using standard S3 tools or [the IncludeFile construct](https://docs.metaflow.org/metaflow/data#data-in-local-files). They can even deploy workflows to Production Scheduler and analyze results in the provided notebook environment. In effect, they can perform any data science operations as usual.
+
+However, no data can leave the environment since all communications with the external world is prohibited. Technically, Sandboxes are implemented using extremely tightly scoped IAM roles, VPCs, and security groups. If you are interested in providing a similar sandbox environment for your users, [please reach out to us](getting-in-touch.md).
+
