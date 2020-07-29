@@ -25,6 +25,7 @@
     * [Episode 5: Hello AWS](getting-started/tutorials/season-2-scaling-out-and-up/episode05.md)
     * [Episode 6: Statistics Redux](getting-started/tutorials/season-2-scaling-out-and-up/episode06.md)
     * [Episode 7: Worldview](getting-started/tutorials/season-2-scaling-out-and-up/episode07.md)
+    * [Episode 8: Autopilot](getting-started/tutorials/season-2-scaling-out-and-up/episode-8-autopilot.md)
 
 ## Metaflow on AWS
 
@@ -42,6 +43,10 @@
 * [Managing External Libraries](metaflow/dependencies.md)
 * [Dealing with Failures](metaflow/failures.md)
 * [Organizing Results](metaflow/tagging.md)
+
+## Going to Production with Metaflow
+
+* [Scheduling Metaflow Flows](going-to-production-with-metaflow/scheduling-metaflow-flows.md)
 
 ## Internals of Metaflow
 

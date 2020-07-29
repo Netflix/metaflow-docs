@@ -14,6 +14,7 @@ Here are some ideas that you can try with the sandbox:
 * You have up to 64 CPU cores at your disposal using [the `@batch` decorator](../metaflow/scaling.md). Test some number crunching! You can run everything in the cloud simply by using `--with batch` or you can mix local and remote steps by adding `@batch` to select steps.
 * Test your code with your own data in the cloud using [`IncludeFile`](../metaflow/data.md#data-in-local-files). You can also upload data to your private S3 bucket using [Metaflow's high-performance S3 client](../metaflow/data.md#data-in-s-3-metaflow-s3).
 * Test your favorite ML libraries in the cloud using [`@batch`](../metaflow/scaling.md) and the [`@conda`](../metaflow/dependencies.md) decorator. For instance, try a basic hyperparameter search using [a custom parameter grid and foreach](../metaflow/basics.md#foreach). 
+* [Schedule your flows](../going-to-production-with-metaflow/scheduling-metaflow-flows.md) on AWS Step Functions and execute them using a time-based trigger.
 * Evaluate Metaflow's [experiment tracking and versioning](../metaflow/tagging.md) using local runs and the [Client API](../metaflow/client.md) in a local notebook. In contrast to the local mode, all runs are registered globally in the Metaflow Service regardless of the directory where you run them.
 * Test how you can [`resume` tasks locally](../metaflow/debugging.md#how-to-use-the-resume-command) which were originally run remotely using `--with batch`.
 
