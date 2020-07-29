@@ -27,7 +27,7 @@ The client-side of Metaflow consists of a command-line tool, `metaflow`, and a P
 The development environment has the following requirements:
 
 1. [Metaflow needs to be installed](https://docs.metaflow.org/getting-started/install). Note that there isn’t a strict requirement to use the latest version of the library. Users can upgrade their library at their own cadence.
-2. Metaflow needs to be configured to access the services provided. At the minimum, the configuration needs to include the metadata service URL and information related to the datastore.
+2. [Metaflow needs to be configured](configuring-metaflow.md) to access the services provided. At the minimum, the configuration needs to include the metadata service URL and information related to the datastore.
 3. The development environment needs to have the right cloud credentials to make API calls to the provided cloud services \(e.g. `~/.aws/credentials` or IAM instance profile needs to be set up\).
 
 The user’s laptop can work as a development environment but we recommend providing a sandbox instance or a container in the cloud, if possible. A cloud instance has multiple benefits:
