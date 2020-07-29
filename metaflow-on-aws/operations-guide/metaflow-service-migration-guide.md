@@ -58,7 +58,7 @@ We highly recommend [taking a backup of your RDS instance](https://docs.aws.amaz
        1. Choose the function that you just deployed in Step 10.
        2. In the dropdown for _Select a test event_, choose _Configure test events._
        3. In the resulting dialog, give a name to your event in _Event name_. The actual contents don't matter in this case. Choose _Create._
-       4. Make sure you have taken a backup of your RDS instance before proceeding with the next step.
+       4. Make sure you have [taken a backup of your RDS instance](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_CommonTasks.BackupRestore.html) before proceeding with the next step.
        5. Choose _Test._
        6. Check the execution result. In the resulting JSON blob, you should see `upgrade-result` set to `upgrade success` and `is_up_to_date` in `final-status` set to `true`. Congratulations! You have upgraded your database schema successfully. You can skip Step 7. and now let's upgrade the version of the metaflow service.
        7. If you saw a failure, [restore your RDS instance using the backup](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_RestoreFromSnapshot.html) that you had generated before. Please [get in touch](../../overview/getting-in-touch.md) with us so that we can figure out what went wrong.
@@ -71,8 +71,49 @@ We highly recommend [taking a backup of your RDS instance](https://docs.aws.amaz
 12. Open the [Amazon ECS console](https://console.aws.amazon.com/ecs) and navigate to your AWS Fargate cluster in _Clusters_ tab.
 13. Under the _Tasks_ tab, choose _Stop All._ This will stop all your tasks causing your service to reboot.
 14. Once the tasks have rebooted and entered the _RUNNING_ state, choose any task and select the public IP. Curl this public IP on port 8080 with the _version_ endpoint. curl xxx.xxx.xxx.xxx:8080/version. The response will be the version of your metaflow service and it should be &gt;= 2.0.2. Congratulations! You have successfully upgraded the service!
+15. Because you used the latest [CloudFormation template](https://github.com/Netflix/metaflow-tools/blob/master/aws/cloudformation/metaflow-cfn-template.yml), all the necessary IAM roles and permissions for AWS Step Functions for scheduling Metaflow flows are already configured for you. You can now [configure your Metaflow installation](../../overview/configuring-metaflow.md) with these additional resources.
 
-
+In case of any issues, please [get in touch](../../overview/getting-in-touch.md) with us. 
 
 ### Manual Deployment
+
+If you originally deployed the AWS resources needed for Metaflow manually, then there are a few steps you would need to take for this service migration. You would also need to manually set up the IAM roles and permissions to be able to schedule Metaflow flows on AWS Step Functions.
+
+#### Upgrading Metaflow Service manually
+
+The metaflow service repository has a [migration tool](https://github.com/Netflix/metaflow-service/blob/master/migration_tools.py) that will perform the update on your behalf once you have upgraded your metaflow service [to use the latest version of the docker image](https://hub.docker.com/repository/docker/netflixoss/metaflow_metadata_service).
+
+{% hint style="info" %}
+We highly recommend [taking a backup of your RDS instance](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_CommonTasks.BackupRestore.html) before attempting this upgrade. This will allow you to restore the service from the backup in case there are any issues with the migration
+{% endhint %}
+
+1. Open the [Amazon ECS console](https://console.aws.amazon.com/ecs) and navigate to your AWS Fargate cluster in _Clusters_ tab.
+2. Under the _Tasks_ tab, choose _Stop All._ This will stop all your tasks causing your service to reboot. Once the service has rebooted, your tasks will fetch the latest image of the service from docker hub and launch the migration service on port 8082. Note the public IP of this task.
+   1. Please note that this will only happen if you were using the latest tag \(or no tag\) for the image in the ECS Task Definition. See Step 6.4.2. 
+   2. If you had pinned the version of the image, you would need to update the task definition to pull the latest version and then stop all your tasks.
+3. Open the [EC2 console](https://console.aws.amazon.com/ec2/) and from the navigation bar, select the region to use.
+4. Choose _Security Groups_ under _Resources_ and choose the security group that you created for the AWS Fargate cluster [previously](../deployment-guide/manual-deployment.md#create-security-groups).
+5. For _Inbound rules_, 
+   1. Choose _Add rule_ and select _Custom TCP_ for _Type._
+   2. Use _8082_ for _Port range._ This is needed for the migration service to work.
+   3. Select _Anywhere_ for _Source type._
+6. Now we are ready to migrate the service.
+7. Clone [this file](https://github.com/Netflix/metaflow-service/blob/master/migration_tools.py) in your local workstation and name it _migration\_tools.py._
+8. Using the IP in Step 2. run `python3 migration_tools.py db-status --base-url http://xxx.xxx.xxx.xxx:8082`
+9. If you need to upgrade your database schema, the flag `is_up_to_date` will be set to `False` in the response. If you need to upgrade the database schema, before proceeding to the next step, make sure you have [taken a backup of your database](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_CommonTasks.BackupRestore.html).
+10. To upgrade your database schema, execute `python3 migration_tools.py upgrade --base-url http://xxx.xxx.xxx.xxx:8082`
+11. You should see a response `upgrade successful`. If you see an error, [restore your RDS instance using the backup](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_RestoreFromSnapshot.html) that you had generated before. Please [get in touch](../../overview/getting-in-touch.md) with us so that we can figure out what went wrong.
+12. You can verify that the upgrade succeeded by executing `python3 migration_tools.py db-status --base-url http://xxx.xxx.xxx.xxx:8082`
+13. This time the flag `is_up_to_date` should be set to `True`
+14. Next we will upgrade the metaflow service. Open the [Amazon ECS console](https://console.aws.amazon.com/ecs) and navigate to your AWS Fargate cluster in _Clusters_ tab.
+15. Under the _Tasks_ tab, choose _Stop All._ This will stop all your tasks causing your service to reboot.
+16. Once the tasks have rebooted and entered the _RUNNING_ state, choose any task and select the public IP. Curl this public IP on port 8080 with the _version_ endpoint. curl xxx.xxx.xxx.xxx:8080/version. The response will be the version of your metaflow service and it should be &gt;= 2.0.2. Congratulations! You have successfully upgraded the service! This IP \(http://xxx.xxx.xxx.xxx:8080\) is your new METAFLOW\_SERVICE\_URL when you reconfigure the service after setting up IAM roles for AWS Step Functions in the next section.
+
+#### Setting up IAM roles for scheduling Metaflow flows on AWS Step Functions
+
+1. Follow the steps listed [here](../deployment-guide/manual-deployment.md#scheduling) for setting up an IAM role for [AWS Step Functions](../deployment-guide/manual-deployment.md#create-an-iam-role-for-aws-step-functions), [Amazon EventBridge](../deployment-guide/manual-deployment.md#create-an-iam-role-for-amazon-eventbridge) and an [Amazon DynamoDB table](../deployment-guide/manual-deployment.md#create-an-amazon-dynamodb-table).
+2. Modify the IAM role of AWS Batch so that your AWS Batch instance can access Amazin DynamoDB table. Follow the instructions listed [here](../deployment-guide/manual-deployment.md#create-an-iam-role-for-aws-batch). More specifically Step 5.2. Within the [IAM console](https://console.aws.amazon.com/iam), you can edit your existing role and add the new Amazon DynamoDB policy specified in the [Step 5.2](../deployment-guide/manual-deployment.md#create-an-iam-role-for-aws-batch).
+3. That's it! You can now [configure your Metaflow installation](../../overview/configuring-metaflow.md) with these additional resources.
+
+
 
