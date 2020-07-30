@@ -375,8 +375,8 @@ Using Metaflow, [workflows can be directly scheduled](https://docs.metaflow.org/
 While configuring Metaflow through `metaflow configure aws`, we can set the following values when prompted:
 
 ```text
-METAFLOW_SFN_IAM_ROLE = [ARN of IAM role for AWS Step Functions]
-METAFLOW_EVENTS_SFN_ACCESS_IAM_ROLE = [ARN of IAM role for AWS EventBridge]
+METAFLOW_SFN_IAM_ROLE = [Full ARN of IAM role for AWS Step Functions]
+METAFLOW_EVENTS_SFN_ACCESS_IAM_ROLE = [Full ARN of IAM role for AWS EventBridge]
 METAFLOW_SFN_DYNAMO_DB_TABLE = [DynamoDB table name]
 ```
 
