@@ -287,8 +287,8 @@ We will create two security groups, one for the AWS Fargate cluster and another 
       2. Choose the _Task Role_ as the one [you just created above](manual-deployment.md#create-an-iam-role-for-ecs-fargate-service)_._
    2. Under _Task execution IAM role,_ set the _Task execution role_ to _ecsTaskExecutionRole_ if you have it already. Leave it empty otherwise.
    3. Under _Task size,_
-      1. Choose _8 GB_ for _Task memory \(GB\)._
-      2. Choose _2 vCPU_ for _Task CPU \(vCPU\)._
+      1. Choose 4 _GB_ for _Task memory \(GB\)_
+      2. Choose 1 _vCPU_ for _Task CPU \(vCPU\)._
    4. Under _Container Definitions_, choose _Add container_
       1. Set _metaflow-service_ as the _Container name._
       2. Set _netflixoss/metaflow\_metadata\_service_ as the _Image._
