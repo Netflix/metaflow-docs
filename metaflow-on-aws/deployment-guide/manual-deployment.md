@@ -292,14 +292,15 @@ We will create two security groups, one for the AWS Fargate cluster and another 
    4. Under _Container Definitions_, choose _Add container_
       1. Set _metaflow-service_ as the _Container name._
       2. Set _netflixoss/metaflow\_metadata\_service_ as the _Image._
-      3. Leave other options as is.
-      4. Under _Advanced container configuration,_ in _Environment variables_ add the following values
+      3. Add _8080_ and _8082_ with TCP as _Container port mappings._
+      4. Leave other options as is.
+      5. Under _Advanced container configuration,_ in _Environment variables_ add the following values
          1. Set _Key_ as _MF\_METADATA\_DB\_HOST_ and the _Value_ as the endpoint value in Step 12. while [creating the AWS RDS instance](manual-deployment.md#create-an-aws-rds-instance).
          2. Set _Key_ as _MF\_METADATA\_DB\_NAME_ and the _Value_ as _metaflow._
          3. Set _Key_ as _MF\_METADATA\_DB\__PORT __and the _Value_ as _5432._
          4. Set _Key_ as _MF\_METADATA\_DB\_USER_ and the _Value_ as the user from Step 7.4.2.1_._ while [creating the AWS RDS instance](manual-deployment.md#create-an-aws-rds-instance).
          5. Set _Key_ as _MF\_METADATA\_DB\_PSWD_ and the _Value_ as the user from Step 7.4.2.2_._ while [creating the AWS RDS instance](manual-deployment.md#create-an-aws-rds-instance).
-      5. Choose _Add._
+      6. Choose _Add._
    5. Choose _Create._
 7. Choose _Clusters_ in the left side pane and select the cluster you created in Step 4.
 8. Choose _Create_ under _Services,_
