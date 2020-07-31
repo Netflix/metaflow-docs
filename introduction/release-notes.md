@@ -4,6 +4,21 @@ Read below how Metaflow has improved over time.
 
 We take backwards compatibility very seriously. In the vast majority of cases, you can upgrade Metaflow without expecting changes in your existing code. In the rare cases when breaking changes are absolutely necessary, usually, due to bug fixes, you can take a look at minor breaking changes below before you upgrade.
 
+## 2.1.1 \(Jul 30th, 2020\)
+
+The Metaflow 2.1.1 release is a minor patch release.
+
+* [Bug Fixes](release-notes.md#bug-fixes)
+  * Handle race condition for `/step` endpoint of metadata service.
+
+### Bug Fixes
+
+#### Handle race condition for `/step` endpoint of metadata service.
+
+The `foreach` step in AWS Step Functions launches multiple AWS Batch tasks, each of which tries to register the step metadata if it already doesn't exist. This can result in a race condition and cause the task to fail. This patch properly handles the 409 response from the service.
+
+PR [\#258](https://github.com/Netflix/metaflow/pull/258) & PR [\#260](https://github.com/Netflix/metaflow/pull/260)
+
 ## 2.1.0 \(Jul 29th, 2020\)
 
 The Metaflow 2.1.0 release is a minor release and introduces [Metaflow's integration with AWS Step Functions](https://docs.metaflow.org/going-to-production-with-metaflow/scheduling-metaflow-flows).
