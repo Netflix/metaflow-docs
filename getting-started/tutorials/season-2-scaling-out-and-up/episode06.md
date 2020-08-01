@@ -1,14 +1,17 @@
-# Episode 06-worldview: Way up here.
+# Episode 6: Statistics Redux
 
-**This episode shows how you can use a notebook to setup a simple dashboard to
-monitor all of your Metaflow flows.**
+**This episode shows how you can use a notebook to setup a simple dashboard to monitor all of your Metaflow flows.**
 
-#### Showcasing:
-- The metaflow client API.
+## Showcasing:
 
-#### Before playing this episode:
-1. Configure your sandbox: https://docs.metaflow.org/metaflow-on-aws/metaflow-sandbox
+* The metaflow client API.
 
-#### To play this episode:
-1. ```cd metaflow-tutorials/R/06-worldview/```
-2. Open ```worldview.Rmd``` in RStudio on your local computer 
+## Before playing this episode:
+
+1. Configure your sandbox: [https://docs.metaflow.org/metaflow-on-aws/metaflow-sandbox](https://docs.metaflow.org/metaflow-on-aws/metaflow-sandbox)
+
+## To play this episode:
+
+1. `cd metaflow-tutorials/R/06-worldview/`
+2. Open `worldview.Rmd` in RStudio on your local computer 
+

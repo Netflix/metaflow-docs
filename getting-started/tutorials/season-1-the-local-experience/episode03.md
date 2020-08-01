@@ -1,21 +1,24 @@
-# Episode 03-playlist-redux: Follow the Money.
+# Episode 3: Playlist Redux
 
 **Use Metaflow to load the statistics generated from 'Episode 02' and recommend movies from a genre with highest median gross box office**
 
-#### Showcasing:
-- Using data artifacts generated from other flows.
+## Showcasing:
 
-#### Before playing this episode:
+* Using data artifacts generated from other flows.
+
+## Before playing this episode:
+
 1. Run 'Episode 02-statistics: Is this Data Science?'
 
-#### To play this episode:
-1. ```cd metaflow-tutorials/R```
-2. ```Rscript 03-playlist-redux/playlist.R show```
-3. ```Rscript 03-playlist-redux/playlist.R run```
+## To play this episode:
 
-In this ```PlayListReduxFlow```, we reuse the genre median gross box office statistics computed from ```MoviesStatsFlow```, pick the genre with the highest median gross box office, and create a randomized playlist of movies of this picked genre.
+1. `cd metaflow-tutorials/R`
+2. `Rscript 03-playlist-redux/playlist.R show`
+3. `Rscript 03-playlist-redux/playlist.R run`
 
-```R
+In this `PlayListReduxFlow`, we reuse the genre median gross box office statistics computed from `MoviesStatsFlow`, pick the genre with the highest median gross box office, and create a randomized playlist of movies of this picked genre.
+
+```r
 library(metaflow)
 
 #  Use the Metaflow client to retrieve the latest successful run from our
@@ -74,3 +77,4 @@ metaflow("PlayListReduxFlow") %>%
          r_function = end) %>%
     run()
 ```
+

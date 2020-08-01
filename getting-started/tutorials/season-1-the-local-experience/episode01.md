@@ -1,41 +1,39 @@
-# Episode 01-playlist: Let's build you a movie playlist.
+# Episode 1: Playlist
 
-**This flow loads a movie metadata CSV file and builds a playlist for your
-favorite movie genre. Everything in Metaflow is versioned, so you can run it
-multiple times and view all the historical playlists with the Metaflow client
-in an R Markdown Notebook.**
+**This flow loads a movie metadata CSV file and builds a playlist for your favorite movie genre. Everything in Metaflow is versioned, so you can run it multiple times and view all the historical playlists with the Metaflow client in an R Markdown Notebook.**
 
-#### Showcasing:
-- Basic Metaflow Parameters.
-- Running workflow branches in parallel and joining results.
-- Using the Metaflow client in an R Markdown Notebook.
+## Showcasing:
 
-#### To play this episode:
-1. ```cd metaflow-tutorials/R```
-2. ```Rscript 01-playlist/playlist.R show```
-3. ```Rscript 01-playlist/playlist.R run```
-4. ```Rscript 01-playlist/playlist.R run --genre comedy```
-5. Open ```01-playlist/playlist.Rmd``` in RStudio.
+* Basic Metaflow Parameters.
+* Running workflow branches in parallel and joining results.
+* Using the Metaflow client in an R Markdown Notebook.
 
-#### Dataset and flow script
-The dataset ```movies.csv``` looks like this
-|movie_title|title_year|genre|gross|
-|-----------|----------|------|-----|
-|Avatar | 2009 | Sci-Fi |760505847
-|Pirates of the Caribbean: At World's End | 2007 | Fantasy | 309404152
-|Spectre | 2015 | Thriller | 200074175
-|... | ... | ... |...
+## To play this episode:
 
+1. `cd metaflow-tutorials/R`
+2. `Rscript 01-playlist/playlist.R show`
+3. `Rscript 01-playlist/playlist.R run`
+4. `Rscript 01-playlist/playlist.R run --genre comedy`
+5. Open `01-playlist/playlist.Rmd` in RStudio.
 
-The flow script below performs the following steps:
-1. Ingests a CSV file containing metadata about movies.
-2. Loads two of the columns from the CSV into python lists.
-3. In parallel branches:
-    - Filters movies by the genre parameter.
-    - Choose a random movie from a different genre.
-4. Displays the top entries from the playlist.
+## Dataset and flow script
 
-```R
+The dataset `movies.csv` looks like this
+
+| movie\_title | title\_year | genre | gross |
+| :--- | :--- | :--- | :--- |
+| Avatar | 2009 | Sci-Fi | 760505847 |
+| Pirates of the Caribbean: At World's End | 2007 | Fantasy | 309404152 |
+| Spectre | 2015 | Thriller | 200074175 |
+| ... | ... | ... | ... |
+
+The flow script below performs the following steps: 1. Ingests a CSV file containing metadata about movies. 2. Loads two of the columns from the CSV into python lists. 3. In parallel branches:
+
+* Filters movies by the genre parameter.
+* Choose a random movie from a different genre.
+  1. Displays the top entries from the playlist.
+
+```r
 library(metaflow)
 
 # Parse the CSV file 
@@ -104,3 +102,4 @@ metaflow("PlayListFlow") %>%
          r_function = end) %>%
     run()
 ```
+

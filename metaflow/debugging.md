@@ -9,7 +9,6 @@ Debugging a failure can either happen **after** a failed execution or **during**
 * the [ability to resume a flow](debugging.md#how-to-debug-failed-flows), re-executing all successful steps and only re-executing from the failed step. This allows you to fix the problem in the failed step, resume the flow and make progress.
 * the [ability to inspect the data](debugging.md#inspecting-data-with-a-notebook) produced by each step in a flow to be able to determine what went wrong.
 
-
 ## How to debug failed flows
 
 The process of debugging failed flows is similar both for development-time and production-time issues:
@@ -27,7 +26,7 @@ The `resume` command allows you to resume execution of a past run at a failed st
 
 Here is how it works. First, save the snippet below :
 
-```R
+```r
 library(metaflow)
 
 a <- function(self){
@@ -68,7 +67,7 @@ Rscript debugflow.R run
 
 The run should fail. The output should look like:
 
-```R
+```r
 ...
 2020-06-19 13:23:22.264 [153/a/1002 (pid 44264)] Task is starting.
 2020-06-19 13:23:22.980 [153/b/1003 (pid 44272)] Task is starting.
@@ -93,14 +92,14 @@ Metaflow remembers the run number of the last local run, which in this case is `
 You can also resume a specific run using the CLI option `--origin-run-id` if you don't like the default value selected by Metaflow. To get the same behavior as above, you can also do:
 
 ```bash
-Rscript debugflow.R resume --origin-run-id 153 
+Rscript debugflow.R resume --origin-run-id 153
 ```
 
 If you'd like programmatic access to the `--origin-run-id` selected for the `resume` \(either implicitly selected by Metaflow as last `run` invocation, or explicitly declared by the user via the CLI\), you can use the `current` singleton. Read more [here](tagging.md#accessing-current-ids-in-a-flow).
 
-Next, fix the error by replacing `tofail("cannot find function tofail") ` in `debug.py` with `"any message"`. Try again after the fix. This time, you should see the flow completing successfully.
+Next, fix the error by replacing `tofail("cannot find function tofail")` in `debug.py` with `"any message"`. Try again after the fix. This time, you should see the flow completing successfully.
 
-```R
+```r
 2020-06-19 14:09:06.015 Gathering required information to resume run (this may take a bit of time)...
 2020-06-19 14:09:22.177 Workflow starting (run-id 154):
 2020-06-19 14:09:22.865 [154/start/1045] Cloning results of a previously run task 153/start/1001
@@ -115,8 +114,10 @@ Next, fix the error by replacing `tofail("cannot find function tofail") ` in `de
 2020-06-19 14:10:00.518 [154/end/1049 (pid 48156)] Task finished successfully.
 2020-06-19 14:10:00.893 Done!
 ```
+
 Note the `cloning results` messages above indicate that we're re-using the saved artifacts in all the steps before the error occurs.
-```R
+
+```r
 [154/start/1045] Cloning results of a previously run task 153/start/1001
 [154/a/1046] Cloning results of a previously run task 153/a/1002
 ```
@@ -151,10 +152,11 @@ You can use Metaflow client API in RStudio or an R Jupyter Notebook to fetch art
 
 For example, running this in RStudio or Jupyter Notebook lets you check intermediate results which can be helpful for debugging.
 
-```R
+```r
 library(metaflow)
 task <- task_client$new("DebugFlow/153/a/1002")
 print(task$artifact("var"))
 ```
 
 For more details about the client API, see the [Client API](client.md).
+

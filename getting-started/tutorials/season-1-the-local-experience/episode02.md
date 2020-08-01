@@ -1,37 +1,31 @@
-# Episode 02-statistics: Is this Data Science?
+# Episode 2: Statistics
 
-**Use metaflow to load the movie metadata CSV file into a data frame and compute some movie genre specific statistics. These statistics are then used in
-later examples to improve our playlist generator. You can optionally use the
-Metaflow client to eyeball the results in a Markdown Notebook, and make some simple
-plots.**
+**Use metaflow to load the movie metadata CSV file into a data frame and compute some movie genre specific statistics. These statistics are then used in later examples to improve our playlist generator. You can optionally use the Metaflow client to eyeball the results in a Markdown Notebook, and make some simple plots.**
 
-#### Showcasing:
-- Fan-out over a set of parameters using Metaflow foreach.
-- Plotting results in a Markdown Notebook.
+## Showcasing:
 
+* Fan-out over a set of parameters using Metaflow foreach.
+* Plotting results in a Markdown Notebook.
 
-#### To play this episode:
-1. ```cd metaflow-tutorials/R```
-2. ```Rscript 02-statistics/stats.R show```
-3. ```Rscript 02-statistics/stats.R run```
-4. Open ```02-statistics/stats.Rmd``` in RStudio
+## To play this episode:
 
-The dataset ```movies.csv``` is the same one as in Episode 01, which looks like this 
-The dataset looks like this
-|movie_title|title_year|genre|gross|
-|-----------|----------|------|-----|
-|Avatar | 2009 | Sci-Fi |760505847
-|Pirates of the Caribbean: At World's End | 2007 | Fantasy | 309404152
-|Spectre | 2015 | Thriller | 200074175
-|... | ... | ... |...
+1. `cd metaflow-tutorials/R`
+2. `Rscript 02-statistics/stats.R show`
+3. `Rscript 02-statistics/stats.R run`
+4. Open `02-statistics/stats.Rmd` in RStudio
 
-The ```MovieStatsFlow``` below performs the following steps:
-1. Ingests a CSV into a dataframe.
-2. Fan-out over genre using Metaflow foreach.
-3. Compute median and mean for each genre.
-4. Save a dataframe of genre specific statistics.
+The dataset `movies.csv` is the same one as in Episode 01, which looks like this The dataset looks like this
 
-```R
+| movie\_title | title\_year | genre | gross |
+| :--- | :--- | :--- | :--- |
+| Avatar | 2009 | Sci-Fi | 760505847 |
+| Pirates of the Caribbean: At World's End | 2007 | Fantasy | 309404152 |
+| Spectre | 2015 | Thriller | 200074175 |
+| ... | ... | ... | ... |
+
+The `MovieStatsFlow` below performs the following steps: 1. Ingests a CSV into a dataframe. 2. Fan-out over genre using Metaflow foreach. 3. Compute median and mean for each genre. 4. Save a dataframe of genre specific statistics.
+
+```r
 library(metaflow)
 
 # The start step:
@@ -64,7 +58,7 @@ join <- function(self, inputs){
         "genres" = unlist(lapply(inputs, function(inp){inp$genre})),
         "median" = unlist(lapply(inputs, function(inp){inp$median})),
         "mean" = unlist(lapply(inputs, function(inp){inp$mean})))
-    
+
     print(head(self$stats))
 }
 
@@ -83,3 +77,4 @@ metaflow("MovieStatsFlow") %>%
     step(step = "end") %>%
     run()
 ```
+

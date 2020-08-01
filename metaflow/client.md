@@ -10,10 +10,9 @@ Note that all operations in the Client API are filtered by the current namespace
 
 ![Object hierarchy](../.gitbook/assets/hierarchy.png)
 
-
 These objects can be instantiated simply with
 
-```R
+```r
 # Flow object
 flow <- flow_client$new("HelloWorldFlow") 
 
@@ -37,10 +36,12 @@ task$artifact("my_var")
 ```
 
 Metaflow library has a built-in function to print out all the flows you have run in the past.
-```R
+
+```r
 # list all flows 
 print(metaflow::list_flows())
 ```
+
 This returns a list of strings which represent the names of the flows.
 
 ## Navigating the object hierarchy
@@ -49,7 +50,7 @@ Every object listed above follows a consistent interface. All the operations bel
 
 ### Listing children
 
-```R
+```r
 # list all past runs
 metaflow::list_flows()
 
@@ -76,7 +77,7 @@ Often you are only interested in the value of an artifact. For this typical use 
 
 For instance, this the shortest way to access a value produced by a step in a run:
 
-```R
+```r
 task <- task_client$new("DebugFlow/2/compute/123")
 print(task$artifact("my_var"))
 ```
@@ -86,7 +87,8 @@ Here, we print the value of `self$my_varx` in the step `compute` of the run `2`,
 ### Properties of Flow/Run/Step/Task Objects
 
 You can check the full object documentation by run the following commands in R:
-```R
+
+```r
 help(metaflow::flow_client)
 help(metaflow::run_client)
 help(metaflow::step_client)
@@ -103,12 +105,11 @@ Every object has the following common properties available:
 
 You can find more details in the object documentation.
 
-
 ## Metadata provider
 
 The Client API relies on a metadata service to gather results appropriately. Metaflow supports a local mode \(`.metaflow` directory on your filesystem\) and a [remote mode](https://github.com/Netflix/metaflow-service).
 
-```R
+```r
 # Fetch currently configured metadata provider
 metaflow::get_metadata()
 

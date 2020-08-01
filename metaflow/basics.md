@@ -1,6 +1,6 @@
 # Basics of Metaflow
 
-This document introduces the basic concepts of Metaflow. If you are eager to try out Metaflow in practice, you can start with the [tutorial](../getting-started/tutorials-r/). After the tutorial, you can return to this document to learn more about how Metaflow works.
+This document introduces the basic concepts of Metaflow. If you are eager to try out Metaflow in practice, you can start with the [tutorial](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/getting-started/tutorials-r/README.md). After the tutorial, you can return to this document to learn more about how Metaflow works.
 
 ## The Structure of Metaflow Code
 
@@ -22,7 +22,7 @@ Here is a graph with two linear transitions:
 
 The corresponding Metaflow script looks like this:
 
-```R
+```r
 library(metaflow)
 
 start <- function(self){
@@ -51,7 +51,7 @@ metaflow("LinearFlow") %>%
 
 Besides executing the steps `start`, `a`, and `end` in order, this flow creates **a data artifact** called `my_var`. In Metaflow, data artifacts are created simply by assigning values to `$`-indexed variables under the `self` object such as `self$my_var`.
 
-Data artifacts are available in all steps after they have been created, so they behave as any normal instance variables. If you want to use any R  object `obj` in downstream steps, you need to create a data artifact for it, for example `self$var <- obj`. An exception to this rule are branches, as explained below.
+Data artifacts are available in all steps after they have been created, so they behave as any normal instance variables. If you want to use any R object `obj` in downstream steps, you need to create a data artifact for it, for example `self$var <- obj`. An exception to this rule are branches, as explained below.
 
 ### Branch
 
@@ -59,7 +59,7 @@ You can express parallel steps with **a branch**. In the figure below, `start` t
 
 ![](../.gitbook/assets/graph_branch.png)
 
-```R
+```r
 library(metaflow)
 
 a <- function(self){
@@ -108,7 +108,7 @@ A foreach loop can iterate over any list like `params` below.
 
 ![](../.gitbook/assets/graph_foreach.png)
 
-```R
+```r
 library(metaflow)
 
 start <- function(self){
@@ -170,7 +170,7 @@ which prints out the steps of your flow. Does the overview give you a good idea 
 
 Here is an example of a flow that defines a parameter, `alpha`:
 
-```R
+```r
 library(metaflow)
 
 start <- function(self){
@@ -220,7 +220,7 @@ Now the flow can not be run without setting `--num_components` to an integer val
 
 You can also put down the type as `int`/`float`/`double`/`bool`.
 
-Parameters can also be used to include local files. See the section on [IncludeFile](data.md#data-in-local-files) for more information.
+Parameters can also be used to include local files. See the section on [IncludeFile](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow/data.md#data-in-local-files) for more information.
 
 ## Data flow through the graph
 
@@ -230,7 +230,7 @@ In a join step, however, the value of artifacts can potentially be set to differ
 
 To make it easier to implement a join step after foreach or branch, Metaflow provides a utility function, `merge_artifacts`, to aid in propagating unambiguous values.
 
-```R
+```r
 library(metaflow)
 
 start <- function(self){
@@ -283,7 +283,7 @@ metaflow("BranchFlow") %>%
 In the example above, the `merge_artifacts` function behaves as follows:
 
 * `pass_down` is propagated because it is unmodified in both `a` and `b`.
-* `common` is also propagated because it is set to the same value in both branches. Remember that it is the value of the artifact that matters when determining whether an artifact is ambiguous; Metaflow uses [content based deduplication](../internals-of-metaflow/technical-overview.md#datastore) to store artifacts and can therefore determine if the value of two artifacts is the same.
+* `common` is also propagated because it is set to the same value in both branches. Remember that it is the value of the artifact that matters when determining whether an artifact is ambiguous; Metaflow uses [content based deduplication](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/internals-of-metaflow/technical-overview.md#datastore) to store artifacts and can therefore determine if the value of two artifacts is the same.
 * `x` is handled by the code explicitly _prior_ to the call to `merge_artifacts` which causes `merge_artifacts` to ignore `x` when propagating artifacts. This pattern allows you to manually resolve any ambiguity in artifacts you would like to see propagated.
 * `y` is not propagated because it is listed in the `exclude` list. This pattern allows you to prevent the propagation of artifacts that are no longer relevant. Remember that the default behavior of `merge_artifacts` is to propagate all incoming artifacts.
 * `from_a` is propagated because it is only set in one branch and therefore is unambiguous. `merge_artifacts`will propagate all values even if they are present on only one incoming branch.

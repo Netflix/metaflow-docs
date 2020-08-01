@@ -4,22 +4,22 @@
 
 This flow is a simple linear workflow that verifies your installation by printing out _**Metaflow says: Hi!**_' to the terminal.
 
-You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/tree/master/metaflow/tutorials/00-helloworld) (broken link)[FIXME]
+You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/tree/master/metaflow/tutorials/00-helloworld) \(broken link\)\[FIXME\]
 
-####  Showcasing:
+### Showcasing:
 
-* [Basics of Metaflow.](../../../metaflow-r/basics.md)
-* [Step](../../../metaflow-r/basics.md#what-should-be-a-step) decorator.
+* [Basics of Metaflow.](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow-r/basics.md)
+* [Step](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow-r/basics.md#what-should-be-a-step) decorator.
 
-####  To play this episode:
+### To play this episode:
 
-1. ```cd metaflow-tutorials/R```
-2. ```Rscript 00-helloworld/helloworld.R show```
-3. ```Rscript 00-helloworld/helloworld.R run```
+1. `cd metaflow-tutorials/R`
+2. `Rscript 00-helloworld/helloworld.R show`
+3. `Rscript 00-helloworld/helloworld.R run`
 
 The flow script below prints 'Hi' in Metaflow. Run this flow to validate that Metaflow is installed correctly.
 
-```R
+```r
 library(metaflow)
 
 # This is the 'start' step. All flows must have a step named 
@@ -49,8 +49,5 @@ metaflow("HelloFlow") %>%
     step(step = "end", 
          r_function = end) %>% 
     run()
-
 ```
-
-{% page-ref page="../" %}
 

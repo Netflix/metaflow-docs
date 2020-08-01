@@ -18,7 +18,7 @@ Anne could analyze her latest `PredictionFlow` results in a notebook by remember
 
 When Anne runs `PredictionFlow`, her runs are automatically **tagged** with her user name, prefixed with `user:`. By default, when Anne uses the [Client API](client.md) in an R notebook, RStudio or in an R script, the API only returns results that are tagged with `user:anne`. Instead of having to remember the exact ID of her latest run, she can simply say:
 
-```R
+```r
 library(metaflow)
 run <- flow_client$new('PredictionFlow')$latest_run
 ```
@@ -31,7 +31,7 @@ Namespaces are not about security or access control. They help you to keep resul
 
 You can freely explore results produced by other people. In a notebook \(for example\), Anne can write
 
-```R
+```r
 library(metaflow)
 set_namespace('user:will')
 run <- flow_client$new('PredictionFlow')$latest_run
@@ -41,7 +41,7 @@ to see Will's latest results, in this case, `'PredictionFlow/5'`.
 
 You can also access a specific run given its ID directly:
 
-```R
+```r
 library(metaflow)
 run <- flow_client$new('PredictionFlow')$run("5")
 ```
@@ -50,7 +50,7 @@ However, this will fail for Anne, since `PredictionFlow/5` is in Will's namespac
 
 If Anne wants to access Will's results, she must do so explicitly by switching to Will's namespace:
 
-```R
+```r
 library(metaflow)
 set_namespace('user:will')
 run <- flow_client$new('PredictionFlow')$run("5"))
@@ -64,7 +64,7 @@ If you use the Client API in your flows to access results of other flows, you ca
 
 What if you know a run ID but you don't know whose namespace it belongs to? No worries, you can access all results in the Metaflow universe in the **global namespace**:
 
-```R
+```r
 library(metaflow)
 set_namespace(NULL)
 run <- flow_client$new('PredictionFlow')$run("5")
@@ -92,7 +92,7 @@ The `--tag` option assigns the specified tag to all objects produced by the run:
 
 You can access runs \(or steps or tasks\) with a certain tag easily using the Client API:
 
-```R
+```r
 library(metaflow)
 run <- flow_client$new("HelloFlow").runs_with_tags("crazy_test")[[1]]
 ```
@@ -101,7 +101,7 @@ This will return the latest run of `HelloFlow` with a tag `crazy_test` in your n
 
 You can also filter by multiple tags:
 
-```R
+```r
 library(metaflow)
 run <- flow_client$new("HelloFlow").runs_with_tags("crazy_test", "date:2020-06-01")[[1]]
 ```
@@ -118,7 +118,7 @@ Let's consider again the earlier example with Anne and Will. They are working on
 
 Now, they can easily get the latest results of `FeatureFlow` regardless of the user who ran the flow:
 
-```R
+```r
 library(metaflow)
 set_namespace('xyz_features')
 run <- flow_client$new('FeatureFlow')$latest_run
@@ -136,7 +136,7 @@ However, in some cases you may need to deal with IDs explicitly. For instance, i
 
 For this purpose, Metaflow provides a singleton object `current` that represents the identity of the currently running task. Use it in your `FlowSpec` to retrieve current IDs of interest:
 
-```R
+```r
 library(metaflow)
 
 start <- function(self){
@@ -158,7 +158,8 @@ metaflow("CurrentFlow") %>%
 ```
 
 You can see the output
-```R
+
+```r
 2020-06-19 21:19:03.387 [198/start/1139 (pid 64853)] [1] "flow name: CurrentFlow"
 2020-06-19 21:19:03.387 [198/start/1139 (pid 64853)] [1] "run id: 198"
 2020-06-19 21:19:03.387 [198/start/1139 (pid 64853)] [1] "origin run id: "
@@ -175,13 +176,13 @@ For regular `run` invocations, the value of `current("origin_run_id")` is `NULL`
 
 If a user explicitly overrides the CLI option `--origin-run-id`, the `current` singleton would reflect that value. Suppose we invoked `resume` for the above script to re-run everything from `start` without explicitly overriding the CLI option `origin-run-id`, we can see the value chosen by Metaflow using the `current` singleton:
 
-```R
+```r
 Rscript current_flow.R resume start
 ```
 
 You should see the `origin_run_id` used by the `resume` in the output \(the exact value for you might be different\):
 
-```R
+```r
 "origin run id: 198"
 ```
 

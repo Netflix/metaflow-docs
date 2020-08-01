@@ -14,7 +14,7 @@ The scalability tools fall into three categories:
 
 It is hard to be prescriptive about which of the three categories is most suitable for your problem. Often, the answer is a combination of the three. In general, start with the approach that is the easiest to implement and keep iterating until the performance is satisfactory.
 
-This section focuses specifically on using Batch to scale up and out: you can use Batch to request a larger instance to run your step as well as use it to parallelize your steps over multiple instances. This section requires you to have Metaflow working with AWS. See the [AWS section](../metaflow-on-aws/metaflow-on-aws.md) for more information on either setting up Metaflow in your [own AWS environment](../metaflow-on-aws/deploy-to-aws.md) or using the [provided sandbox](../metaflow-on-aws/metaflow-sandbox.md).
+This section focuses specifically on using Batch to scale up and out: you can use Batch to request a larger instance to run your step as well as use it to parallelize your steps over multiple instances. This section requires you to have Metaflow working with AWS. See the [AWS section](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow-on-aws/metaflow-on-aws.md) for more information on either setting up Metaflow in your [own AWS environment](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow-on-aws/deploy-to-aws.md) or using the [provided sandbox](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow-on-aws/metaflow-sandbox.md).
 
 This section presents the tools available in Metaflow for scaling up and out.
 
@@ -22,7 +22,7 @@ This section presents the tools available in Metaflow for scaling up and out.
 
 Consider the following example:
 
-```R
+```r
 library(metaflow)
 
 start <- function(self){
@@ -48,26 +48,28 @@ metaflow("BigSumFlow") %>%
 
 This example creates a `800MB` matrix, `large`. We're requestign 4GB of RAM and 4 CPUs on batch for this run.
 
-The `resources` decorator suggests resource requirements for a step. The `memory` argument specifies the amount of RAM in megabytes and `cpu` the number of CPU cores requested. 
+The `resources` decorator suggests resource requirements for a step. The `memory` argument specifies the amount of RAM in megabytes and `cpu` the number of CPU cores requested.
 
-The `resources` decorator gains all its power in collaboration with Batch execution. Note that for this section, you will need to have Metaflow working in an AWS cloud environment \(either having [deployed it yourself](../metaflow-on-aws/deploy-to-aws.md) or running in the [Metaflow sandbox](../metaflow-on-aws/metaflow-sandbox.md)\)
+The `resources` decorator gains all its power in collaboration with Batch execution. Note that for this section, you will need to have Metaflow working in an AWS cloud environment \(either having [deployed it yourself](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow-on-aws/deploy-to-aws.md) or running in the [Metaflow sandbox](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow-on-aws/metaflow-sandbox.md)\)
 
-You can instruct Metaflow to run all your steps on AWS Batch in two ways: 
-1. using command line options 
+You can instruct Metaflow to run all your steps on AWS Batch in two ways: 1. using command line options
+
 ```bash
 $ Rscript bigsumflow.R run --with batch
 ```
-2. using prgrammatic options in the `run(..)` object for example
-```R
-metaflow("BigSumFlow") %>%
+
+1. using prgrammatic options in the `run(..)` object for example
+
+   ```r
+   metaflow("BigSumFlow") %>%
     step(...) %>%
     step(...) %>% 
     run(batch=TRUE)
-```
+   ```
 
 The `--with batch` option instructs Metaflow to run all tasks as separate AWS Batch jobs, instead of using a local process for each task. It has the same effect as adding `@batch` decorator to all steps in the code.
 
- Note that in this case the `resources` decorator is used as a prescription for the size of the box that Batch should run the job on; please be sure that this resource requirement can be met. See [here](scaling.md#my-job-is-stuck-in-runnable-state-what-do-i-do) on what can happen if this is not the case.
+Note that in this case the `resources` decorator is used as a prescription for the size of the box that Batch should run the job on; please be sure that this resource requirement can be met. See [here](scaling.md#my-job-is-stuck-in-runnable-state-what-do-i-do) on what can happen if this is not the case.
 
 In addition to `cpu` and `memory` you can specify `gpu=N` to request N GPUs for the instance.
 
@@ -75,9 +77,9 @@ In addition to `cpu` and `memory` you can specify `gpu=N` to request N GPUs for 
 
 A close relative of the `resources` decorator is `batch`. It takes exactly the same keyword arguments as `resources` but instead of being a mere suggestion, it forces the step to be run on AWS Batch.
 
-The main benefit of `batch` is that you can selectively run some steps locally and some on AWS Batch.  
+The main benefit of `batch` is that you can selectively run some steps locally and some on AWS Batch.
 
-```R
+```r
 library(metaflow)
 
 start <- function(self){
@@ -119,7 +121,7 @@ Here are the current defaults for different resource types:
 
 When setting `@resources`, keep in mind the configuration of your AWS Batch Compute Environment. Your job will be stuck in a `RUNNABLE` state if AWS is unable to provision the requested resources. Additionally, as a good measure, don't request more resources than what your workflow actually needs. On the other hand, never optimize resources prematurely.
 
-You can place your AWS Batch task in a specific queue by using the `queue` argument. By default, all tasks execute on a an R docker image [TODO:add link] and can be overridden using the `image` argument.
+You can place your AWS Batch task in a specific queue by using the `queue` argument. By default, all tasks execute on a an R docker image \[TODO:add link\] and can be overridden using the `image` argument.
 
 You can also specify the resource requirements on command line as well:
 
@@ -135,7 +137,7 @@ Consult [this article](https://docs.aws.amazon.com/batch/latest/userguide/troubl
 
 If you interrupt a Metaflow run, any AWS Batch tasks launched by the run get killed by Metaflow automatically. Even if something went wrong during the final cleanup, the tasks will finish and die eventually, at the latest when they hit the maximum time allowed for an AWS Batch task.
 
-If you want to make sure you have no AWS Batch tasks running, or you want to manage them manually, you can use the `batch list` and `batch kill` commands. These commands are disabled in the [Metaflow AWS Sandbox](../metaflow-on-aws/metaflow-sandbox.md).
+If you want to make sure you have no AWS Batch tasks running, or you want to manage them manually, you can use the `batch list` and `batch kill` commands. These commands are disabled in the [Metaflow AWS Sandbox](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow-on-aws/metaflow-sandbox.md).
 
 You can easily see what AWS Batch tasks were launched by your latest run with
 
@@ -173,7 +175,7 @@ If you are working with another person, you can see and kill their tasks related
 $ python myflow.R batch kill --user willsmith
 ```
 
-Note that all the above commands only affect the flow defined in your script. You can work on many flows in parallel and be confident that `kill` kills tasks only related to the flow you called `kill` with. 
+Note that all the above commands only affect the flow defined in your script. You can work on many flows in parallel and be confident that `kill` kills tasks only related to the flow you called `kill` with.
 
 #### **Safeguard flags**
 
@@ -208,3 +210,4 @@ You can request higher disk space on AWS Batch instances by using an unmanaged C
 Metaflow R package runs on top of Metaflow Python package, which uses Python's default object serialization format, [Pickle](https://docs.python.org/3/library/pickle.html), to persist data artifacts.
 
 Unfortunately Python was not able to pickle objects larger than 2GB prior to Python 3.5. If you need to store large data artifacts, such as a large data frame, using a recent version of Python 3 for Metaflow Python package is highly recommended.
+

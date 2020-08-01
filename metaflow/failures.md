@@ -14,7 +14,7 @@ Retrying a failed task is the simplest way to try to handle errors. It is a part
 
 You can enable retries for a step simply by adding `retry` decorator in the step, like here:
 
-```R
+```r
 library(metaflow)
 
 start <- function(self){
@@ -42,7 +42,7 @@ metaflow("RetryFlow") %>%
 
 When you run this flow, you will see that sometimes it succeeds without a hitch but sometimes the `start` step raises an exception and it needs to be retried. By default, `retry` retries the step three times. Thanks to `retry`, this workflow will almost always succeed.
 
-```R
+```r
 2020-06-19 15:48:16.653 [181/start/1076 (pid 54076)] Task is starting.
 2020-06-19 15:48:22.441 [181/start/1076 (pid 54076)] Evaluation error: Bad Luck!.
 2020-06-19 15:48:23.408 [181/start/1076 (pid 54076)] Task failed.
@@ -54,18 +54,19 @@ When you run this flow, you will see that sometimes it succeeds without a hitch 
 2020-06-19 15:48:38.545 [181/start/1076 (pid 54139)] Task finished successfully.
 ```
 
-It is highly recommended that you use `retry` every time you run your flow on the [cloud](../metaflow-on-aws/metaflow-on-aws.md). Instead of annotating every step with a retry decorator, you can also automatically add a retry decorator to all steps that do not have one as follows:
+It is highly recommended that you use `retry` every time you run your flow on the [cloud](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow-on-aws/metaflow-on-aws.md). Instead of annotating every step with a retry decorator, you can also automatically add a retry decorator to all steps that do not have one as follows:
 
-```R
+```r
 Rscript retryflow.R run --with retry
 ```
 
 ### How to Prevent Retries
+
 If retries are such a good idea, why not enable them by default for all steps? First, retries only help with transient errors, like sporadic platform issues. If the input data or your code is broken, retrying will not help anything. Secondly, not all steps can be retried safely.
 
 Imagine a hypothetical step like this:
 
-```R
+```r
 withdraw_money_from_account <- function(self){
     library(httr)
     r <- POST('bank.com/account/123/withdraw', 
@@ -75,13 +76,13 @@ withdraw_money_from_account <- function(self){
 
 If you run this code with:
 
-```R
+```r
 Rscript moneyflow.R run --with retry
 ```
 
 you may end up withdrawing up to $4000 instead of the intended $1000. To make sure no one will accidentally retry a step with _destructive side-effects_ like this, you should add `times=0` in the step code:
 
-```R
+```r
 metaflow("MoneyFlow") %>%
     ...
     step(step="withdraw", 
@@ -97,7 +98,7 @@ Most data science workflows do not have to worry about this. As long as your ste
 
 ### Maximizing Safety
 
-By default, `retry` will retry the step for three times before giving up. It waits for 2 minutes between retries on the [cloud](../metaflow-on-aws/metaflow-on-aws.md). This means that if your code fails fast, any transient platform issues need to get resolved in less than 10 minutes or the whole run will fail. Typically 10 minutes is more than enough but sometimes you want both a belt and suspenders.
+By default, `retry` will retry the step for three times before giving up. It waits for 2 minutes between retries on the [cloud](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow-on-aws/metaflow-on-aws.md). This means that if your code fails fast, any transient platform issues need to get resolved in less than 10 minutes or the whole run will fail. Typically 10 minutes is more than enough but sometimes you want both a belt and suspenders.
 
 If you have a sensitive production workflow which should not fail easily, there are four things you can do:
 
@@ -114,7 +115,7 @@ If the same code is executed multiple times by `retry`, are there going to be du
 
 If you want to know if a task was retried, you can retrieve retry timestamps from `Task` metadata:
 
-```R
+```r
 library(metaflow)
 
 task <- task_client$new("RetryFlow/181/start/1076")
@@ -137,7 +138,7 @@ You may know that some steps are error-prone. For instance, this can happen with
 
 Consider this example that is structured like a hyperparameter search:
 
-```R
+```r
 library(metaflow)
 
 start <- function(self){
@@ -186,7 +187,7 @@ The `var` argument is optional. The exception is not stored unless you specify i
 
 Platform issues happen outside of your code, for example, when you are not able to request a big AWS instance for an AWS Batch step. In this case so you can't handle them with a `tryCatch` block in your R script.
 
-```R
+```r
 library(metaflow)
 
 start <- function(self){
@@ -224,3 +225,4 @@ Here is a quick summary of failure handling in Metaflow:
 * Use `retry` to deal with transient platform issues. You can do this easily on the command line with the `--with retry` option.
 * Use `retry` **with** `catch` for extra robustness if you have modified your code to deal with faulty steps which are handled by `catch`.
 * Use `catch` **without** `retry` to handle steps [that can't be retried safely](failures.md#how-to-prevent-retries). It is a good idea to use `times=0` for `retry` in this case.
+
