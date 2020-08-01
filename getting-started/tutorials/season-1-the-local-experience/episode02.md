@@ -11,7 +11,7 @@
 
 Pull the tutorials code to current working directory by `Rscript -e "metaflow::pull_tutorials()"`
 
-1. `cd tutorials/R`
+1. `cd tutorials`
 2. `Rscript 02-statistics/stats.R show`
 3. `Rscript 02-statistics/stats.R run`
 4. Open `02-statistics/stats.Rmd` in RStudio

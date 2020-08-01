@@ -12,7 +12,7 @@
 
 Pull the tutorials code to current working directory by `Rscript -e "metaflow::pull_tutorials()"`
 
-1. `cd tutorials/R`
+1. `cd tutorials`
 2. `Rscript 01-playlist/playlist.R show`
 3. `Rscript 01-playlist/playlist.R run`
 4. `Rscript 01-playlist/playlist.R run --genre comedy`
