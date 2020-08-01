@@ -4,7 +4,7 @@ Metaflow has been used in production at Netflix since early 2018. The core Metaf
 
 Please click the link and comment / thumbs-up the corresponding GitHub issue if you want to see the feature open-sourced.
 
-## **Support for R Lang**
+## **Support for R Lang** 
 
 [Metaflow in the R language](https://www.youtube.com/watch?v=lakPlz8GJcA). Provide an idiomatic R API which uses the Python library as the backend \([Github issue](https://github.com/Netflix/metaflow/issues/1)\)
 
