@@ -1,6 +1,6 @@
 # Basics of Metaflow
 
-This document introduces the basic concepts of Metaflow. If you are eager to try out Metaflow in practice, you can start with the [tutorial](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/getting-started/tutorials-r/README.md). After the tutorial, you can return to this document to learn more about how Metaflow works.
+This document introduces the basic concepts of Metaflow. If you are eager to try out Metaflow in practice, you can start with the [tutorial](../getting-started/tutorials/). After the tutorial, you can return to this document to learn more about how Metaflow works.
 
 ## The Structure of Metaflow Code
 
@@ -281,7 +281,7 @@ metaflow("BranchFlow") %>%
 In the example above, the `merge_artifacts` function behaves as follows:
 
 * `pass_down` is propagated because it is unmodified in both `a` and `b`.
-* `common` is also propagated because it is set to the same value in both branches. Remember that it is the value of the artifact that matters when determining whether an artifact is ambiguous; Metaflow uses [content based deduplication](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/internals-of-metaflow/technical-overview.md#datastore) to store artifacts and can therefore determine if the value of two artifacts is the same.
+* `common` is also propagated because it is set to the same value in both branches. Remember that it is the value of the artifact that matters when determining whether an artifact is ambiguous; Metaflow uses content based deduplication to store artifacts and can therefore determine if the value of two artifacts is the same.
 * `x` is handled by the code explicitly _prior_ to the call to `merge_artifacts` which causes `merge_artifacts` to ignore `x` when propagating artifacts. This pattern allows you to manually resolve any ambiguity in artifacts you would like to see propagated.
 * `y` is not propagated because it is listed in the `exclude` list. This pattern allows you to prevent the propagation of artifacts that are no longer relevant. Remember that the default behavior of `merge_artifacts` is to propagate all incoming artifacts.
 * `from_a` is propagated because it is only set in one branch and therefore is unambiguous. `merge_artifacts`will propagate all values even if they are present on only one incoming branch.
