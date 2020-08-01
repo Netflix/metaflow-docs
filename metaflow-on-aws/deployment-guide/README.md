@@ -20,7 +20,7 @@ We also understand that at times, for various organizational reasons, you might 
 
 #### Other approaches
 
-We have an [open GitHub issue for Terraform support](https://github.com/Netflix/metaflow/issues/38) if you are interested in contributing.
+We have an [open GitHub issue for native Terraform support](https://github.com/Netflix/metaflow/issues/38) if you are interested in contributing. Terraform also [supports directly creating a cloud formation stack](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudformation_stack), wherein you can directly embed our [CloudFormation template](https://github.com/Netflix/metaflow-tools/tree/master/aws/cloudformation) in your Terraform configuration.
 
  
 
