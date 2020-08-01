@@ -21,7 +21,6 @@
   * [Season 2: Scaling Out and Up](getting-started/tutorials/season-2-scaling-out-and-up/README.md)
     * [Episode 5: Hello AWS](getting-started/tutorials/season-2-scaling-out-and-up/episode05.md)
     * [Episode 6: Statistics Redux](getting-started/tutorials/season-2-scaling-out-and-up/episode06.md)
-    * [Episode 7: Worldview](getting-started/tutorials/season-2-scaling-out-and-up/episode-7-worldview.md)
 
 ## Developing with Metaflow <a id="metaflow"></a>
 
