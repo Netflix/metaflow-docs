@@ -72,7 +72,7 @@ The command will export your workflow to AWS Step Functions. You can also search
 
 ![](https://lh4.googleusercontent.com/S0LZKdOvAuaMSFN58sBeKoarl-XSIT-lTPOBW7A1bukfCqGiT3Wlc9_XworJ-HtEV6JP8Cj1fHsTRKDDlRSR_kI8cZ_aQmaAx982tzmSWc8EHSrR7n8b0Au-sy5rP__OFAXC887J)
 
-You can click the orange Start Execution button to execute the flow on AWS Step Functions. It pops up a dialog asking for an input. You can specify your parameters as an escaped JSON string with Parameters as the key - ****
+You can click the orange Start Execution button to execute the flow on AWS Step Functions. It pops up a dialog asking for an input. You can specify your parameters as an escaped JSON string with Parameters as the key - _\*\*_
 
 ```bash
 {
@@ -94,7 +94,7 @@ In this case, the run should succeed without problems. If there were errors, you
 python parameter_flow.py step-functions trigger --alpha 0.5
 ```
 
-If you run `step-functions create` again, it will create a new version of your flow on AWS Step Functions. The newest version becomes the production version automatically \(due to the consistency guarantees provided by AWS Step Functions, it might be a couple of seconds before this happens\). If you want to test on AWS Step Functions without interfering with a production flow, you can change the name of your class, e.g. from ParameterFlow to ParameterFlowStaging, and `step-functions create` the flow under a new name. 
+If you run `step-functions create` again, it will create a new version of your flow on AWS Step Functions. The newest version becomes the production version automatically \(due to the consistency guarantees provided by AWS Step Functions, it might be a couple of seconds before this happens\). If you want to test on AWS Step Functions without interfering with a production flow, you can change the name of your class, e.g. from ParameterFlow to ParameterFlowStaging, and `step-functions create` the flow under a new name.
 
 Note that step-functions create creates a new isolated [production namespace](../metaflow/tagging.md#production-namespaces) for your production flow. Please read [Organizing Results](../metaflow/tagging.md) to learn all about namespace behavior.
 
@@ -150,7 +150,7 @@ The `context` object is passed to any function defined in Parameter. It contains
 
 By default, a flow on AWS Step Functions does not run automatically. You need to set up a trigger to launch the flow when an event occurs.
 
-Metaflow provides built-in support for triggering Metaflow flows through time-based \(cron\) triggers. Use a time-based trigger if you want to trigger the workflow at a certain time. 
+Metaflow provides built-in support for triggering Metaflow flows through time-based \(cron\) triggers. Use a time-based trigger if you want to trigger the workflow at a certain time.
 
 Time-based triggers are implemented at the FlowSpec-level using the `@schedule` decorator. This flow is triggered hourly:
 

@@ -47,7 +47,7 @@ if __name__ == '__main__':
     BigSum()
 ```
 
-This example creates a huge 80000x80000 random matrix, `big_matrix`. The matrix requires about 80000^2 \* 8 bytes = 48GB of memory. 
+This example creates a huge 80000x80000 random matrix, `big_matrix`. The matrix requires about 80000^2 \* 8 bytes = 48GB of memory.
 
 If you attempt to run this on your local machine, it is likely that the following will happen:
 
@@ -66,7 +66,7 @@ $ python BigSum.py run
     Step start (task-id 21975) failed.
 ```
 
-This fails quickly due to a `MemoryError` on most laptops as we are unable to allocate 48GB of memory. 
+This fails quickly due to a `MemoryError` on most laptops as we are unable to allocate 48GB of memory.
 
 The `resources` decorator suggests resource requirements for a step. The `memory` argument specifies the amount of RAM in megabytes and `cpu` the number of CPU cores requested. It does not produce the resources magically, which is why the run above failed.
 
@@ -223,7 +223,7 @@ If you are working with another person, you can see and kill their tasks related
 $ python myflow.py batch kill --user willsmith
 ```
 
-Note that all the above commands only affect the flow defined in your script. You can work on many flows in parallel and be confident that `kill` kills tasks only related to the flow you called `kill` with. 
+Note that all the above commands only affect the flow defined in your script. You can work on many flows in parallel and be confident that `kill` kills tasks only related to the flow you called `kill` with.
 
 #### **Safeguard flags**
 

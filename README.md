@@ -35,7 +35,7 @@ description: Build and manage real-life data science projects with ease.
 * [Dealing with Failures](metaflow/failures.md)
 * [Organizing Results](metaflow/tagging.md)
 
-## Going to Production with Metaflow 
+## Going to Production with Metaflow
 
 * [Scheduling Metaflow Flows](going-to-production-with-metaflow/scheduling-metaflow-flows.md)
 

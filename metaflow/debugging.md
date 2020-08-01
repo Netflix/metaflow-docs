@@ -127,13 +127,13 @@ The `resume` command reuses the parameter values that you set with `run` origina
 
 ## **Reproducing production issues locally**
 
-This section shows you how to reproduce a failed Metaflow run on AWS Step Functions locally. This is how a failed run on AWS Step Functions UI looks like - 
+This section shows you how to reproduce a failed Metaflow run on AWS Step Functions locally. This is how a failed run on AWS Step Functions UI looks like -
 
 ![](https://lh4.googleusercontent.com/7a7yW4JMApMn8_X4DZsnoT2EOIK_RR0YTwkhJrEDq9jUJDHuVZv6BLgRJ-XtHrkP9MAM28ofrYMVK7W-f9pIRXTbuay3VWvR73FuDvW_OI4BprDheWViGd3XLD-ArMUgwu-Flok_)
 
 ![](https://lh4.googleusercontent.com/SxMRHj9suoBFMQwx4FJP-zywTzCUrePSRMAYhxVOreXxwEJe-eL3WciP3TxVyNkNrrSEmKo1bbBkS762rEtJ4SVJj8MaJubTdmnBsjkONi5NT4BUSXcnqwL47KXQaQaEwSpzroeT)
 
-Notice the execution ID of `5ca85f96-8508-409d-a5f5-b567db1040c5`. When running on AWS Step Functions, Metaflow uses the AWS Step Functions execution ID \(prefixed with `sfn-`\) as the run id. 
+Notice the execution ID of `5ca85f96-8508-409d-a5f5-b567db1040c5`. When running on AWS Step Functions, Metaflow uses the AWS Step Functions execution ID \(prefixed with `sfn-`\) as the run id.
 
 The graph visualization shows that step `b` failed, as expected. First, you should inspect the logs of the failed step to get an idea of why it failed. You can access AWS Batch step logs in the AWS Step Functions UI by looking for the `JobId` in the `Error` blob that can be accessed by clicking on the `Exception` pane on the right side of the UI. You can use this `JobId` in the AWS Batch console to check the job logs. This `JobId` is also the metaflow task ID for the step.
 
@@ -175,7 +175,7 @@ Being able to inspect data produced by every step is a powerful feature of Metaf
 
 This clip \(no audio\) demonstrates inspecting values in a flow:
 
-{% embed url="https://share.getcloudapp.com/X6uDx9KB" %}
+{% embed url="https://share.getcloudapp.com/X6uDx9KB" caption="" %}
 
 In the above clip, you will see:
 
@@ -206,7 +206,7 @@ Note that since Metaflow may launch multiple steps in parallel, you may actually
 
 ### Debugging with VSCode
 
-You can debug with the Python plugin for VSCode. 
+You can debug with the Python plugin for VSCode.
 
 1. You will need a "launch.json" file in your ".vscode" directory:
    1. Select "Open Configurations" from the "Debug" menu.
@@ -230,7 +230,7 @@ You can debug with the Python plugin for VSCode.
 }
 ```
 
-You can now set breakpoints and then select "Start Debugging" from the "Debug" menu. Note that since Metaflow may launch multiple steps in parallel, you may actually hit multiple breakpoints at the same time; you will be able to switch between those breakpoints by selecting the proper function stack in the "Call Stack" window. You can also restrict Metaflow to only execute one step at a time by adding the values "--max-workers" and  "1" to the "args" array in the configuration.
+You can now set breakpoints and then select "Start Debugging" from the "Debug" menu. Note that since Metaflow may launch multiple steps in parallel, you may actually hit multiple breakpoints at the same time; you will be able to switch between those breakpoints by selecting the proper function stack in the "Call Stack" window. You can also restrict Metaflow to only execute one step at a time by adding the values "--max-workers" and "1" to the "args" array in the configuration.
 
 ### Combining debugging with resume
 
@@ -239,6 +239,4 @@ You can naturally combine the techniques described in this section with the "res
 ### Compatibility with Conda decorator
 
 The above instructions work even if you use [`@conda` decorators](dependencies.md#managing-dependencies-with-conda-decorator) in your code; you need, however, to ensure that the `conda` binary is available in your `PATH`. The easiest way to do this is to set the `PATH` environment variable to properly include the path to the `conda` binary if it is in a non-standard location. In VSCode, you can simply add this value in the env section of launch.json and in PyCharm, the UI allows you to set environment variables.
-
-## 
 

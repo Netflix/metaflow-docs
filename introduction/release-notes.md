@@ -214,12 +214,10 @@ Bug Fixes
 
 ## 2.0.0 \(Dec 3rd, 2019\)
 
-#### **Hello World!** 
+#### **Hello World!**
 
 * First Open Source Release.
 * Read the [blogpost](https://medium.com/@NetflixTechBlog/open-sourcing-metaflow-a-human-centric-framework-for-data-science-fa72e04a5d9) announcing the release
 
-## Releases pre-2.0.0 were internal to Netflix 
-
-
+## Releases pre-2.0.0 were internal to Netflix
 

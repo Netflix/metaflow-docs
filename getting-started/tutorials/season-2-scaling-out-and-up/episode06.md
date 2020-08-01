@@ -29,7 +29,7 @@ You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/t
 4. Open _**stats.ipynb**_ in your remote Sagemaker notebook
 
 {% hint style="warning" %}
-Note for _**Python 2.7**_ users: when opening the _**stats.ipynb**_ in a Sagemaker notebook you will need to change the python kernel by clicking _**Kernel -&gt; Change Kernel -&gt; conda\_python2**_ from the pull down menu. This ensures the Pandas dataframe will deserialize correctly. 
+Note for _**Python 2.7**_ users: when opening the _**stats.ipynb**_ in a Sagemaker notebook you will need to change the python kernel by clicking _**Kernel -&gt; Change Kernel -&gt; conda\_python2**_ from the pull down menu. This ensures the Pandas dataframe will deserialize correctly.
 {% endhint %}
 
 {% page-ref page="../" %}
