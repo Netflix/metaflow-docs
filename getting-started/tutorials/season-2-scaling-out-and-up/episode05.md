@@ -1,4 +1,4 @@
-# Episode 4: Look Mom, We're in the Cloud.
+# Episode 5: Computing in the Cloud 
 
 **This example revisits 'Episode 02-statistics: Is this Data Science?'. With Metaflow, you don't need to make any code changes to scale-up your flow by running on remote compute. In this example we re-run the 'stats.py' workflow adding the '--with batch' command line argument. This instructs Metaflow to run all your steps on AWS batch without changing any code. You can control the behavior with additional arguments, like '--max-workers'. For this example, 'max-workers' is used to limit the number of parallel genre specific statistics computations. You can then access the data artifacts \(even the local CSV file\) from anywhere because the data is being stored in AWS S3.**
 
@@ -16,9 +16,7 @@
 
 Pull the tutorials code to current working directory by `Rscript -e "metaflow::pull_tutorials()"`
 
-1. `cd tutorials/04-statistics/`
+1. `cd tutorials/02-statistics/`
 2. `Rscript stats.R --package-suffixes=.R,.csv run --with batch --max-workers 4`
-3. Open `02-statistics/stats.Rmd` in your RStudio and re-run the cells. You can acccess
-
-   the artifacts stored in AWS S3 from your local RStudio session. 
+3. Open `02-statistics/stats.Rmd` in your RStudio and re-run the cells. You can acccess the artifacts stored in AWS S3 from your local RStudio session. 
 

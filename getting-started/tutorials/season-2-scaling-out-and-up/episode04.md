@@ -1,4 +1,4 @@
-# Episode 04-helloaws: Look Mom, We're in the Cloud.
+# Episode 4: Look Mom, We're in the Cloud.
 
 **This flow is a simple linear workflow that verifies your AWS
 configuration. The 'start' and 'end' steps will run locally, while the 'hello'
@@ -15,9 +15,10 @@ use the client to access information about any flow from anywhere.**
 1. Configure your sandbox: https://docs.metaflow.org/metaflow-on-aws/metaflow-sandbox
 
 #### To play this episode:
-1. ```cd metaflow-tutorials/R```
+Pull the tutorials code to current working directory by `Rscript -e "metaflow::pull_tutorials()"`
+1. ```cd tutorials```
 2. ```Rscript 04-helloaws/helloaws.R run```
-3. Open ```helloaws.Rmd' in your local RStudio 
+3. Open ```helloaws.md' in your local RStudio 
 
 ```R
 #  A flow where Metaflow prints 'Hi'.

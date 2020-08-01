@@ -1,4 +1,4 @@
-# Episode 5: Computing in the Cloud.
+# Episode 6: Way up here. 
 
 **This episode shows how you can use a notebook to setup a simple dashboard to monitor all of your Metaflow flows.**
 
@@ -14,6 +14,6 @@
 
 Pull the tutorials code to current working directory by `Rscript -e "metaflow::pull_tutorials()"`
 
-1. `cd tutorials/05-worldview/`
+1. `cd tutorials/06-worldview/`
 2. Open `worldview.Rmd` in RStudio on your local computer 
 
