@@ -1,2 +1,0 @@
-# Managing External Libraries
-
