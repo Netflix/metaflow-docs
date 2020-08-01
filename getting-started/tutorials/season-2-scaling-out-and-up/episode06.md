@@ -1,4 +1,4 @@
-# Episode 6: Way up here. 
+# Episode 6: Way up here.
 
 **This episode shows how you can use a notebook to setup a simple dashboard to monitor all of your Metaflow flows.**
 

@@ -23,9 +23,9 @@ Each tutorial has a brief description and instructions that you can view using t
 
 ## [Season 2: Scaling Out and Up](season-2-scaling-out-and-up/).
 
-* [**Episode 4: Look Mom, We're in the Cloud.**](season-2-scaling-out-and-up/episode05.md)
-* [**Episode 5: Computing in the Cloud.**](season-2-scaling-out-and-up/episode06.md)
-* Episode 6: Way up here.
+* [**Episode 4: Look Mom, We're in the Cloud.**](season-2-scaling-out-and-up/episode04.md)
+* [**Episode 5: Computing in the Cloud.**](season-2-scaling-out-and-up/episode05.md)
+* \*\*\*\*[**Episode 6: Way up here.**](season-2-scaling-out-and-up/episode06.md)\*\*\*\*
 
 ## What's next?
 
