@@ -17,7 +17,11 @@ Pull the tutorials code to current working directory by `Rscript -e "metaflow::p
 2. `Rscript 00-helloworld/helloworld.R show`
 3. `Rscript 00-helloworld/helloworld.R run`
 
-The flow script below prints 'Hi' in Metaflow. Run this flow to validate that Metaflow is installed correctly.
+The flow script below prints 'Hi' in Metaflow. 
+
+![](../../../.gitbook/assets/screen-shot-2020-08-01-at-4.32.05-pm.png)
+
+Run this flow to validate that Metaflow is installed correctly.
 
 ```r
 library(metaflow)

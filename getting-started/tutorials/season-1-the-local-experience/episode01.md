@@ -38,6 +38,8 @@ The flow script below performs the following steps:
    * Choose a random movie from a different genre.
 4. Displays the top entries from the playlist.
 
+![](../../../.gitbook/assets/screen-shot-2020-08-01-at-4.32.58-pm.png)
+
 ```r
 library(metaflow)
 

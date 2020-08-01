@@ -32,6 +32,8 @@ The `MovieStatsFlow` below performs the following steps:
 3. Compute median and mean for each genre.
 4.  Save a data frame of genre specific statistics.
 
+![](../../../.gitbook/assets/screen-shot-2020-08-01-at-4.35.06-pm.png)
+
 ```r
 library(metaflow)
 

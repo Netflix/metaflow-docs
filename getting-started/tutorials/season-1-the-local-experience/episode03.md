@@ -20,6 +20,8 @@ Pull the tutorials code to current working directory by `Rscript -e "metaflow::p
 
 In this `PlayListReduxFlow`, we reuse the genre median gross box office statistics computed from `MoviesStatsFlow`, pick the genre with the highest median gross box office, and create a randomized playlist of movies of this picked genre.
 
+![](../../../.gitbook/assets/screen-shot-2020-08-01-at-4.36.46-pm.png)
+
 ```r
 library(metaflow)
 
