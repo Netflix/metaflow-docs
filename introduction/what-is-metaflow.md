@@ -66,7 +66,7 @@ You can find more details about Metaflow's approach to various parts of the stac
       </td>
     </tr>
     <tr>
-      <td style="text-align:left"><b>Job Scheduler </b>
+      <td style="text-align:left"><b>Job Scheduler</b>
       </td>
       <td style="text-align:left">coming soon, see <a href="roadmap.md">Roadmap</a>
       </td>
@@ -88,19 +88,19 @@ You can find more details about Metaflow's approach to various parts of the stac
 
 If you are an infrastructure person who wants to know how to deploy and operate Metaflow, take a look at [Administrator's Guide to Metaflow](https://admin-docs.metaflow.org).
 
-## Presentations about Metaflow 
+## Presentations about Metaflow
 
 If you want to learn more, the Machine Learning Infrastructure team at Netflix has given a number of public presentations about Metaflow prior to its open-sourcing. You can find links to these presentations below. You can also read the original [open-source release announcement in the Netflix tech blog](https://netflixtechblog.com/open-sourcing-metaflow-a-human-centric-framework-for-data-science-fa72e04a5d9).
 
 For starters, this presentation gives a comprehensive overview of Metaflow:
 
-{% embed url="https://www.youtube.com/watch?v=XV5VGddmP24" %}
+{% embed url="https://www.youtube.com/watch?v=XV5VGddmP24" caption="" %}
 
 For other general overviews of Metaflow, see the [Overviews of Metaflow](https://www.youtube.com/playlist?list=PLGEBSHR02Xbg0oTf7OwZ_Kk86Zx96mAOb) playlist. For more technical details, see presentations about the [Internals of Metaflow](https://www.youtube.com/playlist?list=PLGEBSHR02XbhC-5Eqy7ERHxpuwiJHes4j).
 
 ## The Philosophy of Metaflow
 
-If you are eager to give Metaflow a try, head to the [tutorials](../getting-started/tutorials/). If you want to learn about the background of Metaflow in more detail, keep on reading. 
+If you are eager to give Metaflow a try, head to the [tutorials](../getting-started/tutorials/). If you want to learn about the background of Metaflow in more detail, keep on reading.
 
 Metaflow was originally designed and built to address practical pain points of data scientist at Netflix. Its design philosophy is influenced by [the unique culture at Netflix](https://jobs.netflix.com/culture). The following eight tenets summarize the philosophy of Metaflow:
 

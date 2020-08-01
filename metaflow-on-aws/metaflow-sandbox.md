@@ -6,7 +6,7 @@ We know that [setting up all the required components in AWS](deploy-to-aws.md) i
 
 Only a limited number of sandboxes are available. When you sign up, you are added to a waitlist for a private sandbox. It may take anywhere between days to weeks to get access to the sandbox. We will notify you by email once your sandbox is ready. Please [contact us](../introduction/getting-in-touch.md) if you have any questions about signing up or using the sandbox.
 
-### Choose Your Own Sandbox Adventure
+## Choose Your Own Sandbox Adventure
 
 Here are some ideas that you can try with the sandbox:
 
@@ -18,7 +18,7 @@ Here are some ideas that you can try with the sandbox:
 * Evaluate Metaflow's [experiment tracking and versioning](../metaflow/tagging.md) using local runs and the [Client API](../metaflow/client.md) in a local notebook. In contrast to the local mode, all runs are registered globally in the Metaflow Service regardless of the directory where you run them.
 * Test how you can [`resume` tasks locally](../metaflow/debugging.md#how-to-use-the-resume-command) which were originally run remotely using `--with batch`.
 
-### Sandbox Rules
+## Sandbox Rules
 
 Sandbox is a limited test environment:
 
@@ -30,13 +30,13 @@ Sandbox is a limited test environment:
 
 It is important that you read and agree to the [Metaflow Sandbox terms of use](https://metaflow.org/sandbox-tos.html) and [privacy policy](https://metaflow.org/sandbox-privacy.html) before signing up.
 
-### Sign up for a Sandbox
+## Sign up for a Sandbox
 
 You can sign up for a sandbox at [metaflow.org/sandbox](https://metaflow.org/sandbox).
 
 Here is a short screencast that walks you through the process \(no audio\):
 
-{% embed url="https://www.youtube.com/watch?v=SMvgAINYGqU" %}
+{% embed url="https://www.youtube.com/watch?v=SMvgAINYGqU" caption="" %}
 
 1. After agreeing to the Terms of Use and Privacy Policy, you will need to sign up with your GitHub account. This is required so we can verify your identify to prevent abuse.
 2. You will be added to a waitlist. You can log in to [metaflow.org/sandbox](https://metaflow.org/sandbox) to see the status of your process. You can expect that the status will remain at "Waiting for the next available sandbox" for many days.
@@ -50,7 +50,7 @@ Here is a short screencast that walks you through the process \(no audio\):
 10. The notebook includes the `metaflow` package by default. However, the notebook is not tied to a specific user, so you will need to [set the namespace explicitly](../metaflow/tagging.md#switching-namespaces) to match your username. 
 11. Since your local run was registered with the Metadata service and artifacts were automatically copied to S3, you can access the locally generated artifact, `models`, in a remote notebook! This demonstrates how Metaflow enables multiple people share results via S3 and the [Client API](../metaflow/client.md).
 
-### After Sandbox Expires
+## After Sandbox Expires
 
 All good things come to an end. After your sandbox expires, all computation is stopped automatically and data is deleted permanently. Reset your Metaflow back to the local mode with `metaflow configure reset`.
 

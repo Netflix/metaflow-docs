@@ -93,7 +93,7 @@ Isolated production namespaces have three main benefits:
 2. An isolated production namespace makes it easy to **keep production results separate from any experimental runs** of the same project running concurrently. You can rest assured that when you switch to a production namespace, you will see only results related to production - nothing more, nothing less.
 3. By having control over the production namespace, you can **alter data that is seen by production flows**. For instance, if you have separate training and prediction flows in production, the prediction flow can access the previously built model as long as one exists in the same namespace. By changing the production namespace, you can make sure that a new deployment isn't tainted by old results.
 
-If you are a single developer working on a new project, you don't have to do anything special to deal with production namespaces. You can rely on the default behavior of `step-functions create`. 
+If you are a single developer working on a new project, you don't have to do anything special to deal with production namespaces. You can rely on the default behavior of `step-functions create`.
 
 ### **Production tokens**
 
@@ -233,7 +233,7 @@ The `current` singleton also provides programmatic access to the CLI option `--o
 
 If a user explicitly overrides the CLI option `--origin-run-id`, the `current` singleton would reflect that value.
 
-If not, it would be the id of the last invocation of `run` \(successful or not\). 
+If not, it would be the id of the last invocation of `run` \(successful or not\).
 
 {% hint style="info" %}
 This value would remain the same even after multiple successful `resume` invocations. If you don't want this behavior, you can always override the CLI option `origin-run-id` and `resume` a specific run.
