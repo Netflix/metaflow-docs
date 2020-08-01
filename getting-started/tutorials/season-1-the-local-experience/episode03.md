@@ -1,4 +1,4 @@
-# Episode 3: Playlist Redux
+# Episode 3: Follow the Money.
 
 **Use Metaflow to load the statistics generated from 'Episode 02' and recommend movies from a genre with highest median gross box office**
 
@@ -12,7 +12,9 @@
 
 ## To play this episode:
 
-1. `cd metaflow-tutorials/R`
+Pull the tutorials code to current working directory by `Rscript -e "metaflow::pull_tutorials()"`
+
+1. `cd tutorials/R`
 2. `Rscript 03-playlist-redux/playlist.R show`
 3. `Rscript 03-playlist-redux/playlist.R run`
 

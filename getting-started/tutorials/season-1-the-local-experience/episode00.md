@@ -1,10 +1,10 @@
-# Episode 0: Hello World
+# Episode 0:  Metaflow says Hi!
 
 ## Metaflow says Hi!
 
 This flow is a simple linear workflow that verifies your installation by printing out _**Metaflow says: Hi!**_' to the terminal.
 
-You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/tree/master/metaflow/tutorials/00-helloworld) \(broken link\)\[FIXME\]
+Pull the tutorials code to current working directory by `Rscript -e "metaflow::pull_tutorials()"`
 
 ### Showcasing:
 
@@ -13,9 +13,9 @@ You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/t
 
 ### To play this episode:
 
-1. `cd metaflow-tutorials/R`
-2. `Rscript 00-helloworld/helloworld.R show`
-3. `Rscript 00-helloworld/helloworld.R run`
+1. `cd tutorials/R`
+2. `Rscript tutorials/helloworld.R show`
+3. `Rscript tutorials/helloworld.R run`
 
 The flow script below prints 'Hi' in Metaflow. Run this flow to validate that Metaflow is installed correctly.
 

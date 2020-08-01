@@ -1,4 +1,4 @@
-# Episode 2: Statistics
+# Episode 2: Is this Data Science?
 
 **Use metaflow to load the movie metadata CSV file into a data frame and compute some movie genre specific statistics. These statistics are then used in later examples to improve our playlist generator. You can optionally use the Metaflow client to eyeball the results in a Markdown Notebook, and make some simple plots.**
 
@@ -9,7 +9,9 @@
 
 ## To play this episode:
 
-1. `cd metaflow-tutorials/R`
+Pull the tutorials code to current working directory by `Rscript -e "metaflow::pull_tutorials()"`
+
+1. `cd tutorials/R`
 2. `Rscript 02-statistics/stats.R show`
 3. `Rscript 02-statistics/stats.R run`
 4. Open `02-statistics/stats.Rmd` in RStudio
@@ -23,7 +25,12 @@ The dataset `movies.csv` is the same one as in Episode 01, which looks like this
 | Spectre | 2015 | Thriller | 200074175 |
 | ... | ... | ... | ... |
 
-The `MovieStatsFlow` below performs the following steps: 1. Ingests a CSV into a dataframe. 2. Fan-out over genre using Metaflow foreach. 3. Compute median and mean for each genre. 4. Save a dataframe of genre specific statistics.
+The `MovieStatsFlow` below performs the following steps: 
+
+1.  Ingests a CSV into a data frame.
+2.  Fan-out over genre using Metaflow foreach.
+3. Compute median and mean for each genre.
+4.  Save a data frame of genre specific statistics.
 
 ```r
 library(metaflow)

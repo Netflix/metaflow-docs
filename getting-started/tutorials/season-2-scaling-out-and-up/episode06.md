@@ -1,4 +1,4 @@
-# Episode 6: Statistics Redux
+# Episode 5: Computing in the Cloud.
 
 **This episode shows how you can use a notebook to setup a simple dashboard to monitor all of your Metaflow flows.**
 
@@ -12,6 +12,8 @@
 
 ## To play this episode:
 
-1. `cd metaflow-tutorials/R/06-worldview/`
+Pull the tutorials code to current working directory by `Rscript -e "metaflow::pull_tutorials()"`
+
+1. `cd tutorials/05-worldview/`
 2. Open `worldview.Rmd` in RStudio on your local computer 
 

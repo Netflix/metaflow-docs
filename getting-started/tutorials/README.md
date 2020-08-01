@@ -16,21 +16,19 @@ Each tutorial has a brief description and instructions that you can view using t
 
 ## [Season 1: The Local Experience.](season-1-the-local-experience/)
 
-* \*\*\*\*[**Episode 0: Metaflow says Hi!**](season-1-the-local-experience/episode00.md)\*\*\*\*
-* \*\*\*\*[**Episode 1: Let's build you a movie playlist.**](season-1-the-local-experience/episode01.md)
-* \*\*\*\*[**Episode 2: Is this Data Science?**](season-1-the-local-experience/episode02.md)
-* \*\*\*\*[**Episode 3: Follow the Money.**](season-1-the-local-experience/episode03.md)
-* \*\*\*\*[**Episode 4: The Final Showdown.**](https://github.com/Netflix/metaflow-docs/tree/b9a566e105ec97591c033a25fdcfbffa33101eaa/getting-started/tutorials/season-1-the-local-experience/episode04.md)
+* [**Episode 0: Metaflow says Hi!**](season-1-the-local-experience/episode00.md)
+* [**Episode 1: Let's build you a movie playlist.**](season-1-the-local-experience/episode01.md)
+* [**Episode 2: Is this Data Science?**](season-1-the-local-experience/episode02.md)
+* [**Episode 3: Follow the Money.**](season-1-the-local-experience/episode03.md)
 
 ## [Season 2: Scaling Out and Up](season-2-scaling-out-and-up/).
 
-* \*\*\*\*[**Episode 5: Look Mom, We're in the Cloud.**](season-2-scaling-out-and-up/episode05.md)
-* \*\*\*\*[**Episode 6: Computing in the Cloud.**](season-2-scaling-out-and-up/episode06.md)\*\*\*\*
+* [**Episode 4: Look Mom, We're in the Cloud.**](season-2-scaling-out-and-up/episode05.md)
+* [**Episode 5: Computing in the Cloud.**](season-2-scaling-out-and-up/episode06.md)
 
 ## What's next?
 
-* Explore fault tolerant flows with [`@catch`](../../metaflow/failures.md#catching-exceptions-with-catch-decorator), [`@retry`](../../metaflow/failures.md#retrying-tasks-with-retry-decorator), [`@timeout`](../../metaflow/failures.md#timing-out-with-timeout-decorator) decorators.
-* Try a library like [Tensorflow](https://www.tensorflow.org/) with [`@conda`](https://github.com/Netflix/metaflow-docs/tree/b9a566e105ec97591c033a25fdcfbffa33101eaa/metaflow/dependencies.md) and [`@batch`](../../metaflow/scaling.md#using-aws-batch-selectively-with-batch-decorator)
+* Explore fault tolerant flows with [`@catch`](../../metaflow/failures.md#catching-exceptions-with-catch-decorator), [`@retry`](../../metaflow/failures.md#retrying-tasks-with-retry-decorator), decorators.
 * Debug failed runs with [resume](../../metaflow/debugging.md#how-to-use-the-resume-command).
 * Access large data fast with [metaflow.S3](https://github.com/Netflix/metaflow-docs/tree/b9a566e105ec97591c033a25fdcfbffa33101eaa/metaflow/data.md#data-in-s-3-metaflow-s3).
 * Explore results across experiments with the [Client API](../../metaflow/client.md).
