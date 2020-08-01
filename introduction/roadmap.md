@@ -4,13 +4,15 @@ Metaflow has been used in production at Netflix since early 2018. The core Metaf
 
 Please click the link and comment / thumbs-up the corresponding GitHub issue if you want to see the feature open-sourced.
 
-## **Support for R Lang** 
+## **Support for R Lang**
 
 [Metaflow in the R language](https://www.youtube.com/watch?v=lakPlz8GJcA). Provide an idiomatic R API which uses the Python library as the backend \([Github issue](https://github.com/Netflix/metaflow/issues/1)\)
 
-## Support deployments to a production DAG scheduler
+## ~~Support deployments to a production DAG scheduler~~
 
 Netflix uses [an internal DAG scheduler](https://www.youtube.com/watch?v=0R58_tx7azY) to orchestrate most modeling and ETL pipelines in production. Metaflow flows can be deployed to the production scheduler with a single command. A similar integration could be provided e.g. for [AWS Step Functions](https://aws.amazon.com/step-functions/) \([Github issue](https://github.com/Netflix/metaflow/issues/2)\)
+
+**Update** - Metaflow 2.1.0 introduced [integration with AWS Step Functions.](../going-to-production-with-metaflow/scheduling-metaflow-flows.md)
 
 ## **Support for hosting models as a micro-service**
 

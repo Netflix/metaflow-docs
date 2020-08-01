@@ -10,7 +10,7 @@ pip install metaflow
 We highly recommend using **Python 3** for new projects. Metaflow supports Python 2.7 for legacy applications, but Python 3 has fewer bugs and is better supported than [the deprecated Python 2.7](http://pythonclock.org)
 {% endhint %}
 
-Now you are ready to get your hands dirty with the [Tutorials](tutorials/).
+Now you are ready to get your hands dirty with the [Tutorials](tutorials-r/).
 
 ## Upgrading Metaflow
 

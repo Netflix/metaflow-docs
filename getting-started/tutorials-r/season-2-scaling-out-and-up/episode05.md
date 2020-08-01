@@ -1,26 +1,30 @@
-# Episode 05-statistics-redux: Computing in the Cloud.
+# Episode 5: Hello AWS
 
-**This example revisits 'Episode 02-statistics: Is this Data Science?'. With
-Metaflow, you don't need to make any code changes to scale-up your flow by
-running on remote compute. In this example we re-run the 'stats.py' workflow
-adding the '--with batch' command line argument. This instructs Metaflow to run
-all your steps on AWS batch without changing any code. You can control the
-behavior with additional arguments, like '--max-workers'. For this example,
-'max-workers' is used to limit the number of parallel genre specific statistics
-computations.
-You can then access the data artifacts (even the local CSV file) from anywhere
-because the data is being stored in AWS S3.**
+## Look Mom, We're in the Cloud.
 
-#### Showcasing:
-- ```--with batch``` command line option
-- ```--max-workers``` command line option
-- Accessing data artifact stored in AWS S3 from a local Markdown Notebook.
+This flow is a simple linear workflow that verifies your AWS configuration. The `start` and `end` steps will run locally, while the `hello` step will run remotely on AWS batch. After [configuring Metaflow]() to run on AWS, data and metadata about your runs will be stored remotely. This means you can use the client to access information about any flow from anywhere.
 
-#### Before playing this episode:
-1. Configure your sandbox: https://docs.metaflow.org/metaflow-on-aws/metaflow-sandbox
+You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/tree/master/metaflow/tutorials/05-helloaws)
 
-#### To play this episode:
-1. ```cd metaflow-tutorials/R/02-statistics/```
-2. ```Rscript stats.R --package-suffixes=.R,.csv run --with batch --max-workers 4```
-3. Open ```02-statistics/stats.Rmd``` in your RStudio and re-run the cells. You can acccess
-the artifacts stored in AWS S3 from your local RStudio session. 
+**Showcasing:**
+
+* [AWS Batch]() and the [`@batch`](../../../metaflow-r/scaling.md#using-aws-batch-selectively-with-batch-decorator) decorator.
+* Using the [Client API ](../../../metaflow-r/client.md)to access data artifacts generated remotely in a local notebook.
+* [`@retry`](../../../metaflow-r/failures.md#retrying-tasks-with-retry-decorator)decorator.
+
+**Before playing this episode:**
+
+1. `python -m pip install notebook`
+2. This tutorial requires access to compute and storage resources on AWS, which can be configured by 
+   1. Following the instructions [here](https://admin-docs.metaflow.org/metaflow-on-aws/deployment-guide) or 
+   2. Requesting a [sandbox](https://docs.metaflow.org/metaflow-on-aws/metaflow-sandbox).
+
+**To play this episode:**
+
+1. `cd metaflow-tutorials`
+2. `python 05-helloaws/helloaws.py run`
+3. `jupyter-notebook 05-helloaws/helloaws.ipynb`
+4. Open _**helloaws.ipynb**_ in your remote Sagemaker notebook
+
+{% page-ref page="../" %}
+
