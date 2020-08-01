@@ -8,7 +8,7 @@
 
 ## Before playing this episode:
 
-1. Configure your sandbox: [https://docs.metaflow.org/metaflow-on-aws/metaflow-sandbox](https://docs.metaflow.org/metaflow-on-aws/metaflow-sandbox)
+1. Configure your [sandbox](../../../metaflow-on-aws/metaflow-sandbox.md).
 
 ## To play this episode:
 
