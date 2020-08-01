@@ -6,7 +6,7 @@ Instead of providing magical abstractions or a new paradigm for scalability, Met
 
 The scalability tools fall into three categories:
 
-**Performance Optimization**: You can improve performance of your code by utilizing off-the-shelf, high-performance libraries such as [XGboost](https://github.com/dmlc/xgboost) or [Tensorflow](https://tensorflow.org). Sometimes, it is appropriate to implement a custom algorithm in a high-performance language such as C++ which can be called from your Metaflow steps. Or, as a happy medium between low-performance but productive Python and a fast but tedious C++, you may be able to use a compiler such as [Numba](https://numba.pydata.org) to speed up your code.
+**Performance Optimization**: You can improve performance of your code by utilizing off-the-shelf, high-performance libraries such as [XGboost](https://github.com/dmlc/xgboost) or [Tensorflow](https://tensorflow.org). Sometimes, it is appropriate to implement a custom algorithm in a high-performance language such as C++ which can be called from your Metaflow steps. Or, as a happy medium between low-performance but productive R and a fast but tedious C++, you may be able to use a compiler such as [Rcpp](http://www.rcpp.org/) to speed up your code.
 
 **Scaling Up**: One should not underestimate the horsepower of modern large server type machine. It is sometimes worth considering running on a larger machine prior to trying anything else.
 
@@ -107,10 +107,6 @@ You will see that the `start` step gets executed on an AWS Batch instance but th
 ### AWS Batch tips and tricks
 
 Here are some useful tips and tricks related to running Metaflow on AWS Batch.
-
-#### **What value of `@timeout` should I set?**
-
-Metaflow sets a default timeout of 5 days so that you tasks don't get stuck infinitely while running on AWS Batch. For more details on how to use `@timeout` please read [this.](failures.md#timing-out-with-timeout-decorator)
 
 #### **How much `@resources` can I request?**
 

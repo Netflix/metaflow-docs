@@ -220,8 +220,6 @@ Now the flow can not be run without setting `--num_components` to an integer val
 
 You can also put down the type as `int`/`float`/`double`/`bool`.
 
-Parameters can also be used to include local files. See the section on [IncludeFile](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow/data.md#data-in-local-files) for more information.
-
 ## Data flow through the graph
 
 As previously mentioned, for [linear](basics.md#linear) steps, data artifacts are propagated and any linear step can access data artifacts created by previous steps using instance variables. In this case, Metaflow can easily determine the value of each artifact by simply taking the value of that artifact at the end of the previous step.
