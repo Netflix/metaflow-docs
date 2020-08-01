@@ -14,7 +14,7 @@ The scalability tools fall into three categories:
 
 It is hard to be prescriptive about which of the three categories is most suitable for your problem. Often, the answer is a combination of the three. In general, start with the approach that is the easiest to implement and keep iterating until the performance is satisfactory.
 
-This section focuses specifically on using Batch to scale up and out: you can use Batch to request a larger instance to run your step as well as use it to parallelize your steps over multiple instances. This section requires you to have Metaflow working with AWS. See the [AWS section](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow-on-aws/metaflow-on-aws.md) for more information on either setting up Metaflow in your [own AWS environment](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow-on-aws/deploy-to-aws.md) or using the [provided sandbox](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow-on-aws/metaflow-sandbox.md).
+This section focuses specifically on using Batch to scale up and out: you can use Batch to request a larger instance to run your step as well as use it to parallelize your steps over multiple instances. This section requires you to have Metaflow working with AWS. See the [AWS section](../metaflow-on-aws/metaflow-on-aws.md) for more information on either setting up Metaflow in your [own AWS environment](../metaflow-on-aws/deploy-to-aws.md) or using the [provided sandbox](../metaflow-on-aws/metaflow-sandbox.md).
 
 This section presents the tools available in Metaflow for scaling up and out.
 
@@ -50,7 +50,7 @@ This example creates a `800MB` matrix, `large`. We're requestign 4GB of RAM and 
 
 The `resources` decorator suggests resource requirements for a step. The `memory` argument specifies the amount of RAM in megabytes and `cpu` the number of CPU cores requested.
 
-The `resources` decorator gains all its power in collaboration with Batch execution. Note that for this section, you will need to have Metaflow working in an AWS cloud environment \(either having [deployed it yourself](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow-on-aws/deploy-to-aws.md) or running in the [Metaflow sandbox](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow-on-aws/metaflow-sandbox.md)\)
+The `resources` decorator gains all its power in collaboration with Batch execution. Note that for this section, you will need to have Metaflow working in an AWS cloud environment \(either having [deployed it yourself](../metaflow-on-aws/deploy-to-aws.md) or running in the [Metaflow sandbox](../metaflow-on-aws/metaflow-sandbox.md)\)
 
 You can instruct Metaflow to run all your steps on AWS Batch in two ways: 1. using command line options
 
@@ -58,7 +58,7 @@ You can instruct Metaflow to run all your steps on AWS Batch in two ways: 1. usi
 $ Rscript bigsumflow.R run --with batch
 ```
 
-1. using prgrammatic options in the `run(..)` object for example
+1. using programmatic options in the `run(..)` object for example
 
    ```r
    metaflow("BigSumFlow") %>%
@@ -133,7 +133,7 @@ Consult [this article](https://docs.aws.amazon.com/batch/latest/userguide/troubl
 
 If you interrupt a Metaflow run, any AWS Batch tasks launched by the run get killed by Metaflow automatically. Even if something went wrong during the final cleanup, the tasks will finish and die eventually, at the latest when they hit the maximum time allowed for an AWS Batch task.
 
-If you want to make sure you have no AWS Batch tasks running, or you want to manage them manually, you can use the `batch list` and `batch kill` commands. These commands are disabled in the [Metaflow AWS Sandbox](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow-on-aws/metaflow-sandbox.md).
+If you want to make sure you have no AWS Batch tasks running, or you want to manage them manually, you can use the `batch list` and `batch kill` commands. These commands are disabled in the [Metaflow AWS Sandbox](../metaflow-on-aws/metaflow-sandbox.md).
 
 You can easily see what AWS Batch tasks were launched by your latest run with
 

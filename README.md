@@ -13,7 +13,7 @@ description: Build and manage real-life data science projects with ease.
 ## Getting Started
 
 * [Installing Metaflow](getting-started/install.md)
-* [Tutorials](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/getting-started/tutorials/README.md)
+* [Tutorials](getting-started/tutorials/)
 
 ## Developing with Metaflow
 
