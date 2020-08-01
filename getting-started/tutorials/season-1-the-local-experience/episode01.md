@@ -31,12 +31,11 @@ The dataset `movies.csv` looks like this
 
 The flow script below performs the following steps: 
 
-1. Ingests a CSV file containing metadata about movies. 
-2. Loads two of the columns from the CSV into R.
-3. In parallel branches:
+1. Ingests a CSV file containing metadata about movies.
+2. In parallel branches:
    * Filters movies by the genre parameter.
    * Choose a random movie from a different genre.
-4. Displays the top entries from the playlist.
+3. Displays the top entries from the playlist.
 
 ![](../../../.gitbook/assets/screen-shot-2020-08-01-at-4.32.58-pm.png)
 
