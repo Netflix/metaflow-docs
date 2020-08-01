@@ -1,6 +1,6 @@
 # Basics of Metaflow
 
-This document introduces the basic concepts of Metaflow. If you are eager to try out Metaflow in practice, you can start with the [tutorial](../getting-started/tutorials-r/). After the tutorial, you can return to this document to learn more about how Metaflow works.
+This document introduces the basic concepts of Metaflow. If you are eager to try out Metaflow in practice, you can start with the [tutorial](../getting-started/tutorials/). After the tutorial, you can return to this document to learn more about how Metaflow works.
 
 ## The Structure of Metaflow Code
 
@@ -22,36 +22,32 @@ Here is a graph with two linear transitions:
 
 The corresponding Metaflow script looks like this:
 
-```R
-library(metaflow)
+```python
+from metaflow import FlowSpec, step
 
-start <- function(self){
-    self$my_var <- "hello world"
-}
+class LinearFlow(FlowSpec):
 
-a <- function(self){
-    print(paste("the data artifact is", self$my_var))
-}
+    @step
+    def start(self):
+        self.my_var = 'hello world'
+        self.next(self.a)
 
-end <- function(self){
-    print("End of the linear flow")
-}
+    @step
+    def a(self):
+        print('the data artifact is: %s' % self.my_var)
+        self.next(self.end)
 
-metaflow("LinearFlow") %>%
-    step(step="start", 
-         r_function=start, 
-         next_step="a") %>%
-    step(step="a", 
-         r_function=a, 
-         next_step="end") %>%
-    step(step="end", 
-         r_function=end) %>% 
-    run()
+    @step
+    def end(self):
+        print('the data artifact is still: %s' % self.my_var)
+
+if __name__ == '__main__':
+    LinearFlow()
 ```
 
-Besides executing the steps `start`, `a`, and `end` in order, this flow creates **a data artifact** called `my_var`. In Metaflow, data artifacts are created simply by assigning values to `$`-indexed variables under the `self` object such as `self$my_var`.
+Besides executing the steps `start`, `a`, and `end` in order, this flow creates **a data artifact** called `my_var`. In Metaflow, data artifacts are created simply by assigning values to instance variables like `my_var`.
 
-Data artifacts are available in all steps after they have been created, so they behave as any normal instance variables. If you want to use any R  object `obj` in downstream steps, you need to create a data artifact for it, for example `self$var <- obj`. An exception to this rule are branches, as explained below.
+Data artifacts are available in all steps after they have been created, so they behave as any normal instance variables. An exception to this rule are branches, as explained below.
 
 ### Branch
 
@@ -59,42 +55,43 @@ You can express parallel steps with **a branch**. In the figure below, `start` t
 
 ![](../.gitbook/assets/graph_branch.png)
 
-```R
-library(metaflow)
+```python
+from metaflow import FlowSpec, step
 
-a <- function(self){
-    self$var <- 1
-}
+class BranchFlow(FlowSpec):
+  
+    @step
+    def start(self):
+        self.next(self.a, self.b)
+    
+    @step
+    def a(self):
+        self.x = 1
+        self.next(self.join)
+    
+    @step
+    def b(self):
+        self.x = 2
+        self.next(self.join)
+    
+    @step
+    def join(self, inputs):
+        print('a is %s' % inputs.a.x)
+        print('b is %s' % inputs.b.x)
+        print('total is %d' % sum(input.x for input in inputs))
+        self.next(self.end)
+    
+    @step
+    def end(self):
+        pass
 
-b <- function(self){
-    self$var <- 2
-}
-
-join <- function(self, inputs){
-    print(paste("var in step a is", inputs$a$var))
-    print(paste("var in step b is", inputs$b$var))
-}
-
-metaflow("BranchFlow") %>%
-    step(step = "start",
-         next_step = c("a", "b")) %>%
-    step(step = "a", 
-         r_function=a, 
-         next_step="join") %>%
-    step(step="b", 
-         r_function=b, 
-         next_step="join") %>%
-    step(step="join", 
-         r_function=join, 
-         next_step="end",
-         join=TRUE) %>%
-    step(step="end") %>%
-    run()
+if __name__ == '__main__':
+    BranchFlow()
 ```
 
 Every branch must be joined. The join step does not need to be called `join` as above but it must take an extra argument, like `inputs` above.
 
-In the example above, the value of `x` above is ambiguous: `a` sets it to `1` and `b` to `2`. To disambiguate the branches, the join step can refer to a specific step in the branch, like `inputs[[1]]$x` above. For convenience, you can also iterate over all steps in the branch using `inputs`, which is simply an R list. For more details, see the section about [data flow through the graph](basics.md#data-flow-through-the-graph).
+In the example above, the value of `x` above is ambiguous: `a` sets it to `1` and `b` to `2`. To disambiguate the branches, the join step can refer to a specific step in the branch, like `inputs.a.x` above. For convenience, you can also iterate over all steps in the branch using `inputs`, as done in the last print statement in the above  `join` step. For more details, see the section about [data flow through the graph](basics.md#data-flow-through-the-graph).
 
 Note that you can nest branches arbitrarily, that is, you can branch inside a branch. Just remember to join all the branches that you create.
 
@@ -104,45 +101,44 @@ Static branches like above are useful when you know the branches at the developm
 
 Foreach works similarly like the branch above but instead of creating named step methods, many parallel copies of steps inside a foreach loop are executed.
 
-A foreach loop can iterate over any list like `params` below.
+A foreach loop can iterate over any list like `titles` below.
 
 ![](../.gitbook/assets/graph_foreach.png)
 
-```R
-library(metaflow)
+```python
+from metaflow import FlowSpec, step
 
-start <- function(self){
-    self$params <- c("param1", "param2", "param3") 
-}
+class ForeachFlow(FlowSpec):
 
-a <- function(self){
-    self$result <- paste(self$input, "processed")
-}
+    @step
+    def start(self):
+        self.titles = ['Stranger Things',
+                       'House of Cards',
+                       'Narcos']
+        self.next(self.a, foreach='titles')
+    
+    @step
+    def a(self):
+        self.title = '%s processed' % self.input
+        self.next(self.join)
+    
+    @step
+    def join(self, inputs):
+        self.results = [input.title for input in inputs]
+        self.next(self.end)
+    
+    @step
+    def end(self):
+        print('\n'.join(self.results))
 
-join <- function(self, inputs){
-    results <- gather_inputs(inputs, "params")
-    print(results)
-}
+if __name__ == '__main__':
+    ForeachFlow()
 
-metaflow("ForeachFlow") %>%
-    step(step = "start",
-         r_function = start,
-         next_step = "a",
-         foreach="params") %>%
-    step(step = "a", 
-         r_function=a, 
-         next_step="join") %>%
-    step(step="join", 
-         r_function=join, 
-         next_step="end",
-         join=TRUE) %>%
-    step(step="end") %>%
-    run()
 ```
 
-The foreach loop is initialized by specifying a keyword argument `foreach` in `step`. The `foreach` argument takes a string that is the name of a list stored in an instance variable, like `params` above.
+The foreach loop is initialized by specifying a keyword argument `foreach` in `self.next()`. The `foreach` argument takes a string that is the name of a list stored in an instance variable, like `titles` above.
 
-Steps inside a foreach loop create separate **tasks** to process each item of the list. Here, Metaflow creates three parallel tasks for the step `a` to process the three items of the `params` list in parallel. You can access the specific item assigned to a task with an instance variable called `input`.
+Steps inside a foreach loop create separate **tasks** to process each item of the list. Here, Metaflow creates three parallel tasks for the step `a` to process the three items of the `titles` list in parallel. You can access the specific item assigned to a task with an instance variable called `input`.
 
 Foreach loops must be joined like static branches. Note that tasks inside a foreach loop are not named, so you can only iterate over them with `inputs`. If you want, you can assign a value to an instance variable in a foreach step which helps you to identify the task.
 
@@ -161,7 +157,7 @@ A downside of making steps too granular is that checkpointing adds some overhead
 Another important consideration is the readability of your code. Try running
 
 ```bash
-Rscript myflow.R show
+python myflow.py show
 ```
 
 which prints out the steps of your flow. Does the overview give you a good idea of your code? If the steps are too broad, it might make sense to split them up just to make the overall flow more descriptive.
@@ -170,27 +166,25 @@ which prints out the steps of your flow. Does the overview give you a good idea 
 
 Here is an example of a flow that defines a parameter, `alpha`:
 
-```R
-library(metaflow)
+```python
+from metaflow import FlowSpec, Parameter, step
 
-start <- function(self){
-    print(paste("alpha is", self$alpha))
-}
+class ParameterFlow(FlowSpec):
+    alpha = Parameter('alpha',
+                      help='Learning rate',
+                      default=0.01)
 
-end <- function(self){
-    print(paste("alpha still is", self$alpha))
-}
+    @step
+    def start(self):
+        print('alpha is %f' % self.alpha)
+        self.next(self.end)
 
-metaflow("ParameterFlow") %>%
-    parameter("alpha", 
-              help="learning rate", 
-              required = TRUE) %>%    
-    step(step="start", 
-         r_function=start, 
-         next_step="end") %>%
-    step(step="end", 
-         r_function=end) %>% 
-    run()
+    @step
+    def end(self):
+        print('alpha is still %f' % self.alpha)
+
+if __name__ == '__main__':
+    ParameterFlow()
 ```
 
 Parameters are defined by assigning a `Parameter` object to a class variable. Parameter variables are automatically available in all steps, like `alpha` above.
@@ -198,27 +192,63 @@ Parameters are defined by assigning a `Parameter` object to a class variable. Pa
 You can set the parameter values on the command line as follows:
 
 ```bash
-Rscript parameter_flow.R run --alpha 0.6
+python parameter_flow.py run --alpha 0.6
 ```
 
 You can see available parameters with:
 
 ```bash
-Rscript parameter_flow.R run --help
+python parameter_flow.py run --help
 ```
 
 Parameters are typed based on the type of their default value. If there is no meaningful default for a parameter, you can define it as follows:
 
 ```python
-parameter('num_components',
-          help='Number of components',
-          required=True,
-          type="int")
+num_components = Parameter('num_components',
+                           help='Number of components',
+                           required=True,
+                           type=int)
 ```
 
 Now the flow can not be run without setting `--num_components` to an integer value.
 
-You can also put down the type as `int`/`float`/`double`/`bool`.
+### Advanced parameters
+
+In the example above, `Parameters` took simple scalar values, such as integers or floating point values. To support more complex values for `Parameter`, Metaflow allows you to specify the value as JSON. This feature comes in handy if your `Parameter` is a list of values, a mapping, or a more complex data structure.
+
+This example allows the user to define a GDP by country mapping as a `Parameter`:
+
+```python
+from metaflow import FlowSpec, Parameter, step, JSONType
+
+class JSONParameterFlow(FlowSpec):
+    gdp = Parameter('gdp',
+                    help='Country-GDP Mapping',
+                    type=JSONType,
+                    default='{"US": 1939}')
+
+    country = Parameter('country',
+                        help='Choose a country',
+                        default='US')
+
+    @step
+    def start(self):
+        print('The GDP of %s is $%dB' % (self.country, self.gdp[self.country]))
+        self.next(self.end)
+
+    @step
+    def end(self):
+        pass
+
+if __name__ == '__main__':
+    JSONParameterFlow()
+```
+
+Execute the code as follows:
+
+```bash
+python parameter_flow.py run --gdp '{"US": 1}'
+```
 
 Parameters can also be used to include local files. See the section on [IncludeFile](data.md#data-in-local-files) for more information.
 
@@ -230,54 +260,47 @@ In a join step, however, the value of artifacts can potentially be set to differ
 
 To make it easier to implement a join step after foreach or branch, Metaflow provides a utility function, `merge_artifacts`, to aid in propagating unambiguous values.
 
-```R
-library(metaflow)
+```python
+from metaflow import FlowSpec, step
 
-start <- function(self){
-    self$pass_down <- "non-modified"
-}
+class MergeArtifactsFlow(FlowSpec):
 
-a <- function(self){
-    self$common <- "common in a and b"
-    self$x <- "x in a" 
-    self$y <- "y in a" 
-    self$from_a <- "only in a" 
-}
+    @step
+    def start(self):
+        self.pass_down = 'a'
+        self.next(self.a, self.b)
 
-b <- function(self){
-    self$common <- "common in a and b" 
-    self$x <- "x in b" 
-    self$y <- "y in b" 
-}
+    @step
+    def a(self):
+        self.common = 5
+        self.x = 1
+        self.y = 3
+        self.from_a = 6
+        self.next(self.join)
 
-join <- function(self, inputs){
-    # manually propogate variable that has different values in different branches 
-    self$x <- inputs$a$x
+    @step
+    def b(self):
+        self.common = 5
+        self.x = 2
+        self.y = 4
+        self.next(self.join)
 
-    merge_artifacts(self, inputs, exclude=list("y"))
+    @step
+    def join(self, inputs):
+        self.x = inputs.a.x
+        self.merge_artifacts(inputs, exclude=['y'])
+        print('x is %s' % self.x)
+        print('pass_down is %s' % self.pass_down)
+        print('common is %d' % self.common)
+        print('from_a is %d' % self.from_a)
+        self.next(self.end)
 
-    # If without the merge_artifact, the following artifact access won't work. 
-    print(paste('pass_down is', self$pass_down))
-    print(paste('from_a is', self$from_a))
-    print(paste('common is', self$common))
-}
+    @step
+    def end(self):
+        pass
 
-metaflow("BranchFlow") %>%
-    step(step = "start",
-         r_function=start,
-         next_step = c("a", "b")) %>%
-    step(step = "a", 
-         r_function=a, 
-         next_step="join") %>%
-    step(step="b", 
-         r_function=b, 
-         next_step="join") %>%
-    step(step="join", 
-         r_function=join, 
-         next_step="end",
-         join=TRUE) %>%
-    step(step="end") %>%
-    run()
+if __name__ == '__main__':
+    MergeArtifactsFlow()
 ```
 
 In the example above, the `merge_artifacts` function behaves as follows:

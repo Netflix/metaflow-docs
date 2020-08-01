@@ -10,25 +10,38 @@ Note that all operations in the Client API are filtered by the current namespace
 
 ![Object hierarchy](../.gitbook/assets/hierarchy.png)
 
-You can import any of the objects shown above directly from the metaflow package as follows \(for example\):
 
-```python
-from metaflow import Run
+These objects can be instantiated simply with
+
+```R
+# Flow object
+flow <- flow_client$new("HelloWorldFlow") 
+
+# Run object
+run <- run_client$new(flow, run_id)  
+# run_id is 12
+run <- run_client$new("HelloWorldFlow/12") 
+
+# Step object
+step <- step_client$new(run, step_name)
+# step_name is start
+step <- step_client$new("HelloWorldFlow/12/start") 
+
+# Task object
+task <- task_client$new(step, task_id)
+# task_id is 12345678 
+task <- task_client$new("HelloWorldFlow/12/start/12345678") 
+
+# Data Artifact
+task$artifact("my_var")
 ```
 
-The root object, `Metaflow`, can be instantiated simply with
-
-```python
-from metaflow import Metaflow
-mf = Metaflow()
+Metaflow library has a built-in function to print out all the flows you have run in the past.
+```R
+# list all flows 
+print(metaflow::list_flows())
 ```
-
-This is the entry point to all other objects. For instance, you can list all flows that have been run in the past with:
-
-```python
-from metaflow import Metaflow
-print(Metaflow().flows)
-```
+This returns a list of strings which represent the names of the flows.
 
 ## Navigating the object hierarchy
 
@@ -36,56 +49,21 @@ Every object listed above follows a consistent interface. All the operations bel
 
 ### Listing children
 
-You can list child objects of any parent object simply by iterating over the parent:
+```R
+# list all past runs
+metaflow::list_flows()
 
-```python
-from metaflow import Flow
-flow = Flow('HelloFlow')
-runs = list(flow)
-```
+# list all past runs of the flow object
+# shows a list of strings of run_id
+print(flow$runs)
 
-Expectedly, this works too:
+# list all step names of the run object
+# shows a list of strings of step names 
+print(run$steps)
 
-```python
-from metaflow import Flow
-flow = Flow('HelloFlow')
-for run in flow:
-    print(run)
-```
-
-### Accessing a specific child
-
-You can access a specific child with square brackets, similar to a key lookup in a dictionary. Note that keys are always strings \(even if they are numerical IDs\):
-
-```python
-from metaflow import Flow
-flow = Flow('HelloFlow')
-run = flow['2']
-```
-
-### Accessing a specific object by its address
-
-Besides navigating from the root downwards, you can instantiate every object directly with its fully qualified name, called `pathspec`. Note that also this operation is subject to the current namespace, as explained in [Organizing Results](tagging.md); in short, you will not be able to access a Flow that is not the current namespace; the error message returned will make it clear whether an object exists and is not in the namespace or does not exist at all.
-
-You can instantiate, for example, a particular flow by its name:
-
-```python
-from metaflow import Flow
-flow = Flow('HelloFlow')
-```
-
-You can instantiate a particular run of a flow by its run id:
-
-```python
-from metaflow import Run
-run = Run('HelloFlow/2')
-```
-
-And every step in a run by its name:
-
-```python
-from metaflow import Step
-step = Step('HelloFlow/2/start')
+# list all task id of the step object
+# shows a list of strings of task_id
+print(step$tasks)
 ```
 
 ### Accessing data
@@ -98,96 +76,47 @@ Often you are only interested in the value of an artifact. For this typical use 
 
 For instance, this the shortest way to access a value produced by a step in a run:
 
-```python
-from metaflow import Step
-print(Step('DebugFlow/2/a').task.data.x)
+```R
+task <- task_client$new("DebugFlow/2/compute/123")
+print(task$artifact("my_var"))
 ```
 
-Here, we print the value of `self.x` in the step `a` of the run `2` of the flow `DebugFlow`.
+Here, we print the value of `self$my_varx` in the step `compute` of the run `2`, task `123` of the flow `DebugFlow`.
 
-### Common properties
+### Properties of Flow/Run/Step/Task Objects
 
-Every object has the following properties available:
+You can check the full object documentation by run the following commands in R:
+```R
+help(metaflow::flow_client)
+help(metaflow::run_client)
+help(metaflow::step_client)
+help(metaflow::task_client)
+```
+
+Every object has the following common properties available:
 
 * `tags`: tags assigned to the object
 * `created_at`: creation timestamp
+* `finished_at`: finish timestamp
 * `parent`: parent object
 * `pathspec`: object fully qualified name
-* `path_components`: list containing the elements in `pathspec`
 
-### Properties related to flows
+You can find more details in the object documentation.
 
-To access an iterator over runs and filter by tags, use the `runs()` method. See [Tagging](tagging.md#tagging) for more detail.
-
-`Flow` has two additional properties related to determining the latest run for the flow. Note that any `Run` returned will be in the current namespace.
-
-* `latest_run`: `Run` of the latest run whether or not it has completed or has been successful
-* `latest_successful_run`: `Run` of the latest successful \(and therefore completed\) run.
-
-### Properties related to runs
-
-To access an iterator over the steps of a run and filter by tags, use the `steps()` method. See [Tagging](tagging.md#tagging) for more detail.
-
-`Run` also has a few additional properties to make it easy to access commonly used information:
-
-* `data`: A quick way to access the `data` object of the end task of this run. In other words, this is the quickest way to access the data produced at the end of the flow.
-* `successful`: A boolean indicating whether or not the run completed successfully. Note that this will return `False` if the run has not completed \(ie: is still in progress\).
-* `finished`: A boolean indicating whether or not the run completed. The returned value will be `True` whether or not the run was successful.
-* `finished_at`: A datetime object indicating the completion time of the run. This will be `None` if the run has not completed
-* `code`: In certain circumstances, the code used for this run is saved and persisted; this allows you to access this code.
-* `end_task`: A quick access to the `Task` object of the last step in the run.
-
-### Properties related to steps
-
-A `Step` typically has a single `Task`. A Step will have multiple `Task` objects as its children if it is a `foreach` step; each `Task` will correspond to a single execution of the `Step`.
-
-To access an iterator over the tasks of a step and filter by tags, use the `tasks()` method. See [Tagging](tagging.md#tagging) for more detail.
-
-`Step` has a few additional properties as well:
-
-* `task`: Convenience method to return the unique `Task` associated with this `Step`. If a `Step` has more than one `Task`, this will return any of them \(no order guaranteed\).
-* `finished_at`: A datetime object indicating the completion time of the step. A step is complete when all its tasks are complete.
-* `environment_info`: A dict object containing metadata for the execution environment. See [Dependencies]() for more detail.
-
-### Properties related to tasks
-
-Since a `Task` is the actual unit of execution in Metaflow, these objects contain the richest set of properties:
-
-* `data`: A convenience method to access all data produced by this `Task`. See [Accessing data](client.md#accessing-data).
-* `artifacts`: A convenience method to access all `DataArtifact` objects produced by this `Task`. See [Accessing data](client.md#accessing-data).
-* `successful`: A boolean indicating whether or not this `Task` completed successfully.
-* `finished`: A boolean indicating whether or not this `Task` completed.
-* `exception`: If an exception was raised by this `Task` \(ie: it did not complete successfully\), it will be contained here.
-* `finished_at`: A datetime object indicating the completion time of this `Task`.
-* `stdout`: A string containing the standard output of this `Task`.
-* `stderr`: A string containing the standard error of this `Task`.
-* `code`: The code used to execute this `Task`, if available.
-* `environment_info`: A dict object containing metadata for the execution environment. See [Dependencies]() for more detail.
-
-Here is an example:
-
-```python
-from metaflow import Step
-step = Step('DebugFlow/2/a')
-if step.task.successful:
-    print(step.task.finished_at)
-```
 
 ## Metadata provider
 
 The Client API relies on a metadata service to gather results appropriately. Metaflow supports a local mode \(`.metaflow` directory on your filesystem\) and a [remote mode](https://github.com/Netflix/metaflow-service).
 
-```python
-from metaflow import get_metadata, metadata
-
+```R
 # Fetch currently configured metadata provider
-get_metadata()
+metaflow::get_metadata()
 
 # Configure Client to use local metadata provider globally
-metadata('/Users/bob/metaflow')
+metaflow::set_metadata('/Users/bob/metaflow')
 
 # Configure Client to use remote metadata provider globally
-metadata('https://localhost:5000/mymetaflowservice')
+metaflow::set_metadata('https://localhost:5000/mymetaflowservice')
 ```
 
 Note that changing the metadata provider is a global operation and all subsequent client operations will use the metadata provider specified.
