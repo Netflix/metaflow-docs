@@ -18,8 +18,9 @@
     * [Episode 2: Is this Data Science?](getting-started/tutorials/season-1-the-local-experience/episode02.md)
     * [Episode 3: Follow the Money.](getting-started/tutorials/season-1-the-local-experience/episode03.md)
   * [Season 2: Scaling Out and Up](getting-started/tutorials/season-2-scaling-out-and-up/README.md)
-    * [Episode 4: Look Mom, We're in the Cloud.](getting-started/tutorials/season-2-scaling-out-and-up/episode05.md)
-    * [Episode 5: Computing in the Cloud.](getting-started/tutorials/season-2-scaling-out-and-up/episode06.md)
+    * [Episode 4: Look Mom, We're in the Cloud.](getting-started/tutorials/season-2-scaling-out-and-up/episode04.md)
+    * [Episode 5: Computing in the Cloud.](getting-started/tutorials/season-2-scaling-out-and-up/episode05.md)
+    * [Episode 6: Way up here.](getting-started/tutorials/season-2-scaling-out-and-up/episode06.md)
 
 ## Developing with Metaflow <a id="metaflow"></a>
 
