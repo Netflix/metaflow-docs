@@ -10,11 +10,15 @@
 
 ## Before playing this episode:
 
-1. Configure your sandbox: [https://docs.metaflow.org/metaflow-on-aws/metaflow-sandbox](https://docs.metaflow.org/metaflow-on-aws/metaflow-sandbox)
+1. Configure your [sandbox](../../../metaflow-on-aws/metaflow-sandbox.md).
 
 ## To play this episode:
 
-Pull the tutorials code to current working directory by `Rscript -e "metaflow::pull_tutorials()"` 1. `cd tutorials` 2. `Rscript 04-helloaws/helloaws.R run` 3. Open \`\`\`helloaws.md' in your local RStudio
+Pull the tutorials code to current working directory by `Rscript -e "metaflow::pull_tutorials()"` 
+
+1. `cd tutorials` 
+2. `Rscript 04-helloaws/helloaws.R run` 
+3. Open `helloaws.md` in your local RStudio
 
 ```r
 #  A flow where Metaflow prints 'Hi'.
