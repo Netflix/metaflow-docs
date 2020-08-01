@@ -28,32 +28,32 @@ You can find more details about Metaflow's approach to various parts of the stac
 | :--- | :--- |
 
 
-| **Model Development** | &lt;b&gt;&lt;/b&gt;[Managing External Libraries](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow/dependencies.md) |
-| :--- | :--- |
+| **Model Development** |      [Basics of Metaflow](../metaflow/basics.md) and [Debugging with Metaflow](../metaflow/debugging.md) |
+| :--- | :---: |
 
 
-| **Feature Engineering** | &lt;b&gt;&lt;/b&gt;[Loading and Storing Data](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow/data.md) |
-| :--- | :--- |
+| **Feature Engineering** | [ ](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow/data.md)[Basics of Metaflow](../metaflow/basics.md)  and  [Organizing Results](../metaflow/tagging.md) .        |
+| :--- | :---: |
 
 
-| **Model Operations** | [Debugging with Metaflow](../metaflow/debugging.md) and [Dealing with Failures](../metaflow/failures.md) |
-| :--- | :--- |
+| **Model Operations** | [Debugging with Metaflow](../metaflow/debugging.md) and [Dealing with Failures](../metaflow/failures.md) .     |
+| :--- | :---: |
 
 
 | **Versioning** | [Inspecting Flow and Results](../metaflow/client.md) and [Organizing Results](../metaflow/tagging.md) |
-| :--- | :--- |
+| :--- | :---: |
 
 
-| **Architecture** | [Basics of Metaflow](../metaflow/basics.md) |
-| :--- | :--- |
+| **Architecture** | [Basics of Metaflow](../metaflow/basics.md)            |
+| :--- | :---: |
 
 
-| **Compute Resources** | [Scaling Out and Up](../metaflow/scaling.md) |
-| :--- | :--- |
+| Compute Resources | [Scaling Out and Up](../metaflow/scaling.md)                      |
+| :--- | :---: |
 
 
-| **Data Warehouse** | [Basics of Metaflow](../metaflow/basics.md)  |
-| :--- | :--- |
+| **Data Warehouse** | [Basics of Metaflow](../metaflow/basics.md)                |
+| :--- | :---: |
 
 
 If you want to learn more, the Machine Learning Infrastructure team at Netflix has given a number of public presentations about Metaflow prior to its open-sourcing. You can find links to these presentations below.
