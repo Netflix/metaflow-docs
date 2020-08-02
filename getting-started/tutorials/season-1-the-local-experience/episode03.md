@@ -8,7 +8,7 @@ Use Metaflow to load the statistics generated from [**Episode 2 Is this Data Sci
 
 ## Before playing this episode:
 
-1. Run 'Episode 02-statistics: Is this Data Science?'
+Run 'Episode 02-statistics: Is this Data Science?'
 
 ## To play this episode:
 
