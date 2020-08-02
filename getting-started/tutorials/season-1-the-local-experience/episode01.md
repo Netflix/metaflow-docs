@@ -4,9 +4,9 @@ This flow loads a movie metadata CSV file and builds a playlist for your favorit
 
 ## Showcasing:
 
-* Basic Metaflow Parameters.
-* Running workflow branches in parallel and joining results.
-* Using the Metaflow client in an R Markdown Notebook.
+* Basic [Metaflow Parameters](../../../metaflow/basics.md#how-to-define-parameters-for-flows).
+* Running workflow [branches](../../../metaflow/basics.md#branch) in parallel and joining results.
+* Using the [Metaflow client](../../../metaflow/client.md) in an R Markdown Notebook.
 
 ## To play this episode:
 
