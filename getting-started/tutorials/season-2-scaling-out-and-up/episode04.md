@@ -6,9 +6,9 @@ After configuring Metaflow to run on AWS, data and metadata about your runs will
 
 ## Showcasing:
 
-* AWS batch decorator.
+* AWS [batch decorator](../../../metaflow/scaling.md).
 * Accessing data artifacts generated remotely in a local notebook.
-* retry decorator.
+* [retry decorator](../../../metaflow/failures.md#retrying-tasks-with-the-retry-decorator).
 
 ## Before playing this episode:
 
@@ -53,6 +53,7 @@ metaflow("HelloAWSFlow") %>%
          r_function = start, 
          next_step = "hello") %>%
     step(step = "hello", 
+         decorator("retry", times=2),
          decorator("batch", cpu=2, memory=2048),
          r_function = hello,  
          next_step = "end") %>%
