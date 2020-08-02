@@ -13,6 +13,8 @@ Metaflow provides a unified API to the infrastructure stack that is required to 
 5. **Steps as managed checkpoints.** We can resume from any step in any past run without recomputing from start.
 6. **Infrastructure as Code.** We can specify computation resource requirements in native R code.
 7. **Tight integration with AWS for easy scalability.** Scale out or schedule production runs in AWS without changing the r functions implementations.
+8. **Failure as features**. Robust end-to-end execution.
+9. **Collaboration.** Namespace and tags for organizing models and experiments. 
 
 ## Infrastructure Stack for Data Science
 
