@@ -1,5 +1,7 @@
 # Why Metaflow
 
+
+
 ![Here is a data scientist.](../.gitbook/assets/metaflow_docs-1.png)
 
 ![Data scientists solve important business problems. ](../.gitbook/assets/metaflow_docs-2.png)
@@ -22,5 +24,7 @@
 
 ![Stakeholders evaluate the results. They want more models and better models!](../.gitbook/assets/metaflow_docs-11.png)
 
-![Taking care of all this can be hard. Metaflow can help. ](../.gitbook/assets/metaflow_logo.png)
+![Taking care of all this can be hard. Metaflow can help.  ](../.gitbook/assets/metaflow_logo.png)
+
+
 
