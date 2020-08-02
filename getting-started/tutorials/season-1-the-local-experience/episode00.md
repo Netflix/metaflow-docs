@@ -6,8 +6,8 @@ This flow is a simple linear workflow that verifies your installation by printin
 
 ### Showcasing:
 
-* [Basics of Metaflow.](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow-r/basics.md)
-* [Step](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow-r/basics.md#what-should-be-a-step) decorator.
+* [Basics of Metaflow](../../../metaflow/basics.md).
+* Metaflow [Step](../../../metaflow/basics.md#linear).
 
 ### To play this episode:
 
