@@ -1,6 +1,6 @@
 # Episode 3: Follow the Money.
 
-**Use Metaflow to load the statistics generated from 'Episode 02' and recommend movies from a genre with highest median gross box office**
+Use Metaflow to load the statistics generated from [**Episode 2 Is this Data Science**](episode02.md) and recommend movies from a genre with highest median gross box office
 
 ## Showcasing:
 

@@ -1,6 +1,8 @@
 # Episode 4: Look Mom, We're in the Cloud.
 
-**This flow is a simple linear workflow that verifies your AWS configuration. The 'start' and 'end' steps will run locally, while the 'hello' step will run remotely on AWS batch. After configuring Metaflow to run on AWS, data and metadata about your runs will be stored remotely. This means you can use the client to access information about any flow from anywhere.**
+This flow is a simple linear workflow that verifies your AWS configuration. The `start` and `end` steps will run locally, while the `hello` step will run remotely on AWS batch.   
+  
+After configuring Metaflow to run on AWS, data and metadata about your runs will be stored remotely. This means you can use the client to access information about any flow from anywhere.
 
 ## Showcasing:
 
