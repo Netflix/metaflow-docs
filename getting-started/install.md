@@ -22,5 +22,8 @@ To test that we have installed Metaflow successfully, use the following command 
 > metaflow::test()
 ```
 
-Now you are ready to get your hands dirty with the [Tutorials](https://github.com/jasonge27/metaflow-docs/tree/4977f6113cad60e621fba0cc9bcf38bf85316c13/getting-started/tutorials/README.md).
+Please let us know [here](http://chat.metaflow.org) if you run into issues with installation. 
+
+Now you are ready to get your hands dirty with the [Tutorials](tutorials/).  
+
 
