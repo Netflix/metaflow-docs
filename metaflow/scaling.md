@@ -52,20 +52,22 @@ The `resources` decorator suggests resource requirements for a step. The `memory
 
 The `resources` decorator gains all its power in collaboration with Batch execution. Note that for this section, you will need to have Metaflow working in an AWS cloud environment \(either having [deployed it yourself](../metaflow-on-aws/deploy-to-aws.md) or running in the [Metaflow sandbox](../metaflow-on-aws/metaflow-sandbox.md)\)
 
-You can instruct Metaflow to run all your steps on AWS Batch in two ways: 1. using command line options
+You can instruct Metaflow to run all your steps on AWS Batch in two ways: 
+
+1. using command line options
 
 ```bash
 $ Rscript bigsumflow.R run --with batch
 ```
 
-1. using programmatic options in the `run(..)` object for example
+2. using programmatic options in the `run(..)` object for example
 
-   ```r
-   metaflow("BigSumFlow") %>%
-    step(...) %>%
-    step(...) %>% 
-    run(batch=TRUE)
-   ```
+```r
+metaflow("BigSumFlow") %>%
+ step(...) %>%
+ step(...) %>% 
+ run(batch=TRUE)
+```
 
 The `--with batch` option instructs Metaflow to run all tasks as separate AWS Batch jobs, instead of using a local process for each task. It has the same effect as adding `@batch` decorator to all steps in the code.
 
@@ -73,7 +75,7 @@ Note that in this case the `resources` decorator is used as a prescription for t
 
 In addition to `cpu` and `memory` you can specify `gpu=N` to request N GPUs for the instance.
 
-### Using AWS Batch selectively with `@batch` decorator
+### Using AWS Batch selectively with `batch` decorator
 
 A close relative of the `resources` decorator is `batch`. It takes exactly the same keyword arguments as `resources` but instead of being a mere suggestion, it forces the step to be run on AWS Batch.
 

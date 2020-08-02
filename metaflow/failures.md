@@ -54,7 +54,7 @@ When you run this flow, you will see that sometimes it succeeds without a hitch 
 2020-06-19 15:48:38.545 [181/start/1076 (pid 54139)] Task finished successfully.
 ```
 
-It is highly recommended that you use `retry` every time you run your flow on the [cloud](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow-on-aws/metaflow-on-aws.md). Instead of annotating every step with a retry decorator, you can also automatically add a retry decorator to all steps that do not have one as follows:
+It is highly recommended that you use `retry` every time you run your flow on the [cloud](../metaflow-on-aws/metaflow-on-aws.md). Instead of annotating every step with a retry decorator, you can also automatically add a retry decorator to all steps that do not have one as follows:
 
 ```r
 Rscript retryflow.R run --with retry
