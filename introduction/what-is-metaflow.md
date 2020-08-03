@@ -8,7 +8,7 @@ Metaflow provides a unified API to the infrastructure stack that is required to 
 
 1. **Computation graph.** Computation is broken down into a [DAG](https://en.wikipedia.org/wiki/Directed_acyclic_graph) where each node is a computation step.
 2. **Isolation.** Each step runs in an isolated environment, which can be either a local process, or a remote execution on [AWS Batch](https://aws.amazon.com/batch/). 
-3. **Version control and data lineage.** Code and data created in each step are persisted together in each run as immutable Metaflow Artifacts. By doing this, we have built-in data lineage within a flow, which tracks the data origin, what happens to it and where it moves over time.
+3. **Version control and data lineage.** Code and data created in each step are persisted together in each run as immutable Metaflow Artifacts. By doing this, we have built-in data lineage within a flow, which tracks the data origin, what happens to it and where it moves through out the flow.
 4. **Data management.** Data read/write paths are automatically maintained since data is persisted in each run step. 
 5. **Steps as managed checkpoints.** We can resume from any step in any past run without recomputing from start.
 6. **Infrastructure as Code.** We can specify computation resource requirements in native R code.
