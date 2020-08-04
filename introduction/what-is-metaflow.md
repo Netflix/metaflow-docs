@@ -4,7 +4,7 @@ Metaflow is a human-friendly library that helps scientists and engineers build a
 
 Metaflow provides a unified API to the infrastructure stack that is required to execute data science projects, from prototype to production.
 
-Under the hood, Metaflow R uses the [Python version](https://docs.metaflow.org) of Metaflow to power its actions. Hence the R community can benefit from all the battle-hardening and testing that goes into the Python version of Metaflow. Since this is a technical detail, as an R user, you don't have to worry about Python unless you want to.
+Under the hood, Metaflow uses the [Python version](https://docs.metaflow.org) of Metaflow to power its actions. Hence the R community can benefit from all the battle-hardening and testing that goes into the Python version of Metaflow. Since this is a technical detail, as an R user, you don't have to worry about Python unless you want to.
 
 ## What Metaflow offers for R users
 
