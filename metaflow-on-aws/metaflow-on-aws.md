@@ -1,10 +1,3 @@
----
-description: >-
-  Note that the R and Python versions of Metaflow work the same way on AWS since
-  they both share the same AWS integrations. The instructions here and in the
-  Admin Docs apply both for R and Python.
----
-
 # Metaflow on AWS
 
 Traditionally, there has been a tension between local \(e.g. on a laptop\) and remote \(e.g. on a cluster or a cloud\) development and execution: Developing on a laptop is fast, whereas iterating with a remote cluster is slower. A laptop is a severely resource-constrained environment whereas a cluster can have virtually unlimited resources. Worse, simple local scripts may need to be translated to a new paradigm that is understood by a cluster.
@@ -14,6 +7,8 @@ Metaflow tries to combine the best of both worlds. Most importantly, we support 
 Metaflow makes it easy to move back and forth between the local and remote modes of execution. You can even use a hybrid of the two approaches in a single workflow. This means that you can develop and test your Metaflow code similarly to any local R script - simply and easily. When you need to [process larger amounts of data](../metaflow/scaling.md), or you want to deploy your workflow to production, you can do it with a single line of code or a single command.
 
 When you set up a cloud-based object store as the datastore, Metaflow snapshots all data and code in the cloud automatically. This means that you can [inspect](../metaflow/client.md), [resume](../metaflow/debugging.md#how-to-use-the-resume-command), and restore any previous Metaflow execution without having to worry that the fruits of your hard work get lost.
+
+> Note that the R and Python versions of Metaflow work the same way on AWS since they both share the same AWS integrations. The instructions here and in the [Admin Docs](https://admin-docs.metaflow.org/) apply apply to both the versions.
 
 ## Amazon Web Services
 
