@@ -25,6 +25,12 @@
     * [Episode 6: Statistics Redux](getting-started/tutorials/season-2-scaling-out-and-up/episode06.md)
     * [Episode 7: Worldview](getting-started/tutorials/season-2-scaling-out-and-up/episode07.md)
 
+## Metaflow on AWS
+
+* [Metaflow on AWS](metaflow-on-aws/metaflow-on-aws.md)
+* [Metaflow Sandbox](metaflow-on-aws/metaflow-sandbox.md)
+* [Deploying to AWS](metaflow-on-aws/deploy-to-aws.md)
+
 ## Developing with Metaflow <a id="metaflow"></a>
 
 * [Basics of Metaflow](metaflow/basics.md)
@@ -33,10 +39,4 @@
 * [Scaling Out and Up](metaflow/scaling.md)
 * [Dealing with Failures](metaflow/failures.md)
 * [Organizing Results](metaflow/tagging.md)
-
-## Metaflow on AWS
-
-* [Metaflow on AWS](metaflow-on-aws/metaflow-on-aws.md)
-* [Metaflow Sandbox](metaflow-on-aws/metaflow-sandbox.md)
-* [Deploying to AWS](metaflow-on-aws/deploy-to-aws.md)
 

@@ -16,8 +16,6 @@ description: Build and manage real-life data science projects with ease.
 * [Installing Metaflow](getting-started/install.md)
 * [Tutorials](getting-started/tutorials/)
 
-
-
 ## Metaflow on AWS
 
 * [Metaflow on AWS](metaflow-on-aws/metaflow-on-aws.md)
