@@ -8,6 +8,8 @@ This document provides an overview of the client API.
 
 Note that all operations in the Client API are filtered by the current namespace, as explained in [Organizing Results](tagging.md). If you do not get the results you expect, make sure you are in the correct namespace. The Client API consults the metadata service to gather results, so make sure that the client is properly configured to use the correct [metadata provider](client.md#metadata-provider).
 
+![](../.gitbook/assets/hierarchy%20%281%29.png)
+
 These objects can be instantiated simply with
 
 ```r
@@ -33,15 +35,6 @@ task <- task_client$new("HelloWorldFlow/12/start/12345678")
 task$artifact("my_var")
 ```
 
-Metaflow library has a built-in function to print out all the flows you have run in the past.
-
-```r
-# list all flows 
-print(metaflow::list_flows())
-```
-
-This returns a list of strings which represent the names of the flows.
-
 ## Navigating the object hierarchy
 
 Every object listed above follows a consistent interface. All the operations below are available in all objects, not just the ones demonstrated.
@@ -65,13 +58,22 @@ print(run$steps)
 print(step$tasks)
 ```
 
+### Accessing a specific child
+
+You can access a specific child simply by
+
+```text
+helloflow <- flow_client$new("HelloFlow")
+run <- helloflow$run("2")
+```
+
 ### Accessing data
 
 One of the most typical use cases of the client API is to access data artifacts produced by runs. Each data artifact is represented by a `DataArtifact` object whose parent is a `Task`.
 
 `DataArtifact` is a container object for the actual value. Besides the value, `DataArtifact` includes metadata about the artifact, such as its time of creation.
 
-Often you are only interested in the value of an artifact. For this typical use case we provide a convenience property `.data` in the `Task` object. The `.data` property returns a container which has all artifacts produced by the task as attributes.
+Often you are only interested in the value of an artifact. For this typical use case we provide a convenience property `$data` in the `Task` object. The `$data` property returns a container which has all artifacts produced by the task as attributes.
 
 For instance, this the shortest way to access a value produced by a step in a run:
 
@@ -84,7 +86,7 @@ Here, we print the value of `self$my_varx` in the step `compute` of the run `2`,
 
 ### Properties of Flow/Run/Step/Task Objects
 
-You can check the full object documentation by run the following commands in R:
+You can check the full object documentation by:
 
 ```r
 help(metaflow::flow_client)
