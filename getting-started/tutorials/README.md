@@ -1,10 +1,10 @@
 # Tutorials
 
-This set of tutorials provides a hands-on introduction to Metaflow R. The basic concepts are introduced in practice, and you can find out more details about the functionality showcased in these tutorials in [Basics of Metaflow](../../metaflow/basics.md) and the following sections.
+This set of tutorials provides a hands-on introduction to Metaflow. The basic concepts are introduced in practice, and you can find out more details about the functionality showcased in these tutorials in [Basics of Metaflow](../../metaflow/basics.md) and the following sections.
 
-## Pull tutorials
+## Setting up
 
-Metaflow R comes packaged with the tutorials, so getting started is easy. You can pull a copy of the tutorials to your current directory by running the following command in R:
+Metaflow comes packaged with the tutorials, so getting started is easy. You can pull a copy of the tutorials to your current directory by running the following command in R:
 
 ```r
 metaflow::pull_tutorials()
@@ -29,7 +29,7 @@ Each tutorial has a brief description and instructions that you can view using t
 
 ## What's next?
 
-* Explore fault tolerant flows with [`catch`](../../metaflow/failures.md#catching-exceptions-with-the-catch-decorator), [`retry`](../../metaflow/failures.md#retrying-tasks-with-the-retry-decorator)decorators.
+* Explore fault-tolerant flows with [`catch`](../../metaflow/failures.md#catching-exceptions-with-the-catch-decorator), [`retry`](../../metaflow/failures.md#retrying-tasks-with-the-retry-decorator)decorators.
 * Debug failed runs with [resume](../../metaflow/debugging.md#how-to-use-the-resume-command).
 * Explore results across experiments with the [Client API](../../metaflow/client.md).
 * See how to organize results and collaborate with [namespaces](../../metaflow/tagging.md#namespaces) and [tags](../../metaflow/tagging.md#tagging).
