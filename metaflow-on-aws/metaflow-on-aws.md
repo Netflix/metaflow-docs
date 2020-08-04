@@ -50,7 +50,7 @@ We are a [big fan of Notebooks](https://netflixtechblog.com/notebook-innovation-
 
 With Metaflow, users can create, prototype and execute flows from their laptops that can scale easily by leveraging elastic storage and compute capabilities in the cloud. Often, there comes a time, when these flows need to be run autonomously without any user intervention. At that point, Metaflow makes it easy to move the flow execution from Metaflow to AWS Step Functions to leverage all the feature sets that you get from a production grade scheduler - high availability, monitoring, reliability, etc. In addition, with AWS EventBridge, users can set triggers to execute these flows on a schedule automatically.
 
-### Using Metaflow with AWS
+## Using Metaflow with AWS
 
 When you install Metaflow for the first time, you start in the local mode. Artifacts and metadata are stored in a local directory and computation is performed with local processes. This mode is perfectly fine for personal use but if your use case involves more people and/or data, we recommend that you configure Metaflow to use AWS.
 
@@ -58,7 +58,7 @@ Even after Metaflow has been configured to use AWS, users can still choose to us
 
 Netflix uses this setup internally. To make the experience smoother, Netflix's data scientists are provided with a \(shared\) EC2 instance where they can develop and test Metaflow code with minimal latency between their development environment and S3. Note that many IDEs such as [VSCode](https://code.visualstudio.com/) or [RStudio](https://rstudio.com/) support execution on a remote instance natively.
 
-### Next Steps
+## Next Steps
 
 If your organization doesn't have an AWS account already, we provide a hosted sandbox environment where you can test Metaflow using your own code and data, to get a feel of the benefits of AWS. Read more in the section about [Metaflow Sandbox](metaflow-sandbox.md).
 
