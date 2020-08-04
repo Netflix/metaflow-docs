@@ -1,4 +1,4 @@
-# Episode 5: Computing in the Cloud.
+# Episode 6: Statistics Redux
 
 This example revisits [**Episode 02-statistics: Is this Data Science?**](../season-1-the-local-experience/episode02.md).
 

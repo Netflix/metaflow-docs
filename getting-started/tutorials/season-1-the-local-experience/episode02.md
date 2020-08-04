@@ -1,4 +1,4 @@
-# Episode 2: Is this Data Science?
+# Episode 2: Statistics
 
 Use Metaflow to load the movie metadata CSV file into a data frame and compute some movie genre specific statistics. These statistics are then used in later examples to improve our playlist generator.
 

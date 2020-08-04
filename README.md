@@ -8,7 +8,7 @@ description: Build and manage real-life data science projects with ease.
 
 * [Why Metaflow](introduction/why-metaflow.md)
 * [What is Metaflow](introduction/what-is-metaflow.md)
-* [Contributing to Metaflow](introduction/wip-contributing-to-metaflow.md)
+* [Contributing to Metaflow](introduction/contributing-to-metaflow.md)
 * [Get in Touch](introduction/getting-in-touch.md)
 
 ## Getting Started

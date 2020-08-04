@@ -1,4 +1,4 @@
-# Episode 4: Look Mom, We're in the Cloud.
+# Episode 5: Hello AWS
 
 This flow is a simple linear workflow that verifies your AWS configuration. The `start` and `end` steps will run locally, while the `hello` step will run remotely on AWS batch.
 

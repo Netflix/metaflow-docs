@@ -1,4 +1,4 @@
-# Episode 1: Let's build you a movie playlist.
+# Episode 1: Playlist
 
 This flow loads a movie metadata CSV file and builds a playlist for your favorite movie genre. Everything in Metaflow is versioned, so you can run it multiple times and view all the historical playlists with the Metaflow client in an R Markdown Notebook.
 
