@@ -18,6 +18,8 @@ The most basic type of transition is **a linear** transition. It moves from one 
 
 Here is a graph with two linear transitions:
 
+![](../.gitbook/assets/assets_metaflow_-lpjn0yp7r49jrnxca_5_-lpjrytxto2crix9qi6y_graph_linear%20%281%29.png)
+
 The corresponding Metaflow script looks like this:
 
 ```r
@@ -49,7 +51,7 @@ metaflow("LinearFlow") %>%
 
 Besides executing the steps `start`, `a`, and `end` in order, this flow creates **a data artifact** called `my_var`. In Metaflow, data artifacts are created simply by assigning values to `$`-indexed variables under the `self` object such as `self$my_var`.
 
-Data artifacts are available in all steps after they have been created, so they behave as any normal instance variables. If you want to use any R object `obj` in downstream steps, you need to create a data artifact for it, for example `self$var <- obj`. An exception to this rule are branches, as explained below.
+Data artifacts are available in all steps after they have been created, so they behave like any normal instance variables. An exception to this rule is branching, as explained below.
 
 ### Branch
 
@@ -90,7 +92,7 @@ metaflow("BranchFlow") %>%
 
 Every branch must be joined. The join step does not need to be called `join` as above but it must take an extra argument, like `inputs` above.
 
-In the example above, the value of `x` above is ambiguous: `a` sets it to `1` and `b` to `2`. To disambiguate the branches, the join step can refer to a specific step in the branch, like `inputs[[1]]$x` above. For convenience, you can also iterate over all steps in the branch using `inputs`, which is simply an R list. For more details, see the section about [data flow through the graph](basics.md#data-flow-through-the-graph).
+In the example above, the value of `var` above is ambiguous: `a` sets it to `1` and `b` to `2`. To disambiguate the branches, the join step can refer to a specific step in the branch, like `inputs$a$var` above. For convenience, you can also iterate over all steps in the branch using `inputs`, which is simply a list. For more details, see the section about [data flow through the graph](basics.md#data-flow-through-the-graph).
 
 Note that you can nest branches arbitrarily, that is, you can branch inside a branch. Just remember that all branches must have a corresponding join.
 
