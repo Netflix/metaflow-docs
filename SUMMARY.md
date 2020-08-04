@@ -33,8 +33,6 @@
 * [Inspecting Flows and Results](metaflow/client.md)
 * [Debugging with Metaflow](metaflow/debugging.md)
 * [Scaling Out and Up](metaflow/scaling.md)
-* [Loading and Storing Data](metaflow/data.md)
-* [Managing External Libraries](metaflow/dependencies.md)
 * [Dealing with Failures](metaflow/failures.md)
 * [Organizing Results](metaflow/tagging.md)
 
