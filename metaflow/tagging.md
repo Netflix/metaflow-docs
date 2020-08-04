@@ -49,7 +49,7 @@ If Anne wants to access Will's results, she must do so explicitly by switching t
 ```r
 library(metaflow)
 set_namespace('user:will')
-run <- flow_client$new('PredictionFlow')$run("5"))
+run <- flow_client$new('PredictionFlow')$run("5")
 ```
 
 In other words, you can use the Client API freely without having to worry about using incorrect results by accident.
