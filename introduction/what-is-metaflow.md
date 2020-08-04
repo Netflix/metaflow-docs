@@ -1,6 +1,6 @@
 # What is Metaflow
 
-Metaflow is a human-friendly library that helps scientists and engineers build and manage real-life data science projects. Metaflow was originally developed at Netflix to boost productivity of data scientists who work on a wide variety of projects from classical statistics to state-of-the-art deep learning.
+Metaflow is a human-friendly library that helps scientists and engineers build and manage real-life data science projects. Metaflow was originally developed at Netflix to boost the productivity of data scientists who work on a wide variety of projects from classical statistics to state-of-the-art deep learning.
 
 Metaflow provides a unified API to the infrastructure stack that is required to execute data science projects, from prototype to production.
 
@@ -8,19 +8,7 @@ Under the hood, Metaflow R uses the [Python version](https://docs.metaflow.org) 
 
 ## What Metaflow offers for R users
 
-We love the data science ecosystem provided by the R community for example the [tidyverse](https://www.tidyverse.org/) package suite, ergonomic [data wrangling](https://dplyr.tidyverse.org/) tools, slick interactive communication tools such as [Shiny](https://shiny.rstudio.com/),  a data science oriented IDE [RStudio](https://rstudio.com/), and cutting-edge libraries for statistical computing on [CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html). 
-
-Metaflow wants to provide a better infrastructure stack for data scientists in R community. Some of the key features of Metaflow are:
-
-1. **Computation graph.** Computation is broken down into a [DAG](https://en.wikipedia.org/wiki/Directed_acyclic_graph) where each node is a computation step.
-2. **Isolation.** Each step runs in an isolated environment, which can be either a local process, or a remote execution on [AWS Batch](https://aws.amazon.com/batch/). 
-3. **Version control and data lineage.** Code and data created in each step are persisted together in each run as immutable Metaflow Artifacts. By doing this, we have built-in data lineage within a flow, which tracks the data origin, what happens to it and where it moves through out the flow.
-4. **Data management.** Data read/write paths are automatically maintained since data is persisted in each run step. 
-5. **Steps as managed checkpoints.** We can resume from any step in any past run without recomputing from start.
-6. **Infrastructure as Code.** We can specify computation resource requirements in native R code.
-7. **Tight integration with AWS for easy scalability.** Scale out or schedule production runs in AWS without changing your r functions implementations.
-8. **Failure as features**. Robust end-to-end execution.
-9. **Collaboration.** Namespace and tags for organizing models and experiments across the team.
+We love the data science ecosystem provided by the R community, for example the [tidyverse](https://www.tidyverse.org/) package suite, ergonomic [data wrangling](https://dplyr.tidyverse.org/) tools, slick interactive communication tools such as [Shiny](https://shiny.rstudio.com/),  a data science-oriented IDE [RStudio](https://rstudio.com/), and cutting-edge libraries for statistical computing on [CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html). However, oftentimes, it is left to the data scientist to string together all these amazing tools to get their job done, adding to their burden. Metaflow provides a better [infrastructure stack](what-is-metaflow.md#infrastructure-stack-for-data-science) for data scientists in the R community in an idiomatic manner so that they can focus their energy on data science rather than engineering.
 
 ## Infrastructure Stack for Data Science
 
@@ -42,37 +30,63 @@ Internally, Metaflow leverages existing infrastructure when feasible. In particu
 
 You can find more details about Metaflow's approach to various parts of the stack across the documentation:
 
-|  |  |
-| :--- | :--- |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left"></th>
+      <th style="text-align:left"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><b>Model Development</b>
+      </td>
+      <td style="text-align:left"><a href="../metaflow/basics.md">Basics of Metaflow</a>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><b>Model Operations</b>
+      </td>
+      <td style="text-align:left">
+        <p><a href="../metaflow/debugging.md">Debugging with Metaflow</a> and <a href="../metaflow/failures.md">Dealing with Failures</a>
+        </p>
+        <p>(also see <a href>Roadmap</a>)</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><b>Versioning</b>
+      </td>
+      <td style="text-align:left"><a href="../metaflow/client.md">Inspecting Flow and Results</a> and <a href="../metaflow/tagging.md">Organizing Results</a>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><b>Architecture</b>
+      </td>
+      <td style="text-align:left"><a href="../metaflow/basics.md">Basics of Metaflow</a>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><b>Job Scheduler </b>
+      </td>
+      <td style="text-align:left">coming soon, see <a href="roadmap.md">Roadmap</a>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><b>Compute Resources</b>
+      </td>
+      <td style="text-align:left"><a href="../metaflow/scaling.md">Scaling Out and Up</a>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><b>Data Warehouse</b>
+      </td>
+      <td style="text-align:left"><a href="../metaflow/basics.md">Basics of Metaflow</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-
-| **Model Development** | [Basics of Metaflow](../metaflow/basics.md) and [Debugging with Metaflow](../metaflow/debugging.md)          |
-| :--- | :---: |
-
-
-| **Feature Engineering** | [ ](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow/data.md)[Basics of Metaflow](../metaflow/basics.md)  and  [Organizing Results](../metaflow/debugging.md) .              |
-| :--- | :---: |
-
-
-| **Model Operations** | [Debugging with Metaflow](../metaflow/debugging.md) and [Dealing with Failures](../metaflow/failures.md) . |
-| :--- | :---: |
-
-
-| **Versioning** |       [Inspecting Flow and Results](../metaflow/client.md) and [Organizing Results](../metaflow/tagging.md) |
-| :--- | :---: |
-
-
-| **Architecture** | [Basics of Metaflow](../metaflow/basics.md) .               |
-| :--- | :---: |
-
-
-| Compute Resources | [Scaling Out and Up](../metaflow/scaling.md)                          |
-| :--- | :---: |
-
-
-| **Data Warehouse** | [Basics of Metaflow](../metaflow/basics.md)                    |
-| :--- | :---: |
-
+If you are an infrastructure person who wants to know how to deploy and operate Metaflow, take a look at [Administrator's Guide to Metaflow](https://admin-docs.metaflow.org).
 
 If you want to learn more, the Machine Learning Infrastructure team at Netflix has given a number of public presentations about Metaflow prior to its open-sourcing. You can find links to these presentations below.
 
