@@ -95,9 +95,9 @@ You can also resume a specific run using the CLI option `--origin-run-id` if you
 Rscript debugflow.R resume --origin-run-id 153
 ```
 
-If you'd like programmatic access to the `--origin-run-id` selected for the `resume` \(either implicitly selected by Metaflow as last `run` invocation, or explicitly declared by the user via the CLI\), you can use the `current` singleton. Read more [here](tagging.md#accessing-current-ids-in-a-flow).
+If you'd like programmatic access to the `--origin-run-id` selected for the `resume` \(either implicitly selected by Metaflow as last `run` invocation, or explicitly declared by the user via the CLI\), you can use the `current` object. Read more [here](tagging.md#accessing-current-ids-in-a-flow).
 
-Next, fix the error by replacing `tofail("cannot find function tofail")` in `debug.py` with `"any message"`. Try again after the fix. This time, you should see the flow completing successfully.
+Next, fix the error by replacing `tofail("cannot find function tofail")` in `debugflow.R` with `"any message"`. Try again after the fix. This time, you should see the flow completing successfully.
 
 ```r
 2020-06-19 14:09:06.015 Gathering required information to resume run (this may take a bit of time)...
@@ -113,13 +113,6 @@ Next, fix the error by replacing `tofail("cannot find function tofail")` in `deb
 2020-06-19 14:09:50.798 [154/end/1049 (pid 48156)] Task is starting.
 2020-06-19 14:10:00.518 [154/end/1049 (pid 48156)] Task finished successfully.
 2020-06-19 14:10:00.893 Done!
-```
-
-Note the `cloning results` messages above indicate that we're re-using the saved artifacts in all the steps before the error occurs.
-
-```r
-[154/start/1045] Cloning results of a previously run task 153/start/1001
-[154/a/1046] Cloning results of a previously run task 153/a/1002
 ```
 
 Resuming uses the flow and step names to decide what results can be reused. This means that the results of previously successful steps will get reused even if you change their step code. You can add new steps and alter code of failed steps safely with `resume`
@@ -142,21 +135,11 @@ If your flow has [`Parameters`](basics.md#how-to-define-parameters-for-flows), y
 
 The `resume` command reuses the parameter values that you set with `run` originally.
 
-## Inspecting data with RStudio or Jupyter Notebook
+## Inspecting data with RStudio IDE or Jupyter Notebook
 
 The above example demonstrates a trivial error. In the real life, errors can be much trickier to debug. In the case of machine learning, a flow may fail because of an unexpected distribution of input data, although nothing is wrong with the code per se.
 
 Being able to inspect data produced by every step is a powerful feature of Metaflow which can help in situations like this.
 
-You can use Metaflow client API in RStudio or an R Jupyter Notebook to fetch artifacts produced each step, and run sanity checks or further debug the issue.
-
-For example, running this in RStudio or Jupyter Notebook lets you check intermediate results which can be helpful for debugging.
-
-```r
-library(metaflow)
-task <- task_client$new("DebugFlow/153/a/1002")
-print(task$artifact("var"))
-```
-
-For more details about the client API, see the [Client API](client.md).
+You can use the [Metaflow client](client.md) in an RStudio IDE or a Jupyter Notebook to fetch artifacts produced each step, and run sanity checks or further debug the issue.
 
