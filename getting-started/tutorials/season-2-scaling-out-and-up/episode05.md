@@ -1,30 +1,64 @@
-# Episode 5: Hello AWS
+# Episode 4: Look Mom, We're in the Cloud.
 
-## Look Mom, We're in the Cloud.
+This flow is a simple linear workflow that verifies your AWS configuration. The `start` and `end` steps will run locally, while the `hello` step will run remotely on AWS batch.
 
-This flow is a simple linear workflow that verifies your AWS configuration. The `start` and `end` steps will run locally, while the `hello` step will run remotely on AWS batch. After [configuring Metaflow](../../../metaflow-on-aws/metaflow-on-aws.md) to run on AWS, data and metadata about your runs will be stored remotely. This means you can use the client to access information about any flow from anywhere.
+After configuring Metaflow to run on AWS, data and metadata about your runs will be stored remotely. This means you can use the client to access information about any flow from anywhere.
 
-You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/tree/master/metaflow/tutorials/05-helloaws)
+## Showcasing:
 
-**Showcasing:**
+* AWS [batch decorator](../../../metaflow/scaling.md).
+* Accessing data artifacts generated remotely in a local notebook.
+* [retry decorator](../../../metaflow/failures.md#retrying-tasks-with-the-retry-decorator).
 
-* [AWS Batch](../../../metaflow-on-aws/metaflow-on-aws.md) and the [`@batch`](../../../metaflow/scaling.md#using-aws-batch-selectively-with-batch-decorator) decorator.
-* Using the [Client API ](../../../metaflow/client.md)to access data artifacts generated remotely in a local notebook.
-* [`@retry`](../../../metaflow/failures.md#retrying-tasks-with-retry-decorator)decorator.
+## Before playing this episode:
 
-**Before playing this episode:**
+Configure your [sandbox](../../../metaflow-on-aws/metaflow-sandbox.md).
 
-1. `python -m pip install notebook`
-2. This tutorial requires access to compute and storage resources on AWS, which can be configured by 
-   1. Following the instructions [here](https://admin-docs.metaflow.org/metaflow-on-aws/deployment-guide) or 
-   2. Requesting a [sandbox](https://docs.metaflow.org/metaflow-on-aws/metaflow-sandbox).
+## To play this episode:
 
-**To play this episode:**
+If you haven't yet pulled the tutorials to your current working directory, you can follow the instructions [here](../#pull-tutorials). 
 
-1. `cd metaflow-tutorials`
-2. `python 05-helloaws/helloaws.py run`
-3. `jupyter-notebook 05-helloaws/helloaws.ipynb`
-4. Open _**helloaws.ipynb**_ in your remote Sagemaker notebook
+1. `cd tutorials` 
+2. `Rscript 04-helloaws/helloaws.R run` 
+3. Open `helloaws.md` in your local RStudio
 
-{% page-ref page="../" %}
+```r
+#  A flow where Metaflow prints 'Hi'.
+#  Run this flow to validate that Metaflow is installed correctly.
+
+library(metaflow)
+
+# This is the 'start' step. All flows must have a step named 
+# 'start' that is the first step in the flow.
+start <- function(self){
+    message("HelloAWS is starting.")
+    message("Using metadata provider: ", get_metadata())
+}
+
+# A step for metaflow to introduce itself.
+hello <- function(self){
+    self$message <- "We're on the cloud! Metaflow says: Hi!"
+    print(self$message) 
+    message("Using metadata provider: ", get_metadata())
+}
+
+# This is the 'end' step. All flows must have an 'end' step, 
+# which is the last step in the flow.
+end <- function(self){
+    message("HelloAWS is all done.")
+}
+
+metaflow("HelloAWSFlow") %>%
+    step(step = "start", 
+         r_function = start, 
+         next_step = "hello") %>%
+    step(step = "hello", 
+         decorator("retry", times=2),
+         decorator("batch", cpu=2, memory=2048),
+         r_function = hello,  
+         next_step = "end") %>%
+    step(step = "end", 
+         r_function = end) %>% 
+    run()
+```
 

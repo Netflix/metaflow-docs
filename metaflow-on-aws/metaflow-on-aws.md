@@ -1,12 +1,19 @@
+---
+description: >-
+  Note that the R and Python versions of Metaflow work the same way on AWS since
+  they both share the same AWS integrations. The instructions here and in the
+  Admin Docs apply both for R and Python.
+---
+
 # Metaflow on AWS
 
 Traditionally, there has been a tension between local \(e.g. on a laptop\) and remote \(e.g. on a cluster or a cloud\) development and execution: Developing on a laptop is fast, whereas iterating with a remote cluster is slower. A laptop is a severely resource-constrained environment whereas a cluster can have virtually unlimited resources. Worse, simple local scripts may need to be translated to a new paradigm that is understood by a cluster.
 
-Metaflow tries to combine the best of both worlds. Most importantly, we support the same idiomatic Python scripts both locally and remotely. No changes in code or libraries needed. However, Metaflow doesn't try to abstract away the fact that code is executed remotely. We believe that this is crucial in making troubleshooting easier.
+Metaflow tries to combine the best of both worlds. Most importantly, we support the same idiomatic R scripts both locally and remotely. No changes in code or libraries needed. However, Metaflow doesn't try to abstract away the fact that code is executed remotely. We believe that this is crucial in making troubleshooting easier.
 
-Metaflow makes it easy to move back and forth between the local and remote modes of execution. You can even use a hybrid of the two approaches in a single workflow. This means that you can develop and test your Metaflow code similarly to any local Python script - simply and easily. When you need to [process larger amounts of data](https://docs.metaflow.org/metaflow/scaling), or you want to deploy your workflow to production, you can do it with a single line of code or a single command.
+Metaflow makes it easy to move back and forth between the local and remote modes of execution. You can even use a hybrid of the two approaches in a single workflow. This means that you can develop and test your Metaflow code similarly to any local R script - simply and easily. When you need to [process larger amounts of data](../metaflow/scaling.md), or you want to deploy your workflow to production, you can do it with a single line of code or a single command.
 
-When you set up a cloud-based object store as the datastore, Metaflow snapshots all data and code in the cloud automatically. This means that you can [inspect](https://docs.metaflow.org/metaflow/client), [resume](https://docs.metaflow.org/metaflow/debugging#how-to-use-the-resume-command), and restore any previous Metaflow execution without having to worry that the fruits of your hard work get lost.
+When you set up a cloud-based object store as the datastore, Metaflow snapshots all data and code in the cloud automatically. This means that you can [inspect](../metaflow/client.md), [resume](../metaflow/debugging.md#how-to-use-the-resume-command), and restore any previous Metaflow execution without having to worry that the fruits of your hard work get lost.
 
 ## Amazon Web Services
 
@@ -36,9 +43,9 @@ Metaflow executes all steps in the flow as a separate local process in local mod
 
 ### Metadata
 
-Metaflow ships with a light-weight [metaflow service](https://github.com/Netflix/metaflow-service) that provides a centralized place to keep track of all flow executions. This metadata service is not strictly needed. Metaflow will use a local directory to keep track of all executions from your laptop, even if you are using Amazon S3 as datastore or AWS Batch for [compute](metaflow-on-aws.md#compute). You can use a local Jupyter notebook to interact with data artifacts from all your previous executions as well as currently running ones. However, deploying the metaflow service \(as well as Amazon S3 as datastore\) is helpful if you would like to share results with your peers and track your work without fear of losing any state. 
+Metaflow ships with a light-weight [metaflow service](https://github.com/Netflix/metaflow-service) that provides a centralized place to keep track of all flow executions. This metadata service is not strictly needed. Metaflow will use a local directory to keep track of all executions from your laptop, even if you are using Amazon S3 as datastore or AWS Batch for [compute](metaflow-on-aws.md#compute). You can use a local Jupyter notebook to interact with data artifacts from all your previous executions as well as currently running ones. However, deploying the metaflow service \(as well as Amazon S3 as datastore\) is helpful if you would like to share results with your peers and track your work without fear of losing any state.
 
-At Netflix, all executions are logged in the metaflow service and all data artifacts are stored in Amazon S3, so that any data scientist can interface with anybody's work via the [client](https://docs.metaflow.org/metaflow/client) and collaborate fruitfully. Also, a centralized metaflow service along with a data store like Amazon S3 makes it easy for data scientists at Netflix to use hosted notebooks to easily set-up dashboards to monitors their flows.
+At Netflix, all executions are logged in the metaflow service and all data artifacts are stored in Amazon S3, so that any data scientist can interface with anybody's work via the [client](../metaflow/client.md) and collaborate fruitfully. Also, a centralized metaflow service along with a data store like Amazon S3 makes it easy for data scientists at Netflix to use hosted notebooks to easily set-up dashboards to monitors their flows.
 
 ### Notebooks
 
@@ -50,11 +57,11 @@ With Metaflow, users can create, prototype and execute flows from their laptops 
 
 ### Using Metaflow with AWS
 
-When you `pip install metaflow`for the first time, you start in the local mode. Artifacts and metadata are stored in a local directory and computation is performed with local processes. This mode is perfectly fine for personal use but if your use case involves more people and/or data, we recommend that you configure Metaflow to use AWS.
+When you install Metaflow for the first time, you start in the local mode. Artifacts and metadata are stored in a local directory and computation is performed with local processes. This mode is perfectly fine for personal use but if your use case involves more people and/or data, we recommend that you configure Metaflow to use AWS.
 
 Even after Metaflow has been configured to use AWS, users can still choose to use local tools, e.g. for rapid prototyping. The easy back-and-forth between local and remote is a key value proposition of Metaflow. However, we recommend that you enable **metadata** and **datastore** to use AWS by default, which makes sure that all data stays persistent and everyone in the organization can benefit from the results of workflows.
 
-Netflix uses this setup internally. To make the experience smoother, Netflix's data scientists are provided with a \(shared\) EC2 instance where they can develop and test Metaflow code with minimal latency between their development environment and S3. Note that many IDEs such as [VSCode](https://code.visualstudio.com/) or [PyCharm](https://www.jetbrains.com/pycharm/) support execution on a remote instance natively.
+Netflix uses this setup internally. To make the experience smoother, Netflix's data scientists are provided with a \(shared\) EC2 instance where they can develop and test Metaflow code with minimal latency between their development environment and S3. Note that many IDEs such as [VSCode](https://code.visualstudio.com/) or [RStudio](https://rstudio.com/) support execution on a remote instance natively.
 
 ### Next Steps
 
@@ -63,6 +70,4 @@ If your organization doesn't have an AWS account already, we provide a hosted sa
 If your organization has an AWS account already, see our [deployment guide](https://admin-docs.metaflow.org/metaflow-on-aws/deployment-guide) for detailed instructions on how to configure your account for Metaflow.
 
 If you are already using Metaflow in your AWS account, and want to get started with how to manage various AWS resources, take a look at our [operations guide](https://admin-docs.metaflow.org/metaflow-on-aws/operations-guide).
-
-
 

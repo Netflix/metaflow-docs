@@ -1,24 +1,84 @@
-# Episode 3: Playlist Redux
+# Episode 3: Follow the Money.
 
-## Follow the Money.
+Use Metaflow to load the statistics generated from [**Episode 2 Is this Data Science**](episode02.md) and recommend movies from a genre with highest median gross box office
 
-Use Metaflow to load the statistics generated from [Episode 2](episode02.md) and improve our playlist generator by only recommending top box office grossing movies.
+## Showcasing:
 
-You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/tree/master/metaflow/tutorials/03-playlist-redux)
+* Using data artifacts generated from other flows.
 
-**Showcasing:**
+## Before playing this episode:
 
-* Using the [Client API ](../../../metaflow/client.md)in a flow to fetch and use data artifacts generated from other flows.
+Run 'Episode 02-statistics: Is this Data Science?'
 
-**Before playing this episode:**
+## To play this episode:
 
-1. Run 'Episode 02-statistics: Is this Data Science?'
+If you haven't yet pulled the tutorials to your current working directory, you can follow the instructions [here](../#pull-tutorials). 
 
-**To play this episode:**
+1. `cd tutorials`
+2. `Rscript 03-playlist-redux/playlist.R show`
+3. `Rscript 03-playlist-redux/playlist.R run`
 
-1. `cd metaflow-tutorials`
-2. `python 03-playlist-redux/playlist.py show`
-3. `python 03-playlist-redux/playlist.py run`
+![](../../../.gitbook/assets/tutorial-episode-3.png)
 
-{% page-ref page="../" %}
+In this `PlayListReduxFlow`, we reuse the genre median gross box office statistics computed from `MoviesStatsFlow`, pick the genre with the highest median gross box office, and create a randomized playlist of movies of this picked genre.
+
+```r
+library(metaflow)
+
+#  Use the Metaflow client to retrieve the latest successful run from our
+#  MovieStatsFlow and assign them as data artifacts in this flow.
+start <- function(self){
+    # Loads the movie data into a data frame
+    self$df <- read.csv("./movies.csv", stringsAsFactors=FALSE)
+
+    message("Using metadata provider: ", get_metadata())
+
+    flow <- flow_client$new("MovieStatsFlow")
+    run <- run_client$new(flow, flow$latest_successful_run)
+    message("Using analysis from: ", run$pathspec)
+
+    self$genre_stats <- run$artifact("stats")
+}
+
+# Pick some movies from the genre with highest median gross box office 
+# which we calculated in MovieStatsFlow
+pick_movie <- function(self){
+    sort_order <- order(self$genre_stats$median, decreasing=TRUE)
+    sorted_stats <- self$genre_stats[sort_order, ]
+
+    self$picked_genre <- sorted_stats$genres[1]
+
+    message("Picked genre: ", self$picked_genre, " with the highest median gross box office.")
+
+    # generate a randomized playlist of titles of the picked genre
+    movie_by_genre <- self$df[self$df$genre == self$picked_genre, ]
+    shuffled_rows <- sample(nrow(movie_by_genre))
+    self$playlist <- movie_by_genre[shuffled_rows, ]
+}
+
+# Print out the picked movies
+end <- function(self){
+    message("Playlist for movies in picked genre: ", self$picked_genre)
+    for (i in 1:nrow(self$playlist)){
+        message(sprintf("Pick %d: %s", i, self$playlist$movie_title[i]))
+
+        if (i >= self$top_k) break; 
+    }
+}
+
+metaflow("PlayListReduxFlow") %>%
+    parameter("top_k",
+              help = "The number of movies to recommend in the playlist.",
+              default = 5,
+              type = "int") %>%
+    step(step = "start", 
+         r_function = start, 
+         next_step = "pick_movie") %>%
+    step(step = "pick_movie",
+         r_function = pick_movie,
+         next_step = "end") %>%
+    step(step = "end", 
+         r_function = end) %>%
+    run()
+```
 

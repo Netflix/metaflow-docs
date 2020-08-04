@@ -1,8 +1,26 @@
 # What is Metaflow
 
-Metaflow is a human-friendly Python library that helps scientists and engineers build and manage real-life data science projects. Metaflow was originally developed at Netflix to boost productivity of data scientists who work on a wide variety of projects from classical statistics to state-of-the-art deep learning.
+Metaflow is a human-friendly library that helps scientists and engineers build and manage real-life data science projects. Metaflow was originally developed at Netflix to boost productivity of data scientists who work on a wide variety of projects from classical statistics to state-of-the-art deep learning.
 
 Metaflow provides a unified API to the infrastructure stack that is required to execute data science projects, from prototype to production.
+
+Under the hood, Metaflow R uses the [Python version](https://docs.metaflow.org) of Metaflow to power its actions. Hence the R community can benefit from all the battle-hardening and testing that goes into the Python version of Metaflow. Since this is a technical detail, as an R user, you don't have to worry about Python unless you want to.
+
+## What Metaflow offers for R users
+
+We love the data science ecosystem provided by the R community for example the [tidyverse](https://www.tidyverse.org/) package suite, ergonomic [data wrangling](https://dplyr.tidyverse.org/) tools, slick interactive communication tools such as [Shiny](https://shiny.rstudio.com/),  a data science oriented IDE [RStudio](https://rstudio.com/), and cutting-edge libraries for statistical computing on [CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html). 
+
+Metaflow wants to provide a better infrastructure stack for data scientists in R community. Some of the key features of Metaflow are:
+
+1. **Computation graph.** Computation is broken down into a [DAG](https://en.wikipedia.org/wiki/Directed_acyclic_graph) where each node is a computation step.
+2. **Isolation.** Each step runs in an isolated environment, which can be either a local process, or a remote execution on [AWS Batch](https://aws.amazon.com/batch/). 
+3. **Version control and data lineage.** Code and data created in each step are persisted together in each run as immutable Metaflow Artifacts. By doing this, we have built-in data lineage within a flow, which tracks the data origin, what happens to it and where it moves through out the flow.
+4. **Data management.** Data read/write paths are automatically maintained since data is persisted in each run step. 
+5. **Steps as managed checkpoints.** We can resume from any step in any past run without recomputing from start.
+6. **Infrastructure as Code.** We can specify computation resource requirements in native R code.
+7. **Tight integration with AWS for easy scalability.** Scale out or schedule production runs in AWS without changing your r functions implementations.
+8. **Failure as features**. Robust end-to-end execution.
+9. **Collaboration.** Namespace and tags for organizing models and experiments across the team.
 
 ## Infrastructure Stack for Data Science
 
@@ -12,95 +30,61 @@ Models are only a small part of an end-to-end data science project. Production-g
 
 Data is accessed from a **data warehouse**, which can be a folder of files, a database, or a multi-petabyte data lake. The modeling code that crunches the data is executed in a **compute environment** which can range from a laptop to a large-scale container management system. A **job scheduler** is often used to orchestrate multiple units of work.
 
-How do you **architect** the code to be executed? Should you structure it as an object hierarchy, Python modules, or packages? How do you **version** the code, input data, and models produced? Preferably, data scientists wouldn't have to spend too much energy thinking about the software architecture.
+How do you **architect** the code to be executed? Should you structure it as an object hierarchy, R functions, or packages? How do you **version** the code, input data, and models produced? Preferably, data scientists wouldn't have to spend too much energy thinking about the software architecture.
 
 After the model has been deployed to production, **model operations** become a pertinent question: how do you keep the code running reliably in production? How do you monitor its performance? How do you deploy new versions of the code to run in parallel with the previous version? The software industry has spent over a decade perfecting DevOps best practices for normal software. We are just getting started with data science.
 
 At the very top of the stack there's the question of how you produce **features** for your models, and you **develop models** in the first place, maybe using off-the-shelf libraries. This is the area where the skills of a data scientist become most useful.
 
-Metaflow provides a unified, human-friendly approach to navigating the stack. Metaflow is more prescriptive about the lower levels of the stack but it is less opinionated about the actual data science at the top of the stack. You can use Metaflow with your favorite machine learning or data science libraries, such as [PyTorch](https://pytorch.org), [Tensorflow](https://tensorflow.org), or [SciKit Learn](https://scikit-learn.org/stable/). Metaflow allows you to write your models and business logic as idiomatic Python code with not much new to learn.
+Metaflow provides a unified, human-friendly approach to navigating the stack. Metaflow is more prescriptive about the lower levels of the stack but it is less opinionated about the actual data science at the top of the stack. Metaflow allows you to write your models and business logic as idiomatic R code with not much new to learn.
 
-Internally, Metaflow leverages existing infrastructure when feasible. In particular, it is [tightly integrated with Amazon Web Services](../metaflow-on-aws/metaflow-on-aws.md). The core value proposition of Metaflow is its integrated full-stack, human-centric API, rather than reinvention of the stack itself.
+Internally, Metaflow leverages existing infrastructure when feasible. In particular, it is [tightly integrated with Amazon Web Services](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow-on-aws/metaflow-on-aws.md). The core value proposition of Metaflow is its integrated full-stack, human-centric API, rather than reinvention of the stack itself.
 
 You can find more details about Metaflow's approach to various parts of the stack across the documentation:
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left"></th>
-      <th style="text-align:left"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left"><b>Model Development</b>
-      </td>
-      <td style="text-align:left">&lt;b&gt;&lt;/b&gt;<a href="../metaflow/dependencies.md">Managing External Libraries</a>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>Feature Engineering</b>
-      </td>
-      <td style="text-align:left">&lt;b&gt;&lt;/b&gt;<a href="../metaflow/data.md">Loading and Storing Data</a>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>Model Operations</b>
-      </td>
-      <td style="text-align:left">
-        <p><a href="../metaflow/debugging.md">Debugging with Metaflow</a> and <a href="../metaflow/failures.md">Dealing with Failures</a>
-        </p>
-        <p>(also see <a href="roadmap.md">Roadmap</a>)</p>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>Versioning</b>
-      </td>
-      <td style="text-align:left"><a href="../metaflow/client.md">Inspecting Flow and Results</a> and <a href="../metaflow/tagging.md">Organizing Results</a>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>Architecture</b>
-      </td>
-      <td style="text-align:left"><a href="../metaflow/basics.md">Basics of Metaflow</a>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>Job Scheduler </b>
-      </td>
-      <td style="text-align:left">coming soon, see <a href="roadmap.md">Roadmap</a>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>Compute Resources</b>
-      </td>
-      <td style="text-align:left"><a href="../metaflow/scaling.md">Scaling Out and Up</a>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>Data Warehouse</b>
-      </td>
-      <td style="text-align:left"><a href="../metaflow/basics.md">Basics of Metaflow</a> and <a href="../metaflow/data.md">Loading and Storing Data</a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+|  |  |
+| :--- | :--- |
 
-If you are an infrastructure person who wants to know how to deploy and operate Metaflow, take a look at [Administrator's Guide to Metaflow](https://admin-docs.metaflow.org).
 
-## Presentations about Metaflow 
+| **Model Development** | [Basics of Metaflow](../metaflow/basics.md) and [Debugging with Metaflow](../metaflow/debugging.md)          |
+| :--- | :---: |
 
-If you want to learn more, the Machine Learning Infrastructure team at Netflix has given a number of public presentations about Metaflow prior to its open-sourcing. You can find links to these presentations below. You can also read the original [open-source release announcement in the Netflix tech blog](https://netflixtechblog.com/open-sourcing-metaflow-a-human-centric-framework-for-data-science-fa72e04a5d9).
+
+| **Feature Engineering** | [ ](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow/data.md)[Basics of Metaflow](../metaflow/basics.md)  and  [Organizing Results](../metaflow/debugging.md) .              |
+| :--- | :---: |
+
+
+| **Model Operations** | [Debugging with Metaflow](../metaflow/debugging.md) and [Dealing with Failures](../metaflow/failures.md) . |
+| :--- | :---: |
+
+
+| **Versioning** |       [Inspecting Flow and Results](../metaflow/client.md) and [Organizing Results](../metaflow/tagging.md) |
+| :--- | :---: |
+
+
+| **Architecture** | [Basics of Metaflow](../metaflow/basics.md) .               |
+| :--- | :---: |
+
+
+| Compute Resources | [Scaling Out and Up](../metaflow/scaling.md)                          |
+| :--- | :---: |
+
+
+| **Data Warehouse** | [Basics of Metaflow](../metaflow/basics.md)                    |
+| :--- | :---: |
+
+
+If you want to learn more, the Machine Learning Infrastructure team at Netflix has given a number of public presentations about Metaflow prior to its open-sourcing. You can find links to these presentations below.
 
 For starters, this presentation gives a comprehensive overview of Metaflow:
 
-{% embed url="https://www.youtube.com/watch?v=XV5VGddmP24" %}
+{% embed url="https://www.youtube.com/watch?v=XV5VGddmP24" caption="" %}
 
 For other general overviews of Metaflow, see the [Overviews of Metaflow](https://www.youtube.com/playlist?list=PLGEBSHR02Xbg0oTf7OwZ_Kk86Zx96mAOb) playlist. For more technical details, see presentations about the [Internals of Metaflow](https://www.youtube.com/playlist?list=PLGEBSHR02XbhC-5Eqy7ERHxpuwiJHes4j).
 
 ## The Philosophy of Metaflow
 
-If you are eager to give Metaflow a try, head to the [tutorials](../getting-started/tutorials/). If you want to learn about the background of Metaflow in more detail, keep on reading. 
+If you are eager to give Metaflow a try, head to the [tutorials](../getting-started/tutorials/). If you want to learn about the background of Metaflow in more detail, keep on reading.
 
 Metaflow was originally designed and built to address practical pain points of data scientist at Netflix. Its design philosophy is influenced by [the unique culture at Netflix](https://jobs.netflix.com/culture). The following eight tenets summarize the philosophy of Metaflow:
 
@@ -144,7 +128,7 @@ We want to embrace the idea that most projects are continuous experiments, even 
 
 The fifth tenet suggested that the user should be able to scale a Metaflow project gradually. This applies both to time and space.
 
-We embrace the fact that Python is a slow but expressive language. We encourage our users to write idiomatic Python code initially, without worrying too much about performance. If performance becomes an issue, we can provide an arsenal of tools for gradual performance optimization from performance-oriented libraries like [Numpy](https://numpy.org/) to compilers such as [Numba](http://numba.pydata.org/).
+We embrace the fact that R is a slow but expressive language. We encourage our users to write idiomatic R code initially, without worrying too much about performance. If performance becomes an issue, we can provide an arsenal of tools for gradual performance optimization from performance-oriented libraries like Rcpp.
 
 We encourage our users to primarily rely on vertical scalability, which allows the user to focus on readable, straightforward code and easy operations. When the user hits the limits of vertical scalability, we make it easy to use horizontal, share-nothing parallelism, or hassle-free distributed learning provided e.g. by AWS Sagemaker.
 
