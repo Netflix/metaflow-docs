@@ -7,7 +7,6 @@
 * [Why Metaflow](introduction/why-metaflow.md)
 * [What is Metaflow](introduction/what-is-metaflow.md)
 * [Release Notes](introduction/release-notes.md)
-* [Roadmap](introduction/roadmap.md)
 * [Contributing to Metaflow](introduction/contributing-to-metaflow.md)
 * [Get in Touch](introduction/getting-in-touch.md)
 
