@@ -19,7 +19,7 @@ library(metaflow)
 
 start <- function(self){
     n <- rbinom(n=1, size=1, prob=0.5)
-    if (n == 0){
+    if (n==0){
         stop("Bad Luck!") 
     } else{
         print("Lucky you!")
@@ -116,8 +116,6 @@ If the same code is executed multiple times by `retry`, are there going to be du
 If you want to know if a task was retried, you can retrieve retry timestamps from `Task` metadata:
 
 ```r
-library(metaflow)
-
 task <- task_client$new("RetryFlow/181/start/1076")
 print(task$metadata_dict$attempt)
 ```
@@ -181,37 +179,43 @@ metaflow("CatchFlow") %>%
 
 As you can guess, the above flow raises an error. Normally, this would crash the whole flow. However, in this example the `catch` decorator catches the exception and stores it in an instance variable called `compute_failed`, and lets the execution continue. The next step, `join`, contains logic to handle the exception.
 
-The `var` argument is optional. The exception is not stored unless you specify it. You can also specify `print_exception=False` to prevent the `catch` decorator from printing out the caught exception on stdout.
+The `var` argument is optional. The exception is not stored unless you specify it. You can also specify `print_exception=FALSE` to prevent the `catch` decorator from printing out the caught exception on stdout.
 
 ### Platform Exceptions
 
-Platform issues happen outside of your code, for example, when you are not able to request a big AWS instance for an AWS Batch step. In this case so you can't handle them with a `tryCatch` block in your R script.
+You could have dealt with the above error by wrapping the whole step in a `tryCatch` block. In effect, this is how `catch` deals with errors raised in the user code.
+
+In contrast, platform issues happen outside of your code, so you can't handle them with a `tryCatch` block. For instance, an AWS Batch container may fail to start, a server the step runs on may fail abruptly, or your code may get killed if it uses too much memory.
+
+Let's simulate a platform issue like these with the following flow that kills itself without giving R a chance to recover:
 
 ```r
 library(metaflow)
 
-start <- function(self){
-    print("this runs on batch") 
+start <- function(self) {
+  library(tools)
+  pskill(Sys.getpid())
 }
 
-end <- function(self){
-    if (!is.null(self$start_failed)){
-        print("The previous step failed to start")
-    } else {
-        print("Phew!")
-    }
+end <- function(self) {
+  message(
+    "Error is : ", self$start_failed
+  )
 }
 
-metaflow("PlatformExceptionFlow") %>%
-    step(step="start", 
-         decorator("batch", cpu=96),
-         decorator("retry", times=3),
-         decorator("catch", var="start_failed")
-         r_function=start, 
-         next_step="end") %>%
-    step(step="end", 
-         r_function=end) %>% 
-    run()
+metaflow("SuicidalFlowR") %>%
+  step(
+    decorator("catch", var = "start_failed"),
+    decorator("retry"),
+    step = "start",
+    r_function = start,
+    next_step = "end"
+  ) %>%
+  step(
+    step = "end",
+    r_function = end
+  ) %>%
+  run()
 ```
 
 Note that we use both `retry` and `catch` above. `retry` attempts to run the step three times, hoping that the issue is transient. The hope is futile. The task kills itself every time.
