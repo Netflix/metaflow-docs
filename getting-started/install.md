@@ -1,14 +1,14 @@
 # Installing Metaflow
 
-## Installing Metaflow R in MacOS or Linux
+## MacOS/Linux
 
-Metaflow R is available on our [GitHub repository](https://github.com/Netflix/metaflow) and it's coming to CRAN soon. You can install Metaflow R package using `devtools` in R:
+Metaflow is available as an R package for MacOS and Linux. You can get it from our [GitHub repository](https://github.com/Netflix/metaflow) \(or very soon from CRAN\):
 
 ```r
-devtools::install_github("Netflix/metaflow@R-dev", subdir="R")
+devtools::install_github("Netflix/metaflow", subdir="R")
 ```
 
-Metaflow R runs on top of the Metaflow python package. You can install the python package in R by
+You can finish the installation by typing - 
 
 ```bash
 metaflow::install()
@@ -19,51 +19,43 @@ Metaflow requires **Python 3** in order to install the python package since Pyth
 {% endhint %}
 
 {% hint style="info" %}
-If you're inside a conda environment or python virtual environment managed by reticulate in R, you would want to install in non-user mode as below. See details in the [Troubleshooting](install.md#error-can-not-perform-a-user-install) section below on this topic.
+If you're inside a conda environment or a Python virtual env, you may want to disable the `user` mode. See details in the [Troubleshooting](install.md#error-can-not-perform-a-user-install) section below on this topic.
 
 ```bash
 metaflow::install(user=FALSE)
 ```
 {% endhint %}
 
-If you run into any issue. Please checkout the [Troubleshooting](install.md#troubleshooting) section below.
-
-To test that we have installed Metaflow successfully, use the following command to run a HelloWorld flow for sanity check
+You can test your installation by running:
 
 ```bash
 Sys.setenv("USERNAME" = 'mfuser')
 metaflow::test()
 ```
 
-You should be able to see an output like the following screenshot:
+If you see the message `Your Metaflow installation looks good!` congratulations! Now you can get started with Metaflow by following the [tutorial](tutorials/) or you can [jump straight into the docs](../metaflow/basics.md). 
 
-![](../.gitbook/assets/metaflow_r_test.png)
-
-Please let us know [here](https://chat.metaflow.org) if you run into issues with installation.
+![](../.gitbook/assets/screenshot-2020-08-04-at-3.16.18-pm.png)
 
 Now you are ready to get your hands dirty with the [Tutorials](tutorials/).
 
-## Installing Metaflow R in Windows 10 with WSL 2
+## Windows Support
 
-The [WSL](https://docs.microsoft.com/en-us/windows/wsl/about) \(Windows Subsystem for Linux\) lets developers run a GNU/Linux environment inside Windows 10. If you already have WSL 2 installed in Windows 10, the installation process should be the same as for MacOS or Linux. The steps below are instructions on how to setup WSL 2 with Ubuntu 18.04, install R 3.6, and install Metaflow R.  
-  
-Once you're done with Step 1 - 3, which sets up a Ubuntu 18.04 with R, the rest should be the same with installation in MacOS/Linux [above](install.md#installing-metaflow-r-in-macos-or-linux). 
+Metaflow currently doesn't offer native support for Windows. However, if you are using Windows 10, then you can use [WSL](https://docs.microsoft.com/en-us/windows/wsl/about) \(Windows Subsystem for Linux\) to install Metaflow. WSL lets you run a Linux environment inside Windows 10. 
 
-**Step 1**: Update your Windows 10 to be version 2004 or higher. Install WSL 2: please follow these [instructions](https://docs.microsoft.com/en-us/windows/wsl/install-win10). Choose Ubuntu 18.04 as the Linux distribution.
+Follow these instructions to get set up with WSL 2 - 
 
-**Step 2:** Install R version 3.6 or later. Open Ubuntu 18.04 on Windows and run the following commands
+1. Update your Windows 10 distribution to version 2004 or higher.
+2. Follow [these steps](https://docs.microsoft.com/en-us/windows/wsl/install-win10) to install WSL 2. When prompted, choose Ubuntu 18.04 as the Linux distribution.
+3. Open Ubuntu 18.04 on your workstation, and run the following commands in the terminal to install R and Python - 
 
-```bash
+```r
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
 sudo echo "deb http://cran.wustl.edu/bin/linux/ubuntu bionic-cran35/" | sudo tee -a /etc/apt/sources.list
 sudo apt update
 sudo apt install r-base r-base-dev
 sudo apt install libcurl4-openssl-dev libxml2-dev libssl-dev
-```
 
-**Step 3:** Install python3, pip3 and set them as alias for python, pip Inside Ubuntu 18.04 Windows
-
-```bash
 sudo apt-get install python3 python3-pip
 cat "alias python=python3; alias pip=pip3" > ~/.bash_aliases
 source ~/.bash_aliases
@@ -72,16 +64,9 @@ pip --version
 pip install numpy pandas --user
 ```
 
-**Step 4:** Install Metaflow R and run a test. Inside Ubuntu 18.04 on Windows, run R console and run the following commands
+\[Optional\] To set up RStudio IDE - 
 
-```r
-install.packages('devtools', INSTALL_opts = c('--no-lock'))
-devtools::install_github("netflix/metaflow@R-dev", subdir = "R")
-metaflow::install()
-metaflow::test()
-```
-
-**Step 5 \[Optional\]**: Setup RStudio Server in Ubuntu and access RStudio in a browser in Windows. Inside Ubuntu 18.04, run the following commands
+1. Inside Ubuntu 18.04 on Windows, run the following commands -
 
 ```r
 sudo apt install -y r-base r-base-core r-recommended r-base-dev gdebi-core build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev
@@ -92,11 +77,23 @@ sudo rstudio-server start
 
 You can access RStudio at [http://localhost:8787](http://localhost:8787) in your browser in Windows.
 
+To install Metaflow - 
+
+1. Inside Ubuntu 18.04 on Windows, open the R console \(or your RStudio IDE installed in the previous step\) and run the following commands -
+
+```r
+install.packages('devtools', INSTALL_opts = c('--no-lock'))
+devtools::install_github("netflix/metaflow@R-dev", subdir = "R")
+metaflow::install()
+
+metaflow::test()
+```
+
 ## Troubleshooting
 
 ### ERROR: Can not perform a '--user' install
 
-If you see an error message **`ERROR: Can not perform a '--user' install`**when running `metaflow::install()`, which may happen when your R runs inside a python virtual environment, please run install in non-user mode:
+You might see an error message `ERROR: Can not perform a '--user' install`when running `metaflow::install()`, when your Python interpreter is provisioned by a virtual environment. To unblock yourself, please install by disabling the \`user\` mode:
 
 ```r
 metaflow::install(user=FALSE)
@@ -104,7 +101,7 @@ metaflow::install(user=FALSE)
 
 ### Error: Python shared library not found
 
-If you see an error message **`Error: Python shared library not found`** when running `metaflow::install()`, you can setup a miniconda python environment using R library `reticulate` and run install inside the conda environment
+If you see an error message `Error: Python shared library not found` when running `metaflow::install()`, you can set up a conda environment via `reticulate` and continue your installation inside that conda environment:
 
 ```r
 reticulate::install_miniconda()
@@ -114,17 +111,11 @@ metaflow::install(user=FALSE)
 
 ### ModuleNotFoundError: No module named 'metaflow'
 
-If you see the error message `ModuleNotFoundError: No module named 'metaflow'` right after `metaflow::install()`, please restart your R session. If this does not help, try installing in a conda environment
-
-```r
-reticulate::install_miniconda()
-reticulate::use_miniconda()
-metaflow::install(user=FALSE)
-```
+If you see the error message `ModuleNotFoundError: No module named 'metaflow'` right after `metaflow::install()`, please restart your R session. If this does not help, try installing in a conda environment as mentioned in the previous subsection.
 
 ### Metaflow could not determine your user name based on environment variables
 
-You can set the `USERNAME` environment variable either in bash or in R before running `metaflow::test()`
+You need to set the `USERNAME` environment variable either in bash or in R before running `metaflow::test()`
 
 {% tabs %}
 {% tab title="Bash" %}
