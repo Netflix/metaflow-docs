@@ -18,55 +18,58 @@ This section focuses specifically on using Batch to scale up and out: you can us
 
 This section presents the tools available in Metaflow for scaling up and out.
 
-## Requesting resources with `resources` decorator on AWS Batch
+## Requesting resources with `resources` decorator
 
 Consider the following example:
 
 ```r
 library(metaflow)
 
-start <- function(self){
-    n <- 10000 
-    # 800MB artifact
-    self$large <- matrix(1:n*n, nrow=n, ncol=n)
+start <- function(self) {
+  big_matrix <- matrix(rexp(80000*80000), 80000)
+  self$sum <- sum(big_matrix)
 }
 
-end <- function(self){
-    print(sum(self$large))
+end <- function(self) {
+  message(
+    "sum is: ", self$sum
+  )
 }
 
-metaflow("BigSumFlow") %>%
-    step(step="start", 
-         decorator("resources", cpu=4, memory=40960),
-         r_function=start, 
-         next_step="end") %>%
-    step(step="end", 
-         decorator("resources", cpu=4, memory=40960),
-         r_function=end) %>% 
-    run(batch=TRUE)
+metaflow("BigSumFlowR") %>%
+  step(
+    decorator("resources", memory=60000, cpu=1),
+    step = "start",
+    r_function = start,
+    next_step = "end"
+  ) %>%
+  step(
+    step = "end",
+    r_function = end
+  ) %>%
+  run()
 ```
 
-This example creates a `800MB` matrix, `large`. We're requestign 4GB of RAM and 4 CPUs on batch for this run.
+This example creates a huge 80000x80000 random matrix, `big_matrix`. The matrix requires about 80000^2 \* 8 bytes = 48GB of memory. 
 
-The `resources` decorator suggests resource requirements for a step. The `memory` argument specifies the amount of RAM in megabytes and `cpu` the number of CPU cores requested.
+If you attempt to run this on your local machine, it is likely that the following will happen:
+
+```bash
+Evaluation error: vector memory exhausted (limit reached?).
+```
+
+This fails quickly due to a `MemoryError` on most laptops as we are unable to allocate 48GB of memory. 
+
+The `resources` decorator suggests resource requirements for a step. The `memory` argument specifies the amount of RAM in megabytes and `cpu` the number of CPU cores requested. It does not produce the resources magically, which is why the run above failed.
+
+## Using AWS Batch
 
 The `resources` decorator gains all its power in collaboration with Batch execution. Note that for this section, you will need to have Metaflow working in an AWS cloud environment \(either having [deployed it yourself](../metaflow-on-aws/deploy-to-aws.md) or running in the [Metaflow sandbox](../metaflow-on-aws/metaflow-sandbox.md)\)
 
-You can instruct Metaflow to run all your steps on AWS Batch in two ways:
-
-1. using command line options
+With the following command, you instruct Metaflow to run all your steps on AWS Batch:
 
 ```bash
-$ Rscript bigsumflow.R run --with batch
-```
-
-1. using programmatic options in the `run(..)` object for example
-
-```r
-metaflow("BigSumFlow") %>%
- step(...) %>%
- step(...) %>% 
- run(batch=TRUE)
+Rscript bigsumflow.R run --with batch
 ```
 
 The `--with batch` option instructs Metaflow to run all tasks as separate AWS Batch jobs, instead of using a local process for each task. It has the same effect as adding `@batch` decorator to all steps in the code.
@@ -79,30 +82,7 @@ In addition to `cpu` and `memory` you can specify `gpu=N` to request N GPUs for 
 
 A close relative of the `resources` decorator is `batch`. It takes exactly the same keyword arguments as `resources` but instead of being a mere suggestion, it forces the step to be run on AWS Batch.
 
-The main benefit of `batch` is that you can selectively run some steps locally and some on AWS Batch.
-
-```r
-library(metaflow)
-
-start <- function(self){
-    n <- 10000 
-    # 800MB artifact
-    self$large <- matrix(1:n*n, nrow=n, ncol=n)
-}
-
-end <- function(self){
-    print(sum(self$large))
-}
-
-metaflow("BigSumFlow") %>%
-    step(step="start", 
-         decorator("batch", cpu=4, memory=4096),
-         r_function=start, 
-         next_step="end") %>%
-    step(step="end", 
-         r_function=end) %>% 
-    run()
-```
+The main benefit of `batch` is that you can selectively run some steps locally and some on AWS Batch. In the example above, try replacing `resources` with `batch` and run it again.
 
 You will see that the `start` step gets executed on an AWS Batch instance but the `end` step, which does not need special resources, is executed locally without the additional latency of launching a AWS Batch job. Executing a [`foreach`](basics.md#foreach) step launches parallel AWS Batch jobs with the specified resources for the step.
 
@@ -110,21 +90,21 @@ You will see that the `start` step gets executed on an AWS Batch instance but th
 
 Here are some useful tips and tricks related to running Metaflow on AWS Batch.
 
-#### **How much `@resources` can I request?**
+#### **How much `resources` can I request?**
 
 Here are the current defaults for different resource types:
 
 * `cpu`: 1
 * `memory`: 4000 \(4GB\)
 
-When setting `@resources`, keep in mind the configuration of your AWS Batch Compute Environment. Your job will be stuck in a `RUNNABLE` state if AWS is unable to provision the requested resources. Additionally, as a good measure, don't request more resources than what your workflow actually needs. On the other hand, never optimize resources prematurely.
+When setting `resources`, keep in mind the configuration of your AWS Batch Compute Environment. Your job will be stuck in a `RUNNABLE` state if AWS is unable to provision the requested resources. Additionally, as a good measure, don't request more resources than what your workflow actually needs. On the other hand, never optimize resources prematurely.
 
-You can place your AWS Batch task in a specific queue by using the `queue` argument. By default, all tasks execute on a an R docker image \[TODO:add link\] and can be overridden using the `image` argument.
+You can place your AWS Batch task in a specific queue by using the `queue` argument. By default, all tasks execute on an appropriate [Rocker docker image](https://hub.docker.com/r/rocker/ml), unless overridden by the `image` argument.
 
 You can also specify the resource requirements on command line as well:
 
 ```bash
-$ Rscript bigsumflow.R run --with batch:cpu=4,memory=10000,queue=default,image=ubuntu:latest
+Rscript bigsumflow.R run --with batch:cpu=4,memory=10000,queue=default,image=ubuntu:latest
 ```
 
 #### My job is stuck in `RUNNABLE` state. What do I do?
@@ -140,37 +120,37 @@ If you want to make sure you have no AWS Batch tasks running, or you want to man
 You can easily see what AWS Batch tasks were launched by your latest run with
 
 ```bash
-$ Rscript myflow.R batch list
+Rscript myflow.R batch list
 ```
 
 You can kill the tasks started by the latest run with
 
 ```bash
-$ Rscript myflow.R batch kill
+Rscript myflow.R batch kill
 ```
 
 If you have started multiple runs, you can make sure there are no orphaned tasks still running with
 
 ```bash
-$ Rscript myflow.R batch list --my-runs
+Rscript myflow.R batch list --my-runs
 ```
 
 You can kill the tasks started by the latest run with
 
 ```bash
-$ Rscript myflow.R batch kill --my-runs
+Rscript myflow.R batch kill --my-runs
 ```
 
 If you see multiple runs running, you can cherry-pick a specific job, e.g. 456, to be killed as follows
 
 ```bash
-$ Rscript myflow.R batch kill --run-id 456
+Rscript myflow.R batch kill --run-id 456
 ```
 
 If you are working with another person, you can see and kill their tasks related to this flow with
 
 ```bash
-$ python myflow.R batch kill --user willsmith
+Rscript myflow.R batch kill --user savin
 ```
 
 Note that all the above commands only affect the flow defined in your script. You can work on many flows in parallel and be confident that `kill` kills tasks only related to the flow you called `kill` with.
@@ -182,13 +162,13 @@ It is almost too easy to launch AWS Batch jobs with Metaflow. A foreach branch w
 To safeguard against inadvertent launching of many parallel Batch jobs, the `run` and `resume` commands have a flag `--max-num-splits` which fails the task if it attempts to launch more than 100 splits by default. Use the flag to increase the limit if you actually need more tasks.
 
 ```bash
-$ Rscript myflow.R run --max-num-splits 200
+Rscript myflow.R run --max-num-splits 200
 ```
 
 Another flag, `--max-workers`, limits the number of tasks run in parallel. Even if a foreach launched 100 splits, `--max-workers` would make only 16 \(by default\) of them run in parallel at any point in time. If you want more parallelism, increase the value of `--max-workers`.
 
 ```bash
-$ Rscript myflow.R run --max-workers 32
+Rscript myflow.R run --max-workers 32
 ```
 
 #### **Accessing AWS Batch logs**
@@ -196,7 +176,7 @@ $ Rscript myflow.R run --max-workers 32
 As a convenience feature, you can also see the logs of any past step as follows:
 
 ```bash
-$ Rscript bigsumflow.R logs 15/end
+Rscript bigsumflow.R logs 15/end
 ```
 
 ### Disk space
@@ -205,7 +185,7 @@ You can request higher disk space on AWS Batch instances by using an unmanaged C
 
 ### Large data artifacts
 
-Metaflow R package runs on top of Metaflow Python package, which uses Python's default object serialization format, [Pickle](https://docs.python.org/3/library/pickle.html), to persist data artifacts.
+Metaflow uses Python's default object serialization format, [Pickle](https://docs.python.org/3/library/pickle.html), to persist data artifacts.
 
-Unfortunately Python was not able to pickle objects larger than 2GB prior to Python 3.5. If you need to store large data artifacts, such as a large data frame, using a recent version of Python 3 for Metaflow Python package is highly recommended.
+Unfortunately Python was not able to pickle objects larger than 2GB prior to Python 3.5. If you need to store large data artifacts, such as a large data frame, using a recent version of Python 3 is highly recommended.
 
