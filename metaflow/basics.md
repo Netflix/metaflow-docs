@@ -189,7 +189,7 @@ metaflow("ParameterFlow") %>%
     run()
 ```
 
-Parameters are defined by assigning a `Parameter` object to a class variable. Parameter variables are automatically available in all steps, like `alpha` above.
+Parameters are defined by using the method `parameter` . Parameter variables are automatically available in all steps, like `alpha` above.
 
 You can set the parameter values on the command line as follows:
 
@@ -205,10 +205,10 @@ Rscript parameter_flow.R run --help
 
 Parameters are typed based on the type of their default value. If there is no meaningful default for a parameter, you can define it as follows:
 
-```python
-parameter('num_components',
-          help='Number of components',
-          required=True,
+```r
+parameter("num_components",
+          help="Number of components",
+          required=TRUE,
           type="int")
 ```
 
