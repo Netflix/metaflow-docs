@@ -57,7 +57,7 @@ sudo apt install r-base r-base-dev
 sudo apt install libcurl4-openssl-dev libxml2-dev libssl-dev
 
 sudo apt-get install python3 python3-pip
-cat "alias python=python3; alias pip=pip3" > ~/.bash_aliases
+echo "alias python=python3; alias pip=pip3" > ~/.bash_aliases
 source ~/.bash_aliases
 python --version
 pip --version
