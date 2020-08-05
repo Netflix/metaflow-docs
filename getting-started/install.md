@@ -83,7 +83,7 @@ To install Metaflow -
 
 ```r
 install.packages('devtools', INSTALL_opts = c('--no-lock'))
-devtools::install_github("netflix/metaflow@R-dev", subdir = "R")
+devtools::install_github("netflix/metaflow", subdir = "R")
 metaflow::install()
 
 metaflow::test()
