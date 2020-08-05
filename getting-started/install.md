@@ -101,7 +101,7 @@ metaflow::install(user=FALSE)
 
 ### Error: Python shared library not found
 
-If you see an error message `Error: Python shared library not found` when running `metaflow::install()`, you can set up a conda environment via `reticulate` and continue your installation inside that conda environment:
+If you see an error message `Error: Python shared library not found` when running `metaflow::install()`, you can set up a [conda environment](https://docs.conda.io/en/latest/) via `reticulate` and continue your installation inside that conda environment. Here we create a conda environment - `metaflow-env` :
 
 ```r
 reticulate::install_miniconda()
