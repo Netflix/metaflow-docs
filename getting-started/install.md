@@ -106,7 +106,9 @@ If you see an error message `Error: Python shared library not found` when runnin
 ```r
 reticulate::install_miniconda()
 reticulate::use_miniconda()
-metaflow::install(user=FALSE)
+reticulate::conda_create(envname = "metaflow-env", packages = "python")
+reticulate::use_condaenv(condaenv="metaflow-env", required = T)
+metaflow::install()
 ```
 
 ### ModuleNotFoundError: No module named 'metaflow'
