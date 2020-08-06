@@ -49,6 +49,22 @@ metaflow("LinearFlow") %>%
     run()
 ```
 
+You can execute this directly in your RStudio IDE or via the terminal:
+
+{% tabs %}
+{% tab title="Terminal" %}
+```bash
+Rscript myflow.R run
+```
+{% endtab %}
+
+{% tab title="RStudio" %}
+```
+# Execute as is
+```
+{% endtab %}
+{% endtabs %}
+
 Besides executing the steps `start`, `a`, and `end` in order, this flow creates **a data artifact** called `my_var`. In Metaflow, data artifacts are created simply by assigning values to `$`-indexed variables under the `self` object such as `self$my_var`.
 
 Data artifacts are available in all steps after they have been created, so they behave like any normal instance variables. An exception to this rule is branching, as explained below.
@@ -156,9 +172,21 @@ A downside of making steps too granular is that checkpointing adds some overhead
 
 Another important consideration is the readability of your code. Try running
 
+{% tabs %}
+{% tab title="Terminal" %}
 ```bash
 Rscript myflow.R show
 ```
+{% endtab %}
+
+{% tab title="RStudio" %}
+```
+# Replace run() in myflow.R with
+# run(show = TRUE)
+# and execute in RStudio
+```
+{% endtab %}
+{% endtabs %}
 
 which prints out the steps of your flow. Does the overview give you a good idea of your code? If the steps are too broad, it might make sense to split them up just to make the overall flow more descriptive.
 
@@ -193,15 +221,39 @@ Parameters are defined by using the method `parameter` . Parameter variables are
 
 You can set the parameter values on the command line as follows:
 
+{% tabs %}
+{% tab title="Terminal" %}
 ```bash
 Rscript parameter_flow.R run --alpha 0.6
 ```
+{% endtab %}
+
+{% tab title="RStudio" %}
+```
+# Replace run() in parameter_flow.R with
+# run(alpha = 0.6)
+# and execute in RStudio
+```
+{% endtab %}
+{% endtabs %}
 
 You can see available parameters with:
 
+{% tabs %}
+{% tab title="Terminal" %}
 ```bash
 Rscript parameter_flow.R run --help
 ```
+{% endtab %}
+
+{% tab title="RStudio" %}
+```
+# Replace run() in parameter_flow.R with
+# run(help = TRUE)
+# and execute in RStudio
+```
+{% endtab %}
+{% endtabs %}
 
 Parameters are typed based on the type of their default value. If there is no meaningful default for a parameter, you can define it as follows:
 
@@ -212,9 +264,9 @@ parameter("num_components",
           type="int")
 ```
 
-Now the flow can not be run without setting `--num_components` to an integer value.
+Now the flow can not be run without setting `num_components` to an integer value.
 
-You can also put down the type as `int`/`float`/`double`/`bool`.
+You can set the type as `int`, `float`, `double` or `bool`.
 
 ## Data flow through the graph
 
