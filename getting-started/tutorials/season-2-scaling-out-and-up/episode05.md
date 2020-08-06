@@ -18,8 +18,8 @@ Configure your [sandbox](../../../metaflow-on-aws/metaflow-sandbox.md).
 
 If you haven't yet pulled the tutorials to your current working directory, you can follow the instructions [here](../#pull-tutorials). 
 
-1. `cd tutorials` 
-2. `Rscript 04-helloaws/helloaws.R run` 
+1. `cd tutorials/04-helloaws` 
+2. `Rscript helloaws.R run` 
 3. Open `helloaws.md` in your local RStudio
 
 ```r

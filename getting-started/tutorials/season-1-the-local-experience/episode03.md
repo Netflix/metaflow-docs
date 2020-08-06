@@ -14,9 +14,9 @@ Run 'Episode 02-statistics: Is this Data Science?'
 
 If you haven't yet pulled the tutorials to your current working directory, you can follow the instructions [here](../#pull-tutorials). 
 
-1. `cd tutorials`
-2. `Rscript 03-playlist-redux/playlist.R show`
-3. `Rscript 03-playlist-redux/playlist.R run`
+1. `cd tutorials/03-playlist-redux`
+2. `Rscript playlist.R show`
+3. `Rscript playlist.R run`
 
 ![](../../../.gitbook/assets/tutorial-episode-3.png)
 

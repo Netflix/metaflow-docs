@@ -13,9 +13,9 @@ This flow is a simple linear workflow that verifies your installation by printin
 
 If you haven't yet pulled the tutorials to your current working directory, you can follow the instructions [here](../#pull-tutorials). 
 
-1. `cd tutorials`
-2. `Rscript 00-helloworld/helloworld.R show`
-3. `Rscript 00-helloworld/helloworld.R run`
+1. `cd tutorials/00-helloworld`
+2. `Rscript helloworld.R show`
+3. `Rscript helloworld.R run`
 
 ![](../../../.gitbook/assets/tutorial-episode-0.png)
 

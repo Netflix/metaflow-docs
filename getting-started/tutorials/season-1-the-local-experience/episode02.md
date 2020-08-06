@@ -13,10 +13,10 @@ You can optionally use the Metaflow client to eyeball the results in a Markdown 
 
 If you haven't yet pulled the tutorials to your current working directory, you can follow the instructions [here](../#pull-tutorials). 
 
-1. `cd tutorials`
-2. `Rscript 02-statistics/stats.R show`
-3. `Rscript 02-statistics/stats.R run`
-4. Open `02-statistics/stats.Rmd` in RStudio
+1. `cd tutorials/02-statistics`
+2. `Rscript stats.R show`
+3. `Rscript stats.R run`
+4. Open `stats.Rmd` in RStudio
 
 The dataset `movies.csv` is the same one as in Episode 01, which looks like this The dataset looks like this
 

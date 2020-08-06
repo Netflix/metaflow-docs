@@ -12,11 +12,11 @@ This flow loads a movie metadata CSV file and builds a playlist for your favorit
 
 If you haven't yet pulled the tutorials to your current working directory, you can follow the instructions [here](../#pull-tutorials). 
 
-1. `cd tutorials`
-2. `Rscript 01-playlist/playlist.R show`
-3. `Rscript 01-playlist/playlist.R run`
-4. `Rscript 01-playlist/playlist.R run --genre comedy`
-5. Open `01-playlist/playlist.Rmd` in RStudio.
+1. `cd tutorials/01-playlist`
+2. `Rscript playlist.R show`
+3. `Rscript playlist.R run`
+4. `Rscript playlist.R run --genre comedy`
+5. Open `playlist.Rmd` in RStudio.
 
 ## Dataset and flow script
 
