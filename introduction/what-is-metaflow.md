@@ -10,6 +10,16 @@ Under the hood, Metaflow uses the [Python version](https://docs.metaflow.org) of
 
 We love the data science ecosystem provided by the R community, for example, the [tidyverse](https://www.tidyverse.org/) package suite, ergonomic [data wrangling](https://dplyr.tidyverse.org/) tools, slick interactive communication tools such as [Shiny](https://shiny.rstudio.com/),  a data science-oriented IDE [RStudio](https://rstudio.com/), and cutting-edge libraries for statistical computing on [CRAN](https://cran.r-project.org/web/packages/available_packages_by_name.html). However, oftentimes, it is left to the data scientist to string together all these amazing tools to get their job done, adding to their burden. Metaflow provides a better [infrastructure stack](what-is-metaflow.md#infrastructure-stack-for-data-science) for data scientists in the R community in an idiomatic manner so that they can focus their energy on data science rather than engineering.
 
+## Should I Use Metaflow?
+
+If you are working on an existing data science project, or you are planning to start a new one, consider the following questions:
+
+1. **Scalability**: Do you need more than one laptop-size computer in the project?
+2. **Criticality**: Is it important that results are produced correctly and in a timely manner?
+3. **Complexity**: Does the project have many moving pieces or many people working together?
+
+If you answered "yes" to any of the above, keep reading - Metaflow can help you. If the answer is "no" to all of the above, which is a valid scenario e.g. when you are doing small-scale experiments on your laptop, Metaflow won't provide much benefit for you. You should come back when your project is moving to the next stage!
+
 ## Infrastructure Stack for Data Science
 
 Models are only a small part of an end-to-end data science project. Production-grade projects rely on a thick stack of infrastructure. At the minimum, projects need data and a way to perform computation on it. In a business environment like Netflix's, a typical data science project touches all layers of the stack depicted below:
