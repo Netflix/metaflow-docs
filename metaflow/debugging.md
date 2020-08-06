@@ -26,6 +26,7 @@ The `resume` command allows you to resume execution of a past run at a failed st
 
 Here is how it works. First, save the snippet below :
 
+{% code title="debugflow.R" %}
 ```r
 library(metaflow)
 
@@ -58,6 +59,7 @@ metaflow("DebugFlow") %>%
     step(step="end") %>%
     run()
 ```
+{% endcode %}
 
 Run the script with:
 
@@ -102,7 +104,7 @@ Rscript debugflow.R resume
 
 {% tab title="RStudio" %}
 ```
-# Replace run() in debug.R with
+# Replace run() in debugflow.R with
 # run(resume = TRUE)
 # and execute in RStudio
 ```
@@ -122,7 +124,7 @@ Rscript debugflow.R resume --origin-run-id 153
 
 {% tab title="RStudio" %}
 ```
-# Replace run() in debug.R with
+# Replace run() in debugflow.R with
 # run(resume = TRUE, origin_run_id = "153")
 # and execute in RStudio
 ```
@@ -166,7 +168,7 @@ Rscript debugflow.R resume start
 
 {% tab title="RStudio" %}
 ```
-# Replace run() in debug.R with
+# Replace run() in debugflow.R with
 # run(resume = "start")
 # and execute in RStudio
 ```

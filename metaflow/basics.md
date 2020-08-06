@@ -22,6 +22,7 @@ Here is a graph with two linear transitions:
 
 The corresponding Metaflow script looks like this:
 
+{% code title="myflow.R" %}
 ```r
 library(metaflow)
 
@@ -48,6 +49,7 @@ metaflow("LinearFlow") %>%
          r_function=end) %>% 
     run()
 ```
+{% endcode %}
 
 You can execute this directly in your RStudio IDE or via the terminal:
 
@@ -194,6 +196,7 @@ which prints out the steps of your flow. Does the overview give you a good idea 
 
 Here is an example of a flow that defines a parameter, `alpha`:
 
+{% code title="parameter\_flow.R" %}
 ```r
 library(metaflow)
 
@@ -216,6 +219,7 @@ metaflow("ParameterFlow") %>%
          r_function=end) %>% 
     run()
 ```
+{% endcode %}
 
 Parameters are defined by using the method `parameter` . Parameter variables are automatically available in all steps, like `alpha` above.
 
