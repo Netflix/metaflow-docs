@@ -22,6 +22,7 @@ This section presents the tools available in Metaflow for scaling up and out.
 
 Consider the following example:
 
+{% code title="bigsumflow.R" %}
 ```r
 library(metaflow)
 
@@ -49,6 +50,7 @@ metaflow("BigSumFlowR") %>%
   ) %>%
   run()
 ```
+{% endcode %}
 
 This example creates a huge 80000x80000 random matrix, `big_matrix`. The matrix requires about 80000^2 \* 8 bytes = 48GB of memory. 
 
@@ -77,7 +79,7 @@ Rscript bigsumflow.R run --with batch
 
 {% tab title="RStudio" %}
 ```
-# Replace run() in flow.R with
+# Replace run() in bigsumflow.R with
 # run(batch = TRUE)
 # and execute in RStudio
 ```
@@ -134,7 +136,7 @@ Rscript myflow.R batch list
 
 {% tab title="RStudio" %}
 ```
-# Replace run() in flow.R with
+# Replace run() in myflow.R with
 # run(batch = "list")
 # and execute in RStudio
 ```
@@ -152,7 +154,7 @@ Rscript myflow.R batch kill
 
 {% tab title="RStudio" %}
 ```
-# Replace run() in flow.R with
+# Replace run() in myflow.R with
 # run(batch = "kill")
 # and execute in RStudio
 ```
@@ -170,7 +172,7 @@ Rscript myflow.R batch list --my-runs
 
 {% tab title="RStudio" %}
 ```
-# Replace run() in flow.R with
+# Replace run() in myflow.R with
 # run(batch = "list", my_runs = TRUE)
 # and execute in RStudio
 ```
@@ -188,7 +190,7 @@ Rscript myflow.R batch kill --my-runs
 
 {% tab title="RStudio" %}
 ```
-# Replace run() in flow.R with
+# Replace run() in myflow.R with
 # run(batch = "kill", my_runs = TRUE)
 # and execute in RStudio
 ```
@@ -206,7 +208,7 @@ Rscript myflow.R batch kill --run-id 456
 
 {% tab title="RStudio" %}
 ```
-# Replace run() in flow.R with
+# Replace run() in myflow.R with
 # run(batch = "kill", run_id = "456")
 # and execute in RStudio
 ```
@@ -224,7 +226,7 @@ Rscript myflow.R batch kill --user savin
 
 {% tab title="RStudio" %}
 ```
-Replace run() in flow.R with
+Replace run() in myflow.R with
 # run(batch = "kill", user = "savin")
 # and execute in RStudio
 ```
@@ -237,6 +239,7 @@ Note that all the above commands only affect the flow defined in your script. Yo
 
 It is almost too easy to launch AWS Batch jobs with Metaflow. A foreach branch with `1000` parameters would launch 1000 parallel Batch instances which may turn out to be quite expensive.
 
+{% code title="myflow.R" %}
 ```bash
 a <- function(self) {
   ...
@@ -250,6 +253,7 @@ a <- function(self) {
     ...
   )
 ```
+{% endcode %}
 
 To safeguard against inadvertent launching of many parallel Batch jobs, the `run` and `resume` commands have a flag `--max-num-splits` which fails the task if it attempts to launch more than 100 splits by default. Use the flag to increase the limit if you actually need more tasks.
 
@@ -300,7 +304,7 @@ Rscript bigsumflow.R logs 15/end
 
 {% tab title="RStudio" %}
 ```
-# Replace run() in bigsum.R with
+# Replace run() in bigsumflow.R with
 # run(logs = "15/end")
 # and execute in RStudio
 ```
