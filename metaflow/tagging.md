@@ -84,11 +84,25 @@ The `user:` tag is assigned by Metaflow automatically. In addition to automatica
 
 An easy way to add tags is the `--tag` command line option. You can add multiple tags with multiple `--tag` options. For instance, this will annotate a `HelloFlow` run with a tag `crazy_test`.
 
+{% tabs %}
+{% tab title="Terminal" %}
 ```bash
 Rscript helloworld.R run --tag crazy_test
 ```
+{% endtab %}
+
+{% tab title="RStudio" %}
+```
+# Replace run() in helloworld.R with
+# run(tag = c("crazy_test"))
+# and execute in RStudio
+```
+{% endtab %}
+{% endtabs %}
 
 The `--tag` option assigns the specified tag to all objects produced by the run: the run itself, its steps, tasks, and data artifacts.
+
+### Accessing Tags
 
 You can access runs \(or steps or tasks\) with a certain tag easily using the Client API:
 
@@ -134,6 +148,7 @@ However, in some cases you may need to deal with IDs explicitly. For instance, i
 
 For this purpose, Metaflow provides a singleton object `current` that represents the identity of the currently running task. Use it in your `FlowSpec` to retrieve current IDs of interest:
 
+{% code title="current\_flow.R" %}
 ```r
 library(metaflow)
 
@@ -154,6 +169,7 @@ metaflow("CurrentFlow") %>%
     step(step="end") %>% 
     run()
 ```
+{% endcode %}
 
 You can see the output
 
@@ -174,9 +190,21 @@ For regular `run` invocations, the value of `current("origin_run_id")` is `NULL`
 
 If a user explicitly overrides the CLI option `--origin-run-id`, the `current` singleton would reflect that value. Suppose we invoked `resume` for the above script to re-run everything from `start` without explicitly overriding the CLI option `origin-run-id`, we can see the value chosen by Metaflow using the `current` singleton:
 
+{% tabs %}
+{% tab title="Terminal" %}
 ```r
 Rscript current_flow.R resume start
 ```
+{% endtab %}
+
+{% tab title="RStudio" %}
+```
+# Replace run() in current_flow.R with
+# run(resume = "start")
+# and execute in RStudio
+```
+{% endtab %}
+{% endtabs %}
 
 You should see the `origin_run_id` used by the `resume` in the output \(the exact value for you might be different\):
 

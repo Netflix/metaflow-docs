@@ -68,9 +68,21 @@ The `resources` decorator gains all its power in collaboration with Batch execut
 
 With the following command, you instruct Metaflow to run all your steps on AWS Batch:
 
+{% tabs %}
+{% tab title="Terminal" %}
 ```bash
 Rscript bigsumflow.R run --with batch
 ```
+{% endtab %}
+
+{% tab title="RStudio" %}
+```
+# Replace run() in flow.R with
+# run(batch = TRUE)
+# and execute in RStudio
+```
+{% endtab %}
+{% endtabs %}
 
 The `--with batch` option instructs Metaflow to run all tasks as separate AWS Batch jobs, instead of using a local process for each task. It has the same effect as adding `@batch` decorator to all steps in the code.
 
@@ -101,12 +113,6 @@ When setting `resources`, keep in mind the configuration of your AWS Batch Compu
 
 You can place your AWS Batch task in a specific queue by using the `queue` argument. By default, all tasks execute on an appropriate [Rocker docker image](https://hub.docker.com/r/rocker/ml), unless overridden by the `image` argument.
 
-You can also specify the resource requirements on command line as well:
-
-```bash
-Rscript bigsumflow.R run --with batch:cpu=4,memory=10000,queue=default,image=ubuntu:latest
-```
-
 #### My job is stuck in `RUNNABLE` state. What do I do?
 
 Consult [this article](https://docs.aws.amazon.com/batch/latest/userguide/troubleshooting.html#job_stuck_in_runnable).
@@ -119,39 +125,111 @@ If you want to make sure you have no AWS Batch tasks running, or you want to man
 
 You can easily see what AWS Batch tasks were launched by your latest run with
 
+{% tabs %}
+{% tab title="Terminal" %}
 ```bash
 Rscript myflow.R batch list
 ```
+{% endtab %}
+
+{% tab title="RStudio" %}
+```
+# Replace run() in flow.R with
+# run(batch = "list")
+# and execute in RStudio
+```
+{% endtab %}
+{% endtabs %}
 
 You can kill the tasks started by the latest run with
 
+{% tabs %}
+{% tab title="Terminal" %}
 ```bash
 Rscript myflow.R batch kill
 ```
+{% endtab %}
+
+{% tab title="RStudio" %}
+```
+# Replace run() in flow.R with
+# run(batch = "kill")
+# and execute in RStudio
+```
+{% endtab %}
+{% endtabs %}
 
 If you have started multiple runs, you can make sure there are no orphaned tasks still running with
 
+{% tabs %}
+{% tab title="Terminal" %}
 ```bash
 Rscript myflow.R batch list --my-runs
 ```
+{% endtab %}
+
+{% tab title="RStudio" %}
+```
+# Replace run() in flow.R with
+# run(batch = "list", my_runs = TRUE)
+# and execute in RStudio
+```
+{% endtab %}
+{% endtabs %}
 
 You can kill the tasks started by the latest run with
 
+{% tabs %}
+{% tab title="Terminal" %}
 ```bash
 Rscript myflow.R batch kill --my-runs
 ```
+{% endtab %}
+
+{% tab title="RStudio" %}
+```
+# Replace run() in flow.R with
+# run(batch = "kill", my_runs = TRUE)
+# and execute in RStudio
+```
+{% endtab %}
+{% endtabs %}
 
 If you see multiple runs running, you can cherry-pick a specific job, e.g. 456, to be killed as follows
 
+{% tabs %}
+{% tab title="Terminal" %}
 ```bash
 Rscript myflow.R batch kill --run-id 456
 ```
+{% endtab %}
+
+{% tab title="RStudio" %}
+```
+# Replace run() in flow.R with
+# run(batch = "kill", run_id = "456")
+# and execute in RStudio
+```
+{% endtab %}
+{% endtabs %}
 
 If you are working with another person, you can see and kill their tasks related to this flow with
 
+{% tabs %}
+{% tab title="Terminal" %}
 ```bash
 Rscript myflow.R batch kill --user savin
 ```
+{% endtab %}
+
+{% tab title="RStudio" %}
+```
+Replace run() in flow.R with
+# run(batch = "kill", user = "savin")
+# and execute in RStudio
+```
+{% endtab %}
+{% endtabs %}
 
 Note that all the above commands only affect the flow defined in your script. You can work on many flows in parallel and be confident that `kill` kills tasks only related to the flow you called `kill` with.
 
@@ -159,25 +237,75 @@ Note that all the above commands only affect the flow defined in your script. Yo
 
 It is almost too easy to launch AWS Batch jobs with Metaflow. A foreach branch with `1000` parameters would launch 1000 parallel Batch instances which may turn out to be quite expensive.
 
+```bash
+a <- function(self) {
+  ...
+  self$params <- range(1,1000)
+  ...
+}
+...
+  step(
+    ...
+    foreach = "params",
+    ...
+  )
+```
+
 To safeguard against inadvertent launching of many parallel Batch jobs, the `run` and `resume` commands have a flag `--max-num-splits` which fails the task if it attempts to launch more than 100 splits by default. Use the flag to increase the limit if you actually need more tasks.
 
+{% tabs %}
+{% tab title="Terminal" %}
 ```bash
 Rscript myflow.R run --max-num-splits 200
 ```
+{% endtab %}
+
+{% tab title="RStudio" %}
+```
+# Replace run() in myflow.R with
+# run(max_num_splits = 200)
+# and execute in RStudio
+```
+{% endtab %}
+{% endtabs %}
 
 Another flag, `--max-workers`, limits the number of tasks run in parallel. Even if a foreach launched 100 splits, `--max-workers` would make only 16 \(by default\) of them run in parallel at any point in time. If you want more parallelism, increase the value of `--max-workers`.
 
+{% tabs %}
+{% tab title="Terminal" %}
 ```bash
 Rscript myflow.R run --max-workers 32
 ```
+{% endtab %}
+
+{% tab title="RStudio" %}
+```
+# Replace run() in myflow.R with
+# run(max_workers = 32)
+# and execute in RStudio
+```
+{% endtab %}
+{% endtabs %}
 
 #### **Accessing AWS Batch logs**
 
 As a convenience feature, you can also see the logs of any past step as follows:
 
+{% tabs %}
+{% tab title="Terminal" %}
 ```bash
 Rscript bigsumflow.R logs 15/end
 ```
+{% endtab %}
+
+{% tab title="RStudio" %}
+```
+# Replace run() in bigsum.R with
+# run(logs = "15/end")
+# and execute in RStudio
+```
+{% endtab %}
+{% endtabs %}
 
 ### Disk space
 

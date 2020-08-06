@@ -56,9 +56,21 @@ When you run this flow, you will see that sometimes it succeeds without a hitch 
 
 It is highly recommended that you use `retry` every time you run your flow on the [cloud](../metaflow-on-aws/metaflow-on-aws.md). Instead of annotating every step with a retry decorator, you can also automatically add a retry decorator to all steps that do not have one as follows:
 
+{% tabs %}
+{% tab title="Terminal" %}
 ```r
 Rscript retryflow.R run --with retry
 ```
+{% endtab %}
+
+{% tab title="RStudio" %}
+```
+# Replace run() in retryflow.R with
+# run(with = c("retry"))
+# and execute in RStudio
+```
+{% endtab %}
+{% endtabs %}
 
 ### How to Prevent Retries
 
@@ -76,9 +88,21 @@ withdraw_money_from_account <- function(self){
 
 If you run this code with:
 
+{% tabs %}
+{% tab title="Terminal" %}
 ```r
 Rscript moneyflow.R run --with retry
 ```
+{% endtab %}
+
+{% tab title="RStudio" %}
+```
+# Replace run() in moneyflow.R with
+# run(with = c("retry"))
+# and execute in RStudio
+```
+{% endtab %}
+{% endtabs %}
 
 you may end up withdrawing up to $4000 instead of the intended $1000. To make sure no one will accidentally retry a step with _destructive side-effects_ like this, you should add `times=0` in the step code:
 
