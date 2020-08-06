@@ -2,7 +2,7 @@
 description: Build and manage real-life data science projects with ease.
 ---
 
-# Welcome to Metaflow for Python
+# Welcome to Metaflow
 
 ## Introduction
 
