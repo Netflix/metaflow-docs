@@ -14,6 +14,7 @@ Retrying a failed task is the simplest way to try to handle errors. It is a part
 
 You can enable retries for a step simply by adding `retry` decorator in the step, like here:
 
+{% code title="retryflow.R" %}
 ```r
 library(metaflow)
 
@@ -39,6 +40,7 @@ metaflow("RetryFlow") %>%
          r_function=end) %>% 
     run()
 ```
+{% endcode %}
 
 When you run this flow, you will see that sometimes it succeeds without a hitch but sometimes the `start` step raises an exception and it needs to be retried. By default, `retry` retries the step three times. Thanks to `retry`, this workflow will almost always succeed.
 
@@ -78,6 +80,7 @@ If retries are such a good idea, why not enable them by default for all steps? F
 
 Imagine a hypothetical step like this:
 
+{% code title="moneyflow.R" %}
 ```r
 withdraw_money_from_account <- function(self){
     library(httr)
@@ -85,6 +88,7 @@ withdraw_money_from_account <- function(self){
                 body=list(amount = 1000))
 }
 ```
+{% endcode %}
 
 If you run this code with:
 
@@ -106,6 +110,7 @@ Rscript moneyflow.R run --with retry
 
 you may end up withdrawing up to $4000 instead of the intended $1000. To make sure no one will accidentally retry a step with _destructive side-effects_ like this, you should add `times=0` in the step code:
 
+{% code title="moneyflow.R" %}
 ```r
 metaflow("MoneyFlow") %>%
     ...
@@ -115,6 +120,7 @@ metaflow("MoneyFlow") %>%
          next_step="end") %>%
     ...
 ```
+{% endcode %}
 
 Now the code can be safely rerun, even using `--with retry`. All other steps will be retried as usual.
 
