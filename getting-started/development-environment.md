@@ -10,7 +10,7 @@ You can also use command-line arguments to execute your flows -
 
 ![](../.gitbook/assets/screenshot-2020-08-06-at-9.52.53-am.png)
 
-Throughout the documentation, you will find instructions to both execute your flows from within an IDE like RStudio or directly from a terminal.
+Throughout this documentation, you will find instructions to both execute your flows from within an IDE like RStudio or directly from a terminal.
 
 ![](../.gitbook/assets/screenshot-2020-08-06-at-9.54.10-am.png)
 
