@@ -61,9 +61,19 @@ metaflow("DebugFlow") %>%
 
 Run the script with:
 
+{% tabs %}
+{% tab title="Terminal" %}
 ```bash
 Rscript debugflow.R run
 ```
+{% endtab %}
+
+{% tab title="RStudio" %}
+```
+# Execute in RStudio as is
+```
+{% endtab %}
+{% endtabs %}
 
 The run should fail. The output should look like:
 
@@ -83,19 +93,43 @@ The `resume` command runs the flow similar to `run`. However, in contrast to `ru
 
 Try it with
 
+{% tabs %}
+{% tab title="Terminal" %}
 ```bash
 Rscript debugflow.R resume
 ```
+{% endtab %}
 
-Metaflow remembers the run number of the last local run, which in this case is `3`, so you should see `resume` reusing results of the run above. Since we have not changed anything yet, you should see the above error again but with an incremented run number.
+{% tab title="RStudio" %}
+```
+# Replace run() in debug.R with
+# run(resume = TRUE)
+# and execute in RStudio
+```
+{% endtab %}
+{% endtabs %}
+
+Metaflow remembers the run number of the last local run, which in this case is `153`, so you should see `resume` reusing results of the run above. Since we have not changed anything yet, you should see the above error again but with an incremented run number.
 
 You can also resume a specific run using the CLI option `--origin-run-id` if you don't like the default value selected by Metaflow. To get the same behavior as above, you can also do:
 
+{% tabs %}
+{% tab title="Terminal" %}
 ```bash
 Rscript debugflow.R resume --origin-run-id 153
 ```
+{% endtab %}
 
-If you'd like programmatic access to the `--origin-run-id` selected for the `resume` \(either implicitly selected by Metaflow as last `run` invocation, or explicitly declared by the user via the CLI\), you can use the `current` object. Read more [here](tagging.md#accessing-current-ids-in-a-flow).
+{% tab title="RStudio" %}
+```
+# Replace run() in debug.R with
+# run(resume = TRUE, origin_run_id = "153")
+# and execute in RStudio
+```
+{% endtab %}
+{% endtabs %}
+
+If you'd like programmatic access to the `origin-run-id` selected for the `resume` \(either implicitly selected by Metaflow as last `run` invocation, or explicitly declared by the user via the CLI\), you can use the `current` object. Read more [here](tagging.md#accessing-current-ids-in-a-flow).
 
 Next, fix the error by replacing `tofail("cannot find function tofail")` in `debugflow.R` with `"any message"`. Try again after the fix. This time, you should see the flow completing successfully.
 
@@ -123,9 +157,21 @@ By default, `resume` resumes from the step that failed, like `b` above. Sometime
 
 You can choose the step to resume from by specifying the step name on the command line:
 
+{% tabs %}
+{% tab title="Terminal" %}
 ```bash
 Rscript debugflow.R resume start
 ```
+{% endtab %}
+
+{% tab title="RStudio" %}
+```
+# Replace run() in debug.R with
+# run(resume = "start")
+# and execute in RStudio
+```
+{% endtab %}
+{% endtabs %}
 
 This would resume execution from the step `start`. If you specify a step that comes after the step that failed, execution resumes from the failed step - you can't skip over steps.
 
