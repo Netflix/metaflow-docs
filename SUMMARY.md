@@ -13,6 +13,7 @@
 ## Getting Started
 
 * [Installing Metaflow](getting-started/install.md)
+* [Development Environment](getting-started/development-environment.md)
 * [Tutorials](getting-started/tutorials/README.md)
   * [Season 1: The Local Experience](getting-started/tutorials/season-1-the-local-experience/README.md)
     * [Episode 0: Hello World](getting-started/tutorials/season-1-the-local-experience/episode00.md)
