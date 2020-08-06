@@ -2,7 +2,7 @@
 description: Build and manage real-life data science projects with ease.
 ---
 
-# Welcome to Metaflow for R
+# Welcome to Metaflow
 
 ## Introduction
 
