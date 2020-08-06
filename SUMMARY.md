@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Welcome to Metaflow](README.md)
+* [Welcome to Metaflow for R](README.md)
 
 ## Introduction
 
