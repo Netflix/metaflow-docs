@@ -4,11 +4,44 @@ Read below how Metaflow has improved over time.
 
 We take backwards compatibility very seriously. In the vast majority of cases, you can upgrade Metaflow without expecting changes in your existing code. In the rare cases when breaking changes are absolutely necessary, usually, due to bug fixes, you can take a look at minor breaking changes below before you upgrade.
 
+## 2.2.1 \(August 17th, 2020\)
+
+The Metaflow 2.2.1 release is a minor patch release.
+
+* [Features](release-notes.md#features)
+  * Add `include` parameter to `merge_artifacts`.
+* [Bug Fixes](release-notes.md#bug-fixes)
+  * Fix a regression introduced in 2.1 related to S3 datatools
+  * Fix an issue where Conda execution would fail if the Conda environment was not writeable
+  * Fix the behavior of uploading artifacts to the S3 datastore in case of retries
+
+### Features
+
+#### Add `include` parameter for `merge_artifacts`
+
+You can now specify the artifacts to be merged explicitly by the `merge_artifacts` method as opposed to just specifying the ones that should _not_ be merged.
+
+### Bug Fixes
+
+#### Fix a regression with datatools
+
+Fixes the regression described in [\#285](https://github.com/Netflix/metaflow/issues/285).
+
+#### Fix an issue with Conda in certain environments
+
+In some cases, Conda is installed system wide and the user cannot write to its installation directory. This was causing issues when trying to use the Conda environment. Fixes [\#179](https://github.com/Netflix/metaflow/issues/179).
+
+#### Fix an issue with the S3 datastore in case of retries
+
+Retries were not properly handled when uploading artifacts to the S3 datastore. This fix addresses this issue.
+
+PRs [\#282](https://github.com/Netflix/metaflow/pull/282), [\#286](https://github.com/Netflix/metaflow/pull/286), [\#287](https://github.com/Netflix/metaflow/pull/287), [\#288](https://github.com/Netflix/metaflow/pull/288), [\#289](https://github.com/Netflix/metaflow/pull/289), [\#290](https://github.com/Netflix/metaflow/pull/290), [\#291](https://github.com/Netflix/metaflow/pull/291)
+
 ## 2.2.0 \(Aug 4th, 2020\)
 
 The Metaflow 2.2.0 release is a minor release and introduces [Metaflow's support for R lang](https://docs.metaflow.org/v/r/).
 
-* [Features](https://github.com/Netflix/metaflow/releases/tag/2.2.0#2.2.0_features)
+* [Features](release-notes.md#features-1)
   * Support for R lang.
 
 ### Features

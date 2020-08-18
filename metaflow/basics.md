@@ -293,6 +293,22 @@ class MergeArtifactsFlow(FlowSpec):
         print('pass_down is %s' % self.pass_down)
         print('common is %d' % self.common)
         print('from_a is %d' % self.from_a)
+        self.next(self.c, self.d)
+
+    @step
+    def c(self):
+        self.conflicting = 7
+        self.next(self.join2)
+
+    @step
+    def d(self):
+        self.conflicting = 8
+        self.next(self.join2)
+
+    @step
+    def join2(self, inputs):
+        self.merge_artifacts(inputs, include=['pass_down', 'common'])
+        print('Only pass_down and common exist here')
         self.next(self.end)
 
     @step
@@ -305,11 +321,12 @@ if __name__ == '__main__':
 
 In the example above, the `merge_artifacts` function behaves as follows:
 
-* `pass_down` is propagated because it is unmodified in both `a` and `b`.
-* `common` is also propagated because it is set to the same value in both branches. Remember that it is the value of the artifact that matters when determining whether an artifact is ambiguous; Metaflow uses [content based deduplication](../internals-of-metaflow/technical-overview.md#datastore) to store artifacts and can therefore determine if the value of two artifacts is the same.
-* `x` is handled by the code explicitly _prior_ to the call to `merge_artifacts` which causes `merge_artifacts` to ignore `x` when propagating artifacts. This pattern allows you to manually resolve any ambiguity in artifacts you would like to see propagated.
-* `y` is not propagated because it is listed in the `exclude` list. This pattern allows you to prevent the propagation of artifacts that are no longer relevant. Remember that the default behavior of `merge_artifacts` is to propagate all incoming artifacts.
-* `from_a` is propagated because it is only set in one branch and therefore is unambiguous. `merge_artifacts`will propagate all values even if they are present on only one incoming branch.
+* in `join`, `pass_down` is propagated because it is unmodified in both `a` and `b`.
+* in `join`, `common` is also propagated because it is set to the same value in both branches. Remember that it is the value of the artifact that matters when determining whether an artifact is ambiguous; Metaflow uses [content based deduplication](../internals-of-metaflow/technical-overview.md#datastore) to store artifacts and can therefore determine if the value of two artifacts is the same.
+* in `join`, `x` is handled by the code explicitly _prior_ to the call to `merge_artifacts` which causes `merge_artifacts` to ignore `x` when propagating artifacts. This pattern allows you to manually resolve any ambiguity in artifacts you would like to see propagated.
+* in `join`, `y` is not propagated because it is listed in the `exclude` list. This pattern allows you to prevent the propagation of artifacts that are no longer relevant. Remember that the default behavior of `merge_artifacts` is to propagate all incoming artifacts.
+* in `join`, `from_a` is propagated because it is only set in one branch and therefore is unambiguous. `merge_artifacts`will propagate all values even if they are present on only one incoming branch.
+* In `join2`, the `include` keyword is used and allows you to explicitly specify the artifacts to consider when merging. This is useful when the list of artifacts to exclude is larger than the one to include. You cannot use both an `include` and `exclude` list in the same `merge_artifacts` call. Note also that if an artifact is specified in `include`, an error will be thrown if it either doesn't exist in the current step or doesn't exist on one of the inputs \(in other words, it is "missing"\). The `include` parameter is only available in version 2.2.1 or later.
 
 The `merge_artifacts` function will raise an exception if an artifact that it should merge has an ambiguous value. Remember that `merge_artifacts` will attempt to merge all incoming artifacts except if they are already present in the step or have been explicitly excluded in the `exclude` list.
 
