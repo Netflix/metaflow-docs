@@ -4,6 +4,31 @@ Read below how Metaflow has improved over time.
 
 We take backwards compatibility very seriously. In the vast majority of cases, you can upgrade Metaflow without expecting changes in your existing code. In the rare cases when breaking changes are absolutely necessary, usually, due to bug fixes, you can take a look at minor breaking changes below before you upgrade.
 
+## 2.2.2 \(August 20th, 2020\)
+
+The Metaflow 2.2.2 release is a minor patch release.
+
+* [Bug Fixes](release-notes.md#bug-fixes)
+  * Fix a regression introduced in 2.2.1 related to Conda environments
+  * Clarify Pandas requirements for Tutorial Episode 04
+  * Fix an issue with the metadata service
+
+### Bug Fixes
+
+#### Fix a regression with Conda
+
+Metaflow 2.2.1 included a commit which was merged too early and broke the use of Conda. This release reverses this patch.
+
+#### Clarify Pandas version needed for Episode 04
+
+Recent versions of Pandas are not backward compatible with the one used in the tutorial; a small comment was added to warn of this fact.
+
+#### Fix an issue with the metadata service
+
+In some cases, the metadata service would not properly create runs or tasks.
+
+PRs [\#296](https://github.com/Netflix/metaflow/pull/296), [\#297](https://github.com/Netflix/metaflow/pull/297), [\#298](https://github.com/Netflix/metaflow/pull/298)
+
 ## 2.2.1 \(August 17th, 2020\)
 
 The Metaflow 2.2.1 release is a minor patch release.
