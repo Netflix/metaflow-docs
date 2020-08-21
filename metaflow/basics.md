@@ -293,15 +293,19 @@ class MergeArtifactsFlow(FlowSpec):
         print('pass_down is %s' % self.pass_down)
         print('common is %d' % self.common)
         print('from_a is %d' % self.from_a)
-        self.next(self.c, self.d)
+        self.next(self.c)
 
     @step
     def c(self):
+        self.next(self.d, self.e)
+
+    @step
+    def d(self):
         self.conflicting = 7
         self.next(self.join2)
 
     @step
-    def d(self):
+    def e(self):
         self.conflicting = 8
         self.next(self.join2)
 
