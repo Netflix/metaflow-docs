@@ -296,7 +296,7 @@ class MergeArtifactsFlow(FlowSpec):
         self.next(self.c)
 
     @step
-    def d(self):
+    def c(self):
         self.next(self.d, step.e)
 
     @step
