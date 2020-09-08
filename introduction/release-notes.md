@@ -4,6 +4,32 @@ Read below how Metaflow has improved over time.
 
 We take backwards compatibility very seriously. In the vast majority of cases, you can upgrade Metaflow without expecting changes in your existing code. In the rare cases when breaking changes are absolutely necessary, usually, due to bug fixes, you can take a look at minor breaking changes below before you upgrade.
 
+## 2.2.3 \(September 8th, 2020\)
+
+The Metaflow 2.2.3 release is a minor patch release.
+
+* [Bug Fixes](release-notes.md#bug-fixes)
+  * Fix issue [\#305](https://github.com/Netflix/metaflow/issues/305) : Default 'help' for parameters was not handled properly.
+  * Pin the conda library versions for Metaflow default dependencies based on the Python version.
+  * Add conda bin path to the PATH environment variable during Metaflow step execution.
+  * Fix a typo in metaflow/debug.py
+
+### Bug Fixes
+
+#### Fix issue [\#305](https://github.com/Netflix/metaflow/issues/305) : Default 'help' for parameters was not handled properly
+
+Fix the issue where default `help` for parameters was not handled properly. Issue [\#305](https://github.com/Netflix/metaflow/issues/305): flow fails because `IncludeFile`'s default value for the `help` argument is None. PR: [\#318](https://github.com/Netflix/metaflow/pull/318)
+
+#### Pin the conda library versions for Metaflow default dependencies based on the Python version
+
+The previously pinned library version does not work with python 3.8. Now we have two sets of different version combinations which should work for python 2.7, 3.5, 3.6, 3.7, and 3.8. PR: [\#308](https://github.com/Netflix/metaflow/pull/308)
+
+#### Add conda bin path to the PATH environment variable during Metaflow step execution
+
+Previously the executable installed in conda environment was not visible inside Metaflow steps. Fixing this issue by appending conda bin path to the PATH environment variable. PR: [\#307](https://github.com/Netflix/metaflow/pull/307)
+
+PRs:  [\#307](https://github.com/Netflix/metaflow/pull/307), [\#308](https://github.com/Netflix/metaflow/pull/308), [\#310](https://github.com/Netflix/metaflow/pull/310), [\#314](https://github.com/Netflix/metaflow/pull/314), [\#317](https://github.com/Netflix/metaflow/pull/317), [\#318](https://github.com/Netflix/metaflow/pull/318)
+
 ## 2.2.2 \(August 20th, 2020\)
 
 The Metaflow 2.2.2 release is a minor patch release.
