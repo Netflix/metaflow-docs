@@ -31,7 +31,7 @@ In this example, we created a private bucket `metaflow-s3`. While configuring Me
 
 ```python
 METAFLOW_DATASTORE_SYSROOT_S3 = s3://metaflow-s3/flows
-METAFLOW_DATASTORE_SYSROOT_S3 = s3://metaflow-s3/data-tools
+METAFLOW_DATATOOLS_SYSROOT_S3 = s3://metaflow-s3/data-tools
 METAFLOW_DEFAULT_DATASTORE=s3
 ```
 
