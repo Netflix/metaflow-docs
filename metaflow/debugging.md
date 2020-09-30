@@ -183,6 +183,62 @@ If your flow has [`Parameters`](basics.md#how-to-define-parameters-for-flows), y
 
 The `resume` command reuses the parameter values that you set with `run` originally.
 
+## Reproducing Production Issues Locally
+
+This section shows you how to reproduce a failed Metaflow run on AWS Step Functions locally. This is how a failed run on AWS Step Functions UI looks like - 
+
+![](https://lh4.googleusercontent.com/7a7yW4JMApMn8_X4DZsnoT2EOIK_RR0YTwkhJrEDq9jUJDHuVZv6BLgRJ-XtHrkP9MAM28ofrYMVK7W-f9pIRXTbuay3VWvR73FuDvW_OI4BprDheWViGd3XLD-ArMUgwu-Flok_)
+
+![](https://lh4.googleusercontent.com/SxMRHj9suoBFMQwx4FJP-zywTzCUrePSRMAYhxVOreXxwEJe-eL3WciP3TxVyNkNrrSEmKo1bbBkS762rEtJ4SVJj8MaJubTdmnBsjkONi5NT4BUSXcnqwL47KXQaQaEwSpzroeT)
+
+Notice the execution ID of `5ca85f96-8508-409d-a5f5-b567db1040c5`. When running on AWS Step Functions, Metaflow uses the AWS Step Functions execution ID \(prefixed with `sfn-`\) as the run id. 
+
+The graph visualization shows that step `b` failed, as expected. First, you should inspect the logs of the failed step to get an idea of why it failed. You can access AWS Batch step logs in the AWS Step Functions UI by looking for the `JobId` in the `Error` blob that can be accessed by clicking on the `Exception` pane on the right side of the UI. You can use this `JobId` in the AWS Batch console to check the job logs. This `JobId` is also the metaflow task ID for the step.
+
+Next, we want to reproduce the above error locally. We do this by resuming the specific AWS Step Functions run that failed:
+
+{% tabs %}
+{% tab title="Bash" %}
+```bash
+Rscript debug.R resume --origin-run-id sfn-5ca85f96-8508-409d-a5f5-b567db1040c5
+```
+{% endtab %}
+
+{% tab title="RStudio" %}
+```
+   ...
+   step(step="end", 
+        ...)
+   run(resume=TRUE,
+       origin_run_id="sfn-5ca85f96-8508-409d-a5f5-b567db1040c5")
+```
+{% endtab %}
+{% endtabs %}
+
+This will reuse the results of the `start` and `a` step from the AWS Step Functions run. It will try to rerun the step `b` locally, which fails with the same error as it does in production.
+
+You can fix the error locally as above. In the case of this simple flow, you can run the whole flow locally to confirm that the fix works. After validating the results, you would deploy a new version to production with `step-functions create`.
+
+However, this might not be a feasible approach for complex production flow. For instance, the flow might process large amounts of data that can not be handled in your local instance. We have better approaches for staging flows for production:
+
+### **Staging flows for production**
+
+The easiest approach to test a demanding flow is to run it with AWS Batch. This works even with resume:
+
+```bash
+Rscript debug.R resume --origin-run-id sfn-5ca85f96-8508-409d-a5f5-b567db1040c5 --with batch
+```
+
+This will resume your flow and run every step on AWS Batch. When you are ready to test a fixed flow end-to-end, just run it as follows:
+
+```bash
+Rscript debug.R run --with batch
+```
+
+Alternatively, you can change the name of the flow temporarily, e.g. from DebugFlow to DebugFlowStaging. Then you can run `step-functions create` with the new name, which will create a separate staging flow on AWS Step Functions.
+
+You can test the staging flow freely without interfering with the production flow. Once the staging flow runs successfully, you can confidently deploy a new version to production.
+
 ## Inspecting data with RStudio IDE or Jupyter Notebook
 
 The above example demonstrates a trivial error. In the real life, errors can be much trickier to debug. In the case of machine learning, a flow may fail because of an unexpected distribution of input data, although nothing is wrong with the code per se.

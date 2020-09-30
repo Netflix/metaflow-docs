@@ -40,3 +40,7 @@
 * [Dealing with Failures](metaflow/failures.md)
 * [Organizing Results](metaflow/tagging.md)
 
+## GOING TO PRODUCTION WITH METAFLOW
+
+* [Scheduling Metaflow Flows](going-to-production-with-metaflow/scheduling-metaflow-flows.md)
+
