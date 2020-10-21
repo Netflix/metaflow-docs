@@ -72,7 +72,7 @@ The command will export your workflow to AWS Step Functions. You can also search
 
 ![](https://lh4.googleusercontent.com/S0LZKdOvAuaMSFN58sBeKoarl-XSIT-lTPOBW7A1bukfCqGiT3Wlc9_XworJ-HtEV6JP8Cj1fHsTRKDDlRSR_kI8cZ_aQmaAx982tzmSWc8EHSrR7n8b0Au-sy5rP__OFAXC887J)
 
-You can click the orange Start Execution button to execute the flow on AWS Step Functions. It pops up a dialog asking for an input. You can specify your parameters as an escaped JSON string with Parameters as the key - ****
+You can click the orange Start Execution button to execute the flow on AWS Step Functions. It pops up a dialog asking for an input. You can specify your parameters as an escaped JSON string with `Parameters` as the key - ****
 
 ```bash
 {
@@ -88,7 +88,7 @@ After you click Start Execution on the Input dialog, AWS Step Functions starts r
 
 In this case, the run should succeed without problems. If there were errors, you could reproduce them locally as explained in [Debugging with Metaflow](../metaflow/debugging.md#reproducing-production-issues-locally).
 
-**You can trigger the workflow through command line as well:**
+You can trigger the workflow through command line as well:
 
 ```bash
 python parameter_flow.py step-functions trigger --alpha 0.5
@@ -97,6 +97,14 @@ python parameter_flow.py step-functions trigger --alpha 0.5
 If you run `step-functions create` again, it will create a new version of your flow on AWS Step Functions. The newest version becomes the production version automatically \(due to the consistency guarantees provided by AWS Step Functions, it might be a couple of seconds before this happens\). If you want to test on AWS Step Functions without interfering with a production flow, you can change the name of your class, e.g. from ParameterFlow to ParameterFlowStaging, and `step-functions create` the flow under a new name. 
 
 Note that step-functions create creates a new isolated [production namespace](../metaflow/tagging.md#production-namespaces) for your production flow. Please read [Organizing Results](../metaflow/tagging.md) to learn all about namespace behavior.
+
+ In case your flow doesn't accept any parameters, and you would like to execute it from within the AWS Step Functions UI, you would need to pass in the following in the input dialog box:
+
+```bash
+{
+    "Parameters" : "{}"
+}
+```
 
 ### **Limiting the number of concurrent tasks**
 
