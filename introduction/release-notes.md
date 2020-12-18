@@ -4,6 +4,53 @@ Read below how Metaflow has improved over time.
 
 We take backwards compatibility very seriously. In the vast majority of cases, you can upgrade Metaflow without expecting changes in your existing code. In the rare cases when breaking changes are absolutely necessary, usually, due to bug fixes, you can take a look at minor breaking changes below before you upgrade.
 
+## 2.2.5 \(Nov 11th, 2020\)
+
+The Metaflow 2.2.5 release is a minor patch release.
+
+* Features
+  * Log `metaflow_version:` and `runtime:` tag for all executions
+* Bug Fixes
+  * Handle inconsistently cased file system issue when creating @conda environments on macOS for linux-64
+
+### Features
+
+#### Log `metaflow_version:` and `runtime:` tag for all executions
+
+The tag `metaflow_version:` and `runtime:` is now available for all packaged executions and remote executions as well. This ensures that every run logged by Metaflow will have `metaflow_version` and `runtime` system tags available.
+
+### Bug Fixes
+
+#### Handle inconsistently cased file system issue when creating @conda environments on macOS for linux-64
+
+Conda fails to correctly set up environments for linux-64 packages on macOS at times due to inconsistently cased filesystems. Environment creation is needed to collect the necessary metadata for correctly setting up the conda environment on AWS Batch. This fix simply ignores the error-checks that conda throws while setting up the environments on macOS when the intended destination is AWS Batch.
+
+## 2.2.4 \(Oct 28th, 2020\)
+
+The Metaflow 2.2.4 release is a minor patch release.
+
+* Features
+  * Metaflow is now compliant with AWS GovCloud & AWS CN regions
+* Bug Fixes
+  * Address a bug with overriding the default value for [IncludeFile](https://docs.metaflow.org/metaflow/data#data-in-local-files)
+  * Port AWS region check for AWS DynamoDb from `curl` to `requests`
+
+### Features
+
+#### Metaflow is now compliant with AWS GovCloud & AWS CN regions
+
+AWS GovCloud & AWS CN users can now enjoy all the features of Metaflow within their region partition with no change on their end. PR: \#364
+
+### Bug Fixes
+
+#### Address a bug with overriding the default value for [IncludeFile](https://docs.metaflow.org/metaflow/data#data-in-local-files)
+
+Metaflow v2.1.0 introduced a bug in [IncludeFile functionality](https://docs.metaflow.org/metaflow/data#data-in-local-files) which prevented users from overriding the default value specified.
+
+#### Port AWS region check for AWS DynamoDb from `curl` to `requests`
+
+Metaflow's AWS Step Functions' integration relies on AWS DynamoDb to manage [foreach](https://docs.metaflow.org/metaflow/basics#foreach) constructs. Metaflow was leveraging `curl` at runtime to detect the region for AWS DynamoDb. Some docker images don't have `curl` installed by default; moving to `requests` \(a metaflow dependency\) fixes the issue.
+
 ## 2.2.3 \(September 8th, 2020\)
 
 The Metaflow 2.2.3 release is a minor patch release.
