@@ -134,7 +134,7 @@ a <- function(self){
 }
 
 join <- function(self, inputs){
-    results <- gather_inputs(inputs, "params")
+    results <- gather_inputs(inputs, "result")
     print(results)
 }
 
