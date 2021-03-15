@@ -4,7 +4,85 @@ Read below how Metaflow has improved over time.
 
 We take backwards compatibility very seriously. In the vast majority of cases, you can upgrade Metaflow without expecting changes in your existing code. In the rare cases when breaking changes are absolutely necessary, usually, due to bug fixes, you can take a look at minor breaking changes below before you upgrade.
 
-## Metaflow 2.2.6 Release Notes
+## 2.2.8 \(Mar 15th, 2021\)
+
+The Metaflow 2.2.8 release is a minor patch release.
+
+* [Bug Fixes](https://github.com/Netflix/metaflow/releases/tag/2.2.8#2.2.8_bugs)
+  * [Fix `@environment` behavior for conflicting attribute values](https://gitter.im/metaflow_org/community?at=604a2bfb44f5a454a46cc7f8)
+  * [Fix `environment is not callable` error when using `@environment`](https://gitter.im/metaflow_org/community?at=6048a07d823b6654d296d62d)
+
+### Bugs
+
+#### [Fix `@environment` behavior for conflicting attribute values](https://gitter.im/metaflow_org/community?at=604a2bfb44f5a454a46cc7f8)
+
+Metaflow was incorrectly handling environment variables passed through the `@environment` decorator in some specific instances. When `@environment` decorator is specified over multiple steps, the actual environment that's available to any step is the union of attributes of all the `@environment` decorators; which is incorrect behavior. For example, in the following workflow -
+
+```text
+from metaflow import FlowSpec, step, batch, environment
+import os
+class LinearFlow(FlowSpec):
+    @environment(vars={'var':os.getenv('var_1')})
+    @step
+    def start(self):
+        print(os.getenv('var'))
+        self.next(self.a)
+    @environment(vars={'var':os.getenv('var_2')})
+    @step
+    def a(self):
+        print(os.getenv('var'))
+        self.next(self.end)
+    @step
+    def end(self):
+        pass
+if __name__ == '__main__':
+    LinearFlow()
+```
+
+```text
+var_1=foo var_2=bar python flow.py run
+```
+
+will result in
+
+```text
+Metaflow 2.2.7.post10+gitb7d4c48 executing LinearFlow for user:savin
+Validating your flow...
+    The graph looks good!
+Running pylint...
+    Pylint is happy!
+2021-03-12 20:46:04.161 Workflow starting (run-id 6810):
+2021-03-12 20:46:04.614 [6810/start/86638 (pid 10997)] Task is starting.
+2021-03-12 20:46:06.783 [6810/start/86638 (pid 10997)] foo
+2021-03-12 20:46:07.815 [6810/start/86638 (pid 10997)] Task finished successfully.
+2021-03-12 20:46:08.390 [6810/a/86639 (pid 11003)] Task is starting.
+2021-03-12 20:46:10.649 [6810/a/86639 (pid 11003)] foo
+2021-03-12 20:46:11.550 [6810/a/86639 (pid 11003)] Task finished successfully.
+2021-03-12 20:46:12.145 [6810/end/86640 (pid 11009)] Task is starting.
+2021-03-12 20:46:15.382 [6810/end/86640 (pid 11009)] Task finished successfully.
+2021-03-12 20:46:15.563 Done!
+```
+
+Note the output for the step `a` which should have been `bar`. PR [\#452](https://github.com/Netflix/metaflow/pull/452) fixes the issue.
+
+#### [Fix `environment is not callable` error when using `@environment`](https://gitter.im/metaflow_org/community?at=6048a07d823b6654d296d62d)
+
+Using `@environment` would often result in an error from `pylint` - `E1102: environment is not callable (not-callable)`. Users were getting around this issue by launching their flows with `--no-pylint`. PR [\#451](https://github.com/Netflix/metaflow/pull/451) fixes this issue.
+
+## 2.2.7 \(Feb 8th, 2021\)
+
+The Metaflow 2.2.7 release is a minor patch release.
+
+* [Bug Fixes](https://github.com/Netflix/metaflow/releases#2.2.7_bugs)
+  * [Handle for-eaches properly for AWS Step Functions workflows running on AWS Fargate](https://gitter.im/metaflow_org/community?at=601f56d955359c58bf28ef1a)
+
+### Bugs
+
+#### [Handle for-eaches properly for AWS Step Functions workflows running on AWS Fargate](https://gitter.im/metaflow_org/community?at=601f56d955359c58bf28ef1a)
+
+Workflows orchestrated by AWS Step Functions were failing to properly execute `for-each` steps on AWS Fargate. The culprit was lack of access to instance metadata for ECS. Metaflow instantiates a connection to Amazon DynamoDB to keep track of `for-each` cardinality. This connection requires knowledge of the region that the job executes in and is made available via [instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) on EC2; which unfortunately is not available on ECS \(for AWS Fargate\). This fix introduces the necessary checks for inferring the region correctly for tasks executing on AWS Fargate. Note that after the recent changes to [Amazon S3's consistency model](https://aws.amazon.com/blogs/aws/amazon-s3-update-strong-read-after-write-consistency/), the Amazon DynamoDB dependency is no longer needed and will be done away in a subsequent release. PR: [\#436](https://github.com/Netflix/metaflow/pull/436)
+
+## 2.2.6 \(Jan 26th, 2021\)
 
 The Metaflow 2.2.6 release is a minor patch release.
 
@@ -92,7 +170,7 @@ Metaflow v2.1.0 introduced a bug in [IncludeFile functionality](https://docs.met
 
 Metaflow's AWS Step Functions' integration relies on AWS DynamoDb to manage [foreach](https://docs.metaflow.org/metaflow/basics#foreach) constructs. Metaflow was leveraging `curl` at runtime to detect the region for AWS DynamoDb. Some docker images don't have `curl` installed by default; moving to `requests` \(a metaflow dependency\) fixes the issue.
 
-## 2.2.3 \(September 8th, 2020\)
+## 2.2.3 \(Sept 8th, 2020\)
 
 The Metaflow 2.2.3 release is a minor patch release.
 
@@ -118,7 +196,7 @@ Previously the executable installed in conda environment was not visible inside 
 
 PRs:  [\#307](https://github.com/Netflix/metaflow/pull/307), [\#308](https://github.com/Netflix/metaflow/pull/308), [\#310](https://github.com/Netflix/metaflow/pull/310), [\#314](https://github.com/Netflix/metaflow/pull/314), [\#317](https://github.com/Netflix/metaflow/pull/317), [\#318](https://github.com/Netflix/metaflow/pull/318)
 
-## 2.2.2 \(August 20th, 2020\)
+## 2.2.2 \(Aug 20th, 2020\)
 
 The Metaflow 2.2.2 release is a minor patch release.
 
@@ -143,7 +221,7 @@ In some cases, the metadata service would not properly create runs or tasks.
 
 PRs [\#296](https://github.com/Netflix/metaflow/pull/296), [\#297](https://github.com/Netflix/metaflow/pull/297), [\#298](https://github.com/Netflix/metaflow/pull/298)
 
-## 2.2.1 \(August 17th, 2020\)
+## 2.2.1 \(Aug 17th, 2020\)
 
 The Metaflow 2.2.1 release is a minor patch release.
 
