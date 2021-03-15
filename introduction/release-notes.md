@@ -8,7 +8,7 @@ We take backwards compatibility very seriously. In the vast majority of cases, y
 
 The Metaflow 2.2.8 release is a minor patch release.
 
-* [Bug Fixes](https://github.com/Netflix/metaflow/releases/tag/2.2.8#2.2.8_bugs)
+* Bug Fixes
   * [Fix `@environment` behavior for conflicting attribute values](https://gitter.im/metaflow_org/community?at=604a2bfb44f5a454a46cc7f8)
   * [Fix `environment is not callable` error when using `@environment`](https://gitter.im/metaflow_org/community?at=6048a07d823b6654d296d62d)
 
