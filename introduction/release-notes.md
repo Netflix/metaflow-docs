@@ -4,6 +4,29 @@ Read below how Metaflow has improved over time.
 
 We take backwards compatibility very seriously. In the vast majority of cases, you can upgrade Metaflow without expecting changes in your existing code. In the rare cases when breaking changes are absolutely necessary, usually, due to bug fixes, you can take a look at minor breaking changes below before you upgrade.
 
+## 2.2.9 \(Apr 19th, 2021\)
+
+The Metaflow 2.2.9 release is a minor patch release.
+
+* Bug Fixes
+  * [Remove pinned pylint dependency](https://gitter.im/metaflow_org/community?at=60622af8940f1d555e277c12)
+  * [Improve handling of `/` in image parameter for batch](https://gitter.im/metaflow_org/community?at=5f80e21d02e81701b0106c6d)
+  * List custom FlowSpec parameters in the intended order
+
+### Bugs
+
+#### [Remove pinned pylint dependency](https://gitter.im/metaflow_org/community?at=60622af8940f1d555e277c12)
+
+Pylint dependency was unpinned and made floating. See PR [\#462](https://github.com/Netflix/metaflow/pull/462).
+
+#### [Improve handling of `/` in image parameter for batch](https://gitter.im/metaflow_org/community?at=5f80e21d02e81701b0106c6d)
+
+You are now able to specify docker images of the form `foo/bar/baz:tag` in the batch decorator. See PR [\#466](https://github.com/Netflix/metaflow/pull/466).
+
+#### List custom FlowSpec parameters in the intended order
+
+The order in which parameters are specified by the user in the FlowSpec is now preserved when displaying them with `--help`. See PR [\#456](https://github.com/Netflix/metaflow/pull/456).
+
 ## 2.2.8 \(Mar 15th, 2021\)
 
 The Metaflow 2.2.8 release is a minor patch release.
