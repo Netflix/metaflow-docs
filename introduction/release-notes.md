@@ -4,6 +4,48 @@ Read below how Metaflow has improved over time.
 
 We take backwards compatibility very seriously. In the vast majority of cases, you can upgrade Metaflow without expecting changes in your existing code. In the rare cases when breaking changes are absolutely necessary, usually, due to bug fixes, you can take a look at minor breaking changes below before you upgrade.
 
+## 
+
+## 2.2.10 \(Apr 22nd, 2021\)
+
+The Metaflow 2.2.10 release is a minor patch release.
+
+* Features
+  * AWS Logs Group, Region and Stream are now available in metadata for tasks executed on AWS Batch
+  * Execution logs are now available for all tasks in Metaflow universe
+* Bug Fixes
+  * Fix regression with `ping/` endpoint for Metadata service
+  * [Fix the behaviour of `--namespace=` CLI args when executing a flow](https://gitter.im/metaflow_org/community?at=605decca68921b62f48a4190)
+
+### Features
+
+#### AWS Logs Group, Region and Stream are now available in metadata for tasks executed on AWS Batch
+
+For tasks that execute on AWS Batch, Metaflow now records the location where the AWS Batch instance writes the container logs in AWS Logs. This can be handy in locating the logs through the client API -
+
+```text
+Step('Flow/42/a').task.metadata_dict['aws-batch-awslogs-group']
+Step('Flow/42/a').task.metadata_dict['aws-batch-awslogs-region']
+Step('Flow/42/a').task.metadata_dict['aws-batch-awslogs-stream']
+```
+
+#### Execution logs are now available for all tasks in Metaflow universe
+
+All Metaflow runtime/task logs are now published via a sidecar process to the datastore. The user-visible logs on the console are streamed directly from the datastore. For Metaflow's integrations with the cloud \(AWS at the moment\), the compute tasks logs \(AWS Batch\) are directly written by Metaflow into the datastore \(Amazon S3\) independent of where the flow is launched from \(User's laptop or AWS Step Functions\). This has multiple benefits
+
+* Metaflow no longer relies on AWS Cloud Watch for fetching the AWS Batch execution logs to the console - AWS Cloud Watch has rather low global API limits which have caused multiple issues in the past for our users
+* Logs for AWS Step Functions executions are now also available in Amazon S3 and can be easily fetched by simply doing `python flow.py logs 42/start` or `Step('Flow/42/start').task.stdout`. 
+
+### Bug Fixes
+
+#### Fix regression with `ping/` endpoint for Metadata service
+
+Fix a regression introduced in `v2.2.9` where the endpoint responsible for ascertaining the version of the deployed Metadata service was erroneously moved to `ping/` from `ping` 
+
+#### [Fix the behaviour of `--namespace=` CLI args when executing a flow](https://gitter.im/metaflow_org/community?at=605decca68921b62f48a4190)
+
+`python flow.py run --namespace=` now correctly makes the global namespace visible within the flow execution. 
+
 ## 2.2.9 \(Apr 19th, 2021\)
 
 The Metaflow 2.2.9 release is a minor patch release.
