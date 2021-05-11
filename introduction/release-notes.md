@@ -11,9 +11,9 @@ The Metaflow 2.2.11 release is a minor patch release.
 * Bug Fixes
   * Fix regression that broke compatibility with Python 2.7
 
-## Bug Fixes
+### Bug Fixes
 
-### Fix regression that broke compatibility with Python 2.7
+#### Fix regression that broke compatibility with Python 2.7
 
 `shlex.quote`, introduced in \#493, is not compatible with Python 2.7. `pipes.quote` is now used for Python 2.7.
 
