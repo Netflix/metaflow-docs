@@ -4,6 +4,32 @@ Read below how Metaflow has improved over time.
 
 We take backwards compatibility very seriously. In the vast majority of cases, you can upgrade Metaflow without expecting changes in your existing code. In the rare cases when breaking changes are absolutely necessary, usually, due to bug fixes, you can take a look at minor breaking changes below before you upgrade.
 
+## 2.2.12 \(May 28th, 2021\)
+
+The Metaflow 2.2.12 release is a minor patch release.
+
+* [Features](https://github.com/Netflix/metaflow/releases/tag/2.2.12#2.2.12_features)
+  * [Add capability to override AWS Step Functions state machine name while deploying flows to AWS Step Functions](https://github.com/Netflix/metaflow/releases/tag/2.2.12#532)
+  * [Introduce heartbeats for Metaflow flows](https://github.com/Netflix/metaflow/releases/tag/2.2.12#333)
+* [Bug Fixes](https://github.com/Netflix/metaflow/releases/tag/2.2.12#2.2.12_bugs)
+  * [Handle regression with `Click >=8.0.x`](https://github.com/Netflix/metaflow/releases/tag/2.2.12#526)
+
+### Features
+
+#### [Add capability to override AWS Step Functions state machine name while deploying flows to AWS Step Functions](https://github.com/Netflix/metaflow/releases/tag/2.2.12#532)
+
+Prior to this release, the State Machines created by Metaflow while deploying flows to AWS Step Functions had the same name as that of the flow. With this release, Metaflow users can now override the name of the State Machine created by passing in a `--name` argument : `python flow.py step-functions --name foo create` or `python flow.py step-functions --name foo trigger`.
+
+#### [Introduce heartbeats for Metaflow flows](https://github.com/Netflix/metaflow/releases/tag/2.2.12#333)
+
+Metaflow now registers heartbeats at the run level and the task level for all flow executions \(with the exception of flows running on AWS Step Functions where only task-level heartbeats are captured\). This provides the necessary metadata to ascertain if a run/task has been lost. Subsequent releases of Metaflow will expose this information through the client.
+
+### Bug Fixes
+
+#### [Handle regression with `Click >=8.0.x`](https://github.com/Netflix/metaflow/releases/tag/2.2.12#526)
+
+The latest release of Click \(8.0.0\) broke certain idempotency assumptions in Metaflow which PR [\#526](https://github.com/Netflix/metaflow/pull/526) addresses.
+
 ## 2.2.11 \(Apr 30th, 2021\)
 
 The Metaflow 2.2.11 release is a minor patch release.
