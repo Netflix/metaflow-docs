@@ -4,14 +4,27 @@ Read below how Metaflow has improved over time.
 
 We take backwards compatibility very seriously. In the vast majority of cases, you can upgrade Metaflow without expecting changes in your existing code. In the rare cases when breaking changes are absolutely necessary, usually, due to bug fixes, you can take a look at minor breaking changes below before you upgrade.
 
-## 2.2.12 \(May 28th, 2021\)
+## 2.2.13 \(May 19th, 2021\)
+
+The Metaflow 2.2.13 release is a minor patch release.
+
+* Bug Fixes
+  * [Handle regression with `@batch` execution on certain docker images](https://github.com/Netflix/metaflow/releases/tag/2.2.13#534)
+
+### Bug Fixes
+
+#### [Handle regression with `@batch` execution on certain docker images](https://github.com/Netflix/metaflow/releases/tag/2.2.13#534)
+
+Certain [docker images](https://docs.aws.amazon.com/sagemaker/latest/dg/pre-built-containers-frameworks-deep-learning.html) override the entrypoint by executing `eval` on the user-supplied command. The `2.2.10` release impacted these docker images where we modified the entrypoint to support datastore based logging. This release fixes that regression.
+
+## 2.2.12 \(May 18th, 2021\)
 
 The Metaflow 2.2.12 release is a minor patch release.
 
-* [Features](https://github.com/Netflix/metaflow/releases/tag/2.2.12#2.2.12_features)
+* Features
   * [Add capability to override AWS Step Functions state machine name while deploying flows to AWS Step Functions](https://github.com/Netflix/metaflow/releases/tag/2.2.12#532)
   * [Introduce heartbeats for Metaflow flows](https://github.com/Netflix/metaflow/releases/tag/2.2.12#333)
-* [Bug Fixes](https://github.com/Netflix/metaflow/releases/tag/2.2.12#2.2.12_bugs)
+* Bug Fixes
   * [Handle regression with `Click >=8.0.x`](https://github.com/Netflix/metaflow/releases/tag/2.2.12#526)
 
 ### Features
