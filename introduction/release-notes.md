@@ -4,6 +4,105 @@ Read below how Metaflow has improved over time.
 
 We take backwards compatibility very seriously. In the vast majority of cases, you can upgrade Metaflow without expecting changes in your existing code. In the rare cases when breaking changes are absolutely necessary, usually, due to bug fixes, you can take a look at minor breaking changes below before you upgrade.
 
+## 2.3.0 \(May 27th, 2021\)
+
+The Metaflow 2.3.0 release is a minor release.
+
+* Features
+  * [Coordinate larger Metaflow projects with `@project`](https://docs.metaflow.org/going-to-production-with-metaflow/coordinating-larger-metaflow-projects)
+  * [Hyphenated-parameters support in AWS Step Functions](release-notes.md#hyphenated-parameters-support-in-aws-step-functions)
+  * [State Machine execution history logging for AWS Step Functions in AWS CloudWatch Logs](release-notes.md#state-machine-execution-history-logging-for-aws-step-functions)
+
+### Features
+
+#### [Coordinate larger Metaflow projects with `@project`](https://docs.metaflow.org/going-to-production-with-metaflow/coordinating-larger-metaflow-projects)
+
+It's not uncommon for multiple people to work on the same workflow simultaneously. Metaflow makes it possible by keeping executions [isolated through independently stored artifacts and namespaces](https://docs.metaflow.org/metaflow/tagging). However, by default, [all AWS Step Functions deployments](https://docs.metaflow.org/going-to-production-with-metaflow/scheduling-metaflow-flows) are bound to the name of the workflow. If multiple people call `step-functions create` independently, each deployment will overwrite the previous one. In the early stages of a project, this simple model is convenient but as the project grows, it is desirable that multiple people can test their own AWS Step Functions deployments without interference. Or, as a single developer, you may want to experiment with multiple independent AWS Step Functions deployments of their workflow. This release introduces a `@project` decorator to address this need. The `@project` decorator is used at the `FlowSpec`-level to bind a Flow to a specific project. All flows with the same project name belong to the same project.
+
+```text
+from metaflow import FlowSpec, step, project, current
+
+@project(name='example_project')
+class ProjectFlow(FlowSpec):
+
+    @step
+    def start(self):
+        print('project name:', current.project_name)
+        print('project branch:', current.branch_name)
+        print('is this a production run?', current.is_production)
+        self.next(self.end)
+
+    @step
+    def end(self):
+        pass
+
+if __name__ == '__main__':
+    ProjectFlow()
+```
+
+```text
+python flow.py run
+```
+
+The flow works exactly as before when executed outside AWS Step Functions and introduces `project_name`, `branch_name` & `is_production` in the [`current`](https://docs.metaflow.org/metaflow/tagging#accessing-current-ids-in-a-flow) object.
+
+On AWS Step Functions, however, `step-functions create` will create a new workflow `example_project.user.username.ProjectFlow` \(where `username` is your user name\) with a user-specific [isolated namespace](https://docs.metaflow.org/metaflow/tagging) and a [separate production token](https://docs.metaflow.org/metaflow/tagging#production-tokens).
+
+For deploying experimental \(test\) versions that can run in parallel with production, you can deploy custom branches with `--branch`
+
+```text
+python flow.py --branch foo step-functions create
+```
+
+To deploy a production version, you can deploy with `--production` flag \(or pair it up with `--branch` if you want to run multiple variants in production\)
+
+```text
+python project_flow.py --production step-functions create
+```
+
+Note that the isolated namespaces offered by `@project` work best when your code is designed to respect these boundaries. For instance, when writing results to a table, you can use current.branch\_name to choose the table to write to or you can disable writes outside production by checking current.is\_production.
+
+#### Hyphenated-parameters support in AWS Step Functions
+
+Prior to this release, hyphenated parameters in AWS Step Functions weren't supported through CLI.
+
+```text
+from metaflow import FlowSpec, Parameter, step
+
+class ParameterFlow(FlowSpec):
+    foo_bar = Parameter('foo-bar',
+                      help='Learning rate',
+                      default=0.01)
+
+    @step
+    def start(self):
+        print('foo_bar is %f' % self.foo_bar)
+        self.next(self.end)
+
+    @step
+    def end(self):
+        print('foo_bar is still %f' % self.foo_bar)
+
+if __name__ == '__main__':
+    ParameterFlow()
+```
+
+Now, users can create their flows as usual on AWS Step Functions \(with `step-functions create`\) and trigger the deployed flows through CLI with hyphenated parameters -
+
+```text
+python flow.py step-functions trigger --foo-bar 42
+```
+
+#### State Machine execution history logging for AWS Step Functions
+
+Metaflow now logs [State Machine execution history in AWS CloudWatch Logs](https://docs.aws.amazon.com/step-functions/latest/dg/cw-logs.html) for deployed Metaflow flows. You can enable it by specifying `--log-execution-history` flag while creating the state machine
+
+```text
+python flow.py step-functions create --log-execution-history
+```
+
+Note that you would need to set the environment variable \(or alternatively in your Metaflow config\) `METAFLOW_SFN_EXECUTION_LOG_GROUP_ARN` to your AWS CloudWatch Logs Log Group ARN to pipe the execution history logs to AWS CloudWatch Logs
+
 ## 2.2.13 \(May 19th, 2021\)
 
 The Metaflow 2.2.13 release is a minor patch release.
