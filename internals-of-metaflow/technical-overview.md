@@ -135,8 +135,8 @@ An important feature of Metaflow is that the data store is used as a content-add
 A centralized Metadata Provider keeps track of runs. Strictly speaking, this functionality is not required by Metaflow but it makes the system much more **usable.** The service also helps to make data artifacts and other metadata about runs more discoverable during result-time, as explained below.
 
 * \`\`[`metadata.py` - base class for metadata providers](https://github.com/Netflix/metaflow/blob/master/metaflow/metadata/metadata.py)
-* \`\`[`service.py` - default implementation of the metadata provider](https://github.com/Netflix/metaflow/blob/master/metaflow/metadata/service.py)
-* \`\`[`local.py` - local implementation of the metadata provider](https://github.com/Netflix/metaflow/blob/master/metaflow/metadata/local.py)
+* \`\`[`service.py` - default implementation of the metadata provider](https://github.com/Netflix/metaflow/blob/master/metaflow/plugins/metadata/service.py)
+* \`\`[`local.py` - local implementation of the metadata provider](https://github.com/Netflix/metaflow/blob/master/metaflow/plugins/metadata/local.py)
 
 ## Result-time Components
 
