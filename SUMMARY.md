@@ -47,6 +47,7 @@
 ## Going to Production with Metaflow
 
 * [Scheduling Metaflow Flows](going-to-production-with-metaflow/scheduling-metaflow-flows.md)
+* [Coordinating Larger Metaflow Projects](going-to-production-with-metaflow/coordinating-larger-metaflow-projects.md)
 
 ## Internals of Metaflow
 

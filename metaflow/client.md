@@ -8,7 +8,7 @@ This document provides an overview of the client API.
 
 Note that all operations in the Client API are filtered by the current namespace, as explained in [Organizing Results](tagging.md). If you do not get the results you expect, make sure you are in the correct namespace. The Client API consults the metadata service to gather results, so make sure that the client is properly configured to use the correct [metadata provider](client.md#metadata-provider).
 
-![Object hierarchy](../.gitbook/assets/hierarchy.png)
+![Object hierarchy](../.gitbook/assets/hierarchy%20%281%29.png)
 
 You can import any of the objects shown above directly from the metaflow package as follows \(for example\):
 

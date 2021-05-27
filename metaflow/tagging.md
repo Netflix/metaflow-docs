@@ -10,11 +10,11 @@ As explained in [Basics of Metaflow](basics.md), Metaflow persists all runs and 
 
 Many users can use Metaflow concurrently. Imagine that Anne and Will are collaborating on a project that consists of two flows, `PredictionFlow` and `FeatureFlow`. As they, amongst other people, run their versions independently they end up with the following runs:
 
-![](../.gitbook/assets/namespace1.png)
+![](../.gitbook/assets/assets_metaflow_-lpjn0yp7r49jrnxca_5_-lpjryuuy7v5kovmxtsv_namespace1%20%281%29.png)
 
 Anne could analyze her latest `PredictionFlow` results in a notebook by remembering that her latest run is `PredictionFlow/8`. Fortunately, Metaflow makes this even easier thanks to **namespaces**:
 
-![](../.gitbook/assets/namespace2.png)
+![](../.gitbook/assets/assets_metaflow_-lpjn0yp7r49jrnxca_5_-lpjryuvqmspdu9w5imb_namespace2.png)
 
 When Anne runs `PredictionFlow`, her runs are automatically **tagged** with her user name, prefixed with `user:`. By default, when Anne uses the [Client API](client.md) in a notebook or in a Python script, the API only returns results that are tagged with `user:anne`. Instead of having to remember the exact ID of her latest run, she can simply say:
 
