@@ -4,6 +4,21 @@ Read below how Metaflow has improved over time.
 
 We take backwards compatibility very seriously. In the vast majority of cases, you can upgrade Metaflow without expecting changes in your existing code. In the rare cases when breaking changes are absolutely necessary, usually, due to bug fixes, you can take a look at minor breaking changes below before you upgrade.
 
+## 
+
+## 2.3.1 \(Jun 23rd, 2021\)
+
+The Metaflow 2.3.1 release is a minor release.
+
+* Features
+  * [Performance optimizations for `merge_artifacts`](https://github.com/Netflix/metaflow/releases/tag/2.3.1#556)
+
+### **Features**
+
+\*\*\*\*[**Performance optimizations for `merge_artifacts`**](https://github.com/Netflix/metaflow/releases/tag/2.3.1#556)\*\*\*\*
+
+Prior to this release, `FlowSpec.merge_artifacts` was loading all of the merged artifacts into memory after doing all of the consistency checks with hashes. This release now avoids the memory and compute costs of decompressing, de-pickling, re-pickling, and recompressing each merged artifact - resulting in improved performance of `merge_artifacts`.
+
 ## 2.3.0 \(May 27th, 2021\)
 
 The Metaflow 2.3.0 release is a minor release.
