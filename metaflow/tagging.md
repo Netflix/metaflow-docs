@@ -14,7 +14,7 @@ Many users can use Metaflow concurrently. Imagine that Anne and Will are collabo
 
 Anne could analyze her latest `PredictionFlow` results in a notebook by remembering that her latest run is `PredictionFlow/8`. Fortunately, Metaflow makes this even easier thanks to **namespaces**:
 
-![](../.gitbook/assets/assets_metaflow_-lpjn0yp7r49jrnxca_5_-lpjryuvqmspdu9w5imb_namespace2.png)
+![](../.gitbook/assets/assets_metaflow_-lpjn0yp7r49jrnxca_5_-lpjryuvqmspdu9w5imb_namespace2%20%281%29.png)
 
 When Anne runs `PredictionFlow`, her runs are automatically **tagged** with her user name, prefixed with `user:`. By default, when Anne uses the [Client API](client.md), the API only returns results that are tagged with `user:anne`. Instead of having to remember the exact ID of her latest run, she can simply say:
 
