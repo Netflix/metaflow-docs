@@ -135,7 +135,6 @@ If you have a sensitive production workflow which should not fail easily, there 
 1. You can increase the number of retries to `times=4`, which is the maximum number of retries currently.
 2. You can make the time between retries arbitrarily long, e.g. `times=4, minutes_between_retries=20.` This will give the task over an hour to succeed.
 3. You can use `catch`, described below, as a way to continue even after all retries have failed.
-4. You can use `timeout`, also described below, to make sure your code will not get stuck.
 
 You can use any combination of these four techniques, or all of them together, to build rock-solid workflows.
 
