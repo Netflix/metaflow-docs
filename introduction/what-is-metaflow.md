@@ -4,6 +4,8 @@ Metaflow is a human-friendly Python library that helps scientists and engineers 
 
 Metaflow provides a unified API to the infrastructure stack that is required to execute data science projects, from prototype to production.
 
+Metaflow is released under the Open Source Apache 2 license which can be found [here](https://github.com/Netflix/metaflow/blob/master/LICENSE)
+
 ## Should I Use Metaflow?
 
 If you are working on an existing data science project, or you are planning to start a new one, consider the following questions:
