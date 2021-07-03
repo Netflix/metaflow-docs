@@ -33,7 +33,7 @@ end <- function(self){
 
 metaflow("RetryFlow") %>%
     step(step="start", 
-         decorator("retry"),
+         retry(),
          r_function=start, 
          next_step="end") %>%
     step(step="end", 
@@ -115,7 +115,7 @@ you may end up withdrawing up to $4000 instead of the intended $1000. To make su
 metaflow("MoneyFlow") %>%
     ...
     step(step="withdraw", 
-         decorator("retry", times=0),
+         retry(times=0),
          r_function=withdraw_money_from_account, 
          next_step="end") %>%
     ...
@@ -195,7 +195,7 @@ metaflow("CatchFlow") %>%
          next_step = "sanity_check",
          foreach = "params") %>%
     step(step = "sanity_check", 
-         decorator("catch", var="compute_failed", print_exception=FALSE),
+         catch(var="compute_failed", print_exception=FALSE),
          r_function = sanity_check, 
          next_step = "join") %>%
     step(step = "join", 
@@ -234,8 +234,8 @@ end <- function(self) {
 
 metaflow("SuicidalFlowR") %>%
   step(
-    decorator("catch", var = "start_failed"),
-    decorator("retry"),
+    catch(var = "start_failed"),
+    retry(),
     step = "start",
     r_function = start,
     next_step = "end"
