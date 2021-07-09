@@ -129,9 +129,9 @@ The `resume` command reuses the parameter values that you set with `run` origina
 
 This section shows you how to reproduce a failed Metaflow run on AWS Step Functions locally. This is how a failed run on AWS Step Functions UI looks like - 
 
-![](https://lh4.googleusercontent.com/7a7yW4JMApMn8_X4DZsnoT2EOIK_RR0YTwkhJrEDq9jUJDHuVZv6BLgRJ-XtHrkP9MAM28ofrYMVK7W-f9pIRXTbuay3VWvR73FuDvW_OI4BprDheWViGd3XLD-ArMUgwu-Flok_)
+![](../.gitbook/assets/image1.png)
 
-![](https://lh4.googleusercontent.com/SxMRHj9suoBFMQwx4FJP-zywTzCUrePSRMAYhxVOreXxwEJe-eL3WciP3TxVyNkNrrSEmKo1bbBkS762rEtJ4SVJj8MaJubTdmnBsjkONi5NT4BUSXcnqwL47KXQaQaEwSpzroeT)
+![](../.gitbook/assets/image3.png)
 
 Notice the execution ID of `5ca85f96-8508-409d-a5f5-b567db1040c5`. When running on AWS Step Functions, Metaflow uses the AWS Step Functions execution ID \(prefixed with `sfn-`\) as the run id. 
 
