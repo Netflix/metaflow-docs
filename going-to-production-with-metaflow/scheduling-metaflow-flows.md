@@ -1,6 +1,6 @@
 # Scheduling Metaflow Flows
 
-A key feature of Metaflow is to make it easy to take machine learning pipelines from prototyping to production. This sentence and a number of other Metaflow documents use the word production casually. What do we actually mean by it?
+image2A key feature of Metaflow is to make it easy to take machine learning pipelines from prototyping to production. This sentence and a number of other Metaflow documents use the word production casually. What do we actually mean by it?
 
 For Machine Learning Infrastructure, production has a simple and unexciting meaning: In production, the flow should run without any human intervention. If your flow produced valid results during development, we want it to produce equally valid results in production - just without anyone managing it manually.
 
@@ -68,9 +68,9 @@ It is highly recommended that you [enable retries](../metaflow/failures.md#retry
 
 The command will export your workflow to AWS Step Functions. You can also search for the flow by name within the AWS Step Functions UI. You should see a visualization of the exported flow, like here:
 
-![](https://lh5.googleusercontent.com/TLg0kuxe_NRXqfKFgv2_EWjgsWJ9vA-nG3859uOi8sVkpqITu2mbimSBWFq3VGOVw56_hL37tMA8hl7doGfe_3H7pLihqAd-ZIdSYOizjbAEgE3BRZB2fUsU42h0Kt5_GvC501PT)
+![](../.gitbook/assets/image2.png)
 
-![](https://lh4.googleusercontent.com/S0LZKdOvAuaMSFN58sBeKoarl-XSIT-lTPOBW7A1bukfCqGiT3Wlc9_XworJ-HtEV6JP8Cj1fHsTRKDDlRSR_kI8cZ_aQmaAx982tzmSWc8EHSrR7n8b0Au-sy5rP__OFAXC887J)
+![](../.gitbook/assets/image5.png)
 
 You can click the orange Start Execution button to execute the flow on AWS Step Functions. It pops up a dialog asking for an input. You can specify your parameters as an escaped JSON string with `Parameters` as the key - ****
 
@@ -84,7 +84,7 @@ Metaflow automatically maps Parameters of your flow to corresponding parameters 
 
 After you click Start Execution on the Input dialog, AWS Step Functions starts running the flow:
 
-![](https://lh4.googleusercontent.com/zfwlsbdT-B7y_XXfi1ZrI4GweXYf1fOPjuwtxRNPSWRlMKrbT_QefbpRFdPJN0KTluYd3dqd1kJyTFznPZTKRXadsKoYUxIlWJq9cE4NEixA-suMXumd9fI0tU2j8SDG80HXZf4D)
+![](../.gitbook/assets/image6.png)
 
 In this case, the run should succeed without problems. If there were errors, you could reproduce them locally as explained in [Debugging with Metaflow](../metaflow/debugging.md#reproducing-production-issues-locally).
 
