@@ -85,7 +85,7 @@ Moreover, it is critical that you, and all other people, can keep experimenting 
 
 As a solution, by default the production namespace is made separate from the user namespace:
 
-![](https://lh3.googleusercontent.com/X_nKXBSlptzOx85xctveKtEA5aylCzpZ7MnxHOJcmMYcr6gK7iJnHZAecY1GN4hI0jUKyj5v18Z02Cu_d8gSYZuv6u1P3a6eQQ16u_RFe9uVdtY14elIOsp1rXWXFsIZ23EpYbq1)
+![](../.gitbook/assets/namespace4%20%281%29.png)
 
 Isolated production namespaces have three main benefits:
 
