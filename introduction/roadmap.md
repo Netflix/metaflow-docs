@@ -20,9 +20,11 @@ Support for dependency management tools beyond conda and docker and address exis
 
 Support composing Metaflow flow from other flows \([Github issue](https://github.com/Netflix/metaflow/issues/245)\)
 
-## **MetaflowBot**
+## ~~**MetaflowBot**~~
 
 A Slack bot for Metaflow. Use it to ask questions about past runs \([Github issue](https://github.com/Netflix/metaflow/issues/5)\)
+
+**Update -** [Metaflowbot](https://github.com/outerbounds/metaflowbot) is now available in Open Source!
 
 ## **Metaflow DataFrame**
 
