@@ -39,7 +39,7 @@ end <- function(self) {
 
 metaflow("BigSumFlowR") %>%
   step(
-    decorator("resources", memory=60000, cpu=1),
+    resources(memory=60000, cpu=1),
     step = "start",
     r_function = start,
     next_step = "end"
