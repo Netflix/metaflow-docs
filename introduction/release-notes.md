@@ -4,6 +4,131 @@ Read below how Metaflow has improved over time.
 
 We take backwards compatibility very seriously. In the vast majority of cases, you can upgrade Metaflow without expecting changes in your existing code. In the rare cases when breaking changes are absolutely necessary, usually, due to bug fixes, you can take a look at minor breaking changes below before you upgrade.
 
+
+
+## 2.3.5 \(Aug 23rd, 2021\)
+
+The Metaflow 2.3.5 release is a patch release.
+
+* [Features](release-notes.md#features)
+  * [Enable mounting host volumes in AWS Batch](https://github.com/Netflix/metaflow/issues/441)
+* [Bug Fixes](release-notes.md#bug-fixes)
+  * [Fix input values for Parameters of type `list` within a Metaflow Foreach task](https://github.com/Netflix/metaflow/issues/651)
+
+### Features
+
+#### [Enable mounting host volumes in AWS Batch](https://github.com/Netflix/metaflow/issues/441)
+
+With this release, you can now [mount and access instance host volumes](https://aws.amazon.com/premiumsupport/knowledge-center/batch-mount-efs/) within a Metaflow task running on AWS Batch. To access a host volume, you can add `host-volumes` argument to your `@batch` decorator -
+
+```text
+@batch(host_volumes=['/home', '/var/log'])
+```
+
+### Bug Fixes
+
+#### [Fix input values for Parameters of type `list` within a Metaflow Foreach task](https://github.com/Netflix/metaflow/issues/651)
+
+The following flow had a bug where the value for `self.input` was being imputed to `None` rather than the dictionary element. This release fixes this issue -
+
+```python
+from metaflow import FlowSpec, Parameter, step, JSONType
+
+class ForeachFlow(FlowSpec):
+    numbers_param = Parameter(
+        "numbers_param",
+        type=JSONType,
+        default='[1,2,3]'
+    )
+
+    @step
+    def start(self):
+        # This works, and passes each number to the run_number step:
+        #
+        # self.numbers = self.numbers_param
+        # self.next(self.run_number, foreach='numbers')
+
+        # But this doesn't:
+        self.next(self.run_number, foreach='numbers_param')
+
+    @step
+    def run_number(self):
+        print(f"number is {self.input}")
+        self.next(self.join)
+
+    @step
+    def join(self, inputs):
+        self.next(self.end)
+
+    @step
+    def end(self):
+        pass
+
+if __name__ == '__main__':
+    ForeachFlow()
+```
+
+## 2.3.4 \(Aug 11th, 2021\)
+
+The Metaflow 2.3.4 release is a patch release.
+
+* [Bug Fixes](release-notes.md#bug-fixes-1)
+  * [Fix execution of `step-functions create` when using an `IncludeFile` parameter](https://github.com/Netflix/metaflow/releases#637)
+
+### Bug Fixes
+
+#### [Fix execution of `step-functions create` when using an `IncludeFile` parameter](https://github.com/Netflix/metaflow/releases#637)
+
+PR [\#607](https://github.com/Netflix/metaflow/pull/607) in `Metaflow 2.3.3` introduced a bug with `step-functions create` command for `IncludeFile` parameters. This release rolls back that PR. A subsequent release will reintroduce a modified version of PR [\#607](https://github.com/Netflix/metaflow/pull/607).
+
+## 2.3.3 \(Jul 29th, 2021\)
+
+The Metaflow 2.3.3 release is a patch release.
+
+* [Features](release-notes.md#features)
+  * [Support resource tags for Metaflow's integration with AWS Batch](https://github.com/Netflix/metaflow/releases#632)
+* [Bug Fixes](release-notes.md#bug-fixes)
+  * [Properly handle `None` as defaults for parameters for AWS Step Functions execution](https://github.com/Netflix/metaflow/releases#630)
+  * [Fix return value of `IncludeFile` artifacts](https://github.com/Netflix/metaflow/releases#607)
+
+### Features
+
+#### [Support resource tags for Metaflow's integration with AWS Batch](https://github.com/Netflix/metaflow/releases#632)
+
+Metaflow now supports setting [resource tags for AWS Batch jobs](https://docs.aws.amazon.com/batch/latest/userguide/using-tags.html) and propagating them to the underlying ECS tasks. The following tags are attached to the AWS Batch jobs now -
+
+* `metaflow.flow_name`
+* `metaflow.run_id`
+* `metaflow.step_name`
+* `metaflow.user` / `metaflow.owner`
+* `metaflow.version`
+* `metaflow.production_token`
+
+To enable this feature, set the environment variable \(or alternatively in the `metaflow config`\) `METAFLOW_BATCH_EMIT_TAGS` to `True`. Keep in mind that the IAM role \(`MetaflowUserRole`, `StepFunctionsRole`\) submitting the jobs to AWS Batch will need to have the `Batch:TagResource` permission.
+
+### Bug Fixes
+
+#### [Properly handle `None` as defaults for parameters for AWS Step Functions execution](https://github.com/Netflix/metaflow/releases#630)
+
+Prior to this release, a parameter specification like -
+
+```text
+Parameter(name="test_param", type=int, default=None)
+```
+
+will result in an error even though the default has been specified
+
+```text
+Flow failed:
+    The value of parameter test_param is ambiguous. It does not have a default and it is not required.
+```
+
+This release fixes this behavior by allowing the flow to execute as it would locally.
+
+#### [Fix return value of `IncludeFile` artifacts](https://github.com/Netflix/metaflow/releases#607)
+
+The `IncludeFile` parameter would return JSONified metadata about the file rather than the file contents when accessed through the `Metaflow Client`. This release fixes that behavior by returning instead the file contents, just like any other Metaflow data artifact.
+
 ## 2.3.2 \(Jun 29th, 2021\)
 
 The Metaflow 2.3.2 release is a minor release.
