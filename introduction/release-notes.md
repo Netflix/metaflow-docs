@@ -4,6 +4,45 @@ Read below how Metaflow has improved over time.
 
 We take backwards compatibility very seriously. In the vast majority of cases, you can upgrade Metaflow without expecting changes in your existing code. In the rare cases when breaking changes are absolutely necessary, usually, due to bug fixes, you can take a look at minor breaking changes below before you upgrade.
 
+## 2.3.6 \(Sep 8th, 2021\)
+
+The Metaflow 2.3.6 release is a patch release.
+
+* [Bug Fixes](https://github.com/Netflix/metaflow/releases#2.3.6_bugs)
+  * [Fix recursion error when `METAFLOW_DEFAULT_ENVIRONMENT` is set to `conda`](https://github.com/Netflix/metaflow/releases#673)
+  * [Allow dots in `host_volumes` attribute for `@batch` decorator](https://github.com/Netflix/metaflow/releases#676)
+
+### Bug Fixes
+
+#### [Fix recursion error when `METAFLOW_DEFAULT_ENVIRONMENT` is set to `conda`](https://github.com/Netflix/metaflow/releases#673)
+
+Prior to this release, setting default execution environment to `conda` through `METAFLOW_DEFAULT_ENVIRONMENT` would result in a recursion error.
+
+```text
+METAFLOW_DEFAULT_ENVIRONMENT=conda python flow.py run
+```
+
+```text
+  File "/Users/savin/Code/metaflow/metaflow/cli.py", line 868, in start
+    if e.TYPE == environment][0](ctx.obj.flow)
+  File "/Users/savin/Code/metaflow/metaflow/plugins/conda/conda_environment.py", line 27, in __init__
+    if e.TYPE == DEFAULT_ENVIRONMENT][0](self.flow)
+  File "/Users/savin/Code/metaflow/metaflow/plugins/conda/conda_environment.py", line 27, in __init__
+    if e.TYPE == DEFAULT_ENVIRONMENT][0](self.flow)
+  File "/Users/savin/Code/metaflow/metaflow/plugins/conda/conda_environment.py", line 27, in __init__
+    if e.TYPE == DEFAULT_ENVIRONMENT][0](self.flow)
+  [Previous line repeated 488 more times]
+  File "/Users/savin/Code/metaflow/metaflow/plugins/conda/conda_environment.py", line 24, in __init__
+    from ...plugins import ENVIRONMENTS
+RecursionError: maximum recursion depth exceeded
+```
+
+This release fixes this bug.
+
+#### [Allow dots in `host_volumes` attribute for `@batch` decorator](https://github.com/Netflix/metaflow/releases#676)
+
+Dots in volume names - `@batch(host_volumes='/path/with/.dot')` weren't being santized properly resulting in errors when a Metaflow task launched on AWS Batch. This release fixes this bug.
+
 ## 2.3.5 \(Aug 23rd, 2021\)
 
 The Metaflow 2.3.5 release is a patch release.
