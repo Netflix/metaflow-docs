@@ -17,6 +17,13 @@ The major components of the template are:
 * **AWS Identity and Access Management** - Dedicated roles obeying "principle of least privilege" access to resources such as AWS Batch and Amazon Sagemaker Notebook instances.
 * **AWS Lambda** _-_ An AWS Lambda function that automates any migrations needed for the Metadata service.
 
+Additional optional components of the template are:
+
+* **AWS Cloudfront** - Content Delivery Network for Metaflow User Interface static assets.
+* **Application Load Balancer** - Application Load Balancer for Metaflow User Interface.
+
+User Interface can be enabled via CloudFormation template Parameter. This step is covered under **Steps for AWS CloudFormation Deployment - Optional Metaflow User Interface** -section below.
+
 ## Steps for AWS CloudFormation Deployment
 
 1. Navigate to _Services_ and select _CloudFormation_ under the _Management and Governance_ heading \(or search for it in the search bar\) in your AWS console.
@@ -45,3 +52,37 @@ Did you choose to enable _APIBasicAuth_ and/or _CustomRole_ and are wondering ho
 
 Once you have followed all these steps, you can [configure your metaflow installation](./#configuring-metaflow) using the outputs from the CloudFormation stack.
 
+### Optional Metaflow User Interface (`EnableUI` -parameter)
+
+Did you choose to enable Metaflow User Interface and are wondering how it works? Below are some details on what needs to be done in order to deploy Metaflow User Interface.
+
+User Interface is provided as a CloudFormation Nested Stack, which means that the UI components are separated to its own template and are deployed to separate CloudFormation Stack. All Nested Stack operations should be initiated from the root stack.
+
+While working with Nested Stacks, templates need to be packaged before deployment. For this AWS Command Line Interface can be used. Packaging step is only required when deploying Metaflow User Interface Nested Stack.
+
+Prerequisites for User Interface enabled Nested Stack deployment:
+
+* **[Netflix/metaflow-tools repository](https://github.com/Netflix/metaflow-tools)** - Locally available for packaging templates.
+* **AWS Command Line Interface** - Installed and configured.
+* **S3 bucket to upload CloudFormation templates to** - Nested Stacks require templates referred by absolute S3 paths.
+
+Packaging step is required in order to deploy templates with Nested Stacks:
+
+```bash
+$ aws cloudformation package \
+    --s3-bucket custom-s3-bucket \
+    --template-file metaflow-cfn-template.yml \
+    --output-template-file metaflow-cfn-template.yml.package
+```
+
+Above package command does the following:
+
+1. Nested Stack template is uploaded to S3 bucket
+    1. Defined by `--s3-bucket` parameter (this bucket should already exist and needs to be created manually)
+2. Root template is transformed so that all local paths are converted to absolute S3 paths
+    1. Input file is defined by `--template-file` parameter
+3. Transformed and packaged root template is placed in local file system defined by `--output-template-file` parameter
+
+Once this package step is completed, you can follow the **Steps for AWS CloudFormation Deployment** -section. Please note: instead of using the non-packaged template, you should use the packaged template `metaflow-cfn-template.yml.package` you just created.
+
+Read more about Cloudformation and working with nested stacks [here](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-nested-stacks.html).
