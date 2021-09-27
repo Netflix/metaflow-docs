@@ -1,6 +1,6 @@
-![](../.gitbook/assets/01_instructions.png)
-
 ### Home
+
+![](../.gitbook/assets/01_instructions.png)
 
 1. Our header navigation provides you shortcuts to quickly navigate to
    spesific parts of the site.
@@ -11,9 +11,11 @@
 4. “Runs” -table is a realtime overview of the running Flows within your
    service.
 
-![](../.gitbook/assets/02_instructions.png)
+---
 
 ### Header
+
+![](../.gitbook/assets/02_instructions.png)
 
 1. Our site search provides the user with breadcrumb patterns to quickly
    navigate to specific part of the site.
@@ -21,9 +23,11 @@
    to Notifications or external resources. Also the Application and Service
    versions are presented here.
 
-![](../.gitbook/assets/03_instructions.png)
+---
 
 ### Filters
+
+![](../.gitbook/assets/03_instructions.png)
 
 1. “Time frame” -filter always has “Last 30 days” set as default to ensure
    the best possible user experience.
@@ -35,9 +39,11 @@
 4. In a scenario when a specific part of the service might be temporarily
    down the inputs display errors for the user.
 
-![](../.gitbook/assets/04_instructions.png)
+---
 
 ### "Runs" -table
+
+![](../.gitbook/assets/04_instructions.png)
 
 1. “Runs” -table is updated in realtime to show the latest status of flows
    being run in your service. The list can be ordered by clicking on the
@@ -48,9 +54,11 @@
 3. You can quickly glance through the flows Parameters and check the
    flows current status from the Timeline.
 
-![](../.gitbook/assets/05_instructions.png)
+---
 
 ### "Runs" -table grouping
+
+![](../.gitbook/assets/05_instructions.png)
 
 1. You can change the grouping of the “Runs” -table from the “Group by”
    -select. Currently you can group by flow or user.
@@ -63,9 +71,11 @@
 4. When you scroll through the “Runs” -table we’ll bring forth a “Scroll to
    top” -button to easily get back to top of the table.
 
-![](../.gitbook/assets/06_instructions.png)
+---
 
 ### Notifications
+
+![](../.gitbook/assets/06_instructions.png)
 
 1. Notifications is a simple view displaying the history of past
    announcements related to you service.
@@ -75,9 +85,11 @@
    the page, to give you valuable information about upcoming
    maintenances or software updates.
 
-![](../.gitbook/assets/07_instructions.png)
+---
 
 ### Run details - Timeline
+
+![](../.gitbook/assets/07_instructions.png)
 
 1. Run details -header contains all of the vital information about you
    current run.
@@ -95,9 +107,11 @@
 10. The timeline displays a graphical presentation of the runs progress in
     realtime.
 
-![](../.gitbook/assets/08_instructions.png)
+---
 
 ### Run details - DAG
+
+![](../.gitbook/assets/08_instructions.png)
 
 1. DAG -view fullscreen toggle.
 2. Runs DAG map that gives graphical presentation how the different
@@ -105,9 +119,11 @@
 3. You can also check the “Developer comments” for each step if the
    developer has provided any.
 
-![](../.gitbook/assets/09_instructions.png)
+---
 
 ### Run details - Task detail 1/3
+
+![](../.gitbook/assets/09_instructions.png)
 
 1. Each task can consist of multiple attempts. Task details -header
    beneath the tab navigation contains all of the vital information related
@@ -116,16 +132,20 @@
    Metadata, Developer comment and Download link.
 3. Metadata is automatically generated data related to the step.
 
-![](../.gitbook/assets/10_instructions.png)
+---
 
 ### Run details - Task detail 2/3
+
+![](../.gitbook/assets/10_instructions.png)
 
 1. Task related “Developer comments” can be found here.
 2. The tasks “Download link” can be found here.
 
-![](../.gitbook/assets/11_instructions.png)
+---
 
 ### Run details - Task detail 3/3
+
+![](../.gitbook/assets/11_instructions.png)
 
 1. “Std out” -section displays the tasks std out if available and also
    provide tools for downloading or copying the outcome to your
