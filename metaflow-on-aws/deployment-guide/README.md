@@ -6,11 +6,15 @@ This document outlines how to deploy AWS resources for Metaflow's AWS integratio
 
 We provide two alternative approaches for deploying Metaflow on AWS. The first one is the easiest approach if you are not opinionated about your AWS setup. Choose the second manual approach if you want more flexibility.
 
-#### The simple approach: Deploy with CloudFormation
+#### The simple approach: Deploy with AWS CloudFormation or Terraform
 
 Deploying and configuring AWS resources can be non-trivial. To address that, we have an [AWS CloudFormation template](aws-cloudformation-deployment.md) that completely automates the entire process of standing up all AWS resources needed by Metaflow. 
 
 {% page-ref page="aws-cloudformation-deployment.md" %}
+
+We also provide an equivalent [Terraform template](https://github.com/Netflix/metaflow-tools/tree/master/aws/terraform), in case you prefer Terraform over AWS Cloudformation.
+
+{% page-ref page="terraform-deployment.md" %}
 
 #### The flexible approach: Manual deployment
 
