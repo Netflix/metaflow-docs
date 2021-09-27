@@ -106,7 +106,7 @@ Metaflow provides an optional UI which enables the user to monitor workflows eff
 
 The UI service doesn’t have any built-in support for authentication. We assume that the service is typically deployed inside a (virtual) private network that provides a secure operating environment.
 
-Optionally, the administrator may choose to replicate the main database to make sure that any load or interference caused by the UI service will not affect the Metadata service operation.
+Optionally, the administrator may choose to replicate the main database to make sure that any load or interference caused by the UI service will not affect the Metadata service operation. Read more about [logical replication](../metaflow-on-aws/operations-guide/metaflow-ui-logical-replication-guide.md).
 
 ## Security Considerations
 

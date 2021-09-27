@@ -17,6 +17,5 @@ description: How to deploy and operate Metaflow
   * [AWS CloudFormation Deployment](metaflow-on-aws/deployment-guide/aws-cloudformation-deployment.md)
   * [Manual Deployment](metaflow-on-aws/deployment-guide/manual-deployment.md)
 * [Operations Guide](metaflow-on-aws/operations-guide/)
-
-
-
+  * [Metaflow Service Migration Guide](metaflow-on-aws/operations-guide/metaflow-service-migration-guide.md)
+  * [Metaflow UI Logical Replication Guide](metaflow-on-aws/operations-guide/metaflow-ui-logical-replication-guide.md)
