@@ -1,4 +1,4 @@
-### Home
+## Home
 
 ![](../.gitbook/assets/01_instructions.png)
 
@@ -11,9 +11,7 @@
 4. “Runs” -table is a realtime overview of the running Flows within your
    service.
 
----
-
-### Header
+## Header
 
 ![](../.gitbook/assets/02_instructions.png)
 
@@ -23,9 +21,7 @@
    to Notifications or external resources. Also the Application and Service
    versions are presented here.
 
----
-
-### Filters
+## Filters
 
 ![](../.gitbook/assets/03_instructions.png)
 
@@ -39,9 +35,7 @@
 4. In a scenario when a specific part of the service might be temporarily
    down the inputs display errors for the user.
 
----
-
-### "Runs" -table
+## "Runs" -table
 
 ![](../.gitbook/assets/04_instructions.png)
 
@@ -54,9 +48,7 @@
 3. You can quickly glance through the flows Parameters and check the
    flows current status from the Timeline.
 
----
-
-### "Runs" -table grouping
+## "Runs" -table grouping
 
 ![](../.gitbook/assets/05_instructions.png)
 
@@ -71,9 +63,7 @@
 4. When you scroll through the “Runs” -table we’ll bring forth a “Scroll to
    top” -button to easily get back to top of the table.
 
----
-
-### Notifications
+## Notifications
 
 ![](../.gitbook/assets/06_instructions.png)
 
@@ -85,9 +75,7 @@
    the page, to give you valuable information about upcoming
    maintenances or software updates.
 
----
-
-### Run details - Timeline
+## Run details - Timeline
 
 ![](../.gitbook/assets/07_instructions.png)
 
@@ -107,9 +95,7 @@
 10. The timeline displays a graphical presentation of the runs progress in
     realtime.
 
----
-
-### Run details - DAG
+## Run details - DAG
 
 ![](../.gitbook/assets/08_instructions.png)
 
@@ -119,9 +105,7 @@
 3. You can also check the “Developer comments” for each step if the
    developer has provided any.
 
----
-
-### Run details - Task detail 1/3
+## Run details - Task details 1/3
 
 ![](../.gitbook/assets/09_instructions.png)
 
@@ -132,18 +116,14 @@
    Metadata, Developer comment and Download link.
 3. Metadata is automatically generated data related to the step.
 
----
-
-### Run details - Task detail 2/3
+## Run details - Task details 2/3
 
 ![](../.gitbook/assets/10_instructions.png)
 
 1. Task related “Developer comments” can be found here.
 2. The tasks “Download link” can be found here.
 
----
-
-### Run details - Task detail 3/3
+## Run details - Task details 3/3
 
 ![](../.gitbook/assets/11_instructions.png)
 
