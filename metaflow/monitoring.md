@@ -27,7 +27,7 @@ In this section we go through all of the views within Metaflow UI and give you s
 
 ## Filters
 
-1. **Time frame** -filter always has “Last 30 days” set as default to ensure
+1. **Time frame** -filter always has **Last 30 days** set as default to ensure
    the best possible user experience.
 2. With the **Time frame** -filter you can use quick presets or setup a
    custom timeframe.
@@ -59,8 +59,8 @@ In this section we go through all of the views within Metaflow UI and give you s
 2. When you enable grouping we show a **maximum of six** of the latest
    runs in a group. The table functions the same way as described
    before.
-3. Whenever there’s more than six items in a group we provide a “Show
-   all runs” -link that will filter the **Runs** -table to only show all of the
+3. Whenever there’s more than six items in a group we provide a **Show
+   all runs** -link that will filter the **Runs** -table to only show all of the
    flows within the group.
 4. When you scroll through the **Runs** -table we’ll bring forth a **Scroll to
    top** -button to easily get back to top of the table.
