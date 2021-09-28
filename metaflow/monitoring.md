@@ -4,7 +4,7 @@ In this section we go through all of the views within Metaflow UI and give you s
 
 ## Home
 
-1. Our header navigation provides you shortcuts to quickly navigate to
+1. Our **header navigation** provides you shortcuts to quickly navigate to
    spesific parts of the site.
 2. **Quick links** provides useful features for selecting your timezone and
    links to internal and external resources.
@@ -44,7 +44,7 @@ In this section we go through all of the views within Metaflow UI and give you s
 1. **Runs** -table is updated in realtime to show the latest status of flows
    being run in your service. The list can be ordered by clicking on the
    column headers.
-2. Each row has toggle switch on the right side of the table that appears
+2. Each row has **toggle switch** on the right side of the table that appears
    when you hover over a row. The toggle opens up a section that
    contains the Flows **Parameters** and **Timeline**.
 3. You can quickly glance through the flows Parameters and check the
