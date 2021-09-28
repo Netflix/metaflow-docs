@@ -1,6 +1,7 @@
 ## Home
 
-![](../.gitbook/assets/01_instructions.png)
+| ------------- |:-------------:|
+| ![](../.gitbook/assets/01_instructions.png) |
 
 1. Our header navigation provides you shortcuts to quickly navigate to
    spesific parts of the site.
@@ -9,7 +10,7 @@
 3. “Filters” -section provides all the required tools for the user to filter
    out their “Runs” -list.
 4. “Runs” -table is a realtime overview of the running Flows within your
-   service.
+   service. |
 
 ## Header
 
