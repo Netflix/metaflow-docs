@@ -61,7 +61,7 @@
 4. When you scroll through the “Runs” -table we’ll bring forth a “Scroll to
    top” -button to easily get back to top of the table.
 
-> ["Runs" -table grouping](../.gitbook/assets/05_instructions.png "'Runs' -table grouping")
+> !["Runs" -table grouping](../.gitbook/assets/04_instructions.png "'Runs' -table grouping")
 
 ## Notifications
 
