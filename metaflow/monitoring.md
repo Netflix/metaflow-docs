@@ -31,8 +31,8 @@ In this section we go through all of the views within Metaflow UI and give you s
    the best possible user experience.
 2. With the **Time frame** -filter you can use quick presets or setup a
    custom timeframe.
-3. All of the other filter fields have an autocomplete function to make the
-   filtering as easy as possible. Also we display the active filters as tags
+3. All of the other filter fields have an **autocomplete** function to make the
+   filtering as easy as possible. Also we display the active filters as **tags**
    beneath the filter inputs.
 4. In a scenario when a specific part of the service might be temporarily
    down the inputs display errors for the user.
@@ -70,7 +70,7 @@ In this section we go through all of the views within Metaflow UI and give you s
 ## Notifications
 
 1. Notifications is a simple view displaying the history of past
-   announcements related to you service.
+   **announcements** related to you service.
 2. Each notification consists of a simple message, publication date and a
    possible external resource link.
 3. An example notification that can popup at any given time anywhere on
@@ -93,8 +93,8 @@ In this section we go through all of the views within Metaflow UI and give you s
 6. **Order by** -select lets you change the order of the timeline
 7. **Status** -select allows you to filter the timeline by task status.
 8. Timelines **zoom controls**.
-9. Steps and tasks display a realtime status of how the run is progressing.
-10. The timeline displays a graphical presentation of the runs progress in
+9. **Steps and tasks** display a realtime status of how the run is progressing.
+10. The **timeline** displays a graphical presentation of the runs progress in
     realtime.
 
 > ![Run details - Timeline](../.gitbook/assets/07_instructions.png "Run details - Timeline")
@@ -102,7 +102,7 @@ In this section we go through all of the views within Metaflow UI and give you s
 ## Run details - DAG
 
 1. DAG -view **fullscreen toggle**.
-2. Runs DAG map that gives graphical presentation how the different
+2. Runs **DAG map** that gives graphical presentation how the different
    steps are separated and how they’re progressing within the run.
 3. You can also check the **Developer comments** for each step if the
    developer has provided any.
