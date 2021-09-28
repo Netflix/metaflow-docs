@@ -8,7 +8,8 @@
    out their “Runs” -list.
 4. “Runs” -table is a realtime overview of the running Flows within your
    service.
-   ![Home](../.gitbook/assets/01_instructions.png)
+
+> ![Home](../.gitbook/assets/01_instructions.png "Home")
 
 ## Header
 
@@ -17,7 +18,8 @@
 2. Within “Quick links” the user can change the sites timezone. Navigate
    to Notifications or external resources. Also the Application and Service
    versions are presented here.
-   ![Header](../.gitbook/assets/02_instructions.png)
+
+> ![Header](../.gitbook/assets/02_instructions.png "Header")
 
 ## Filters
 
@@ -30,7 +32,8 @@
    beneath the filter inputs.
 4. In a scenario when a specific part of the service might be temporarily
    down the inputs display errors for the user.
-   ![Filters](../.gitbook/assets/03_instructions.png)
+
+> ![Filters](../.gitbook/assets/03_instructions.png "Filters")
 
 ## "Runs" -table
 
@@ -42,7 +45,8 @@
    contains the Flows Parameters and Timeline.
 3. You can quickly glance through the flows Parameters and check the
    flows current status from the Timeline.
-   !["Runs" -table](../.gitbook/assets/04_instructions.png)
+
+> !["Runs" -table](../.gitbook/assets/04_instructions.png "'Runs' -table")
 
 ## "Runs" -table grouping
 
@@ -56,7 +60,8 @@
    flows within the group.
 4. When you scroll through the “Runs” -table we’ll bring forth a “Scroll to
    top” -button to easily get back to top of the table.
-   !["Runs" -table grouping](../.gitbook/assets/05_instructions.png)
+
+> ["Runs" -table grouping](../.gitbook/assets/05_instructions.png "'Runs' -table grouping")
 
 ## Notifications
 
@@ -67,7 +72,8 @@
 3. An example notification that can popup at any given time anywhere on
    the page, to give you valuable information about upcoming
    maintenances or software updates.
-   ![Notifications](../.gitbook/assets/06_instructions.png)
+
+> ![Notifications](../.gitbook/assets/06_instructions.png "Notifications")
 
 ## Run details - Timeline
 
@@ -86,7 +92,8 @@
 9. Steps and tasks display a realtime status of how the run is progressing.
 10. The timeline displays a graphical presentation of the runs progress in
     realtime.
-    ![Run details - Timeline](../.gitbook/assets/07_instructions.png)
+
+> ![Run details - Timeline](../.gitbook/assets/07_instructions.png "Run details - Timeline")
 
 ## Run details - DAG
 
@@ -95,7 +102,8 @@
    steps are separated and how they’re progressing within the run.
 3. You can also check the “Developer comments” for each step if the
    developer has provided any.
-   ![Run details - DAG](../.gitbook/assets/08_instructions.png)
+
+> ![Run details - DAG](../.gitbook/assets/08_instructions.png "Run details - DAG")
 
 ## Run details - Task details 1/3
 
@@ -105,13 +113,15 @@
 2. Task details -section contains information related to the tasks
    Metadata, Developer comment and Download link.
 3. Metadata is automatically generated data related to the step.
-   ![Run details - Task details 1/3](../.gitbook/assets/09_instructions.png)
+
+> ![Run details - Task details 1/3](../.gitbook/assets/09_instructions.png "Run details - Task details 1/3")
 
 ## Run details - Task details 2/3
 
 1. Task related “Developer comments” can be found here.
 2. The tasks “Download link” can be found here.
-   ![Run details - Task details 2/3](../.gitbook/assets/10_instructions.png)
+
+> ![Run details - Task details 2/3](../.gitbook/assets/10_instructions.png "Run details - Task details 2/3")
 
 ## Run details - Task details 3/3
 
@@ -122,4 +132,5 @@
 3. “Artifacts” -table contains all of the artifacts used within the step.
 4. You can copy the Python, R or original raw url for each artifact found
    within the “Artifacts” -table.
-   ![Run details - Task details 3/3](../.gitbook/assets/11_instructions.png)
+
+> ![Run details - Task details 3/3](../.gitbook/assets/11_instructions.png "Run details - Task details 3/3")
