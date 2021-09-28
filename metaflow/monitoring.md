@@ -1,4 +1,4 @@
-# Monitoring flow with Metaflow UI
+# Monitoring flows with Metaflow UI
 
 In this section we go through all of the views within Metaflow UI and give you short descriptions what everything is supposed to do.
 
