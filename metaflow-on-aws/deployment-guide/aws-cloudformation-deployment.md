@@ -17,6 +17,13 @@ The major components of the template are:
 * **AWS Identity and Access Management** - Dedicated roles obeying "principle of least privilege" access to resources such as AWS Batch and Amazon Sagemaker Notebook instances.
 * **AWS Lambda** _-_ An AWS Lambda function that automates any migrations needed for the Metadata service.
 
+Additional optional components of the template are:
+
+* **AWS Cloudfront** - Content Delivery Network for Metaflow User Interface static assets.
+* **Application Load Balancer** - Application Load Balancer for Metaflow User Interface.
+
+User Interface can be enabled via CloudFormation template Parameter. This step is covered under **Steps for AWS CloudFormation Deployment - Optional Metaflow User Interface** -section below.
+
 ## Steps for AWS CloudFormation Deployment
 
 1. Navigate to _Services_ and select _CloudFormation_ under the _Management and Governance_ heading \(or search for it in the search bar\) in your AWS console.
@@ -45,3 +52,17 @@ Did you choose to enable _APIBasicAuth_ and/or _CustomRole_ and are wondering ho
 
 Once you have followed all these steps, you can [configure your metaflow installation](../../overview/configuring-metaflow.md) using the outputs from the CloudFormation stack.
 
+### Optional Metaflow User Interface (`EnableUI` -parameter)
+
+Did you choose to enable Metaflow User Interface and are wondering how it works? Below are some details on what needs to be done in order to deploy Metaflow User Interface.
+
+Please note: This section can be ignored if `EnableUI` -parameter is disabled (this is the default value).
+
+User Interface is provided as part of the `metaflow-cfn-template.yml` template and doesn't require any additional
+configuration besides enabling the `EnableUI` -parameter. You can follow the [AWS CloudFormation Deployment](https://admin-docs.metaflow.org/metaflow-on-aws/deployment-guide/aws-cloudformation-deployment#steps-for-aws-cloudformation-deployment) instructions.
+
+Once deployed the Cloudformation Stack will provide two outputs:
+- `UIServiceUrl` - Application Load Balancer endpoint
+- `UIServiceCloudfrontUrl` - Cloudfront distribution (using ALB) endpoint with HTTPS enabled (preferred)
+
+Please note: Metaflow User Interface doesn't provide any authentication by default.

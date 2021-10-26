@@ -6,7 +6,7 @@ To benefit from the centralized [experiment tracking and sharing via Client API]
 
 ## Shared Mode Architecture
 
-The diagram below shows an overview of services used by Metaflow in the shared mode. The services outlined in yellow are required: Development Environment, Datastore, and Metaflow Service and its database. The services outlined with dashed lines are optional.
+The diagram below shows an overview of services used by Metaflow in the shared mode. The services outlined in yellow are required: Development Environment, Datastore, and Metaflow Service and its database. The services outlined with dashed lines are optional: Compute Cluster, Production Scheduler and User Interface.
 
 ![](../.gitbook/assets/service_architecture.png)
 
@@ -69,7 +69,13 @@ In the administrator’s point of view, an object store like S3 is effectively m
 
 ## Optional Services
 
-The following two services are optional. They provide a way to scale out Metaflow executions and deploy Metaflow workflows in a highly available production scheduler. If your organization doesn’t require elastic scalability and occasional downtime for scheduled workflow executions is acceptable, you may ignore these services.
+The following services are optional. They provide a way to scale out Metaflow executions and deploy Metaflow workflows in a highly available production scheduler. User Interface provides a way to monitor workloads efficiently in real-time within the user's own browser environment.
+
+You may ignore these optional services if:
+
+* Your organization doesn’t require elastic scalability
+* Occasional downtime for scheduled workflow executions is acceptable
+* User Interface is not relevant to your your organization
 
 ### Compute Cluster
 
@@ -93,6 +99,14 @@ The user can deploy their Metaflow workflow to Production Scheduler with a singl
 
 Currently, Metaflow supports [AWS Step Functions as the Production Scheduler](https://docs.metaflow.org/going-to-production-with-metaflow/scheduling-metaflow-flows). For more background about production schedulers, see [the release blog post for Step Functions integration](https://medium.com/@NetflixTechBlog/unbundling-data-science-workflows-with-metaflow-and-aws-step-functions-d454780c6280).  
 
+
+### **User Interface**
+
+Metaflow provides an optional UI which enables the user to monitor workflows efficiently in real-time within the user’s own browser environment.
+
+The UI service doesn’t have any built-in support for authentication. We assume that the service is typically deployed inside a (virtual) private network that provides a secure operating environment.
+
+Optionally, the administrator may choose to replicate the main database to make sure that any load or interference caused by the UI service will not affect the Metadata service operation. Read more about [logical replication](../metaflow-on-aws/operations-guide/metaflow-ui-logical-replication-guide.md).
 
 ## Security Considerations
 
