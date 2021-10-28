@@ -192,7 +192,7 @@ We will create two security groups, one for the AWS Fargate cluster and another 
    4. Choose _Add rule_ and select _Custom TCP_ for _Type._
    5. Use _8082_ for _Port range._ This is needed for the migration service to work.
    6. Select _Anywhere_ for _Source type._
-   7. Optional for UI Service
+   7. \(Optional\) for UI Service
       1. Choose _Add rule_ and select _Custom TCP_ for _Type._
       2. Use _8083_ for _Port range._ This is needed for UI Service.
       3. Select _Anywhere_ for _Source type._
@@ -342,14 +342,14 @@ METAFLOW_SERVICE_URL = http://xxx.xxx.xxx.xxx:8080
 
 The metadata service in this example is exposed to the internet. Ideally, you would want to put this service behind an API gateway and use authentication in front of it. The [AWS CloudFormation](aws-cloudformation-deployment.md) does that automatically for you. If you need help with manual installation, please [get in touch](../../overview/getting-in-touch.md).
 
-### Metaflow User Interface (optional)
+### Metaflow User Interface \(optional\)
 
 The metadata service comes with an optional UI service, which can be hosted to provide real-time insights on executions happening on the metadata platform. This is an aiohttp service which 
 shares its SQL database with the metadata service, either directly, or through logical replication.
 
 As a prerequisite, the metadata service should already be up and running following the earlier [Metadata](manual-deployment.md#Metadata) instructions.
 
-#### Service Isolation (optional)
+#### Service Isolation \(optional\)
 
 For complete isolation from the metadata service, it is possible to also set up a logical replica of the actual RDS database and use this for the UI service. Follow the instructions in the [logical replication guide](../operations-guide/metaflow-ui-logical-replication-guide.md), and optionally the [metadata guide](manual-deployment.md#Metadata) to set up a separate fargate cluster, with more restricted vpc, security group and IAM role. The UI Service only requires access to the RDS instance, so all other services can be kept out of reach if necessary. 
 
@@ -369,14 +369,14 @@ For complete isolation from the metadata service, it is possible to also set up 
       2. Set _netflixoss/metaflow\_metadata\_service_ as the _Image._
       3. Set _Memory Limits_ to a _hard limit_ of 16384.
       4. In _Port Mappings_, add mapping for 8083 TCP
-      3. Under _Advanced container configuration,_ Set _Command_ to be ```["python3", "-m", "services.ui_backend_service.ui_server",]```
-      4. Under _Advanced container configuration,_ in _Environment variables_ add the following values
+      5. Under _Advanced container configuration,_ Set _Command_ to be ```["python3", "-m", "services.ui_backend_service.ui_server",]```
+      6. Under _Advanced container configuration,_ in _Environment variables_ add the following values
          1. Set _Key_ as _MF\_METADATA\_DB\_HOST_ and the _Value_ as the endpoint value of the RDS instance you created.
          2. Set _Key_ as _MF\_METADATA\_DB\_NAME_ and the _Value_ as _metaflow._
          3. Set _Key_ as _MF\_METADATA\_DB\__PORT __and the _Value_ as _5432._
          4. Set _Key_ as _MF\_METADATA\_DB\_USER_ and the _Value_ as the username for your RDS instance.
          5. Set _Key_ as _MF\_METADATA\_DB\_PSWD_ and the _Value_ as the password for your RDS instance.
-      5. Choose _Add._
+      7. Choose _Add._
    5. Choose _Create._
 
 #### Create Fargate Service for UI
