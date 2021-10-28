@@ -400,7 +400,7 @@ For complete isolation from the metadata service, it is possible to also set up 
 7. You can configure _Service Auto Scaling_ if you want to do so. We will skip that for now.
 8. Choose _Next step_ and _Create Service._
 9. Choose _View Service_  and wait for the task to get to the _running_ state.
-10. Choose the task and copy the _Public IP_. You should now be able to access the UI at `xxx.xxx.xxx.xxx:8083/`. You should expect `pong` as the response. This public IP with the port 8083 is the url to the UI service.
+10. Choose the task and copy the _Public IP_. You should now be able to access the UI at `xxx.xxx.xxx.xxx:8083/`. This public IP with the port 8083 is the url to the UI service.
 
 ### Scheduling
 
