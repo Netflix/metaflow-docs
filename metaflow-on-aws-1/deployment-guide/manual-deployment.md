@@ -341,11 +341,11 @@ The metadata service in this example is exposed to the internet. Ideally, you wo
 The metadata service comes with an optional UI service, which can be hosted to provide real-time insights on executions happening on the metadata platform. This is an aiohttp service which 
 shares its SQL database with the metadata service, either directly, or through logical replication.
 
-As a prerequisite, the metadata service should already be up and running following the earlier [Metadata](manual-deployment.md#Metadata) instructions.
+As a prerequisite, the metadata service should already be up and running following the earlier [Metadata](manual-deployment.md#tracking) instructions.
 
 #### Service Isolation \(optional\)
 
-For complete isolation from the metadata service, it is possible to also set up a logical replica of the actual RDS database and use this for the UI service. Follow the instructions in the [logical replication guide](../operations-guide/metaflow-ui-logical-replication-guide.md), and optionally the [metadata guide](manual-deployment.md#Metadata) to set up a separate fargate cluster, with more restricted vpc, security group and IAM role. The UI Service only requires access to the RDS instance, so all other services can be kept out of reach if necessary. 
+For complete isolation from the metadata service, it is possible to also set up a logical replica of the actual RDS database and use this for the UI service. Follow the instructions in the [logical replication guide](../operations-guide/metaflow-ui-logical-replication-guide.md), and optionally the [metadata guide](manual-deployment.md#tracking) to set up a separate fargate cluster, with more restricted vpc, security group and IAM role. The UI Service only requires access to the RDS instance, so all other services can be kept out of reach if necessary. 
 
 #### Create Task Definition for UI service
 
@@ -378,7 +378,7 @@ For complete isolation from the metadata service, it is possible to also set up 
 1. Choose _Clusters_ in the left side pane and select the cluster you created in Step 4.
 2. Choose _Create_ under _Services,_
    1. Choose _Fargate_ as _Lauch type._
-   2. Choose the task definition that you created [previously](manual-deployment.md#create-task definition-for-ui-service). for _Task Definition._ Pick the latest for _Revision._
+   2. Choose the task definition that you created [previously](manual-deployment.md#create-task-definition-for-ui-service). for _Task Definition._ Pick the latest for _Revision._
    3. For _Platform version_ choose _Latest._
    4. Leave the _Cluster_ as is \(pointing to the cluster that you are configuring\).
    5. Pick a name for _Service name._

@@ -384,7 +384,7 @@ For complete isolation from the metadata service, it is possible to also set up 
 1. Choose _Clusters_ in the left side pane and select the cluster you created in Step 4.
 2. Choose _Create_ under _Services,_
    1. Choose _Fargate_ as _Lauch type._
-   2. Choose the task definition that you created [previously](manual-deployment.md#create-task definition-for-ui-service). for _Task Definition._ Pick the latest for _Revision._
+   2. Choose the task definition that you created [previously](manual-deployment.md#create-task-definition-for-ui-service). for _Task Definition._ Pick the latest for _Revision._
    3. For _Platform version_ choose _Latest._
    4. Leave the _Cluster_ as is \(pointing to the cluster that you are configuring\).
    5. Pick a name for _Service name._
