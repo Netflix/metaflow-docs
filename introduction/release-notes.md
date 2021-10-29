@@ -4,6 +4,126 @@ Read below how Metaflow has improved over time.
 
 We take backwards compatibility very seriously. In the vast majority of cases, you can upgrade Metaflow without expecting changes in your existing code. In the rare cases when breaking changes are absolutely necessary, usually, due to bug fixes, you can take a look at minor breaking changes below before you upgrade.
 
+## [2.4.2 (Oct 25th, 2021)](https://github.com/Netflix/metaflow/releases/2.4.2)
+
+The Metaflow 2.4.2 release is a patch release
+
+* [Bug Fixes](release-notes.md#bug-fixes)
+  * Fix a bug with accessing legacy logs through `metaflow.client`
+  * Fix a bug with task datastore access when no task attempt has been recorded
+
+### Bug Fixes
+
+#### Fix a bug with accessing legacy logs through `metaflow.client` ([#779](https://github.com/Netflix/metaflow/pull/779))
+
+Metaflow `v2.4.1` introduced a bug (due to a typo) in accessing legacy task logs through `metaflow.client`
+
+```
+Task("pathspec/to/task").stdout
+```
+
+This release fixes this issue.
+
+#### Fix a bug with task datastore access when no task attempt has been recorded ([#780](https://github.com/Netflix/metaflow/pull/780))
+
+A subtle bug was introduced in Metaflow `2.4.0` where the task datastore access fails when no task attempt was recorded. This release fixes this issue.
+
+## [2.4.1 (Oct 18th, 2021)](https://github.com/Netflix/metaflow/releases/2.4.1)
+
+The Metaflow 2.4.1 release is a patch release
+
+* [Bug Fixes](release-notes.md#bug-fixes)
+  * Expose non-pythonic dependencies inside the conda environment on AWS Batch
+* [New Features](release-notes.md#new-features)
+  * Introduce size properties for artifacts and logs in metaflow.client
+  * Expose attempt level task properties
+  * Introduce @kubernetes decorator for launching Metaflow tasks on Kubernetes
+
+### Bug Fixes
+
+#### Expose non-pythonic dependencies inside the conda environment on AWS Batch ([#735](https://github.com/Netflix/metaflow/pull/735))
+
+Prior to this release, non-pythonic dependencies in a conda environment were not automatically visible to a Metaflow task executing on AWS Batch (see [#734](https://github.com/Netflix/metaflow/issues/734)) (they were available for tasks that were executed locally). For example
+
+```python
+import os
+from metaflow import FlowSpec, step, conda, conda_base, batch
+
+class TestFlow(FlowSpec):
+
+    @step
+    def start(self):
+        self.next(self.use_node)
+
+    @batch
+    @conda(libraries={"nodejs": ">=16.0.0"})
+    @step
+    def use_node(self):
+        print(os.system("node --version"))
+        self.next(self.end)
+
+    @step
+    def end(self):
+        pass
+
+
+if __name__ == "__main__":
+    TestFlow()
+```
+
+would print an error. This release fixes the issue with the incorrect `PATH` configuration.
+
+### New Features
+
+#### Introduce size properties for artifacts and logs in metaflow.client ([#752](https://github.com/Netflix/metaflow/pull/752))
+
+This release exposes size properties for artifacts and logs (stderr and stdout) in metaflow.client. These properties are relied upon by the Metaflow UI ([open-sourcing soon!](https://www.eventbrite.fi/e/netflix-data-science-metaflow-gui-pre-release-meetup-tickets-185523605097)).
+
+#### Expose attempt level task properties ([#725](https://github.com/Netflix/metaflow/pull/725))
+
+In addition to the above mentioned properties, now users of Metaflow can access attempt specific Task metadata using the client
+
+```
+Task('42/start/452', attempt=1)
+```
+
+#### Introduce @kubernetes decorator for launching Metaflow tasks on Kubernetes ([#644](https://github.com/Netflix/metaflow/pull/644))
+
+This release marks the alpha launch of `@kubernetes` decorator that allows farming off Metaflow tasks onto Kubernetes. The functionality works in exactly the same manner as [`@batch`](https://docs.metaflow.org/metaflow/scaling) -
+
+```python
+from metaflow import FlowSpec, step, resources
+
+class BigSum(FlowSpec):
+
+    @resources(memory=60000, cpu=1)
+    @step
+    def start(self):
+        import numpy
+        import time
+        big_matrix = numpy.random.ranf((80000, 80000))
+        t = time.time()
+        self.sum = numpy.sum(big_matrix)
+        self.took = time.time() - t
+        self.next(self.end)
+
+    @step
+    def end(self):
+        print("The sum is %f." % self.sum)
+        print("Computing it took %dms." % (self.took * 1000))
+
+if __name__ == '__main__':
+    BigSum()
+```
+
+```
+python big_sum.py run --with kubernetes
+```
+
+will run all steps of this workflow on your existing EKS cluster (which can be configured with `metaflow configure eks`) and provides all the goodness of Metaflow!
+
+To get started follow [this guide](https://docs.google.com/document/d/1L\_4Fws1KoGg\_dtSTaRlAcREX1F8FPS4ZaYk7eJyu\_jA/edit)! We would appreciate your early feedback at [http://slack.outerbounds.co](htps://slack.outerbounds.co).
+
 ## [2.4.0 (Oct 4th, 2021)](https://github.com/Netflix/metaflow/releases/tag/2.4.0)
 
 The Metaflow 2.4.0 release is a minor release and includes a _breaking change_
