@@ -29,9 +29,10 @@ metaflow tutorials info 00-helloworld
 
 ### [Season 2: Scaling Out and Up](season-2-scaling-out-and-up/).
 
-* \*\*\*\*[**Episode 5: Look Mom, We're in the Cloud.**](season-2-scaling-out-and-up/episode05.md)
-* \*\*\*\*[**Episode 6: Computing in the Cloud.**](season-2-scaling-out-and-up/episode06.md)\*\*\*\*
-* \*\*\*\*[**Episode 7: Way up here.**](season-2-scaling-out-and-up/episode07.md)\*\*\*\*
+* \*\*\*\*[**Episode 5: Hello AWS.**](season-2-scaling-out-and-up/episode05.md)
+* \*\*\*\*[**Episode 6: Statistics Redux.**](season-2-scaling-out-and-up/episode06.md)\*\*\*\*
+* \*\*\*\*[**Episode 7: Worldview.**](season-2-scaling-out-and-up/episode07.md)\*\*\*\*
+* \*\*\*\*[**Episode 8: Autopilot.**](season-2-scaling-out-and-up/episode-8-autopilot.md)\*\*\*\*
 
 ### What's next?
 
