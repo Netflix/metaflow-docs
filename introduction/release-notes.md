@@ -4,6 +4,41 @@ Read below how Metaflow has improved over time.
 
 We take backwards compatibility very seriously. In the vast majority of cases, you can upgrade Metaflow without expecting changes in your existing code. In the rare cases when breaking changes are absolutely necessary, usually, due to bug fixes, you can take a look at minor breaking changes below before you upgrade.
 
+## [2.4.5 (Dec 8, 2021)](https://github.com/Netflix/metaflow/releases/2.4.5)
+
+The Metaflow 2.4.5 release is a patch release.
+
+### Bug fixes 
+* Address an issue with load_artifacts ( https://github.com/Netflix/metaflow/pull/833 , fixes #819 )
+* Fixed mflog stream redirection in Step Functions ( https://github.com/Netflix/metaflow/pull/851 )
+
+**Full Changelog**: https://github.com/Netflix/metaflow/compare/2.4.4...2.4.5
+
+## [2.4.4 (Nov 29, 2021)](https://github.com/Netflix/metaflow/releases/2.4.4)
+The Metaflow 2.4.4 release is a patch release.
+
+* [Improvements](#v2.4.4_improvements)
+   - Add default image config option as described in #489 (#813)
+   - Read default k8s namespace from config (#823)
+* Bug Fixes
+   - Fixed a couple of issues in S3 error handling (#821)
+   - Fixed an issue with load_artifacts when several artifacts have the same name (
+#817)
+* Misc internal improvements
+   - Pipe logs to $cwd/.logs instead of /logs for `@batch` & `@kubernetes` (#807)
+   - mflog changes for supporting AWS Lambda (#801)
+   - Add 'last modified' to S3 object (#778)
+
+### <a name="v2.4.4_improvements"></a>Improvements
+
+#### Add default image config option as described in #489 (#813)
+
+We're moving to a more consistent scheme for naming options related to docker images. You can read the details in #489, but this release introduces new config options `DEFAULT_CONTAINER_IMAGE` and `DEFAULT_CONTAINER_REGISTRY` that can be used to specify docker image in addition to plugin-specific options like `KUBERNETES_CONTAINER_IMAGE`
+
+#### Read default k8s namespace from config (#823)
+
+This adds a new configuration option to set the default namespace for the Kubernetes plugin
+
 ## [2.4.2 (Oct 25th, 2021)](https://github.com/Netflix/metaflow/releases/2.4.2)
 
 The Metaflow 2.4.2 release is a patch release
