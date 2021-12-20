@@ -4,6 +4,15 @@ Read below how Metaflow has improved over time.
 
 We take backwards compatibility very seriously. In the vast majority of cases, you can upgrade Metaflow without expecting changes in your existing code. In the rare cases when breaking changes are absolutely necessary, usually, due to bug fixes, you can take a look at minor breaking changes below before you upgrade.
 
+## [2.4.7 (Dec 16, 2021)](https://github.com/Netflix/metaflow/releases/2.4.7)
+
+The Metaflow 2.4.7 release is a patch release. We skipped 2.4.6 for technical reasons.
+
+### [Improvements](#v2.4.7_improvements)
+* added plumbing for `@card` decorator [#861](https://github.com/Netflix/metaflow/pull/861)
+* added plumbing to support distributed training on GPUs [#827](https://github.com/Netflix/metaflow/pull/827)
+
+
 ## [2.4.5 (Dec 8, 2021)](https://github.com/Netflix/metaflow/releases/2.4.5)
 
 The Metaflow 2.4.5 release is a patch release.
@@ -11,8 +20,6 @@ The Metaflow 2.4.5 release is a patch release.
 ### Bug fixes 
 * Address an issue with load_artifacts ( https://github.com/Netflix/metaflow/pull/833 , fixes #819 )
 * Fixed mflog stream redirection in Step Functions ( https://github.com/Netflix/metaflow/pull/851 )
-
-**Full Changelog**: https://github.com/Netflix/metaflow/compare/2.4.4...2.4.5
 
 ## [2.4.4 (Nov 29, 2021)](https://github.com/Netflix/metaflow/releases/2.4.4)
 The Metaflow 2.4.4 release is a patch release.
