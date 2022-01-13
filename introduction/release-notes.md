@@ -4,6 +4,19 @@ Read below how Metaflow has improved over time.
 
 We take backwards compatibility very seriously. In the vast majority of cases, you can upgrade Metaflow without expecting changes in your existing code. In the rare cases when breaking changes are absolutely necessary, usually, due to bug fixes, you can take a look at minor breaking changes below before you upgrade.
 
+## [2.4.8 (Jan 10, 2022)](https://github.com/Netflix/metaflow/releases/2.4.8)
+
+The Metaflow 2.4.8 release is a patch release.
+
+### Bug fixes
+* `aws_retry`'s `S3_RETRY_COUNT` now has to be >=1 ([#876]( https://github.com/Netflix/metaflow/pull/876 ))
+* fix argument type handling for host_volumes when used with --with and Step Functions ([#884]( https://github.com/Netflix/metaflow/pull/884 ))
+
+### Improvements
+* Improved validation logic to capture reserved keywords ( [#830](https://github.com/Netflix/metaflow/pull/830) )
+* Remove default use of repo.anaconda.com ([#832](https://github.com/Netflix/metaflow/pull/832 ))
+
+
 ## [2.4.7 (Dec 16, 2021)](https://github.com/Netflix/metaflow/releases/2.4.7)
 
 The Metaflow 2.4.7 release is a patch release. We skipped 2.4.6 for technical reasons.
