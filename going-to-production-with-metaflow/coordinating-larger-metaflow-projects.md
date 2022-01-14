@@ -16,7 +16,7 @@ Metaflow provides a `@project` decorator to address this need. The `@project` de
 
 You can test this by executing the following flow.
 
-{% code title="project\_flow.py" %}
+{% code title="project_flow.py" %}
 ```python
 from metaflow import FlowSpec, step, project, current
 
@@ -57,7 +57,7 @@ If ProjectFlow did not have a @project decorator, it would get deployed as a wor
 
 On the AWS Step Functions UI, you would see one workflow called `ProjectFlow`:
 
-![](https://lh6.googleusercontent.com/EYiiL19aH222-JgMp4_Quz-TqEmRX1M9bu8wWdW3ColDjFN6rHytxaKv6qh3q-EzDxiz-Ok9r-BEbw1oSJJr7E38NZFqVtucfrEyfMuVdRx6MTwSoLvPtDtwGKvksmpLajomOzp8)
+![](https://lh6.googleusercontent.com/EYiiL19aH222-JgMp4\_Quz-TqEmRX1M9bu8wWdW3ColDjFN6rHytxaKv6qh3q-EzDxiz-Ok9r-BEbw1oSJJr7E38NZFqVtucfrEyfMuVdRx6MTwSoLvPtDtwGKvksmpLajomOzp8)
 
 The `@project` decorator changes this behavior. Let's deploy ProjectFlow:
 
@@ -69,7 +69,7 @@ The `@project` decorator adds a user-specific prefix in the workflow name: the w
 
 This allows multiple developers to deploy their workflows on AWS Step Functions without fear that they might interfere with someone else's deployment. Imagine Alice, Bob, and Carol collaborating on a project. Each one of them can call `step-functions create` independently, which results in three separate workflows on AWS Step Functions:
 
-![](https://lh5.googleusercontent.com/zAs6l7ZSZEA68ARLaDtwc_V_PHKhvaWHnvvFs2I_QofMnxh8R3-yeGdcPYaXp_UoGpMEfIqJL9kU4ZcT6k_YgqiAvWw8oYGB8hC5TmNXp1-66mmukDIJuLkH6na3zfEDJ2UggTzl)
+![](https://lh5.googleusercontent.com/zAs6l7ZSZEA68ARLaDtwc\_V\_PHKhvaWHnvvFs2I\_QofMnxh8R3-yeGdcPYaXp\_UoGpMEfIqJL9kU4ZcT6k\_YgqiAvWw8oYGB8hC5TmNXp1-66mmukDIJuLkH6na3zfEDJ2UggTzl)
 
 Note that each one of these deployments gets [an isolated namespace](https://docs.metaflow.org/metaflow/tagging) and [a separate production token](https://docs.metaflow.org/metaflow/tagging#production-tokens). This means that if your code refers to `Flow('ProjectFlow').latest_run` on AWS Step Functions, it is guaranteed to refer to a run that corresponds to its own isolated deployment. The deployments don't interfere with each other.
 
@@ -96,7 +96,7 @@ Instead of deploying the flow with a user-specific prefix, this will deploy the 
 
 The production deployment gets a separate, isolated namespace of its own:
 
-![](https://lh6.googleusercontent.com/pTFm6xYWlL2wqJNmEwAOYj34wwt_2TLZlDbWrJIEDo2q7ksBOcMlll9kVW-n27cvTw8RKAxUyt9gYD0PgvEwnUWz0m1_daVeR5HeOjuxbBH7WDf1LiwwSwLjs7CGFM48l6RPIvTJ)
+![](https://lh6.googleusercontent.com/pTFm6xYWlL2wqJNmEwAOYj34wwt\_2TLZlDbWrJIEDo2q7ksBOcMlll9kVW-n27cvTw8RKAxUyt9gYD0PgvEwnUWz0m1\_daVeR5HeOjuxbBH7WDf1LiwwSwLjs7CGFM48l6RPIvTJ)
 
 #### Custom Branches
 
@@ -118,9 +118,9 @@ python project_flow.py --branch better_version step-functions create
 
 which will result in another separate, isolated namespace:
 
-![](https://lh6.googleusercontent.com/uv8Zt8Rni77skhjJ90kw6pw6VcnOT2whBTSUstZHzT1-1yqOP61UGx8220Jn068xisYlh31wPjrjVl_IWxmVHsLVyRZ1-MPZ911EqTjs3ff2vXJ_MLt7rEnPIJ_QEX6CLIn4p84o)
+![](https://lh6.googleusercontent.com/uv8Zt8Rni77skhjJ90kw6pw6VcnOT2whBTSUstZHzT1-1yqOP61UGx8220Jn068xisYlh31wPjrjVl\_IWxmVHsLVyRZ1-MPZ911EqTjs3ff2vXJ\_MLt7rEnPIJ\_QEX6CLIn4p84o)
 
-Alice and Bob can share the production token corresponding to the branch, so either of them can redeploy the branch when needed.  
+Alice and Bob can share the production token corresponding to the branch, so either of them can redeploy the branch when needed.\
 
 
 #### Custom branches for Production deployment
@@ -147,6 +147,4 @@ The `@project` decorator makes available three classes of namespaces that will a
 * `test` denotes custom branches that can be shared amongst multiple users. Use it for deploying experimental versions that can run in parallel with production. Deploy custom branches with `--branch foo`.
 * `prod` denotes the global production namespace. Use it for deploying the official production version of the project. Deploy to production with `--production`. For multiple production variants, deploy custom branches with `--production --branch foo`.
 
-Note that the isolated namespaces offered by `@project` work best when your code is designed to respect these boundaries. For instance, when writing results to a table, you can use `current.branch_name` to choose the table to write to or you can disable writes outside production by checking `current.is_production`.  
-
-
+Note that the isolated namespaces offered by `@project` work best when your code is designed to respect these boundaries. For instance, when writing results to a table, you can use `current.branch_name` to choose the table to write to or you can disable writes outside production by checking `current.is_production`.\

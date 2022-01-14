@@ -4,10 +4,10 @@ Make sure you have read [Basics of Metaflow](../metaflow/basics.md) before divin
 
 We wanted to build a data science platform that can make data science code usable, scalable, reproducible, and production-ready, as described in the [Why Metaflow](../introduction/why-metaflow.md) section. There are many ways to achieve these high-level goals. We took an approach designed around the following four core functions:
 
-1. Provide a highly usable API for structuring the code as a workflow, i.e. as a directed graph of steps \(**usability**\).
-2. Persist an immutable snapshot of data, code, and external dependencies required to execute each step \(**reproducibility**\).
-3. Facilitate execution of the steps in various environments, from development to production \(**scalability**, **production-readiness**\).
-4. Record metadata about previous executions and make them easily accessible \(**usability**, **reproducibility**\).
+1. Provide a highly usable API for structuring the code as a workflow, i.e. as a directed graph of steps (**usability**).
+2. Persist an immutable snapshot of data, code, and external dependencies required to execute each step (**reproducibility**).
+3. Facilitate execution of the steps in various environments, from development to production (**scalability**, **production-readiness**).
+4. Record metadata about previous executions and make them easily accessible (**usability**, **reproducibility**).
 
 This document gives an overview of how the core functionality is implemented.
 
@@ -15,7 +15,7 @@ This document gives an overview of how the core functionality is implemented.
 
 Here is a high-level architecture diagram of Metaflow:
 
-![](../.gitbook/assets/untitled-presentation.png)
+![](<../.gitbook/assets/Untitled presentation.png>)
 
 Below, we will describe the components in detail. To highlight the time-dimension which is missing from the diagram, we group the descriptions by the following phases in the development lifecycle:
 
@@ -43,7 +43,7 @@ User implements a flow by subclassing `FlowSpec` and implementing steps as metho
 
 ### Graph
 
-Metaflow infers a directed \(typically acyclic\) graph based on the transitions between step functions.
+Metaflow infers a directed (typically acyclic) graph based on the transitions between step functions.
 
 Metaflow requires the transitions to be defined so that the graph can be parsed from the source code of the flow statically. This makes it possible to translate the graph for execution by runtimes that support only statically defined graphs, such as Meson.
 
@@ -54,7 +54,7 @@ Metaflow requires the transitions to be defined so that the graph can be parsed 
 
 A step is the smallest resumable unit of computation. It is implemented by the user as a method that is decorated with the `@step` decorator in a flow class.
 
-A step is [a checkpoint](https://en.wikipedia.org/wiki/Application_checkpointing). Metaflow takes a snapshot of the data produced by a step which in turn is used as input to the subsequent steps. Hence if a step fails, it can be resumed without rerunning the preceding steps.
+A step is [a checkpoint](https://en.wikipedia.org/wiki/Application\_checkpointing). Metaflow takes a snapshot of the data produced by a step which in turn is used as input to the subsequent steps. Hence if a step fails, it can be resumed without rerunning the preceding steps.
 
 Being able to resume execution is a powerful feature. It would be convenient to be able to resume execution at any arbitrary line of code. The main reason why checkpointing is done at the step level instead of line level is the overhead of saving state. The user is encouraged to keep the steps small but not so small that the overhead becomes noticeable.
 
@@ -140,7 +140,7 @@ A centralized Metadata Provider keeps track of runs. Strictly speaking, this fun
 
 ## Result-time Components
 
-Flows are defined and run for their results. Metaflow supports a number of different ways to consume outputs of runs: Results can be written to Hive tables for consumption by downstream systems and dashboards, they can be accessed in a notebook for further analysis, or in a hosted web service \(this last functionality is not yet available in Open Source\).
+Flows are defined and run for their results. Metaflow supports a number of different ways to consume outputs of runs: Results can be written to Hive tables for consumption by downstream systems and dashboards, they can be accessed in a notebook for further analysis, or in a hosted web service (this last functionality is not yet available in Open Source).
 
 ### Metaflow Client
 
@@ -148,4 +148,3 @@ Metaflow provides a highly **usable** Python API to access results of previous r
 
 * [`metaflow.client` - client subpackage](https://github.com/Netflix/metaflow/tree/master/metaflow/client)
 * [`core.py` - core objects for the client](https://github.com/Netflix/metaflow/blob/master/metaflow/client/core.py)
-
