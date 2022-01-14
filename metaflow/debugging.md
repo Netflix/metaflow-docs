@@ -9,7 +9,7 @@ Debugging a failure can either happen **after** a failed execution or **during**
 * the [ability to resume a flow](debugging.md#how-to-debug-failed-flows), re-executing all successful steps and only re-executing from the failed step. This allows you to fix the problem in the failed step, resume the flow and make progress.
 * the [ability to inspect the data](debugging.md#inspecting-data-with-a-notebook) produced by each step in a flow to be able to determine what went wrong.
 
-In the second case, Metaflow is also compatible \(at least when executing locally\) with [debuggers](debugging.md#debugging-your-flow-code) which allow you to set breakpoints inside your step code. You will then be able to inspect and modify state and step through your code line-by-line to determine where the problem is.
+In the second case, Metaflow is also compatible (at least when executing locally) with [debuggers](debugging.md#debugging-your-flow-code) which allow you to set breakpoints inside your step code. You will then be able to inspect and modify state and step through your code line-by-line to determine where the problem is.
 
 ## How to debug failed flows
 
@@ -101,7 +101,7 @@ You can also resume a specific run using the CLI option `--origin-run-id` if you
 python debug.py resume --origin-run-id 3
 ```
 
-If you'd like programmatic access to the `--origin-run-id` selected for the `resume` \(either implicitly selected by Metaflow as last `run` invocation, or explicitly declared by the user via the CLI\), you can use the `current` singleton. Read more [here](tagging.md#accessing-current-ids-in-a-flow).
+If you'd like programmatic access to the `--origin-run-id` selected for the `resume` (either implicitly selected by Metaflow as last `run` invocation, or explicitly declared by the user via the CLI), you can use the `current` singleton. Read more [here](tagging.md#accessing-current-ids-in-a-flow).
 
 Next, fix the error by replacing `int('2fail')` in `debug.py` with `int('2')`. Try again after the fix. This time, you should see the flow completing successfully.
 
@@ -127,13 +127,13 @@ The `resume` command reuses the parameter values that you set with `run` origina
 
 ## **Reproducing production issues locally**
 
-This section shows you how to reproduce a failed Metaflow run on AWS Step Functions locally. This is how a failed run on AWS Step Functions UI looks like - 
+This section shows you how to reproduce a failed Metaflow run on AWS Step Functions locally. This is how a failed run on AWS Step Functions UI looks like -&#x20;
 
 ![](../.gitbook/assets/image1.png)
 
-![](../.gitbook/assets/image3.png)
+![](<../.gitbook/assets/image3 (1).png>)
 
-Notice the execution ID of `5ca85f96-8508-409d-a5f5-b567db1040c5`. When running on AWS Step Functions, Metaflow uses the AWS Step Functions execution ID \(prefixed with `sfn-`\) as the run id. 
+Notice the execution ID of `5ca85f96-8508-409d-a5f5-b567db1040c5`. When running on AWS Step Functions, Metaflow uses the AWS Step Functions execution ID (prefixed with `sfn-`) as the run id.&#x20;
 
 The graph visualization shows that step `b` failed, as expected. First, you should inspect the logs of the failed step to get an idea of why it failed. You can access AWS Batch step logs in the AWS Step Functions UI by looking for the `JobId` in the `Error` blob that can be accessed by clicking on the `Exception` pane on the right side of the UI. You can use this `JobId` in the AWS Batch console to check the job logs. This `JobId` is also the metaflow task ID for the step.
 
@@ -173,13 +173,13 @@ The above example demonstrates a trivial error. In the real life, errors can be 
 
 Being able to inspect data produced by every step is a powerful feature of Metaflow which can help in situations like this.
 
-This clip \(no audio\) demonstrates inspecting values in a flow:
+This clip (no audio) demonstrates inspecting values in a flow:
 
 {% embed url="https://share.getcloudapp.com/X6uDx9KB" %}
 
 In the above clip, you will see:
 
-1. In the flow from the [tutorials](../getting-started/tutorials/) \([Episode 1](../getting-started/tutorials/season-1-the-local-experience/episode01.md)\), the `genre_movies` step calculates an artifact `movies`. We are going to demonstrate how this artifact can be inspected after the flow has executed;
+1. In the flow from the [tutorials](../getting-started/tutorials/) ([Episode 1](../getting-started/tutorials/season-1-the-local-experience/episode01.md)), the `genre_movies` step calculates an artifact `movies`. We are going to demonstrate how this artifact can be inspected after the flow has executed;
 2. In a Jupyter notebook, you can list all the flows and select the latest run of the Episode 1 flow;
 3. Further, you can select the `genre_movies` step from this flow and inspect its value. As you can see, the value computed at that step is fully available via the [Client API](client.md) and this works for any completed step even steps that completed successfully in a failed run.
 
@@ -202,11 +202,11 @@ The following steps will allow you to debug your Flow within PyCharm:
    3. Set the "Working directory" field to the directory containing your Flow script
 3. You can now set your breakpoints as usual in your Flow code and select "Debug" from the "Run" menu.
 
-Note that since Metaflow may launch multiple steps in parallel, you may actually hit multiple breakpoints at the same time; you will be able to switch between those breakpoints using the drop down menu \(it will say "MainThread"\). You can also restrict Metaflow to only execute one step at a time by adding "--max-workers 1" to the "Parameters" field.
+Note that since Metaflow may launch multiple steps in parallel, you may actually hit multiple breakpoints at the same time; you will be able to switch between those breakpoints using the drop down menu (it will say "MainThread"). You can also restrict Metaflow to only execute one step at a time by adding "--max-workers 1" to the "Parameters" field.
 
 ### Debugging with VSCode
 
-You can debug with the Python plugin for VSCode. 
+You can debug with the Python plugin for VSCode.&#x20;
 
 1. You will need a "launch.json" file in your ".vscode" directory:
    1. Select "Open Configurations" from the "Debug" menu.
@@ -240,5 +240,4 @@ You can naturally combine the techniques described in this section with the "res
 
 The above instructions work even if you use [`@conda` decorators](dependencies.md#managing-dependencies-with-conda-decorator) in your code; you need, however, to ensure that the `conda` binary is available in your `PATH`. The easiest way to do this is to set the `PATH` environment variable to properly include the path to the `conda` binary if it is in a non-standard location. In VSCode, you can simply add this value in the env section of launch.json and in PyCharm, the UI allows you to set environment variables.
 
-## 
-
+##

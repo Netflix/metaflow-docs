@@ -20,7 +20,7 @@ If you answered "yes" to any of the above, keep reading - Metaflow can help you.
 
 Models are only a small part of an end-to-end data science project. Production-grade projects rely on a thick stack of infrastructure. At the minimum, projects need data and a way to perform computation on it. In a business environment like Netflix's, a typical data science project touches all layers of the stack depicted below:
 
-![](https://lh5.googleusercontent.com/f68UAR7UxClKR6XvHXq-ZeepDXLHISoVboj6amF9f0cv6jCxqTsjyYnm-isKIHdINMl_gdlPVbR3wJ9vIDwipjMIglHwwetL3-rVNhUTRN4a7UYXmVZ78IqeI2fGJ2OA2Silk5ZS)
+![](https://lh5.googleusercontent.com/f68UAR7UxClKR6XvHXq-ZeepDXLHISoVboj6amF9f0cv6jCxqTsjyYnm-isKIHdINMl\_gdlPVbR3wJ9vIDwipjMIglHwwetL3-rVNhUTRN4a7UYXmVZ78IqeI2fGJ2OA2Silk5ZS)
 
 Data is accessed from a **data warehouse**, which can be a folder of files, a database, or a multi-petabyte data lake. The modeling code that crunches the data is executed in a **compute environment** which can range from a laptop to a large-scale container management system. A **job scheduler** is often used to orchestrate multiple units of work.
 
@@ -36,71 +36,20 @@ Internally, Metaflow leverages existing infrastructure when feasible. In particu
 
 You can find more details about Metaflow's approach to various parts of the stack across the documentation:
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left"></th>
-      <th style="text-align:left"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left"><b>Model Development</b>
-      </td>
-      <td style="text-align:left">&lt;b&gt;&lt;/b&gt;<a href="../metaflow/dependencies.md">Managing External Libraries</a>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>Feature Engineering</b>
-      </td>
-      <td style="text-align:left">&lt;b&gt;&lt;/b&gt;<a href="../metaflow/data.md">Loading and Storing Data</a>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>Model Operations</b>
-      </td>
-      <td style="text-align:left">
-        <p><a href="../metaflow/debugging.md">Debugging with Metaflow</a> and <a href="../metaflow/failures.md">Dealing with Failures</a>
-        </p>
-        <p>(also see <a href="roadmap.md">Roadmap</a>)</p>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>Versioning</b>
-      </td>
-      <td style="text-align:left"><a href="../metaflow/client.md">Inspecting Flow and Results</a> and <a href="../metaflow/tagging.md">Organizing Results</a>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>Architecture</b>
-      </td>
-      <td style="text-align:left"><a href="../metaflow/basics.md">Basics of Metaflow</a>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>Job Scheduler </b>
-      </td>
-      <td style="text-align:left">coming soon, see <a href="roadmap.md">Roadmap</a>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>Compute Resources</b>
-      </td>
-      <td style="text-align:left"><a href="../metaflow/scaling.md">Scaling Out and Up</a>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>Data Warehouse</b>
-      </td>
-      <td style="text-align:left"><a href="../metaflow/basics.md">Basics of Metaflow</a> and <a href="../metaflow/data.md">Loading and Storing Data</a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+|                         |                                                                                                                                                                                         |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Model Development**   | ****[Managing External Libraries](../metaflow/dependencies.md)                                                                                                                          |
+| **Feature Engineering** | ****[Loading and Storing Data](../metaflow/data.md)                                                                                                                                     |
+| **Model Operations**    | <p><a href="../metaflow/debugging.md">Debugging with Metaflow</a> and <a href="../metaflow/failures.md">Dealing with Failures</a></p><p>(also see <a href="roadmap.md">Roadmap</a>)</p> |
+| **Versioning**          | [Inspecting Flow and Results](../metaflow/client.md) and [Organizing Results](../metaflow/tagging.md)                                                                                   |
+| **Architecture**        | [Basics of Metaflow](../metaflow/basics.md)                                                                                                                                             |
+| **Job Scheduler**       | coming soon, see [Roadmap](roadmap.md)                                                                                                                                                  |
+| **Compute Resources**   | [Scaling Out and Up](../metaflow/scaling.md)                                                                                                                                            |
+| **Data Warehouse**      | [Basics of Metaflow](../metaflow/basics.md) and [Loading and Storing Data](../metaflow/data.md)                                                                                         |
 
 If you are an infrastructure person who wants to know how to deploy and operate Metaflow, take a look at [Administrator's Guide to Metaflow](https://admin-docs.metaflow.org).
 
-## Presentations about Metaflow 
+## Presentations about Metaflow&#x20;
 
 If you want to learn more, the Machine Learning Infrastructure team at Netflix has given a number of public presentations about Metaflow prior to its open-sourcing. You can find links to these presentations below. You can also read the original [open-source release announcement in the Netflix tech blog](https://netflixtechblog.com/open-sourcing-metaflow-a-human-centric-framework-for-data-science-fa72e04a5d9).
 
@@ -108,11 +57,11 @@ For starters, this presentation gives a comprehensive overview of Metaflow:
 
 {% embed url="https://www.youtube.com/watch?v=XV5VGddmP24" %}
 
-For other general overviews of Metaflow, see the [Overviews of Metaflow](https://www.youtube.com/playlist?list=PLGEBSHR02Xbg0oTf7OwZ_Kk86Zx96mAOb) playlist. For more technical details, see presentations about the [Internals of Metaflow](https://www.youtube.com/playlist?list=PLGEBSHR02XbhC-5Eqy7ERHxpuwiJHes4j).
+For other general overviews of Metaflow, see the [Overviews of Metaflow](https://www.youtube.com/playlist?list=PLGEBSHR02Xbg0oTf7OwZ\_Kk86Zx96mAOb) playlist. For more technical details, see presentations about the [Internals of Metaflow](https://www.youtube.com/playlist?list=PLGEBSHR02XbhC-5Eqy7ERHxpuwiJHes4j).
 
 ## The Philosophy of Metaflow
 
-If you are eager to give Metaflow a try, head to the [tutorials](../getting-started/tutorials/). If you want to learn about the background of Metaflow in more detail, keep on reading. 
+If you are eager to give Metaflow a try, head to the [tutorials](../getting-started/tutorials/). If you want to learn about the background of Metaflow in more detail, keep on reading.&#x20;
 
 Metaflow was originally designed and built to address practical pain points of data scientist at Netflix. Its design philosophy is influenced by [the unique culture at Netflix](https://jobs.netflix.com/culture). The following eight tenets summarize the philosophy of Metaflow:
 
@@ -156,11 +105,11 @@ We want to embrace the idea that most projects are continuous experiments, even 
 
 The fifth tenet suggested that the user should be able to scale a Metaflow project gradually. This applies both to time and space.
 
-We embrace the fact that Python is a slow but expressive language. We encourage our users to write idiomatic Python code initially, without worrying too much about performance. If performance becomes an issue, we can provide an arsenal of tools for gradual performance optimization from performance-oriented libraries like [Numpy](https://numpy.org/) to compilers such as [Numba](http://numba.pydata.org/).
+We embrace the fact that Python is a slow but expressive language. We encourage our users to write idiomatic Python code initially, without worrying too much about performance. If performance becomes an issue, we can provide an arsenal of tools for gradual performance optimization from performance-oriented libraries like [Numpy](https://numpy.org) to compilers such as [Numba](http://numba.pydata.org).
 
 We encourage our users to primarily rely on vertical scalability, which allows the user to focus on readable, straightforward code and easy operations. When the user hits the limits of vertical scalability, we make it easy to use horizontal, share-nothing parallelism, or hassle-free distributed learning provided e.g. by AWS Sagemaker.
 
-We shy away from custom paradigms for scalability which require code to be \(re\)written with scalability in mind, which can lead to worse readability, harder debuggability, and increased operational burden.
+We shy away from custom paradigms for scalability which require code to be (re)written with scalability in mind, which can lead to worse readability, harder debuggability, and increased operational burden.
 
 ### **7. Pragmatic approach to data access and processing**
 
@@ -181,4 +130,3 @@ We provide highly usable tools for proactive monitoring and detection of errors,
 ## Conclusion
 
 Don't expect the current version of Metaflow to be a perfect manifestation of these principles. Metaflow is being actively developed. However, much of the foundation exists, and it has proven to be successful at Netflix. If this vision resonates with you, we welcome you to join the project! A good next step is to take a look at the [tutorials](../getting-started/tutorials/).
-

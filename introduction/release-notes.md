@@ -934,7 +934,7 @@ The Metaflow 2.0.5 release is a minor patch release.
 
 The Metaflow 2.0.5 release is a minor patch release.
 
-### Improvements <a href="2-0-5-improvements" id="2-0-5-improvements"></a>
+### Improvements <a href="#2-0-5-improvements" id="2-0-5-improvements"></a>
 
 #### Fix logging of prefixes in datatools.S3.\_read\_many\_files
 
@@ -962,7 +962,7 @@ The Metaflow 2.0.4 release is a minor patch release.
   * Explicitly override `PYTHONNOUSERSITE` for `conda` environments
   * Preempt AWS Batch job log collection when the job fails to get into a `RUNNING` state
 
-### Improvements <a href="2-0-4-improvements" id="2-0-4-improvements"></a>
+### Improvements <a href="#2-0-4-improvements" id="2-0-4-improvements"></a>
 
 #### Expose `retry_count` in `Current`
 
@@ -981,7 +981,7 @@ def my_step(self):
 
 The AWS Logs API for `get_log_events` has a global hard limit on 10 requests per sec. While we have retry logic in place to respect this limit, some of the `ThrottleExceptions` usually end up in the job logs causing confusion to the end-user. This release addresses this issue (also documented in #184).
 
-### Bug Fixes <a href="2-0-4-bug-fixes" id="2-0-4-bug-fixes"></a>
+### Bug Fixes <a href="#2-0-4-bug-fixes" id="2-0-4-bug-fixes"></a>
 
 #### Set proper thresholds for retrying `DescribeJobs` API for AWS Batch
 
@@ -1059,7 +1059,7 @@ Bug Fixes
 
 ## 2.0.0 (Dec 3rd, 2019)
 
-#### **Hello World! **
+#### **Hello World!**&#x20;
 
 * First Open Source Release.
 * Read the [blogpost](https://medium.com/@NetflixTechBlog/open-sourcing-metaflow-a-human-centric-framework-for-data-science-fa72e04a5d9) announcing the release

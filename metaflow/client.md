@@ -8,9 +8,9 @@ This document provides an overview of the client API.
 
 Note that all operations in the Client API are filtered by the current namespace, as explained in [Organizing Results](tagging.md). If you do not get the results you expect, make sure you are in the correct namespace. The Client API consults the metadata service to gather results, so make sure that the client is properly configured to use the correct [metadata provider](client.md#metadata-provider).
 
-![Object hierarchy](../.gitbook/assets/hierarchy%20%281%29.png)
+![Object hierarchy](../.gitbook/assets/Hierarchy.png)
 
-You can import any of the objects shown above directly from the metaflow package as follows \(for example\):
+You can import any of the objects shown above directly from the metaflow package as follows (for example):
 
 ```python
 from metaflow import Run
@@ -55,7 +55,7 @@ for run in flow:
 
 ### Accessing a specific child
 
-You can access a specific child with square brackets, similar to a key lookup in a dictionary. Note that keys are always strings \(even if they are numerical IDs\):
+You can access a specific child with square brackets, similar to a key lookup in a dictionary. Note that keys are always strings (even if they are numerical IDs):
 
 ```python
 from metaflow import Flow
@@ -122,7 +122,7 @@ To access an iterator over runs and filter by tags, use the `runs()` method. See
 `Flow` has two additional properties related to determining the latest run for the flow. Note that any `Run` returned will be in the current namespace.
 
 * `latest_run`: `Run` of the latest run whether or not it has completed or has been successful
-* `latest_successful_run`: `Run` of the latest successful \(and therefore completed\) run.
+* `latest_successful_run`: `Run` of the latest successful (and therefore completed) run.
 
 ### Properties related to runs
 
@@ -131,7 +131,7 @@ To access an iterator over the steps of a run and filter by tags, use the `steps
 `Run` also has a few additional properties to make it easy to access commonly used information:
 
 * `data`: A quick way to access the `data` object of the end task of this run. In other words, this is the quickest way to access the data produced at the end of the flow.
-* `successful`: A boolean indicating whether or not the run completed successfully. Note that this will return `False` if the run has not completed \(ie: is still in progress\).
+* `successful`: A boolean indicating whether or not the run completed successfully. Note that this will return `False` if the run has not completed (ie: is still in progress).
 * `finished`: A boolean indicating whether or not the run completed. The returned value will be `True` whether or not the run was successful.
 * `finished_at`: A datetime object indicating the completion time of the run. This will be `None` if the run has not completed
 * `code`: In certain circumstances, the code used for this run is saved and persisted; this allows you to access this code.
@@ -145,7 +145,7 @@ To access an iterator over the tasks of a step and filter by tags, use the `task
 
 `Step` has a few additional properties as well:
 
-* `task`: Convenience method to return the unique `Task` associated with this `Step`. If a `Step` has more than one `Task`, this will return any of them \(no order guaranteed\).
+* `task`: Convenience method to return the unique `Task` associated with this `Step`. If a `Step` has more than one `Task`, this will return any of them (no order guaranteed).
 * `finished_at`: A datetime object indicating the completion time of the step. A step is complete when all its tasks are complete.
 * `environment_info`: A dict object containing metadata for the execution environment. See [Dependencies](dependencies.md) for more detail.
 
@@ -157,7 +157,7 @@ Since a `Task` is the actual unit of execution in Metaflow, these objects contai
 * `artifacts`: A convenience method to access all `DataArtifact` objects produced by this `Task`. See [Accessing data](client.md#accessing-data).
 * `successful`: A boolean indicating whether or not this `Task` completed successfully.
 * `finished`: A boolean indicating whether or not this `Task` completed.
-* `exception`: If an exception was raised by this `Task` \(ie: it did not complete successfully\), it will be contained here.
+* `exception`: If an exception was raised by this `Task` (ie: it did not complete successfully), it will be contained here.
 * `finished_at`: A datetime object indicating the completion time of this `Task`.
 * `stdout`: A string containing the standard output of this `Task`.
 * `stderr`: A string containing the standard error of this `Task`.
@@ -175,7 +175,7 @@ if step.task.successful:
 
 ## Metadata provider
 
-The Client API relies on a metadata service to gather results appropriately. Metaflow supports a local mode \(`.metaflow` directory on your filesystem\) and a [remote mode](https://github.com/Netflix/metaflow-service).
+The Client API relies on a metadata service to gather results appropriately. Metaflow supports a local mode (`.metaflow` directory on your filesystem) and a [remote mode](https://github.com/Netflix/metaflow-service).
 
 ```python
 from metaflow import get_metadata, metadata
@@ -191,4 +191,3 @@ metadata('https://localhost:5000/mymetaflowservice')
 ```
 
 Note that changing the metadata provider is a global operation and all subsequent client operations will use the metadata provider specified.
-

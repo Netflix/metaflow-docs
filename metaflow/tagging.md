@@ -1,6 +1,6 @@
 # Organizing Results
 
-A boring, under-appreciated part of high-quality science \(or any project work in general\), is keeping results organized. This is the key to effective collaboration, versioning of parallel lines of work, and reproducibility.
+A boring, under-appreciated part of high-quality science (or any project work in general), is keeping results organized. This is the key to effective collaboration, versioning of parallel lines of work, and reproducibility.
 
 The good news is that Metaflow does 80% of this work for you without you having to do anything. This document explains how Metaflow keeps things organized with a concept called **namespaces** and how you can optionally make results even neater with **tags**.
 
@@ -10,11 +10,11 @@ As explained in [Basics of Metaflow](basics.md), Metaflow persists all runs and 
 
 Many users can use Metaflow concurrently. Imagine that Anne and Will are collaborating on a project that consists of two flows, `PredictionFlow` and `FeatureFlow`. As they, amongst other people, run their versions independently they end up with the following runs:
 
-![](../.gitbook/assets/assets_metaflow_-lpjn0yp7r49jrnxca_5_-lpjryuuy7v5kovmxtsv_namespace1%20%281%29.png)
+![](../.gitbook/assets/assets\_metaflow\_-lpjn0yp7r49jrnxca\_5\_-lpjryuuy7v5kovmxtsv\_namespace1.png)
 
 Anne could analyze her latest `PredictionFlow` results in a notebook by remembering that her latest run is `PredictionFlow/8`. Fortunately, Metaflow makes this even easier thanks to **namespaces**:
 
-![](../.gitbook/assets/assets_metaflow_-lpjn0yp7r49jrnxca_5_-lpjryuvqmspdu9w5imb_namespace2.png)
+![](../.gitbook/assets/assets\_metaflow\_-lpjn0yp7r49jrnxca\_5\_-lpjryuvqmspdu9w5imb\_namespace2.png)
 
 When Anne runs `PredictionFlow`, her runs are automatically **tagged** with her user name, prefixed with `user:`. By default, when Anne uses the [Client API](client.md) in a notebook or in a Python script, the API only returns results that are tagged with `user:anne`. Instead of having to remember the exact ID of her latest run, she can simply say:
 
@@ -30,7 +30,7 @@ For Anne, this will return `'PredictionFlow/8'`. For Will, this will return `'Pr
 
 Namespaces are not about security or access control. They help you to keep results organized. During development, organizing results by the user who produced them is a sensible default.
 
-You can freely explore results produced by other people. In a notebook \(for example\), Anne can write
+You can freely explore results produced by other people. In a notebook (for example), Anne can write
 
 ```python
 from metaflow import Flow, namespace
@@ -85,7 +85,7 @@ Moreover, it is critical that you, and all other people, can keep experimenting 
 
 As a solution, by default the production namespace is made separate from the user namespace:
 
-![](../.gitbook/assets/namespace4%20%281%29.png)
+![](<../.gitbook/assets/namespace4 (3).png>)
 
 Isolated production namespaces have three main benefits:
 
@@ -93,7 +93,7 @@ Isolated production namespaces have three main benefits:
 2. An isolated production namespace makes it easy to **keep production results separate from any experimental runs** of the same project running concurrently. You can rest assured that when you switch to a production namespace, you will see only results related to production - nothing more, nothing less.
 3. By having control over the production namespace, you can **alter data that is seen by production flows**. For instance, if you have separate training and prediction flows in production, the prediction flow can access the previously built model as long as one exists in the same namespace. By changing the production namespace, you can make sure that a new deployment isn't tainted by old results.
 
-If you are a single developer working on a new project, you don't have to do anything special to deal with production namespaces. You can rely on the default behavior of `step-functions create`. 
+If you are a single developer working on a new project, you don't have to do anything special to deal with production namespaces. You can rely on the default behavior of `step-functions create`.&#x20;
 
 ### **Production tokens**
 
@@ -139,7 +139,7 @@ python helloworld.py run --tag crazy_test
 
 The `--tag` option assigns the specified tag to all objects produced by the run: the run itself, its steps, tasks, and data artifacts.
 
-You can access runs \(or steps or tasks\) with a certain tag easily using the Client API:
+You can access runs (or steps or tasks) with a certain tag easily using the Client API:
 
 ```python
 from metaflow import Flow
@@ -215,7 +215,7 @@ if __name__ == '__main__':
 
 In particular, the value of `current.pathspec` is convenient as an unambiguous identifier of a task. For instance, the above script printed out
 
-```text
+```
 pathspec: CurrentFlow/1/start/550539
 ```
 
@@ -233,7 +233,7 @@ The `current` singleton also provides programmatic access to the CLI option `--o
 
 If a user explicitly overrides the CLI option `--origin-run-id`, the `current` singleton would reflect that value.
 
-If not, it would be the id of the last invocation of `run` \(successful or not\). 
+If not, it would be the id of the last invocation of `run` (successful or not).&#x20;
 
 {% hint style="info" %}
 This value would remain the same even after multiple successful `resume` invocations. If you don't want this behavior, you can always override the CLI option `origin-run-id` and `resume` a specific run.
@@ -247,9 +247,8 @@ Suppose we invoked `resume` for the above script to re-run everything from `star
 python current_flow.py resume start
 ```
 
-You should see the `origin_run_id` used by the `resume` in the output \(the exact value for you might be different\):
+You should see the `origin_run_id` used by the `resume` in the output (the exact value for you might be different):
 
-```text
+```
 origin run id: 4
 ```
-
