@@ -1,6 +1,6 @@
 # Terraform Deployment
 
-Metaflow ships with a [Terraform template](https://github.com/Netflix/metaflow-tools/tree/master/aws/terraform) that automates the deployment of all the AWS resources needed to enable cloud-scaling in Metaflow.
+Metaflow ships with a [Terraform template](https://github.com/outerbounds/terraform-aws-metaflow) that automates the deployment of all the AWS resources needed to enable cloud-scaling in Metaflow.
 
 The major components of the template are:
 
@@ -13,9 +13,8 @@ The major components of the template are:
 * **Amazon Sagemaker** - An Amazon Sagemaker Notebook instance for interfacing with Metaflow flows.
 * **AWS Fargate and Amazon Relational Database Service** - A Metadata service running on AWS Fargate with a PostGres DB on Amazon Relational Database Service to log flow execution metadata.
 * **Amazon API Gateway** -  A dedicated TLS termination point and an optional point of basic API authentication via key to provide secure, encrypted access to metadata service.
-* **Amazon VPC Networking** - A VPC with \(2\) customizable subnets and Internet connectivity.
+* **Amazon VPC Networking** - A VPC with (2) customizable subnets and Internet connectivity.
 * **AWS Identity and Access Management** - Dedicated roles obeying "principle of least privilege" access to resources such as AWS Batch and Amazon Sagemaker Notebook instances.
 * **AWS Lambda** _-_ An AWS Lambda function that automates any migrations needed for the Metadata service.
 
 To deploy the template, just follow the instructions listed [here](https://github.com/Netflix/metaflow-tools/blob/master/aws/terraform/README.md).
-
