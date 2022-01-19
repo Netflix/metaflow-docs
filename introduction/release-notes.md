@@ -4,6 +4,97 @@ Read below how Metaflow has improved over time.
 
 We take backwards compatibility very seriously. In the vast majority of cases, you can upgrade Metaflow without expecting changes in your existing code. In the rare cases when breaking changes are absolutely necessary, usually, due to bug fixes, you can take a look at minor breaking changes below before you upgrade.
 
+## [2.4.8 (Jan 10, 2022)](https://github.com/Netflix/metaflow/releases/tag/2.4.8)
+
+The Metaflow 2.4.8 release is a patch release.
+
+* Improvements
+  * Improved validation logic to capture reserved keywords ([#830](https://github.com/Netflix/metaflow/pull/830), fixes [#589](https://github.com/Netflix/metaflow/issues/589))
+  * Remove default use of repo.anaconda.com ([#832](https://github.com/Netflix/metaflow/pull/832))
+* Bug Fixes
+  * `aws_retry`'s `S3_RETRY_COUNT` now has to be >=1 ([#876](https://github.com/Netflix/metaflow/pull/876))
+  * Fix argument type handling for host\_volumes when used with --with and Step Functions ([#884](https://github.com/Netflix/metaflow/pull/884))
+
+## [2.4.7 (Dec 16, 2021)](https://github.com/Netflix/metaflow/releases/tag/2.4.7)
+
+The Metaflow 2.4.7 release is a patch release.
+
+* Improvements
+  * Added plumbing for `@card` decorator
+  * Added plumbing to support distributed training on GPUs
+
+## [2.4.6 (Dec 16, 2021)](https://github.com/Netflix/metaflow/releases/tag/2.4.6)
+
+This version was skipped due to technical reasons
+
+## [2.4.5 (Dec 8, 2021)](https://github.com/Netflix/metaflow/releases/tag/2.4.5)
+
+The Metaflow 2.4.5 release is a patch release.
+
+* Bug Fixes
+  * Address an issue with load\_artifacts ([#833](https://github.com/Netflix/metaflow/pull/833), fixes [#819](https://github.com/Netflix/metaflow/issues/819))
+  * Fixed mflog stream redirection in Step Functions ([#851](https://github.com/Netflix/metaflow/pull/851))
+
+## [2.4.4 (Nov 29, 2021)](https://github.com/Netflix/metaflow/releases/2.4.4)
+
+The Metaflow 2.4.4 release is a patch release.
+
+* [Improvements](release-notes.md#user-content-v2.4.4\_improvements)
+  * Add default image config option as described in [#489](https://github.com/Netflix/metaflow/issues/489) ([#813](https://github.com/Netflix/metaflow/pull/813))
+  * Read default k8s namespace from config ([#823](https://github.com/Netflix/metaflow/pull/823))
+* Bug Fixes
+  * Fixed a couple of issues in S3 error handling ([#821](https://github.com/Netflix/metaflow/pull/821))
+  * Fixed an issue with load\_artifacts when several artifacts have the same name ([#817](https://github.com/Netflix/metaflow/pull/817))
+* Misc internal improvements
+  * Pipe logs to $cwd/.logs instead of /logs for `@batch` & `@kubernetes` ([#807](https://github.com/Netflix/metaflow/pull/807))
+  * mflog changes for supporting AWS Lambda ([#801](https://github.com/Netflix/metaflow/pull/801))
+  * Add 'last modified' to S3 object ([#778](https://github.com/Netflix/metaflow/pull/778))
+
+### Improvements <a href="#user-content-v2.4.4_improvements" id="user-content-v2.4.4_improvements"></a>
+
+#### Add default image config option as described in [#489](https://github.com/Netflix/metaflow/issues/489) ([#813](https://github.com/Netflix/metaflow/pull/813))
+
+We're moving to a more consistent scheme for naming options related to docker images. You can read the details in [#489](https://github.com/Netflix/metaflow/issues/489), but this release introduces new config options `DEFAULT_CONTAINER_IMAGE` and `DEFAULT_CONTAINER_REGISTRY` that can be used to specify docker image in addition to plugin-specific options like `KUBERNETES_CONTAINER_IMAGE`
+
+#### Read default k8s namespace from config ([#823](https://github.com/Netflix/metaflow/pull/823))
+
+This adds a new configuration option to set the default namespace for the Kubernetes plugin
+
+## [2.4.3 (Nov 3rd 2021)](https://github.com/Netflix/metaflow/releases/tag/2.4.3)
+
+The Metaflow 2.4.3 release is a patch release
+
+* [Bug Fixes](https://github.com/Netflix/metaflow/releases#v2.4.2\_bugs)
+  * Fix a race condition when accessing artifacts of a running task
+  * Fix an issue when using a combination of `@catch` and `@retry` decorators
+  * Upgrade Pandas in tutorials
+* Miscellaneous
+  * The code base has now been formatted with Black. PRs will automatically be formatted when submitted. If submitting PRs, you can also format your PRs using black (default options) to avoid a reformatting PR.
+
+### Bug Fixes <a href="#user-content-v2.4.3_bugs" id="user-content-v2.4.3_bugs"></a>
+
+#### Fix a race condition when accessing artifacts of a running task ([#789](https://github.com/Netflix/metaflow/pull/789)) <a href="#user-content-789" id="user-content-789"></a>
+
+When accessing artifacts of a running task using `Task(...).artifacts`, a race condition existed and the call could return a difficult to understand error message. This release fixes this issue and making this call will either return the artifacts present or no artifacts at all if none are present yet.
+
+#### Fix an issue when using a combination of `@catch` and `@retry` decorators ([#776](https://github.com/Netflix/metaflow/pull/776)) <a href="#user-content-776" id="user-content-776"></a>
+
+A step as below:
+
+```
+@retry(times=2)
+@catch(var='exception')
+@step
+def my_step(self):
+    raise ValueError()
+```
+
+would not retry 2 times as expected but instead the exception would be caught the first time around. This release fixes this issue and the step will now execute a total of 3 times and the exception will be caught on the third time.
+
+#### Upgrade Pandas in tutorials ([#707](https://github.com/Netflix/metaflow/pull/707)) <a href="#user-content-707" id="user-content-707"></a>
+
+On MacOS Big Sur, certain tutorials were broken due to using an older version of Pandas. This updates the tutorials to use 1.3.3 to solve this issue
+
 ## [2.4.2 (Oct 25th, 2021)](https://github.com/Netflix/metaflow/releases/2.4.2)
 
 The Metaflow 2.4.2 release is a patch release
@@ -32,7 +123,7 @@ A subtle bug was introduced in Metaflow `2.4.0` where the task datastore access 
 
 The Metaflow 2.4.1 release is a patch release
 
-* [Bug Fixes](release-notes.md#bug-fixes)
+* [Bug Fixes](release-notes.md#bug-fixes-1)
   * Expose non-pythonic dependencies inside the conda environment on AWS Batch
 * [New Features](release-notes.md#new-features)
   * Introduce size properties for artifacts and logs in metaflow.client
