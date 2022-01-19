@@ -4,6 +4,18 @@ Read below how Metaflow has improved over time.
 
 We take backwards compatibility very seriously. In the vast majority of cases, you can upgrade Metaflow without expecting changes in your existing code. In the rare cases when breaking changes are absolutely necessary, usually, due to bug fixes, you can take a look at minor breaking changes below before you upgrade.
 
+
+## [2.4.9 (Jan 18, 2022)](https://github.com/Netflix/metaflow/releases/tag/2.4.9)
+
+The Metaflow 2.4.9 release is a patch release.
+
+* Improvements
+  * Store information about the DAG being executed in an artifact. This will allow to render execution DAG in a `@card` ( [#822](https://github.com/Netflix/metaflow/pull/822) )
+* Bug Fixes
+  * Fixed cli command when task_id provided ( [#890](https://github.com/Netflix/metaflow/pull/890) )
+  * Fix with metadata syncing on AWS Batch when running without remote metadata service ( [#902](https://github.com/Netflix/metaflow/pull/902) )
+  * Fix default resource math. Previously we sometimes computed vCPU and memory settings incorrectly, in cases when they were set to something less than the default value ( [#810](https://github.com/Netflix/metaflow/pull/810) , fixes [#467](https://github.com/Netflix/metaflow/issues/467) )
+
 ## [2.4.8 (Jan 10, 2022)](https://github.com/Netflix/metaflow/releases/tag/2.4.8)
 
 The Metaflow 2.4.8 release is a patch release.
