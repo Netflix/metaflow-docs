@@ -33,10 +33,14 @@
 * [Metaflow Sandbox](metaflow-on-aws/metaflow-sandbox.md)
 * [Deploying to AWS](metaflow-on-aws/deploy-to-aws.md)
 
-## Developing with Metaflow <a id="metaflow"></a>
+## Developing with Metaflow <a href="#metaflow" id="metaflow"></a>
 
 * [Basics of Metaflow](metaflow/basics.md)
 * [Inspecting Flows and Results](metaflow/client.md)
+* [Visualizing Results](metaflow/visualizing-results/README.md)
+  * [Effortless Task Inspection with Default Cards](metaflow/visualizing-results/effortless-task-inspection-with-default-cards.md)
+  * [Easy Custom Reports with Card Components](metaflow/visualizing-results/easy-custom-reports-with-card-components.md)
+  * [Advanced, Shareable Cards with Card Templates](metaflow/visualizing-results/advanced-shareable-cards-with-card-templates.md)
 * [Debugging with Metaflow](metaflow/debugging.md)
 * [Scaling Out and Up](metaflow/scaling.md)
 * [Loading and Storing Data](metaflow/data.md)
@@ -53,4 +57,3 @@
 
 * [Technical Overview](internals-of-metaflow/technical-overview.md)
 * [Testing Philosophy](internals-of-metaflow/testing-philosophy.md)
-

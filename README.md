@@ -28,6 +28,7 @@ description: Build and manage real-life data science projects with ease.
 
 * [Basics of Metaflow](metaflow/basics.md)
 * [Inspecting Flows and Results](metaflow/client.md)
+* [Visualizing Results](metaflow/visualizing-results/) - _**new!**_
 * [Debugging with Metaflow](metaflow/debugging.md)
 * [Scaling Out and Up](metaflow/scaling.md)
 * [Loading and Storing Data](metaflow/data.md)
@@ -35,7 +36,7 @@ description: Build and manage real-life data science projects with ease.
 * [Dealing with Failures](metaflow/failures.md)
 * [Organizing Results](metaflow/tagging.md)
 
-## Going to Production with Metaflow 
+## Going to Production with Metaflow&#x20;
 
 * [Scheduling Metaflow Flows](going-to-production-with-metaflow/scheduling-metaflow-flows.md)
 * [Coordinating Larger Metaflow Projects](going-to-production-with-metaflow/coordinating-larger-metaflow-projects.md)
@@ -44,4 +45,3 @@ description: Build and manage real-life data science projects with ease.
 
 * [Technical Overview](internals-of-metaflow/technical-overview.md)
 * [Testing Philosophy](internals-of-metaflow/testing-philosophy.md)
-
