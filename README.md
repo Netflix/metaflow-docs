@@ -15,8 +15,7 @@ description: How to deploy and operate Metaflow
 
 * [Deployment Guide](metaflow-on-aws/deployment-guide/)
   * [AWS CloudFormation Deployment](metaflow-on-aws/deployment-guide/aws-cloudformation-deployment.md)
+  * [Terraform Deployment](metaflow-on-aws/deployment-guide/terraform-deployment.md)
   * [Manual Deployment](metaflow-on-aws/deployment-guide/manual-deployment.md)
 * [Operations Guide](metaflow-on-aws/operations-guide/)
-
-
 

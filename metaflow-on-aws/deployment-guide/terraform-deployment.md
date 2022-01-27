@@ -17,4 +17,4 @@ The major components of the template are:
 * **AWS Identity and Access Management** - Dedicated roles obeying "principle of least privilege" access to resources such as AWS Batch and Amazon Sagemaker Notebook instances.
 * **AWS Lambda** _-_ An AWS Lambda function that automates any migrations needed for the Metadata service.
 
-To deploy the template, just follow the instructions listed [here](https://github.com/Netflix/metaflow-tools/blob/master/aws/terraform/README.md).
+To deploy the template, just follow the instructions listed [here](https://github.com/outerbounds/metaflow-tools/blob/master/aws/terraform/README.md).
