@@ -192,6 +192,10 @@ We will create two security groups, one for the AWS Fargate cluster and another 
    4. Choose _Add rule_ and select _Custom TCP_ for _Type._
    5. Use _8082_ for _Port range._ This is needed for the migration service to work.
    6. Select _Anywhere_ for _Source type._
+   7. \(Optional\) for UI Service
+      1. Choose _Add rule_ and select _Custom TCP_ for _Type._
+      2. Use _8083_ for _Port range._ This is needed for UI Service.
+      3. Select _Anywhere_ for _Source type._
 6. For _Outbound rules,_
    1. Select _All traffic_ for _Type_.
    2. Select _Custom_ for _Destination type_.
@@ -337,6 +341,66 @@ METAFLOW_SERVICE_URL = http://xxx.xxx.xxx.xxx:8080
 ```
 
 The metadata service in this example is exposed to the internet. Ideally, you would want to put this service behind an API gateway and use authentication in front of it. The [AWS CloudFormation](aws-cloudformation-deployment.md) does that automatically for you. If you need help with manual installation, please [get in touch](../../overview/getting-in-touch.md).
+
+### Metaflow User Interface \(optional\)
+
+The metadata service comes with an optional UI service, which can be hosted to provide real-time insights on executions happening on the metadata platform. This is an aiohttp service which 
+shares its SQL database with the metadata service, either directly, or through logical replication.
+
+As a prerequisite, the metadata service should already be up and running following the earlier [Metadata](manual-deployment.md#Metadata) instructions.
+
+#### Service Isolation \(optional\)
+
+For complete isolation from the metadata service, it is possible to also set up a logical replica of the actual RDS database and use this for the UI service. Follow the instructions in the [logical replication guide](../operations-guide/metaflow-ui-logical-replication-guide.md), and optionally the [metadata guide](manual-deployment.md#Metadata) to set up a separate fargate cluster, with more restricted vpc, security group and IAM role. The UI Service only requires access to the RDS instance, so all other services can be kept out of reach if necessary. 
+
+#### Create Task Definition for UI service
+
+1. Choose _View Cluster_ and choose _Task Definitions_ on the left side pane.
+2. Choose _Create new Task Definition_, _Fargate_ and _Next step_.
+   1. Under _Configure task and container definitions,_
+      1. Choose a _Task Definition Name_.
+      2. Choose the _Task Role_ as the one [you just created above](manual-deployment.md#create-an-iam-role-for-ecs-fargate-service)_._
+   2. Under _Task execution IAM role,_ set the _Task execution role_ to _ecsTaskExecutionRole_ if you have it already. Leave it empty otherwise.
+   3. Under _Task size,_
+      1. Choose 16 _GB_ for _Task memory \(GB\)_
+      2. Choose 4 _vCPU_ for _Task CPU \(vCPU\)._
+   4. Under _Container Definitions_, choose _Add container_
+      1. Set _metaflow-service_ as the _Container name._
+      2. Set _netflixoss/metaflow\_metadata\_service_ as the _Image._
+      3. Set _Memory Limits_ to a _hard limit_ of 16384.
+      4. In _Port Mappings_, add mapping for 8083 TCP
+      5. Under _Advanced container configuration,_ Set _Command_ to be ```["python3", "-m", "services.ui_backend_service.ui_server",]```
+      6. Under _Advanced container configuration,_ in _Environment variables_ add the following values
+         1. Set _Key_ as _MF\_METADATA\_DB\_HOST_ and the _Value_ as the endpoint value of the RDS instance you created.
+         2. Set _Key_ as _MF\_METADATA\_DB\_NAME_ and the _Value_ as _metaflow._
+         3. Set _Key_ as _MF\_METADATA\_DB\__PORT __and the _Value_ as _5432._
+         4. Set _Key_ as _MF\_METADATA\_DB\_USER_ and the _Value_ as the username for your RDS instance.
+         5. Set _Key_ as _MF\_METADATA\_DB\_PSWD_ and the _Value_ as the password for your RDS instance.
+      7. Choose _Add._
+   5. Choose _Create._
+
+#### Create Fargate Service for UI
+
+1. Choose _Clusters_ in the left side pane and select the cluster you created in Step 4.
+2. Choose _Create_ under _Services,_
+   1. Choose _Fargate_ as _Lauch type._
+   2. Choose the task definition that you created [previously](manual-deployment.md#create-task-definition-for-ui-service) for _Task Definition._ Pick the latest for _Revision._
+   3. For _Platform version_ choose _Latest._
+   4. Leave the _Cluster_ as is \(pointing to the cluster that you are configuring\).
+   5. Pick a name for _Service name._
+   6. Pick a number for _Number of tasks._ In this example we will use 1.
+   7. Choose _Rolling update_ for _Deployment type._
+3. Choose _Next step._
+4. For _Configure network,_ 
+    1. For _Cluster VPC,_ choose the VPC that you have created [previously](manual-deployment.md#create-a-vpc-1).
+    2. Choose all public subnets in that VPC for _Subnets._
+    3. Choose the two _Security groups_ that you have created previously.
+5. For _Load balancing,_ choose _None_ as _Load balancer type._ In case, you would like help setting up a load balancer, [please reach out to us](../../overview/getting-in-touch.md).
+6. Choose _Next step._
+7. You can configure _Service Auto Scaling_ if you want to do so. We will skip that for now.
+8. Choose _Next step_ and _Create Service._
+9. Choose _View Service_  and wait for the task to get to the _running_ state.
+10. Choose the task and copy the _Public IP_. You should now be able to access the UI at `xxx.xxx.xxx.xxx:8083/`. This public IP with the port 8083 is the url to the UI service.
 
 ### Scheduling
 
