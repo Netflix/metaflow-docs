@@ -107,7 +107,7 @@ Unfortunately, just snapshotting the working directory of the flow code is not s
 
 The concept of an _environment_ is closely related to code packages. The environment encapsulates both the flow code and its external dependencies, so that the exact execution environment can be reproduced on a remote system accurately.
 
-* [`environment.py` - environment base class](https://github.com/Netflix/metaflow/blob/master/metaflow/environment.py)
+* [`metaflow_environment.py` - environment base class](https://github.com/Netflix/metaflow/blob/master/metaflow/metaflow_environment.py)
 
 ### Runtime
 
