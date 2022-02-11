@@ -2,25 +2,25 @@
 
 This chapter describes tools and patterns for moving data in and out of your Metaflow flows.
 
-Besides the mundane concern of loading data, there is also the question of how to organize code related to model-specific data transformations, such as feature engineering. Short answer: [keep data access separate from feature engineering](http://en.wikipedia.org/wiki/Separation_of_concerns).
+Besides the mundane concern of loading data, there is also the question of how to organize code related to model-specific data transformations, such as feature engineering. Short answer: [keep data access separate from feature engineering](http://en.wikipedia.org/wiki/Separation\_of\_concerns).
 
 In a perfect world, the data scientist could design and test features without having to concern themselves with the underlying mechanics of data transfer and processing. Unfortunately the larger the dataset, the more intermingled the two concerns become.
 
-Metaflow can not make the world perfect yet. However, we recommend that data science workflows try to keep the two concerns as separate as possible. In practice, you should use the solutions presented in this chapter purely to load a clean dataset in your workflow. Then, you should perform any model-specific data transformations in your Python code. In particular, we recommend that you use SQL only for data access, not for model-specific data manipulation. 
+Metaflow can not make the world perfect yet. However, we recommend that data science workflows try to keep the two concerns as separate as possible. In practice, you should use the solutions presented in this chapter purely to load a clean dataset in your workflow. Then, you should perform any model-specific data transformations in your Python code. In particular, we recommend that you use SQL only for data access, not for model-specific data manipulation.&#x20;
 
 There are multiple benefits in keeping data access separate from model-specific data manipulation:
 
 * It is easier to keep a model and its features in sync when they are computed together. [Metaflow's built-in versioning](tagging.md#tagging) makes it easy to iterate on multiple concurrent versions of the model safely. However, Metaflow can't protect you against stale input data. It is frustrating to troubleshoot bad model results that are caused by out-of-sync features.
 * It is quicker to iterate on your model. Testing and debugging Python is easier than testing and debugging SQL.
 * You can request [arbitrary amount of resources](scaling.md) for your data manipulation needs.
-* Instead of having data manipulation code in two places \(SQL and Python\), all code can be clearly laid out in a single place, in a single language, for maximum readability.
+* Instead of having data manipulation code in two places (SQL and Python), all code can be clearly laid out in a single place, in a single language, for maximum readability.
 * It is easier to optimize your code for performance when IO bottlenecks can be profiled separately from CPU bottlenecks.
 
-Keep this guideline in mind when choosing the right data access method below. 
+Keep this guideline in mind when choosing the right data access method below.&#x20;
 
 ## Data in Tables
 
-Accessing data in tables \(most often Hive\) is by far the most common way to load input data to Metaflow workflows. A common paradigm is to issue arbitrary SQL queries against the data warehouse to fetch data. However, depending on the data volume and the complexity of the query, queries can be slow to execute and can potentially congest the query engine.
+Accessing data in tables (most often Hive) is by far the most common way to load input data to Metaflow workflows. A common paradigm is to issue arbitrary SQL queries against the data warehouse to fetch data. However, depending on the data volume and the complexity of the query, queries can be slow to execute and can potentially congest the query engine.
 
 It is not uncommon for a data science workflow to hit these limitations. Even if your data set is not huge, you may want to build multiple models in parallel, e.g. one per country. In this case, each model needs to load a shard of data. If you used SQL to load the shards, it will very quickly overload your query engine.
 
@@ -67,7 +67,7 @@ Note that in order to get the maximum performance out of `metaflow.S3`, you need
 
 ### Choosing the context
 
-To benefit from the built-in support for versioning, first you need to tell `metaflow.S3` whether it is being used in the context of a Metaflow run. A run can refer to a currently running flow \(`run=self`\) or a past run, `run=Run(...)`. If `run` is not specified, `metaflow.S3` can be used to access data without versioning in arbitrary S3 locations.
+To benefit from the built-in support for versioning, first you need to tell `metaflow.S3` whether it is being used in the context of a Metaflow run. A run can refer to a currently running flow (`run=self`) or a past run, `run=Run(...)`. If `run` is not specified, `metaflow.S3` can be used to access data without versioning in arbitrary S3 locations.
 
 #### **Store and load objects in a Metaflow flow**
 
@@ -174,6 +174,9 @@ with S3(s3root='s3://my-bucket/savin/tmp/s3demo/') as s3:
     print('local path', s3obj.path)
     print('bytes', s3obj.blob)
     print('unicode', s3obj.text)
+    print('metadata', s3obj.metadata)
+    print('content-type', s3obj.content_type)
+    print('downloaded', s3obj.downloaded)
 
 location s3://my-bucket/savin/tmp/s3demo/fruit
 key fruit
@@ -181,11 +184,18 @@ size 9
 local path /data/metaflow/metaflow.s3.5agi129m/metaflow.s3.one_file.pih_iseg
 bytes b'pineapple'
 unicode pineapple
+metadata None
+content-type application/octet-stream
+downloaded True
 ```
 
 Note that you can not access data behind `s3obj` outside the `with` scope as the temporary file pointed at `s3obj.path` will get deleted as the scope exits.
 
 The `S3Object` may also refer to an S3 URL that does not correspond to an object in S3. These objects have `exists` property set to `False`. Non-existent objects may be returned by a `list_path` call, if the result refers to an S3 prefix, not an object. Listing operations also set `downloaded` property to `False`, to distinguish them from operations that download data locally. Also `get` and `get_many` may return non-existent objects if you call these methods with an argument `return_missing=True`.
+
+#### **Querying objects without downloading them**
+
+The above information about an object, like `size` and `metadata` ,can be useful even without downloading the file itself. To just get the metadata, you can use `info` and `info_many` calls that work like `get` and `get_many` but avoid the potentially expensive downloading part. The info calls set `downloaded=False` in the result object.
 
 ### Operations on multiple objects
 
@@ -229,6 +239,26 @@ Note that `get_recursive` takes a list of prefixes. This is useful for achieving
 
 If you have specified a custom `s3root`, you can use `get_all()` to get all files recursively under the given prefix.
 
+#### Loading parts of files
+
+A performance-sensitive application may want to read only a part of a large file. Instead of a string, the `get` and `get_many` calls can accept an object with `key`, `offset`, `length` attributes that specify a part of a file to download. You can use an object called `S3GetObject` provided by Metaflow for this purpose.
+
+This example loads two 1KB chunks of a file in S3:
+
+```python
+from metaflow import S3
+from metaflow.datatools.s3 import S3GetObject
+
+URL = 's3://ursa-labs-taxi-data/2014/12/data.parquet'
+
+with S3() as s3:
+    res = s3.get_many([S3GetObject(key=URL, offset=0, length=1024),
+                       S3GetObject(key=URL, offset=1024, length=1024)])
+
+    for obj in res:
+        print(obj.path, obj.size)
+```
+
 #### **Store multiple objects or files**
 
 If you need to store multiple objects, use `put_many`:
@@ -264,11 +294,11 @@ Objects are stored in S3 in parallel for maximum throughput.
 
 To get objects with `get` and `get_many`, you need to know the exact names of the objects to download. S3 is optimized for looking up specific names, so it is preferable to structure your code around known names. However, sometimes this is not possible and you need to check first what is available in S3.
 
-Metaflow provides two ways to list objects in S3: `list_paths` and `list_recursive`. The first method provides the next level of prefixes \(directories\) in S3, directly under the given prefix. The latter method provides all objects under the given prefix. Since `list_paths` returns a subset of prefixes returned by `list_recursive`, it is typically a much faster operation.
+Metaflow provides two ways to list objects in S3: `list_paths` and `list_recursive`. The first method provides the next level of prefixes (directories) in S3, directly under the given prefix. The latter method provides all objects under the given prefix. Since `list_paths` returns a subset of prefixes returned by `list_recursive`, it is typically a much faster operation.
 
 Here's an example: First, let's create files in S3 in a hierarchy like this:
 
-```text
+```
 first/a/object1
 first/b/x/object2
 second/c/object3
@@ -308,7 +338,7 @@ b
 c
 ```
 
-Listing may return either prefixes \(directories\) or objects. To distinguish between the two, use the `.exists` property of the returned `S3Object`:
+Listing may return either prefixes (directories) or objects. To distinguish between the two, use the `.exists` property of the returned `S3Object`:
 
 ```python
 from metaflow import S3
@@ -339,11 +369,11 @@ A common pattern is to list objects using either `list_paths` or `list_recursive
 
 ### Caution: Overwriting data in S3
 
-You should avoid overwriting data in the same key \(URL\) in S3. S3 guarantees that new keys always reflect the latest data. In contrast, when you overwrite data in an existing key, there is a short period of time where a reader may see either the old version or the new version of the data.
+You should avoid overwriting data in the same key (URL) in S3. S3 guarantees that new keys always reflect the latest data. In contrast, when you overwrite data in an existing key, there is a short period of time where a reader may see either the old version or the new version of the data.
 
 In particular, when you use `metaflow.S3` in your Metaflow flows, make sure that every task and step writes to a unique key. Otherwise you may find results unpredictable and inconsistent.
 
-Note that specifying `overwrite=False` in your `put_*` calls changes the behavior of S3 slightly compared to the default mode of `overwrite=True`. There may be a small delay \(typically in the order of milliseconds\) before the key becomes available for reading.
+Note that specifying `overwrite=False` in your `put_*` calls changes the behavior of S3 slightly compared to the default mode of `overwrite=True`. There may be a small delay (typically in the order of milliseconds) before the key becomes available for reading.
 
 This is an important reason to rely on Metaflow artifacts, which handle this complication for you, whenever possible. If you absolutely need to handle this by yourself, one way to guarantee uniqueness is to use `current.task_id` from [the `current` module](tagging.md#accessing-current-ids-in-a-flow) as a part of your S3 keys.
 
@@ -384,6 +414,4 @@ You can specify the file to use using:
 ```bash
 python hash_flow.py run --myfile '/path/to/input/file'
 ```
-
-
 
