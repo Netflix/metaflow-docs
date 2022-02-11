@@ -20,7 +20,7 @@ If you answered "yes" to any of the above, keep reading - Metaflow can help you.
 
 Models are only a small part of an end-to-end data science project. Production-grade projects rely on a thick stack of infrastructure. At the minimum, projects need data and a way to perform computation on it. In a business environment like Netflix's, a typical data science project touches all layers of the stack depicted below:
 
-![](https://lh5.googleusercontent.com/f68UAR7UxClKR6XvHXq-ZeepDXLHISoVboj6amF9f0cv6jCxqTsjyYnm-isKIHdINMl\_gdlPVbR3wJ9vIDwipjMIglHwwetL3-rVNhUTRN4a7UYXmVZ78IqeI2fGJ2OA2Silk5ZS)
+![image](https://user-images.githubusercontent.com/1483922/151918234-b178246a-2f95-47fd-b8eb-3cb2cbf8fb38.png)
 
 Data is accessed from a **data warehouse**, which can be a folder of files, a database, or a multi-petabyte data lake. The modeling code that crunches the data is executed in a **compute environment** which can range from a laptop to a large-scale container management system. A **job scheduler** is often used to orchestrate multiple units of work.
 
