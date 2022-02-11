@@ -195,7 +195,7 @@ The `S3Object` may also refer to an S3 URL that does not correspond to an object
 
 #### **Querying objects without downloading them**
 
-The above information about an object, like `size` and `metadata`, can be useful even without downloading the file itself. To just get the metadata, you can use `info` and `info_many` calls that work like `get` and `get_many` but avoid the potentially expensive downloading part. The info calls set `downloaded=False` in the result object.
+The above information about an object, like `size` and `metadata`, can be useful even without downloading the file itself. To just get the metadata, use the `info` and `info_many` calls that work like `get` and `get_many` but avoid the potentially expensive downloading part. The info calls set `downloaded=False` in the result object.
 
 ### Operations on multiple objects
 
