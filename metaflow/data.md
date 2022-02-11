@@ -195,7 +195,7 @@ The `S3Object` may also refer to an S3 URL that does not correspond to an object
 
 #### **Querying objects without downloading them**
 
-The above information about an object, like `size` and `metadata` ,can be useful even without downloading the file itself. To just get the metadata, you can use `info` and `info_many` calls that work like `get` and `get_many` but avoid the potentially expensive downloading part. The info calls set `downloaded=False` in the result object.
+The above information about an object, like `size` and `metadata`, can be useful even without downloading the file itself. To just get the metadata, you can use `info` and `info_many` calls that work like `get` and `get_many` but avoid the potentially expensive downloading part. The info calls set `downloaded=False` in the result object.
 
 ### Operations on multiple objects
 
@@ -241,7 +241,7 @@ If you have specified a custom `s3root`, you can use `get_all()` to get all file
 
 #### Loading parts of files
 
-A performance-sensitive application may want to read only a part of a large file. Instead of a string, the `get` and `get_many` calls can accept an object with `key`, `offset`, `length` attributes that specify a part of a file to download. You can use an object called `S3GetObject` provided by Metaflow for this purpose.
+A performance-sensitive application may want to read only a part of a large file. Instead of a string, the `get` and `get_many` calls also accept an object with `key`, `offset`, `length` attributes that specify a part of a file to download. You can use an object called `S3GetObject` provided by Metaflow for this purpose.
 
 This example loads two 1KB chunks of a file in S3:
 
