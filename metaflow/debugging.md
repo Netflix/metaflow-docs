@@ -206,31 +206,37 @@ Note that since Metaflow may launch multiple steps in parallel, you may actually
 
 ### Debugging with VSCode
 
-You can debug with the Python plugin for VSCode.&#x20;
+You can enable debugging of a Flow in VSCode by adjusting your project's configuration in `.vscode/launch.json`.
 
-1. You will need a "launch.json" file in your ".vscode" directory:
-   1. Select "Open Configurations" from the "Debug" menu.
-   2. If you have never created a launch.json file, select "Python File" when it asks.
-2. Create a configuration that looks like this:
+Here is a recording of the end-to-end setup proccess:
+
+{% embed url="https://www.youtube.com/watch?v=xWGxDeojqeM" %}
+
+The configuration file as illustrated in the recording is provided below.  Make sure you are extra careful to update the json structure appropriately if you already have existing settings. 
 
 ```javascript
 {
-    "name": "Helloworld",
-    "type": "python",
-    "request": "launch",
-    "program": "<absolute path to program script>",
-    "args": [
-        "run"
-    ],
-    "env": {
-        "USERNAME": "<your username>"
-    },
-    "subProcess": true,
-    "console": "integratedTerminal"
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Metaflow Debug",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "args": [
+                "run"
+            ],
+            "env": {
+                "USERNAME": "hamel"
+            },
+            "subProcess": true,
+            "console": "integratedTerminal"
+        }
+    ]
 }
 ```
 
-You can now set breakpoints and then select "Start Debugging" from the "Debug" menu. Note that since Metaflow may launch multiple steps in parallel, you may actually hit multiple breakpoints at the same time; you will be able to switch between those breakpoints by selecting the proper function stack in the "Call Stack" window. You can also restrict Metaflow to only execute one step at a time by adding the values "--max-workers" and  "1" to the "args" array in the configuration.
+You can now set breakpoints and then select "Start Debugging" from the "Debug" menu or command pallete as illustrated in the recording. Note that since Metaflow may launch multiple steps in parallel, you may actually hit multiple breakpoints at the same time; you will be able to switch between those breakpoints by selecting the proper function stack in the "Call Stack" window. You can also restrict Metaflow to only execute one step at a time by adding the values "--max-workers" and  "1" to the "args" array in the configuration.
 
 ### Combining debugging with resume
 
