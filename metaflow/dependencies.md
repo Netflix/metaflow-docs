@@ -183,6 +183,10 @@ Note that, the exact set of dependencies and their behavior might differ between
 
 ### `@conda` Tips and Tricks
 
+#### Can I use an alternate dependency manager, given that conda can be slow at resolving dependencies?
+
+By default, Metaflow relies on conda for dependency resolution but for many data science packages, conda can be quite slow for [a variety of different reasons](https://docs.conda.io/projects/conda/en/latest/user-guide/concepts/conda-performance.html#conda-performance). [Mamba](https://mamba.readthedocs.io/en/latest/) is another cross-platform package manager that is fully compatible with conda packages and [offers better performance and reliability compared to conda](https://stackoverflow.com/a/68043228/6510628). You can use mamba instead of conda by setting the environment variable `METAFLOW_CONDA_DEPENDENCY_RESOLVER=mamba` either in your execution environment or inside your metaflow config (usually located at `~/.metaflowconfig/`).
+
 #### How do I specify the version of Python interpreter?
 
 By default, we take the version of the Python interpreter with which you invoke your flow. You can override it whatever version you choose, e.g,  `@conda(python='3.6.5')`.\
