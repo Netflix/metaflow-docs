@@ -29,7 +29,7 @@ Each tutorial has a brief description and instructions that you can view using t
 
 ## What's next?
 
-- Explore fault-tolerant flows with [`catch`](/docs/r/metaflow/failures#catching-exceptions-with-the-catch-decorator), [`retry`](/docs/r/metaflow/failures#retrying-tasks-with-the-retry-decorator)decorators.
-- Debug failed runs with [resume](/docs/r/metaflow/debugging#how-to-use-the-resume-command).
-- Explore results across experiments with the [Client API](/docs/r/metaflow/client).
-- See how to organize results and collaborate with [namespaces](/docs/r/metaflow/tagging#namespaces) and [tags](/docs/r/metaflow/tagging#tagging).
+- Explore fault-tolerant flows with [`catch`](../metaflow/failures#catching-exceptions-with-the-catch-decorator), [`retry`](../metaflow/failures#retrying-tasks-with-the-retry-decorator)decorators.
+- Debug failed runs with [resume](../metaflow/debugging#how-to-use-the-resume-command).
+- Explore results across experiments with the [Client API](../metaflow/client).
+- See how to organize results and collaborate with [namespaces](../metaflow/tagging#namespaces) and [tags](../metaflow/tagging#tagging).

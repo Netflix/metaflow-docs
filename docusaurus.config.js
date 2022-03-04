@@ -10,7 +10,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const config = {
   title: "Metaflow Docs",
   url: "https://your-docusaurus-test-site.com",
-  baseUrl: "/docusaurus/",
+  baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
@@ -28,7 +28,7 @@ const config = {
           // remarkPlugins: [[remarkCodeHike, { theme }]],
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
-          editUrl: "https://github.dev/outerbounds/docusaurus/blob/main",
+          editUrl: "https://github.dev/obgibson/metaflow-docs/blob/main",
           routeBasePath: "/",
         },
         theme: {
@@ -47,7 +47,7 @@ const config = {
           alt: "Metaflow Logo",
           srcDark: "img/Metaflow_Logo_Horizontal_OneColor_White_RGB.svg",
           src: "img/Metaflow_Logo_Horizontal_OneColor_White_RGB.svg",
-          href: "/docs",
+          href: "/",
           height: "64px",
         },
         items: [
