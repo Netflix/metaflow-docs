@@ -12,6 +12,8 @@ If you want to see what your changes look like locally, follow the steps in `Vie
 
 You can also preview your changes when you create a PR. There will be a link in the PR conversation tag under an **AWS Amplify** comment. This link is public and can be shared with your reviewers.
 
+**Once your changes have been merged into the default branch, the website will be regenerated automatically.**
+
 ## Viewing the documentation locally
 
 ### Installation
