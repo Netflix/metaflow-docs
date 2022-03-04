@@ -1,0 +1,73 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+@font-face {
+  font-family: "Roboto Slab Regular";
+  src: url("/static/fonts/RobotoSlab-Regular.ttf") format("truetype");
+}
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #146ee6;
+  --ifm-menu-color: #333333;
+  --ifm-font-color-base: rgba(59, 69, 78, 1);
+  --ifm-navbar-background-color: rgba(24, 28, 31, 1);
+  --ifm-navbar-link-color: rgb(200, 200, 200);
+  --ifm-navbar-height: 5rem;
+  --ifm-font-family-base: "Roboto Slab Regular";
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+html[data-theme="dark"] {
+  --ifm-color-primary: #00bbce;
+  --ifm-menu-color: #e6e6e6;
+  --ifm-font-color-base: #e6e6e6;
+}
+
+.docusaurus-highlight-code-line {
+  background-color: rgba(0, 0, 0, 0.1);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
+
+html[data-theme="dark"] .docusaurus-highlight-code-line {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.navbar__logo {
+  height: 3rem;
+}
+
+html[data-theme="light"] aside {
+  background: rgb(245, 247, 249);
+}
+
+p > img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+html[data-theme="dark"] p > img {
+  background-color: rgb(255, 255, 255);
+}
+
+.dsla-search-wrapper {
+  margin-right: var(--aa-spacing);
+
+  --aa-background-color-rgb: 24, 28, 31;
+  --aa-background-color-alpha: 1;
+  --aa-text-color-rgb: 200, 200, 200;
+  --aa-muted-color-rgb: 200, 200, 200;
+  --aa-input-background-color-rgb: 24, 28, 31;
+  --aa-input-background-color-alpha: 1;
+  --aa-primary-color-rgb: 200, 200, 200;
+}
+
+.dsla-search-wrapper .aa-DetachedSearchButton {
+  border: none;
+}

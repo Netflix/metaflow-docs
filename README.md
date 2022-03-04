@@ -1,47 +1,41 @@
----
-description: Build and manage real-life data science projects with ease.
----
+# Website
 
-# Welcome to Metaflow for Python
+This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
-## Introduction
+### Installation
 
-* [Why Metaflow](introduction/why-metaflow.md)
-* [What is Metaflow](introduction/what-is-metaflow.md)
-* [Release Notes](introduction/release-notes.md)
-* [Roadmap](introduction/roadmap.md)
-* [Contributing to Metaflow](introduction/contributing-to-metaflow.md)
-* [Get in Touch](introduction/getting-in-touch.md)
+```
+$ yarn
+```
 
-## Getting Started
+### Local Development
 
-* [Installing Metaflow](getting-started/install.md)
-* [Tutorials](getting-started/tutorials/)
+```
+$ yarn start
+```
 
-## Metaflow on AWS
+This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
 
-* [Metaflow on AWS](metaflow-on-aws/metaflow-on-aws.md)
-* [Metaflow Sandbox](metaflow-on-aws/metaflow-sandbox.md)
-* [Deploying to AWS](metaflow-on-aws/deploy-to-aws.md)
+### Build
 
-## Developing with Metaflow
+```
+$ yarn build
+```
 
-* [Basics of Metaflow](metaflow/basics.md)
-* [Inspecting Flows and Results](metaflow/client.md)
-* [Visualizing Results](metaflow/visualizing-results/) - _**new!**_
-* [Debugging with Metaflow](metaflow/debugging.md)
-* [Scaling Out and Up](metaflow/scaling.md)
-* [Loading and Storing Data](metaflow/data.md)
-* [Managing External Libraries](metaflow/dependencies.md)
-* [Dealing with Failures](metaflow/failures.md)
-* [Organizing Results](metaflow/tagging.md)
+This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
-## Going to Production with Metaflow&#x20;
+### Deployment
 
-* [Scheduling Metaflow Flows](going-to-production-with-metaflow/scheduling-metaflow-flows.md)
-* [Coordinating Larger Metaflow Projects](going-to-production-with-metaflow/coordinating-larger-metaflow-projects.md)
+Using SSH:
 
-## Internals of Metaflow
+```
+$ USE_SSH=true yarn deploy
+```
 
-* [Technical Overview](internals-of-metaflow/technical-overview.md)
-* [Testing Philosophy](internals-of-metaflow/testing-philosophy.md)
+Not using SSH:
+
+```
+$ GIT_USER=<Your GitHub username> yarn deploy
+```
+
+If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
