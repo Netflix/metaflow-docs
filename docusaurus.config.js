@@ -10,7 +10,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const config = {
   title: "Metaflow Docs",
   url: "https://docs.metaflow.org",
-  baseUrl: "/",
+  baseUrl: "/metaflow-docs/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
