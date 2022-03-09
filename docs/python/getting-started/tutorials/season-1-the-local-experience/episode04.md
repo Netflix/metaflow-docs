@@ -1,5 +1,3 @@
-import TutorialsLink from "/src/components/TutorialsLink"
-
 # Episode 4: Playlist Plus
 
 ## The Final Showdown.
@@ -26,6 +24,6 @@ This tutorial requires the _**conda**_ package manager to be installed with the 
 1. `cd metaflow-tutorials`
 2. `python 04-playlist-plus/playlist.py --environment=conda show`
 3. `python 04-playlist-plus/playlist.py --environment=conda run`
-4. `python 04-playlist-plus/playlist.py --environment=conda run --hint "Data Science` `Strikes Back"`
+4. `python 04-playlist-plus/playlist.py --environment=conda run --hint "Data Science Strikes Back"`
 
 <TutorialsLink link="../"/>
