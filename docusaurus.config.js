@@ -28,7 +28,7 @@ const config = {
           // remarkPlugins: [[remarkCodeHike, { theme }]],
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
-          editUrl: "https://github.dev/obgibson/metaflow-docs/blob/main",
+          editUrl: "https://github.dev/obgibson/metaflow-docs/blob/master",
           routeBasePath: "/",
         },
         theme: {
