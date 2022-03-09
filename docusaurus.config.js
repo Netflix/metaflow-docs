@@ -9,13 +9,13 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Metaflow Docs",
-  url: "https://your-docusaurus-test-site.com",
+  url: "https://docs.metaflow.org",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
-  organizationName: "outerbounds", // Usually your GitHub org/user name.
-  projectName: "docusaurus", // Usually your repo name.
+  organizationName: "Netflix", // Usually your GitHub org/user name.
+  projectName: "metaflow-docs", // Usually your repo name.
   trailingSlash: false,
   plugins: [require.resolve("@cmfcmf/docusaurus-search-local")],
 
