@@ -67,10 +67,6 @@ const config = {
             position: "left",
             label: "Admin Docs",
           },
-          {
-            type: "search",
-            position: "right",
-          },
         ],
         hideOnScroll: true,
       },
@@ -84,12 +80,12 @@ const config = {
         appId: "5IZ8L9TJQL",
 
         // Public API key: it is safe to commit it
-        apiKey: "4b3ee46f2775330b080e60404a1f5150",
+        apiKey: "246d8e1f6a4c455ba30172edcd0399d5",
 
         indexName: "metataflow",
 
         // Optional: see doc section below
-        contextualSearch: true,
+        contextualSearch: false,
 
         // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to them.
         externalUrlRegex: "external\\.com|domain\\.com",
