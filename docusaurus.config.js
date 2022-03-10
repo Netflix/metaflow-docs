@@ -17,7 +17,6 @@ const config = {
   organizationName: "Netflix", // Usually your GitHub org/user name.
   projectName: "metaflow-docs", // Usually your repo name.
   trailingSlash: false,
-  plugins: [require.resolve("@cmfcmf/docusaurus-search-local")],
 
   presets: [
     [
@@ -79,6 +78,29 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+      },
+      algolia: {
+        // The application ID provided by Algolia
+        appId: "5IZ8L9TJQL",
+
+        // Public API key: it is safe to commit it
+        apiKey: "4b3ee46f2775330b080e60404a1f5150",
+
+        indexName: "metataflow",
+
+        // Optional: see doc section below
+        contextualSearch: true,
+
+        // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to them.
+        externalUrlRegex: "external\\.com|domain\\.com",
+
+        // Optional: Algolia search parameters
+        searchParameters: {},
+
+        // Optional: path for search page that enabled by default (`false` to disable it)
+        searchPagePath: "search",
+
+        //... other Algolia params
       },
     }),
 };
