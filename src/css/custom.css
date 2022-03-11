@@ -71,3 +71,9 @@ html[data-theme="dark"] p > img {
 .dsla-search-wrapper .aa-DetachedSearchButton {
   border: none;
 }
+
+/* Algolia search */
+[data-theme="light"] .DocSearch {
+  --docsearch-primary-color: var(--ifm-color-primary);
+  --docsearch-highlight-color: var(--ifm-color-primary);
+}
