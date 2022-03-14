@@ -60,6 +60,6 @@ Netflix uses this setup internally. To make the experience smoother, Netflix's d
 
 If your organization doesn't have an AWS account already, we provide a hosted sandbox environment where you can test Metaflow using your own code and data, to get a feel of the benefits of AWS. Read more in the section about [Metaflow Sandbox](metaflow-on-aws/metaflow-sandbox).
 
-If your organization has an AWS account already, see our [deployment guide](https://admin-docs.metaflow.org/metaflow-on-aws/deployment-guide) for detailed instructions on how to configure your account for Metaflow.
+If your organization has an AWS account already, see our [deployment guide](https://outerbounds.com/docs/admin/metaflow-on-aws/deployment-guide) for detailed instructions on how to configure your account for Metaflow.
 
-If you are already using Metaflow in your AWS account, and want to get started with how to manage various AWS resources, take a look at our [operations guide](https://admin-docs.metaflow.org/metaflow-on-aws/operations-guide).
+If you are already using Metaflow in your AWS account, and want to get started with how to manage various AWS resources, take a look at our [operations guide](https://outerbounds.com/docs/admin/metaflow-on-aws/operations-guide).

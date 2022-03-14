@@ -8,7 +8,7 @@ Metaflow makes it easy to move back and forth between the local and remote modes
 
 When you set up a cloud-based object store as the datastore, Metaflow snapshots all data and code in the cloud automatically. This means that you can [inspect](../metaflow/client.md), [resume](../metaflow/debugging.md#how-to-use-the-resume-command), and restore any previous Metaflow execution without having to worry that the fruits of your hard work get lost.
 
-> Note that the R and Python versions of Metaflow work the same way on AWS since they both share the same AWS integrations. The instructions here and in the [Admin Docs](https://admin-docs.metaflow.org/) apply apply to both the versions.
+> Note that the R and Python versions of Metaflow work the same way on AWS since they both share the same AWS integrations. The instructions here and in the [Admin Docs](https://outerbounds.com/docs/admin) apply apply to both the versions.
 
 ## Amazon Web Services
 
@@ -62,6 +62,6 @@ Netflix uses this setup internally. To make the experience smoother, Netflix's d
 
 If your organization doesn't have an AWS account already, we provide a hosted sandbox environment where you can test Metaflow using your own code and data, to get a feel of the benefits of AWS. Read more in the section about [Metaflow Sandbox](metaflow-sandbox.md).
 
-If your organization has an AWS account already, see our [deployment guide](https://admin-docs.metaflow.org/metaflow-on-aws/deployment-guide) for detailed instructions on how to configure your account for Metaflow.
+If your organization has an AWS account already, see our [deployment guide](https://outerbounds.com/docs/admin/metaflow-on-aws/deployment-guide) for detailed instructions on how to configure your account for Metaflow.
 
-If you are already using Metaflow in your AWS account, and want to get started with how to manage various AWS resources, take a look at our [operations guide](https://admin-docs.metaflow.org/metaflow-on-aws/operations-guide).
+If you are already using Metaflow in your AWS account, and want to get started with how to manage various AWS resources, take a look at our [operations guide](https://outerbounds.com/docs/admin/metaflow-on-aws/operations-guide).
