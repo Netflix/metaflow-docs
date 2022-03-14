@@ -9,6 +9,12 @@
   src: url("/static/fonts/RobotoSlab-Regular.ttf") format("truetype");
 }
 
+html,
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizelegibility;
+}
+
 /* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #146ee6;
@@ -17,7 +23,7 @@
   --ifm-navbar-background-color: rgba(24, 28, 31, 1);
   --ifm-navbar-link-color: rgb(200, 200, 200);
   --ifm-navbar-height: 5rem;
-  --ifm-font-family-base: "Roboto Slab Regular";
+  --ifm-font-family-base: "Roboto Slab Regular", Helvetica, Arial, sans-serif;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -25,6 +31,20 @@ html[data-theme="dark"] {
   --ifm-color-primary: #00bbce;
   --ifm-menu-color: #e6e6e6;
   --ifm-font-color-base: #e6e6e6;
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    margin-left: 64px;
+  }
+
+  article {
+    margin-right: 48px;
+  }
+}
+
+.menu {
+  font-size: 0.875rem;
 }
 
 .docusaurus-highlight-code-line {
