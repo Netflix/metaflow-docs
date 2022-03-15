@@ -1,3 +1,6 @@
+---
+permalink: /index.html
+---
 # Metaflow Documentation
 
 This repository houses the documentation for metaflow, both for Python and R.
