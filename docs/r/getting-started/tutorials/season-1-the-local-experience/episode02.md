@@ -34,7 +34,7 @@ The `MovieStatsFlow` below performs the following steps:
 1. Ingests a CSV into a data frame.
 2. Fan-out over genre using Metaflow foreach.
 3. Compute median and mean for each genre.
-4. Save a data frame of genre specific statistics.
+4. Save a data frame of genre-specific statistics.
 
 ```r
 library(metaflow)
