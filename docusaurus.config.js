@@ -3,8 +3,6 @@
 
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
-// const { remarkCodeHike } = require("@code-hike/mdx");
-// const theme = require("shiki/themes/monokai.json");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -103,6 +101,29 @@ const config = {
         //... other Algolia params
       },
     }),
+  plugins: [
+    [
+      "@docusaurus/plugin-client-redirects",
+      {
+        createRedirects(existingPath) {
+          if (existingPath.includes("/getting-started")) {
+            // Redirect from /docs/team/X to /community/X and /docs/support/X to /community/X
+            return [
+              existingPath.replace(
+                "/getting-started",
+                "/python/getting-started"
+              ),
+            ];
+          }
+          if (existingPath.includes("/v/r")) {
+            // Redirect from /docs/team/X to /community/X and /docs/support/X to /community/X
+            return [existingPath.replace("/v/r", "/r")];
+          }
+          return undefined; // Return a falsy value: no redirect created
+        },
+      },
+    ],
+  ],
 };
 
 module.exports = config;
