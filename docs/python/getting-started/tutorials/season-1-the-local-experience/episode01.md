@@ -1,5 +1,3 @@
-import TutorialsLink from "/src/components/TutorialsLink"
-
 # Episode 1: Playlist
 
 ## Let's build you a movie playlist.

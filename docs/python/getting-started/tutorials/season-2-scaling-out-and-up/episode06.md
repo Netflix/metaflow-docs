@@ -1,5 +1,3 @@
-import TutorialsLink from "/src/components/TutorialsLink"
-
 # Episode 6: Statistics Redux
 
 ## Computing in the Cloud.

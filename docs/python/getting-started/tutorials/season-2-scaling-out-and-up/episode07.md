@@ -1,5 +1,3 @@
-import TutorialsLink from "/src/components/TutorialsLink"
-
 # Episode 7: Worldview
 
 ## Way up here.

@@ -1,5 +1,3 @@
-import TutorialsLink from "/src/components/TutorialsLink"
-
 # Episode 2: Statistics
 
 ## Is this Data Science?

@@ -1,5 +1,3 @@
-import TutorialsLink from "/src/components/TutorialsLink"
-
 # Episode 5: Hello AWS
 
 ## Look Mom, We're in the Cloud.

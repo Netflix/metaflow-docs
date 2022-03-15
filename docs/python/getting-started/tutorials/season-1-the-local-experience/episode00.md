@@ -1,5 +1,3 @@
-import TutorialsLink from "/src/components/TutorialsLink"
-
 # Episode 0: Hello World
 
 ## Metaflow says Hi!

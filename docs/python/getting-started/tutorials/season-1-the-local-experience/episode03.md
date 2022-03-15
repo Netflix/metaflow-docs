@@ -1,5 +1,3 @@
-import TutorialsLink from "/src/components/TutorialsLink"
-
 # Episode 3: Playlist Redux
 
 ## Follow the Money.

@@ -18,7 +18,8 @@ import {
   ParamSection,
   SigArg,
   SigArgSection,
-} from "/src/components/DocSection"; // In some cases (notably usage with Head/Helmet) we need to unwrap those elements.
+} from "/src/components/DocSection";
+import TutorialsLink from "../../components/TutorialsLink";
 
 function unwrapMDXElement(element) {
   if (element?.props?.mdxType && element?.props?.originalType) {
@@ -74,5 +75,6 @@ const MDXComponents = {
   ParamSection,
   SigArg,
   SigArgSection,
+  TutorialsLink,
 };
 export default MDXComponents;

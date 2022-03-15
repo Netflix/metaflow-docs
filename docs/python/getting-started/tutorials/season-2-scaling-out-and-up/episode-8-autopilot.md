@@ -1,5 +1,3 @@
-import TutorialsLink from "/src/components/TutorialsLink"
-
 # Episode 8: Autopilot
 
 ## Scheduling Compute in the Cloud.
