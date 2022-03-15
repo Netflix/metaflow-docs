@@ -43,6 +43,16 @@ html[data-theme="dark"] {
   }
 }
 
+@media screen and (min-width: 997px) {
+  .container {
+    margin-left: 32px;
+  }
+
+  article {
+    margin-right: 24px;
+  }
+}
+
 .menu {
   font-size: 0.875rem;
 }
