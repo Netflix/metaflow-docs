@@ -4,8 +4,8 @@
   <ShortName>Metaflow Docs</ShortName>
   <Description>Search Metaflow Docs</Description>
   <InputEncoding>UTF-8</InputEncoding>
-  <Image width="16" height="16" type="image/x-icon">https://docs.metaflow.org/metaflow-docs/img/favicon.ico</Image>
-  <Url type="text/html" method="get" template="https://docs.metaflow.org/metaflow-docs/search?q={searchTerms}"/>
-  <Url type="application/opensearchdescription+xml" rel="self" template="https://docs.metaflow.org/metaflow-docs/opensearch.xml" />
-  <moz:SearchForm>https://docs.metaflow.org/metaflow-docs/</moz:SearchForm>
+  <Image width="16" height="16" type="image/x-icon">https://docs.metaflow.org/img/favicon.ico</Image>
+  <Url type="text/html" method="get" template="https://docs.metaflow.org/search?q={searchTerms}"/>
+  <Url type="application/opensearchdescription+xml" rel="self" template="https://docs.metaflow.org/opensearch.xml" />
+  <moz:SearchForm>https://docs.metaflow.org/</moz:SearchForm>
 </OpenSearchDescription>
