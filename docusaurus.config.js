@@ -25,7 +25,7 @@ const config = {
           // remarkPlugins: [[remarkCodeHike, { theme }]],
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
-          editUrl: "https://github.dev/obgibson/metaflow-docs/blob/master",
+          editUrl: "https://github.dev/Netflix/metaflow-docs/blob/new-docs",
           routeBasePath: "/",
         },
         theme: {
@@ -70,7 +70,7 @@ const config = {
             label: "Admin Docs",
           },
         ],
-        hideOnScroll: true,
+        hideOnScroll: false,
       },
 
       prism: {
