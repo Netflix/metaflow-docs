@@ -1,5 +1,5 @@
 ---
-pagination_next: python/getting-started/tutorials/season-1-the-local-experience/README
+pagination_next: getting-started/tutorials/season-1-the-local-experience/README
 ---
 
 # Tutorials

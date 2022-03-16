@@ -927,7 +927,7 @@ PRs [#282](https://github.com/Netflix/metaflow/pull/282), [#286](https://github.
 
 ## 2.2.0 (Aug 4th, 2020)
 
-The Metaflow 2.2.0 release is a minor release and introduces [Metaflow's support for R lang](../../r/).
+The Metaflow 2.2.0 release is a minor release and introduces [Metaflow's support for R lang](../../v/r/).
 
 - [Features](release-notes.md#features-1)
   - Support for R lang.
@@ -936,7 +936,7 @@ The Metaflow 2.2.0 release is a minor release and introduces [Metaflow's support
 
 #### Support for R lang.
 
-This release provides an [idiomatic API to access Metaflow in R lang](../../r/). It piggybacks on the Pythonic implementation as the backend providing most of the functionality previously accessible to the Python community. With this release, R users can structure their code as a metaflow flow. Metaflow will [snapshot the code, data, and dependencies](../../r/metaflow/basics#the-structure-of-metaflow-code) automatically in a content-addressed datastore allowing for [resuming of workflows](../../r/metaflow/debugging#how-to-debug-failed-flows), [reproducing past results, and inspecting anything about the workflow](../../r/metaflow/client) e.g. in a notebook or RStudio IDE. Additionally, without any changes to their workflows, users can now [execute code on AWS Batch and interact with Amazon S3 seamlessly](../../r/metaflow/scaling).
+This release provides an [idiomatic API to access Metaflow in R lang](../../v/r/). It piggybacks on the Pythonic implementation as the backend providing most of the functionality previously accessible to the Python community. With this release, R users can structure their code as a metaflow flow. Metaflow will [snapshot the code, data, and dependencies](../../v/r/metaflow/basics#the-structure-of-metaflow-code) automatically in a content-addressed datastore allowing for [resuming of workflows](../../v/r/metaflow/debugging#how-to-debug-failed-flows), [reproducing past results, and inspecting anything about the workflow](../../v/r/metaflow/client) e.g. in a notebook or RStudio IDE. Additionally, without any changes to their workflows, users can now [execute code on AWS Batch and interact with Amazon S3 seamlessly](../../v/r/metaflow/scaling).
 
 PR [#263](https://github.com/Netflix/metaflow/pull/263) and PR [#214](https://github.com/Netflix/metaflow/pull/214)
 

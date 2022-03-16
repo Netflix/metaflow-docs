@@ -55,13 +55,13 @@ const config = {
           {
             type: "doc",
             position: "left",
-            docId: "python/index",
+            docId: "index",
             label: "Python Docs",
           },
           {
             type: "doc",
             position: "left",
-            docId: "r/README",
+            docId: "v/r/README",
             label: "R Docs",
           },
           {
@@ -101,29 +101,6 @@ const config = {
         //... other Algolia params
       },
     }),
-  plugins: [
-    [
-      "@docusaurus/plugin-client-redirects",
-      {
-        createRedirects(existingPath) {
-          if (existingPath.includes("/getting-started")) {
-            // Redirect from /docs/team/X to /community/X and /docs/support/X to /community/X
-            return [
-              existingPath.replace(
-                "/getting-started",
-                "/python/getting-started"
-              ),
-            ];
-          }
-          if (existingPath.includes("/v/r")) {
-            // Redirect from /docs/team/X to /community/X and /docs/support/X to /community/X
-            return [existingPath.replace("/v/r", "/r")];
-          }
-          return undefined; // Return a falsy value: no redirect created
-        },
-      },
-    ],
-  ],
 };
 
 module.exports = config;

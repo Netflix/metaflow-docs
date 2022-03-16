@@ -42,7 +42,7 @@ An easy-to-use Function-as-a-Service -style [microservice hosting platform](http
 
 [Metaflow in the R language](https://www.youtube.com/watch?v=lakPlz8GJcA). Provide an idiomatic R API which uses the Python library as the backend \([Github issue](https://github.com/Netflix/metaflow/issues/1)\)
 
-**Update** - [Metaflow-R](../../r) is now available!
+**Update** - [Metaflow-R](../../v/r) is now available!
 
 ## ~~Support deployments to a production DAG scheduler~~
 

@@ -1,5 +1,5 @@
 ---
-pagination_prev: python/index
+pagination_prev: index
 ---
 
 import Caption from "/src/components/Caption";
