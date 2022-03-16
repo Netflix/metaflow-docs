@@ -72,6 +72,7 @@ const config = {
         ],
         hideOnScroll: false,
       },
+      autoCollapseSidebarCategories: true,
 
       prism: {
         theme: lightCodeTheme,

@@ -19,7 +19,6 @@ const sidebars = {
     {
       type: "category",
       label: "Introduction",
-      collapsed: false,
       items: [
         "introduction/why-metaflow",
         "introduction/what-is-metaflow",
@@ -32,13 +31,11 @@ const sidebars = {
     {
       type: "category",
       label: "Getting Started",
-      collapsed: false,
       items: [
         "getting-started/install",
         {
           type: "category",
           label: "Tutorials",
-          collapsed: false,
           link: { type: "doc", id: "getting-started/tutorials/README" },
           items: [
             {
@@ -48,7 +45,6 @@ const sidebars = {
                 type: "doc",
                 id: "getting-started/tutorials/season-1-the-local-experience/README",
               },
-              collapsed: false,
               items: [
                 "getting-started/tutorials/season-1-the-local-experience/episode00",
                 "getting-started/tutorials/season-1-the-local-experience/episode01",
@@ -64,7 +60,6 @@ const sidebars = {
                 type: "doc",
                 id: "getting-started/tutorials/season-2-scaling-out-and-up/README",
               },
-              collapsed: false,
               items: [
                 "getting-started/tutorials/season-2-scaling-out-and-up/episode05",
                 "getting-started/tutorials/season-2-scaling-out-and-up/episode06",
@@ -79,7 +74,6 @@ const sidebars = {
     {
       type: "category",
       label: "Metaflow on AWS",
-      collapsed: false,
       items: [
         "metaflow-on-aws/metaflow-on-aws",
         "metaflow-on-aws/metaflow-sandbox",
@@ -89,7 +83,6 @@ const sidebars = {
     {
       type: "category",
       label: "Developing with Metaflow",
-      collapsed: false,
       items: [
         "metaflow/basics",
         "metaflow/client",
@@ -100,7 +93,6 @@ const sidebars = {
             type: "doc",
             id: "metaflow/visualizing-results/README",
           },
-          collapsed: false,
           items: [
             "metaflow/visualizing-results/effortless-task-inspection-with-default-cards",
             "metaflow/visualizing-results/easy-custom-reports-with-card-components",
@@ -118,7 +110,6 @@ const sidebars = {
     {
       type: "category",
       label: "Going to Production with Metaflow",
-      collapsed: false,
       items: [
         "going-to-production-with-metaflow/scheduling-metaflow-flows",
         "going-to-production-with-metaflow/coordinating-larger-metaflow-projects",
@@ -127,7 +118,6 @@ const sidebars = {
     {
       type: "category",
       label: "Internals of Metaflow",
-      collapsed: false,
       items: [
         "internals-of-metaflow/technical-overview",
         "internals-of-metaflow/testing-philosophy",
@@ -140,7 +130,6 @@ const sidebars = {
     {
       type: "category",
       label: "Introduction",
-      collapsed: false,
       items: [
         "v/r/introduction/why-metaflow",
         "v/r/introduction/what-is-metaflow",
@@ -152,14 +141,12 @@ const sidebars = {
     {
       type: "category",
       label: "Getting Started",
-      collapsed: false,
       items: [
         "v/r/getting-started/install",
         "v/r/getting-started/development-environment",
         {
           type: "category",
           label: "Tutorials",
-          collapsed: false,
           link: { type: "doc", id: "v/r/getting-started/tutorials/README" },
           items: [
             {
@@ -169,7 +156,6 @@ const sidebars = {
                 type: "doc",
                 id: "v/r/getting-started/tutorials/season-1-the-local-experience/README",
               },
-              collapsed: false,
               items: [
                 "v/r/getting-started/tutorials/season-1-the-local-experience/episode00",
                 "v/r/getting-started/tutorials/season-1-the-local-experience/episode01",
@@ -184,7 +170,6 @@ const sidebars = {
                 type: "doc",
                 id: "v/r/getting-started/tutorials/season-2-scaling-out-and-up/README",
               },
-              collapsed: false,
               items: [
                 "v/r/getting-started/tutorials/season-2-scaling-out-and-up/episode04",
                 "v/r/getting-started/tutorials/season-2-scaling-out-and-up/episode05",
@@ -198,7 +183,6 @@ const sidebars = {
     {
       type: "category",
       label: "Metaflow on AWS",
-      collapsed: false,
       items: [
         "v/r/metaflow-on-aws/metaflow-on-aws",
         "v/r/metaflow-on-aws/metaflow-sandbox",
@@ -208,7 +192,6 @@ const sidebars = {
     {
       type: "category",
       label: "Developing with Metaflow",
-      collapsed: false,
       items: [
         "v/r/metaflow/basics",
         "v/r/metaflow/client",
@@ -221,7 +204,6 @@ const sidebars = {
     {
       type: "category",
       label: "Going to Production with Metaflow",
-      collapsed: false,
       items: [
         "v/r/going-to-production-with-metaflow/scheduling-metaflow-flows",
       ],
