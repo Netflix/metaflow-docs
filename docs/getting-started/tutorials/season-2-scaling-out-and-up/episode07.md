@@ -14,7 +14,7 @@ You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/t
 
 1. `python -m pip install notebook`
 2. This tutorial requires access to compute and storage resources on AWS, which can be configured by
-   1. Following the instructions [here](https://admin-docs.metaflow.org/metaflow-on-aws/deployment-guide) or
+   1. Following the instructions [here](https://outerbounds.com/docs/admin/metaflow-on-aws/deployment-guide) or
    2. Requesting a [sandbox](../../../metaflow-on-aws/metaflow-sandbox).
 
 **To play this episode:**

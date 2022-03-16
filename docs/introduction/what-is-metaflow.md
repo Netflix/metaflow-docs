@@ -49,7 +49,7 @@ You can find more details about Metaflow's approach to various parts of the stac
 | **Compute Resources**   | [Scaling Out and Up](../metaflow/scaling)                                                                                                                                      |
 | **Data Warehouse**      | [Basics of Metaflow](../metaflow/basics) and [Loading and Storing Data](../metaflow/data)                                                                                      |
 
-If you are an infrastructure person who wants to know how to deploy and operate Metaflow, take a look at [Administrator's Guide to Metaflow](https://admin-docs.metaflow.org).
+If you are an infrastructure person who wants to know how to deploy and operate Metaflow, take a look at [Administrator's Guide to Metaflow](https://outerbounds.com/docs/admin/).
 
 ## Presentations about Metaflow
 
