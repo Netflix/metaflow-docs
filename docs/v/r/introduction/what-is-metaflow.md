@@ -52,7 +52,7 @@ You can find more details about Metaflow's approach to various parts of the stac
 | **Compute Resources** | [Scaling Out and Up](../metaflow/scaling)                                                          |
 | **Data Warehouse**    | [Basics of Metaflow](../metaflow/basics)                                                           |
 
-If you are an infrastructure person who wants to know how to deploy and operate Metaflow, take a look at [Administrator's Guide to Metaflow](https://outerbounds.com/docs/admin/).
+If you are an infrastructure person who wants to know how to deploy and operate Metaflow, take a look at [Administrator's Guide to Metaflow](https://outerbounds.com/docs/admin).
 
 If you want to learn more, the Machine Learning Infrastructure team at Netflix has given a number of public presentations about Metaflow prior to its open-sourcing. You can find links to these presentations below.
 

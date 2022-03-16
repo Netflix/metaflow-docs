@@ -1,6 +1,6 @@
 # Technical Overview
 
-Make sure you have read [Basics of Metaflow](../metaflow/basics) before diving into technical details below. You can find more technical details at the infrastructure level in [Administrator's Guide to Metaflow](https://outerbounds.com/docs/admin/). This document focuses on the Metaflow codebase.
+Make sure you have read [Basics of Metaflow](../metaflow/basics) before diving into technical details below. You can find more technical details at the infrastructure level in [Administrator's Guide to Metaflow](https://outerbounds.com/docs/admin). This document focuses on the Metaflow codebase.
 
 We wanted to build a data science platform that can make data science code usable, scalable, reproducible, and production-ready, as described in the [Why Metaflow](../introduction/why-metaflow) section. There are many ways to achieve these high-level goals. We took an approach designed around the following four core functions:
 

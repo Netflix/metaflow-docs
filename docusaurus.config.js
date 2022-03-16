@@ -65,7 +65,7 @@ const config = {
             label: "R Docs",
           },
           {
-            href: "https://outerbounds.com/docs/admin/",
+            href: "https://outerbounds.com/docs/admin",
             position: "left",
             label: "Admin Docs",
           },
