@@ -27,7 +27,7 @@ Sandbox is a limited test environment:
 - It is solely intended for testing and evaluating Metaflow for data science use cases. **It is not a production environment.** It is also not a general-purpose computation platform.
 - While you can test your code with your own datasets, **make sure you don’t use any data that contains confidential information, personal information, or any sensitive information.**
 - By default, **your access to the sandbox will expire in 7 days**, after which all data in the sandbox will be permanently deleted. You may contact us by email if you need more time for evaluation.
-- There is no internet connectivity in the Sandbox. However, you can still use 3rd party libraries through [Metaflow's `@conda` decorator](../metaflow/dependencies). You can include your own [data sets using `IncludeFile`](../metaflow/data#data-in-local-files).
+- There is no internet connectivity in the sandbox. However, you can still use 3rd party libraries through [Metaflow's `@conda` decorator](../metaflow/dependencies). You can include your own [data sets using `IncludeFile`](../metaflow/data#data-in-local-files).
 - You can use up to 8 concurrent instances with `cpu=8` \(8 cores\) and `memory=30000` \(30GB of RAM\) using [the `@batch` decorator](../metaflow/scaling).
 
 It is important that you read and agree to the [Metaflow Sandbox terms of use](https://metaflow.org/sandbox-tos.html) and [privacy policy](https://metaflow.org/sandbox-privacy.html) before signing up.
