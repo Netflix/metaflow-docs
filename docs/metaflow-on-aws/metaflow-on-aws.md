@@ -38,7 +38,7 @@ Metaflow executes all steps in the flow as a separate local process in local mod
 
 Metaflow ships with a light-weight [metaflow service](https://github.com/Netflix/metaflow-service) that provides a centralized place to keep track of all flow executions. This metadata service is not strictly needed. Metaflow will use a local directory to keep track of all executions from your laptop, even if you are using Amazon S3 as datastore or AWS Batch for [compute](#compute). You can use a local Jupyter notebook to interact with data artifacts from all your previous executions as well as currently running ones. However, deploying the metaflow service \(as well as Amazon S3 as datastore\) is helpful if you would like to share results with your peers and track your work without fear of losing any state.
 
-At Netflix, all executions are logged in the metaflow service and all data artifacts are stored in Amazon S3, so that any data scientist can interface with anybody's work via the [client](metaflow/client) and collaborate fruitfully. Also, a centralized metaflow service along with a data store like Amazon S3 makes it easy for data scientists at Netflix to use hosted notebooks to easily set-up dashboards to monitors their flows.
+At Netflix, all executions are logged in the metaflow service and all data artifacts are stored in Amazon S3, so that any data scientist can interface with anybody's work via the [client](metaflow/client) and collaborate fruitfully. Also, a centralized metaflow service along with a data store like Amazon S3 makes it easy for data scientists at Netflix to use hosted notebooks to easily set up dashboards to monitors their flows.
 
 ### Notebooks
 
