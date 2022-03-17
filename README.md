@@ -28,9 +28,9 @@ Any saved changes that you make to the `.md` files in the `docs` directory will 
 
 ### PR Previews
 
-<img width="929" alt="Screen Shot 2022-03-08 at 11 57 42 AM" src="https://user-images.githubusercontent.com/93726128/157309975-e845aaaf-7ed2-4f20-b32d-34675fdb63e9.png">
+<img width="940" alt="Screen Shot 2022-03-17 at 11 00 23 AM" src="https://user-images.githubusercontent.com/93726128/158854270-4e30dbc5-77b5-4a46-bc92-a73bef44f927.png">
 
-If you create a PR, a preview domain will be created where you can view your changes. The link to that preview domain will be shown in the `Conversation` tab of your PR. The preview is published using AWS Amplify.
+If you create a PR, a preview domain will be created where you can view your changes. The link to that preview domain will be shown in the `Conversation` tab of your PR. The preview is published using Vercel.
 
 ### Automatic publishing
 
