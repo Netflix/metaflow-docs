@@ -1,7 +1,5 @@
 name: Refresh Search Index
-on:
-  page_build
-  workflow_dispatch
+on: [page_build, workflow_dispatch]
 
 jobs:
   search:
