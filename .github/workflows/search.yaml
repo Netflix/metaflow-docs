@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: check status
+        if: github.event_name != 'workflow_dispatch'
         run: |
           import os
           status, errormsg = os.getenv('STATUS'), os.getenv('ERROR')
