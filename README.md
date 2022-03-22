@@ -2,6 +2,8 @@
 description: Build and manage real-life data science projects with ease.
 ---
 
+[![Refresh Search Index](https://github.com/Netflix/metaflow-docs/actions/workflows/search.yaml/badge.svg)](https://github.com/Netflix/metaflow-docs/actions/workflows/search.yaml)
+
 # Welcome to Metaflow for Python
 
 ## Introduction
