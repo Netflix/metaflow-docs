@@ -24,5 +24,5 @@ jobs:
           crawler-api-key: ${{ secrets.CRAWLER_API_KEY }}
           algolia-app-id: ${{ secrets.ALGOLIA_APP_ID }}
           algolia-api-key: ${{ secrets.ALGOLIA_API_KEY }}
-          crawler-name: 'outerbounds'
-          site-url: 'https://outerbounds.com/docs'
+          crawler-name: 'metaflow'
+          site-url: 'https://docs.metaflow.org'
