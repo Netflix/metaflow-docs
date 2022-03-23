@@ -1,0 +1,26 @@
+.apiDoc {
+}
+
+.parameter {
+  border-top: 1px solid #ddd;
+  padding-top: 8px;
+  margin-top: 8px;
+}
+
+.apiDoc .parameter:first-child {
+  border-top: none;
+}
+
+.name,
+.returnType {
+  font-weight: bold;
+}
+
+.type {
+  color: #888;
+  font-size: small;
+}
+
+.text {
+  margin-bottom: 8px;
+}

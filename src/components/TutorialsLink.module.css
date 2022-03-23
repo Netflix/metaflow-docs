@@ -1,0 +1,16 @@
+.tutorialslink {
+  border-radius: var(--ifm-global-radius);
+  padding: 16px;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  text-decoration: none;
+  display: block;
+  width: 100%;
+}
+
+.tutorialsicon {
+  height: 32px;
+  width: 32px;
+  vertical-align: middle;
+  color: var(--ifm-color-secondary-darkest);
+  margin-right: 16px;
+}
