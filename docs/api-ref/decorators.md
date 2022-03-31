@@ -97,7 +97,7 @@
 
 
 
-<DocSection type="decorator" name="step" module="metaflow" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/decorators.py#L493">
+<DocSection type="decorator" name="@step" module="metaflow" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/decorators.py#L493">
 <SigArgSection>
 <SigArg name="..." />
 </SigArgSection>
