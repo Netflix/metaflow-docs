@@ -1,3 +1,6 @@
 node_modules/
 build/
 .docusaurus/
+docs/.ipynb_checkpoints/
+blog/.ipynb_checkpoints/
+.ipynb_checkpoints/

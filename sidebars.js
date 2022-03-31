@@ -123,6 +123,13 @@ const sidebars = {
         "internals-of-metaflow/testing-philosophy",
       ],
     },
+    {
+      type: "category",
+      label: "API Reference",
+      items: [
+        "api-ref/decorators",
+      ],
+    },
   ],
 
   r: [
