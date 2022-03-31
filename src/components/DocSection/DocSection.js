@@ -16,8 +16,11 @@ export const DocSection = ({
       <div className={styles.titlebox}>
         <Name heading_level={heading_level}>
           <span className={styles.name}>{name}</span>
-          {children.length &&
-            children.filter((child) => child.props.mdxType === "SigArgSection")}
+          {children.length
+            ? children.filter(
+                (child) => child.props.mdxType === "SigArgSection"
+              )
+            : null}
         </Name>
         <a className={styles.source} href={baseUrl + link}>
           [source]
@@ -27,14 +30,16 @@ export const DocSection = ({
         from {module} import {name}
       </p>
       <div className={styles.content}>
-        {children.length &&
-          children.filter((child) => child.props.mdxType === "Description")}
-        {children.length &&
-          children.filter(
-            (child) =>
-              child.props.mdxType !== "Description" &&
-              child.props.mdxType !== "SigArgSection"
-          )}
+        {children.length
+          ? children.filter((child) => child.props.mdxType === "Description")
+          : null}
+        {children.length
+          ? children.filter(
+              (child) =>
+                child.props.mdxType !== "Description" &&
+                child.props.mdxType !== "SigArgSection"
+            )
+          : null}
       </div>
     </div>
   );
