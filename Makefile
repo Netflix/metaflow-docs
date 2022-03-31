@@ -12,7 +12,7 @@ docs: .FORCE
 	npm run start
 
 nb: .FORCE
-	jupyter lab docs
+	jupyter lab
 
 update: .FORCE
 	nbdoc_update
