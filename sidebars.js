@@ -127,9 +127,13 @@ const sidebars = {
       type: "category",
       label: "API Reference",
       items: [
-        "api-ref/decorators",
+        {
+          type: "category",
+          label: "Constructing Flows",
+          items: ["api-ref/constructing-flows/basic",
+                  "api-ref/constructing-flows/decorators",]
+        },
         "api-ref/client",
-        "api-ref/flowspec",
       ],
     },
   ],
