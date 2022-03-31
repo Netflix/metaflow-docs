@@ -128,6 +128,7 @@ const sidebars = {
       label: "API Reference",
       items: [
         "api-ref/decorators",
+        "api-ref/client",
       ],
     },
   ],
