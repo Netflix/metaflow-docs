@@ -129,6 +129,7 @@ const sidebars = {
       items: [
         "api-ref/decorators",
         "api-ref/client",
+        "api-ref/flowspec",
       ],
     },
   ],
