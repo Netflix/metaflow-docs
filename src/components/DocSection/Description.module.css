@@ -1,15 +1,2 @@
 .wrapper {
-  display: flex;
-  flex-direction: row;
-}
-
-.caret_wrapper {
-  width: calc(2 * var(--ifm-global-spacing));
-}
-
-.caret_wrapper button {
-  border: none;
-  background: transparent;
-  font-size: 110%;
-  color: var(--ifm-color-secondary-darkest);
 }
