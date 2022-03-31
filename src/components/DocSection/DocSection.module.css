@@ -1,15 +1,41 @@
-.expand_button {
-  border: none;
-  background: transparent;
+.content p {
+  margin: 0;
+}
+
+.titlebox {
+  background: var(--ifm-color-emphasis-200);
+  width: 100%;
+  position: relative;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.titlebox .source {
+  text-align: right;
+  right: 0;
+  top: 0;
+  margin-left: auto;
+}
+
+.content {
+  padding: 2rem;
+}
+
+.name {
+  color: var(--ifm-color-emphasis-800);
+}
+
+.titlebox h1,
+.titlebox h2,
+.titlebox h3,
+.titlebox h4,
+.titlebox h5,
+.titlebox h6 {
+  margin: 0;
+}
+
+.module {
+  margin: 1rem 0 0 0;
   color: var(--ifm-color-secondary-darkest);
-  font-size: 40%;
-}
-
-.link {
-  font-size: 50%;
-  text-decoration: none;
-}
-
-.link:hover {
-  text-decoration: none;
 }

@@ -1,10 +1,13 @@
 import React from "react";
+import styles from "./ParamSection.module.css";
 
 export const ParamSection = ({ name, children }) => (
-  <>
-    <h3>{name}</h3>
-    {children}
-  </>
+  <div className={styles.wrapper}>
+    <div>
+      <strong>{name}:&nbsp;</strong>
+    </div>
+    <div>{children}</div>
+  </div>
 );
 
 export default ParamSection;

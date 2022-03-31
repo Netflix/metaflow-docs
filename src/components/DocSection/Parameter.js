@@ -1,26 +1,23 @@
-import React, { useContext, useState, useEffect } from "react";
-import { ExpandedContext } from "./DocSection";
+import React from "react";
 import styles from "./Parameter.module.css";
+import Markdown from "./Markdown";
 
 export const Parameter = ({ name, type, desc }) => {
-  const expanded = useContext(ExpandedContext);
-  const [localExpanded, setLocalExpanded] = useState(expanded);
-
-  useEffect(() => setLocalExpanded(expanded), [expanded]);
-
-  const toggle = () => setLocalExpanded((e) => !e);
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.caret_wrapper}>
-        {desc ? (
-          <button onClick={toggle}>{localExpanded ? "⌄" : "›"}</button>
-        ) : null}
+    <div>
+      <div>
+        <strong>
+          <Markdown
+            md={
+              (name ? name : "") +
+                (name && type ? ": " : "") +
+                (type ? type : "") ?? ""
+            }
+          />
+        </strong>
       </div>
-      <div className={styles.parameter}>
-        <div>
-          <strong>{name}</strong> <span className={styles.type}>{type}</span>
-        </div>
-        {localExpanded ? <div>{desc}</div> : null}
+      <div>
+        <Markdown className={styles.content} md={desc} />
       </div>
     </div>
   );
