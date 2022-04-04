@@ -10,12 +10,16 @@ export const DocSection = ({
   link,
   heading_level = 3,
   baseUrl = BASE_URL,
+  type,
 }) => {
   return (
     <div>
       <div className={styles.titlebox}>
         <Name heading_level={heading_level}>
-          <span className={styles.name}>{name}</span>
+          <span className={styles.name}>
+            {type === "decorator" ? "@" : ""}
+            {name}
+          </span>
           {children.length
             ? children.filter(
                 (child) => child.props.mdxType === "SigArgSection"
