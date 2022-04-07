@@ -1,4 +1,4 @@
-nbdoc>=0.0.51
+nbdoc>=0.0.53
 pandas>=1.4.0
 jupyter>=1.0.0
 jupyterlab>=3.2.1
