@@ -39,3 +39,8 @@
   margin: 1rem 0 0 0;
   color: var(--ifm-color-secondary-darkest);
 }
+
+.target {
+  display: block;
+  transform: translateY(calc(-1 * var(--ifm-navbar-height)));
+}
