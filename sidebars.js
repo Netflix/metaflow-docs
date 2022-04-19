@@ -100,7 +100,18 @@ const sidebars = {
           ],
         },
         "metaflow/debugging",
-        "metaflow/scaling",
+        {
+          type: "category",
+          label: "Scaling Out and Up",
+          link: {
+            type: "doc",
+            id: "metaflow/scaling-out-and-up/README",
+          },
+          items: [
+            "metaflow/scaling-out-and-up/effortless-scaling-with-kubernetes",
+            "metaflow/scaling-out-and-up/effortless-scaling-with-aws-batch",
+          ],
+        },
         "metaflow/data",
         "metaflow/dependencies",
         "metaflow/failures",
