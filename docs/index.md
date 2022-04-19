@@ -40,7 +40,7 @@ import Description from "/src/components/Description";
 - [Inspecting Flows and Results](metaflow/client)
 - [Visualizing Results](metaflow/visualizing-results/) - _**new!**_
 - [Debugging with Metaflow](metaflow/debugging)
-- [Scaling Out and Up](metaflow/scaling) - _**new!**_
+- [Scaling Out and Up](metaflow/scaling-out-and-up/) - _**new!**_
 - [Loading and Storing Data](metaflow/data)
 - [Managing External Libraries](metaflow/dependencies)
 - [Dealing with Failures](metaflow/failures)
