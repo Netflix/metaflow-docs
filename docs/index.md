@@ -40,7 +40,7 @@ import Description from "/src/components/Description";
 - [Inspecting Flows and Results](metaflow/client)
 - [Visualizing Results](metaflow/visualizing-results/) - _**new!**_
 - [Debugging with Metaflow](metaflow/debugging)
-- [Scaling Out and Up](metaflow/scaling)
+- [Scaling Out and Up](metaflow/scaling) - _**new!**_
 - [Loading and Storing Data](metaflow/data)
 - [Managing External Libraries](metaflow/dependencies)
 - [Dealing with Failures](metaflow/failures)
@@ -48,7 +48,7 @@ import Description from "/src/components/Description";
 
 ## Going to Production with Metaflow
 
-- [Scheduling Metaflow Flows](going-to-production-with-metaflow/scheduling-metaflow-flows)
+- [Scheduling Metaflow Flows](going-to-production-with-metaflow/scheduling-metaflow-flows) - _**new!**_
 - [Coordinating Larger Metaflow Projects](going-to-production-with-metaflow/coordinating-larger-metaflow-projects)
 
 ## Internals of Metaflow
