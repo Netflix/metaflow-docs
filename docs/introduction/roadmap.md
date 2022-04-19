@@ -4,13 +4,17 @@ Metaflow has been used in production at Netflix since early 2018. The core Metaf
 
 Please click the link and comment / thumbs-up the corresponding GitHub issue if you want to see the feature open-sourced.
 
-## Support for Kubernetes
+## ~~Support for Kubernetes~~
 
 Bring all of Metaflow's capabilities to the Kubernetes universe \([Github issue](https://github.com/Netflix/metaflow/issues/50)\)
+
+**Update** - Metaflow 2.6.0 introduced [integration with Kubernetes and Argo Workflows.](TODO: Add link)
 
 ## Metaflow UI\(s\)
 
 A variety of UI\(s\) for Metaflow - tracking flows, model monitoring, etc
+
+**Update** - [Metaflow GUI](https://netflixtechblog.com/open-sourcing-a-monitoring-gui-for-metaflow-75ff465f0d60) to track Metaflow flows is now available!
 
 ## Faster and more flexible dependency management solutions
 
