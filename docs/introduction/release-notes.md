@@ -180,7 +180,7 @@ Task('42/start/452', attempt=1)
 
 #### Introduce @kubernetes decorator for launching Metaflow tasks on Kubernetes ([#644](https://github.com/Netflix/metaflow/pull/644))
 
-This release marks the alpha launch of `@kubernetes` decorator that allows farming off Metaflow tasks onto Kubernetes. The functionality works in exactly the same manner as [`@batch`](../metaflow/scaling) -
+This release marks the alpha launch of `@kubernetes` decorator that allows farming off Metaflow tasks onto Kubernetes. The functionality works in exactly the same manner as [`@batch`](../metaflow/scaling-out-and-up/effortless-scaling-with-aws-batch.md) -
 
 ```python
 from metaflow import FlowSpec, step, resources

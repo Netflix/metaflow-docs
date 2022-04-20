@@ -8,7 +8,7 @@ Please click the link and comment / thumbs-up the corresponding GitHub issue if 
 
 Bring all of Metaflow's capabilities to the Kubernetes universe \([Github issue](https://github.com/Netflix/metaflow/issues/50)\)
 
-**Update** - Metaflow 2.6.0 introduced [integration with Kubernetes and Argo Workflows.](TODO: Add link)
+**Update** - Metaflow 2.6.0 introduced integration with [Kubernetes](../metaflow/scaling-out-and-up/effortless-scaling-with-kubernetes.md) and [Argo Workflows](../going-to-production-with-metaflow/scheduling-metaflow-flows/scheduling-with-argo-workflows.md).
 
 ## Metaflow UI\(s\)
 
@@ -52,4 +52,4 @@ An easy-to-use Function-as-a-Service -style [microservice hosting platform](http
 
 Netflix uses [an internal DAG scheduler](https://www.youtube.com/watch?v=0R58_tx7azY) to orchestrate most modeling and ETL pipelines in production. Metaflow flows can be deployed to the production scheduler with a single command. A similar integration could be provided e.g. for [AWS Step Functions](https://aws.amazon.com/step-functions/) \([Github issue](https://github.com/Netflix/metaflow/issues/2)\)
 
-**Update** - Metaflow 2.1.0 introduced [integration with AWS Step Functions.](../going-to-production-with-metaflow/scheduling-metaflow-flows.md)
+**Update** - Metaflow 2.1.0 introduced [integration with AWS Step Functions.](../going-to-production-with-metaflow/scheduling-metaflow-flows/scheduling-with-aws-step-functions.md)

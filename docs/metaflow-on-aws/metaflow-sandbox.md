@@ -15,9 +15,9 @@ These sandboxes support scaling up and out in the cloud through AWS Batch and pr
 Here are some ideas that you can try with the sandbox:
 
 - [The season 2 of tutorials](../getting-started/tutorials/#season-2-scaling-out-and-up) focuses on scaling out. This is a good way to get started. Note that the Season 1 tutorials work with the Sandbox too, when executed `--with batch`.
-- You have up to 64 CPU cores at your disposal using [the `@batch` decorator](../metaflow/scaling). Test some number crunching! You can run everything in the cloud simply by using `--with batch` or you can mix local and remote steps by adding `@batch` to select steps.
+- You have up to 64 CPU cores at your disposal using [the `@batch` decorator](../metaflow/scaling-out-and-up/effortless-scaling-with-aws-batch.md). Test some number crunching! You can run everything in the cloud simply by using `--with batch` or you can mix local and remote steps by adding `@batch` to select steps.
 - Test your code with your own data in the cloud using [`IncludeFile`](../metaflow/data#data-in-local-files). You can also upload data to your private S3 bucket using [Metaflow's high-performance S3 client](../metaflow/data#data-in-s-3-metaflow-s3).
-- Test your favorite ML libraries in the cloud using [`@batch`](../metaflow/scaling) and the [`@conda`](../metaflow/dependencies) decorator. For instance, try a basic hyperparameter search using [a custom parameter grid and foreach](../metaflow/basics#foreach).
+- Test your favorite ML libraries in the cloud using [`@batch`](../metaflow/scaling-out-and-up/effortless-scaling-with-aws-batch.md) and the [`@conda`](../metaflow/dependencies) decorator. For instance, try a basic hyperparameter search using [a custom parameter grid and foreach](../metaflow/basics#foreach).
 - [Schedule your flows](../going-to-production-with-metaflow/scheduling-metaflow-flows) on AWS Step Functions and execute them using a time-based trigger.
 - Evaluate Metaflow's [experiment tracking and versioning](../metaflow/tagging) using local runs and the [Client API](../metaflow/client) in a local notebook. In contrast to the local mode, all runs are registered globally in the Metaflow Service regardless of the directory where you run them.
 - Test how you can [`resume` tasks locally](../metaflow/debugging#how-to-use-the-resume-command) which were originally run remotely using `--with batch`.
@@ -30,7 +30,7 @@ Sandbox is a limited test environment:
 - While you can test your code with your own datasets, **make sure you don’t use any data that contains confidential information, personal information, or any sensitive information.**
 - By default, **your access to the sandbox will expire in 7 days**, after which all data in the sandbox will be permanently deleted. You may contact us by email if you need more time for evaluation.
 - There is no internet connectivity in the sandbox. However, you can still use 3rd party libraries through [Metaflow's `@conda` decorator](../metaflow/dependencies). You can include your own [data sets using `IncludeFile`](../metaflow/data#data-in-local-files).
-- You can use up to 8 concurrent instances with `cpu=8` \(8 cores\) and `memory=30000` \(30GB of RAM\) using [the `@batch` decorator](../metaflow/scaling).
+- You can use up to 8 concurrent instances with `cpu=8` \(8 cores\) and `memory=30000` \(30GB of RAM\) using [the `@batch` decorator](../metaflow/scaling-out-and-up/effortless-scaling-with-aws-batch.md).
 
 It is important that you read and agree to the [Metaflow Sandbox terms of use](https://metaflow.org/sandbox-tos.html) and [privacy policy](https://metaflow.org/sandbox-privacy.html) before signing up.
 

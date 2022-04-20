@@ -16,7 +16,7 @@ It is hard to be prescriptive about which of the three categories is most suitab
 
 This section focuses specifically on using Kubernetes or AWS Batch to scale up and out: you can use either to request a larger instance to run your step as well as use it to parallelize your steps over multiple instances. 
 
-This section requires you to have Metaflow working with AWS. See the [AWS section](../metaflow-on-aws/metaflow-on-aws.md) for more information on either setting up Metaflow in your [own AWS environment](../metaflow-on-aws/deploy-to-aws.md) or using the [provided sandbox](../metaflow-on-aws/metaflow-sandbox.md).
+This section requires you to have Metaflow working with AWS. See the [AWS section](../../metaflow-on-aws/metaflow-on-aws.md) for more information on either setting up Metaflow in your [own AWS environment](../../metaflow-on-aws/deploy-to-aws.md) or using the [provided sandbox](../../metaflow-on-aws/metaflow-sandbox.md).
 
 Learn more about the tools available in Metaflow for scaling up and out in the following subsections:
 
