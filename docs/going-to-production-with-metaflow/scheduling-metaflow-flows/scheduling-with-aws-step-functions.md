@@ -1,39 +1,19 @@
-# Scheduling Metaflow Flows
+# Scheduling Metaflow Flows with AWS Step Functions
 
-A key feature of Metaflow is to make it easy to take machine learning pipelines from prototyping to production. This sentence and a number of other Metaflow documents use the word production casually. What do we actually mean by it?
-
-For Machine Learning Infrastructure, production has a simple and unexciting meaning: In production, the flow should run without any human intervention. If your flow produced valid results during development, we want it to produce equally valid results in production - just without anyone managing it manually.
-
-Eventually, something will fail in production, and human intervention is needed. In these cases, we want to minimize the amount of human intervention and the time spent on debugging.
-
-If your flow is built with Metaflow best practices, making it run automatically in production should not be a big deal.
-
-By this definition, you can not run your flow with
-
-```bash
-python helloworld.py run
-```
-
-in production as it requires someone to type the command manually. A classic solution is to have cron or another similar time-based scheduler to run the command automatically at a set schedule.
-
-It is not easy to use cron as a production scheduler. What if the instance running cron fails? If the scheduled command fails, how do I know it has failed? How do you see its error logs? Does my cron instance have enough capacity to handle another command? And most importantly, how do I orchestrate schedules of multiple commands so that their mutual dependencies are handled correctly?
-
-## Why AWS Step Functions?
-
-[AWS Step Functions](https://aws.amazon.com/step-functions/) is a general-purpose workflow orchestrator that can answer these questions. If you are curious, you can [read AWS Step Functions documentation to learn all about it](https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html). If you just want to get your flow in production, this document contains everything you need to know.
+[AWS Step Functions](https://aws.amazon.com/step-functions/) is a general-purpose workflow orchestrator - you can [read AWS Step Functions documentation to learn all about it](https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html). If you just want to get your flow in production, this document contains everything you need to know.
 
 In Metaflow's point of view, the main benefits of AWS Step Functions are the following:
 
 - AWS Step Functions orchestrates workflows expressed as state machines, which are a superset of directed graphs. This means that we can map Metaflow flows to corresponding AWS Step Functions state machines fully automatically. This gives you much more detail about what gets executed and how, in contrast to treating Metaflow scripts as black boxes.
 - AWS Step Functions comes with tooling that is required for running workflows in production. You can benefit from battle-hardened solutions provided by AWS for alerting, monitoring, and scheduling. By using AWS Step Functions your Metaflow flows can integrate seamlessly with the wider AWS offerings.
 
-When running on AWS Step Functions, Metaflow code works exactly as it does locally: No changes are required in the code. All data artifacts produced by steps run on AWS Step Functions are available using the [Client API](../metaflow/client). All tasks are run on AWS Batch respecting the resources decorator, as explained in [Scaling Up and Out](../metaflow/scaling).
+When running on AWS Step Functions, Metaflow code works exactly as it does locally: No changes are required in the code. All data artifacts produced by steps run on AWS Step Functions are available using the [Client API](../../metaflow/client). All tasks are run on AWS Batch respecting the resources decorator, as explained in [Scaling Up and Out](../../metaflow/scaling-out-and-up/effortless-scaling-with-aws-batch.md).
 
-This document describes the basics of AWS Step Functions scheduling. If your project involves multiple people, multiple workflows, or it is becoming business-critical, we will soon introduce a new feature around coordinating larger Metaflow projects.
+This document describes the basics of AWS Step Functions scheduling. If your project involves multiple people, multiple workflows, or it is becoming business-critical, check out the section around [coordinating larger Metaflow projects](../coordinating-larger-metaflow-projects.md).
 
 ## Pushing a flow to production
 
-Let's use [the flow from the section about parameters](../metaflow/basics#how-to-define-parameters-for-flows) as an example:
+Let's use [the flow from the section about parameters](../../metaflow/basics#how-to-define-parameters-for-flows) as an example:
 
 ```python
 from metaflow import FlowSpec, Parameter, step
@@ -64,7 +44,7 @@ python parameter_flow.py --with retry step-functions create
 
 This command takes a snapshot of your code in the working directory, as well as the version of Metaflow used and exports the whole package to AWS Step Functions for scheduling.
 
-It is highly recommended that you [enable retries](../metaflow/failures#retrying-tasks-with-the-retry-decorator) when deploying to AWS Step Functions, which you can do easily with --with retry as shown above. However, make sure that all your steps are safe to retry before you do this. If some of your steps interact with external services in ways that can't tolerate automatic retries, decorate them with retry with times set to zero \(times=0\) as described in [How to Prevent Retries](../metaflow/failures#how-to-prevent-retries).
+It is highly recommended that you [enable retries](../../metaflow/failures#retrying-tasks-with-the-retry-decorator) when deploying to AWS Step Functions, which you can do easily with --with retry as shown above. However, make sure that all your steps are safe to retry before you do this. If some of your steps interact with external services in ways that can't tolerate automatic retries, decorate them with retry with times set to zero \(times=0\) as described in [How to Prevent Retries](../../metaflow/failures#how-to-prevent-retries).
 
 The command will export your workflow to AWS Step Functions. You can also search for the flow by name within the AWS Step Functions UI. You should see a visualization of the exported flow, like here:
 
@@ -86,7 +66,7 @@ After you click Start Execution on the Input dialog, AWS Step Functions starts r
 
 ![](/assets/image6.png)
 
-In this case, the run should succeed without problems. If there were errors, you could reproduce them locally as explained in [Debugging with Metaflow](../metaflow/debugging#reproducing-production-issues-locally).
+In this case, the run should succeed without problems. If there were errors, you could reproduce them locally as explained in [Debugging with Metaflow](../../metaflow/debugging#reproducing-production-issues-locally).
 
 You can trigger the workflow through command line as well:
 
@@ -94,9 +74,9 @@ You can trigger the workflow through command line as well:
 python parameter_flow.py step-functions trigger --alpha 0.5
 ```
 
-If you run `step-functions create` again, it will create a new version of your flow on AWS Step Functions. The newest version becomes the production version automatically \(due to the consistency guarantees provided by AWS Step Functions, it might be a couple of seconds before this happens\). If you want to test on AWS Step Functions without interfering with a production flow, you can change the name of your class, e.g. from ParameterFlow to ParameterFlowStaging, and `step-functions create` the flow under a new name.
+If you run `step-functions create` again, it will create a new version of your flow on AWS Step Functions. The newest version becomes the production version automatically \(due to the consistency guarantees provided by AWS Step Functions, it might be a couple of seconds before this happens\). If you want to test on AWS Step Functions without interfering with a production flow, you can change the name of your class, e.g. from ParameterFlow to ParameterFlowStaging, and `step-functions create` the flow under a new name or use the [@project](../coordinating-larger-metaflow-projects.md/#projects-on-aws-step-functions--argo-workflows) decorator.
 
-Note that step-functions create creates a new isolated [production namespace](../metaflow/tagging#production-namespaces) for your production flow. Please read [Organizing Results](../metaflow/tagging) to learn all about namespace behavior.
+Note that `step-functions create` creates a new isolated [production namespace](../../metaflow/tagging#production-namespaces) for your production flow. Please read [Organizing Results](../../metaflow/tagging) to learn all about namespace behavior.
 
 In case your flow doesn't accept any parameters, and you would like to execute it from within the AWS Step Functions UI, you would need to pass in the following in the input dialog box:
 
@@ -112,13 +92,13 @@ By default, Metaflow configures AWS Step Functions to execute at most 100 tasks 
 
 If your workflow includes a large foreach and you need results faster, you can increase the default with the `--max-workers` option. For instance, `step-functions create --max-workers 500` allows 500 tasks to be executed concurrently for every foreach step.
 
-This option is similar to [`run --max-workers`](../metaflow/scaling#safeguard-flags) that is used to limit concurrency outside AWS Step Functions.
+This option is similar to [`run --max-workers`](../../metaflow/scaling-out-and-up/effortless-scaling-with-aws-batch.md#safeguard-flags) that is used to limit concurrency outside AWS Step Functions.
 
 ### Deploy-time parameters
 
-You can customize AWS Step Functions deployments through Parameters that are evaluated at the deploy time, i.e. when step-functions create is executed.
+You can customize AWS Step Functions deployments through Parameters that are evaluated at the deploy time, i.e. when `step-functions create` is executed.
 
-For instance, you can change the default value of a Parameter based on who deployed the workflow or what Git branch the deployment was executed in. Crucially, the function in Parameter is evaluated only once during step-functions create and not during the execution of the flow.
+For instance, you can change the default value of a Parameter based on who deployed the workflow or what Git branch the deployment was executed in. Crucially, the function in Parameter is evaluated only once during `step-functions create` and not during the execution of the flow.
 
 You can run the flow locally as usual. The function inside Parameter is called only once when the execution starts.
 

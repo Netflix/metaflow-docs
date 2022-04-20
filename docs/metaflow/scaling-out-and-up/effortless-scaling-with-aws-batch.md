@@ -65,7 +65,7 @@ $ python BigSum.py run --with batch
 
 The `--with batch` option instructs Metaflow to run all tasks as separate AWS Batch jobs, instead of using a local process for each task. It has the same effect as adding `@batch` decorator to all steps in the code.
 
-This time the run should succeed thanks to the large enough instance. Note that in this case the `resources` decorator is used as a prescription for the size of the box that Batch should run the job on; please be sure that this resource requirement can be met. See [here](effortless-scaling-with-aws-batch.md#my-job-is-stuck-in-runnable-state-what-do-i-do) on what can happen if this is not the case.
+This time the run should succeed thanks to the large enough instance. Note that in this case the `resources` decorator is used as a prescription for the size of the box that Batch should run the job on; please be sure that this resource requirement can be met. See [here](effortless-scaling-with-aws-batch#my-job-is-stuck-in-runnable-state-what-do-i-do) on what can happen if this is not the case.
 
 You should see an output like this:
 
