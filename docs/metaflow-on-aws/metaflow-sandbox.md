@@ -8,6 +8,8 @@ We know that [setting up all the required components in AWS](deploy-to-aws) is n
 
 Only a limited number of sandboxes are available. When you sign up, you are added to a waitlist for a private sandbox. It may take anywhere between days to weeks to get access to the sandbox. We will notify you by email once your sandbox is ready. Please [contact us](../introduction/getting-in-touch) if you have any questions about signing up or using the sandbox.
 
+These sandboxes support scaling up and out in the cloud through AWS Batch and production deployments via AWS Step Functions. If you are interested in a Kubernetes-native sandbox, [please reach out to us directly](http://slack.outerbounds.co/).
+
 ### Choose Your Own Sandbox Adventure
 
 Here are some ideas that you can try with the sandbox:
