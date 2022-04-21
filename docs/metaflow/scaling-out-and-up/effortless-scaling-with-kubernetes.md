@@ -109,7 +109,7 @@ from metaflow import FlowSpec, step, batch, parallel_map
 
 class BigSum(FlowSpec):
 
-    @batch(memory=60000, cpu=8)
+    @kubernetes(memory=60000, cpu=8)
     @step
     def start(self):
         import numpy
@@ -148,8 +148,8 @@ Metaflow sets a default timeout of 5 days so that you tasks don't get stuck infi
 Here are the current defaults for different resource types:
 
 * `cpu`: 1
-* `memory`: 4000 \(4GB\)
-* `disk`: 10000 \(10GB\)
+* `memory`: 4096 \(4GB\)
+* `disk`: 10240 \(10GB\)
 
 When setting `@resources`, keep in mind the configuration of your Kubernetes cluster. Your pod will be stuck in a unschedulable state if Kubernetes is unable to provision the requested resources. Additionally, as a good measure, don't request more resources than what your workflow actually needs. On the other hand, never optimize resources prematurely.
 
