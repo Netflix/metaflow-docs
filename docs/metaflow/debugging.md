@@ -129,7 +129,11 @@ The `resume` command reuses the parameter values that you set with `run` origina
 
 ## Reproducing production issues locally
 
-This section shows you how to reproduce a failed Metaflow run on AWS Step Functions locally. This is how a failed run on AWS Step Functions UI looks like -
+This section shows you how to reproduce a failed Metaflow run on [AWS Step Functions](debugging#reproducing-failed-aws-step-functions-executions) or [Argo Workflows](debugging#reproducing-failed-argo-workflows-executions) locally. 
+
+### Reproducing failed AWS Step Functions executions
+
+This is how a failed run on AWS Step Functions UI looks like -
 
 ![](/assets/image1.png)
 
@@ -151,7 +155,7 @@ You can fix the error locally as above. In the case of this simple flow, you can
 
 However, this might not be a feasible approach for complex production flow. For instance, the flow might process large amounts of data that can not be handled in your local instance. We have better approaches for staging flows for production:
 
-### Staging flows for production
+#### Staging flows for production
 
 The easiest approach to test a demanding flow is to run it with AWS Batch. This works even with resume:
 
@@ -165,9 +169,51 @@ This will resume your flow and run every step on AWS Batch. When you are ready t
 python debug.py run --with batch
 ```
 
-Alternatively, you can change the name of the flow temporarily, e.g. from DebugFlow to DebugFlowStaging. Then you can run `step-functions create` with the new name, which will create a separate staging flow on AWS Step Functions.
+Alternatively, you can change the name of the flow temporarily, e.g. from DebugFlow to DebugFlowStaging. Then you can run `step-functions create` with the new name, which will create a separate staging flow on AWS Step Functions. You can also use the [`@project`](../going-to-production-with-metaflow/coordinating-larger-metaflow-projects.md#the-project-decorator) decorator.
 
 You can test the staging flow freely without interfering with the production flow. Once the staging flow runs successfully, you can confidently deploy a new version to production.
+
+
+### Reproducing failed Argo Workflows executions
+
+This is how a failed run on Argo Workflows UI looks like -
+
+![](/assets/argo-ui-fail.png)
+
+Notice the execution ID of `branchflow-r8qcn`. When running on Argo Workflows, Metaflow uses the Argo Workflows _workflow execution_ name (prefixed with `argo-`) as the run id.
+
+The graph visualization shows that step `b` failed, as expected. First, you should inspect the logs of the failed step to get an idea of why it failed. You can access Kubernetes step logs in the Argo Workflows UI by selecting the failed task and clicking on the logs button. 
+
+Next, we want to reproduce the above error locally. We do this by resuming the specific Argo Workflows run that failed:
+
+```bash
+python debug.py resume --origin-run-id argo-branchflow-r8qcn
+```
+
+This will reuse the results of the `start` and `a` step from the Argo Workflows run. It will try to rerun the step `b` locally, which fails with the same error as it does in production.
+
+You can fix the error locally as above. In the case of this simple flow, you can run the whole flow locally to confirm that the fix works. After validating the results, you would deploy a new version to production with `argo-workflows create`.
+
+However, this might not be a feasible approach for complex production flow. For instance, the flow might process large amounts of data that can not be handled in your local instance. We have better approaches for staging flows for production:
+
+#### Staging flows for production
+
+The easiest approach to test a demanding flow is to run it with Kubernetes. This works even with resume:
+
+```bash
+python debug.py resume --origin-run-id argo-branchflow-r8qcn --with kubernetes
+```
+
+This will resume your flow and run every step on Kubernetes. When you are ready to test a fixed flow end-to-end, just run it as follows:
+
+```bash
+python debug.py run --with kubernetes
+```
+
+Alternatively, you can change the name of the flow temporarily, e.g. from DebugFlow to DebugFlowStaging. Then you can run `argo-workflows create` with the new name, which will create a separate staging flow on Argo Workflows. You can also use the [`@project`](../going-to-production-with-metaflow/coordinating-larger-metaflow-projects.md#the-project-decorator) decorator.
+
+You can test the staging flow freely without interfering with the production flow. Once the staging flow runs successfully, you can confidently deploy a new version to production.
+
 
 ## Inspecting data with a notebook
 
@@ -249,5 +295,3 @@ You can naturally combine the techniques described in this section with the "res
 ### Compatibility with Conda decorator
 
 The above instructions work even if you use [`@conda` decorators](dependencies#managing-dependencies-with-conda-decorator) in your code; you need, however, to ensure that the `conda` binary is available in your `PATH`. The easiest way to do this is to set the `PATH` environment variable to properly include the path to the `conda` binary if it is in a non-standard location. In VSCode, you can simply add this value in the env section of launch.json and in PyCharm, the UI allows you to set environment variables.
-
-##

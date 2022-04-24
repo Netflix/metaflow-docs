@@ -12,7 +12,7 @@ There are multiple benefits in keeping data access separate from model-specific 
 
 * It is easier to keep a model and its features in sync when they are computed together. [Metaflow's built-in versioning](tagging.md#tagging) makes it easy to iterate on multiple concurrent versions of the model safely. However, Metaflow can't protect you against stale input data. It is frustrating to troubleshoot bad model results that are caused by out-of-sync features.
 * It is quicker to iterate on your model. Testing and debugging Python is easier than testing and debugging SQL.
-* You can request [arbitrary amount of resources](scaling.md) for your data manipulation needs.
+* You can request [arbitrary amount of resources](scaling-out-and-up) for your data manipulation needs.
 * Instead of having data manipulation code in two places (SQL and Python), all code can be clearly laid out in a single place, in a single language, for maximum readability.
 * It is easier to optimize your code for performance when IO bottlenecks can be profiled separately from CPU bottlenecks.
 
@@ -24,7 +24,7 @@ Accessing data in tables (most often Hive) is by far the most common way to load
 
 It is not uncommon for a data science workflow to hit these limitations. Even if your data set is not huge, you may want to build multiple models in parallel, e.g. one per country. In this case, each model needs to load a shard of data. If you used SQL to load the shards, it will very quickly overload your query engine.
 
-As a solution, [`metaflow.S3`](data.md#data-in-s-3-metaflow-s3) provides a way to load data directly from S3, bypassing any query engines such as Spark. Combined with a [metadata catalog](https://github.com/Netflix/metacat), it is easy to write shims on top of `metaflow.S3` to directly interface with data files on S3 backing your tables. Since data is loaded directly from S3, there is no limitation to the number of parallel processes. The size of data is only limited by the size of your instance, which can be easily controlled with [the `@resources` decorator](scaling.md#requesting-resources-with-resources-decorator). The best part is that this approach is blazingly fast compared to executing SQL.
+As a solution, [`metaflow.S3`](data.md#data-in-s-3-metaflow-s3) provides a way to load data directly from S3, bypassing any query engines such as Spark. Combined with a [metadata catalog](https://github.com/Netflix/metacat), it is easy to write shims on top of `metaflow.S3` to directly interface with data files on S3 backing your tables. Since data is loaded directly from S3, there is no limitation to the number of parallel processes. The size of data is only limited by the size of your instance, which can be easily controlled with [the `@resources` decorator](scaling-out-and-up/effortless-scaling-with-kubernetes.md#requesting-resources-with-resources-decorator). The best part is that this approach is blazingly fast compared to executing SQL.
 
 The main downside of this approach is that the table needs to have partitions that match your access pattern. For small and medium-sized tables, this isn't necessarily an issue as you can afford loading extra data. Further filtering can be performed in your Python code. With larger tables this approach is not feasible and you may need to run an extra SQL query to repartition data properly.
 

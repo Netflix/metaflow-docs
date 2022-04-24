@@ -79,7 +79,7 @@ Setting `namespace(None)` allows you allows you to access all results without li
 
 ## Production Namespaces
 
-During development, namespacing by the user name feels natural. However, when you [schedule your flow to run automatically](../going-to-production-with-metaflow/scheduling-metaflow-flows), runs are not related to a specific user anymore. It is typical for multiple people to collaborate on a project that has a canonical production version. It is not obvious which user "owns" the production version.
+During development, namespacing by the user name feels natural. However, when you [schedule your flow to run automatically](../going-to-production-with-metaflow/scheduling-metaflow-flows/), runs are not related to a specific user anymore. It is typical for multiple people to collaborate on a project that has a canonical production version. It is not obvious which user "owns" the production version.
 
 Moreover, it is critical that you, and all other people, can keep experimenting on the project without having to worry about breaking the production version. If the production flow ran in the namespace of any individual, relative references like `latest_run` could break the production easily as the user keeps executing experimental runs.
 
@@ -101,22 +101,33 @@ When you deploy a Flow to production for the first time, Metaflow creates a new,
 
 If another person wants to deploy a new version of the flow to production, they must use the same production token. You, or whoever has the token, are responsible for sharing it with users who are authorized to deploy new versions to production. This manual step should prevent random users from deploying versions to production inadvertently.
 
-After you have shared the production token with another person, they can deploy a new version with
+After you have shared the production token with another person, they can deploy a new version on AWS Step Functions with
 
 ```bash
 python production_flow.py step-functions create --authorize TOKEN_YOU_SHARED_WITH_THEM
+```
+
+or on Argo Workflows with
+
+```bash
+python production_flow.py argo-workflows create --authorize TOKEN_YOU_SHARED_WITH_THEM
 ```
 
 They need to use the `--authorize` option only once. Metaflow stores the token for them after the first deployment, so they need to do this only once.
 
 ### Resetting a production namespace
 
-If you call `step-functions create` again, it will deploy an updated version of your code in the existing production namespace of the flow.
+If you call `step-functions create` (or `argo-workflow create`) again, it will deploy an updated version of your code in the existing production namespace of the flow.
 
-Sometimes the code has changed so drastically that you want to recreate a fresh namespace for its results. You can do this as follows:
+Sometimes the code has changed so drastically that you want to recreate a fresh namespace for its results. You can do this as follows for AWS Step Functions:
 
 ```bash
 python production_flow.py step-functions create --generate-new-token
+```
+
+and equivalently for Argo Workflows:
+```bash
+python production_flow.py argo-workflows create --generate-new-token
 ```
 
 This will deploy a new version in production using a fresh, empty namespace.
