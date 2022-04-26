@@ -74,9 +74,9 @@ if __name__ == "__main__":
 
 To demonstrate how cards can be attached to runs on the fly, this example doesn’t include the `@card` decorator in the code. Save the code to `fancydefaultcard.py` and run it as follows:
 
-`python fancydefaultcard.py run –with card`
+`python fancydefaultcard.py run --with card`
 
-Note that the example expects that you have the `requests` and `pandas` libraries installed. The `–with card` option attaches a `@card` decorator to every step without changes in the code. You can execute any existing flow `–with card` to inspect its results visually.
+Note that the example expects that you have the `requests` and `pandas` libraries installed. The `--with card` option attaches a `@card` decorator to every step without changes in the code. You can execute any existing flow `--with card` to inspect its results visually.
 
 You can open the card as before:
 
