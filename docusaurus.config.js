@@ -25,7 +25,7 @@ const config = {
           // remarkPlugins: [[remarkCodeHike, { theme }]],
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
-          editUrl: "https://github.dev/Netflix/metaflow-docs/blob/new-docs",
+          editUrl: "https://github.dev/Netflix/metaflow-docs/blob/master",
           routeBasePath: "/",
         },
         theme: {
