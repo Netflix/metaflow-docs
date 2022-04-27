@@ -1,47 +1,38 @@
----
-description: Build and manage real-life data science projects with ease.
----
+# Metaflow Documentation
 
-# Welcome to Metaflow for Python
+This repository houses the documentation for metaflow, both for Python and R.
 
-## Introduction
+## Static documentation
 
-* [Why Metaflow](introduction/why-metaflow.md)
-* [What is Metaflow](introduction/what-is-metaflow.md)
-* [Release Notes](introduction/release-notes.md)
-* [Roadmap](introduction/roadmap.md)
-* [Contributing to Metaflow](introduction/contributing-to-metaflow.md)
-* [Get in Touch](introduction/getting-in-touch.md)
+These documents are published using the [docusaurus framework](https://docusaurus.io/).
 
-## Getting Started
+Updating the documentation is very simple and there are a couple of options on how to do it, depending on what sort of change you are making.
 
-* [Installing Metaflow](getting-started/install.md)
-* [Tutorials](getting-started/tutorials/)
+### Easy changes in the browser
 
-## Metaflow on AWS
+<img width="174" alt="Screen Shot 2022-03-08 at 12 17 00 PM" src="https://user-images.githubusercontent.com/93726128/157309404-2bf342ff-8149-4155-9ec2-9ae9d6cb9301.png">
 
-* [Metaflow on AWS](metaflow-on-aws/metaflow-on-aws.md)
-* [Metaflow Sandbox](metaflow-on-aws/metaflow-sandbox.md)
-* [Deploying to AWS](metaflow-on-aws/deploy-to-aws.md)
+Navigate to the page that you want to edit and click on `Edit this Page` which appears at the bottom of the content. An in-browser IDE will appear in your browser where you can edit the `.md` file. Then push those changes to a new branch and create a pull request.
 
-## Developing with Metaflow
+See [Using github in VSCode](https://code.visualstudio.com/docs/editor/github) for more information on how to create branches in the IDE.
 
-* [Basics of Metaflow](metaflow/basics.md)
-* [Inspecting Flows and Results](metaflow/client.md)
-* [Visualizing Results](metaflow/visualizing-results/) - _**new!**_
-* [Debugging with Metaflow](metaflow/debugging.md)
-* [Scaling Out and Up](metaflow/scaling.md)
-* [Loading and Storing Data](metaflow/data.md)
-* [Managing External Libraries](metaflow/dependencies.md)
-* [Dealing with Failures](metaflow/failures.md)
-* [Organizing Results](metaflow/tagging.md)
+### Running the documentation locally for more complex changes
 
-## Going to Production with Metaflow&#x20;
+- Clone this repo
+- `cd docs`
+- `yarn`
+- `yarn start`
 
-* [Scheduling Metaflow Flows](going-to-production-with-metaflow/scheduling-metaflow-flows.md)
-* [Coordinating Larger Metaflow Projects](going-to-production-with-metaflow/coordinating-larger-metaflow-projects.md)
+Any saved changes that you make to the `.md` files in the `docs` directory will automatically be reflected at [the local preview page](http://localhost:3000/docs/).
 
-## Internals of Metaflow
+### PR Previews
 
-* [Technical Overview](internals-of-metaflow/technical-overview.md)
-* [Testing Philosophy](internals-of-metaflow/testing-philosophy.md)
+<img width="940" alt="Screen Shot 2022-03-17 at 11 00 23 AM" src="https://user-images.githubusercontent.com/93726128/158854270-4e30dbc5-77b5-4a46-bc92-a73bef44f927.png">
+
+If you create a PR, a preview domain will be created where you can view your changes. The link to that preview domain will be shown in the `Conversation` tab of your PR. The preview is published using Vercel.
+
+### Automatic publishing
+
+Any pushes to the `master` branch will automatically publish to [the live documentation pages](https://metaflow.org). The publishing uses GitHub Actions and Github pages. You can see the progress of the publish action by going to the `Actions` tab of this repository.
+
+If you forget the site URL, you can go to `Environments` on the right hand side, click on `github-pages` and then click on `View Deployment`.

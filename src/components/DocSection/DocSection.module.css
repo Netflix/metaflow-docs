@@ -1,0 +1,15 @@
+.expand_button {
+  border: none;
+  background: transparent;
+  color: var(--ifm-color-secondary-darkest);
+  font-size: 40%;
+}
+
+.link {
+  font-size: 50%;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: none;
+}
