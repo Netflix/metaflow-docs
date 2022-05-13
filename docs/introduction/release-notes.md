@@ -18,6 +18,13 @@ The Metaflow 2.6.1 release is a minor release.
   - Fixed issues with S3 get and ranges in [#1034](https://github.com/Netflix/metaflow/pull/1034)
   - Fix `_new_task` calling bug in LocalMetadataProvider in [#1046](https://github.com/Netflix/metaflow/pull/1046)
 
+## [2.5.2 (Feb 16, 2022)](https://github.com/Netflix/metaflow/releases/tag/2.5.2)
+
+The Metaflow 2.5.2 release is a minor release.
+
+- Improvements
+  - follow symlinks when creating code packages ([#958](https://github.com/Netflix/metaflow/pull/958))
+
 ## [2.5.1 (Feb 15, 2022)](https://github.com/Netflix/metaflow/releases/tag/2.5.1)
 
 The Metaflow 2.5.1 release is a minor release.
