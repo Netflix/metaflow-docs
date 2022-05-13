@@ -18,6 +18,14 @@ The Metaflow 2.6.1 release is a minor release.
   - Fixed issues with S3 get and ranges in [#1034](https://github.com/Netflix/metaflow/pull/1034)
   - Fix `_new_task` calling bug in LocalMetadataProvider in [#1046](https://github.com/Netflix/metaflow/pull/1046)
 
+## [2.5.3 (Mar 7, 2022)](https://github.com/Netflix/metaflow/releases/tag/2.5.3)
+
+The Metaflow 2.5.3 release is a minor release.
+
+- Bug fixes
+  - Fix "Too many symbolic links" error when using Conda + Batch on MacOS in [#972](https://github.com/Netflix/metaflow/pull/972)
+  - Emit app tag for AWS Batch jobs ( [#970](https://github.com/Netflix/metaflow/pull/970) )
+
 ## [2.5.2 (Feb 16, 2022)](https://github.com/Netflix/metaflow/releases/tag/2.5.2)
 
 The Metaflow 2.5.2 release is a minor release.
