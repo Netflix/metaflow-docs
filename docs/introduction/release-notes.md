@@ -18,6 +18,15 @@ The Metaflow 2.6.1 release is a minor release.
   - Fixed issues with S3 get and ranges in [#1034](https://github.com/Netflix/metaflow/pull/1034)
   - Fix `_new_task` calling bug in LocalMetadataProvider in [#1046](https://github.com/Netflix/metaflow/pull/1046)
 
+## [2.5.4 (Mar 24, 2022)](https://github.com/Netflix/metaflow/releases/tag/2.5.4)
+
+The Metaflow 2.5.4 release is a minor release.
+
+- Bug Fixes
+  - Card bug fixes ([#989](https://github.com/Netflix/metaflow/pull/989), [#981](https://github.com/Netflix/metaflow/pull/981) )
+  - importlib_metadata fixes for Python 3.5 ([#988](https://github.com/Netflix/metaflow/pull/988) )
+  - Configurable temp root when pulling artifacts from s3 ([#991](https://github.com/Netflix/metaflow/pull/991))
+
 ## [2.5.3 (Mar 7, 2022)](https://github.com/Netflix/metaflow/releases/tag/2.5.3)
 
 The Metaflow 2.5.3 release is a minor release.
