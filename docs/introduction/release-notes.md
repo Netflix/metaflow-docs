@@ -18,6 +18,33 @@ The Metaflow 2.6.1 release is a minor release.
   - Fixed issues with S3 get and ranges in [#1034](https://github.com/Netflix/metaflow/pull/1034)
   - Fix `_new_task` calling bug in LocalMetadataProvider in [#1046](https://github.com/Netflix/metaflow/pull/1046)
 
+## [2.6.0 (Apr 25, 2022)](https://github.com/Netflix/metaflow/releases/tag/2.6.0)
+
+The Metaflow 2.6.0 release is a minor release and introduces Metaflow's integration with [Kubernetes](https://docs.metaflow.org/metaflow/scaling-out-and-up/effortless-scaling-with-kubernetes) and [Argo Workflows](https://docs.metaflow.org/going-to-production-with-metaflow/scheduling-metaflow-flows/scheduling-with-argo-workflows)
+- [Features](#2.6.0_features)
+  - Add capability to launch Metaflow tasks on Kubernetes and schedule Metaflow flows with Argo Workflows.
+  - Expose `tags` in `current` object.
+
+#### Add capability to launch Metaflow tasks on Kubernetes and schedule Metaflow flows with Argo Workflows.
+This release enables brand new capabilities for [Metaflow on top of Kubernetes](https://outerbounds.com/blog/human-centric-data-science-on-kubernetes-with-metaflow/). You can now [`run --with kubernetes`](https://docs.metaflow.org/metaflow/scaling-out-and-up/effortless-scaling-with-kubernetes) all or parts of any Metaflow flow on top of _any_ Kubernetes cluster from your workstation. To execute your flow asynchronously, you can deploy the flow to Argo Workflows (a Kubernetes-native workflow scheduler) with a single command - [`argo-workflows create`](https://docs.metaflow.org/going-to-production-with-metaflow/scheduling-metaflow-flows/scheduling-with-argo-workflows).
+
+To get started, take a look at the [deployment guide for Kubernetes](http://lin/). Your feedback and feature requests are highly appreciated! - please reach out to us at slack.outerbounds.co
+
+PR #992 addressed issue #50.
+
+#### Expose `tags` in `current` object.
+Metaflow tags are now available as part of the `current` singleton object.
+
+```
+@step
+def my_step(self):
+    from metaflow import current
+    tags = current.tags
+    ...
+```
+
+PR #1019 fixed issue #1007.
+
 ## [2.5.4 (Mar 24, 2022)](https://github.com/Netflix/metaflow/releases/tag/2.5.4)
 
 The Metaflow 2.5.4 release is a minor release.
