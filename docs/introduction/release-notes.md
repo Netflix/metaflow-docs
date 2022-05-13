@@ -18,6 +18,16 @@ The Metaflow 2.6.1 release is a minor release.
   - Fixed issues with S3 get and ranges in [#1034](https://github.com/Netflix/metaflow/pull/1034)
   - Fix `_new_task` calling bug in LocalMetadataProvider in [#1046](https://github.com/Netflix/metaflow/pull/1046)
 
+## [2.5.1 (Feb 15, 2022)](https://github.com/Netflix/metaflow/releases/tag/2.5.1)
+
+The Metaflow 2.5.1 release is a minor release.
+
+- New Features
+  - Introduce Mamba as a dependency solver for `@conda` in [#918](https://github.com/Netflix/metaflow/pull/918) . Mamba promises faster package dependency resolution times, which should result in an appreciable speedup in flow environment initialization. It is not yet enabled by default; to use it you need to set `METAFLOW_CONDA_DEPENDENCY_RESOLVER` to `mamba` in Metaflow config. 
+
+- Improvements
+  - Vendor in [click](https://click.palletsprojects.com/en/8.0.x/) to reduce chances of dependency conflicts with user code in [#929](https://github.com/Netflix/metaflow/pull/929)
+
 ## [2.5.0 (Jan 25, 2022)](https://github.com/Netflix/metaflow/releases/tag/2.5.0)
 
 The Metaflow 2.5.0 release is a minor release.
