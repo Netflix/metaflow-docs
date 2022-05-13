@@ -4,6 +4,104 @@ Read below how Metaflow has improved over time.
 
 We take backwards compatibility very seriously. In the vast majority of cases, you can upgrade Metaflow without expecting changes in your existing code. In the rare cases when breaking changes are absolutely necessary, usually, due to bug fixes, you can take a look at minor breaking changes below before you upgrade.
 
+## [2.6.1 (May 13, 2022)](https://github.com/Netflix/metaflow/releases/tag/2.6.1)
+
+The Metaflow 2.6.1 release is a minor release.
+
+- Features
+  - Proper support for custom S3 endpoints. This enables using S3-compatible object storages like MinIO or Dell EMC-ECS as data stores for Metaflow ([#1045](https://github.com/Netflix/metaflow/pull/1045))
+
+- Bug fixes
+  - Fixed card rendering for tables with some NaN values ([#1023](https://github.com/Netflix/metaflow/issues/1023))  in [#1025](https://github.com/Netflix/metaflow/pull/1025)
+  - current.pathspec to return None when used outside Flow in [#1033](https://github.com/Netflix/metaflow/pull/1033)
+  - Fixed bug in the `card list` command in [#1044](https://github.com/Netflix/metaflow/pull/1044)
+  - Fixed issues with S3 get and ranges in [#1034](https://github.com/Netflix/metaflow/pull/1034)
+  - Fix `_new_task` calling bug in LocalMetadataProvider in [#1046](https://github.com/Netflix/metaflow/pull/1046)
+
+## [2.6.0 (Apr 25, 2022)](https://github.com/Netflix/metaflow/releases/tag/2.6.0)
+
+The Metaflow 2.6.0 release is a minor release and introduces Metaflow's integration with [Kubernetes](https://docs.metaflow.org/metaflow/scaling-out-and-up/effortless-scaling-with-kubernetes) and [Argo Workflows](https://docs.metaflow.org/going-to-production-with-metaflow/scheduling-metaflow-flows/scheduling-with-argo-workflows)
+- [Features](#2.6.0_features)
+  - Add capability to launch Metaflow tasks on Kubernetes and schedule Metaflow flows with Argo Workflows.
+  - Expose `tags` in `current` object.
+
+#### Add capability to launch Metaflow tasks on Kubernetes and schedule Metaflow flows with Argo Workflows.
+This release enables brand new capabilities for [Metaflow on top of Kubernetes](https://outerbounds.com/blog/human-centric-data-science-on-kubernetes-with-metaflow/). You can now [`run --with kubernetes`](https://docs.metaflow.org/metaflow/scaling-out-and-up/effortless-scaling-with-kubernetes) all or parts of any Metaflow flow on top of _any_ Kubernetes cluster from your workstation. To execute your flow asynchronously, you can deploy the flow to Argo Workflows (a Kubernetes-native workflow scheduler) with a single command - [`argo-workflows create`](https://docs.metaflow.org/going-to-production-with-metaflow/scheduling-metaflow-flows/scheduling-with-argo-workflows).
+
+To get started, take a look at the [deployment guide for Kubernetes](http://lin/). Your feedback and feature requests are highly appreciated! - please reach out to us at slack.outerbounds.co
+
+PR #992 addressed issue #50.
+
+#### Expose `tags` in `current` object.
+Metaflow tags are now available as part of the `current` singleton object.
+
+```
+@step
+def my_step(self):
+    from metaflow import current
+    tags = current.tags
+    ...
+```
+
+PR #1019 fixed issue #1007.
+
+## [2.5.4 (Mar 24, 2022)](https://github.com/Netflix/metaflow/releases/tag/2.5.4)
+
+The Metaflow 2.5.4 release is a minor release.
+
+- Bug Fixes
+  - Card bug fixes ([#989](https://github.com/Netflix/metaflow/pull/989), [#981](https://github.com/Netflix/metaflow/pull/981) )
+  - importlib_metadata fixes for Python 3.5 ([#988](https://github.com/Netflix/metaflow/pull/988) )
+  - Configurable temp root when pulling artifacts from s3 ([#991](https://github.com/Netflix/metaflow/pull/991))
+
+## [2.5.3 (Mar 7, 2022)](https://github.com/Netflix/metaflow/releases/tag/2.5.3)
+
+The Metaflow 2.5.3 release is a minor release.
+
+- Bug fixes
+  - Fix "Too many symbolic links" error when using Conda + Batch on MacOS in [#972](https://github.com/Netflix/metaflow/pull/972)
+  - Emit app tag for AWS Batch jobs ( [#970](https://github.com/Netflix/metaflow/pull/970) )
+
+## [2.5.2 (Feb 16, 2022)](https://github.com/Netflix/metaflow/releases/tag/2.5.2)
+
+The Metaflow 2.5.2 release is a minor release.
+
+- Improvements
+  - follow symlinks when creating code packages ([#958](https://github.com/Netflix/metaflow/pull/958))
+
+## [2.5.1 (Feb 15, 2022)](https://github.com/Netflix/metaflow/releases/tag/2.5.1)
+
+The Metaflow 2.5.1 release is a minor release.
+
+- New Features
+  - Introduce Mamba as a dependency solver for `@conda` in [#918](https://github.com/Netflix/metaflow/pull/918) . Mamba promises faster package dependency resolution times, which should result in an appreciable speedup in flow environment initialization. It is not yet enabled by default; to use it you need to set `METAFLOW_CONDA_DEPENDENCY_RESOLVER` to `mamba` in Metaflow config. 
+
+- Improvements
+  - Vendor in [click](https://click.palletsprojects.com/en/8.0.x/) to reduce chances of dependency conflicts with user code in [#929](https://github.com/Netflix/metaflow/pull/929)
+
+## [2.5.0 (Jan 25, 2022)](https://github.com/Netflix/metaflow/releases/tag/2.5.0)
+
+The Metaflow 2.5.0 release is a minor release.
+
+- New Features
+  - :sparkles: Metaflow cards are now publicly available! For details, see a new section in the documentation, [Visualizing Results](https://docs.metaflow.org/metaflow/visualizing-results), and a [release blog post](https://outerbounds.com/blog/integrating-pythonic-visual-reports-into-ml-pipelines/).
+
+- Bug Fixes
+  - Fix issue in Step Functions integration with CLI defined decorators ( [#920](https://github.com/Netflix/metaflow/pull/920) )
+  - Fix compute_resources to take into account string values ( [#919](https://github.com/Netflix/metaflow/pull/919) )
+
+## [2.4.9 (Jan 18, 2022)](https://github.com/Netflix/metaflow/releases/tag/2.4.9)
+
+The Metaflow 2.4.9 release is a patch release.
+
+* Improvements
+  * Store information about the DAG being executed in an artifact. This will allow to render execution DAG in a `@card` ( [#822](https://github.com/Netflix/metaflow/pull/822) )
+* Bug Fixes
+  * Fixed cli command when task_id provided ( [#890](https://github.com/Netflix/metaflow/pull/890) )
+  * Fix with metadata syncing on AWS Batch when running without remote metadata service ( [#902](https://github.com/Netflix/metaflow/pull/902) )
+  * Fix default resource math. Previously we sometimes computed vCPU and memory settings incorrectly, in cases when they were set to something less than the default value ( [#810](https://github.com/Netflix/metaflow/pull/810) , fixes [#467](https://github.com/Netflix/metaflow/issues/467) )
+
+
 ## [2.4.8 (Jan 10, 2022)](https://github.com/Netflix/metaflow/releases/tag/2.4.8)
 
 The Metaflow 2.4.8 release is a patch release.
