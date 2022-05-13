@@ -18,6 +18,17 @@ The Metaflow 2.6.1 release is a minor release.
   - Fixed issues with S3 get and ranges in [#1034](https://github.com/Netflix/metaflow/pull/1034)
   - Fix `_new_task` calling bug in LocalMetadataProvider in [#1046](https://github.com/Netflix/metaflow/pull/1046)
 
+## [2.5.0 (Jan 25, 2022)](https://github.com/Netflix/metaflow/releases/tag/2.5.0)
+
+The Metaflow 2.5.0 release is a minor release.
+
+- New Features
+  - :sparkles: Metaflow cards are now publicly available! For details, see a new section in the documentation, [Visualizing Results](https://docs.metaflow.org/metaflow/visualizing-results), and a [release blog post](https://outerbounds.com/blog/integrating-pythonic-visual-reports-into-ml-pipelines/).
+
+- Bug Fixes
+  - Fix issue in Step Functions integration with CLI defined decorators ( [#920](https://github.com/Netflix/metaflow/pull/920) )
+  - Fix compute_resources to take into account string values ( [#919](https://github.com/Netflix/metaflow/pull/919) )
+
 ## [2.4.9 (Jan 18, 2022)](https://github.com/Netflix/metaflow/releases/tag/2.4.9)
 
 The Metaflow 2.4.9 release is a patch release.
