@@ -4,6 +4,20 @@ Read below how Metaflow has improved over time.
 
 We take backwards compatibility very seriously. In the vast majority of cases, you can upgrade Metaflow without expecting changes in your existing code. In the rare cases when breaking changes are absolutely necessary, usually, due to bug fixes, you can take a look at minor breaking changes below before you upgrade.
 
+## [2.6.1 (May 13, 2022)](https://github.com/Netflix/metaflow/releases/tag/2.6.1)
+
+The Metaflow 2.6.1 release is a minor release.
+
+- Features
+  - Proper support for custom S3 endpoints. This enables using S3-compatible object storages like MinIO or Dell EMC-ECS as data stores for Metaflow ([#1045](https://github.com/Netflix/metaflow/pull/1045))
+
+- Bug fixes
+  - Fixed card rendering for tables with some NaN values ([#1023](https://github.com/Netflix/metaflow/issues/1023))  in [#1025](https://github.com/Netflix/metaflow/pull/1025)
+  - current.pathspec to return None when used outside Flow in [#1033](https://github.com/Netflix/metaflow/pull/1033)
+  - Fixed bug in the `card list` command in [#1044](https://github.com/Netflix/metaflow/pull/1044)
+  - Fixed issues with S3 get and ranges in [#1034](https://github.com/Netflix/metaflow/pull/1034)
+  - Fix `_new_task` calling bug in LocalMetadataProvider in [#1046](https://github.com/Netflix/metaflow/pull/1046)
+
 ## [2.4.8 (Jan 10, 2022)](https://github.com/Netflix/metaflow/releases/tag/2.4.8)
 
 The Metaflow 2.4.8 release is a patch release.
