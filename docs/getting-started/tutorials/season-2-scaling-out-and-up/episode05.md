@@ -26,4 +26,4 @@ You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/t
 3. `jupyter-notebook 05-helloaws/helloaws.ipynb`
 4. Open _**helloaws.ipynb**_ in your remote Sagemaker notebook
 
-<TutorialsLink link="../"/>
+<TutorialsLink link="../../tutorials"/>
