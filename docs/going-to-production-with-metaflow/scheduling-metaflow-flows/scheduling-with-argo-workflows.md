@@ -9,7 +9,7 @@ In Metaflow's point of view, the main benefits of Argo Workflows are the followi
 
 When running on Argo Workflows, Metaflow code works exactly as it does locally: No changes are required in the code. All data artifacts produced by steps run on Argo Workflows are available using the [Client API](../../metaflow/client.md). All tasks are run on Kubernetes respecting the resources decorator, as explained in [Scaling Out and Up with Kubernetes](../../metaflow/scaling-out-and-up/effortless-scaling-with-kubernetes.md).
 
-This document describes the basics of AWS Step Functions scheduling. If your project involves multiple people, multiple workflows, or it is becoming business-critical, check out the section around [coordinating larger Metaflow projects](../coordinating-larger-metaflow-projects.md).
+This document describes the basics of Argo Workflows scheduling. If your project involves multiple people, multiple workflows, or it is becoming business-critical, check out the section around [coordinating larger Metaflow projects](../coordinating-larger-metaflow-projects.md).
 
 ## Pushing a flow to production
 
