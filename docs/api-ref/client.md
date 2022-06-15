@@ -5,7 +5,7 @@
 The client API allows you to inspect data and artifacts from your flows.
 
 
-<DocSection type="class" name="Flow" module="metaflow" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1721">
+<DocSection type="class" name="Flow" module="metaflow" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1874">
 <SigArgSection>
 <SigArg name="*args" /><SigArg name="**kwargs" />
 </SigArgSection>
@@ -18,7 +18,7 @@ The client API allows you to inspect data and artifacts from your flows.
 
 
 
-<DocSection type="class" name="Run" module="metaflow" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1562">
+<DocSection type="class" name="Run" module="metaflow" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1608">
 <SigArgSection>
 <SigArg name="pathspec" default="None" /><SigArg name="attempt" default="None" /><SigArg name="_object" default="None" /><SigArg name="_parent" default="None" /><SigArg name="_namespace_check" default="True" />
 </SigArgSection>
@@ -35,7 +35,7 @@ The client API allows you to inspect data and artifacts from your flows.
 
 
 
-<DocSection type="class" name="Step" module="metaflow" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1424">
+<DocSection type="class" name="Step" module="metaflow" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1461">
 <SigArgSection>
 <SigArg name="pathspec" default="None" /><SigArg name="attempt" default="None" /><SigArg name="_object" default="None" /><SigArg name="_parent" default="None" /><SigArg name="_namespace_check" default="True" />
 </SigArgSection>
@@ -49,7 +49,7 @@ The client API allows you to inspect data and artifacts from your flows.
 
 
 
-<DocSection type="class" name="Task" module="metaflow" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L896">
+<DocSection type="class" name="Task" module="metaflow" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L933">
 <SigArgSection>
 <SigArg name="*args" /><SigArg name="**kwargs" />
 </SigArgSection>
