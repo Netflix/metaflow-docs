@@ -142,13 +142,34 @@ You can resume runs of other users and you can resume any production runs. The r
 
 The `user:` tag is assigned by Metaflow automatically. In addition to automatically assigned tags, you can add and remove arbitrary tags in objects. Tags are an excellent way to add extra annotations to runs, tasks etc., which makes it easier for you and other people to find and retrieve results of interest.
 
-An easy way to add tags is the `--tag` command line option. You can add multiple tags with multiple `--tag` options. For instance, this will annotate a `HelloFlow` run with a tag `crazy_test`.
+If you know a tag to be attached before a run starts, you can add it using the `run --tag` command line option. You can add multiple tags with multiple `--tag` options. For instance, this will annotate a `HelloFlow` run with a tag `crazy_test`.
 
 ```bash
 python helloworld.py run --tag crazy_test
 ```
 
-The `--tag` option assigns the specified tag to all objects produced by the run: the run itself, its steps, tasks, and data artifacts.
+Often, you may want to add or change tags after a run has completed. In contrast to artifacts, tags can be mutated any time: Consider them as mutating interpretations of immutable (arti)facts. You can mutate tags either [using the Client API](client#adding-removing-and-replacing-tags) or the command line.
+
+Add a tag on the command line like this:
+
+```
+python helloworld.py tag add --run-id 2 crazy_test
+```
+
+Remove works symmetrically:
+```
+python helloworld.py tag remove --run-id 2 crazy_test
+```
+
+You can see the current set of tags with
+```
+python helloworld.py tag list
+```
+
+Note that the above command lists also [system tags](client#system-tags) that can not be mutated but they
+can be used for filtering.
+
+### Filtering by tags
 
 You can access runs (or steps or tasks) with a certain tag easily using the Client API:
 
