@@ -58,11 +58,11 @@ You should see a blank page with a blue “Hello World!” text.
 
 ![](</assets/card-docs-html_(2).png>)
 
-A particularly useful feature of card templates is that they work in any compute environment, such as [AWS Batch](../scaling). For instance, if you have AWS Batch set up, you can run the flow as follows:
+A particularly useful feature of card templates is that they work in any compute environment, such as [AWS Batch](../scaling-out-and-up/effortless-scaling-with-aws-batch.md) or [Kubernetes](../scaling-out-and-up/effortless-scaling-with-kubernetes.md). For instance, if you have AWS Batch set up, you can run the flow as follows:
 
-`python htmlcardflow.py run –with batch`
+`python htmlcardflow.py run --with batch`
 
-The card will get produced without you having to worry about installing anything on the remote instances! You can [deploy flows to production](../../going-to-production-with-metaflow/scheduling-metaflow-flows) with custom templates too:
+The card will get produced without you having to worry about installing anything on the remote instances! You can [deploy flows to production](../../going-to-production-with-metaflow/scheduling-metaflow-flows/) with custom templates too:
 
 `python htmlcardflow.py step-functions create`
 

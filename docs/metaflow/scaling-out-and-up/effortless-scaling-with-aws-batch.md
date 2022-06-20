@@ -1,22 +1,6 @@
-# Scaling Out and Up
+# Effortless Scaling with AWS Batch
 
-From a usability point of view, it is hard to beat the convenience of writing and running a straightforward script in the comfort of your favorite IDE and a local terminal. Since one of the core values of Metaflow is usability, we encourage you to start with this easy approach and not worry about scalability until it becomes an issue.
-
-Instead of providing magical abstractions or a new paradigm for scalability, Metaflow provides a set of easy-to-use tools that help you to make your code scalable depending on your specific needs.
-
-The scalability tools fall into three categories:
-
-**Performance Optimization**: You can improve performance of your code by utilizing off-the-shelf, high-performance libraries such as [XGboost](https://github.com/dmlc/xgboost) or [Tensorflow](https://tensorflow.org). Sometimes, it is appropriate to implement a custom algorithm in a high-performance language such as C++ which can be called from your Metaflow steps. Or, as a happy medium between low-performance but productive Python and a fast but tedious C++, you may be able to use a compiler such as [Numba](https://numba.pydata.org) to speed up your code.
-
-**Scaling Up**: One should not underestimate the horsepower of modern large server type machine. It is sometimes worth considering running on a larger machine prior to trying anything else.
-
-**Scaling Out**: Metaflow also integrates with Batch from AWS allowing you to parallelize your steps over an arbitrarily large number of Batch jobs, giving you access to virtually unlimited amount of computing power.
-
-It is hard to be prescriptive about which of the three categories is most suitable for your problem. Often, the answer is a combination of the three. In general, start with the approach that is the easiest to implement and keep iterating until the performance is satisfactory.
-
-This section focuses specifically on using Batch to scale up and out: you can use Batch to request a larger instance to run your step as well as use it to parallelize your steps over multiple instances. This section requires you to have Metaflow working with AWS. See the [AWS section](../metaflow-on-aws/metaflow-on-aws.md) for more information on either setting up Metaflow in your [own AWS environment](../metaflow-on-aws/deploy-to-aws.md) or using the [provided sandbox](../metaflow-on-aws/metaflow-sandbox.md).
-
-This section presents the tools available in Metaflow for scaling up and out.
+Metaflow provides a set of easy-to-use tools that help you to make your code _scale up_ (by running your code on a larger machine) or _scale out_ (by allowing you to trivially parallelize your code over an arbitrarily large number of machines) using AWS Batch.
 
 ## Requesting resources with `resources` decorator
 
@@ -70,9 +54,8 @@ This fails quickly due to a `MemoryError` on most laptops as we are unable to al
 
 The `resources` decorator suggests resource requirements for a step. The `memory` argument specifies the amount of RAM in megabytes and `cpu` the number of CPU cores requested. It does not produce the resources magically, which is why the run above failed.
 
-## Using AWS Batch
 
-The `resources` decorator gains all its power in collaboration with Batch execution. Note that for this section, you will need to have Metaflow working in an AWS cloud environment \(either having [deployed it yourself](../metaflow-on-aws/deploy-to-aws.md) or running in the [Metaflow sandbox](../metaflow-on-aws/metaflow-sandbox.md)\)
+The `resources` decorator gains all its power in collaboration with Batch execution. Note that for this section, you will need to have Metaflow working in an AWS cloud environment \(either having [deployed it yourself](../../metaflow-on-aws/deploy-to-aws.md) or running in the [Metaflow sandbox](../../metaflow-on-aws/metaflow-sandbox.md)\)
 
 With the following command, you instruct Metaflow to run all your steps on AWS Batch:
 
@@ -82,7 +65,7 @@ $ python BigSum.py run --with batch
 
 The `--with batch` option instructs Metaflow to run all tasks as separate AWS Batch jobs, instead of using a local process for each task. It has the same effect as adding `@batch` decorator to all steps in the code.
 
-This time the run should succeed thanks to the large enough instance. Note that in this case the `resources` decorator is used as a prescription for the size of the box that Batch should run the job on; please be sure that this resource requirement can be met. See [here](scaling.md#my-job-is-stuck-in-runnable-state-what-do-i-do) on what can happen if this is not the case.
+This time the run should succeed thanks to the large enough instance. Note that in this case the `resources` decorator is used as a prescription for the size of the box that Batch should run the job on; please be sure that this resource requirement can be met. See [here](effortless-scaling-with-aws-batch#my-job-is-stuck-in-runnable-state-what-do-i-do) on what can happen if this is not the case.
 
 You should see an output like this:
 
@@ -103,9 +86,9 @@ The main benefit of `batch` is that you can selectively run some steps locally a
 $ python BigSum.py run
 ```
 
-You will see that the `start` step gets executed on a large AWS Batch instance but the `end` step, which does not need special resources, is executed locally without the additional latency of launching a AWS Batch job. Executing a [`foreach`](basics.md#foreach) step launches parallel AWS Batch jobs with the specified resources for the step.
+You will see that the `start` step gets executed on a large AWS Batch instance but the `end` step, which does not need special resources, is executed locally without the additional latency of launching a AWS Batch job. Executing a [`foreach`](../basics.md#foreach) step launches parallel AWS Batch jobs with the specified resources for the step.
 
-### Parallelization over multiple cores[¶](http://manuals.test.netflix.net/view/mli/mkdocs/master/scaling/#parallelization-over-multiple-cores)
+### Parallelization over multiple cores
 
 When running locally, branches in your flow are executed in parallel as separate processes which the operating system can allocate to separate CPU cores. This means that your flow can utilize multiple cores without you having to do anything special besides defining branches in the flow.
 
@@ -158,7 +141,7 @@ Here are some useful tips and tricks related to running Metaflow on AWS Batch.
 
 #### **What value of `@timeout` should I set?**
 
-Metaflow sets a default timeout of 5 days so that you tasks don't get stuck infinitely while running on AWS Batch. For more details on how to use `@timeout` please read [this.](failures.md#timing-out-with-timeout-decorator)
+Metaflow sets a default timeout of 5 days so that you tasks don't get stuck infinitely while running on AWS Batch. For more details on how to use `@timeout` please read [this.](../failures.md#timing-out-with-timeout-decorator)
 
 #### **How much `@resources` can I request?**
 
@@ -185,7 +168,7 @@ Consult [this article](https://docs.aws.amazon.com/batch/latest/userguide/troubl
 
 If you interrupt a Metaflow run, any AWS Batch tasks launched by the run get killed by Metaflow automatically. Even if something went wrong during the final cleanup, the tasks will finish and die eventually, at the latest when they hit the maximum time allowed for an AWS Batch task.
 
-If you want to make sure you have no AWS Batch tasks running, or you want to manage them manually, you can use the `batch list` and `batch kill` commands. These commands are disabled in the [Metaflow AWS Sandbox](../metaflow-on-aws/metaflow-sandbox.md).
+If you want to make sure you have no AWS Batch tasks running, or you want to manage them manually, you can use the `batch list` and `batch kill` commands. These commands are disabled in the [Metaflow AWS Sandbox](../../metaflow-on-aws/metaflow-sandbox.md).
 
 You can easily see what AWS Batch tasks were launched by your latest run with
 
@@ -260,7 +243,7 @@ $ python bigsum.py logs 15/end
 
 The previous sections focused on CPU and memory-bound steps. Loading and processing big data is often an IO-bound operation, which requires a different approach.
 
-Read [Loading and Storing Data](data.md) for more details about how to build efficient data pipelines in Metaflow.
+Read [Loading and Storing Data](../data.md) for more details about how to build efficient data pipelines in Metaflow.
 
 ### Disk space
 
@@ -272,5 +255,5 @@ Metaflow uses Python's default object serialization format, [Pickle](https://doc
 
 Unfortunately Python was not able to pickle objects larger than 2GB prior to Python 3.5. If you need to store large data artifacts, such as a large data frame, using a recent version of Python 3 is highly recommended.
 
-In the rare cases where Metaflow's built-in serialization does not work for you, you can use [Metaflow S3 client](data.md#data-outside-tables-metaflow-s3) to persist arbitrary data in S3.
+In the rare cases where Metaflow's built-in serialization does not work for you, you can use [Metaflow S3 client](../data.md#data-outside-tables-metaflow-s3) to persist arbitrary data in S3.
 
