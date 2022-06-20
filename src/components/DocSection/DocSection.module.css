@@ -1,5 +1,5 @@
 .content{
-
+  padding-left: 4rem;
 }
 
 .docSection {
@@ -8,10 +8,8 @@
 }
 
 .titlebox {
-  background: var(--ifm-color-emphasis-200);
   width: 100%;
   position: relative;
-  padding: 0.5rem;
   display: flex;
   align-items: center;
 }
@@ -21,6 +19,7 @@
   right: 0;
   top: 0;
   margin-left: auto;
+  font-size: 80%;
 }
 
 .content {
