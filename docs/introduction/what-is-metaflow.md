@@ -45,8 +45,8 @@ You can find more details about Metaflow's approach to various parts of the stac
 | **Model Operations**    | <p><a href="../metaflow/debugging">Debugging with Metaflow</a> and <a href="../metaflow/failures">Dealing with Failures</a></p><p>(also see <a href="roadmap">Roadmap</a>)</p> |
 | **Versioning**          | [Inspecting Flow and Results](../metaflow/client) and [Organizing Results](../metaflow/tagging)                                                                                |
 | **Architecture**        | [Basics of Metaflow](../metaflow/basics)                                                                                                                                       |
-| **Job Scheduler**       | coming soon, see [Roadmap](roadmap)                                                                                                                                            |
-| **Compute Resources**   | [Scaling Out and Up](../metaflow/scaling)                                                                                                                                      |
+| **Job Scheduler**       | [Scheduling Metaflow Flows](../going-to-production-with-metaflow/scheduling-metaflow-flows/) and [Coordinating Larger Metaflow Projects](../going-to-production-with-metaflow/coordinating-larger-metaflow-projects.md)                                                                                                                                          |
+| **Compute Resources**   | [Scaling Out and Up](../metaflow/scaling-out-and-up/)                                                                                                                                      |
 | **Data Warehouse**      | [Basics of Metaflow](../metaflow/basics) and [Loading and Storing Data](../metaflow/data)                                                                                      |
 
 If you are an infrastructure person who wants to know how to deploy and operate Metaflow, take a look at [Administrator's Guide to Metaflow](https://outerbounds.com/docs/admin/).

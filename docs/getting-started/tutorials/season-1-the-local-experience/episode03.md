@@ -20,4 +20,4 @@ You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/t
 2. `python 03-playlist-redux/playlist.py show`
 3. `python 03-playlist-redux/playlist.py run`
 
-<TutorialsLink link="../"/>
+<TutorialsLink link="../../tutorials"/>

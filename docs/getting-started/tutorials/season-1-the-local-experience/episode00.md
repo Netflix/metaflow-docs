@@ -17,4 +17,4 @@ You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/t
 2. `python 00-helloworld/helloworld.py show`
 3. `python 00-helloworld/helloworld.py run`
 
-<TutorialsLink link="../"/>
+<TutorialsLink link="../../tutorials"/>

@@ -4,7 +4,7 @@ Traditionally, there has been a tension between local \(e.g. on a laptop\) and r
 
 Metaflow tries to combine the best of both worlds. Most importantly, we support the same idiomatic Python scripts both locally and remotely. No changes in code or libraries needed. However, Metaflow doesn't try to abstract away the fact that code is executed remotely. We believe that this is crucial in making troubleshooting easier.
 
-Metaflow makes it easy to move back and forth between the local and remote modes of execution. You can even use a hybrid of the two approaches in a single workflow. This means that you can develop and test your Metaflow code similarly to any local Python script - simply and easily. When you need to [process larger amounts of data](metaflow/scaling), or you want to deploy your workflow to production, you can do it with a single line of code or a single command.
+Metaflow makes it easy to move back and forth between the local and remote modes of execution. You can even use a hybrid of the two approaches in a single workflow. This means that you can develop and test your Metaflow code similarly to any local Python script - simply and easily. When you need to [process larger amounts of data](../metaflow/scaling-out-and-up/), or you want to [deploy your workflow to production](../going-to-production-with-metaflow/scheduling-metaflow-flows/), you can do it with a single line of code or a single command.
 
 When you set up a cloud-based object store as the datastore, Metaflow snapshots all data and code in the cloud automatically. This means that you can [inspect](metaflow/client), [resume](metaflow/debugging#how-to-use-the-resume-command), and restore any previous Metaflow execution without having to worry that the fruits of your hard work get lost.
 
@@ -17,14 +17,12 @@ The following table summarizes the integration between Metaflow and AWS:
 | Service            | Local           | AWS                                                                                                                      |
 | :----------------- | :-------------- | :----------------------------------------------------------------------------------------------------------------------- |
 | **Datastore**      | Local Directory | [Amazon S3](https://aws.amazon.com/s3/)                                                                                  |
-| **Compute**        | Local Process   | [AWS Batch](https://aws.amazon.com/batch/)                                                                               |
+| **Compute**        | Local Process   | [AWS Batch](https://aws.amazon.com/batch/) and [Kubernetes](https://kubernetes.io/)                                                                               |
 | **Metadata**       | Local Directory | [AWS Fargate](https://aws.amazon.com/fargate/) + [Amazon RDS](https://aws.amazon.com/rds)                                |
 | **Notebooks**      | Local Notebook  | [Amazon Sagemaker Notebooks](https://aws.amazon.com/sagemaker/)                                                          |
-| **Scheduling**     | -               | [AWS Step Functions](https://aws.amazon.com/step-functions/) + [Amazon EventBridge](https://aws.amazon.com/eventbridge/) |
-| **Large-scale ML** | -               | [Sagemaker Models](https://aws.amazon.com/sagemaker/)\*                                                                  |
-| **Hosting**        | -               | \*                                                                                                                       |
+| **Scheduling**     | -               | [AWS Step Functions](https://aws.amazon.com/step-functions/) + [Amazon EventBridge](https://aws.amazon.com/eventbridge/) and [Argo Workflows](https://argoproj.github.io/workflows/) |
 
-\(\*\) [available later](introduction/roadmap)
+
 
 ### **Datastore**
 
@@ -32,11 +30,11 @@ Datastore is a centralized data repository for all the data that's leveraged by 
 
 ### Compute
 
-Metaflow executes all steps in the flow as a separate local process in local mode. To run larger workloads which require resources that might not be available on a laptop \(think GPUs or 100s of GBs of RAM\), Metaflow integrates with AWS Batch to seamlessly run every step of the flow as a \(or many\) separate AWS Batch job\(s\).
+Metaflow executes all steps in the flow as a separate local process in local mode. To run larger workloads which require resources that might not be available on a laptop \(think GPUs or 100s of GBs of RAM\), Metaflow integrates with Kubernetes as well as AWS Batch to seamlessly run every step of the flow as a \(or many\) separate Kubernetes Pod(s) or AWS Batch job\(s\).
 
 ### Metadata
 
-Metaflow ships with a light-weight [metaflow service](https://github.com/Netflix/metaflow-service) that provides a centralized place to keep track of all flow executions. This metadata service is not strictly needed. Metaflow will use a local directory to keep track of all executions from your laptop, even if you are using Amazon S3 as datastore or AWS Batch for [compute](#compute). You can use a local Jupyter notebook to interact with data artifacts from all your previous executions as well as currently running ones. However, deploying the metaflow service \(as well as Amazon S3 as datastore\) is helpful if you would like to share results with your peers and track your work without fear of losing any state.
+Metaflow ships with a light-weight [metaflow service](https://github.com/Netflix/metaflow-service) that provides a centralized place to keep track of all flow executions. This metadata service is not strictly needed. Metaflow will use a local directory to keep track of all executions from your laptop, even if you are using Amazon S3 as datastore or Kubernetes or AWS Batch for [compute](#compute). You can use a local Jupyter notebook to interact with data artifacts from all your previous executions as well as currently running ones. However, deploying the metaflow service \(as well as Amazon S3 as datastore\) is helpful if you would like to share results with your peers and track your work without fear of losing any state.
 
 At Netflix, all executions are logged in the metaflow service and all data artifacts are stored in Amazon S3, so that any data scientist can interface with anybody's work via the [client](metaflow/client) and collaborate fruitfully. Also, a centralized metaflow service along with a data store like Amazon S3 makes it easy for data scientists at Netflix to use hosted notebooks to easily set-up dashboards to monitors their flows.
 
@@ -46,7 +44,7 @@ We are a [big fan of Notebooks](https://netflixtechblog.com/notebook-innovation-
 
 ### Scheduling
 
-With Metaflow, users can create, prototype and execute flows from their laptops that can scale easily by leveraging elastic storage and compute capabilities in the cloud. Often, there comes a time, when these flows need to be run autonomously without any user intervention. At that point, Metaflow makes it easy to move the flow execution from Metaflow to AWS Step Functions to leverage all the feature sets that you get from a production grade scheduler - high availability, monitoring, reliability, etc. In addition, with AWS EventBridge, users can set triggers to execute these flows on a schedule automatically.
+With Metaflow, users can create, prototype and execute flows from their laptops that can scale easily by leveraging elastic storage and compute capabilities in the cloud. Often, there comes a time, when these flows need to be run autonomously without any user intervention. At that point, Metaflow makes it easy to move the flow execution from Metaflow to Argo Workflows and AWS Step Functions to leverage all the feature sets that you get from a production grade scheduler - high availability, monitoring, reliability, etc. In addition, with Argo Events and AWS EventBridge, users can set triggers to execute these flows on a schedule automatically.
 
 ## Using Metaflow with AWS
 

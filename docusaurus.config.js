@@ -25,14 +25,14 @@ const config = {
           // remarkPlugins: [[remarkCodeHike, { theme }]],
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
-          editUrl: "https://github.dev/Netflix/metaflow-docs/blob/new-docs",
+          editUrl: "https://github.dev/Netflix/metaflow-docs/blob/master",
           routeBasePath: "/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
-        googleAnalytics: {
-          trackingID: "UA-148913719-1",
+        gtag: {
+          trackingID: "G-EYFXNGNGB6",
           anonymizeIP: true,
         },
       }),

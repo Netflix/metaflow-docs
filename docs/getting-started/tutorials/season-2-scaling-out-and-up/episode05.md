@@ -8,7 +8,7 @@ You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/t
 
 **Showcasing:**
 
-- [AWS Batch](../../../metaflow-on-aws) and the [`@batch`](../../../metaflow/scaling#using-aws-batch-selectively-with-batch-decorator) decorator.
+- [AWS Batch](../../../metaflow-on-aws) and the [`@batch`](../../../metaflow/scaling-out-and-up/effortless-scaling-with-aws-batch.md) decorator.
 - Using the [Client API ](../../../metaflow/client)to access data artifacts generated remotely in a local notebook.
 - [`@retry`](../../../metaflow/failures#retrying-tasks-with-retry-decorator)decorator.
 
@@ -26,4 +26,4 @@ You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/t
 3. `jupyter-notebook 05-helloaws/helloaws.ipynb`
 4. Open _**helloaws.ipynb**_ in your remote Sagemaker notebook
 
-<TutorialsLink link="../"/>
+<TutorialsLink link="../../tutorials"/>

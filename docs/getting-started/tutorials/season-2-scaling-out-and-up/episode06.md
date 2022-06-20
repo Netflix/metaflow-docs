@@ -39,4 +39,4 @@ Note for _**Python 2.7**_ users: when opening the _**stats.ipynb**_ in a Sagemak
 
 :::
 
-<TutorialsLink link="../"/>
+<TutorialsLink link="../../tutorials"/>

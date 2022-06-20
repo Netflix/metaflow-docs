@@ -26,4 +26,4 @@ This tutorial requires the _**conda**_ package manager to be installed with the 
 3. `python 04-playlist-plus/playlist.py --environment=conda run`
 4. `python 04-playlist-plus/playlist.py --environment=conda run --hint "Data Science Strikes Back"`
 
-<TutorialsLink link="../"/>
+<TutorialsLink link="../../tutorials"/>

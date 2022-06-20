@@ -105,11 +105,74 @@ print(Step('DebugFlow/2/a').task.data.x)
 
 Here, we print the value of `self.x` in the step `a` of the run `2` of the flow `DebugFlow`.
 
+### Adding, removing, and replacing tags
+
+*New in Metaflow 2.7.1: You need to upgrade your Metaflow library and the metadata service to benefit from this feature.*
+
+Every run has [a set of tags](tagging.md#tagging) attached, that is, user-defined annotations.
+You can add and remove tags as follows:
+
+```python
+from metaflow import Run
+run = Run('HelloFlow/2')
+run.add_tag('one_tag') # add one tag
+run.add_tags(['another_tag', 'yet_another', 'one_tag']) # add many tags
+print(run.user_tags)
+```
+
+This will print `one_tag`, `another_tag`, `yet_another`. Note that `one_tag` is added twice but since
+tags are a set, duplicates are ignored.
+
+Removing works symmetrically:
+```python
+from metaflow import Run
+run = Run('HelloFlow/2')
+run.remove_tag('one_tag') # remove one tag
+run.remove_tags(['another_tag', 'yet_another']) # remove many tags
+```
+
+You can also replace tags with other tags:
+
+```python
+from metaflow import Run
+run = Run('HelloFlow/2')
+run.replace_tag('one_tag', 'better_tag')
+run.replace_tags(['yet_another', 'another_tag'], ['better_tag'])
+```
+
+The replace calls first removes the tags specified as the first argument and then adds the tag(s) in the second argument. Crucially, this is guaranteed to be an *atomic operation*: If another party
+lists the tags while replace is running, they won't see a partial state between remove and adds.
+
+Note you can perform these operations also on the command line using the `tag` command, for instance:
+```
+python helloflow.py tag add --run-id 2 one_tag
+```
+
+#### System tags
+
+In addition to user-defined tags, Metaflow assigns a handful of *system tags* to runs automatically.
+These tags can be used for filtering and organizing runs but they can not be removed or replaced with
+other tags.
+
+You can see the set of system tags assigned to a run like this:
+```python
+from metaflow import Run
+print(Run('HelloFlow/2').system_tags)
+```
+
+Or the union of system tags and user-defined tags like this:
+```python
+from metaflow import Run
+print(Run('HelloFlow/2').tags)
+```
+
 ### Common properties
 
 Every object has the following properties available:
 
-- `tags`: tags assigned to the object
+- `user_tags`: user-defined tags assigned to the object's run
+- `system_tags`: system-defined (immutable) tags assigned to the object's run
+- `tags`: the union of `user_tags` and `system_tags`
 - `created_at`: creation timestamp
 - `parent`: parent object
 - `pathspec`: object fully qualified name

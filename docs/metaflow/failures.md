@@ -45,7 +45,7 @@ It is highly recommended that you use `retry` every time you run your flow on th
 python RetryFlow.py run --with retry
 ```
 
-### How to Prevent Retries[¶](http://manuals.test.netflix.net/view/mli/mkdocs/master/failures/#how-to-prevent-retries)
+### How to Prevent Retries
 
 If retries are such a good idea, why not enable them by default for all steps? First, retries only help with transient errors, like sporadic platform issues. If the input data or your code is broken, retrying will not help anything. Secondly, not all steps can be retried safely.
 

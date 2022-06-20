@@ -28,7 +28,7 @@ Note that reproducibility and dependency management are related but separate top
 Metaflow aims at solving both the questions at once: how can we handle dependencies so that the results are reproducible? Specifically, it addresses the following three issues:
 
 1. How to make external dependencies available locally during development?
-2. How to execute code remotely on AWS Batch with external dependencies?
+2. How to execute code remotely on Kubernetes or AWS Batch with external dependencies?
 3. How to ensure that anyone can reproduce past results even months later?
 
 Metaflow provides an execution environment context, `--environment=conda`, which runs every step in a separate environment that only contains dependencies that are explicitly listed as requirements for that step. The solution relies on [Conda](https://conda.io/docs/), a language-agnostic open-source package manager by the authors of Numpy.
@@ -43,7 +43,7 @@ def fit_model(self):
 
 The above code snippet will execute the `fit_model` step in an automatically created conda environment that contains only specific pinned versions of `Python`, `Pandas`, and `Metaflow`(and its dependencies `boto3`, `click` and `requests`). No unspecified libraries outside of the standard Python library would be available. This isolates your code from any external factors, such as automatically upgrading libraries.
 
-Internally, Metaflow handles automatic dependency resolution, cross-platform support, environment snapshotting and caching in S3 (if enabled). We require that all dependencies are pinned to a specific version. This avoids any ambiguity about the version used and helps make deployments fully immutable; in other words, once you deploy a version in production, nothing will inadvertently change its behavior without explicit action.
+Internally, Metaflow handles automatic dependency resolution, cross-platform support, environment snapshotting and caching in Amazon S3 (if enabled). We require that all dependencies are pinned to a specific version. This avoids any ambiguity about the version used and helps make deployments fully immutable; in other words, once you deploy a version in production, nothing will inadvertently change its behavior without explicit action.
 
 ### Local Execution
 
@@ -165,21 +165,29 @@ $ python LinearFlow.py --environment=conda run
 
 You will notice that bootstrapping takes a little bit longer than before as we pull in the new set of dependencies (`scikit-learn` `0.21.1` and its dependencies) and the flow succeeds. `scikit-learn 0.21.1` is only available to the step `start` and no other step.
 
-Every subsequent execution of your flow is guaranteed to execute in the same environment unless you explicitly make a change to the contrary. Behind the scenes, we resolve the dependencies you have specified in your steps and cache both the resolution order and dependencies (stated and transitive) locally and on S3 to be used for subsequent executions. We do this to isolate your code from changes not related to your code. This also allows for isolation between runs, you should be able to use a different version of tensorflow for different flows and even across different steps of the same flow if that suits your use-case.
+Every subsequent execution of your flow is guaranteed to execute in the same environment unless you explicitly make a change to the contrary. Behind the scenes, we resolve the dependencies you have specified in your steps and cache both the resolution order and dependencies (stated and transitive) locally and on Amazon S3 to be used for subsequent executions. We do this to isolate your code from changes not related to your code. This also allows for isolation between runs, you should be able to use a different version of tensorflow for different flows and even across different steps of the same flow if that suits your use-case.
 
 ### Remote Execution
 
-You can execute your flow on AWS Batch, like before -
+You can execute your flow on Kubernetes or AWS Batch, like before -
+
+```bash
+$ python LinearFlow.py --environment=conda run --with kubernetes
+```
 
 ```bash
 $ python LinearFlow.py --environment=conda run --with batch
 ```
 
-Since we cache the exact set of dependencies (stated and transitive) for your flow in S3, you are not at the mercy of an upstream package repository and can avoid overwhelming it, particularly while running multiple parallel tasks, while being guaranteed the same execution environment locally and on AWS Batch.
+Since we cache the exact set of dependencies (stated and transitive) for your flow in Amazon S3, you are not at the mercy of an upstream package repository and can avoid overwhelming it, particularly while running multiple parallel tasks, while being guaranteed the same execution environment locally, on Kubernetes and on AWS Batch.
 
-Note that, the exact set of dependencies and their behavior might differ between an execution on MacOS (darwin) and on AWS Batch (linux).
+Note that, the exact set of dependencies and their behavior might differ between an execution on MacOS (darwin) and on Kubernetes/AWS Batch (linux).
 
 ### `@conda` Tips and Tricks
+
+#### Can I use an alternate dependency manager, given that conda can be slow at resolving dependencies?
+
+By default, Metaflow relies on conda for dependency resolution but for many data science packages, conda can be quite slow for [a variety of different reasons](https://docs.conda.io/projects/conda/en/latest/user-guide/concepts/conda-performance.html#conda-performance). [Mamba](https://mamba.readthedocs.io/en/latest/) is another cross-platform package manager that is fully compatible with conda packages and [offers better performance and reliability compared to conda](https://stackoverflow.com/a/68043228/6510628). You can use mamba instead of conda by setting the environment variable `METAFLOW_CONDA_DEPENDENCY_RESOLVER=mamba` either in your execution environment or inside your metaflow config (usually located at `~/.metaflowconfig/`).
 
 #### How do I specify the version of Python interpreter?
 

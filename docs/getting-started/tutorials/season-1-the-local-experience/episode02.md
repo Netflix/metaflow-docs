@@ -25,4 +25,4 @@ You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/t
 3. `python 02-statistics/stats.py run`
 4. `jupyter-notebook 02-statistics/stats.ipynb`
 
-<TutorialsLink link="../"/>
+<TutorialsLink link="../../tutorials"/>

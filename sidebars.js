@@ -100,7 +100,18 @@ const sidebars = {
           ],
         },
         "metaflow/debugging",
-        "metaflow/scaling",
+        {
+          type: "category",
+          label: "Scaling Out and Up",
+          link: {
+            type: "doc",
+            id: "metaflow/scaling-out-and-up/README",
+          },
+          items: [
+            "metaflow/scaling-out-and-up/effortless-scaling-with-kubernetes",
+            "metaflow/scaling-out-and-up/effortless-scaling-with-aws-batch",
+          ],
+        },
         "metaflow/data",
         "metaflow/dependencies",
         "metaflow/failures",
@@ -111,7 +122,18 @@ const sidebars = {
       type: "category",
       label: "Going to Production with Metaflow",
       items: [
-        "going-to-production-with-metaflow/scheduling-metaflow-flows",
+        {
+          type: "category",
+          label: "Scheduling Metaflow Flows",
+          link: {
+            type: "doc",
+            id: "going-to-production-with-metaflow/scheduling-metaflow-flows/README",
+          },
+          items: [
+            "going-to-production-with-metaflow/scheduling-metaflow-flows/scheduling-with-argo-workflows",
+            "going-to-production-with-metaflow/scheduling-metaflow-flows/scheduling-with-aws-step-functions",
+          ],
+        },
         "going-to-production-with-metaflow/coordinating-larger-metaflow-projects",
       ],
     },

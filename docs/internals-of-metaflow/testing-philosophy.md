@@ -76,9 +76,9 @@ You can take a look at the existing graphs in the `graphs` directory to get an i
 
 ### **Checkers**
 
-Currently the test harness exercises two types of user interfaces: The command line interface, defined in `cli_check.py`, and the Python API, defined in `mli_check.py`.
+Currently, the test harness exercises two types of user interfaces: The command-line interface, defined in `cli_check.py`, and the Python API, defined in `mli_check.py`.
 
-Currently you can use these checkers to assert values of data artifacts or log output. If you want to add test for new type of functionality in the CLI and/or the Python API, you should add a new method in the `MetaflowCheck` base class and corresponding implementations in `mli_check.py` and `cli_check.py`. If certain functionality is only available in one of the interfaces, you can provide a stub implementation returning `True` in the other checker class.
+Currently, you can use these checkers to assert values of data artifacts or log output. If you want to add tests for new types of functionality in the CLI and/or the Python API, you should add a new method in the `MetaflowCheck` base class and corresponding implementations in `mli_check.py` and `cli_check.py`. If certain functionality is only available in one of the interfaces, you can provide a stub implementation returning `True` in the other checker class.
 
 ## Usage
 
@@ -107,4 +107,3 @@ This chooses a single context, a single graph, and a single test. If you are dev
 The test harness uses the `coverage` package in Python to produce a test coverage report. By default, you can find a comprehensive test coverage report in the `coverage` directory after the test harness has finished.
 
 After you have developed a new feature in Metaflow, use the line-by-line coverage report to confirm that all lines related the new feature are touched by the tests.
-
