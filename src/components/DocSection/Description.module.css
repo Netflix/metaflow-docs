@@ -1,5 +1,10 @@
 .description {
     color: inherit;
+    margin-top:  1rem;
+    margin-bottom:  2rem;
+}
+.description p{
+    margin-bottom:  1rem;
 }
 
 .wrapper {

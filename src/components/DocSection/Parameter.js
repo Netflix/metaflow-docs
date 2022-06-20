@@ -6,15 +6,13 @@ export const Parameter = ({ name, type, desc }) => {
   return (
     <div className={styles.parameter}>
       <div className={styles.parameterName}>
-        <strong>
           <Markdown
             md={
-              (name ? name : "") +
+              (name ? "**" + name + "**" : "") +
                 (name && type ? ": " : "") +
-                (type ? type : "") ?? ""
+                (type ? "*" + type + "*" : "") ?? ""
             }
           />
-        </strong>
       </div>
       <div className={styles.parameterContent}>
         <Markdown className={styles.content} md={desc} />

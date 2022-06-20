@@ -1,9 +1,10 @@
-.content p {
-  margin: 0;
+.content{
+
 }
 
 .docSection {
   color: inherit;
+  margin-bottom: 2rem;
 }
 
 .titlebox {
@@ -23,7 +24,6 @@
 }
 
 .content {
-  padding: 2rem;
 }
 
 .name {
@@ -40,7 +40,8 @@
 }
 
 .module {
-  margin: 1rem 0 0 0;
+  font-size:  80%;
+  margin: 0 0 0 0;
   color: var(--ifm-color-secondary-darkest);
 }
 

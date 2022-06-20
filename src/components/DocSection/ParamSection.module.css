@@ -1,12 +1,14 @@
 .wrapper {
   display: flex;
-  margin-top: 1rem;
+  margin-left:  4rem;
 }
 
 .paramSectionName {
-  color: inherit
+  font-size: 80%;
+  color: var(--ifm-menu-color);
 }
 
 .paramSectionChildren {
-  color: inherit
+  color: inherit;
+  margin-left:  2rem;
 }
