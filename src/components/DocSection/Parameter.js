@@ -4,8 +4,8 @@ import Markdown from "./Markdown";
 
 export const Parameter = ({ name, type, desc }) => {
   return (
-    <div>
-      <div>
+    <div className={styles.parameter}>
+      <div className={styles.parameterName}>
         <strong>
           <Markdown
             md={
@@ -16,7 +16,7 @@ export const Parameter = ({ name, type, desc }) => {
           />
         </strong>
       </div>
-      <div>
+      <div className={styles.parameterContent}>
         <Markdown className={styles.content} md={desc} />
       </div>
     </div>

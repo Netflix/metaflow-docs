@@ -1,3 +1,15 @@
 .content {
   padding-left: 2rem;
 }
+
+.parameter {
+  color:inherit;
+}
+
+.parameterContent {
+  color:inherit;
+}
+
+.parameterName {
+  color:inherit;
+}

@@ -9,7 +9,7 @@ export const Raise = ({ line }) => {
       <span className={styles.type}>{parts[1]}</span>
     </div>
   ) : (
-    <div class={styles.text}>{parts[0]}</div>
+    <div className={styles.text}>{parts[0]}</div>
   );
 };
 
