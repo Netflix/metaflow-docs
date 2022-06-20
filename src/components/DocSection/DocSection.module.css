@@ -2,6 +2,10 @@
   margin: 0;
 }
 
+.docSection {
+  color: inherit;
+}
+
 .titlebox {
   background: var(--ifm-color-emphasis-200);
   width: 100%;

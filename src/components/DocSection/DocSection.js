@@ -14,7 +14,7 @@ export const DocSection = ({
 }) => {
   const displayName = (type === "decorator" ? "@" : "") + name;
   return (
-    <div>
+    <div className={styles.docSection}>
       <a className={styles.target} id={displayName} />
       <div className={styles.titlebox}>
         <Name heading_level={heading_level}>

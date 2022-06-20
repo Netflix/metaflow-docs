@@ -24,3 +24,7 @@
 .text {
   margin-bottom: 8px;
 }
+
+.typeDescription {
+  color: inherit;
+}

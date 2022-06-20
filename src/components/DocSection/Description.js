@@ -4,7 +4,7 @@ import Markdown from "./Markdown";
 
 export const Description = ({ summary, extended_summary }) => {
   return (
-    <div>
+    <div className={styles.description}>
       <Markdown
         md={summary + "\\n\\n" + (extended_summary ?? "")}
         className={styles.wrapper}
