@@ -28,7 +28,18 @@ body {
   --ifm-font-family-base: "Roboto Slab Regular", Helvetica, Arial, sans-serif;
   --ifm-font-size-base:  90%;
   --ifm-heading-font-weight:  var(--ifm-font-weight-normal);
-  --ifm-menu-link-sublist-icon:  none;
+}
+
+.menu__link--sublist:after {
+  background: var(--ifm-menu-link-sublist-icon) 20% / 2rem 1.2rem;
+}
+
+.menu__caret:before {
+  background: var(--ifm-menu-link-sublist-icon) 50% / 2rem 1.2rem;
+}
+
+.theme-back-to-top-button{
+  visibility: hidden;
 }
 
 .navbar--primary {
