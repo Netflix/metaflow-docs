@@ -12,13 +12,21 @@ export const DocSection = ({
   baseUrl = BASE_URL,
   type,
 }) => {
-  const displayName = (type === "decorator" ? "@" : "") + name;
+  const decoratedName = (type === "decorator" ? "@" : "") + name;
+  // Divide name by a "." and highlight the second half
+  const [displayName, highlightedName] = decoratedName.split(".");
+
   return (
     <div className={styles.docSection}>
       <a className={styles.target} id={displayName} />
       <div className={styles.titlebox}>
         <Name heading_level={heading_level}>
           <span className={styles.name}>{displayName}</span>
+          {highlightedName ? (
+            <>
+              .<span className={styles.highlightedName}>{highlightedName}</span>
+            </>
+          ) : null}
           {children.length
             ? children.filter(
                 (child) => child.props.mdxType === "SigArgSection"
