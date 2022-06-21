@@ -3,7 +3,7 @@ import React from "react";
 export const SigArgSection = ({ children }) => {
   if (Array.isArray(children)) {
     return (
-      <strong>
+      <span>
         (
         {children.map((c, index) => (
           <span key={index}>
@@ -12,10 +12,10 @@ export const SigArgSection = ({ children }) => {
           </span>
         ))}
         )
-      </strong>
+      </span>
     );
   } else {
-    return <strong>({children})</strong>;
+    return <span>({children})</span>;
   }
 };
 
