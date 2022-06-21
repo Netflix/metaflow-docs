@@ -5,8 +5,8 @@
  */
 
 @font-face {
-  font-family: "Roboto Slab Regular";
-  src: url("/static/fonts/RobotoSlab-Regular.ttf") format("truetype");
+  font-family: "OpenSans Regular";
+  src: url("/static/fonts/OpenSans-Regular.ttf") format("truetype");
 }
 
 html,
@@ -15,22 +15,33 @@ body {
   text-rendering: optimizelegibility;
 }
 
+
+
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #146ee6;
+  --ifm-color-primary: #2874da; /* #146ee6; */
   --ifm-menu-color: #333333;
   --ifm-font-color-base: rgba(59, 69, 78, 1);
-  --ifm-navbar-background-color: rgba(24, 28, 31, 1);
-  --ifm-navbar-link-color: rgb(200, 200, 200);
-  --ifm-navbar-height: 5rem;
+  --ifm-navbar-background-color:  white;
+  --ifm-navbar-link-color: #333;
+  --ifm-navbar-height: 3.8rem;
   --ifm-font-family-base: "Roboto Slab Regular", Helvetica, Arial, sans-serif;
+  --ifm-font-size-base:  90%;
+  --ifm-heading-font-weight:  var(--ifm-font-weight-normal);
+  --ifm-menu-link-sublist-icon:  none;
+}
+
+.navbar--primary {
+    --ifm-navbar-background-color: white; 
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 html[data-theme="dark"] {
-  --ifm-color-primary: #00bbce;
+  --ifm-color-primary: #92c1ff;
   --ifm-menu-color: #e6e6e6;
   --ifm-font-color-base: #e6e6e6;
+  --ifm-navbar-background-color: rgba(24, 28, 31, 1); 
+  --ifm-navbar-link-color: #aaa;
 }
 
 @media screen and (min-width: 1440px) {
@@ -73,7 +84,7 @@ html[data-theme="dark"] .docusaurus-highlight-code-line {
 }
 
 html[data-theme="light"] aside {
-  background: rgb(245, 247, 249);
+  background: white;
 }
 
 p > img {
