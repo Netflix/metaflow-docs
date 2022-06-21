@@ -8,11 +8,10 @@ slug: /
 
 import Description from "/src/components/Description";
 
-# Welcome to Metaflow for Python
+# Welcome to Metaflow
 
-<Description>Build and manage real-life data science projects with ease.</Description>
+Metaflow makes it easy to build and manage real-life data science projects.
 
----
 
 ## Introduction
 
@@ -50,6 +49,10 @@ import Description from "/src/components/Description";
 
 - [Scheduling Metaflow Flows](going-to-production-with-metaflow/scheduling-metaflow-flows/) - _**new!**_
 - [Coordinating Larger Metaflow Projects](going-to-production-with-metaflow/coordinating-larger-metaflow-projects)
+
+## API Reference
+
+- [Directory of all Metaflow APIs](api/) - _**new!**_
 
 ## Internals of Metaflow
 
