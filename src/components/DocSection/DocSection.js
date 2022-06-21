@@ -61,7 +61,7 @@ const Name = ({ children, heading_level, name }) => {
     case 3:
       return <h3 id={anchorId}>{children}</h3>;
     case 4:
-      return <h4>{children}</h4>;
+      return <h4 id={anchorId}>{children}</h4>;
     case 5:
       return <h5>{children}</h5>;
     case 6:
