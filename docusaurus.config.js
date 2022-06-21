@@ -40,6 +40,7 @@ const config = {
   ],
 
   themeConfig:
+
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       image: "img/Metaflow_Logo_Vertical_FullColor_Ribbon_Dark_RGB.png",
@@ -47,9 +48,9 @@ const config = {
         logo: {
           alt: "Metaflow Logo",
           srcDark: "img/Metaflow_Logo_Horizontal_OneColor_White_RGB.svg",
-          src: "img/Metaflow_Logo_Horizontal_OneColor_White_RGB.svg",
+          src: "img/Metaflow_Logo_Horizontal_OneColor_DarkBlue_RGB.svg",
           href: "/",
-          height: "64px",
+          height: 30,
         },
         items: [
           {
@@ -70,9 +71,8 @@ const config = {
             label: "Admin Docs",
           },
         ],
-        hideOnScroll: false,
+        hideOnScroll: true,
       },
-
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,

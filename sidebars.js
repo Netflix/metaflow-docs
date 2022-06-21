@@ -139,25 +139,36 @@ const sidebars = {
     },
     {
       type: "category",
+      label: "API Reference",
+      link: {
+        type: "doc",
+        id: "api/README",
+      },
+      items: [
+        "api/client",
+        "api/flowspec",
+        "api/current",
+        "api/S3",
+        "api/cards",
+        {
+          type: "category",
+          label: "Decorators",
+          link: {
+            type: "doc",
+            id: "api/decorators/README"
+          },
+          items: ["api/decorators/batch"]
+        },
+      ],
+    },
+    {
+      type: "category",
       label: "Internals of Metaflow",
       items: [
         "internals-of-metaflow/technical-overview",
         "internals-of-metaflow/testing-philosophy",
       ],
-    },
-    {
-      type: "category",
-      label: "API Reference",
-      items: [
-        {
-          type: "category",
-          label: "Constructing Flows",
-          items: ["api-ref/constructing-flows/basic",
-                  "api-ref/constructing-flows/decorators",]
-        },
-        "api-ref/client",
-      ],
-    },
+    }
   ],
 
   r: [
