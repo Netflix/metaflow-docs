@@ -1,27 +1,19 @@
-.wrapper {
-  display: flex;
-  flex-direction: row;
-}
-
-.caret_wrapper {
-  width: calc(2 * var(--ifm-global-spacing));
-  padding: var(--ifm-global-spacing) 0;
-}
-
-.caret_wrapper button {
-  border: none;
-  background: transparent;
-  font-size: 110%;
-  color: var(--ifm-color-secondary-darkest);
+.content {
 }
 
 .parameter {
-  border-top: 1px solid var(--ifm-color-emphasis-300);
-  padding: var(--ifm-global-spacing) 0;
-  flex-grow: 1;
+  color:inherit;
 }
 
-.type {
-  color: var(--ifm-color-secondary-darkest);
-  font-size: 80%;
+.parameterContent {
+  color:inherit;
+  margin-bottom:  1rem;
+}
+
+p {
+  margin:  0;
+}
+
+.parameterName {
+  color: inherit;
 }

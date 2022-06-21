@@ -1,15 +1,50 @@
-.expand_button {
-  border: none;
-  background: transparent;
+.content{
+  padding-left: 4rem;
+}
+
+.docSection {
+  color: inherit;
+  margin-bottom: 2rem;
+}
+
+.titlebox {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.titlebox .source {
+  text-align: right;
+  right: 0;
+  top: 0;
+  margin-left: auto;
+  font-size: 80%;
+}
+
+.content {
+}
+
+.name {
+  color: var(--ifm-color-emphasis-800);
+}
+
+.titlebox h1,
+.titlebox h2,
+.titlebox h3,
+.titlebox h4,
+.titlebox h5,
+.titlebox h6 {
+  margin: 0;
+}
+
+.module {
+  font-size:  80%;
+  margin: 0 0 0 0;
   color: var(--ifm-color-secondary-darkest);
-  font-size: 40%;
 }
 
-.link {
-  font-size: 50%;
-  text-decoration: none;
-}
-
-.link:hover {
-  text-decoration: none;
+.target {
+  display: block;
+  transform: translateY(calc(-1 * var(--ifm-navbar-height)));
 }
