@@ -12,7 +12,9 @@ export const DocSection = ({
   baseUrl = BASE_URL,
   type,
 }) => {
-  const displayName = (type === "decorator" ? "@" : "") + name;
+  const decoratedName = (type === "decorator" ? "@" : "") + name;
+  // Divide name by a "." and highlight the second half
+  const [displayName, highlightedName] = decoratedName.split(".");
 
   return (
     <div className={styles.docSection}>
@@ -20,6 +22,11 @@ export const DocSection = ({
       <div className={styles.titlebox}>
         <Name heading_level={heading_level} name={name}>
           <span className={styles.name}>{displayName}</span>
+          {highlightedName ? (
+            <>
+              .<span className={styles.highlightedName}>{highlightedName}</span>
+            </>
+          ) : null}
           {children.length
             ? children.filter(
                 (child) => child.props.mdxType === "SigArgSection"
@@ -34,16 +41,14 @@ export const DocSection = ({
         from {module} import {name}
       </p>
       <div className={styles.content}>
-        {children.length
-          ? children.filter((child) => child.props.mdxType === "Description")
-          : null}
-        {children.length
-          ? children.filter(
-              (child) =>
-                child.props.mdxType !== "Description" &&
-                child.props.mdxType !== "SigArgSection"
-            )
-          : null}
+        {React.Children.toArray(children).filter(
+          (child) => child.props.mdxType === "Description"
+        )}
+        {React.Children.toArray(children).filter(
+          (child) =>
+            child.props.mdxType !== "Description" &&
+            child.props.mdxType !== "SigArgSection"
+        )}
       </div>
     </div>
   );
