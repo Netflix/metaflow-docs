@@ -20,7 +20,7 @@ export const DocSection = ({
     <div className={styles.docSection}>
       <a className={styles.target} id={displayName} />
       <div className={styles.titlebox}>
-        <Name heading_level={heading_level}>
+        <Name heading_level={heading_level} name={name}>
           <span className={styles.name}>{displayName}</span>
           {highlightedName ? (
             <>
@@ -54,16 +54,19 @@ export const DocSection = ({
   );
 };
 
-const Name = ({ children, heading_level }) => {
+const Name = ({ children, heading_level, name }) => {
+  // Ensure there are no spaces in the id
+  const anchorId = name.replace(/\s/, "_");
+
   switch (parseInt(heading_level, 10)) {
     case 1:
-      return <h1>{children}</h1>;
+      return <h1 id={anchorId}>{children}</h1>;
     case 2:
-      return <h2>{children}</h2>;
+      return <h2 id={anchorId}>{children}</h2>;
     case 3:
-      return <h3>{children}</h3>;
+      return <h3 id={anchorId}>{children}</h3>;
     case 4:
-      return <h4>{children}</h4>;
+      return <h4 id={anchorId}>{children}</h4>;
     case 5:
       return <h5>{children}</h5>;
     case 6:
