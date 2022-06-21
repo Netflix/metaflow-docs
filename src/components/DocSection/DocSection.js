@@ -11,6 +11,7 @@ export const DocSection = ({
   heading_level = 3,
   baseUrl = BASE_URL,
   type,
+  show_import = true, // Set to "False" to hide imports
 }) => {
   const displayName = (type === "decorator" ? "@" : "") + name;
   return (
@@ -29,9 +30,11 @@ export const DocSection = ({
           [source]
         </a>
       </div>
-      <p className={styles.module}>
-        from {module} import {name}
-      </p>
+      {show_import !== "False" ? (
+        <p className={styles.module}>
+          from {module} import {name}
+        </p>
+      ) : null}
       <div className={styles.content}>
         {children.length
           ? children.filter((child) => child.props.mdxType === "Description")
