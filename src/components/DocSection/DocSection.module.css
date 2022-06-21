@@ -30,7 +30,7 @@
 }
 
 .highlightedName {
-  color: var(--ifm-color-primary);
+  color: var(--ifm-code-name-highlight);
 }
 
 .titlebox h1,

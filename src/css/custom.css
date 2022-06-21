@@ -24,6 +24,7 @@ body {
   --ifm-navbar-link-color: rgb(200, 200, 200);
   --ifm-navbar-height: 5rem;
   --ifm-font-family-base: "Roboto Slab Regular", Helvetica, Arial, sans-serif;
+  --ifm-code-name-highlight: #84488D;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -31,6 +32,7 @@ html[data-theme="dark"] {
   --ifm-color-primary: #00bbce;
   --ifm-menu-color: #e6e6e6;
   --ifm-font-color-base: #e6e6e6;
+  --ifm-code-name-highlight: #A972B1;
 }
 
 @media screen and (min-width: 1440px) {
