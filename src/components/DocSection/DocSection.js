@@ -41,16 +41,14 @@ export const DocSection = ({
         from {module} import {name}
       </p>
       <div className={styles.content}>
-        {children.length
-          ? children.filter((child) => child.props.mdxType === "Description")
-          : null}
-        {children.length
-          ? children.filter(
-              (child) =>
-                child.props.mdxType !== "Description" &&
-                child.props.mdxType !== "SigArgSection"
-            )
-          : null}
+        {React.Children.toArray(children).filter(
+          (child) => child.props.mdxType === "Description"
+        )}
+        {React.Children.toArray(children).filter(
+          (child) =>
+            child.props.mdxType !== "Description" &&
+            child.props.mdxType !== "SigArgSection"
+        )}
       </div>
     </div>
   );
