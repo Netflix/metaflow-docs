@@ -23,4 +23,3 @@ Support in-memory processing of large data sets \([Github issue\)](https://githu
 ## **MetaflowBot**
 
 A Slack bot for Metaflow. Use it to ask questions about past runs \([Github issue](https://github.com/Netflix/metaflow/issues/5)\)
-
