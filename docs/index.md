@@ -6,12 +6,11 @@ pagination_prev:
 slug: /
 ---
 
-import Description from "/src/components/Description";
-
 # Welcome to Metaflow
 
 Metaflow makes it easy to build and manage real-life data science projects.
 
+<div className="tocList">
 
 ## Introduction
 
@@ -58,3 +57,5 @@ Metaflow makes it easy to build and manage real-life data science projects.
 
 - [Technical Overview](internals-of-metaflow/technical-overview)
 - [Testing Philosophy](internals-of-metaflow/testing-philosophy)
+
+</div>

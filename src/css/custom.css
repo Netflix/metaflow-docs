@@ -19,10 +19,14 @@ body {
   font-weight: var(--ifm-font-weight-normal);
  }
 
+.tocList{
+    --ifm-list-item-margin: 0.5rem;
+    --ifm-heading-margin-top: 2rem;
+}
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-list-item-margin: 0.8rem;
+
   --ifm-color-primary: #2874da; /* #146ee6; */
   --ifm-menu-color: #525151;
   --ifm-font-color-base: rgba(30, 32, 34, 1);
