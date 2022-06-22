@@ -48,7 +48,7 @@ Annotate methods that are a part of your Metaflow workflow with [the `@step` dec
 Use the operations below, `FlowSpec.input`, `FlowSpec.index`, and `FlowSpec.foreach_stack` to query the status of the currently executing foreach branch. Use `FlowSpec.merge_artifacts()` to handle incoming artifacts in a join step.
 
 
-<DocSection type="property" name="input" module="metaflow.flowspec" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/">
+<DocSection type="property" name="FlowSpec.input" module="metaflow.flowspec" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/">
 
 <Description summary="The value of the foreach artifact in this foreach branch.\n\nIn a foreach step, multiple instances of this step (tasks) will be executed,\none for each element in the foreach. This property returns the element passed\nto the current task. If this is not a foreach step, this returns None.\n\nIf you need to know the values of the parent tasks in a nested foreach, use\n`FlowSpec.foreach_stack`.\n" />
 <ParamSection name="Returns">
@@ -58,7 +58,7 @@ Use the operations below, `FlowSpec.input`, `FlowSpec.index`, and `FlowSpec.fore
 
 
 
-<DocSection type="property" name="index" module="metaflow.flowspec" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/">
+<DocSection type="property" name="FlowSpec.index" module="metaflow.flowspec" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/">
 
 <Description summary="The index of this foreach branch.\n\nIn a foreach step, multiple instances of this step (tasks) will be executed,\none for each element in the foreach. This property returns the zero based index\nof the current task. If this is not a foreach step, this returns None.\n\nIf you need to know the indices of the parent tasks in a nested foreach, use\n`FlowSpec.foreach_stack`.\n" />
 <ParamSection name="Returns">
