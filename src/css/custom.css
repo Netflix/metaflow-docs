@@ -13,6 +13,8 @@ html,
 body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizelegibility;
+  scroll-padding-top: var(--ifm-navbar-height);
+
 }
 
 .menu {
