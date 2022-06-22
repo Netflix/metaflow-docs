@@ -17,14 +17,14 @@ body {
 
 .menu {
   font-weight: var(--ifm-font-weight-normal);
-}
+ }
 
 
 /* You can override the default Infima variables here. */
 :root {
   --ifm-list-item-margin: 0.8rem;
   --ifm-color-primary: #2874da; /* #146ee6; */
-  --ifm-menu-color: #333333;
+  --ifm-menu-color: #525151;
   --ifm-font-color-base: rgba(30, 32, 34, 1);
   --ifm-navbar-background-color:  white;
   --ifm-navbar-link-color: #333;
@@ -80,9 +80,6 @@ html[data-theme="dark"] {
   }
 }
 
-.menu {
-  font-size: 0.875rem;
-}
 
 .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.1);
