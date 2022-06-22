@@ -50,38 +50,20 @@ Use the operations below, `FlowSpec.input`, `FlowSpec.index`, and `FlowSpec.fore
 
 <DocSection type="property" name="input" module="metaflow.flowspec" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/">
 
-<Description summary="The value of the foreach artifact in this foreach branch.
-
-In a foreach step, multiple instances of this step (tasks) will be executed,
-one for each element in the foreach. This property returns the element passed
-to the current task. If this is not a foreach step, this returns None.
-
-If you need to know the values of the parent tasks in a nested foreach, use
-FlowSpec.foreach_stack.
-
-Returns
--------
-object
-    Input passed to the foreach task." />
+<Description summary="The value of the foreach artifact in this foreach branch.\n\nIn a foreach step, multiple instances of this step (tasks) will be executed,\none for each element in the foreach. This property returns the element passed\nto the current task. If this is not a foreach step, this returns None.\n\nIf you need to know the values of the parent tasks in a nested foreach, use\n`FlowSpec.foreach_stack`.\n" />
+<ParamSection name="Returns">
+<Parameter type="object" desc="Input passed to the foreach task." />
+</ParamSection>
 </DocSection>
 
 
 
 <DocSection type="property" name="index" module="metaflow.flowspec" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/">
 
-<Description summary="The index of this foreach branch.
-
-In a foreach step, multiple instances of this step (tasks) will be executed,
-one for each element in the foreach. This property returns the zero based index
-of the current task. If this is not a foreach step, this returns None.
-
-If you need to know the indices of the parent tasks in a nested foreach, use
-FlowSpec.foreach_stack.
-
-Returns
--------
-int
-    Index of the task in a foreach step." />
+<Description summary="The index of this foreach branch.\n\nIn a foreach step, multiple instances of this step (tasks) will be executed,\none for each element in the foreach. This property returns the zero based index\nof the current task. If this is not a foreach step, this returns None.\n\nIf you need to know the indices of the parent tasks in a nested foreach, use\n`FlowSpec.foreach_stack`.\n" />
+<ParamSection name="Returns">
+<Parameter type="int" desc="Index of the task in a foreach step." />
+</ParamSection>
 </DocSection>
 
 
