@@ -17,6 +17,7 @@ body {
 
 .menu {
   font-weight: var(--ifm-font-weight-normal);
+  font-size:  95%;
  }
 
 .tocList{
