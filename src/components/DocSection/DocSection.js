@@ -14,7 +14,9 @@ export const DocSection = ({
 }) => {
   const decoratedName = (type === "decorator" ? "@" : "") + name;
   // Divide name by a "." and highlight the second half
-  const [displayName, highlightedName] = decoratedName.split(".");
+  const lastDotIndex = decoratedName.lastIndexOf(".");
+  const highlightedName = decoratedName.substring(lastDotIndex + 1);
+  const displayName = decoratedName.substring(0, lastDotIndex + 1);
 
   return (
     <div className={styles.docSection}>
@@ -23,9 +25,7 @@ export const DocSection = ({
         <Name heading_level={heading_level} name={name}>
           <span className={styles.name}>{displayName}</span>
           {highlightedName ? (
-            <>
-              .<span className={styles.highlightedName}>{highlightedName}</span>
-            </>
+            <span className={styles.highlightedName}>{highlightedName}</span>
           ) : null}
           {children.length
             ? children.filter(
