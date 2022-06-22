@@ -26,6 +26,7 @@ body {
   --ifm-navbar-link-color: #333;
   --ifm-navbar-height: 3.8rem;
   --ifm-font-family-base: "Roboto Slab Regular", Helvetica, Arial, sans-serif;
+  --ifm-code-name-highlight: #84488D;
   --ifm-font-size-base:  90%;
   --ifm-heading-font-weight:  var(--ifm-font-weight-normal);
 }
@@ -53,6 +54,7 @@ html[data-theme="dark"] {
   --ifm-font-color-base: #e6e6e6;
   --ifm-navbar-background-color: rgba(24, 28, 31, 1); 
   --ifm-navbar-link-color: #aaa;
+  --ifm-code-name-highlight: #A972B1;
 }
 
 @media screen and (min-width: 1440px) {

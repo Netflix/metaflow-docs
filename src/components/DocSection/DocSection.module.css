@@ -29,6 +29,10 @@
   color: var(--ifm-color-emphasis-800);
 }
 
+.highlightedName {
+  color: var(--ifm-code-name-highlight);
+}
+
 .titlebox h1,
 .titlebox h2,
 .titlebox h3,

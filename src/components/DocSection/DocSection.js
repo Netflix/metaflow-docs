@@ -13,7 +13,9 @@ export const DocSection = ({
   type,
   show_import = true, // Set to "False" to hide imports
 }) => {
-  const displayName = (type === "decorator" ? "@" : "") + name;
+  const decoratedName = (type === "decorator" ? "@" : "") + name;
+  // Divide name by a "." and highlight the second half
+  const [displayName, highlightedName] = decoratedName.split(".");
 
   return (
     <div className={styles.docSection}>
@@ -21,6 +23,11 @@ export const DocSection = ({
       <div className={styles.titlebox}>
         <Name heading_level={heading_level} name={name}>
           <span className={styles.name}>{displayName}</span>
+          {highlightedName ? (
+            <>
+              .<span className={styles.highlightedName}>{highlightedName}</span>
+            </>
+          ) : null}
           {children.length
             ? children.filter(
                 (child) => child.props.mdxType === "SigArgSection"
@@ -37,16 +44,14 @@ export const DocSection = ({
         </p>
       ) : null}
       <div className={styles.content}>
-        {children.length
-          ? children.filter((child) => child.props.mdxType === "Description")
-          : null}
-        {children.length
-          ? children.filter(
-              (child) =>
-                child.props.mdxType !== "Description" &&
-                child.props.mdxType !== "SigArgSection"
-            )
-          : null}
+        {React.Children.toArray(children).filter(
+          (child) => child.props.mdxType === "Description"
+        )}
+        {React.Children.toArray(children).filter(
+          (child) =>
+            child.props.mdxType !== "Description" &&
+            child.props.mdxType !== "SigArgSection"
+        )}
       </div>
     </div>
   );
@@ -64,7 +69,7 @@ const Name = ({ children, heading_level, name }) => {
     case 3:
       return <h3 id={anchorId}>{children}</h3>;
     case 4:
-      return <h4>{children}</h4>;
+      return <h4 id={anchorId}>{children}</h4>;
     case 5:
       return <h5>{children}</h5>;
     case 6:
