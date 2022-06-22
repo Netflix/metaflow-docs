@@ -34,7 +34,7 @@ export const DocSection = ({
               )
             : null}
         </Name>
-        <a className={styles.source} href={baseUrl + link}>
+        <a className={styles.source} href={link}>
           [source]
         </a>
       </div>
