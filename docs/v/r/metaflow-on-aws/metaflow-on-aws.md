@@ -64,4 +64,4 @@ If your organization doesn't have an AWS account already, we provide a hosted sa
 
 If your organization has an AWS account already, see our [deployment guide](https://outerbounds.com/docs/admin/metaflow-on-aws/deployment-guide) for detailed instructions on how to configure your account for Metaflow.
 
-If you are already using Metaflow in your AWS account, and want to get started with how to manage various AWS resources, take a look at our [operations guide](https://outerbounds.com/docs/admin/metaflow-on-aws/operations-guide).
+If you are already using Metaflow in your AWS account, and want to get started with how to manage various AWS resources, take a look at our [operations guide](https://outerbounds.com/docs/migration#).
