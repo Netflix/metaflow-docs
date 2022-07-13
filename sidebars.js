@@ -145,19 +145,19 @@ const sidebars = {
         "internals-of-metaflow/testing-philosophy",
       ],
     },
-    {
-      type: "category",
-      label: "API Reference",
-      items: [
-        {
-          type: "category",
-          label: "Constructing Flows",
-          items: ["api-ref/constructing-flows/basic",
-                  "api-ref/constructing-flows/decorators",]
-        },
-        "api-ref/client",
-      ],
-    },
+    // {
+    //   type: "category",
+    //   label: "API Reference",
+    //   items: [
+    //     {
+    //       type: "category",
+    //       label: "Constructing Flows",
+    //       items: ["api-ref/constructing-flows/basic",
+    //               "api-ref/constructing-flows/decorators",]
+    //     },
+    //     "api-ref/client",
+    //   ],
+    // },
   ],
 
   r: [
