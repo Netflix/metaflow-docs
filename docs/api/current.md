@@ -63,7 +63,7 @@ These attributes are always available in the `current` object.
 
 <DocSection type="property" name="current.retry_count" module="__main__" show_import="False" heading_level="4">
 
-<Description summary="The index of the task exeuction attempt.\n\nThis property returns 0 for the first attempt to execute the task.\nIf the @retry decorator is used and the first attempt fails, this \nproperty returns the number of times the task was attempted prior\nto the current attempt.\n" />
+<Description summary="The index of the task exeuction attempt.\n\nThis property returns 0 for the first attempt to execute the task.\nIf the @retry decorator is used and the first attempt fails, this\nproperty returns the number of times the task was attempted prior\nto the current attempt.\n" />
 <ParamSection name="Returns">
 <Parameter type="int" desc="The retry count." />
 </ParamSection>
@@ -83,7 +83,7 @@ These attributes are always available in the `current` object.
 
 <DocSection type="property" name="current.pathspec" module="__main__" show_import="False" heading_level="4">
 
-<Description summary="Pathspec of the current run, i.e. a unique\nidentifier of the current task. The returned\nstring follows this format:\n\n{flow_name}/{run_id}/{step_name}/{task_id}\n" />
+<Description summary="Pathspec of the current run, i.e. a unique\nidentifier of the current task. The returned\nstring follows this format:\n```\n{flow_name}/{run_id}/{step_name}/{task_id}\n```\n" />
 <ParamSection name="Returns">
 <Parameter type="str" desc="Pathspec." />
 </ParamSection>
@@ -121,9 +121,9 @@ These attributes are only available when the decorator is present.
 
 <DocSection type="property" name="current.project_name" module="__main__" show_import="False" heading_level="4">
 
-<Description summary="The name of the project assigned to this flow,\ni.e. X in @project(name=X).\n" />
+<Description summary="The name of the project assigned to this flow,\ni.e. `X` in `@project(name=X)`.\n" />
 <ParamSection name="Returns">
-<Parameter type="str" desc="Project name" />
+<Parameter type="str" desc="Project name." />
 </ParamSection>
 </DocSection>
 
@@ -133,7 +133,7 @@ These attributes are only available when the decorator is present.
 
 <Description summary="The flow name prefixed with the current project\nand branch. This name identifies the deployment\non a production scheduler.\n" />
 <ParamSection name="Returns">
-<Parameter type="str" desc="Flow name prefixed with project information" />
+<Parameter type="str" desc="Flow name prefixed with project information." />
 </ParamSection>
 </DocSection>
 
@@ -141,9 +141,9 @@ These attributes are only available when the decorator is present.
 
 <DocSection type="property" name="current.branch_name" module="__main__" show_import="False" heading_level="4">
 
-<Description summary="The current branch, i.e. X in\n--branch=X set during deployment.\n" />
+<Description summary="The current branch, i.e. `X` in\n`--branch=X` set during deployment.\n" />
 <ParamSection name="Returns">
-<Parameter type="str" desc="Branch name" />
+<Parameter type="str" desc="Branch name." />
 </ParamSection>
 </DocSection>
 
@@ -151,7 +151,7 @@ These attributes are only available when the decorator is present.
 
 <DocSection type="property" name="current.is_user_branch" module="__main__" show_import="False" heading_level="4">
 
-<Description summary="True iff the flow is deployed without a\nspecific --branch or a --production flag.\n" />
+<Description summary="True if the flow is deployed without a\nspecific `--branch` or a `--production` flag.\n" />
 <ParamSection name="Returns">
 <Parameter type="bool" desc="True if the deployment does not correspond to a specific branch." />
 </ParamSection>
@@ -161,14 +161,66 @@ These attributes are only available when the decorator is present.
 
 <DocSection type="property" name="current.is_production" module="__main__" show_import="False" heading_level="4">
 
-<Description summary="True if the flow is deployed with the --production\nflag.\n" />
+<Description summary="True if the flow is deployed with the `--production`\nflag.\n" />
 <ParamSection name="Returns">
-<Parameter type="bool" desc="True if the flow is deployed in --production." />
+<Parameter type="bool" desc="True if the flow is deployed in `--production`." />
 </ParamSection>
 </DocSection>
 
 
 ### @card
 
-[The @card decorator](/metaflow/visualizing-results) exposes functions that allow you to customize
-the contents of cards output by the task.
+[The @card decorator](/metaflow/visualizing-results) exposes functions in `current` that allow you to customize
+the contents of cards using [card components](/api/cards#Card-components). For an overview of card-related APIs, see [the API reference for cards](/api/cards).
+
+
+<DocSection type="method" name="current.card.__getitem__" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/__main__.py#L27">
+<SigArgSection>
+<SigArg name="self" />
+</SigArgSection>
+<Description summary="Choose a specific card for manipulation." extended_summary="When multiple @card decorators are present, you can add an\n`ID` to distinguish between them, `@card(id=ID)`. This allows you\nto add components to a specific card like this:\n```\ncurrent.card[ID].append(component)\n```" />
+<ParamSection name="Parameters">
+	<Parameter name="key" type="str" desc="Card ID." />
+</ParamSection>
+<ParamSection name="Returns">
+	<Parameter type="CardComponentCollector" desc="An object with `append` and `extend` calls which allow you to\nadd components to the chosen card." />
+</ParamSection>
+</DocSection>
+
+
+
+<DocSection type="method" name="current.card.__setitem__" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/__main__.py#L29">
+<SigArgSection>
+<SigArg name="self" />
+</SigArgSection>
+<Description summary="Specify components of the chosen card." extended_summary="Instead of adding components to a card individually with `current.card[ID].append(component)`,\nuse this method to assign a list of components to a card, replacing the existing components:\n```\ncurrent.card[ID] = [FirstComponent, SecondComponent]\n```" />
+<ParamSection name="Parameters">
+	<Parameter name="key: str" desc="Card ID." />
+	<Parameter name="value: List[CardComponent]" desc="List of card components to assign to this card." />
+</ParamSection>
+</DocSection>
+
+
+
+<DocSection type="method" name="current.card.append" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/__main__.py#L31">
+<SigArgSection>
+<SigArg name="self" />
+</SigArgSection>
+<Description summary="Appends a component to the current card." />
+<ParamSection name="Parameters">
+	<Parameter name="component" type="CardComponent" desc="Card component to add to this card." />
+</ParamSection>
+</DocSection>
+
+
+
+<DocSection type="method" name="current.card.extend" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/__main__.py#L33">
+<SigArgSection>
+<SigArg name="self" />
+</SigArgSection>
+<Description summary="Appends many components to the current card." />
+<ParamSection name="Parameters">
+	<Parameter name="component" type="Iterator[CardComponent]" desc="Card components to add to this card." />
+</ParamSection>
+</DocSection>
+
