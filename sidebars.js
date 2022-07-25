@@ -152,12 +152,22 @@ const sidebars = {
         "api/cards",
         {
           type: "category",
-          label: "Decorators",
+          label: "Step Decorators",
           link: {
             type: "doc",
-            id: "api/decorators/README"
+            id: "api/step-decorators/README"
           },
-          items: ["api/decorators/batch"]
+          items: [
+            "api/step-decorators/environment",
+            "api/step-decorators/batch",
+            "api/step-decorators/card",
+            "api/step-decorators/catch",
+            "api/step-decorators/conda",
+            "api/step-decorators/kubernetes",
+            "api/step-decorators/resources",
+            "api/step-decorators/retry",
+            "api/step-decorators/timeout"
+          ]
         },
       ],
     },
