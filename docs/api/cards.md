@@ -106,7 +106,7 @@ The components are added to cards in `@step` methods (or functions called from s
 <SigArgSection>
 <SigArg name="src" default="None" /><SigArg name="label" default="None" />
 </SigArgSection>
-<Description summary="An image." extended_summary="`Image`s can be created direcly from PNG/JPG/GIF `bytes`, `PIL.Image`s,\nor Matplotib figures. Note that the image data is embedded in the card,\nso no external files are required to show the image.\n\nExample: Create an `Image` from bytes:\n```\ncurrent.card.append(\n    Image(\n        requests.get(&#34;https://www.gif-vif.com/hacker-cat.gif&#34;).content,\n        &#34;Image From Bytes&#34;\n    ),\n)\n```\n\nExample: Create an `Image` from a Matplotlib figure\n```\nimport pandas as pd\nimport numpy as np\ncurrent.card.append(\n    Image.from_matplotlib(\n        pandas.DataFrame(\n            np.random.randint(0, 100, size=(15, 4)),\n            columns=list(&#34;ABCD&#34;),\n        ).plot()\n    )\n)\n```\n\nExample: Create an `Image` from a [PIL](https://pillow.readthedocs.io/) Image\n```\nfrom PIL import Image as PILImage\ncurrent.card.append(\n    Image.from_pil_image(\n        PILImage.fromarray(np.random.randn(1024, 768), &#34;RGB&#34;),\n        &#34;From PIL Image&#34;,\n    )\n)\n```" />
+<Description summary="An image." extended_summary="`Image`s can be created direcly from PNG/JPG/GIF `bytes`, `PIL.Image`s,\nor Matplotib figures. Note that the image data is embedded in the card,\nso no external files are required to show the image.\n\nExample: Create an `Image` from bytes:\n```\ncurrent.card.append(\n    Image(\n        requests.get(&#34;https://www.gif-vif.com/hacker-cat.gif&#34;).content,\n        &#34;Image From Bytes&#34;\n    )\n)\n```\n\nExample: Create an `Image` from a Matplotlib figure\n```\nimport pandas as pd\nimport numpy as np\ncurrent.card.append(\n    Image.from_matplotlib(\n        pandas.DataFrame(\n            np.random.randint(0, 100, size=(15, 4)),\n            columns=list(&#34;ABCD&#34;),\n        ).plot()\n    )\n)\n```\n\nExample: Create an `Image` from a [PIL](https://pillow.readthedocs.io/) Image\n```\nfrom PIL import Image as PILImage\ncurrent.card.append(\n    Image.from_pil_image(\n        PILImage.fromarray(np.random.randn(1024, 768), &#34;RGB&#34;),\n        &#34;From PIL Image&#34;\n    )\n)\n```" />
 <ParamSection name="Parameters">
 	<Parameter name="src" type="bytes" desc="The image data in `bytes`." />
 	<Parameter name="label" type="str" desc="Optional label for the image." />
@@ -116,15 +116,27 @@ The components are added to cards in `@step` methods (or functions called from s
 
 
 <DocSection type="method" name="Image.from_matplotlib" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L305">
-
-<Description summary="Create an `Image` from a Matplotlib plot.\n\nParameters\n----------\nplot : matplotlib.axes.Axes\n    a PIL axes (plot) object.\nlabel : str\n    Label for the image (optional)" />
+<SigArgSection>
+<SigArg name="plot" /><SigArg name="label" default="None" />
+</SigArgSection>
+<Description summary="Create an `Image` from a Matplotlib plot." />
+<ParamSection name="Parameters">
+	<Parameter name="plot" type="matplotlib.axes.Axes" desc="a PIL axes (plot) object." />
+	<Parameter name="label" type="str" desc="Label for the image (optional)" />
+</ParamSection>
 </DocSection>
 
 
 
 <DocSection type="method" name="Image.from_pil_image" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L257">
-
-<Description summary="Create an `Image` from a PIL image.\n\nParameters\n----------\npilimage : PIL.Image\n    a PIL image object.\nlabel : str\n    Optional label for the image." />
+<SigArgSection>
+<SigArg name="pilimage" /><SigArg name="label" default="None" />
+</SigArgSection>
+<Description summary="Create an `Image` from a PIL image." />
+<ParamSection name="Parameters">
+	<Parameter name="pilimage" type="PIL.Image" desc="a PIL image object." />
+	<Parameter name="label" type="str" desc="Optional label for the image." />
+</ParamSection>
 </DocSection>
 
 
@@ -135,7 +147,7 @@ The components are added to cards in `@step` methods (or functions called from s
 <SigArgSection>
 <SigArg name="artifact" /><SigArg name="name" default="None" /><SigArg name="compressed" default="True" />
 </SigArgSection>
-<Description summary="A pretty-printed version of any Python object." extended_summary="Large objects are truncated using Python's built-in [`reprlib`](https://docs.python.org/3/library/reprlib.html).\n\nExample:\n```\nfrom datetime import datetime\ncurrent.card.append(Artifact({'now': datetime.utcnow()))\n}\n```" />
+<Description summary="A pretty-printed version of any Python object." extended_summary="Large objects are truncated using Python's built-in [`reprlib`](https://docs.python.org/3/library/reprlib.html).\n\nExample:\n```\nfrom datetime import datetime\ncurrent.card.append(Artifact({'now': datetime.utcnow()}))\n```" />
 <ParamSection name="Parameters">
 	<Parameter name="artifact" type="object" desc="Any Python object." />
 	<Parameter name="name" type="str" desc="Optional label for the object." />
@@ -147,11 +159,11 @@ The components are added to cards in `@step` methods (or functions called from s
 ### Table
 
 
-<DocSection type="class" name="Table" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L56">
+<DocSection type="class" name="Table" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L55">
 <SigArgSection>
 <SigArg name="data" default="[[]]" /><SigArg name="headers" default="[]" />
 </SigArgSection>
-<Description summary="A table." extended_summary="The contents of the table can be text or numerical data, a Pandas dataframe,\nor other card components: `Artifact`, `Image`, `Markdown` objects.\n\nExample: Text and artifacts\n```\nfrom metaflow.cards import Table, Artifact\ncurrent.card.append(\n    Table([\n        ['first row', Artifact({'a': 2})],\n        ['second row', Artifact(3)]\n    ])\n```\n\nExample: Table from a Pandas dataframe\n```\nfrom metaflow.cards import Table\nimport pandas as pd\nimport numpy as np\ncurrent.card.append(\n    Table.from_dataframe(\n        pandas.DataFrame(\n            np.random.randint(0, 100, size=(15, 4)),\n            columns=list(&#34;ABCD&#34;),\n        )\n    )\n)\n```" />
+<Description summary="A table." extended_summary="The contents of the table can be text or numerical data, a Pandas dataframe,\nor other card components: `Artifact`, `Image`, `Markdown` objects.\n\nExample: Text and artifacts\n```\nfrom metaflow.cards import Table, Artifact\ncurrent.card.append(\n    Table([\n        ['first row', Artifact({'a': 2})],\n        ['second row', Artifact(3)]\n    ])\n)\n```\n\nExample: Table from a Pandas dataframe\n```\nfrom metaflow.cards import Table\nimport pandas as pd\nimport numpy as np\ncurrent.card.append(\n    Table.from_dataframe(\n        pandas.DataFrame(\n            np.random.randint(0, 100, size=(15, 4)),\n            columns=list(&#34;ABCD&#34;)\n        )\n    )\n)\n```" />
 <ParamSection name="Parameters">
 	<Parameter name="data" type="List[List[str|MetaflowCardComponent]]" desc="List (rows) of lists (columns). Each item can be a string or a `MetaflowCardComponent`." />
 	<Parameter name="headers" type="List[str]" desc="Optional header row for the table." />
@@ -161,21 +173,32 @@ The components are added to cards in `@step` methods (or functions called from s
 
 
 <DocSection type="method" name="Table.from_dataframe" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L105">
-
-<Description summary="Create a `Table` based on a Pandas dataframe.\n\nParameters\n----------\ndataframe : pandas.DataFrame\n    Pandas dataframe.\ntruncate : bool\n    Truncate large dataframe instead of showing all rows (default: True)." />
+<SigArgSection>
+<SigArg name="dataframe" default="None" /><SigArg name="truncate" default="True" />
+</SigArgSection>
+<Description summary="Create a `Table` based on a Pandas dataframe." />
+<ParamSection name="Parameters">
+	<Parameter name="dataframe" type="pandas.DataFrame" desc="Pandas dataframe." />
+	<Parameter name="truncate" type="bool" desc="Truncate large dataframe instead of showing all rows (default: True)." />
+</ParamSection>
 </DocSection>
 
 
 ## Defining a custom card
 
-https://github.com/outerbounds/metaflow-card-template
+You can define custom cards types (`T` in `@card(type=T)`) by creating a Python package that includes a class that derives from `MetaflowCard`, documented below.
+
+Find detailed instructions, a starter template, and an example of a simple custom card at [https://github.com/outerbounds/metaflow-card-html]( https://github.com/outerbounds/metaflow-card-html).
 
 
-<DocSection type="class" name="MetaflowCard" module="metaflow.cards" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/card.py#L1">
+<DocSection type="class" name="MetaflowCard" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/card.py#L1">
 <SigArgSection>
-<SigArg name="options" default="{}" /><SigArg name="components" default="[]" /><SigArg name="graph" default="None" />
+<SigArg name="options" />
 </SigArgSection>
-
+<Description summary="Metaflow cards derive from this base class." extended_summary="Subclasses of this class are called *card types*. The desired card\ntype `T` is defined in the `@card` decorator as `@card(type=T)`.\n\nAfter a task with `@card(type=T, options=S)` finishes executing, Metaflow instantiates\na subclass `C` of `MetaflowCard` that has its `type` attribute set to `T`, i.e. `C.type=T`.\nThe constructor is given the options dictionary `S` that contains arbitrary\nJSON-encodeable data that is passed to the instance, parametrizing the card. The subclass\nmay override the constructor to capture and process the options.\n\nThe subclass needs to implement a `render(task)` method that produces the card\ncontents in HTML, given the finished task that is represented by a `Task` object." />
+<ParamSection name="Parameters">
+	<Parameter name="options" type="Dict" desc="JSON-encodeable dictionary containing user-defineable options for the class." />
+</ParamSection>
 <ParamSection name="Attributes">
 	<Parameter name="type" />
 </ParamSection>
@@ -183,11 +206,16 @@ https://github.com/outerbounds/metaflow-card-template
 
 
 
-<DocSection type="method" name="MetaflowCard.render" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/card.py#L19">
+<DocSection type="method" name="MetaflowCard.render" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/card.py#L44">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="task" />
 </SigArgSection>
-<Description summary="`render` returns a string." />
-
+<Description summary="Produce custom card contents in HTML." extended_summary="Subclasses override this method to customize the card contents." />
+<ParamSection name="Parameters">
+	<Parameter name="task" type="metaflow.Task" desc="A `Task` object that allows you to access data from the finished task and tasks\npreceding it. " />
+</ParamSection>
+<ParamSection name="Returns">
+	<Parameter type="str" desc="Card contents as an HTML string." />
+</ParamSection>
 </DocSection>
 
