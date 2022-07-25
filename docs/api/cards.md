@@ -200,19 +200,19 @@ Find detailed instructions, a starter template, and an example of a simple custo
 	<Parameter name="options" type="Dict" desc="JSON-encodeable dictionary containing user-defineable options for the class." />
 </ParamSection>
 <ParamSection name="Attributes">
-	<Parameter name="type" />
+	<Parameter name="type" type="str" desc="Card type string. Note that this should be a globally unique name, similar to a\nPython package name, to avoid name clashes between different custom cards." />
 </ParamSection>
 </DocSection>
 
 
 
-<DocSection type="method" name="MetaflowCard.render" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/card.py#L44">
+<DocSection type="method" name="MetaflowCard.render" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/card.py#L45">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="task" />
 </SigArgSection>
 <Description summary="Produce custom card contents in HTML." extended_summary="Subclasses override this method to customize the card contents." />
 <ParamSection name="Parameters">
-	<Parameter name="task" type="metaflow.Task" desc="A `Task` object that allows you to access data from the finished task and tasks\npreceding it. " />
+	<Parameter name="task" type="metaflow.Task" desc="A `Task` object that allows you to access data from the finished task and tasks\npreceding it." />
 </ParamSection>
 <ParamSection name="Returns">
 	<Parameter type="str" desc="Card contents as an HTML string." />
