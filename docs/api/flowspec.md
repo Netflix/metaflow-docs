@@ -22,7 +22,7 @@ if __name__ == '__main__':
 
 This class has no other uses. It can't be instantiated directly.
 
-`FlowSpec` exposes a few methods and attributes that you can use to construct a flow, which are listed below. You can add more functionality in your flows through [decorators](decorators). To query and manipulate the currently executing run inside your flow, see the [`current`](current) object. To access results produced by a flow, see the [Client API](client).
+`FlowSpec` exposes a few methods and attributes that you can use to construct a flow, which are listed below. You can add more functionality in your flows through [step-level decorators](step-decorators) and [flow-level decorators](flow-decorators). To query and manipulate the currently executing run inside your flow, see the [`current`](current) object. To access results produced by a flow, see the [Client API](client).
 
 ### Defining a workflow
 
