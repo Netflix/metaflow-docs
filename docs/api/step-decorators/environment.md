@@ -2,7 +2,7 @@
 
 The `@environment` decorator specifies environment variables for a step.
 
-Note that `@environment` is mainly useful to set special environment variables that need to be present when a container launched by `@batch` or `@kubernetes` starts, which happens before any user code is executed. Variables that are needed after the user code has started can be set as usual in Python:
+Note that `@environment` is mainly useful for setting special environment variables that need to be present when a container launched by `@batch` or `@kubernetes` starts, which happens before any user code is executed. Variables that are needed after the user code has started can be set as usual in Python:
 ```
 import os
 os.environ['SOME_VAL'] = "some value"

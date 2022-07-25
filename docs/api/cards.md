@@ -4,7 +4,7 @@
 
 Metaflow Cards allows you to produce [human readable reports in workflows](metaflow/visualizing-results). Use the following APIs to enable, customize, and access cards:
 
- - **Enable cards** by adding [the `@card` decorator](api/decorators/card) in any step.
+ - **Enable cards** by adding [the `@card` decorator](/api/step-decorators/card) in any step.
  - **Specify card contents** with [card components](#card-components).
  - **Populate card components** with [the `current` object](/api/current#card).
  - **Retrive cards** with [the `get_cards` method](#retrieving-cards) or on the command line with the `card` commands.
@@ -206,7 +206,7 @@ Find detailed instructions, a starter template, and an example of a simple custo
 
 
 
-<DocSection type="method" name="MetaflowCard.render" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/card.py#L45">
+<DocSection type="method" name="MetaflowCard.render" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/card.py#L46">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="task" />
 </SigArgSection>
