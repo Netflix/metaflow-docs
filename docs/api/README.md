@@ -5,8 +5,9 @@ These pages document the public API of Metaflow.
 
 Notably, all APIs documented here are subject to Metaflow's **backward
 compatibility promise**: You may use these APIs knowing that they are
-very stable and highly unlikely to change across Metaflow versions. In contrast, APIs not documented here are considered experimental and they
-are subject to change.
+very stable and highly unlikely to change across Metaflow versions. Rest
+assured that all APIs featured anywhere in Metaflow docs are covered
+here.
 
 ## Decorators
 
