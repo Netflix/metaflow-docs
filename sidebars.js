@@ -73,15 +73,6 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Metaflow on AWS",
-      items: [
-        "metaflow-on-aws/metaflow-on-aws",
-        "metaflow-on-aws/metaflow-sandbox",
-        "metaflow-on-aws/deploy-to-aws",
-      ],
-    },
-    {
-      type: "category",
       label: "Developing with Metaflow",
       items: [
         "metaflow/basics",
@@ -183,6 +174,15 @@ const sidebars = {
             "api/flow-decorators/schedule"
           ]
         }
+      ],
+    },
+    {
+      type: "category",
+      label: "Metaflow on AWS",
+      items: [
+        "metaflow-on-aws/metaflow-on-aws",
+        "metaflow-on-aws/metaflow-sandbox",
+        "metaflow-on-aws/deploy-to-aws",
       ],
     },
     {

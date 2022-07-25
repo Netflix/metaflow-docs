@@ -26,19 +26,13 @@ Metaflow makes it easy to build and manage real-life data science projects.
 - [Installing Metaflow](getting-started/install)
 - [Tutorials](getting-started/tutorials/)
 
-## Metaflow on AWS
-
-- [Metaflow on AWS](metaflow-on-aws)
-- [Metaflow Sandbox](metaflow-on-aws/metaflow-sandbox)
-- [Deploying to AWS](metaflow-on-aws/deploy-to-aws)
-
 ## Developing with Metaflow
 
 - [Basics of Metaflow](metaflow/basics)
 - [Inspecting Flows and Results](metaflow/client)
-- [Visualizing Results](metaflow/visualizing-results/) - _**new!**_
+- [Visualizing Results](metaflow/visualizing-results/)
 - [Debugging with Metaflow](metaflow/debugging)
-- [Scaling Out and Up](metaflow/scaling-out-and-up/) - _**new!**_
+- [Scaling Out and Up](metaflow/scaling-out-and-up/)
 - [Loading and Storing Data](metaflow/data)
 - [Managing External Libraries](metaflow/dependencies)
 - [Dealing with Failures](metaflow/failures)
@@ -46,12 +40,18 @@ Metaflow makes it easy to build and manage real-life data science projects.
 
 ## Going to Production with Metaflow
 
-- [Scheduling Metaflow Flows](going-to-production-with-metaflow/scheduling-metaflow-flows/) - _**new!**_
+- [Scheduling Metaflow Flows](going-to-production-with-metaflow/scheduling-metaflow-flows/)
 - [Coordinating Larger Metaflow Projects](going-to-production-with-metaflow/coordinating-larger-metaflow-projects)
 
 ## API Reference
 
 - [Directory of all Metaflow APIs](api/) - _**new!**_
+
+## Metaflow on AWS
+
+- [Metaflow on AWS](metaflow-on-aws)
+- [Metaflow Sandbox](metaflow-on-aws/metaflow-sandbox)
+- [Deploying to AWS](metaflow-on-aws/deploy-to-aws)
 
 ## Internals of Metaflow
 
