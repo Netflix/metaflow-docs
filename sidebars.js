@@ -166,9 +166,23 @@ const sidebars = {
             "api/step-decorators/kubernetes",
             "api/step-decorators/resources",
             "api/step-decorators/retry",
+            "api/step-decorators/step",
             "api/step-decorators/timeout"
           ]
         },
+        {
+          type: "category",
+          label: "Flow Decorators",
+          link: {
+            type: "doc",
+            id: "api/flow-decorators/README"
+          },
+          items: [
+            "api/flow-decorators/conda_base",
+            "api/flow-decorators/project",
+            "api/flow-decorators/schedule"
+          ]
+        }
       ],
     },
     {

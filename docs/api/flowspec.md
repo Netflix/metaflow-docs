@@ -26,7 +26,7 @@ This class has no other uses. It can't be instantiated directly.
 
 ### Defining a workflow
 
-Annotate methods that are a part of your Metaflow workflow with [the `@step` decorator](decorators#step). Use `FlowSpec.next` to define transitions between steps:
+Annotate methods that are a part of your Metaflow workflow with [the `@step` decorator](/api/step-decorators/step). Use `FlowSpec.next` to define transitions between steps:
 
 
 <DocSection type="method" name="FlowSpec.next" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/flowspec.py#L492">

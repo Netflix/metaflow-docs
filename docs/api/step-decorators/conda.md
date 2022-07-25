@@ -13,7 +13,7 @@ The libraries are installed from [Conda repositories](https://anaconda.org/). Fo
 </SigArgSection>
 <Description summary="Specifies the Conda environment for the step." extended_summary="Information in this decorator will augment any\nattributes set in the `@conda_base` flow-level decorator. Hence\nyou can use `@conda_base` to set common libraries required by all\nsteps and use `@conda` to specify step-specific additions." />
 <ParamSection name="Parameters">
-	<Parameter name="libraries" type="Dict" desc="Libraries to use for this flow. The key is the name of the package\nand the value is the version to use (Default: {})." />
+	<Parameter name="libraries" type="Dict" desc="Libraries to use for this step. The key is the name of the package\nand the value is the version to use (Default: {})." />
 	<Parameter name="python" type="string" desc="Version of Python to use, e.g. '3.7.4'\n(Default: None, i.e. the current Python version)." />
 	<Parameter name="disabled" type="bool" desc="If set to True, disables Conda (Default: False)." />
 </ParamSection>
