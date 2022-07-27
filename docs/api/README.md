@@ -24,4 +24,4 @@ Use these to construct flows, access data, and manipulate results.
 - [FlowSpec](/api/flowspec) - constructing flows.
 - [Current](/api/current) - operating a run.
 - [S3](/api/s3) - accessing data in S3 quickly.
-- [cards](/api/cards) - visualizing results.
+- [Cards](/api/cards) - visualizing results.
