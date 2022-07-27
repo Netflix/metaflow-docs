@@ -14,7 +14,10 @@ The `@kubernetes` decorator sends a step for execution on a [Kubernetes](https:/
 	<Parameter name="cpu" type="int" desc="Number of CPUs required for this step. Defaults to 1. If `@resources` is\nalso present, the maximum value from all decorators is used." />
 	<Parameter name="memory" type="int" desc="Memory size (in MB) required for this step. Defaults to 4096 (4GB). If\n`@resources` is also present, the maximum value from all decorators is\nused." />
 	<Parameter name="disk" type="int" desc="Disk size (in MB) required for this step. Defaults to 10GB. If\n`@resources` is also present, the maximum value from all decorators is\nused." />
-	<Parameter name="image" type="string" desc="Docker image to use when launching on Kubernetes. If not specified, a\ndefault Docker image mapping to the current version of Python is used." />
+	<Parameter name="image" type="str" desc="Docker image to use when launching on Kubernetes. If not specified, a\ndefault Docker image mapping to the current version of Python is used." />
+	<Parameter name="service_account" type="str" desc="Kubernetes service account to use when launching pod in Kubernetes. If\nnot specified, the value of `METAFLOW_KUBERNETES_SERVICE_ACCOUNT` is\nused from Metaflow configuration." />
+	<Parameter name="namespace" type="str" desc="Kubernetes namespace to use when launching pod in Kubernetes. If\nnot specified, the value of `METAFLOW_KUBERNETES_NAMESPACE` is used\nfrom Metaflow configuration." />
+	<Parameter name="secrets" type="List[str]" desc="Kubernetes secrets to use when launching pod in Kubernetes. These\nsecrets are in addition to the ones defined in `METAFLOW_KUBERNETES_SECRETS`\nin Metaflow configuration." />
 </ParamSection>
 </DocSection>
 
