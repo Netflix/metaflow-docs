@@ -164,7 +164,7 @@ The `IncludeFile` object is a special `Parameter` that reads its value from a lo
 <SigArgSection>
 <SigArg name="name, **kwargs" />
 </SigArgSection>
-<Description summary="Includes a local file as a parameter for the flow." extended_summary="`IncludeFile` behaves like `Parameter` except that it reads its value from a file instead of\nthe command line. The file path is provided as the parameter value. The file contents are\nsaved as a read-only artifact which is available in all steps of the flow." />
+<Description summary="Includes a local file as a parameter for the flow." extended_summary="`IncludeFile` behaves like `Parameter` except that it reads its value from a file instead of\nthe command line. The user provides a path to a file on the command line. The file contents\nare saved as a read-only artifact which is available in all steps of the flow." />
 <ParamSection name="Parameters">
 	<Parameter name="name" type="str" desc="User-visible parameter name." />
 	<Parameter name="default" type="str" desc="Default path to a local file." />
