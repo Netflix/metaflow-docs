@@ -1,7 +1,7 @@
 
 # Flow Decorators
 
-These decorators are set at the flow level, i.e. above the `class` definition. In contrast to step decorators, they can't be attached on the command line using `--with`.
+These decorators are set at the flow level, i.e. above the `class` definition. In contrast to step decorators, they _can't_ be attached on the command line using `--with`.
 
 Example:
 
