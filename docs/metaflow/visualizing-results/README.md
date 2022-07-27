@@ -43,4 +43,4 @@ Learn more about these approaches in the following subsections:
 2. [Easy Custom Reports with Card Components](../metaflow/visualizing-results/easy-custom-reports-with-card-components)
 3. [Advanced, Shareable Cards with Card Templates](../metaflow/visualizing-results/advanced-shareable-cards-with-card-templates)
 
-If you are unsure, start with the [_Default Cards_](../metaflow/visualizing-results/effortless-task-inspection-with-default-cards) which explains the basics of card usage.
+If you are unsure, start with the [_Default Cards_](../metaflow/visualizing-results/effortless-task-inspection-with-default-cards) which explains the basics of card usage. For technical details, see the API reference that contains [a complete guide of all card APIs](/api/cards).

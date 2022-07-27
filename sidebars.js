@@ -73,15 +73,6 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Metaflow on AWS",
-      items: [
-        "metaflow-on-aws/metaflow-on-aws",
-        "metaflow-on-aws/metaflow-sandbox",
-        "metaflow-on-aws/deploy-to-aws",
-      ],
-    },
-    {
-      type: "category",
       label: "Developing with Metaflow",
       items: [
         "metaflow/basics",
@@ -139,25 +130,69 @@ const sidebars = {
     },
     {
       type: "category",
+      label: "API Reference",
+      link: {
+        type: "doc",
+        id: "api/README",
+      },
+      items: [
+        "api/client",
+        "api/flowspec",
+        "api/current",
+        "api/S3",
+        "api/cards",
+        {
+          type: "category",
+          label: "Step Decorators",
+          link: {
+            type: "doc",
+            id: "api/step-decorators/README"
+          },
+          items: [
+            "api/step-decorators/environment",
+            "api/step-decorators/batch",
+            "api/step-decorators/card",
+            "api/step-decorators/catch",
+            "api/step-decorators/conda",
+            "api/step-decorators/kubernetes",
+            "api/step-decorators/resources",
+            "api/step-decorators/retry",
+            "api/step-decorators/step",
+            "api/step-decorators/timeout"
+          ]
+        },
+        {
+          type: "category",
+          label: "Flow Decorators",
+          link: {
+            type: "doc",
+            id: "api/flow-decorators/README"
+          },
+          items: [
+            "api/flow-decorators/conda_base",
+            "api/flow-decorators/project",
+            "api/flow-decorators/schedule"
+          ]
+        }
+      ],
+    },
+    {
+      type: "category",
+      label: "Metaflow on AWS",
+      items: [
+        "metaflow-on-aws/metaflow-on-aws",
+        "metaflow-on-aws/metaflow-sandbox",
+        "metaflow-on-aws/deploy-to-aws",
+      ],
+    },
+    {
+      type: "category",
       label: "Internals of Metaflow",
       items: [
         "internals-of-metaflow/technical-overview",
         "internals-of-metaflow/testing-philosophy",
       ],
-    },
-    // {
-    //   type: "category",
-    //   label: "API Reference",
-    //   items: [
-    //     {
-    //       type: "category",
-    //       label: "Constructing Flows",
-    //       items: ["api-ref/constructing-flows/basic",
-    //               "api-ref/constructing-flows/decorators",]
-    //     },
-    //     "api-ref/client",
-    //   ],
-    // },
+    }
   ],
 
   r: [

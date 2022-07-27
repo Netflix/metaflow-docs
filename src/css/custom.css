@@ -5,32 +5,66 @@
  */
 
 @font-face {
-  font-family: "Roboto Slab Regular";
-  src: url("/static/fonts/RobotoSlab-Regular.ttf") format("truetype");
+  font-family: "OpenSans Regular";
+  src: url("/static/fonts/OpenSans-Regular.ttf") format("truetype");
 }
 
 html,
 body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizelegibility;
+  scroll-padding-top: var(--ifm-navbar-height);
+
+}
+
+.menu {
+  font-weight: var(--ifm-font-weight-normal);
+  font-size:  95%;
+ }
+
+.tocList{
+    --ifm-list-item-margin: 0.5rem;
+    --ifm-heading-margin-top: 2rem;
 }
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #146ee6;
-  --ifm-menu-color: #333333;
-  --ifm-font-color-base: rgba(59, 69, 78, 1);
-  --ifm-navbar-background-color: rgba(24, 28, 31, 1);
-  --ifm-navbar-link-color: rgb(200, 200, 200);
-  --ifm-navbar-height: 5rem;
-  --ifm-font-family-base: "Roboto Slab Regular", Helvetica, Arial, sans-serif;
+
+  --ifm-color-primary: #2874da; /* #146ee6; */
+  --ifm-menu-color: #525151;
+  --ifm-font-color-base: rgba(30, 32, 34, 1);
+  --ifm-navbar-background-color:  white;
+  --ifm-navbar-link-color: #333;
+  --ifm-navbar-height: 3.8rem;
+  --ifm-font-family-base: -apple-system,BlinkMacSystemFont,"Segoe UI Adjusted","Segoe UI","Liberation Sans",sans-serif;
+  --ifm-code-name-highlight: #84488D;
+  --ifm-font-size-base:  95%;
+  --ifm-heading-font-weight:  var(--ifm-font-weight-normal);
+  --ifm-toc-border-color: #dadde1b8;
+}
+
+.menu__link--sublist:after {
+  background: var(--ifm-menu-link-sublist-icon) 20% / 2rem 1.2rem;
+}
+
+.menu__caret:before {
+  background: var(--ifm-menu-link-sublist-icon) 50% / 2rem 1.2rem;
+}
+
+.navbar--primary {
+    --ifm-navbar-background-color: white; 
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 html[data-theme="dark"] {
-  --ifm-color-primary: #00bbce;
+  --ifm-color-primary: #92c1ff;
   --ifm-menu-color: #e6e6e6;
   --ifm-font-color-base: #e6e6e6;
+  --ifm-navbar-background-color: #141520; 
+  --ifm-navbar-link-color: #aaa;
+  --ifm-code-name-highlight: #A972B1;
+  --ifm-toc-border-color: #333;
+  --ifm-background-color: #141520; 
 }
 
 @media screen and (min-width: 1440px) {
@@ -53,9 +87,6 @@ html[data-theme="dark"] {
   }
 }
 
-.menu {
-  font-size: 0.875rem;
-}
 
 .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.1);
@@ -73,7 +104,7 @@ html[data-theme="dark"] .docusaurus-highlight-code-line {
 }
 
 html[data-theme="light"] aside {
-  background: rgb(245, 247, 249);
+  background: white;
 }
 
 p > img {
