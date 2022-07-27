@@ -22,9 +22,13 @@ if __name__ == '__main__':
 
 This class has no other uses. It can't be instantiated directly.
 
-`FlowSpec` exposes a few methods and attributes that you can use to construct a flow, which are listed below. You can add more functionality in your flows through [step-level decorators](step-decorators) and [flow-level decorators](flow-decorators). To query and manipulate the currently executing run inside your flow, see the [`current`](current) object. To access results produced by a flow, see the [Client API](client).
+`FlowSpec` exposes a few methods and attributes that you can use to construct a flow, which are listed below. You can add more functionality in your flows through [step-level decorators](step-decorators) and [flow-level decorators](flow-decorators).
 
-### Defining a workflow
+You can parametrize flows through the [`Parameter`](#parameters) object that are defined as class variables inside a flow. You can also include files as parameters through the [`IncludeFile`](#includefile) object.
+
+To query and manipulate the currently executing run inside your flow, see the [`current`](current) object. To access results produced by a flow, see the [Client API](client).
+
+## Defining a workflow
 
 Annotate methods that are a part of your Metaflow workflow with [the `@step` decorator](/api/step-decorators/step). Use `FlowSpec.next` to define transitions between steps:
 
@@ -43,7 +47,7 @@ Annotate methods that are a part of your Metaflow workflow with [the `@step` dec
 </DocSection>
 
 
-### Working with foreaches
+## Working with foreaches
 
 Use the operations below, `FlowSpec.input`, `FlowSpec.index`, and `FlowSpec.foreach_stack` to query the status of the currently executing foreach branch. Use `FlowSpec.merge_artifacts()` to handle incoming artifacts in a join step.
 
@@ -94,6 +98,81 @@ Use the operations below, `FlowSpec.input`, `FlowSpec.index`, and `FlowSpec.fore
 	<Parameter type="MetaflowException" desc="This exception is thrown if this is not called in a join step." />
 	<Parameter type="UnhandledInMergeArtifactsException" desc="This exception is thrown in case of unresolved conflicts." />
 	<Parameter type="MissingInMergeArtifactsException" desc="This exception is thrown in case an artifact specified in `include` cannot\nbe found." />
+</ParamSection>
+</DocSection>
+
+
+## Parameters
+
+The `Parameter` class is used to define parameters for a flow.
+
+The `Parameter` objects must be defined as class variables inside a flow. The parameter values are available as read-only artifacts in all steps of the flow. For instructions, see [How to define parameters for flows](/metaflow/basics#how-to-define-parameters-for-flows).
+
+
+<DocSection type="class" name="Parameter" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/parameters.py#L162">
+<SigArgSection>
+<SigArg name="name" /><SigArg name="**kwargs" />
+</SigArgSection>
+<Description summary="Defines a parameter for a flow." extended_summary="Parameters must be instantiated as class variables in flow classes, e.g.\n```\nclass MyFlow(FlowSpec):\n    param = Parameter('myparam')\n```\nin this case, the parameter is specified on the command line as\n```\npython myflow.py run --myparam=5\n```\nand its value is accessible through a read-only artifact like this:\n```\nprint(self.param == 5)\n```\nNote that the user-visible parameter name, `myparam` above, can be\ndifferent than the artifact name, `param` above.\n\nThe parameter value is converted to a Python type based on the `type`\nargument or to match the type of `default`, if it is set." />
+<ParamSection name="Parameters">
+	<Parameter name="name" type="str" desc="User-visible parameter name." />
+	<Parameter name="default" type="str or float or int or bool or `JSONType` or a function." desc="Default value for the parameter. Use a special `JSONType` class to\nindicate that the value must be a valid JSON object. A function\nimplies that the parameter corresponds to a *deploy-time parameter*.\nThe type of the default value is used as the parameter `type`." />
+	<Parameter name="type" type="type" desc="If `default` is not specified, define the parameter type. Specify\none of `str`, `float`, `int`, `bool`, or `JSONType` (Default: str)." />
+	<Parameter name="help" type="str" desc="Help text to show in `run --help`." />
+	<Parameter name="required" type="bool" desc="Require that the user specified a value for the parameter.\n`required=True` implies that the `default` is not used." />
+	<Parameter name="show_default" type="bool" desc="If True, show the default value in the help text (Default: True)." />
+</ParamSection>
+</DocSection>
+
+
+### Deploy-time parameters
+
+It is possible to define the `default` value programmatically before a run or a deployment is executed through a user-defined function. For more information, see [documentation for Deploy Time Parameters](/going-to-production-with-metaflow/scheduling-metaflow-flows/scheduling-with-aws-step-functions#deploy-time-parameters).
+
+For instance, the following deploy-time parameter, `time`, uses the current time as its default value:
+```python
+def time_now(context):
+    return int(time.time())
+
+class MyFlow(FlowSpec):
+    myparam = Parameter("time", type=int, default=time_now)
+```
+Note that if the function returns a non-string value, you must specify the parameter `type` when using deploy-time parameters, as the type of `default` can't be inferred automatically.
+
+The function called gets a parameter `context` that contains attributes about the current parameter which you can use to customize the value returned:
+
+
+<DocSection type="class" name="ParameterContext" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/">
+<SigArgSection>
+
+</SigArgSection>
+<Description summary="Information about the parameter being evaluated." />
+<ParamSection name="Attributes">
+	<Parameter name="flow_name" type="str" desc="Flow name" />
+	<Parameter name="user_name" type="str" desc="User name" />
+	<Parameter name="parameter_name" type="str" desc="Parameter name" />
+</ParamSection>
+</DocSection>
+
+
+## IncludeFile
+
+The `IncludeFile` object is a special `Parameter` that reads its value from a local file. For an example, see [Data in Local Files](/metaflow/data#data-in-local-files).
+
+
+<DocSection type="class" name="IncludeFile" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/includefile.py#L273">
+<SigArgSection>
+<SigArg name="name, **kwargs" />
+</SigArgSection>
+<Description summary="Includes a local file as a parameter for the flow." extended_summary="`IncludeFile` behaves like `Parameter` except that it reads its value from a file instead of\nthe command line. The file path is provided as the parameter value. The file contents are\nsaved as a read-only artifact which is available in all steps of the flow." />
+<ParamSection name="Parameters">
+	<Parameter name="name" type="str" desc="User-visible parameter name." />
+	<Parameter name="default" type="str" desc="Default path to a local file." />
+	<Parameter name="is_text" type="bool" desc="Convert the file contents to a string using the provided `encoding` (Default: True).\nIf False, the artifact is stored in `bytes`." />
+	<Parameter name="encoding" type="str" desc="Use this encoding to decode the file contexts if `is_text=True` (default: `utf-8`)." />
+	<Parameter name="required" type="bool" desc="Require that the user specified a value for the parameter.\n`required=True` implies that the `default` is not used." />
+	<Parameter name="help" type="str" desc="Help text to show in `run --help`." />
+	<Parameter name="show_default" type="bool" desc="If True, show the default value in the help text (Default: True)." />
 </ParamSection>
 </DocSection>
 
