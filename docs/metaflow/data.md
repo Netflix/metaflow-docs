@@ -36,6 +36,9 @@ The main downside of this approach is that the table needs to have partitions th
 
 ## Data in S3: `metaflow.S3`
 
+*This section contains an overview of `metaflow.S3`. For a complete API, see
+[the API reference for the S3 class](/api/s3).*
+
 It is not always appropriate to store data in a table. For instance, Netflix has many systems that communicate via JSON files in S3. Or, there is little benefit in storing a large Keras model serialized with [`model.save()`](https://keras.io/getting-started/faq/#how-can-i-save-a-%20keras-model) in a table.
 
 When you assign anything to `self` in your Metaflow flow, the object gets automatically persisted in S3 as [a Metaflow artifact](basics.md#linear). Hence, in most cases you do not need to worry about saving data or models to S3 explicitly. We recommend that you use Metaflow artifacts whenever possible, since they are easily accessible through [the Client API](client.md) by you, by other people, and by other workflows.

@@ -78,7 +78,9 @@ The blue box is a Metaflow task executing a step from the user’s flow. It is d
 
 The card template is given the Task ID of the task that the card corresponds to. Using this Task ID, the template can use [the Client API](../client) to query any information about the task, its parent run, and any past runs. Using this information, the template needs to output a single stand-alone HTML file - the actual card. Note that the HTML file can’t depend on any other local files. In particular, you must include any images as [Data URIs](https://css-tricks.com/data-uris/) in the file itself.
 
-The template itself is a Python class, derived from _MetaflowCard_, which needs to implement one method, _render_, which is given [a Task object from the Client API](../client). This is the complete implementation of the `@card(type='html')` which we used above:
+The template itself is a Python class, derived from _MetaflowCard_, which needs to implement one method, _render_, which is given [a Task object from the Client API](../client) - see [the `MetaflowCard` API reference](/api/cards#defining-a-custom-card) for details.
+
+This is the complete implementation of the `@card(type='html')` which we used above:
 
 ```python
 from metaflow.cards import MetaflowCard

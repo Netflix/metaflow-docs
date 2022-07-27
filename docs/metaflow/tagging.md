@@ -211,6 +211,9 @@ We encourage you to use a combination of namespaces, domain-specific tags, and f
 
 ## Accessing Current IDs in a Flow
 
+*This section contains an overview of `current`. For a complete API, see
+[the API reference for `current`](/api/current).*
+
 Tagging and namespaces, together with the [Client API](client), are the main ways for accessing results of past runs. Metaflow uses these mechanisms to organize and isolate results automatically, so in most cases you don't have to do anything.
 
 However, in some cases you may need to deal with IDs explicitly. For instance, if your flow interacts with external systems, it is a good idea to inform the external system about the identity of the run, so you can trace back any issues to a specific run. Also IDs can come in handy if you need to version externally stored data.

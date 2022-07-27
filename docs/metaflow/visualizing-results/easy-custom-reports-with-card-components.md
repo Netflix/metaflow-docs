@@ -47,6 +47,8 @@ Currently, the following components are provided:
 - **`Image` ** - an image, constructed from bytes.
 - **`Artifact` ** - pretty-print any Python object.
 
+The API reference documents [the card components in detail](/api/cards#card-components).
+
 The following example demonstrates all the components in action:
 
 ```python

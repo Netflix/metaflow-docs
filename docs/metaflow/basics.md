@@ -211,6 +211,8 @@ num_components = Parameter('num_components',
 
 Now the flow can not be run without setting `--num_components` to an integer value.
 
+See the API reference for [the `Parameter` class](/api/flowspec#parameters) for more information.
+
 ### Advanced parameters
 
 In the example above, `Parameters` took simple scalar values, such as integers or floating point values. To support more complex values for `Parameter`, Metaflow allows you to specify the value as JSON. This feature comes in handy if your `Parameter` is a list of values, a mapping, or a more complex data structure.

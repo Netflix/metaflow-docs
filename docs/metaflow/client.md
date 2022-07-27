@@ -2,7 +2,8 @@
 
 Metaflow provides a client API that is used to inspect results of past runs. It is particularly well suited to being used in notebooks.
 
-This document provides an overview of the client API.
+This document provides an overview of the client API. See the complete
+API in [the Client API reference page](/api/client).
 
 ## Object hierarchy
 
