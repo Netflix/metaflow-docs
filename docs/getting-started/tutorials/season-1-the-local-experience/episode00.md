@@ -13,7 +13,7 @@ You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/t
 
 #### To play this episode:
 
-1. `cd metaflow-tutorials`
+1. `cd metaflow/tutorials`
 2. `python 00-helloworld/helloworld.py show`
 3. `python 00-helloworld/helloworld.py run`
 
