@@ -6,7 +6,7 @@ export const Description = ({ summary, extended_summary }) => {
   return (
     <div className={styles.description}>
       <Markdown
-        md={summary + "\\n\\n" + (extended_summary ?? "")}
+        md={(summary ?? "") + "\\n\\n" + (extended_summary ?? "")}
         className={styles.wrapper}
       />
     </div>
