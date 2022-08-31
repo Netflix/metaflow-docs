@@ -20,7 +20,7 @@ You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/t
 2. `python -m pip install notebook`
 3. `python -m pip install matplotlib`
 4. This tutorial requires access to compute and storage resources on AWS, which can be configured by
-   1. Following the instructions [here](https://outerbounds.com/docs/admin/metaflow-on-aws/deployment-guide) or
+   1. Following the instructions [here](https://outerbounds.com/docs/aws-deployment-guide) or
    2. Requesting a [sandbox](../../../metaflow-on-aws/metaflow-sandbox).
 5. This tutorial requires the `conda` package manager to be installed with the conda-forge channel added.
    1. Download Miniconda at [https://docs.conda.io/en/latest/miniconda.html](https://docs.conda.io/en/latest/miniconda.html)
