@@ -2,6 +2,14 @@ import ReactPlayer from 'react-player'
 
 # Metaflow Sandbox
 
+:::info
+
+This page describes original Metaflow sandboxes, which are supported for [Metaflow tutorials](/getting-started/tutorials).
+For other use cases, we recommend that you sign up for [new Metaflow Sandboxes](https://outerbounds.com/docs/sandbox/)
+which are more featureful and allow you to test everything directly in the browser.
+
+:::
+
 As described in [Metaflow on AWS](../metaflow-on-aws), Metaflow comes with built-in integrations to various services on AWS. The seamless integration to the cloud is a key benefit of Metaflow.
 
 We know that [setting up all the required components in AWS](deploy-to-aws) is not trivial. To make it easier to evaluate Metaflow on AWS, we provide a hosted sandbox environment at no cost where you can test Metaflow with your own code and data.
