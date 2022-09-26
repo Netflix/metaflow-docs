@@ -9,7 +9,7 @@ const config = {
   title: "Metaflow Docs",
   url: "https://docs.metaflow.org",
   baseUrl: "/",
-  onBrokenLinks: "throw",
+  onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
   organizationName: "Netflix", // Usually your GitHub org/user name.
