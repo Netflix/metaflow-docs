@@ -22,10 +22,7 @@ const sidebars = {
       items: [
         "introduction/why-metaflow",
         "introduction/what-is-metaflow",
-        "introduction/release-notes",
-        "introduction/roadmap",
-        "introduction/contributing-to-metaflow",
-        "introduction/getting-in-touch",
+        "introduction/metaflow-resources"
       ],
     },
     {

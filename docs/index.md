@@ -16,8 +16,7 @@ Metaflow makes it easy to build and manage real-life data science projects.
 
 - [Why Metaflow](introduction/why-metaflow)
 - [What is Metaflow](introduction/what-is-metaflow)
-- Additional Metaflow resources
-- FAQ
+- [Metaflow resources](introduction/metaflow-resources)
 
 ## Getting Started
 
