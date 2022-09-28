@@ -9,7 +9,7 @@ deployments. This page provides a quick overview.
 ## Supported infrastructure components
 
 Since modern data science / ML applications are powered by a number of interconnected systems,
- it is useful to organize them as an infrastructure stack like the one illustrated below ([Why? See here](#)).
+ it is useful to organize them as an infrastructure stack like the one illustrated below ([Why? See here](/introduction/why-metaflow)).
 You can see logos of all supported systems which you can use to enable each layer.
 
 Consider this illustration as a menu that allows you to build your own pizza: You get to customize your own crust, sauce, toppings, and cheese. You can make the choices based on your existing business infrastructure and the requirements and preferences
