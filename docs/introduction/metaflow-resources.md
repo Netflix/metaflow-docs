@@ -1,7 +1,7 @@
 
 # Metaflow Resources
 
-Here's an incomplete overview of Metaflow resources outside this documentation. [Let us know on Slack](http://slack.outerbounds.co) or [open a pull request](https://github.com/netflix/metaflow-docs) if you create or find more resources that should be listed here.
+Here's an incomplete overview of Metaflow resources outside this documentation. [Let us know on Slack](http://slack.outerbounds.co) or [open a pull request](https://github.com/netflix/metaflow-docs) if you find or, even better, create a resource that should be listed here 🤗
 
 ## Community
 
@@ -11,18 +11,17 @@ Here's an incomplete overview of Metaflow resources outside this documentation. 
 
 ## Deployment & Operations
 
- - A comprehensive guide for [deploying and operating the stack behind Metaflow](https://outerbounds.com/docs/engineering-welcome/).
+ - A comprehensive guide to [deploying and operating the infrastructure for Metaflow](https://outerbounds.com/docs/engineering-welcome/).
 
 ## Tutorials
 
- - [Original Metaflow tutorial](/getting-started/tutorials), a part of this documentation.
+ - [Getting started with Metaflow tutorial](/getting-started/tutorials), a part of this documentation.
  - [Additional tutorials](https://outerbounds.com/docs/intro-tutorial-overview/), provided by Outerbounds.
  - [Metaflow how-to guides](https://outerbounds.com/docs/data-science-welcome/) for tips & tricks.
 
 ## Books
 
- - [Effective Data Science Infrastructure](https://www.manning.com/books/effective-data-science-infrastructure) shows
-   how you can design and develop the full infrastructure stack for data science using Metaflow.
+ - [Effective Data Science Infrastructure](https://www.manning.com/books/effective-data-science-infrastructure): Learn to design and develop the full infrastructure stack for data science using Metaflow.
 
 ## Videos
 

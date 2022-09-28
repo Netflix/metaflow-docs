@@ -30,6 +30,7 @@ const sidebars = {
       label: "Getting Started",
       items: [
         "getting-started/install",
+        "getting-started/infrastructure",
         {
           type: "category",
           label: "Tutorials",
