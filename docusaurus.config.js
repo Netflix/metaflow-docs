@@ -16,6 +16,20 @@ const config = {
   projectName: "metaflow-docs", // Usually your repo name.
   trailingSlash: false,
 
+  plugins: [
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          {
+            from: '/metaflow/failures',
+            to: '/scaling/failures'
+          }
+        ]
+      }
+    ]
+  ],
+
   presets: [
     [
       "classic",

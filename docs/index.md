@@ -24,7 +24,7 @@ Metaflow makes it easy to build and manage real-life data science projects.
 - [Deploying Infrastructure for Metaflow](getting-started/infrastructure)
 - [Tutorial](getting-started/tutorials/)
 
-## I. Developing locally
+## I. Developing with Metaflow
 
 - [Introduction to developing with Metaflow](metaflow/introduction)
 - [Basics of Metaflow](metaflow/basics)

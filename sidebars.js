@@ -69,11 +69,15 @@ const sidebars = {
         },
       ],
     },
+
     {
       type: "category",
       label: "Developing with Metaflow",
+      link: {
+            type: "doc",
+            id: "metaflow/introduction",
+      },
       items: [
-        "metaflow/introduction",
         "metaflow/basics",
         "metaflow/client",
         {
@@ -89,25 +93,38 @@ const sidebars = {
             "metaflow/visualizing-results/advanced-shareable-cards-with-card-templates",
           ],
         },
-        "metaflow/debugging",
+        "metaflow/debugging"
+      ],
+    },
+
+    {
+      type: "category",
+      label: "Scaling Workflows",
+      link: {
+            type: "doc",
+            id: "scaling/introduction",
+      },
+      items: [
+        "scaling/introduction",
         {
           type: "category",
           label: "Scaling Out and Up",
           link: {
             type: "doc",
-            id: "metaflow/scaling-out-and-up/README",
+            id: "scaling/scaling-out-and-up/README",
           },
           items: [
-            "metaflow/scaling-out-and-up/effortless-scaling-with-kubernetes",
-            "metaflow/scaling-out-and-up/effortless-scaling-with-aws-batch",
+            "scaling/scaling-out-and-up/effortless-scaling-with-kubernetes",
+            "scaling/scaling-out-and-up/effortless-scaling-with-aws-batch",
           ],
         },
-        "metaflow/data",
-        "metaflow/dependencies",
-        "metaflow/failures",
-        "metaflow/tagging",
-      ],
+        "scaling/data",
+        "scaling/dependencies",
+        "scaling/failures",
+        "scaling/tagging"
+      ]
     },
+
     {
       type: "category",
       label: "Going to Production with Metaflow",
@@ -127,6 +144,7 @@ const sidebars = {
         "going-to-production-with-metaflow/coordinating-larger-metaflow-projects",
       ],
     },
+
     {
       type: "category",
       label: "API Reference",
