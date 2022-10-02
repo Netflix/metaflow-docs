@@ -34,12 +34,12 @@ Metaflow makes it easy to build and manage real-life data science projects.
 
 ## II. Scaling Workflows
 
-- [Introduction to large-scale compute and data]
-- [Scaling Out and Up](metaflow/scaling-out-and-up/)
-- [Loading and Storing Data](metaflow/data)
-- [Managing External Libraries](metaflow/dependencies)
-- [Dealing with Failures](metaflow/failures)
-- [Organizing Results](metaflow/tagging)
+- [Introduction to large-scale compute and data](scaling/introduction)
+- [Scaling Out and Up](scaling/scaling-out-and-up/)
+- [Loading and Storing Data](scaling/data)
+- [Managing External Libraries](scaling/dependencies)
+- [Dealing with Failures](scaling/failures)
+- [Organizing Results](scaling/tagging)
 
 ## III. Deploying and operating production workflows
 
@@ -48,14 +48,15 @@ Metaflow makes it easy to build and manage real-life data science projects.
 - Monitoring GUI
 - [Coordinating Larger Metaflow Projects](going-to-production-with-metaflow/coordinating-larger-metaflow-projects)
 
+## API Reference
+
+- [Directory of all Metaflow APIs](api/)
+
 ## Internals of Metaflow
 
 - [Technical Overview](internals-of-metaflow/technical-overview)
 - [Testing Philosophy](internals-of-metaflow/testing-philosophy)
 
-## API Reference
-
-- [Directory of all Metaflow APIs](api/)
 
 ## Old
 

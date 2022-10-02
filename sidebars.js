@@ -105,7 +105,6 @@ const sidebars = {
             id: "scaling/introduction",
       },
       items: [
-        "scaling/introduction",
         {
           type: "category",
           label: "Scaling Out and Up",
