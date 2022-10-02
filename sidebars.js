@@ -73,6 +73,7 @@ const sidebars = {
       type: "category",
       label: "Developing with Metaflow",
       items: [
+        "metaflow/introduction",
         "metaflow/basics",
         "metaflow/client",
         {

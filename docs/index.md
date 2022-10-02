@@ -24,29 +24,28 @@ Metaflow makes it easy to build and manage real-life data science projects.
 - [Deploying Infrastructure for Metaflow](getting-started/infrastructure)
 - [Tutorial](getting-started/tutorials/)
 
-## Developing locally
+## I. Developing locally
 
-- Introduction to developing with Metaflow
+- [Introduction to developing with Metaflow](metaflow/introduction)
 - [Basics of Metaflow](metaflow/basics)
-- Managing workflow state with artifacts
 - [Inspecting Flows and Results](metaflow/client)
 - [Visualizing Results](metaflow/visualizing-results/)
 - [Debugging with Metaflow](metaflow/debugging)
 
-## Scaling Workflows
+## II. Scaling Workflows
 
-- Introduction to large-scale compute and data
+- [Introduction to large-scale compute and data]
 - [Scaling Out and Up](metaflow/scaling-out-and-up/)
 - [Loading and Storing Data](metaflow/data)
 - [Managing External Libraries](metaflow/dependencies)
 - [Dealing with Failures](metaflow/failures)
+- [Organizing Results](metaflow/tagging)
 
-## Deploying and operating production workflows
+## III. Deploying and operating production workflows
 
 - Introduction to production workflows
 - [Scheduling Metaflow Flows](going-to-production-with-metaflow/scheduling-metaflow-flows/)
 - Monitoring GUI
-- [Organizing Results](metaflow/tagging)
 - [Coordinating Larger Metaflow Projects](going-to-production-with-metaflow/coordinating-larger-metaflow-projects)
 
 ## Internals of Metaflow

@@ -44,7 +44,7 @@ A typical project advances through these three stages:
  3. [**Production**](/going-to-production-with-metaflow/scheduling-metaflow-flows/): A defining feature of any production deployment is *high availability*. No matter how the project is deployed to
  production, it shouldn't require any human attention. Metaflow supports this through [production-grade workflow orchestrators](/going-to-production-with-metaflow/scheduling-metaflow-flows/), deploying to which require no changes in the code. Also, the team needs to be able to continue development of [new versions of the project alongside any production deployments](/going-to-production-with-metaflow/coordinating-larger-metaflow-projects) and be able to A/B test them easily.
 
-You can assess the value of the project at every stage before deciding to invest more. A core tenet of Metaflow is to make simple things simple and demanding production-deployments possible.
+You can assess the value of the project at every stage before deciding to invest more. A core tenet of Metaflow is to make simple things simple and demanding production-deployments possible. Read more about the journey from prototype to production in [Introduction to Developing with Metaflow](/metaflow/introduction).
 
 Also - don't consider only the happy path! Any real-world project should [account for failures](/metaflow/failures), consider how the system is [monitored](/going-to-production-with-metaflow/mfgui), and provide clear playbooks for [debugging issues](/metaflow/debugging) occurring at any point in the project's lifecycle, production issues in particular.
 

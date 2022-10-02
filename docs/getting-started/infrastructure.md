@@ -51,7 +51,7 @@ You can test the AWS/Azure/Kubernetes stack easily in your browser for free by s
 
 Here are some typical deployments that we have seen in action:
 
-### Prototype DS/ML locally with a one-click install
+### Local: Effortless prototyping
 
 This is the stack you get by default when you [install Metaflow locally](#). It's main benefit is zero
 configuration and maintenance - it works out of the box. It is a great way to get started with Metaflow.
@@ -62,7 +62,7 @@ When you want to start [collaborating with multiple people](#) which requires a 
 you want to start running [larger-scale workloads](#), or you want to [deploy your workflows](#) so that they
 run even when your laptop is asleep, look into more featureful stacks below.
 
-### Low-maintenance, scalable DS/ML prototyping, powered by AWS
+### Low-maintenance scalable prototyping, powered by AWS
 
 If you are looking for the easiest and the most affordable way to scale out compute to the cloud, including cloud-based GPUs,
 this stack is a great option. Consider the benefits:
@@ -78,7 +78,7 @@ In this stack, the main missing piece is [a highly-available workflow orchestrat
 to the option below. Also larger teams with more involved compute needs may find [AWS Batch](#) limiting, in which case you
 can look into Kubernetes-based stacks.
 
-### Low-maintenance, full-stack DS/ML, powered by AWS
+### Low-maintenance full stack, powered by AWS
 
 If you need the full stack of data science/ML infrastructure but you want to spend a minimal amount of effort to
 set up and manage it, choose this option. You get all the benefits of AWS Batch as described above, as well as production
@@ -92,7 +92,7 @@ Here are the main reasons for not using this stack:
 - You want to use another cloud besides AWS.
 - You need a more customizable workflow orchestrator and a compute platform than what the AWS-managed services can provide.
 
-### Customizable, full-stack DS/ML on AWS, powered by Kubernetes
+### Customizable full stack on AWS, powered by Kubernetes
 
 If your engineering team has prior experience with Kubernetes, they might prefer a familiar stack that works with their existing
 security policies, observability tools, and deployment mechanisms. In this case, this Kubernetes-native stack featuring compute
@@ -105,7 +105,7 @@ using [Minio](#) as an S3-compatible datastore.
 
 This stack requires more maintenance than the AWS-native stack above, although the basic setup is quite manageable if your organization is already familiar with Kubernetes.
 
-### Customizable, full-stack DS/ML on Azure, powered by Kubernetes
+### Customizable full stack on Azure, powered by Kubernetes
 
 If you need a full-stack DS/ML platform on Azure, this Kubernetes-based stack is a good option. It is the same stack as the one running on EKS on AWS, with the S3-based datastore replaced with Azure Blob Storage.
 
@@ -114,3 +114,6 @@ If you need a full-stack DS/ML platform on Azure, this Kubernetes-based stack is
 This stack incurs a typical maintenance overhead of an AKS-based Kubernetes cluster, which shouldn't add much burden if your organization
 uses AKS already.
 
+---
+
+If you are unsure about the stacks, just run `pip install metaflow` to install the local stack and move on to [the tutorials](#). Flows you create will work without changes on any of these stacks.

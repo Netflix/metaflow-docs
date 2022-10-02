@@ -45,7 +45,20 @@ if __name__ == '__main__':
     LinearFlow()
 ```
 
+### Artifacts
+
 Besides executing the steps `start`, `a`, and `end` in order, this flow creates **a data artifact** called `my_var`. In Metaflow, data artifacts are created simply by assigning values to instance variables like `my_var`.
+
+Artifacts are a core concept of Metaflow. They have a number of uses:
+
+ - They allow you to manage the data flow through the flow without having to load and store data manually.
+
+ - All artifacts are persisted so that they can be analyzed later using the [Client API](/metaflow/client), visualized with [Cards](/metaflow/visualizing-results), and even used across flows.
+
+ - Artifacts works consistently across environments, so you can run some steps locally and [some steps in the cloud](/metaflow/scaling-out-and-up) without having to worry about transferring data explictly.
+
+ - Having access to past artifacts greatly helps [debugging](/metaflow/debugging), since you can eyeball data before failures and even [resume past
+ executions](/metaflow/debugging#how-to-use-the-resume-command) after fixing bugs.
 
 Data artifacts are available in all steps after they have been created, so they behave as any normal instance variables. An exception to this rule are branches, as explained below.
 
