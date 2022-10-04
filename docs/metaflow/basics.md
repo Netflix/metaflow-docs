@@ -1,4 +1,4 @@
-# Basics of Metaflow
+# Creating Flows
 
 This document introduces the basic concepts of Metaflow. If you are eager to try out Metaflow in practice, you can start with the [tutorial](../getting-started/tutorials/). After the tutorial, you can return to this document to learn more about how Metaflow works.
 
@@ -44,6 +44,14 @@ class LinearFlow(FlowSpec):
 if __name__ == '__main__':
     LinearFlow()
 ```
+
+Save this snippet to a file, `linear.py`. You can execute Metaflow flows on the command line like any other Python scripts. Try this:
+
+```bash
+python linear.py run
+```
+
+Whenever you see a flow like this in the documentation, just save it in a file and execute it like above.
 
 ### Artifacts
 

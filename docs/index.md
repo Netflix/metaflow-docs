@@ -8,45 +8,44 @@ slug: /
 
 # Welcome to Metaflow
 
-Metaflow makes it easy to build and manage real-life data science projects.
+Metaflow makes it easy to build and manage real-life data science and machine learning projects.
 
 <div className="tocList">
 
-## Introduction
+## Motivation
 
 - [Why Metaflow](introduction/why-metaflow)
 - [What is Metaflow](introduction/what-is-metaflow)
-- [Metaflow resources](introduction/metaflow-resources)
+- [Metaflow Resources](introduction/metaflow-resources)
 
 ## Getting Started
 
 - [Installing Metaflow locally](getting-started/install)
 - [Deploying Infrastructure for Metaflow](getting-started/infrastructure)
-- [Tutorial](getting-started/tutorials/)
+- [Quickstart Tutorial](getting-started/tutorials/)
 
-## I. Developing with Metaflow
+## I. Local Development
 
-- [Introduction to developing with Metaflow](metaflow/introduction)
-- [Basics of Metaflow](metaflow/basics)
+- [Introduction to Developing with Metaflow](metaflow/introduction)
+- [Creating Flows](metaflow/basics)
 - [Inspecting Flows and Results](metaflow/client)
+- [Debugging Flows](metaflow/debugging)
 - [Visualizing Results](metaflow/visualizing-results/)
-- [Debugging with Metaflow](metaflow/debugging)
 
-## II. Scaling Workflows
+## II. Scalable Flows
 
-- [Introduction to large-scale compute and data](scaling/introduction)
-- [Scaling Out and Up](scaling/scaling-out-and-up/)
-- [Loading and Storing Data](scaling/data)
-- [Managing External Libraries](scaling/dependencies)
+- [Introduction to Scalable Compute and Data](scaling/introduction)
+- [Scaling Flows](scaling/remote-tasks/introduction)
 - [Dealing with Failures](scaling/failures)
+- [Managing External Libraries](scaling/dependencies)
+- [Loading and Storing Data](scaling/data)
 - [Organizing Results](scaling/tagging)
 
-## III. Deploying and operating production workflows
+## III. Production Deployments
 
-- Introduction to production workflows
-- [Scheduling Metaflow Flows](going-to-production-with-metaflow/scheduling-metaflow-flows/)
-- Monitoring GUI
-- [Coordinating Larger Metaflow Projects](going-to-production-with-metaflow/coordinating-larger-metaflow-projects)
+- [Introduction to Production Deployments](production/introduction)
+- [Scheduling Metaflow Flows](production/scheduling-metaflow-flows/introduction)
+- [Coordinating Larger Metaflow Projects](production/coordinating-larger-metaflow-projects)
 
 ## API Reference
 
@@ -54,19 +53,22 @@ Metaflow makes it easy to build and manage real-life data science projects.
 
 ## Internals of Metaflow
 
-- [Technical Overview](internals-of-metaflow/technical-overview)
-- [Testing Philosophy](internals-of-metaflow/testing-philosophy)
+- [Technical Overview](internals/technical-overview)
+- [Testing Philosophy](internals/testing-philosophy)
+- [Contributing to Metaflow](internals/contributing)
 
+
+<!--
 
 ## Old
 
 - [Release Notes](introduction/release-notes)
 - [Roadmap](introduction/roadmap)
-- [Contributing to Metaflow](introduction/contributing-to-metaflow)
 - [Get in Touch](introduction/getting-in-touch)
 - [Metaflow on AWS](metaflow-on-aws)
 - [Metaflow Sandbox](metaflow-on-aws/metaflow-sandbox)
 - [Deploying to AWS](metaflow-on-aws/deploy-to-aws)
 
+-->
 
 </div>

@@ -87,6 +87,11 @@ const config = {
         ],
         hideOnScroll: true,
       },
+      docs: {
+        sidebar: {
+          autoCollapseCategories: true
+        }
+      },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,

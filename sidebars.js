@@ -80,6 +80,7 @@ const sidebars = {
       items: [
         "metaflow/basics",
         "metaflow/client",
+        "metaflow/debugging",
         {
           type: "category",
           label: "Visualizing Results",
@@ -92,14 +93,13 @@ const sidebars = {
             "metaflow/visualizing-results/easy-custom-reports-with-card-components",
             "metaflow/visualizing-results/advanced-shareable-cards-with-card-templates",
           ],
-        },
-        "metaflow/debugging"
+        }
       ],
     },
 
     {
       type: "category",
-      label: "Scaling Workflows",
+      label: "Scalable Flows",
       link: {
             type: "doc",
             id: "scaling/introduction",
@@ -107,40 +107,44 @@ const sidebars = {
       items: [
         {
           type: "category",
-          label: "Scaling Out and Up",
+          label: "Executing Tasks Remotely",
           link: {
             type: "doc",
-            id: "scaling/scaling-out-and-up/README",
+            id: "scaling/remote-tasks/introduction",
           },
           items: [
-            "scaling/scaling-out-and-up/effortless-scaling-with-kubernetes",
-            "scaling/scaling-out-and-up/effortless-scaling-with-aws-batch",
+            "scaling/remote-tasks/kubernetes",
+            "scaling/remote-tasks/aws-batch",
           ],
         },
+        "scaling/failures",
         "scaling/data",
         "scaling/dependencies",
-        "scaling/failures",
         "scaling/tagging"
       ]
     },
 
     {
       type: "category",
-      label: "Going to Production with Metaflow",
+      label: "Production Deployments",
+      link: {
+            type: "doc",
+            id: "production/introduction",
+      },
       items: [
         {
           type: "category",
           label: "Scheduling Metaflow Flows",
           link: {
             type: "doc",
-            id: "going-to-production-with-metaflow/scheduling-metaflow-flows/README",
+            id: "production/scheduling-metaflow-flows/introduction",
           },
           items: [
-            "going-to-production-with-metaflow/scheduling-metaflow-flows/scheduling-with-argo-workflows",
-            "going-to-production-with-metaflow/scheduling-metaflow-flows/scheduling-with-aws-step-functions",
+            "production/scheduling-metaflow-flows/scheduling-with-argo-workflows",
+            "production/scheduling-metaflow-flows/scheduling-with-aws-step-functions",
           ],
         },
-        "going-to-production-with-metaflow/coordinating-larger-metaflow-projects",
+        "production/coordinating-larger-metaflow-projects",
       ],
     },
 
@@ -194,19 +198,11 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Metaflow on AWS",
-      items: [
-        "metaflow-on-aws/metaflow-on-aws",
-        "metaflow-on-aws/metaflow-sandbox",
-        "metaflow-on-aws/deploy-to-aws",
-      ],
-    },
-    {
-      type: "category",
       label: "Internals of Metaflow",
       items: [
-        "internals-of-metaflow/technical-overview",
-        "internals-of-metaflow/testing-philosophy",
+        "internals/technical-overview",
+        "internals/testing-philosophy",
+        "internals/contributing"
       ],
     }
   ],
@@ -265,35 +261,7 @@ const sidebars = {
           ],
         },
       ],
-    },
-    {
-      type: "category",
-      label: "Metaflow on AWS",
-      items: [
-        "v/r/metaflow-on-aws/metaflow-on-aws",
-        "v/r/metaflow-on-aws/metaflow-sandbox",
-        "v/r/metaflow-on-aws/deploy-to-aws",
-      ],
-    },
-    {
-      type: "category",
-      label: "Developing with Metaflow",
-      items: [
-        "v/r/metaflow/basics",
-        "v/r/metaflow/client",
-        "v/r/metaflow/debugging",
-        "v/r/metaflow/scaling",
-        "v/r/metaflow/failures",
-        "v/r/metaflow/tagging",
-      ],
-    },
-    {
-      type: "category",
-      label: "Going to Production with Metaflow",
-      items: [
-        "v/r/going-to-production-with-metaflow/scheduling-metaflow-flows",
-      ],
-    },
+    }
   ],
 };
 

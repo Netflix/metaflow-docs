@@ -1,6 +1,6 @@
 import ReactPlayer from 'react-player'
 
-# Debugging with Metaflow
+# Debugging Flows
 
 Metaflow wants to make debugging failed flows as painless as possible.
 
