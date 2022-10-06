@@ -28,18 +28,18 @@ supported in each. You can choose to deploy Metaflow on:
 
 | Layer | Component | Description | Only Local | AWS | Azure | K8s
 | --- | --- | --- | --- | --- | --- | --- |
-| Modeling | <img src="/assets/infra-python.png" width=" 30" style={{verticalAlign:"middle"}}/> **Python libraries** | Any Python libraries | ✅ | ✅ | ✅ | ✅
-| Deployment | <img src="/assets/infra-argo.png" width=" 30" style={{verticalAlign:"middle"}}/> **Argo Workflows** | Open-source production-grade workflow orchestrator |   | ✅ | ✅ | ✅
-| Deployment | <img src="/assets/infra-sfn.png" width=" 30" style={{verticalAlign:"middle"}}/> **Step Functions** | AWS-managed production-grade workflow orchestrator |   | ✅ |   |  
-| Versioning | <img src="/assets/infra-mflocal.png" width=" 30" style={{verticalAlign:"middle"}}/> **Local Metadata** | Metaflow's tracking in local files | ✅ | ✅ | ✅ | ✅
-| Versioning | <img src="/assets/infra-metaflow.png" width=" 30" style={{verticalAlign:"middle"}}/> **Metadata Service** | Metaflow's tracking in a central database |   | ✅ | ✅ | ✅
-| Orchestration | <img src="/assets/infra-mflocal.png" width=" 30" style={{verticalAlign:"middle"}}/> **Local Orchestrator** | Metaflow's local workflow orchestrator | ✅ | ✅ | ✅ | ✅
-| Compute | <img src="/assets/infra-mflocal.png" width=" 30" style={{verticalAlign:"middle"}}/> **Local Processes** | Metaflow tasks as local processes | ✅ | ✅ | ✅ | ✅
-| Compute | <img src="/assets/infra-batch.png" width=" 30" style={{verticalAlign:"middle"}}/> **AWS Batch** | AWS-managed batch compute service |   | ✅ |   |  
-| Compute | <img src="/assets/infra-k8s.png" width=" 30" style={{verticalAlign:"middle"}}/> **Kubernetes** | Open-source batch compute platform |   | ✅ | ✅ | ✅
-| Data | <img src="/assets/infra-mflocal.png" width=" 30" style={{verticalAlign:"middle"}}/> **Local Datastore** | Metaflow artifacts in local files | ✅ | ✅ | ✅ | ✅
-| Data | <img src="/assets/infra-s3.png" width=" 30" style={{verticalAlign:"middle"}}/> **AWS S3** | Metaflow artifacts in AWS-managed storage |   | ✅ |   | ✅
-| Data | <img src="/assets/infra-azureblob.png" width=" 30" style={{verticalAlign:"middle"}}/> **Azure Blob Storage** | Metaflow artifacts in Azure-managed storage |   |   | ✅ | ✅
+| Modeling | <img src="/assets/infra-python.png" width=" 30" style={{verticalAlign:"middle"}}/> **Python libraries** | Any Python libraries | 🟢 | 🟢 | 🟢 | 🟢
+| Deployment | <img src="/assets/infra-argo.png" width=" 30" style={{verticalAlign:"middle"}}/> **Argo Workflows** | Open-source production-grade workflow orchestrator |   | 🟢 | 🟢 | 🟢
+| Deployment | <img src="/assets/infra-sfn.png" width=" 30" style={{verticalAlign:"middle"}}/> **Step Functions** | AWS-managed production-grade workflow orchestrator |   | 🟢 |   |  
+| Versioning | <img src="/assets/infra-mflocal.png" width=" 30" style={{verticalAlign:"middle"}}/> **Local Metadata** | Metaflow's tracking in local files | 🟢 | 🟢 | 🟢 | 🟢
+| Versioning | <img src="/assets/infra-metaflow.png" width=" 30" style={{verticalAlign:"middle"}}/> **Metadata Service** | Metaflow's tracking in a central database |   | 🟢 | 🟢 | 🟢
+| Orchestration | <img src="/assets/infra-mflocal.png" width=" 30" style={{verticalAlign:"middle"}}/> **Local Orchestrator** | Metaflow's local workflow orchestrator | 🟢 | 🟢 | 🟢 | 🟢
+| Compute | <img src="/assets/infra-mflocal.png" width=" 30" style={{verticalAlign:"middle"}}/> **Local Processes** | Metaflow tasks as local processes | 🟢 | 🟢 | 🟢 | 🟢
+| Compute | <img src="/assets/infra-batch.png" width=" 30" style={{verticalAlign:"middle"}}/> **AWS Batch** | AWS-managed batch compute service |   | 🟢 |   |  
+| Compute | <img src="/assets/infra-k8s.png" width=" 30" style={{verticalAlign:"middle"}}/> **Kubernetes** | Open-source batch compute platform |   | 🟢 | 🟢 | 🟢
+| Data | <img src="/assets/infra-mflocal.png" width=" 30" style={{verticalAlign:"middle"}}/> **Local Datastore** | Metaflow artifacts in local files | 🟢 | 🟢 | 🟢 | 🟢
+| Data | <img src="/assets/infra-s3.png" width=" 30" style={{verticalAlign:"middle"}}/> **AWS S3** | Metaflow artifacts in AWS-managed storage |   | 🟢 |   | 🟢
+| Data | <img src="/assets/infra-azureblob.png" width=" 30" style={{verticalAlign:"middle"}}/> **Azure Blob Storage** | Metaflow artifacts in Azure-managed storage |   |   | 🟢 | 🟢
 
 Note that fast prototyping with the Local Orchestrator is supported in all these options, but the **only local** option doesn't support scalability with an external compute layer, nor production-grade deployments.
 
@@ -53,6 +53,8 @@ Here are some typical deployments that we have seen in action:
 
 ### Local: Effortless prototyping
 
+**Just `pip install metaflow` to deploy this stack**
+
 This is the stack you get by default when you [install Metaflow locally](#). It's main benefit is zero
 configuration and maintenance - it works out of the box. It is a great way to get started with Metaflow.
 
@@ -63,6 +65,8 @@ you want to start running [larger-scale workloads](#), or you want to [deploy yo
 run even when your laptop is asleep, look into more featureful stacks below.
 
 ### Low-maintenance scalable prototyping, powered by AWS
+
+**[Click here to deploy this stack](https://outerbounds.com/engineering/deployment/aws-managed/introduction/)**
 
 If you are looking for the easiest and the most affordable way to scale out compute to the cloud, including cloud-based GPUs,
 this stack is a great option. Consider the benefits:
@@ -80,6 +84,8 @@ can look into Kubernetes-based stacks.
 
 ### Low-maintenance full stack, powered by AWS
 
+**[Click here to deploy this stack](https://outerbounds.com/engineering/deployment/aws-managed/introduction/)**
+
 If you need the full stack of data science/ML infrastructure but you want to spend a minimal amount of effort to
 set up and manage it, choose this option. You get all the benefits of AWS Batch as described above, as well as production
 deployments on [AWS Step Functions](#) which is a highly-available, scalable workflow orchestrator managed by AWS. Metaflow
@@ -94,6 +100,8 @@ Here are the main reasons for not using this stack:
 
 ### Customizable full stack on AWS, powered by Kubernetes
 
+**[Click here to deploy this stack](https://outerbounds.com/engineering/deployment/aws-k8s/deployment/)**
+
 If your engineering team has prior experience with Kubernetes, they might prefer a familiar stack that works with their existing
 security policies, observability tools, and deployment mechanisms. In this case, this Kubernetes-native stack featuring compute
 on Kubernetes and deployments on reliable, scalable, open-source [Argo Workflows](#) is a good option.
@@ -106,6 +114,8 @@ using [Minio](#) as an S3-compatible datastore.
 This stack requires more maintenance than the AWS-native stack above, although the basic setup is quite manageable if your organization is already familiar with Kubernetes.
 
 ### Customizable full stack on Azure, powered by Kubernetes
+
+**[Click here to deploy this stack](https://outerbounds.com/engineering/deployment/azure-k8s/deployment/)**
 
 If you need a full-stack DS/ML platform on Azure, this Kubernetes-based stack is a good option. It is the same stack as the one running on EKS on AWS, with the S3-based datastore replaced with Azure Blob Storage.
 
