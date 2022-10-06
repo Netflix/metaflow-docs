@@ -7,7 +7,7 @@ API in [the Client API reference page](/api/client).
 
 ## Object hierarchy
 
-Note that all operations in the Client API are filtered by the current namespace, as explained in [Organizing Results](tagging.md). If you do not get the results you expect, make sure you are in the correct namespace. The Client API consults the metadata service to gather results, so make sure that the client is properly configured to use the correct [metadata provider](client.md#metadata-provider).
+Note that all operations in the Client API are filtered by the current namespace, as explained in [Organizing Results](/scaling/tagging.md). If you do not get the results you expect, make sure you are in the correct namespace. The Client API consults the metadata service to gather results, so make sure that the client is properly configured to use the correct [metadata provider](/metaflow/client.md#metadata-provider).
 
 ![Object hierarchy](/assets/hierarchy.png)
 
@@ -66,7 +66,7 @@ run = flow['2']
 
 ### Accessing a specific object by its address
 
-Besides navigating from the root downwards, you can instantiate every object directly with its fully qualified name, called `pathspec`. Note that also this operation is subject to the current namespace, as explained in [Organizing Results](tagging.md); in short, you will not be able to access a Flow that is not the current namespace; the error message returned will make it clear whether an object exists and is not in the namespace or does not exist at all.
+Besides navigating from the root downwards, you can instantiate every object directly with its fully qualified name, called `pathspec`. Note that also this operation is subject to the current namespace, as explained in [Organizing Results](/scaling/tagging.md); in short, you will not be able to access a Flow that is not the current namespace; the error message returned will make it clear whether an object exists and is not in the namespace or does not exist at all.
 
 You can instantiate, for example, a particular flow by its name:
 
@@ -110,7 +110,7 @@ Here, we print the value of `self.x` in the step `a` of the run `2` of the flow 
 
 *New in Metaflow 2.7.1: You need to upgrade your Metaflow library and the metadata service to benefit from this feature.*
 
-Every run has [a set of tags](tagging.md#tagging) attached, that is, user-defined annotations.
+Every run has [a set of tags](/scaling/tagging.md#tagging) attached, that is, user-defined annotations.
 You can add and remove tags as follows:
 
 ```python
@@ -181,7 +181,7 @@ Every object has the following properties available:
 
 ### Properties related to flows
 
-To access an iterator over runs and filter by tags, use the `runs()` method. See [Tagging](tagging.md#tagging) for more detail.
+To access an iterator over runs and filter by tags, use the `runs()` method. See [Tagging](/scaling/tagging.md#tagging) for more detail.
 
 `Flow` has two additional properties related to determining the latest run for the flow. Note that any `Run` returned will be in the current namespace.
 
@@ -190,7 +190,7 @@ To access an iterator over runs and filter by tags, use the `runs()` method. See
 
 ### Properties related to runs
 
-To access an iterator over the steps of a run and filter by tags, use the `steps()` method. See [Tagging](tagging.md#tagging) for more detail.
+To access an iterator over the steps of a run and filter by tags, use the `steps()` method. See [Tagging](/scaling/tagging.md#tagging) for more detail.
 
 `Run` also has a few additional properties to make it easy to access commonly used information:
 
@@ -205,20 +205,20 @@ To access an iterator over the steps of a run and filter by tags, use the `steps
 
 A `Step` typically has a single `Task`. A Step will have multiple `Task` objects as its children if it is a `foreach` step; each `Task` will correspond to a single execution of the `Step`.
 
-To access an iterator over the tasks of a step and filter by tags, use the `tasks()` method. See [Tagging](tagging.md#tagging) for more detail.
+To access an iterator over the tasks of a step and filter by tags, use the `tasks()` method. See [Tagging](/scaling/tagging.md#tagging) for more detail.
 
 `Step` has a few additional properties as well:
 
 - `task`: Convenience method to return the unique `Task` associated with this `Step`. If a `Step` has more than one `Task`, this will return any of them (no order guaranteed).
 - `finished_at`: A datetime object indicating the completion time of the step. A step is complete when all its tasks are complete.
-- `environment_info`: A dict object containing metadata for the execution environment. See [Dependencies](dependencies.md) for more detail.
+- `environment_info`: A dict object containing metadata for the execution environment. See [Dependencies](/scaling/dependencies.md) for more details.
 
 ### Properties related to tasks
 
 Since a `Task` is the actual unit of execution in Metaflow, these objects contain the richest set of properties:
 
-- `data`: A convenience method to access all data produced by this `Task`. See [Accessing data](client.md#accessing-data).
-- `artifacts`: A convenience method to access all `DataArtifact` objects produced by this `Task`. See [Accessing data](client.md#accessing-data).
+- `data`: A convenience method to access all data produced by this `Task`. See [Accessing data](/metaflow/client.md#accessing-data).
+- `artifacts`: A convenience method to access all `DataArtifact` objects produced by this `Task`. See [Accessing data](/metaflow/client.md#accessing-data).
 - `successful`: A boolean indicating whether or not this `Task` completed successfully.
 - `finished`: A boolean indicating whether or not this `Task` completed.
 - `exception`: If an exception was raised by this `Task` (ie: it did not complete successfully), it will be contained here.
@@ -226,7 +226,7 @@ Since a `Task` is the actual unit of execution in Metaflow, these objects contai
 - `stdout`: A string containing the standard output of this `Task`.
 - `stderr`: A string containing the standard error of this `Task`.
 - `code`: The code used to execute this `Task`, if available.
-- `environment_info`: A dict object containing metadata for the execution environment. See [Dependencies](dependencies.md) for more detail.
+- `environment_info`: A dict object containing metadata for the execution environment. See [Dependencies](/scaling/dependencies.md) for more detail.
 
 Here is an example:
 

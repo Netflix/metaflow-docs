@@ -39,7 +39,7 @@ if __name__ == '__main__':
 
 When you run this flow, you will see that sometimes it succeeds without a hitch but sometimes the `start` step raises an exception and it needs to be retried. By default, `retry` retries the step three times. Thanks to `retry`, this workflow will almost always succeed.
 
-It is highly recommended that you use `retry` every time you run your flow on the [cloud](../metaflow-on-aws/metaflow-on-aws.md). Instead of annotating every step with a retry decorator, you can also automatically add a retry decorator to all steps that do not have one as follows:
+It is recommended that you use `retry` every time you [run tasks remotely](/scaling/remote-tasks/introduction). Instead of annotating every step with a retry decorator, you can also automatically add a retry decorator to all steps that do not have one as follows:
 
 ```python
 python RetryFlow.py run --with retry
@@ -78,7 +78,7 @@ Most data science workflows do not have to worry about this. As long as your ste
 
 ### Maximizing Safety
 
-By default, `retry` will retry the step for three times before giving up. It waits for 2 minutes between retries on the [cloud](../metaflow-on-aws/metaflow-on-aws.md). This means that if your code fails fast, any transient platform issues need to get resolved in less than 10 minutes or the whole run will fail. Typically 10 minutes is more than enough but sometimes you want both a belt and suspenders.
+By default, `retry` will retry the step for three times before giving up. It waits for 2 minutes between retries for [remote tasks](/scaling/remote-tasks/introduction). This means that if your code fails fast, any transient platform issues need to get resolved in less than 10 minutes or the whole run will fail. Typically 10 minutes is more than enough but sometimes you want both a belt and suspenders.
 
 If you have a sensitive production workflow which should not fail easily, there are four things you can do:
 
@@ -91,7 +91,7 @@ You can use any combination of these four techniques, or all of them together, t
 
 ### Results of Retries
 
-If the same code is executed multiple times by `retry`, are there going to be duplicate artifacts? No, Metaflow manages retries so that only artifacts from the last retry are visible. If you use [the Client API ](client.md)to inspect results, you don't have to do anything special to deal with retries that may have happened. Each task will have only one set of results. Correspondingly, the logs returned by `task` show the output of the last attempt only.
+If the same code is executed multiple times by `retry`, are there going to be duplicate artifacts? No, Metaflow manages retries so that only artifacts from the last retry are visible. If you use [the Client API ](/metaflow/client.md)to inspect results, you don't have to do anything special to deal with retries that may have happened. Each task will have only one set of results. Correspondingly, the logs returned by `task` show the output of the last attempt only.
 
 If you want to know if a task was retried, you can retrieve retry timestamps from `Task` metadata:
 

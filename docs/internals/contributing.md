@@ -6,7 +6,7 @@ If you are interested in contributing to Metaflow, we'd love to hear from you! D
 
 ### Contributing Code and Issues
 
-We are proud of [our philosophy and human-centric development style](what-is-metaflow#the-philosophy-of-metaflow), which means that we value thoughtfulness and a polished user experience more than the number of features or lines of code.
+We are proud of our philosophy and human-centric development style, which means that we value thoughtfulness and a polished user experience more than the number of features or lines of code.
 
 When Metaflow was developed internally at Netflix, we spent a considerable amount of time, often months, to hone the design for features before we implemented them. We are not sure what’s the best way to facilitate the design process in the open yet - your ideas are welcome. We have outlined our current suggested way below -
 

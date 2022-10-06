@@ -8,7 +8,7 @@ You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/t
 
 **Showcasing:**
 
-- Including external files with [IncludeFile](../../../metaflow/data#data-in-local-files).
+- Including external files with [IncludeFile](../../../scaling/data#data-in-local-files).
 - Basic Metaflow [Parameters](../../../metaflow/basics#how-to-define-parameters-for-flows).
 - Running workflow [branches](../../../metaflow/basics#branch) in parallel and joining results.
 - Using the Metaflow [Client API](../../../metaflow/client) in a Notebook.

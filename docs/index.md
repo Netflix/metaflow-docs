@@ -35,7 +35,7 @@ Metaflow makes it easy to build and manage real-life data science and machine le
 ## II. Scalable Flows
 
 - [Introduction to Scalable Compute and Data](scaling/introduction)
-- [Scaling Flows](scaling/remote-tasks/introduction)
+- [Executing tasks remotely](scaling/remote-tasks/introduction)
 - [Dealing with Failures](scaling/failures)
 - [Managing External Libraries](scaling/dependencies)
 - [Loading and Storing Data](scaling/data)
@@ -53,6 +53,7 @@ Metaflow makes it easy to build and manage real-life data science and machine le
 
 ## Internals of Metaflow
 
+- [Release Notes](internals/release-notes)
 - [Technical Overview](internals/technical-overview)
 - [Testing Philosophy](internals/testing-philosophy)
 - [Contributing to Metaflow](internals/contributing)

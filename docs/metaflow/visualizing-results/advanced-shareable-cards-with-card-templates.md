@@ -58,11 +58,12 @@ You should see a blank page with a blue “Hello World!” text.
 
 ![](</assets/card-docs-html_(2).png>)
 
-A particularly useful feature of card templates is that they work in any compute environment, such as [AWS Batch](../scaling-out-and-up/effortless-scaling-with-aws-batch.md) or [Kubernetes](../scaling-out-and-up/effortless-scaling-with-kubernetes.md). For instance, if you have AWS Batch set up, you can run the flow as follows:
+A particularly useful feature of card templates is that they work in any compute environment, even when
+[executing tasks remotely](/scaling/remote-tasks/introduction). For instance, if you have AWS Batch set up, you can run the flow as follows:
 
 `python htmlcardflow.py run --with batch`
 
-The card will get produced without you having to worry about installing anything on the remote instances! You can [deploy flows to production](../../going-to-production-with-metaflow/scheduling-metaflow-flows/) with custom templates too:
+The card will get produced without you having to worry about installing anything on the remote instances! You can [deploy flows to production](../../production/scheduling-metaflow-flows/introduction/) with custom templates too:
 
 `python htmlcardflow.py step-functions create`
 
@@ -114,4 +115,4 @@ Here are recommended strategies for handling 3rd party library dependencies in c
 1. You can rely on Javascript libraries to move functionality to the frontend side. For instance, instead of producing visualizations in Python, you can produce them in Javascript. Take a look at [metaflow-card-uplot-timeseries](https://github.com/outerbounds/metaflow-card-uplot-timeseries) template to see how to use a Javascript library in your template.
 2. You can include small Python libraries in the template package itself, aka _vendor_ them.
 
-If these approaches don’t work, you can instruct users to include the dependencies of the template in their [@conda libraries](../dependencies). For templates shared privately, you may also rely on dependencies included in a Docker image shared by all users and `@batch` executions.
+If these approaches don’t work, you can instruct users to include the dependencies of the template in their [@conda libraries](/scaling/dependencies). For templates shared privately, you may also rely on dependencies included in a Docker image shared by all users and `@batch` executions.

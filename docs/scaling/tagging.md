@@ -6,7 +6,7 @@ The good news is that Metaflow does 80% of this work for you without you having 
 
 ## Namespaces
 
-As explained in [Basics of Metaflow](basics), Metaflow persists all runs and all the data artifacts they produce. Every run gets a unique run ID, e.g. `HelloFlow/546`, which can be used to refer to a specific set of results. You can access these results with the [Client API](client).
+As explained in [Creating Flows](/metaflow/basics), Metaflow persists all runs and all the data artifacts they produce. Every run gets a unique run ID, e.g. `HelloFlow/546`, which can be used to refer to a specific set of results. You can access these results with the [Client API](/metaflow/client).
 
 Many users can use Metaflow concurrently. Imagine that Anne and Will are collaborating on a project that consists of two flows, `PredictionFlow` and `FeatureFlow`. As they, amongst other people, run their versions independently they end up with the following runs:
 
@@ -16,7 +16,7 @@ Anne could analyze her latest `PredictionFlow` results in a notebook by remember
 
 ![](/assets/assets_metaflow_-lpjn0yp7r49jrnxca_5_-lpjryuvqmspdu9w5imb_namespace2.png)
 
-When Anne runs `PredictionFlow`, her runs are automatically **tagged** with her user name, prefixed with `user:`. By default, when Anne uses the [Client API](client) in a notebook or in a Python script, the API only returns results that are tagged with `user:anne`. Instead of having to remember the exact ID of her latest run, she can simply say:
+When Anne runs `PredictionFlow`, her runs are automatically **tagged** with her user name, prefixed with `user:`. By default, when Anne uses the [Client API](/metaflow/client) in a notebook or in a Python script, the API only returns results that are tagged with `user:anne`. Instead of having to remember the exact ID of her latest run, she can simply say:
 
 ```python
 from metaflow import Flow
@@ -79,7 +79,7 @@ Setting `namespace(None)` allows you allows you to access all results without li
 
 ## Production Namespaces
 
-During development, namespacing by the user name feels natural. However, when you [schedule your flow to run automatically](../going-to-production-with-metaflow/scheduling-metaflow-flows/), runs are not related to a specific user anymore. It is typical for multiple people to collaborate on a project that has a canonical production version. It is not obvious which user "owns" the production version.
+During development, namespacing by the user name feels natural. However, when you [schedule your flow to run automatically](../production/scheduling-metaflow-flows/introduction/), runs are not related to a specific user anymore. It is typical for multiple people to collaborate on a project that has a canonical production version. It is not obvious which user "owns" the production version.
 
 Moreover, it is critical that you, and all other people, can keep experimenting on the project without having to worry about breaking the production version. If the production flow ran in the namespace of any individual, relative references like `latest_run` could break the production easily as the user keeps executing experimental runs.
 
@@ -134,7 +134,7 @@ This will deploy a new version in production using a fresh, empty namespace.
 
 ## Resuming across namespaces
 
-[The `resume` command](debugging#how-to-use-the-resume-command) is smart enough to work across production and personal namespaces. You can `resume` a production workflow without having to do anything special with namespaces.
+[The `resume` command](/metaflow/debugging#how-to-use-the-resume-command) is smart enough to work across production and personal namespaces. You can `resume` a production workflow without having to do anything special with namespaces.
 
 You can resume runs of other users and you can resume any production runs. The results of your resumed runs are always created in your personal namespace.
 
@@ -148,7 +148,7 @@ If you know a tag to be attached before a run starts, you can add it using the `
 python helloworld.py run --tag crazy_test
 ```
 
-Often, you may want to add or change tags after a run has completed. In contrast to artifacts, tags can be mutated any time: Consider them as mutating interpretations of immutable (arti)facts. You can mutate tags either [using the Client API](client#adding-removing-and-replacing-tags) or the command line.
+Often, you may want to add or change tags after a run has completed. In contrast to artifacts, tags can be mutated any time: Consider them as mutating interpretations of immutable (arti)facts. You can mutate tags either [using the Client API](/metaflow/client#adding-removing-and-replacing-tags) or the command line.
 
 Add a tag on the command line like this:
 
@@ -166,7 +166,7 @@ You can see the current set of tags with
 python helloworld.py tag list
 ```
 
-Note that the above command lists also [system tags](client#system-tags) that can not be mutated but they
+Note that the above command lists also [system tags](/metaflow/client#system-tags) that can not be mutated but they
 can be used for filtering.
 
 ### Filtering by tags
@@ -214,7 +214,7 @@ We encourage you to use a combination of namespaces, domain-specific tags, and f
 *This section contains an overview of `current`. For a complete API, see
 [the API reference for `current`](/api/current).*
 
-Tagging and namespaces, together with the [Client API](client), are the main ways for accessing results of past runs. Metaflow uses these mechanisms to organize and isolate results automatically, so in most cases you don't have to do anything.
+Tagging and namespaces, together with the [Client API](/metaflow/client), are the main ways for accessing results of past runs. Metaflow uses these mechanisms to organize and isolate results automatically, so in most cases you don't have to do anything.
 
 However, in some cases you may need to deal with IDs explicitly. For instance, if your flow interacts with external systems, it is a good idea to inform the external system about the identity of the run, so you can trace back any issues to a specific run. Also IDs can come in handy if you need to version externally stored data.
 
@@ -254,7 +254,7 @@ In particular, the value of `current.pathspec` is convenient as an unambiguous i
 pathspec: CurrentFlow/1/start/550539
 ```
 
-Now you can inspect this particular task using[ the Client API](client) by instantiating a `Task` object as follows:
+Now you can inspect this particular task using[ the Client API](/metaflow/client) by instantiating a `Task` object as follows:
 
 ```python
 from metaflow import Task
@@ -264,7 +264,7 @@ print task.stdout
 
 This prints out the output of the task identified by the `pathspec`.
 
-The `current` singleton also provides programmatic access to the CLI option `--origin-run-id` used by the [resume](debugging#how-to-use-the-resume-command) within your flow code.
+The `current` singleton also provides programmatic access to the CLI option `--origin-run-id` used by the [resume](/metaflow/debugging#how-to-use-the-resume-command) within your flow code.
 
 If a user explicitly overrides the CLI option `--origin-run-id`, the `current` singleton would reflect that value.
 

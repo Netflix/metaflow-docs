@@ -1,6 +1,6 @@
 # Using Kubernetes
 
-Here are some useful tips and tricks related to running Metaflow on Kubernetes. See our engineering resources for additional information about [setting up and operating Kubernetes for Metaflow](sds).
+Here are some useful tips and tricks related to running Metaflow on Kubernetes. See our engineering resources for additional information about [setting up and operating Kubernetes for Metaflow](https://outerbounds.com/docs/engineering-welcome/).
 
 ## What value of `@timeout` should I set?
 

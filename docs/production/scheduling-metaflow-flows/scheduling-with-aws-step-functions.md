@@ -7,7 +7,7 @@ In Metaflow's point of view, the main benefits of AWS Step Functions are the fol
 - AWS Step Functions orchestrates workflows expressed as state machines, which are a superset of directed graphs. This means that we can map Metaflow flows to corresponding AWS Step Functions state machines fully automatically. This gives you much more detail about what gets executed and how, in contrast to treating Metaflow scripts as black boxes.
 - AWS Step Functions comes with tooling that is required for running workflows in production. You can benefit from battle-hardened solutions provided by AWS for alerting, monitoring, and scheduling. By using AWS Step Functions your Metaflow flows can integrate seamlessly with the wider AWS offerings.
 
-When running on AWS Step Functions, Metaflow code works exactly as it does locally: No changes are required in the code. All data artifacts produced by steps run on AWS Step Functions are available using the [Client API](../../metaflow/client). All tasks are run on AWS Batch respecting the resources decorator, as explained in [Scaling Up and Out](../../metaflow/scaling-out-and-up/effortless-scaling-with-aws-batch.md).
+When running on AWS Step Functions, Metaflow code works exactly as it does locally: No changes are required in the code. All data artifacts produced by steps run on AWS Step Functions are available using the [Client API](../../metaflow/client). All tasks are run on AWS Batch respecting the resources decorator, as if the `@batch` decorator was added to all steps, as explained in [Executing Remote Tasks](/scaling/remote-tasks/introduction).
 
 This document describes the basics of AWS Step Functions scheduling. If your project involves multiple people, multiple workflows, or it is becoming business-critical, check out the section around [coordinating larger Metaflow projects](../coordinating-larger-metaflow-projects.md).
 
@@ -44,7 +44,7 @@ python parameter_flow.py --with retry step-functions create
 
 This command takes a snapshot of your code in the working directory, as well as the version of Metaflow used and exports the whole package to AWS Step Functions for scheduling.
 
-It is highly recommended that you [enable retries](../../metaflow/failures#retrying-tasks-with-the-retry-decorator) when deploying to AWS Step Functions, which you can do easily with --with retry as shown above. However, make sure that all your steps are safe to retry before you do this. If some of your steps interact with external services in ways that can't tolerate automatic retries, decorate them with retry with times set to zero \(times=0\) as described in [How to Prevent Retries](../../metaflow/failures#how-to-prevent-retries).
+It is highly recommended that you [enable retries](../../scaling/failures#retrying-tasks-with-the-retry-decorator) when deploying to AWS Step Functions, which you can do easily with --with retry as shown above. However, make sure that all your steps are safe to retry before you do this. If some of your steps interact with external services in ways that can't tolerate automatic retries, decorate them with retry with times set to zero \(times=0\) as described in [How to Prevent Retries](../../scaling/failures#how-to-prevent-retries).
 
 The command will export your workflow to AWS Step Functions. You can also search for the flow by name within the AWS Step Functions UI. You should see a visualization of the exported flow, like here:
 
@@ -76,7 +76,7 @@ python parameter_flow.py step-functions trigger --alpha 0.5
 
 If you run `step-functions create` again, it will create a new version of your flow on AWS Step Functions. The newest version becomes the production version automatically \(due to the consistency guarantees provided by AWS Step Functions, it might be a couple of seconds before this happens\). If you want to test on AWS Step Functions without interfering with a production flow, you can change the name of your class, e.g. from ParameterFlow to ParameterFlowStaging, and `step-functions create` the flow under a new name or use the [@project](../coordinating-larger-metaflow-projects.md/#projects-on-aws-step-functions--argo-workflows) decorator.
 
-Note that `step-functions create` creates a new isolated [production namespace](../../metaflow/tagging#production-namespaces) for your production flow. Please read [Organizing Results](../../metaflow/tagging) to learn all about namespace behavior.
+Note that `step-functions create` creates a new isolated [production namespace](../../scaling/tagging#production-namespaces) for your production flow. Please read [Organizing Results](../../scaling/tagging) to learn all about namespace behavior.
 
 In case your flow doesn't accept any parameters, and you would like to execute it from within the AWS Step Functions UI, you would need to pass in the following in the input dialog box:
 
@@ -92,7 +92,7 @@ By default, Metaflow configures AWS Step Functions to execute at most 100 tasks 
 
 If your workflow includes a large foreach and you need results faster, you can increase the default with the `--max-workers` option. For instance, `step-functions create --max-workers 500` allows 500 tasks to be executed concurrently for every foreach step.
 
-This option is similar to [`run --max-workers`](../../metaflow/scaling-out-and-up/effortless-scaling-with-aws-batch.md#safeguard-flags) that is used to limit concurrency outside AWS Step Functions.
+This option is similar to [`run --max-workers`](/scaling/remote-tasks/introduction#safeguard-flags) that is used to limit concurrency outside AWS Step Functions.
 
 ### Deploy-time parameters
 

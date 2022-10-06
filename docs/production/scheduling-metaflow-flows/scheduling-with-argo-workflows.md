@@ -7,7 +7,7 @@ In Metaflow's point of view, the main benefits of Argo Workflows are the followi
 - Argo Workflows orchestrates workflows expressed as directed acyclic graphs. This means that we can map Metaflow flows to the corresponding Argo Workflows Workflow Template fully automatically. This gives you much more detail about what gets executed and how, in contrast to treating Metaflow scripts as black boxes.
 - Argo Workflows comes with tooling that is required for running workflows in production. You can benefit from battle-hardened solutions provided by the Kubernetes community for alerting, monitoring, and scheduling. By using Argo Workflows your Metaflow flows can integrate seamlessly with the wider Kubernetes offerings.
 
-When running on Argo Workflows, Metaflow code works exactly as it does locally: No changes are required in the code. All data artifacts produced by steps run on Argo Workflows are available using the [Client API](../../metaflow/client.md). All tasks are run on Kubernetes respecting the resources decorator, as explained in [Scaling Out and Up with Kubernetes](../../metaflow/scaling-out-and-up/effortless-scaling-with-kubernetes.md).
+When running on Argo Workflows, Metaflow code works exactly as it does locally: No changes are required in the code. All data artifacts produced by steps run on Argo Workflows are available using the [Client API](../../metaflow/client.md). All tasks are run on Kubernetes respecting the resources decorator, as if the `@kubernetes` decorator was added to all stpes, as explained in [Executing Tasks Remotely](/scaling/remote-tasks/introduction#safeguard-flags).
 
 This document describes the basics of Argo Workflows scheduling. If your project involves multiple people, multiple workflows, or it is becoming business-critical, check out the section around [coordinating larger Metaflow projects](../coordinating-larger-metaflow-projects.md).
 
@@ -44,7 +44,7 @@ python parameter_flow.py --with retry argo-workflows create
 
 This command takes a snapshot of your code in the working directory, as well as the version of Metaflow used and exports the whole package to Argo Workflows for scheduling.
 
-It is highly recommended that you [enable retries](../../metaflow/failures#retrying-tasks-with-the-retry-decorator) when deploying to Argo Workflows, which you can do easily with --with retry as shown above. However, make sure that all your steps are safe to retry before you do this. If some of your steps interact with external services in ways that can't tolerate automatic retries, decorate them with retry with times set to zero \(times=0\) as described in [How to Prevent Retries](../../metaflow/failures#how-to-prevent-retries).
+It is highly recommended that you [enable retries](../../scaling/failures#retrying-tasks-with-the-retry-decorator) when deploying to Argo Workflows, which you can do easily with --with retry as shown above. However, make sure that all your steps are safe to retry before you do this. If some of your steps interact with external services in ways that can't tolerate automatic retries, decorate them with retry with times set to zero \(times=0\) as described in [How to Prevent Retries](../../scaling/failures#how-to-prevent-retries).
 
 The command will export your workflow to  Argo Workflows as a _workflow template_. You can also search for the _workflow template_ by name within the Argo Workflows UI. 
 
@@ -72,7 +72,7 @@ python parameter_flow.py argo-workflows trigger --alpha 0.5
 
 If you run `argo-workflows create` again, it will create a new version of your flow on Argo Workflows. The newest version becomes the production version automatically. If you want to test on Argo Workflows without interfering with a production flow, you can change the name of your class, e.g. from ParameterFlow to ParameterFlowStaging, and `argo-workflows create` the flow under a new name or use the [@project](../coordinating-larger-metaflow-projects.md/#projects-on-aws-step-functions--argo-workflows) decorator.
 
-Note that `argo-workflows create` creates a new isolated [production namespace](../../metaflow/tagging#production-namespaces) for your production flow. Please read [Organizing Results](../../metaflow/tagging) to learn all about namespace behavior.
+Note that `argo-workflows create` creates a new isolated [production namespace](../../scaling/tagging#production-namespaces) for your production flow. Please read [Organizing Results](../../scaling/tagging) to learn all about namespace behavior.
 
 
 ### Limiting the number of concurrent tasks
@@ -81,7 +81,7 @@ By default, Metaflow configures Argo Workflows to execute at most 100 tasks conc
 
 If your workflow includes a large foreach and you need results faster, you can increase the default with the `--max-workers` option. For instance, `argo-workflows create --max-workers 500` allows 500 tasks to be executed concurrently for every foreach step.
 
-This option is similar to [`run --max-workers`](../../metaflow/scaling-out-and-up/effortless-scaling-with-kubernetes.md#safeguard-flags) that is used to limit concurrency outside Argo Workflows.
+This option is similar to [`run --max-workers`](/scaling/remote-tasks/introduction#safeguard-flags) that is used to limit concurrency outside Argo Workflows.
 
 ### Deploy-time parameters
 

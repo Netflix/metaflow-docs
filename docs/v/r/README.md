@@ -9,6 +9,13 @@ import Description from "/src/components/Description";
 
 <Description>Build and manage real-life data science projects with ease.</Description>
 
+:::caution
+
+Metaflow for R is in *maintenance mode*. It doesn't support the latest features of Metaflow.
+[Reach out to us on Slack if you have questions about R](http://slack.outerbounds.co).
+
+:::
+
 ---
 
 ## Introduction

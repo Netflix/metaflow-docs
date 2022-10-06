@@ -127,8 +127,8 @@ Metaflow requires an object store where both code snapshots as well as data arti
 
 An important feature of Metaflow is that the data store is used as a content-addressed storage. Both code and data are identified by a hash of their contents, similar to Git, so equal copies of data are deduplicated automatically. Note that this deduplication is limited in scope however; data across different flows will not be deduplicated.
 
-- [`datastore.py` - base class for data stores](https://github.com/Netflix/metaflow/blob/master/metaflow/datastore/datastore_storage.py)
-- [`s3.py` - default S3 data store](https://github.com/Netflix/metaflow/blob/master/metaflow/datastore/s3_storage.py)
+- [`datastore.py` - base class for data stores](https://github.com/Netflix/metaflow/blob/master/scaling/datastore/datastore_storage.py)
+- [`s3.py` - default S3 data store](https://github.com/Netflix/metaflow/blob/master/scaling/datastore/s3_storage.py)
 
 ### Metadata Provider
 

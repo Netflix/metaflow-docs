@@ -1,7 +1,7 @@
 
 # Using AWS Batch
 
-Here are some useful tips and tricks related to running Metaflow on AWS Batch. See our engineering resources for additional information about [setting up and operating AWS Batch for Metaflow](sds).
+Here are some useful tips and tricks related to running Metaflow on AWS Batch. See our engineering resources for additional information about [setting up and operating AWS Batch for Metaflow](https://outerbounds.com/docs/engineering-welcome/).
 
 ## What value of `@timeout` should I set?
 
@@ -32,7 +32,7 @@ Consult [this article](https://docs.aws.amazon.com/batch/latest/userguide/troubl
 
 If you interrupt a Metaflow run, any AWS Batch tasks launched by the run get killed by Metaflow automatically. Even if something went wrong during the final cleanup, the tasks will finish and die eventually, at the latest when they hit the maximum time allowed for an AWS Batch task.
 
-If you want to make sure you have no AWS Batch tasks running, or you want to manage them manually, you can use the `batch list` and `batch kill` commands. These commands are disabled in the [Metaflow AWS Sandbox](../../metaflow-on-aws/metaflow-sandbox.md).
+If you want to make sure you have no AWS Batch tasks running, or you want to manage them manually, you can use the `batch list` and `batch kill` commands.
 
 You can easily see what AWS Batch tasks were launched by your latest run with
 

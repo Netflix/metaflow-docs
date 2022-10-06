@@ -48,7 +48,7 @@ All objects at the `Run` level and below have the following attributes:
 
 ### Object visibility
 
-Note that only objects in [the current namespace](/metaflow/tagging) can be instantiated. See [Namespace functions](#namespace) to see how to switch between namespaces. 
+Note that only objects in [the current namespace](/scaling/tagging) can be instantiated. See [Namespace functions](#namespace) to see how to switch between namespaces. 
 
 This module accesses all objects through the current metadata provider - either Metaflow Service or local metadata. See [Metadata functions](#metadata) for utilities related to metadata provider.
 

@@ -20,7 +20,7 @@ Here's how Metaflow can help make your project more scalable:
 more CPUs, memory, or GPUs in your flows. Or, you can parallelize processing over multiple instances, even thousands of them.
 
 2. Once your project starts showing promise with realistic-size workloads, it may start attracting interest from colleagues too.
-Metaflow contains a number of features, such as [namespaces](/metaflow/tagging), which make collaboration smoother by allowing
+Metaflow contains a number of features, such as [namespaces](/scaling/tagging), which make collaboration smoother by allowing
 many people contribute without interfering with each other's work accidentally.
 
 ### Toolbox of Scalability

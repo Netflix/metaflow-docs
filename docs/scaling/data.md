@@ -10,9 +10,9 @@ Metaflow can not make the world perfect yet. However, we recommend that data sci
 
 There are multiple benefits in keeping data access separate from model-specific data manipulation:
 
-* It is easier to keep a model and its features in sync when they are computed together. [Metaflow's built-in versioning](tagging.md#tagging) makes it easy to iterate on multiple concurrent versions of the model safely. However, Metaflow can't protect you against stale input data. It is frustrating to troubleshoot bad model results that are caused by out-of-sync features.
+* It is easier to keep a model and its features in sync when they are computed together. [Metaflow's built-in versioning](/scaling/tagging.md#tagging) makes it easy to iterate on multiple concurrent versions of the model safely. However, Metaflow can't protect you against stale input data. It is frustrating to troubleshoot bad model results that are caused by out-of-sync features.
 * It is quicker to iterate on your model. Testing and debugging Python is easier than testing and debugging SQL.
-* You can request [arbitrary amount of resources](scaling-out-and-up) for your data manipulation needs.
+* You can request [arbitrary amount of resources](/scaling/remote-tasks/introduction) for your data manipulation needs.
 * Instead of having data manipulation code in two places (SQL and Python), all code can be clearly laid out in a single place, in a single language, for maximum readability.
 * It is easier to optimize your code for performance when IO bottlenecks can be profiled separately from CPU bottlenecks.
 
@@ -24,7 +24,7 @@ Accessing data in tables (most often Hive) is by far the most common way to load
 
 It is not uncommon for a data science workflow to hit these limitations. Even if your data set is not huge, you may want to build multiple models in parallel, e.g. one per country. In this case, each model needs to load a shard of data. If you used SQL to load the shards, it will very quickly overload your query engine.
 
-As a solution, [`metaflow.S3`](data.md#data-in-s-3-metaflow-s3) provides a way to load data directly from S3, bypassing any query engines such as Spark. Combined with a [metadata catalog](https://github.com/Netflix/metacat), it is easy to write shims on top of `metaflow.S3` to directly interface with data files on S3 backing your tables. Since data is loaded directly from S3, there is no limitation to the number of parallel processes. The size of data is only limited by the size of your instance, which can be easily controlled with [the `@resources` decorator](scaling-out-and-up/effortless-scaling-with-kubernetes.md#requesting-resources-with-resources-decorator). The best part is that this approach is blazingly fast compared to executing SQL.
+As a solution, [`metaflow.S3`](data.md#data-in-s-3-metaflow-s3) provides a way to load data directly from S3, bypassing any query engines such as Spark. Combined with a [metadata catalog](https://github.com/Netflix/metacat), it is easy to write shims on top of `metaflow.S3` to directly interface with data files on S3 backing your tables. Since data is loaded directly from S3, there is no limitation to the number of parallel processes. The size of data is only limited by the size of your instance, which can be easily controlled with [the `@resources` decorator](/scaling/remote-tasks/introduction#requesting-resources-with-resources-decorator). The best part is that this approach is blazingly fast compared to executing SQL.
 
 The main downside of this approach is that the table needs to have partitions that match your access pattern. For small and medium-sized tables, this isn't necessarily an issue as you can afford loading extra data. Further filtering can be performed in your Python code. With larger tables this approach is not feasible and you may need to run an extra SQL query to repartition data properly.
 
@@ -41,7 +41,7 @@ The main downside of this approach is that the table needs to have partitions th
 
 It is not always appropriate to store data in a table. For instance, Netflix has many systems that communicate via JSON files in S3. Or, there is little benefit in storing a large Keras model serialized with [`model.save()`](https://keras.io/getting-started/faq/#how-can-i-save-a-%20keras-model) in a table.
 
-When you assign anything to `self` in your Metaflow flow, the object gets automatically persisted in S3 as [a Metaflow artifact](basics.md#linear). Hence, in most cases you do not need to worry about saving data or models to S3 explicitly. We recommend that you use Metaflow artifacts whenever possible, since they are easily accessible through [the Client API](client.md) by you, by other people, and by other workflows.
+When you assign anything to `self` in your Metaflow flow, the object gets automatically persisted in S3 as [a Metaflow artifact](/metaflow/basics.md#linear). Hence, in most cases you do not need to worry about saving data or models to S3 explicitly. We recommend that you use Metaflow artifacts whenever possible, since they are easily accessible through [the Client API](/metaflow/client.md) by you, by other people, and by other workflows.
 
 However, there are valid reasons for interacting with S3 directly. For instance, you may need to consume or produce data to a 3rd party system that knows nothing about Metaflow. For use cases like this, we provide a high-performance S3 client, `metaflow.S3`.
 
@@ -120,7 +120,7 @@ Note that `metaflow.S3` provides a default S3 location for storing data. You cou
 
 #### **Load external objects produced by a Metaflow run**
 
-What if you want to inspect S3 data produced by a flow afterwards? Just use [the Client API](client.md) as usual to locate the desired `Run` and use it to initialize an `S3` object:
+What if you want to inspect S3 data produced by a flow afterwards? Just use [the Client API](/metaflow/client.md) as usual to locate the desired `Run` and use it to initialize an `S3` object:
 
 ```python
 from metaflow import S3
@@ -378,11 +378,11 @@ In particular, when you use `metaflow.S3` in your Metaflow flows, make sure that
 
 Note that specifying `overwrite=False` in your `put_*` calls changes the behavior of S3 slightly compared to the default mode of `overwrite=True`. There may be a small delay (typically in the order of milliseconds) before the key becomes available for reading.
 
-This is an important reason to rely on Metaflow artifacts, which handle this complication for you, whenever possible. If you absolutely need to handle this by yourself, one way to guarantee uniqueness is to use `current.task_id` from [the `current` module](tagging.md#accessing-current-ids-in-a-flow) as a part of your S3 keys.
+This is an important reason to rely on Metaflow artifacts, which handle this complication for you, whenever possible. If you absolutely need to handle this by yourself, one way to guarantee uniqueness is to use `current.task_id` from [the `current` module](/scaling/tagging.md#accessing-current-ids-in-a-flow) as a part of your S3 keys.
 
 ## Data in Local Files
 
-Similarly to [Parameters](basics.md#how-to-define-parameters-for-flows), you can define a data file to include as input for your flow. Metaflow will version the file and make it accessible to all the steps directly through the `self` object in your flow.
+Similarly to [Parameters](/metaflow/basics.md#how-to-define-parameters-for-flows), you can define a data file to include as input for your flow. Metaflow will version the file and make it accessible to all the steps directly through the `self` object in your flow.
 
 This example allows the user to include a data file and compute its hash:
 

@@ -47,7 +47,7 @@ Internally, Metaflow handles automatic dependency resolution, cross-platform sup
 
 ### Local Execution
 
-Let's look at the [LinearFlow](basics.md#linear) from before:
+Let's look at the [LinearFlow](/metaflow/basics.md#linear) from before:
 
 ```python
 from metaflow import FlowSpec, step

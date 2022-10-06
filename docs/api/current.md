@@ -116,7 +116,7 @@ These attributes are only available when the decorator is present.
 
 ### @project
 
-[The @project decorator](/going-to-production-with-metaflow/coordinating-larger-metaflow-projects) exposes attributes related to the current deployment.
+[The @project decorator](/production/coordinating-larger-metaflow-projects) exposes attributes related to the current deployment.
 
 
 <DocSection type="property" name="current.project_name" module="__main__" show_import="False" heading_level="4">

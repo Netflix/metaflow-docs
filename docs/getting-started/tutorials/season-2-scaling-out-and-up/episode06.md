@@ -2,7 +2,7 @@
 
 ## Computing in the Cloud.
 
-This example revisits [Episode 02-statistics: Is this Data Science?](../season-1-the-local-experience/episode02). With Metaflow, you don't need to make any code changes to scale-up your flow by running on remote compute. In this example, we re-run the `stats.py` workflow adding the `--with batch` command line argument. This instructs Metaflow to run all your steps on AWS batch without changing any code. You can control the behavior with additional arguments, like `--max-workers`**.** For this example, `max-workers` is used to limit the number of parallel genre-specific statistics computations. You can then access the data artifacts \(even the local CSV file\) from anywhere because the data is being stored in AWS S3.
+This example revisits [Episode 02-statistics: Is this Data Science?](../season-1-the-local-experience/episode02). With Metaflow, you don't need to make any code changes to scale-up your flow by running on remote compute. In this example, we re-run the `stats.py` workflow adding the `--with batch` command line argument. This instructs Metaflow to run all your steps in the cloud without changing any code. You can control the behavior with additional arguments, like `--max-workers`**.** For this example, `max-workers` is used to limit the number of parallel genre-specific statistics computations. You can then access the data artifacts \(even the local CSV file\) from anywhere because the data is being stored in the cloud-based datastore.
 
 This tutorial uses `pandas` which may not be available in your environment. Use the 'conda' package manager with the `conda-forge` channel added to run this tutorial in any environment
 
@@ -19,9 +19,9 @@ You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/t
 1. `python -m pip install pandas`
 2. `python -m pip install notebook`
 3. `python -m pip install matplotlib`
-4. This tutorial requires access to compute and storage resources on AWS, which can be configured by
-   1. Following the instructions [here](https://outerbounds.com/docs/aws-deployment-guide) or
-   2. Requesting a [sandbox](../../../metaflow-on-aws/metaflow-sandbox).
+4. This tutorial requires access to compute and storage resources on in the cloud, which can be configured by
+   1. Following the instructions [here](https://outerbounds.com/docs/engineering-welcome/) or
+   2. Requesting [a sandbox](https://outerbounds.com/docs/sandbox/).
 5. This tutorial requires the `conda` package manager to be installed with the conda-forge channel added.
    1. Download Miniconda at [https://docs.conda.io/en/latest/miniconda.html](https://docs.conda.io/en/latest/miniconda.html)
    2. `conda config --add channels conda-forge`

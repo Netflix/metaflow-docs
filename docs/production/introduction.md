@@ -69,7 +69,7 @@ come in handy when designing processes around production deployments.
 
 In this section, you will learn how to make your flows run automatically without any human intervention. 
 
-1. [Scheduling Metaflow flows](/production/scheduling-metaflow-flows).
+1. [Scheduling Metaflow flows](/production/scheduling-metaflow-flows/introduction).
    - Depending on the [infrastructure you have installed](/getting-started/infrastructure), pick a section below:
       - [Scheduling flows with Argo Workflows](/production/scheduling-metaflow-flows/scheduling-with-argo-workflows) - choose this if running on Kubernetes.
       - [Scheduling flows with AWS Step Functions](/production/scheduling-metaflow-flows/scheduling-with-aws-step-functions)

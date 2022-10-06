@@ -103,7 +103,7 @@ You can also resume a specific run using the CLI option `--origin-run-id` if you
 python debug.py resume --origin-run-id 3
 ```
 
-If you'd like programmatic access to the `--origin-run-id` selected for the `resume` (either implicitly selected by Metaflow as last `run` invocation, or explicitly declared by the user via the CLI), you can use the `current` singleton. Read more [here](tagging#accessing-current-ids-in-a-flow).
+If you'd like programmatic access to the `--origin-run-id` selected for the `resume` (either implicitly selected by Metaflow as last `run` invocation, or explicitly declared by the user via the CLI), you can use the `current` singleton. Read more [here](/scaling/tagging#accessing-current-ids-in-a-flow).
 
 Next, fix the error by replacing `int('2fail')` in `debug.py` with `int('2')`. Try again after the fix. This time, you should see the flow completing successfully.
 
@@ -169,7 +169,7 @@ This will resume your flow and run every step on AWS Batch. When you are ready t
 python debug.py run --with batch
 ```
 
-Alternatively, you can change the name of the flow temporarily, e.g. from DebugFlow to DebugFlowStaging. Then you can run `step-functions create` with the new name, which will create a separate staging flow on AWS Step Functions. You can also use the [`@project`](../going-to-production-with-metaflow/coordinating-larger-metaflow-projects.md#the-project-decorator) decorator.
+Alternatively, you can change the name of the flow temporarily, e.g. from DebugFlow to DebugFlowStaging. Then you can run `step-functions create` with the new name, which will create a separate staging flow on AWS Step Functions. You can also use the [`@project`](../production/coordinating-larger-metaflow-projects.md#the-project-decorator) decorator.
 
 You can test the staging flow freely without interfering with the production flow. Once the staging flow runs successfully, you can confidently deploy a new version to production.
 
@@ -210,7 +210,7 @@ This will resume your flow and run every step on Kubernetes. When you are ready 
 python debug.py run --with kubernetes
 ```
 
-Alternatively, you can change the name of the flow temporarily, e.g. from DebugFlow to DebugFlowStaging. Then you can run `argo-workflows create` with the new name, which will create a separate staging flow on Argo Workflows. You can also use the [`@project`](../going-to-production-with-metaflow/coordinating-larger-metaflow-projects.md#the-project-decorator) decorator.
+Alternatively, you can change the name of the flow temporarily, e.g. from DebugFlow to DebugFlowStaging. Then you can run `argo-workflows create` with the new name, which will create a separate staging flow on Argo Workflows. You can also use the [`@project`](../production/coordinating-larger-metaflow-projects.md#the-project-decorator) decorator.
 
 You can test the staging flow freely without interfering with the production flow. Once the staging flow runs successfully, you can confidently deploy a new version to production.
 
@@ -294,4 +294,4 @@ You can naturally combine the techniques described in this section with the "res
 
 ### Compatibility with Conda decorator
 
-The above instructions work even if you use [`@conda` decorators](dependencies#managing-dependencies-with-conda-decorator) in your code; you need, however, to ensure that the `conda` binary is available in your `PATH`. The easiest way to do this is to set the `PATH` environment variable to properly include the path to the `conda` binary if it is in a non-standard location. In VSCode, you can simply add this value in the env section of launch.json and in PyCharm, the UI allows you to set environment variables.
+The above instructions work even if you use [`@conda` decorators](/scaling/dependencies#managing-dependencies-with-conda-decorator) in your code; you need, however, to ensure that the `conda` binary is available in your `PATH`. The easiest way to do this is to set the `PATH` environment variable to properly include the path to the `conda` binary if it is in a non-standard location. In VSCode, you can simply add this value in the env section of launch.json and in PyCharm, the UI allows you to set environment variables.
