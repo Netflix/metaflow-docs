@@ -4,6 +4,9 @@
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
+// produced by redirect-config.py based on redirect-urls.csv
+const REDIRECTS = [{"to": "/production/coordinating-larger-metaflow-projects", "from": "/going-to-production-with-metaflow/coordinating-larger-metaflow-projects"}, {"to": "/production/introduction", "from": "/going-to-production-with-metaflow/scheduling-metaflow-flows"}, {"to": "/production/scheduling-metaflow-flows/scheduling-with-argo-workflows", "from": "/going-to-production-with-metaflow/scheduling-metaflow-flows/scheduling-with-argo-workflows"}, {"to": "/production/scheduling-metaflow-flows/scheduling-with-aws-step-functions", "from": "/going-to-production-with-metaflow/scheduling-metaflow-flows/scheduling-with-aws-step-functions"}, {"to": "/internals/technical-overview", "from": "/internals-of-metaflow/technical-overview"}, {"to": "/internals/testing-philosophy", "from": "/internals-of-metaflow/testing-philosophy"}, {"to": "/internals/contributing", "from": "/introduction/contributing-to-metaflow"}, {"to": "/introduction/metaflow-resources", "from": "/introduction/getting-in-touch"}, {"to": "/internals/release-notes", "from": "/introduction/release-notes"}, {"to": "/introduction/metaflow-resources", "from": "/introduction/roadmap"}, {"to": "/getting-started/infrastructure", "from": "/metaflow-on-aws"}, {"to": "/getting-started/infrastructure", "from": "/metaflow-on-aws/deploy-to-aws"}, {"to": "/getting-started/infrastructure", "from": "/metaflow-on-aws/metaflow-sandbox"}, {"to": "/scaling/data", "from": "/metaflow/data"}, {"to": "/scaling/dependencies", "from": "/metaflow/dependencies"}, {"to": "/scaling/failures", "from": "/metaflow/failures"}, {"to": "/scaling/introduction", "from": "/metaflow/scaling-out-and-up"}, {"to": "/scaling/introduction", "from": "/metaflow/scaling-out-and-up/effortless-scaling-with-aws-batch"}, {"to": "/scaling/introduction", "from": "/metaflow/scaling-out-and-up/effortless-scaling-with-kubernetes"}, {"to": "/scaling/tagging", "from": "/metaflow/tagging"}]
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "Metaflow Docs",
@@ -15,6 +18,15 @@ const config = {
   organizationName: "Netflix", // Usually your GitHub org/user name.
   projectName: "metaflow-docs", // Usually your repo name.
   trailingSlash: false,
+
+  plugins: [
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: REDIRECTS
+      }
+    ]
+  ],
 
   presets: [
     [
@@ -72,6 +84,11 @@ const config = {
           },
         ],
         hideOnScroll: true,
+      },
+      docs: {
+        sidebar: {
+          autoCollapseCategories: true
+        }
       },
       prism: {
         theme: lightCodeTheme,

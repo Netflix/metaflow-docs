@@ -127,7 +127,7 @@ The `Parameter` objects must be defined as class variables inside a flow. The pa
 
 ### Deploy-time parameters
 
-It is possible to define the `default` value programmatically before a run or a deployment is executed through a user-defined function. For more information, see [documentation for Deploy Time Parameters](/going-to-production-with-metaflow/scheduling-metaflow-flows/scheduling-with-aws-step-functions#deploy-time-parameters).
+It is possible to define the `default` value programmatically before a run or a deployment is executed through a user-defined function. For more information, see [documentation for Deploy Time Parameters](/production/scheduling-metaflow-flows/scheduling-with-aws-step-functions#deploy-time-parameters).
 
 For instance, the following deploy-time parameter, `time`, uses the current time as its default value:
 ```python
@@ -157,7 +157,7 @@ The function called gets a parameter `context` that contains attributes about th
 
 ## IncludeFile
 
-The `IncludeFile` object is a special `Parameter` that reads its value from a local file. For an example, see [Data in Local Files](/metaflow/data#data-in-local-files).
+The `IncludeFile` object is a special `Parameter` that reads its value from a local file. For an example, see [Data in Local Files](/scaling/data#data-in-local-files).
 
 
 <DocSection type="class" name="IncludeFile" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/includefile.py#L273">

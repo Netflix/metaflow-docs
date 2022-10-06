@@ -1,5 +1,12 @@
 # Table of contents
 
+:::caution
+
+Metaflow for R is in *maintenance mode*. It doesn't support the latest features of Metaflow.
+[Reach out to us on Slack if you have questions about R](http://slack.outerbounds.co).
+
+:::
+
 - [Welcome to Metaflow for R](README.md)
 
 ## Introduction
@@ -25,11 +32,6 @@
     - [Episode 5: Statistics Redux](getting-started/tutorials/season-2-scaling-out-and-up/episode05.md)
     - [Episode 6: Worldview](getting-started/tutorials/season-2-scaling-out-and-up/episode06.md)
 
-## Metaflow on AWS
-
-- [Metaflow on AWS](metaflow-on-aws/metaflow-on-aws.md)
-- [Metaflow Sandbox](metaflow-on-aws/metaflow-sandbox.md)
-- [Deploying to AWS](metaflow-on-aws/deploy-to-aws.md)
 
 ## Developing with Metaflow <a id="metaflow"></a>
 

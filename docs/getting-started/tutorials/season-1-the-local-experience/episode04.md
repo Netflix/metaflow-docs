@@ -10,7 +10,7 @@ You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/t
 
 **Showcasing:**
 
-- Metaflow's [conda](../../../metaflow/dependencies) based dependency management.
+- Metaflow's [conda](../../../scaling/dependencies) based dependency management.
 
 **Before playing this episode:**
 

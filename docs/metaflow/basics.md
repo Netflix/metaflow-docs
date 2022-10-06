@@ -1,4 +1,4 @@
-# Basics of Metaflow
+# Creating Flows
 
 This document introduces the basic concepts of Metaflow. If you are eager to try out Metaflow in practice, you can start with the [tutorial](../getting-started/tutorials/). After the tutorial, you can return to this document to learn more about how Metaflow works.
 
@@ -45,7 +45,28 @@ if __name__ == '__main__':
     LinearFlow()
 ```
 
+Save this snippet to a file, `linear.py`. You can execute Metaflow flows on the command line like any other Python scripts. Try this:
+
+```bash
+python linear.py run
+```
+
+Whenever you see a flow like this in the documentation, just save it in a file and execute it like above.
+
+### Artifacts
+
 Besides executing the steps `start`, `a`, and `end` in order, this flow creates **a data artifact** called `my_var`. In Metaflow, data artifacts are created simply by assigning values to instance variables like `my_var`.
+
+Artifacts are a core concept of Metaflow. They have a number of uses:
+
+ - They allow you to manage the data flow through the flow without having to load and store data manually.
+
+ - All artifacts are persisted so that they can be analyzed later using the [Client API](/metaflow/client), visualized with [Cards](/metaflow/visualizing-results), and even used across flows.
+
+ - Artifacts works consistently across environments, so you can run some steps locally and [some steps in the cloud](/scaling/introduction) without having to worry about transferring data explictly.
+
+ - Having access to past artifacts greatly helps [debugging](/metaflow/debugging), since you can eyeball data before failures and even [resume past
+ executions](/metaflow/debugging#how-to-use-the-resume-command) after fixing bugs.
 
 Data artifacts are available in all steps after they have been created, so they behave as any normal instance variables. An exception to this rule are branches, as explained below.
 
@@ -251,7 +272,7 @@ Execute the code as follows:
 python parameter_flow.py run --gdp '{"US": 1}'
 ```
 
-Parameters can also be used to include local files. See the section on [IncludeFile](data#data-in-local-files) for more information.
+Parameters can also be used to include local files. See the section on [IncludeFile](/scaling/data#data-in-local-files) for more information.
 
 ## Data flow through the graph
 
@@ -327,7 +348,7 @@ if __name__ == '__main__':
 In the example above, the `merge_artifacts` function behaves as follows:
 
 - in `join`, `pass_down` is propagated because it is unmodified in both `a` and `b`.
-- in `join`, `common` is also propagated because it is set to the same value in both branches. Remember that it is the value of the artifact that matters when determining whether an artifact is ambiguous; Metaflow uses [content based deduplication](../internals-of-metaflow/technical-overview#datastore) to store artifacts and can therefore determine if the value of two artifacts is the same.
+- in `join`, `common` is also propagated because it is set to the same value in both branches. Remember that it is the value of the artifact that matters when determining whether an artifact is ambiguous; Metaflow uses [content based deduplication](/internals/technical-overview#datastore) to store artifacts and can therefore determine if the value of two artifacts is the same.
 - in `join`, `x` is handled by the code explicitly _prior_ to the call to `merge_artifacts` which causes `merge_artifacts` to ignore `x` when propagating artifacts. This pattern allows you to manually resolve any ambiguity in artifacts you would like to see propagated.
 - in `join`, `y` is not propagated because it is listed in the `exclude` list. This pattern allows you to prevent the propagation of artifacts that are no longer relevant. Remember that the default behavior of `merge_artifacts` is to propagate all incoming artifacts.
 - in `join`, `from_a` is propagated because it is only set in one branch and therefore is unambiguous. `merge_artifacts`will propagate all values even if they are present on only one incoming branch.
