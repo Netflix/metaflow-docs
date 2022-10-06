@@ -200,6 +200,7 @@ const sidebars = {
       type: "category",
       label: "Internals of Metaflow",
       items: [
+        "internals/release-notes",
         "internals/technical-overview",
         "internals/testing-philosophy",
         "internals/contributing"
