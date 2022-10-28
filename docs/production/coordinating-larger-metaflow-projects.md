@@ -63,7 +63,7 @@ The `@project` decorator changes this behavior. Let's deploy ProjectFlow:
 python project_flow.py step-functions create
 ```
 
-The `@project` decorator adds a user-specific prefix in the workflow name: the workflow gets deployed with a name like `example_project.user.YOURNAME.ProjectFlow` where `YOURNAME` is your user name.
+The `@project` decorator adds a user-specific prefix in the workflow name: the workflow gets deployed with a name like `example_project.user.YOURNAME.ProjectFlow` where `YOURNAME` is your user name. Metaflow gets the username by looking, in order, at the following environment variables: `METAFLOW_USER`, `SUDO_USER`, `USERNAME` and `USER`.
 
 This allows multiple developers to deploy their workflows on AWS Step Functions (or Argo Workflows) without fear that they might interfere with someone else's deployment. Imagine Alice, Bob, and Carol collaborating on a project. Each one of them can call `step-functions create` independently, which results in three separate workflows on AWS Step Functions (or Argo Workflows):
 
