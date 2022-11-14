@@ -4,3 +4,4 @@ build/
 docs/.ipynb_checkpoints/
 blog/.ipynb_checkpoints/
 .ipynb_checkpoints/
+.idea/
