@@ -2,7 +2,7 @@
 # Deploying Infrastructure for Metaflow
 
 While you can [get started with Metaflow easily](#) on your laptop, the main benefits of Metaflow lie in its
-ability to [scale out to external compute clusters](#) and to [deploy to production-grade workflow orchestors](#).
+ability to [scale out to external compute clusters](#) and to [deploy to production-grade workflow orchestrators](#).
 To benefit from these features, you need to configure Metaflow and the infrastructure behind it appropriately. A separate guide, [Metaflow Resources for Engineers](#) covers everything related to such
 deployments. This page provides a quick overview.
 

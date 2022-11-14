@@ -414,7 +414,7 @@ This release fixes this bug.
 
 #### [Allow dots in `host_volumes` attribute for `@batch` decorator](https://github.com/Netflix/metaflow/releases#676)
 
-Dots in volume names - `@batch(host_volumes='/path/with/.dot')` weren't being santized properly resulting in errors when a Metaflow task launched on AWS Batch. This release fixes this bug.
+Dots in volume names - `@batch(host_volumes='/path/with/.dot')` weren't being sanitized properly resulting in errors when a Metaflow task launched on AWS Batch. This release fixes this bug.
 
 ## 2.3.5 (Aug 23rd, 2021)
 

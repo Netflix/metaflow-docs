@@ -101,7 +101,7 @@ Metaflow provides a robust and user-friendly foundation for a wide spectrum of d
 
 ### 11. Metaflow relies on systems that engineers know and trust
 
-Metaflow was designed at Netfix to serve the needs of business-critical ML/DS applications. It relies on proven and scalable infrastructure which works for small and large organizations alike. Metaflow integrates with all the
+Metaflow was designed at Netflix to serve the needs of business-critical ML/DS applications. It relies on proven and scalable infrastructure which works for small and large organizations alike. Metaflow integrates with all the
 top clouds as well as with Kubernetes and systems around them in a responsible manner. It respects the security and other
 policies of your company, making engineering teams happy too.
 

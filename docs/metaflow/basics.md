@@ -63,7 +63,7 @@ Artifacts are a core concept of Metaflow. They have a number of uses:
 
  - All artifacts are persisted so that they can be analyzed later using the [Client API](/metaflow/client), visualized with [Cards](/metaflow/visualizing-results), and even used across flows.
 
- - Artifacts works consistently across environments, so you can run some steps locally and [some steps in the cloud](/scaling/introduction) without having to worry about transferring data explictly.
+ - Artifacts works consistently across environments, so you can run some steps locally and [some steps in the cloud](/scaling/introduction) without having to worry about transferring data explicitly.
 
  - Having access to past artifacts greatly helps [debugging](/metaflow/debugging), since you can eyeball data before failures and even [resume past
  executions](/metaflow/debugging#how-to-use-the-resume-command) after fixing bugs.

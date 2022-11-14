@@ -63,7 +63,7 @@ These attributes are always available in the `current` object.
 
 <DocSection type="property" name="current.retry_count" module="__main__" show_import="False" heading_level="4">
 
-<Description summary="The index of the task exeuction attempt.\n\nThis property returns 0 for the first attempt to execute the task.\nIf the @retry decorator is used and the first attempt fails, this\nproperty returns the number of times the task was attempted prior\nto the current attempt.\n" />
+<Description summary="The index of the task execution attempt.\n\nThis property returns 0 for the first attempt to execute the task.\nIf the @retry decorator is used and the first attempt fails, this\nproperty returns the number of times the task was attempted prior\nto the current attempt.\n" />
 <ParamSection name="Returns">
 <Parameter type="int" desc="The retry count." />
 </ParamSection>

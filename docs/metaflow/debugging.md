@@ -258,7 +258,7 @@ Note that since Metaflow may launch multiple steps in parallel, you may actually
 
 You can enable debugging of a Flow in VSCode by adjusting your project's configuration in `.vscode/launch.json`.
 
-Here is a recording of the end-to-end setup proccess:
+Here is a recording of the end-to-end setup process:
 
 <ReactPlayer controls url="https://www.youtube.com/watch?v=xWGxDeojqeM" />
 
