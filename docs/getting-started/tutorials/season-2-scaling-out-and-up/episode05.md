@@ -10,7 +10,7 @@ You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/t
 
 - [AWS Batch](/scaling/remote-tasks/aws-batch) and the [`@batch`](/scaling/remote-tasks/introduction) decorator.
 - Using the [Client API ](../../../metaflow/client)to access data artifacts generated remotely in a local notebook.
-- [`@retry`](../../../scaling/failures#retrying-tasks-with-retry-decorator)decorator.
+- [`@retry`](../../../scaling/failures#retrying-tasks-with-the-retry-decorator)decorator.
 
 **Before playing this episode:**
 
@@ -18,6 +18,7 @@ You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/t
 2. This tutorial requires access to compute and storage resources in the cloud, which can be configured by
    1. Following the instructions [here](https://outerbounds.com/docs/engineering-welcome/) or
    2. Requesting [a sandbox](https://outerbounds.com/docs/sandbox/).
+
 **To play this episode:**
 
 1. `cd metaflow-tutorials`

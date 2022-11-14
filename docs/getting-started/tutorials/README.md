@@ -39,9 +39,9 @@ metaflow tutorials info 00-helloworld
 
 ### What's next?
 
-- Explore fault tolerant flows with [`@catch`](../../scaling/failures#catching-exceptions-with-catch-decorator), [`@retry`](../../scaling/failures#retrying-tasks-with-retry-decorator), [`@timeout`](../../scaling/failures#timing-out-with-timeout-decorator) decorators.
+- Explore fault tolerant flows with [`@catch`](../../scaling/failures#catching-exceptions-with-catch-decorator), [`@retry`](../../scaling/failures#retrying-tasks-with-the-retry-decorator), [`@timeout`](../../scaling/failures#timing-out-with-the-timeout-decorator) decorators.
 - Try a library like [Tensorflow](https://www.tensorflow.org) with [`@conda`](../../scaling/dependencies) and [`@batch`](/scaling/remote-tasks/introduction)
 - Debug failed runs with [resume](../../metaflow/debugging#how-to-use-the-resume-command).
-- Access large data fast with [metaflow.S3](../../scaling/data#data-in-s-3-metaflow-s3).
+- Access large data fast with [metaflow.S3](../../scaling/data#data-in-s3-metaflows3).
 - Explore results across experiments with the [Client API](../../metaflow/client).
 - See how to organize results and collaborate with [namespaces](../../scaling/tagging#namespaces) and [tags](../../scaling/tagging#tagging).

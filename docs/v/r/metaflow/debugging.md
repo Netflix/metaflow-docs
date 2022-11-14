@@ -19,7 +19,7 @@ The process of debugging failed flows is similar both for development-time and p
 1. Identify the step that failed. The failed step is reported as the last line of the error report where it is easy to spot.
 2. Identify the run id of the failed run. On the console output, each line is prefixed with an identifier like `2/start/21426`. Here, `2` is the run id, `start` is the step name, and `21426` is the task id.
 3. Reproduce the failed run with `resume` as [described below](debugging.md#how-to-use-the-resume-command). Confirm that the error message you get locally matches to the original error message.
-4. Identify the failed logic inside the failed step. You can do this by adding `print` statements in the step until `resume` reveals enough information. Alternatively, you can reproduce the faulty logic in R studio or jupyter notebook using input data artifacts for the step, as described below in the section about [RStudio and Jupyter Notebook](debugging.md#inspecting-data-with-rstudio-or-jupyter-notebook).
+4. Identify the failed logic inside the failed step. You can do this by adding `print` statements in the step until `resume` reveals enough information. Alternatively, you can reproduce the faulty logic in R studio or jupyter notebook using input data artifacts for the step, as described below in the section about [RStudio and Jupyter Notebook](#inspecting-data-with-rstudio-ide-or-jupyter-notebook).
 5. Confirm that the fix works with `resume`. Return to 4 if the error has not been fixed.
 6. When the step works locally, rerun the whole flow from `start` to `end` and confirm that the fix works as intended.
 

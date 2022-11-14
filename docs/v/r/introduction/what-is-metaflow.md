@@ -43,7 +43,7 @@ Internally, Metaflow leverages existing infrastructure when feasible. In particu
 You can find more details about Metaflow's approach to various parts of the stack across the documentation:
 
 |                       |                                                                                                    |
-| :-------------------- | :------------------------------------------------------------------------------------------------- |
+|:----------------------|:---------------------------------------------------------------------------------------------------|
 | **Model Development** | [Basics of Metaflow](../metaflow/basics)                                                           |
 | **Model Operations**  | [Debugging with Metaflow](../metaflow/debugging) and [Dealing with Failures](../metaflow/failures) |
 | **Versioning**        | [Inspecting Flow and Results](../metaflow/client) and [Organizing Results](../metaflow/tagging)    |

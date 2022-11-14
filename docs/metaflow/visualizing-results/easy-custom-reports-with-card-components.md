@@ -157,9 +157,9 @@ class ManyCardsFlow(FlowSpec):
     @card(type='blank', id='second')
     @step
     def start(self):
-        current.card['first'].append(\
+        current.card['first'].append(
             Markdown('# I am the first card'))
-        current.card['second'].append(\
+        current.card['second'].append(
             Markdown('# I am the second card'))
         self.next(self.end)
 

@@ -11,7 +11,7 @@ Debugging a failure can either happen **after** a failed execution or **during**
 - the [ability to resume a flow](debugging#how-to-debug-failed-flows), re-executing all successful steps and only re-executing from the failed step. This allows you to fix the problem in the failed step, resume the flow and make progress.
 - the [ability to inspect the data](debugging#inspecting-data-with-a-notebook) produced by each step in a flow to be able to determine what went wrong.
 
-In the second case, Metaflow is also compatible (at least when executing locally) with [debuggers](debugging#debugging-your-flow-code) which allow you to set breakpoints inside your step code. You will then be able to inspect and modify state and step through your code line-by-line to determine where the problem is.
+In the second case, Metaflow is also compatible (at least when executing locally) with [debuggers](#debugging-your-flow-code-using-an-ide) which allow you to set breakpoints inside your step code. You will then be able to inspect and modify state and step through your code line-by-line to determine where the problem is.
 
 ## How to debug failed flows
 

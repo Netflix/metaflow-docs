@@ -26,20 +26,20 @@ supported in each. You can choose to deploy Metaflow on:
 3. **Azure** on [AKS as a Kubernetes platform](#),
 4. [Any **Kubernetes** cluster](#) including on-premise deployments.
 
-| Layer | Component | Description | Only Local | AWS | Azure | K8s
-| --- | --- | --- | --- | --- | --- | --- |
-| Modeling | <img src="/assets/infra-python.png" width=" 30" style={{verticalAlign:"middle"}}/> **Python libraries** | Any Python libraries | 🟢 | 🟢 | 🟢 | 🟢
-| Deployment | <img src="/assets/infra-argo.png" width=" 30" style={{verticalAlign:"middle"}}/> **Argo Workflows** | Open-source production-grade workflow orchestrator |   | 🟢 | 🟢 | 🟢
-| Deployment | <img src="/assets/infra-sfn.png" width=" 30" style={{verticalAlign:"middle"}}/> **Step Functions** | AWS-managed production-grade workflow orchestrator |   | 🟢 |   |  
-| Versioning | <img src="/assets/infra-mflocal.png" width=" 30" style={{verticalAlign:"middle"}}/> **Local Metadata** | Metaflow's tracking in local files | 🟢 | 🟢 | 🟢 | 🟢
-| Versioning | <img src="/assets/infra-metaflow.png" width=" 30" style={{verticalAlign:"middle"}}/> **Metadata Service** | Metaflow's tracking in a central database |   | 🟢 | 🟢 | 🟢
-| Orchestration | <img src="/assets/infra-mflocal.png" width=" 30" style={{verticalAlign:"middle"}}/> **Local Orchestrator** | Metaflow's local workflow orchestrator | 🟢 | 🟢 | 🟢 | 🟢
-| Compute | <img src="/assets/infra-mflocal.png" width=" 30" style={{verticalAlign:"middle"}}/> **Local Processes** | Metaflow tasks as local processes | 🟢 | 🟢 | 🟢 | 🟢
-| Compute | <img src="/assets/infra-batch.png" width=" 30" style={{verticalAlign:"middle"}}/> **AWS Batch** | AWS-managed batch compute service |   | 🟢 |   |  
-| Compute | <img src="/assets/infra-k8s.png" width=" 30" style={{verticalAlign:"middle"}}/> **Kubernetes** | Open-source batch compute platform |   | 🟢 | 🟢 | 🟢
-| Data | <img src="/assets/infra-mflocal.png" width=" 30" style={{verticalAlign:"middle"}}/> **Local Datastore** | Metaflow artifacts in local files | 🟢 | 🟢 | 🟢 | 🟢
-| Data | <img src="/assets/infra-s3.png" width=" 30" style={{verticalAlign:"middle"}}/> **AWS S3** | Metaflow artifacts in AWS-managed storage |   | 🟢 |   | 🟢
-| Data | <img src="/assets/infra-azureblob.png" width=" 30" style={{verticalAlign:"middle"}}/> **Azure Blob Storage** | Metaflow artifacts in Azure-managed storage |   |   | 🟢 | 🟢
+| Layer         | Component                                                                                                    | Description                                        | Only Local | AWS | Azure | K8s |
+|---------------|--------------------------------------------------------------------------------------------------------------|----------------------------------------------------|------------|-----|-------|-----|
+| Modeling      | <img src="/assets/infra-python.png" width=" 30" style={{verticalAlign:"middle"}}/> **Python libraries**      | Any Python libraries                               | 🟢         | 🟢  | 🟢    | 🟢  |
+| Deployment    | <img src="/assets/infra-argo.png" width=" 30" style={{verticalAlign:"middle"}}/> **Argo Workflows**          | Open-source production-grade workflow orchestrator |            | 🟢  | 🟢    | 🟢  |
+| Deployment    | <img src="/assets/infra-sfn.png" width=" 30" style={{verticalAlign:"middle"}}/> **Step Functions**           | AWS-managed production-grade workflow orchestrator |            | 🟢  |       |     |
+| Versioning    | <img src="/assets/infra-mflocal.png" width=" 30" style={{verticalAlign:"middle"}}/> **Local Metadata**       | Metaflow's tracking in local files                 | 🟢         | 🟢  | 🟢    | 🟢  |
+| Versioning    | <img src="/assets/infra-metaflow.png" width=" 30" style={{verticalAlign:"middle"}}/> **Metadata Service**    | Metaflow's tracking in a central database          |            | 🟢  | 🟢    | 🟢  |
+| Orchestration | <img src="/assets/infra-mflocal.png" width=" 30" style={{verticalAlign:"middle"}}/> **Local Orchestrator**   | Metaflow's local workflow orchestrator             | 🟢         | 🟢  | 🟢    | 🟢  |
+| Compute       | <img src="/assets/infra-mflocal.png" width=" 30" style={{verticalAlign:"middle"}}/> **Local Processes**      | Metaflow tasks as local processes                  | 🟢         | 🟢  | 🟢    | 🟢  |
+| Compute       | <img src="/assets/infra-batch.png" width=" 30" style={{verticalAlign:"middle"}}/> **AWS Batch**              | AWS-managed batch compute service                  |            | 🟢  |       |     |
+| Compute       | <img src="/assets/infra-k8s.png" width=" 30" style={{verticalAlign:"middle"}}/> **Kubernetes**               | Open-source batch compute platform                 |            | 🟢  | 🟢    | 🟢  |
+| Data          | <img src="/assets/infra-mflocal.png" width=" 30" style={{verticalAlign:"middle"}}/> **Local Datastore**      | Metaflow artifacts in local files                  | 🟢         | 🟢  | 🟢    | 🟢  |
+| Data          | <img src="/assets/infra-s3.png" width=" 30" style={{verticalAlign:"middle"}}/> **AWS S3**                    | Metaflow artifacts in AWS-managed storage          |            | 🟢  |       | 🟢  |
+| Data          | <img src="/assets/infra-azureblob.png" width=" 30" style={{verticalAlign:"middle"}}/> **Azure Blob Storage** | Metaflow artifacts in Azure-managed storage        |            |     | 🟢    | 🟢  |
 
 Note that fast prototyping with the Local Orchestrator is supported in all these options, but the **only local** option doesn't support scalability with an external compute layer, nor production-grade deployments.
 
