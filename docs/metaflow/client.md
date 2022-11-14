@@ -152,7 +152,7 @@ python helloflow.py tag add --run-id 2 one_tag
 #### System tags
 
 In addition to user-defined tags, Metaflow assigns a handful of *system tags* to runs automatically.
-These tags can be used for filtering and organizing runs but they can not be removed or replaced with
+These tags can be used for filtering and organizing runs, but they can not be removed or replaced with
 other tags.
 
 You can see the set of system tags assigned to a run like this:
@@ -185,7 +185,7 @@ To access an iterator over runs and filter by tags, use the `runs()` method. See
 
 `Flow` has two additional properties related to determining the latest run for the flow. Note that any `Run` returned will be in the current namespace.
 
-- `latest_run`: `Run` of the latest run whether or not it has completed or has been successful
+- `latest_run`: `Run` of the latest run (whether or not it has completed or has been successful)
 - `latest_successful_run`: `Run` of the latest successful (and therefore completed) run.
 
 ### Properties related to runs
@@ -199,7 +199,7 @@ To access an iterator over the steps of a run and filter by tags, use the `steps
 - `finished`: A boolean indicating whether or not the run completed. The returned value will be `True` whether or not the run was successful.
 - `finished_at`: A datetime object indicating the completion time of the run. This will be `None` if the run has not completed
 - `code`: In certain circumstances, the code used for this run is saved and persisted; this allows you to access this code.
-- `end_task`: A quick access to the `Task` object of the last step in the run.
+- `end_task`: A shortcut to the `Task` object of the last step in the run.
 
 ### Properties related to steps
 

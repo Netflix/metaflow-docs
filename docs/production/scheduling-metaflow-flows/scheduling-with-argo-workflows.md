@@ -7,7 +7,7 @@ In Metaflow's point of view, the main benefits of Argo Workflows are the followi
 - Argo Workflows orchestrates workflows expressed as directed acyclic graphs. This means that we can map Metaflow flows to the corresponding Argo Workflows Workflow Template fully automatically. This gives you much more detail about what gets executed and how, in contrast to treating Metaflow scripts as black boxes.
 - Argo Workflows comes with tooling that is required for running workflows in production. You can benefit from battle-hardened solutions provided by the Kubernetes community for alerting, monitoring, and scheduling. By using Argo Workflows your Metaflow flows can integrate seamlessly with the wider Kubernetes offerings.
 
-When running on Argo Workflows, Metaflow code works exactly as it does locally: No changes are required in the code. All data artifacts produced by steps run on Argo Workflows are available using the [Client API](../../metaflow/client.md). All tasks are run on Kubernetes respecting the resources decorator, as if the `@kubernetes` decorator was added to all steps, as explained in [Executing Tasks Remotely](/scaling/remote-tasks/introduction#safeguard-flags).
+When running on Argo Workflows, Metaflow code works exactly as it does locally: No changes are required in the code. All data artifacts produced by steps run on Argo Workflows are available using the [Client API](../../metaflow/client.md). All tasks are run on Kubernetes respecting the `@resources` decorator, as if the `@kubernetes` decorator was added to all steps, as explained in [Executing Tasks Remotely](/scaling/remote-tasks/introduction#safeguard-flags).
 
 This document describes the basics of Argo Workflows scheduling. If your project involves multiple people, multiple workflows, or it is becoming business-critical, check out the section around [coordinating larger Metaflow projects](../coordinating-larger-metaflow-projects.md).
 
@@ -85,7 +85,7 @@ This option is similar to [`run --max-workers`](/scaling/remote-tasks/introducti
 
 ### Deploy-time parameters
 
-You can customize Argo Workflows deployments through Parameters that are evaluated at the deploy time, i.e. when `argo-workflows create` is executed.
+You can customize Argo Workflows deployments through Parameters that are evaluated at the deployment time, i.e. when `argo-workflows create` is executed.
 
 For instance, you can change the default value of a Parameter based on who deployed the workflow or what Git branch the deployment was executed in. Crucially, the function in Parameter is evaluated only once during `argo-workflows create` and not during the execution of the flow.
 
@@ -119,7 +119,7 @@ if __name__ == '__main__':
     DeploymentInfoFlow()
 ```
 
-When `argo-workflows create` is called, `deployment_info` is evaluated which captures your user name and the time of deployment. This information remains constant on Argo Workflows, although the user may override the default value.
+When `argo-workflows create` is called, `deployment_info` is evaluated which captures your username and the time of deployment. This information remains constant on Argo Workflows, although the user may override the default value.
 
 The `context` object is passed to any function defined in Parameter. It contains various fields related to the flow being deployed. By relying on the values passed in context, you can create generic deploy-time functions that can be reused by multiple flows.
 

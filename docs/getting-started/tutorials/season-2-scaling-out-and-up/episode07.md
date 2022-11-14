@@ -2,7 +2,7 @@
 
 ## Way up here.
 
-This episode shows how you can use a notebook to setup a simple dashboard to monitor all of your Metaflow flows.
+This episode shows how you can use a notebook to set up a simple dashboard to monitor all of your Metaflow flows.
 
 You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/tree/master/metaflow/tutorials/07-worldview)
 

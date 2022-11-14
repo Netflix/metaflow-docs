@@ -181,7 +181,7 @@ $ python LinearFlow.py --environment=conda run --with batch
 
 Since we cache the exact set of dependencies (stated and transitive) for your flow in Amazon S3, you are not at the mercy of an upstream package repository and can avoid overwhelming it, particularly while running multiple parallel tasks, while being guaranteed the same execution environment locally, on Kubernetes and on AWS Batch.
 
-Note that, the exact set of dependencies and their behavior might differ between an execution on MacOS (darwin) and on Kubernetes/AWS Batch (linux).
+Note that, the exact set of dependencies and their behavior might differ between an execution on macOS (darwin) and on Kubernetes/AWS Batch (linux).
 
 ### `@conda` Tips and Tricks
 

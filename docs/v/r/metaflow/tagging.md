@@ -19,7 +19,7 @@ Anne could analyze her latest `PredictionFlow` results in a notebook by remember
 
 ![](/assets/assets_metaflow_-lpjn0yp7r49jrnxca_5_-lpjryuvqmspdu9w5imb_namespace2.png)
 
-When Anne runs `PredictionFlow`, her runs are automatically **tagged** with her user name, prefixed with `user:`. By default, when Anne uses the [Client API](client), the API only returns results that are tagged with `user:anne`. Instead of having to remember the exact ID of her latest run, she can simply say:
+When Anne runs `PredictionFlow`, her runs are automatically **tagged** with her username, prefixed with `user:`. By default, when Anne uses the [Client API](client), the API only returns results that are tagged with `user:anne`. Instead of having to remember the exact ID of her latest run, she can simply say:
 
 ```r
 library(metaflow)
@@ -49,7 +49,7 @@ library(metaflow)
 run <- flow_client$new('PredictionFlow')$run("5")
 ```
 
-However, this will fail for Anne, since `PredictionFlow/5` is in Will's namespace. An important feature of namespaces is to make sure that you can't accidentally use someone else's results, which could lead to hard to debug, incorrect analyses.
+However, this will fail for Anne, since `PredictionFlow/5` is in Will's namespace. An important feature of namespaces is to make sure that you can't accidentally use someone else's results, which could lead to hard-to-debug, incorrect analyses.
 
 If Anne wants to access Will's results, she must do so explicitly by switching to Will's namespace:
 
@@ -65,7 +65,7 @@ If you use the Client API in your flows to access results of other flows, you ca
 
 ### Global Namespace
 
-What if you know a run ID but you don't know whose namespace it belongs to? No worries, you can access all results in the Metaflow universe in the **global namespace**:
+What if you know a run ID, but you don't know whose namespace it belongs to? No worries, you can access all results in the Metaflow universe in the **global namespace**:
 
 ```r
 library(metaflow)
@@ -79,15 +79,15 @@ Running `set_namespace(NULL)` allows you to access all results without limitatio
 
 [The `resume` command](debugging#how-to-use-the-resume-command) is smart enough to work across production and personal namespaces. You can `resume` a production workflow without having to do anything special with namespaces.
 
-You can resume runs of other users and you can resume any production runs. The results of your resumed runs are always created in your personal namespace.
+You can resume runs of other users, and you can resume any production runs. The results of your resumed runs are always created in your personal namespace.
 
 ## Production Namespaces
 
-During development, namespacing by the user name feels natural. However, when you [schedule your flow to run automatically](../going-to-production-with-metaflow/scheduling-metaflow-flows), runs are not related to a specific user anymore. It is typical for multiple people to collaborate on a project that has a canonical production version. It is not obvious which user "owns" the production version.
+During development, namespacing by the username feels natural. However, when you [schedule your flow to run automatically](../going-to-production-with-metaflow/scheduling-metaflow-flows), runs are not related to a specific user anymore. It is typical for multiple people to collaborate on a project that has a canonical production version. It is not obvious which user "owns" the production version.
 
 Moreover, it is critical that you, and all other people, can keep experimenting on the project without having to worry about breaking the production version. If the production flow ran in the namespace of any individual, relative references like `latest_run` could break the production easily as the user keeps executing experimental runs.
 
-As a solution, by default the production namespace is made separate from the user namespace:
+As a solution, by default the production namespace is made separate from the usernamespace:
 
 ![](</assets/namespace4_(3).png>)
 

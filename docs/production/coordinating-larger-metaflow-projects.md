@@ -63,7 +63,7 @@ The `@project` decorator changes this behavior. Let's deploy ProjectFlow:
 python project_flow.py step-functions create
 ```
 
-The `@project` decorator adds a user-specific prefix in the workflow name: the workflow gets deployed with a name like `example_project.user.YOURNAME.ProjectFlow` where `YOURNAME` is your user name. Metaflow gets the username by looking, in order, at the following environment variables: `METAFLOW_USER`, `SUDO_USER`, `USERNAME` and `USER`.
+The `@project` decorator adds a user-specific prefix in the workflow name: the workflow gets deployed with a name like `example_project.user.YOURNAME.ProjectFlow` where `YOURNAME` is your username. Metaflow gets the username by looking, in order, at the following environment variables: `METAFLOW_USER`, `SUDO_USER`, `USERNAME` and `USER`.
 
 This allows multiple developers to deploy their workflows on AWS Step Functions (or Argo Workflows) without fear that they might interfere with someone else's deployment. Imagine Alice, Bob, and Carol collaborating on a project. Each one of them can call `step-functions create` independently, which results in three separate workflows on AWS Step Functions (or Argo Workflows):
 
@@ -107,7 +107,7 @@ The production deployment gets a separate, isolated namespace of its own:
 
 Imagine that ProjectFlow has a stable version in production. Now, Alice and Bob want to start developing a new, experimental version of the flow. They can work on a common codebase and run the code locally independently. Eventually, they will want to deploy the experimental version to AWS Step Functions (or Argo Workflows) and let it run in parallel with the production version for a while, to see that it works correctly.
 
-Alice and Bob could deploy the experimental version under a user-specific namespace of theirs but this would make it hard to keep iterating on the code, as one of the user namespaces would be reserved for the long-running experiment. A better approach is to deploy the experimental code under a custom branch.
+Alice and Bob could deploy the experimental version under a user-specific namespace of theirs but this would make it hard to keep iterating on the code, as one of the usernamespaces would be reserved for the long-running experiment. A better approach is to deploy the experimental code under a custom branch.
 
 Try the following:
 

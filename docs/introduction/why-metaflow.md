@@ -26,7 +26,7 @@ Applications can be built quicker and more robustly if they stand on a common, h
 
 ### 3. All DS/ML applications use data
 
-**Data** may come in different shapes and sizes and it may loaded from various data stores. However, no matter what data is used, accessing and processing it shouldn't be too cumbersome.
+**Data** may come in different shapes and sizes and may be loaded from various data stores. However, no matter what data is used, accessing and processing it shouldn't be too cumbersome.
 
 ![Data](/assets/mf-intro-03.png)
 

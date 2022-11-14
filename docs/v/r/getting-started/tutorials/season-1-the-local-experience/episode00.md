@@ -2,7 +2,7 @@
 
 ## Metaflow says Hi!
 
-This flow is a simple linear workflow that verifies your installation by printing out _**Metaflow says: Hi!**_' to the terminal.
+This flow is a simple linear workflow that verifies your installation by printing out _**Metaflow says: Hi!**_ to the terminal.
 
 ### Showcasing:
 

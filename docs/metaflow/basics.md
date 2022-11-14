@@ -168,7 +168,7 @@ You can nest foreaches and combine them with branches and linear steps arbitrari
 
 There is not a single right way of structuring code as a graph of steps but here are some best practices that you can follow.
 
-Metaflow treats steps as indivisible units of execution. That is, a step either succeeds or fails as a whole. After the step has finished successfully, Metaflow persists all instance variables that were created in the step code, so the step does not have to be executed again even if a subsequent step fails. In other words, you can inspect data artifacts that were present when the step finished but you can not inspect data that were manipulated within a step.
+Metaflow treats steps as indivisible units of execution. That is, a step either succeeds or fails as a whole. After the step has finished successfully, Metaflow persists all instance variables that were created in the step code, so the step does not have to be executed again even if a subsequent step fails. In other words, you can inspect data artifacts that were present when the step finished, but you can not inspect data that were manipulated within a step.
 
 This makes a step [a checkpoint](https://en.wikipedia.org/wiki/Application_checkpointing). The more granular your steps are, the more control you have over inspecting results and resuming failed runs.
 

@@ -18,7 +18,7 @@ Consider the Metaflow journey
 
 Thus far the steps have involved a human in the loop, from [local development](/metaflow/introduction) to [scalable flows](/scaling/introduction).
 In contrast, a defining feature of production deployments is that they are fully automated. We achieve this by *scheduling flows* to run automatically on
-*a production-grade workflow orchestrator* so you don't need to write `run` manually to produce the desired results.
+*a production-grade workflow orchestrator*, so you don't need to write `run` manually to produce the desired results.
 
 ## Reliably Running, Automated Flows
 

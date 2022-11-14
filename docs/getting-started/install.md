@@ -1,6 +1,6 @@
 # Installing Metaflow
 
-Metaflow is available as a Python package for MacOS and Linux. You can visit our [GitHub repository](https://github.com/Netflix/metaflow) or get the latest version from [PyPI](https://pypi.org/):
+Metaflow is available as a Python package for macOS and Linux. You can visit our [GitHub repository](https://github.com/Netflix/metaflow) or get the latest version from [PyPI](https://pypi.org/):
 
 ```bash
 pip install metaflow

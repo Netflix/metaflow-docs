@@ -102,7 +102,7 @@ A close relative of the `resources` decorator is `batch`. It takes exactly the s
 
 The main benefit of `batch` is that you can selectively run some steps locally and some on AWS Batch. In the example above, try replacing `resources` with `batch` and run it again.
 
-You will see that the `start` step gets executed on an AWS Batch instance but the `end` step, which does not need special resources, is executed locally without the additional latency of launching a AWS Batch job. Executing a [`foreach`](basics.md#foreach) step launches parallel AWS Batch jobs with the specified resources for the step.
+You will see that the `start` step gets executed on an AWS Batch instance but the `end` step, which does not need special resources, is executed locally without the additional latency of launching an AWS Batch job. Executing a [`foreach`](basics.md#foreach) step launches parallel AWS Batch jobs with the specified resources for the step.
 
 ### AWS Batch tips and tricks
 

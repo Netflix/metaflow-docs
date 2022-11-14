@@ -237,7 +237,7 @@ For more details about the notebook API, see the [Client API](client).
 
 ## Debugging your Flow code using an IDE
 
-If anything fails in your code, Metaflow prints out the normal Python stack trace showing the line of code that caused the error. Typically, this error message provides enough information so you can fix the code using your favorite editor.
+If anything fails in your code, Metaflow prints out the normal Python stack trace showing the line of code that caused the error. Typically, this error message provides enough information so that you can fix the code using your favorite editor.
 
 Alternatively, you can use a built-in debugger available in many modern IDEs. Since Metaflow uses subprocesses to launch steps, the IDE may need some additional configuration to handle this properly. We detail the configuration for two popular IDEs here. Other IDEs may also work similarly - let us know and we can add information about your favorite tool.
 
@@ -252,7 +252,7 @@ The following steps will allow you to debug your Flow within PyCharm:
    3. Set the "Working directory" field to the directory containing your Flow script
 3. You can now set your breakpoints as usual in your Flow code and select "Debug" from the "Run" menu.
 
-Note that since Metaflow may launch multiple steps in parallel, you may actually hit multiple breakpoints at the same time; you will be able to switch between those breakpoints using the drop down menu (it will say "MainThread"). You can also restrict Metaflow to only execute one step at a time by adding "--max-workers 1" to the "Parameters" field.
+Note that since Metaflow may launch multiple steps in parallel, you may actually hit multiple breakpoints at the same time; you will be able to switch between those breakpoints using the dropdown menu (it will say "MainThread"). You can also restrict Metaflow to only execute one step at a time by adding "--max-workers 1" to the "Parameters" field.
 
 ### Debugging with VSCode
 

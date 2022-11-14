@@ -16,7 +16,7 @@ If you hit a bug that is not covered by an existing issue, please open a new iss
 
 If you have a proposal for an enhancement or a new feature, please open an issue and engage with us on the issue before devoting significant time and resources to it. We care deeply about the ergonomics of Metaflow, and as such, for any new user-visible enhancement, please expect multiple design iterations.
 
-We will do our best to respond to and review your PR and we hope you will stay engaged with us throughout the process.
+We will do our best to respond to and review your PR, and we hope you will stay engaged with us throughout the process.
 
 We'd appreciate [issue reports](https://github.com/Netflix/metaflow/issues) if you run into trouble using Metaflow.
 

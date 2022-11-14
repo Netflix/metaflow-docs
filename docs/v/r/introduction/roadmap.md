@@ -1,6 +1,6 @@
 # Roadmap
 
-Metaflow has been used in production at Netflix since early 2018. The core Metaflow was open-sourced in December 2019. Some features of Metaflow are not available in open-source yet but we may open-source them later if there is sufficient external interest. These features are listed below.
+Metaflow has been used in production at Netflix since early 2018. The core Metaflow was open-sourced in December 2019. Some features of Metaflow are not available in open-source yet, but we may open-source them later if there is sufficient external interest. These features are listed below.
 
 Please click the link and comment / thumbs-up the corresponding GitHub issue if you want to see the feature open-sourced.
 

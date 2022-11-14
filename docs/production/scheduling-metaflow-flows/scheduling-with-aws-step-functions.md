@@ -7,7 +7,7 @@ In Metaflow's point of view, the main benefits of AWS Step Functions are the fol
 - AWS Step Functions orchestrates workflows expressed as state machines, which are a superset of directed graphs. This means that we can map Metaflow flows to corresponding AWS Step Functions state machines fully automatically. This gives you much more detail about what gets executed and how, in contrast to treating Metaflow scripts as black boxes.
 - AWS Step Functions comes with tooling that is required for running workflows in production. You can benefit from battle-hardened solutions provided by AWS for alerting, monitoring, and scheduling. By using AWS Step Functions your Metaflow flows can integrate seamlessly with the wider AWS offerings.
 
-When running on AWS Step Functions, Metaflow code works exactly as it does locally: No changes are required in the code. All data artifacts produced by steps run on AWS Step Functions are available using the [Client API](../../metaflow/client). All tasks are run on AWS Batch respecting the resources decorator, as if the `@batch` decorator was added to all steps, as explained in [Executing Remote Tasks](/scaling/remote-tasks/introduction).
+When running on AWS Step Functions, Metaflow code works exactly as it does locally: No changes are required in the code. All data artifacts produced by steps run on AWS Step Functions are available using the [Client API](../../metaflow/client). All tasks are run on AWS Batch respecting the `@resources` decorator, as if the `@batch` decorator was added to all steps, as explained in [Executing Remote Tasks](/scaling/remote-tasks/introduction).
 
 This document describes the basics of AWS Step Functions scheduling. If your project involves multiple people, multiple workflows, or it is becoming business-critical, check out the section around [coordinating larger Metaflow projects](../coordinating-larger-metaflow-projects.md).
 
@@ -96,7 +96,7 @@ This option is similar to [`run --max-workers`](/scaling/remote-tasks/introducti
 
 ### Deploy-time parameters
 
-You can customize AWS Step Functions deployments through Parameters that are evaluated at the deploy time, i.e. when `step-functions create` is executed.
+You can customize AWS Step Functions deployments through Parameters that are evaluated at the deployment time, i.e. when `step-functions create` is executed.
 
 For instance, you can change the default value of a Parameter based on who deployed the workflow or what Git branch the deployment was executed in. Crucially, the function in Parameter is evaluated only once during `step-functions create` and not during the execution of the flow.
 
@@ -130,7 +130,7 @@ if __name__ == '__main__':
     DeploymentInfoFlow()
 ```
 
-When `step-functions create` is called, `deployment_info` is evaluated which captures your user name and the time of deployment. This information remains constant on AWS Step Functions, although the user may override the default value.
+When `step-functions create` is called, `deployment_info` is evaluated which captures your username and the time of deployment. This information remains constant on AWS Step Functions, although the user may override the default value.
 
 The `context` object is passed to any function defined in Parameter. It contains various fields related to the flow being deployed. By relying on the values passed in context, you can create generic deploy-time functions that can be reused by multiple flows.
 

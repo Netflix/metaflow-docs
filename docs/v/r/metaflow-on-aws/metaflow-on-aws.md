@@ -8,7 +8,7 @@ Metaflow makes it easy to move back and forth between the local and remote modes
 
 When you set up a cloud-based object store as the datastore, Metaflow snapshots all data and code in the cloud automatically. This means that you can [inspect](../metaflow/client.md), [resume](../metaflow/debugging.md#how-to-use-the-resume-command), and restore any previous Metaflow execution without having to worry that the fruits of your hard work get lost.
 
-> Note that the R and Python versions of Metaflow work the same way on AWS since they both share the same AWS integrations. The instructions here and in the [Admin Docs](https://outerbounds.com/docs/admin) apply apply to both the versions.
+> Note that the R and Python versions of Metaflow work the same way on AWS since they both share the same AWS integrations. The instructions here and in the [Admin Docs](https://outerbounds.com/docs/admin) apply to both versions.
 
 ## Amazon Web Services
 

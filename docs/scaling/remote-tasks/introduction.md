@@ -63,7 +63,7 @@ This fails quickly due to a `MemoryError` on most laptops as we are unable to al
 
 The `@resources` decorator suggests resource requirements for a step. The `memory` argument specifies the amount of RAM in megabytes and `cpu` the number of CPU cores requested. It does not produce the resources magically, which is why the run above failed. The `@resources` decorator takes effect only when combined with another decorator that describes what compute platform, like Kubernetes or AWS Batch, to use.
 
-Let's use the `--with` option to attach a desired decorator to all steps on the command line. Choose one of the commands in the tabs below depending whether you use Kubernetes or AWS Batch. This assumes that
+Let's use the `--with` option to attach a desired decorator to all steps on the command line. Choose one of the commands in the tabs below corresponding to whichever you use- Kubernetes or AWS Batch. This assumes that
 you have [configured one of these systems work with Metaflow](/getting-started/infrastructure).
 
 import Tabs from '@theme/Tabs';
@@ -116,7 +116,7 @@ You will see that the `start` step gets executed on a remote instance but the `e
 
 ### Parallelization over multiple cores
 
-When running locally, tasks are executed as separate processes. The operating system takes care of allocating them to separate CPU cores, so they will actually execute in parallel assuming that enough CPU cores are available. Hence your flow can utilize multiple cores without you having to do anything special besides defining branches in the flow.
+When running locally, tasks are executed as separate processes. The operating system takes care of allocating them to separate CPU cores, so they will actually execute in parallel assuming that enough CPU cores are available. Hence, your flow can utilize multiple cores without you having to do anything special besides defining branches in the flow.
 
 When running remotely on `@batch` or `@kubernetes`, branches are mapped to separate jobs that are executed in parallel, allowing you to *scale horizontally* to any number of parallel tasks. In addition, you may take advantage of multiple CPU cores inside a task. This may happen automatically if you use a modern ML library like PyTorch or Scikit Learn, or you may parallelize functions explicitly, as explained below.
 
@@ -130,7 +130,7 @@ Metaflow provides a utility function called `parallel_map` that helps take advan
 
 You may also use `parallel_map` to parallelize simple operations that might be too cumbersome to implement as separate steps.
 
-Here is an extension of our previous example that implements a multi-core `sum()` by partitioning the matrix by row:
+Here is an extension of our previous example that implements a multicore `sum()` by partitioning the matrix by row:
 
 ```python
 from metaflow import FlowSpec, step, batch, parallel_map
@@ -186,4 +186,4 @@ $ python myflow.py run --max-workers 32
 
 ## Big Data
 
-This far, we have focused on CPU and memory-bound steps. Loading and processing big data is often an IO-bound operation which requires a different approach. Read [Loading and Storing Data](/scaling/data) for more details about how to build efficient data pipelines in Metaflow.
+Thus far, we have focused on CPU and memory-bound steps. Loading and processing big data is often an IO-bound operation which requires a different approach. Read [Loading and Storing Data](/scaling/data) for more details about how to build efficient data pipelines in Metaflow.

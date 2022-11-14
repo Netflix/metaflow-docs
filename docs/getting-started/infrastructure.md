@@ -79,14 +79,14 @@ this stack is a great option. Consider the benefits:
 <object style={{width: 700}} type="image/svg+xml" data="/assets/infra-stack-scaling.svg"></object>
 
 In this stack, the main missing piece is [a highly-available workflow orchestrator](#) which you can easily add by upgrading
-to the option below. Also larger teams with more involved compute needs may find [AWS Batch](#) limiting, in which case you
+to the option below. Also, larger teams with more involved compute needs may find [AWS Batch](#) limiting, in which case you
 can look into Kubernetes-based stacks.
 
 ### Low-maintenance full stack, powered by AWS
 
 **[Click here to deploy this stack](https://outerbounds.com/engineering/deployment/aws-managed/introduction/)**
 
-If you need the full stack of data science/ML infrastructure but you want to spend a minimal amount of effort to
+If you need the full stack of data science/ML infrastructure but want to spend a minimal amount of effort to
 set up and manage it, choose this option. You get all the benefits of AWS Batch as described above, as well as production
 deployments on [AWS Step Functions](#) which is a highly-available, scalable workflow orchestrator managed by AWS. Metaflow
 tracks everything in a central metadata service, making collaboration straightforward.

@@ -26,7 +26,7 @@ It is not uncommon for a data science workflow to hit these limitations. Even if
 
 As a solution, [`metaflow.S3`](data.md#data-in-s3-metaflows3) provides a way to load data directly from S3, bypassing any query engines such as Spark. Combined with a [metadata catalog](https://github.com/Netflix/metacat), it is easy to write shims on top of `metaflow.S3` to directly interface with data files on S3 backing your tables. Since data is loaded directly from S3, there is no limitation to the number of parallel processes. The size of data is only limited by the size of your instance, which can be easily controlled with [the `@resources` decorator](/scaling/remote-tasks/introduction#requesting-resources-with-resources-decorator). The best part is that this approach is blazingly fast compared to executing SQL.
 
-The main downside of this approach is that the table needs to have partitions that match your access pattern. For small and medium-sized tables, this isn't necessarily an issue as you can afford loading extra data. Further filtering can be performed in your Python code. With larger tables this approach is not feasible and you may need to run an extra SQL query to repartition data properly.
+The main downside of this approach is that the table needs to have partitions that match your access pattern. For small and medium-sized tables, this isn't necessarily an issue as you can afford loading extra data. Additional filtering can be performed in your Python code. With larger tables this approach is not feasible, so you may need to run an extra SQL query to repartition data properly.
 
 ### **Use cases**
 
@@ -66,7 +66,7 @@ Compared to other S3 clients `metaflow.S3` provides two key benefits: First, whe
 
 We recommend that you use `metaflow.S3` in a `with` scope in Python. Objects retrieved from S3 are stored in local temporary files for the lifetime of the `with` scope, not in memory. You can use `metaflow.S3` without `with` but in this case you need to call `s3.close()` to get rid of the temporary files. See examples of this below.
 
-Note that in order to get the maximum performance out of `metaflow.S3`, you need to set your `@resources` properly. However don't request more resources than what your workload actually needs.
+Note that in order to get the maximum performance out of `metaflow.S3`, you need to set your `@resources` properly. However, don't request more resources than what your workload actually needs.
 
 ### Choosing the context
 
@@ -372,7 +372,7 @@ A common pattern is to list objects using either `list_paths` or `list_recursive
 
 ### Caution: Overwriting data in S3
 
-You should avoid overwriting data in the same key (URL) in S3. S3 guarantees that new keys always reflect the latest data. In contrast, when you overwrite data in an existing key, there is a short period of time where a reader may see either the old version or the new version of the data.
+You should avoid overwriting data in the same key (URL) in S3. S3 guarantees that new keys always reflect the latest data. In contrast, when you overwrite data in an existing key, there is a short period of time when a reader may see either the old version or the new version of the data.
 
 In particular, when you use `metaflow.S3` in your Metaflow flows, make sure that every task and step writes to a unique key. Otherwise you may find results unpredictable and inconsistent.
 
@@ -412,7 +412,7 @@ if __name__ == '__main__':
     HashFileFlow()
 ```
 
-You can specify the file to use using:
+You can specify the file to use by using:
 
 ```bash
 python hash_flow.py run --myfile '/path/to/input/file'

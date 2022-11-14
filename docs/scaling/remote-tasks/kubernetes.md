@@ -14,7 +14,7 @@ Here are the current defaults for different resource types:
 * `memory`: 4096 \(4GB\)
 * `disk`: 10240 \(10GB\)
 
-When setting `@resources`, keep in mind the configuration of your Kubernetes cluster. Your pod will be stuck in a unschedulable state if Kubernetes is unable to provision the requested resources. Additionally, as a good measure, don't request more resources than what your workflow actually needs. On the other hand, never optimize resources prematurely.
+When setting `@resources`, keep in mind the configuration of your Kubernetes cluster. Your pod will be stuck in an unschedulable state if Kubernetes is unable to provision the requested resources. Additionally, as a good measure, don't request more resources than what your workflow actually needs. On the other hand, never optimize resources prematurely.
 
 You can place your Kubernetes pod in a specific namespace by using the `namespace` argument. By default, all pods execute on a vanilla [python docker image](https://hub.docker.com/_/python/) corresponding to the version of Python interpreter used to launch the flow and can be overridden using the `image` argument.
 
