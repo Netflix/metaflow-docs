@@ -42,3 +42,4 @@ Here's an incomplete overview of Metaflow resources outside this documentation. 
  - REA: [Accelerating experimentation with MLOps](https://www.rea-group.com/about-us/news-and-insights/blog/accelerating-experimentation-with-mlops/)
  - Realtor.com: [Improving Data Science Processes to Speed Innovation at Realtor.com](https://medium.com/realtor-com-innovation-blog/improving-data-science-processes-to-speed-innovation-at-realtor-com-b6b90fa530dc)
  - SAP: [Train your model in SAP AI Core using the Metaflow-Argo plugin](https://blogs.sap.com/2022/04/20/train-your-model-in-sap-ai-core-using-the-metaflow-argo-plugin/)
+ - Softlandia: [Distributed data science with Metaflow and Dask in Azure Kubernetes Service](https://softlandia.fi/en/blog/distributed-data-science-with-metaflow-and-dask)
