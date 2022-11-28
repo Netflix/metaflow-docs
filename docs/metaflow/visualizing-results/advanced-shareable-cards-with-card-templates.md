@@ -2,7 +2,7 @@
 
 The built-in [_Card Components_](easy-custom-reports-with-card-components) allow you to create a visual report with a few lines of Python code. This is by far the easiest way to output visualizations using Metaflow’s default visual style and layout.
 
-This section describes a more advanced concept of _Card Templates_ which are more flexible than [_Default Cards_](effortless-task-inspection-with-default-cards) and Card Components but they require more upfront effort to create. However, using an existing Card Template is very easy, as shown below. They are a good match for use cases such as
+This section describes a more advanced concept of _Card Templates_ which are more flexible than [_Default Cards_](effortless-task-inspection-with-default-cards) and Card Components, but they require more upfront effort to create. However, using an existing Card Template is very easy, as shown below. They are a good match for use cases such as
 
 - Using off-the-shelf Javascript libraries to create advanced visualizations.
 - Creating fully customized reports with any visual style and layout.

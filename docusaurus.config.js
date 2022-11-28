@@ -15,7 +15,7 @@ const config = {
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
-  organizationName: "Netflix", // Usually your GitHub org/user name.
+  organizationName: "Netflix", // Usually your GitHub org/username.
   projectName: "metaflow-docs", // Usually your repo name.
   trailingSlash: false,
 

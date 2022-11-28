@@ -65,7 +65,7 @@ The Metaflow 2.5.4 release is a minor release.
 The Metaflow 2.5.3 release is a minor release.
 
 - Bug fixes
-  - Fix "Too many symbolic links" error when using Conda + Batch on MacOS in [#972](https://github.com/Netflix/metaflow/pull/972)
+  - Fix "Too many symbolic links" error when using Conda + Batch on macOS in [#972](https://github.com/Netflix/metaflow/pull/972)
   - Emit app tag for AWS Batch jobs ( [#970](https://github.com/Netflix/metaflow/pull/970) )
 
 ## [2.5.2 (Feb 16, 2022)](https://github.com/Netflix/metaflow/releases/tag/2.5.2)
@@ -197,7 +197,7 @@ would not retry 2 times as expected but instead the exception would be caught th
 
 #### Upgrade Pandas in tutorials ([#707](https://github.com/Netflix/metaflow/pull/707)) <a href="#user-content-707" id="user-content-707"></a>
 
-On MacOS Big Sur, certain tutorials were broken due to using an older version of Pandas. This updates the tutorials to use 1.3.3 to solve this issue
+On macOS Big Sur, certain tutorials were broken due to using an older version of Pandas. This updates the tutorials to use 1.3.3 to solve this issue
 
 ## [2.4.2 (Oct 25th, 2021)](https://github.com/Netflix/metaflow/releases/2.4.2)
 
@@ -414,7 +414,7 @@ This release fixes this bug.
 
 #### [Allow dots in `host_volumes` attribute for `@batch` decorator](https://github.com/Netflix/metaflow/releases#676)
 
-Dots in volume names - `@batch(host_volumes='/path/with/.dot')` weren't being santized properly resulting in errors when a Metaflow task launched on AWS Batch. This release fixes this bug.
+Dots in volume names - `@batch(host_volumes='/path/with/.dot')` weren't being sanitized properly resulting in errors when a Metaflow task launched on AWS Batch. This release fixes this bug.
 
 ## 2.3.5 (Aug 23rd, 2021)
 
@@ -607,7 +607,7 @@ python flow.py run
 
 The flow works exactly as before when executed outside AWS Step Functions and introduces `project_name`, `branch_name` & `is_production` in the [`current`](../scaling/tagging#accessing-current-ids-in-a-flow) object.
 
-On AWS Step Functions, however, `step-functions create` will create a new workflow `example_project.user.username.ProjectFlow` (where `username` is your user name) with a user-specific [isolated namespace](../scaling/tagging) and a [separate production token](../scaling/tagging#production-tokens).
+On AWS Step Functions, however, `step-functions create` will create a new workflow `example_project.user.username.ProjectFlow` (where `username` is your username) with a user-specific [isolated namespace](../scaling/tagging) and a [separate production token](../scaling/tagging#production-tokens).
 
 For deploying experimental (test) versions that can run in parallel with production, you can deploy custom branches with `--branch`
 

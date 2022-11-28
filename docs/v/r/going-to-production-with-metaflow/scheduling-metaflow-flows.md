@@ -30,7 +30,7 @@ In the Metaflow's point of view, the main benefits of AWS Step Functions are the
 - AWS Step Functions orchestrates workflows expressed as state machines, which are a superset of directed graphs. This means that we can map Metaflow flows to corresponding AWS Step Functions state machines fully automatically. This gives you much more detail about what gets executed and how, in contrast to treating Metaflow scripts as black boxes.
 - AWS Step Functions comes with tooling that is required for running workflows in production. You can benefit from battle-hardened solutions provided by AWS for alerting, monitoring, and scheduling. By using AWS Step Functions your Metaflow flows can integrate seamlessly with the wider AWS offerings.
 
-When running on AWS Step Functions, Metaflow code works exactly as it does locally: No changes are required in the code. All data artifacts produced by steps run on AWS Step Functions are available using the [Client API](../metaflow/client.md). All tasks are run on AWS Batch respecting the resources decorator, as explained in [Scaling Out and Up](../metaflow/scaling.md).
+When running on AWS Step Functions, Metaflow code works exactly as it does locally: No changes are required in the code. All data artifacts produced by steps run on AWS Step Functions are available using the [Client API](../metaflow/client.md). All tasks are run on AWS Batch respecting the `@resources` decorator, as explained in [Scaling Out and Up](../metaflow/scaling.md).
 
 This document describes the basics of AWS Step Functions scheduling. If your project involves multiple people, multiple workflows, or it is becoming business-critical, we will soon introduce a new feature around coordinating larger Metaflow projects.
 
@@ -134,13 +134,13 @@ Rscript parameter_flow.R step-functions trigger --alpha 0.5
 
 If you run `step-functions create` again, it will create a new version of your flow on AWS Step Functions. The newest version becomes the production version automatically \(due to the consistency guarantees provided by AWS Step Functions, it might be a couple of seconds before this happens\). If you want to test on AWS Step Functions without interfering with a production flow, you can change the name of your class, e.g. from ParameterFlow to ParameterFlowStaging, and `step-functions create` the flow under a new name.
 
-Note that step-functions create creates a new isolated [production namespace](../metaflow/tagging.md#tags-as-namespaces) for your production flow. Please read [Organizing Results](../metaflow/tagging.md) to learn all about namespace behavior.
+Note that step-functions creates a new isolated [production namespace](../metaflow/tagging.md#tags-as-namespaces) for your production flow. Please read [Organizing Results](../metaflow/tagging.md) to learn all about namespace behavior.
 
 ### Limiting the number of concurrent tasks
 
 By default, Metaflow configures AWS Step Functions to execute at most 100 tasks concurrently within a foreach step. This should ensure that most workflows finish quickly without overwhelming your AWS Batch queue, the execution backend.
 
-If your workflow includes a large foreach and you need results faster, you can increase the default with the `--max-workers` option. For instance, `step-functions create --max-workers 500` allows 500 tasks to be executed concurrently for every foreach step.
+If your workflow includes a large `foreach` and you need results faster, you can increase the default with the `--max-workers` option. For instance, `step-functions create --max-workers 500` allows 500 tasks to be executed concurrently for every foreach step.
 
 This option is similar to [`run --max-workers`](../metaflow/scaling.md#safeguard-flags) that is used to limit concurrency outside AWS Step Functions.
 

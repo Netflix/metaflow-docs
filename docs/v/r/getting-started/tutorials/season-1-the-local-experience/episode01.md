@@ -23,7 +23,7 @@ If you haven't yet pulled the tutorials to your current working directory, you c
 The dataset `movies.csv` looks like this
 
 | movie_title                              | title_year | genre    | gross     |
-| :--------------------------------------- | :--------- | :------- | :-------- |
+|:-----------------------------------------|:-----------|:---------|:----------|
 | Avatar                                   | 2009       | Sci-Fi   | 760505847 |
 | Pirates of the Caribbean: At World's End | 2007       | Fantasy  | 309404152 |
 | Spectre                                  | 2015       | Thriller | 200074175 |

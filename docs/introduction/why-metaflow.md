@@ -26,7 +26,7 @@ Applications can be built quicker and more robustly if they stand on a common, h
 
 ### 3. All DS/ML applications use data
 
-**Data** may come in different shapes and sizes and it may loaded from various data stores. However, no matter what data is used, accessing and processing it shouldn't be too cumbersome.
+**Data** may come in different shapes and sizes and may be loaded from various data stores. However, no matter what data is used, accessing and processing it shouldn't be too cumbersome.
 
 ![Data](/assets/mf-intro-03.png)
 
@@ -101,7 +101,7 @@ Metaflow provides a robust and user-friendly foundation for a wide spectrum of d
 
 ### 11. Metaflow relies on systems that engineers know and trust
 
-Metaflow was designed at Netfix to serve the needs of business-critical ML/DS applications. It relies on proven and scalable infrastructure which works for small and large organizations alike. Metaflow integrates with all the
+Metaflow was designed at Netflix to serve the needs of business-critical ML/DS applications. It relies on proven and scalable infrastructure which works for small and large organizations alike. Metaflow integrates with all the
 top clouds as well as with Kubernetes and systems around them in a responsible manner. It respects the security and other
 policies of your company, making engineering teams happy too.
 

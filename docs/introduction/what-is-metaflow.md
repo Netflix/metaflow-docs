@@ -75,6 +75,6 @@ If you are working on an existing project dealing with data and compute, or you 
 If you answered "yes" to any of the above, keep on reading - Metaflow can help you! If the answer is "no" to all of the above, Metaflow doesn't provide much benefit. This is a valid scenario, for instance, when you are hacking small-scale experiments in a notebook. You should come back when the project is ready to move to the next stage.
 
 When the time is right, moving from notebooks-only to [notebooks-with-Metaflow](/metaflow/client) should be a smooth sailing. Metaflow is designed to be user-friendly and welcoming to all data scientists, novice and experts alike, who want to start building
-end-to-end applications more indepently.
+end-to-end applications more independently.
 
 

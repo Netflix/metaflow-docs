@@ -54,7 +54,7 @@ Metaflow requires the transitions to be defined so that the graph can be parsed 
 
 A step is the smallest resumable unit of computation. It is implemented by the user as a method that is decorated with the `@step` decorator in a flow class.
 
-A step is [a checkpoint](https://en.wikipedia.org/wiki/Application_checkpointing). Metaflow takes a snapshot of the data produced by a step which in turn is used as input to the subsequent steps. Hence if a step fails, it can be resumed without rerunning the preceding steps.
+A step is [a checkpoint](https://en.wikipedia.org/wiki/Application_checkpointing). Metaflow takes a snapshot of the data produced by a step which in turn is used as input to the subsequent steps. Hence, if a step fails, it can be resumed without rerunning the preceding steps.
 
 Being able to resume execution is a powerful feature. It would be convenient to be able to resume execution at any arbitrary line of code. The main reason why checkpointing is done at the step level instead of line level is the overhead of saving state. The user is encouraged to keep the steps small but not so small that the overhead becomes noticeable.
 
@@ -97,7 +97,7 @@ The runtime counterpart of a step is a _task_. In runtime, a normal step spawns 
 
 In order to be able to **reproduce** the results of a run, we need to snapshot the code that was run.
 
-Code package is an immutable snapshot of the relevant code in the working directory, stored in the datastore, at the time when the run was started. A convenient side-effect of the snapshot is that it also works as a code distribution mechanism for runs that happen in the cloud.
+Code package is an immutable snapshot of the relevant code in the working directory, stored in the datastore, at the time when the run was started. A convenient side effect of the snapshot is that it also works as a code distribution mechanism for runs that happen in the cloud.
 
 - [`package.py` - code package implementation](https://github.com/Netflix/metaflow/blob/master/metaflow/package.py)
 
@@ -115,15 +115,15 @@ A run of a flow is executed by executing tasks defined by steps in a topological
 
 For quick local iterations, Metaflow comes with a built-in runtime which executes tasks as separate processes. However, this is not intended as a production-grade scheduler.
 
-For production runs, one should use a runtime that supports retries, error reporting, logging, is highly available, scalable, and preferably comes with a user-friendly UI. At Netflix, [Meson](https://medium.com/netflix-techblog/meson-workflow-orchestration-for-netflix-recommendations-fc932625c1d9) is such a runtime. It is well supported by Metaflow.
+For production runs, one should use a runtime that supports retries, error reporting, logging, is highly available, scalable, and preferably comes with a user-friendly UI. At Netflix, [Meson](https://medium.com/netflix-techblog/meson-workflow-orchestration-for-netflix-recommendations-fc932625c1d9) is such a runtime. It is well-supported by Metaflow.
 
-A key feature of Metaflow is that it is agnostic of the runtime. The same code can be executed both with the local runtime as well as with production runtime, which enables a rapid development-deploy-debug cycle.
+A key feature of Metaflow is that it is agnostic of the runtime. The same code can be executed both with the local runtime and with production runtime, which enables a rapid development-deploy-debug cycle.
 
 - [`runtime.py` - local, process-based runtime](https://github.com/Netflix/metaflow/blob/master/metaflow/runtime.py)
 
 ### Datastore
 
-Metaflow requires an object store where both code snapshots as well as data artifacts can be persisted. This data store should be accessible by all environments where Metaflow code is executed. The AWS S3 is a perfect solution for this need. Secondarily, Metaflow supports using a local disk as a data store, which is mainly useful during the development of Metaflow itself.
+Metaflow requires an object store where both code snapshots and data artifacts can be persisted. This data store should be accessible by all environments where Metaflow code is executed. The AWS S3 is a perfect solution for this need. Secondarily, Metaflow supports using a local disk as a data store, which is mainly useful during the development of Metaflow itself.
 
 An important feature of Metaflow is that the data store is used as a content-addressed storage. Both code and data are identified by a hash of their contents, similar to Git, so equal copies of data are deduplicated automatically. Note that this deduplication is limited in scope however; data across different flows will not be deduplicated.
 
@@ -132,7 +132,7 @@ An important feature of Metaflow is that the data store is used as a content-add
 
 ### Metadata Provider
 
-A centralized Metadata Provider keeps track of runs. Strictly speaking, this functionality is not required by Metaflow but it makes the system much more **usable.** The service also helps to make data artifacts and other metadata about runs more discoverable during result-time, as explained below.
+A centralized Metadata Provider keeps track of runs. Strictly speaking, this functionality is not required by Metaflow, but it makes the system much more **usable.** The service also helps to make data artifacts and other metadata about runs more discoverable during result-time, as explained below.
 
 - \`\`[`metadata.py` - base class for metadata providers](https://github.com/Netflix/metaflow/blob/master/metaflow/metadata/metadata.py)
 - \`\`[`service.py` - default implementation of the metadata provider](https://github.com/Netflix/metaflow/blob/master/metaflow/plugins/metadata/service.py)

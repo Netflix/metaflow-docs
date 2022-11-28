@@ -11,7 +11,7 @@ jobs:
         run: |
           import os
           status, errormsg = os.getenv('STATUS'), os.getenv('ERROR')
-          assert status == 'built', 'There was an error building the page on GitHub pages.\n\nStatus: {}\n\nError messsage: {}'.format(status, errormsg)
+          assert status == 'built', 'There was an error building the page on GitHub pages.\n\nStatus: {}\n\nError message: {}'.format(status, errormsg)
         shell: python
         env:
           STATUS: ${{ github.event.build.status }}

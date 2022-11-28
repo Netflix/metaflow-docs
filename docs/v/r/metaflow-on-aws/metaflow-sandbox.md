@@ -14,7 +14,7 @@ Here are some ideas that you can try with the sandbox:
 
 - [The season 2 of tutorials](../getting-started/tutorials/season-2-scaling-out-and-up/) focuses on scaling out. This is a good way to get started. Note that the Season 1 tutorials work with the Sandbox too, when executed using [the `batch` decorator](../metaflow/scaling.md).
 - You have up to 64 CPU cores at your disposal using [the `batch` decorator](../metaflow/scaling.md). Test some number crunching! You can run everything in the cloud simply by or you can mix local and remote steps by adding `decorator("batch",...)` to select steps.
-- Test your favorite ML libraries in the cloud using [`batch`](../metaflow/scaling.md) decorator. For instance, try a basic hyper-parameter search using [a custom parameter grid and foreach](../metaflow/basics.md#foreach).
+- Test your favorite ML libraries in the cloud using [`batch`](../metaflow/scaling.md) decorator. For instance, try a basic hyperparameter search using [a custom parameter grid and foreach](../metaflow/basics.md#foreach).
 - Evaluate Metaflow's [experiment tracking and versioning](../metaflow/tagging.md) using local runs and the [Client API](../metaflow/client.md) in a local notebook. In contrast to the local mode, all runs are registered globally in the Metaflow Service regardless of the directory where you run them.
 - Test how you can [`resume` tasks locally](../metaflow/debugging.md#how-to-use-the-resume-command) which were originally run remotely using [the `batch` decorator](../metaflow/scaling.md).
 
@@ -34,7 +34,7 @@ It is important that you read and agree to the [Metaflow Sandbox terms of use](h
 
 You can sign up for a sandbox at [metaflow.org/sandbox](https://metaflow.org/sandbox).
 
-1. After agreeing to the Terms of Use and Privacy Policy, you will need to sign up with your GitHub account. This is required so we can verify your identify to prevent abuse.
+1. After agreeing to the Terms of Use and Privacy Policy, you will need to sign up with your GitHub account. This is required so that we can verify your identify to prevent abuse.
 2. You will be added to a waitlist. You can log in to [metaflow.org/sandbox](https://metaflow.org/sandbox) to see the status of your process. You can expect that the status will remain at "Waiting for the next available sandbox" for many days.
 3. You will receive an email to the address specified in your GitHub profile after your sandbox is ready for use. Note that by default the sandbox will remain active only for three days. You can [contact us](../introduction/getting-in-touch.md) if you need more time for evaluation.
 4. Once the sandbox is active, you will see a long configuration token in the "Sandbox active" box. Clicking "Click to copy" will copy the text to the clipboard.

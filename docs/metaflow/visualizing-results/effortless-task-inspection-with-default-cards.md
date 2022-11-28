@@ -108,7 +108,7 @@ It is possible to produce multiple separate cards from a single task by adding m
 
 ## Accessing Cards via an API
 
-Besides the command line interface, you can access and view cards programmatically trough an API. This is particularly convenient, if you want to access cards in a Jupyter notebook.
+Besides the command line interface, you can access and view cards programmatically through an API. This is particularly convenient, if you want to access cards in a Jupyter notebook.
 
 Given a Task ID (a _pathspec_), or [a Task object from the Client API](../client), the `get_cards` function lists all cards of the task. You can try this in a notebook cell. Replace the Task ID with an actual ID from a previous run:
 

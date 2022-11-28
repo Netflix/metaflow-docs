@@ -2,7 +2,7 @@
 
 ## MacOS/Linux
 
-Metaflow is available as an R package for MacOS and Linux. You can get it from our [GitHub repository](https://github.com/Netflix/metaflow) \(or very soon from CRAN\):
+Metaflow is available as an R package for macOS and Linux. You can get it from our [GitHub repository](https://github.com/Netflix/metaflow) \(or very soon from CRAN\):
 
 ```r
 devtools::install_github("Netflix/metaflow", subdir="R")
@@ -32,7 +32,7 @@ You can test your installation by running:
 metaflow::test()
 ```
 
-If you see the message `Your Metaflow installation looks good!` congratulations! Now you can get started with Metaflow by following the [tutorial](tutorials/) or you can [jump straight into the docs](../metaflow/basics.md).
+If you see the message `Your Metaflow installation looks good!` congratulations! Now you can get started with Metaflow by following the [tutorial](tutorials/), or you can [jump straight into the docs](../metaflow/basics.md).
 
 ![](/assets/screenshot-2020-08-04-at-3.16.18-pm.png)
 

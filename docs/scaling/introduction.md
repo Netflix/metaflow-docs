@@ -33,7 +33,7 @@ The scalability tools fall into three categories:
 
 - **Performance Optimization**: You can improve performance of your code by utilizing off-the-shelf, high-performance libraries such as [XGboost](https://github.com/dmlc/xgboost) or [Tensorflow](https://tensorflow.org). Or, if you need something more custom, you can leverage the vast landscape of data tools for Python, including compilers like [Numba](https://numba.pydata.org) to speed up your code.
 
-- **Scaling Up**: One should not underestimate the horsepower of a modern large server, especially one equipped with GPUs. Beforing considering anything else, you can simply run a step on a beefier cloud instance.
+- **Scaling Up**: One should not underestimate the horsepower of a modern large server, especially one equipped with GPUs. Before considering anything else, you can simply run a step on a beefier cloud instance.
 Metaflow integrates with [Kubernetes that works on all major clouds](/getting-started/infrastructure) and AWS Batch, both of which take care of provisioning such machines on demand.
 
 - **Scaling Out**: Besides executing code on a single instance, Metaflow makes it easy to parallelize steps over an arbitrarily large number of instances, leveraging Kubernetes and AWS Batch, giving you access to virtually unlimited amount of computing power.

@@ -25,7 +25,7 @@ Here's an incomplete overview of Metaflow resources outside this documentation. 
 
 ## Videos
 
- - [Metaflow on Youtube](https://www.youtube.com/results?search_query=metaflow+ml).
+ - [Metaflow on YouTube](https://www.youtube.com/results?search_query=metaflow+ml).
  - You can start with [this recent overview](https://www.youtube.com/watch?v=gZnhSHvhuFQ).
 
 ## Blogs

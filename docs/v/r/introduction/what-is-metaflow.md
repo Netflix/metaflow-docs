@@ -6,7 +6,7 @@ Metaflow is a human-friendly library that helps scientists and engineers build a
 
 Metaflow provides a unified API to the infrastructure stack that is required to execute data science projects, from prototype to production.
 
-Under the hood, Metaflow uses the [Python version](https://docs.metaflow.org) of Metaflow to power its actions. Hence the R community can benefit from all the battle-hardening and testing that goes into the Python version of Metaflow. Since this is a technical detail, as an R user, you don't have to worry about Python unless you want to.
+Under the hood, Metaflow uses the [Python version](https://docs.metaflow.org) of Metaflow to power its actions. Hence, the R community can benefit from all the battle-hardening and testing that goes into the Python version of Metaflow. Since this is a technical detail, as an R user, you don't have to worry about Python unless you want to.
 
 ## What Metaflow offers for R users
 
@@ -36,14 +36,14 @@ After the model has been deployed to production, **model operations** become a p
 
 At the very top of the stack there's the question of how you produce **features** for your models, and you **develop models** in the first place, maybe using off-the-shelf libraries. This is the area where the skills of a data scientist become most useful.
 
-Metaflow provides a unified, human-friendly approach to navigating the stack. Metaflow is more prescriptive about the lower levels of the stack but it is less opinionated about the actual data science at the top of the stack. Metaflow allows you to write your models and business logic as idiomatic R code with not much new to learn.
+Metaflow provides a unified, human-friendly approach to navigating the stack. Metaflow is more prescriptive about the lower levels of the stack, but is less opinionated about the actual data science at the top of the stack. Metaflow allows you to write your models and business logic as idiomatic R code with not much new to learn.
 
 Internally, Metaflow leverages existing infrastructure when feasible. In particular, it is [tightly integrated with Amazon Web Services](https://github.com/Netflix/metaflow-docs/tree/b90f7b9c89a00a9c344df9d41bfd39b23a674bd8/metaflow-on-aws/metaflow-on-aws.md). The core value proposition of Metaflow is its integrated full-stack, human-centric API, rather than reinvention of the stack itself.
 
 You can find more details about Metaflow's approach to various parts of the stack across the documentation:
 
 |                       |                                                                                                    |
-| :-------------------- | :------------------------------------------------------------------------------------------------- |
+|:----------------------|:---------------------------------------------------------------------------------------------------|
 | **Model Development** | [Basics of Metaflow](../metaflow/basics)                                                           |
 | **Model Operations**  | [Debugging with Metaflow](../metaflow/debugging) and [Dealing with Failures](../metaflow/failures) |
 | **Versioning**        | [Inspecting Flow and Results](../metaflow/client) and [Organizing Results](../metaflow/tagging)    |
@@ -70,7 +70,7 @@ Metaflow was originally designed and built to address practical pain points of d
 
 ### 1. Grounded on common, real-life business-oriented ML use cases
 
-We don’t focus on exotic, large-scale, specific use cases like real-time bidding or self-driving cars. Instead, we focus on the widest variety of ML use cases, many of which are small or medium-sized, which many companies face on a day to day basis.
+We don’t focus on exotic, large-scale, specific use cases like real-time bidding or self-driving cars. Instead, we focus on the widest variety of ML use cases, many of which are small or medium-sized, which many companies face on a day-to-day basis.
 
 We embrace the fact that the life is full of entropy: There is no elegant, grand unified theory of ML infrastructure. The inputs to ML workflows are noisy, the models may be ridden with special cases, and the outputs need to be integrated with various downstream systems, instead of a single unified UI.
 
@@ -88,13 +88,13 @@ The second tenet implies that we don’t try to hide the complexity. Inherently 
 
 Since the problems our users solve are complex in nature, the best we can do is to avoid adding unnecessary complexity and cognitive overhead with complicated tools. Metaflow should be simple and highly usable.
 
-We don’t expect tools to solve problems. People solve problems. Hence we focus on optimizing data scientist productivity, which we do by providing ergonomic tools, excellent documentation, and fanatic support.
+We don’t expect tools to solve problems. People solve problems. Hence, we focus on optimizing data scientist productivity, which we do by providing ergonomic tools, excellent documentation, and fanatic support.
 
 ### 4. Enable collaboration
 
 Besides the first-person developer experience described in the third tenet, Metaflow is built to enable collaboration. However, we are sensitive to the fact that there is not a single recipe for collaboration. Sometimes it might be just a single developer “collaborating” with themselves over a long period of time. Sometimes it might be a tightly coupled team working on a common project. Sometimes it is a loosely coupled organization working on separate projects, sharing pieces of code and data. We want to support all these scenarios.
 
-Instead of being prescriptive about the ways of collaboration, we remove roadblocks that hinder collaboration. Most importantly, we enable unsurprising, side-effect free reproducibility, which removes the fear of interfering with other people’s work. We also make it easy to discover and access previous results produced by others.
+Instead of being prescriptive about the ways of collaboration, we remove roadblocks that hinder collaboration. Most importantly, we enable unsurprising, side effect free reproducibility, which removes the fear of interfering with other people’s work. We also make it easy to discover and access previous results produced by others.
 
 ### 5. First-class support for both prototyping and production
 

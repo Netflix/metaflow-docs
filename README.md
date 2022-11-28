@@ -14,7 +14,7 @@ Updating the documentation is very simple and there are a couple of options on h
 
 Navigate to the page that you want to edit and click on `Edit this Page` which appears at the bottom of the content. An in-browser IDE will appear in your browser where you can edit the `.md` file. Then push those changes to a new branch and create a pull request.
 
-See [Using github in VSCode](https://code.visualstudio.com/docs/editor/github) for more information on how to create branches in the IDE.
+See [Using GitHub in VSCode](https://code.visualstudio.com/docs/editor/github) for more information on how to create branches in the IDE.
 
 ### Running the documentation locally for more complex changes
 
@@ -33,6 +33,6 @@ If you create a PR, a preview domain will be created where you can view your cha
 
 ### Automatic publishing
 
-Any pushes to the `master` branch will automatically publish to [the live documentation pages](https://metaflow.org). The publishing uses GitHub Actions and Github pages. You can see the progress of the publish action by going to the `Actions` tab of this repository.
+Any pushes to the `master` branch will automatically publish to [the live documentation pages](https://metaflow.org). The publishing uses GitHub Actions and GitHub pages. You can see the progress of the publish action by going to the `Actions` tab of this repository.
 
 If you forget the site URL, you can go to `Environments` on the right hand side, click on `github-pages` and then click on `View Deployment`.

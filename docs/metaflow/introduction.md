@@ -22,7 +22,7 @@ like any other Python project or a notebook. Here's what often happens in the ea
 2. Once you have a rough idea for the first version of your project, it is useful to structure it as a workflow, or *flows* in Metaflow parlance. Metaflow makes this easy: You can copy-paste the best parts of a notebook as steps of a Metaflow flow. For details why this is a good idea
 and how to create flows in practice, see [Creating Flows](/metaflow/basics).
 
-3. Don't consider flows just as static configuration. They are living and dynamic entities that you should be able execute locally and improve gradually (this is where [`resume` comes in handy!](/metaflow/debugging#how-to-use-the-resume-command)). The
+3. Don't consider flows just as static configuration. They are living and dynamic entities that you should be able to execute locally and improve gradually (this is where [`resume` comes in handy!](/metaflow/debugging#how-to-use-the-resume-command)). The
 workflow becomes the backbone of your application - in particular helping with [data flow through artifacts](/metaflow/basics#artifacts) -
 which enables much of the functionality in the next phases of the project.
 

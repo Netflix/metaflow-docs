@@ -18,4 +18,4 @@ class MyFlow(FlowSpec):
 
  - [`@conda_base`](/api/flow-decorators/conda_base) - set libraries used by all steps.
  - [`@project`](/api/flow-decorators/project) - create isolated namespaces around flows.
- - [`@schedule`](/api/flow-decorators/schedule) - define when to runs flows in production.
+ - [`@schedule`](/api/flow-decorators/schedule) - define when to run flows in production.

@@ -18,7 +18,7 @@ Consider the Metaflow journey
 
 Thus far the steps have involved a human in the loop, from [local development](/metaflow/introduction) to [scalable flows](/scaling/introduction).
 In contrast, a defining feature of production deployments is that they are fully automated. We achieve this by *scheduling flows* to run automatically on
-*a production-grade workflow orhestrator* so you don't need to write `run` manually to produce the desired results.
+*a production-grade workflow orchestrator*, so you don't need to write `run` manually to produce the desired results.
 
 ## Reliably Running, Automated Flows
 
@@ -35,7 +35,7 @@ production-scale workloads. Secondly, your flow needs to be orchestrated by a sy
  - **Easy to monitor and operate**: To minimize the time spent on occasional human interventions.
 
 Fortunately, a few systems are able to fulfill these requirements, judging by their track record. Metaflow integrates with two of them:
-[Argo Workfows](https://argoproj.github.io/argo-workflows/) that runs on Kubernetes and [AWS Step Functions](https://aws.amazon.com/step-functions/),
+[Argo Workflows](https://argoproj.github.io/argo-workflows/) that runs on Kubernetes and [AWS Step Functions](https://aws.amazon.com/step-functions/),
 a managed service by AWS.
 
 While these systems are quite complex under the hood, Metaflow makes using them trivial:
@@ -47,9 +47,9 @@ Once flows run reliably, you can leverage the results - like freshly trained mod
 
 1. You can write fresh predictions or other results in a data warehouse, e.g. to power a dashboard.
 2. You can populate fresh results in a cache e.g. for a recommendation system.
-3. You can deploy models on a *model hosting* platform of your choosing, e.g. [Seldon](https://www.seldon.io/) or [AWS Sagermaker](https://docs.aws.amazon.com/sagemaker/latest/dg/how-it-works-deployment.html).
+3. You can deploy models on a *model hosting* platform of your choosing, e.g. [Seldon](https://www.seldon.io/) or [AWS Sagemaker](https://docs.aws.amazon.com/sagemaker/latest/dg/how-it-works-deployment.html).
 
-The exact pattern depends on your use case. Importantly, creating these integratons become much easier when you can trust your flows to run reliably. We are happy to help
+The exact pattern depends on your use case. Importantly, creating these integrations become much easier when you can trust your flows to run reliably. We are happy to help
 you on [the Metaflow support Slack](http://slack.outerbounds.co) to find a pattern that works for your needs.
 
 ## To Production And Back

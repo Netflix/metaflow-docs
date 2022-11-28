@@ -5,7 +5,7 @@ Here are some useful tips and tricks related to running Metaflow on AWS Batch. S
 
 ## What value of `@timeout` should I set?
 
-Metaflow sets a default timeout of 5 days so that you tasks don't get stuck infinitely while running on AWS Batch. For more details on how to use `@timeout` please read [this.](../failures.md#timing-out-with-timeout-decorator)
+Metaflow sets a default timeout of 5 days so that you tasks don't get stuck infinitely while running on AWS Batch. For more details on how to use `@timeout` please read [this.](../failures.md#timing-out-with-the-timeout-decorator)
 
 ## How much `@resources` can I request?
 

@@ -4,7 +4,7 @@ Failures are a natural, expected part of data science workflows. Here are some t
 
 1. **Misbehaving code:** no code is perfect. Your code may fail to handle edge cases or libraries behave differently than what you expected.
 2. **Unanticipated issues with data:** data is harder than science. Data is how Metaflow workflows interact with the chaotic, high entropy, outside world. It is practically impossible to anticipate all possible ways the input data can be broken.
-3. **Platform issues:** the best infrastructure is invisible. Unfortunately every now and then platforms that Metaflow relies on, or Metaflow itself, make their existence painfully obvious by failing in creative ways.
+3. **Platform issues:** the best infrastructure is invisible. Unfortunately, every now and then platforms that Metaflow relies on, or Metaflow itself, make their existence painfully obvious by failing in creative ways.
 
 Metaflow provides straightforward tools for you to handle all these scenarios. If you are in a hurry, see [a quick summary of the tools](failures.md#summary).
 
@@ -37,7 +37,7 @@ if __name__ == '__main__':
     RetryFlow()
 ```
 
-When you run this flow, you will see that sometimes it succeeds without a hitch but sometimes the `start` step raises an exception and it needs to be retried. By default, `retry` retries the step three times. Thanks to `retry`, this workflow will almost always succeed.
+When you run this flow you will see that sometimes it succeeds without a hitch, but sometimes the `start` step raises an exception and needs to be retried. By default, `retry` retries the step three times. Thanks to `retry`, this workflow will almost always succeed.
 
 It is recommended that you use `retry` every time you [run tasks remotely](/scaling/remote-tasks/introduction). Instead of annotating every step with a retry decorator, you can also automatically add a retry decorator to all steps that do not have one as follows:
 
@@ -63,7 +63,7 @@ If you run this code with:
 python MoneyFlow.py run --with retry
 ```
 
-you may end up withdrawing up to $4000 instead of the intended $1000. To make sure no one will accidentally retry a step with _destructive side-effects_ like this, you should add `times=0` in the code:
+you may end up withdrawing up to $4000 instead of the intended $1000. To make sure no one will accidentally retry a step with _destructive side effects_ like this, you should add `times=0` in the code:
 
 ```python
 @retry(times=0)
@@ -74,11 +74,11 @@ def withdraw_money_from_account(self):
 
 Now the code can be safely rerun, even using `--with retry`. All other steps will be retried as usual.
 
-Most data science workflows do not have to worry about this. As long as your step only reads and writes Metaflow artifacts and/or performs only read-only operations with external systems \(e.g. performs only `SELECT` queries, no `INSERT`s etc.\), your step is [idempotent](https://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning) and it can be retried without concern.
+Most data science workflows do not have to worry about this. As long as your step only reads and writes Metaflow artifacts and/or performs only read-only operations with external systems \(e.g. performs only `SELECT` queries, no `INSERT`s etc.\), your step is [idempotent](https://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning) and can be retried without concern.
 
 ### Maximizing Safety
 
-By default, `retry` will retry the step for three times before giving up. It waits for 2 minutes between retries for [remote tasks](/scaling/remote-tasks/introduction). This means that if your code fails fast, any transient platform issues need to get resolved in less than 10 minutes or the whole run will fail. Typically 10 minutes is more than enough but sometimes you want both a belt and suspenders.
+By default, `retry` will retry the step for three times before giving up. It waits for 2 minutes between retries for [remote tasks](/scaling/remote-tasks/introduction). This means that if your code fails fast, any transient platform issues need to get resolved in less than 10 minutes or the whole run will fail. 10 minutes is typically more than enough, but sometimes you want both a belt and suspenders.
 
 If you have a sensitive production workflow which should not fail easily, there are four things you can do:
 
@@ -192,7 +192,7 @@ After all retries are exhausted, `catch` takes over and records an exception in 
 
 ## Timing out with the `timeout` Decorator
 
-By default, there is no timeout for steps. If you cause an infinite loop accidentally or you query an external service that hangs, the step will block the flow forever. This is undesirable especially in production runs that should not require human intervention.
+By default, there is no timeout for steps. If you cause an infinite loop accidentally or query an external service that hangs, the step will block the flow forever. This is undesirable especially in production runs that should not require human intervention.
 
 Metaflow provides a `timeout` decorator to address this issue:
 

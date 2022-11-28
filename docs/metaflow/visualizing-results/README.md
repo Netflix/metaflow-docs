@@ -4,7 +4,7 @@ import ReactPlayer from 'react-player'
 
 What if you want to share results of flows with human beings or inspect results by yourself? One option is to use Jupyter notebooks and Metaflow [Client API](../metaflow/client), which is a good combination for ad-hoc analysis and exploration.
 
-If you have a good idea what information you want observe in every execution, it is more convenient to produce a relevant report automatically. Metaflow comes with a built-in mechanism to create and view such reports with a few lines of code, called _cards_. These cards can contain any images, text, and tables which help you observe the flow. To get an idea of how cards works in practice, take a look at the following short video (no sound):
+If you have a good idea what information you want to observe in every execution, it is more convenient to produce a relevant report automatically. Metaflow comes with a built-in mechanism to create and view such reports with a few lines of code, called _cards_. These cards can contain any images, text, and tables which help you observe the flow. To get an idea of how cards works in practice, take a look at the following short video (no sound):
 
 <ReactPlayer controls url="https://www.youtube.com/watch?v=YSJXn6KLzXg" />
 
@@ -27,7 +27,7 @@ Each model could be accompanied by a card showing model validation metrics. For 
 
 ![](/assets/card-docs-roc.png)
 
-Note that cards don’t change the behavior of the workflow in any way. They are created and stored independently from the flow or task. Should something fail during the creation of a card, the execution of the workflow is not affected, which makes cards safe to use even in sensitive production deployments. Also, crucially, cards work in any compute environment such as laptops, [any remote tasks](/scaling/remote-tasks/introduction), or when the flow is [scheduled to run automatically](/production/introduction). Hence, you can use cards to inspect and debug results during prototyping, as well as monitor the quality of production runs.
+Note that cards don’t change the behavior of the workflow in any way. They are created and stored independent of the flow or task. Should something fail during the creation of a card, the execution of the workflow is not affected, which makes cards safe to use even in sensitive production deployments. Also, crucially, cards work in any compute environment such as laptops, [any remote tasks](/scaling/remote-tasks/introduction), or when the flow is [scheduled to run automatically](/production/introduction). Hence, you can use cards to inspect and debug results during prototyping, as well as monitor the quality of production runs.
 
 Currently, there are three main mechanisms for viewing cards, which are discussed in detail below:
 
