@@ -18,3 +18,5 @@
 /scaling/introduction /metaflow/scaling-out-and-up/effortless-scaling-with-aws-batch
 /scaling/introduction /metaflow/scaling-out-and-up/effortless-scaling-with-kubernetes
 /scaling/tagging /metaflow/tagging
+/production/scheduling-metaflow-flows/scheduling-with-argo-workflows /production/scheduling-metaflow-flows/introduction/scheduling-with-argo-workflows
+/scaling/remote-tasks/kubernetes /scaling/introduction/effortless-scaling-with-kubernetes
