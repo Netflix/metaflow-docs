@@ -43,7 +43,7 @@ class HtmlCardFlow(FlowSpec):
         pass
 
 if __name__ == "__main__":
-    HtmlCardFlow
+    HtmlCardFlow()
 ```
 
 Note that this a just a simple example what a custom template can do. Other custom templates don't require writing HTML by hand. Save the flow in `htmlcardflow.py`. Then, you can run it
