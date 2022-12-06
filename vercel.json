@@ -1,0 +1,26 @@
+{
+    "redirects": [
+        {"source": "/production/coordinating-larger-metaflow-projects", "destination": "/going-to-production-with-metaflow/coordinating-larger-metaflow-projects"},
+        {"source": "/production/introduction", "destination": "/going-to-production-with-metaflow/scheduling-metaflow-flows"},
+        {"source": "/production/scheduling-metaflow-flows/scheduling-with-argo-workflows", "destination": "/going-to-production-with-metaflow/scheduling-metaflow-flows/scheduling-with-argo-workflows"},
+        {"source": "/production/scheduling-metaflow-flows/scheduling-with-aws-step-functions", "destination": "/going-to-production-with-metaflow/scheduling-metaflow-flows/scheduling-with-aws-step-functions"},
+        {"source": "/internals/technical-overview", "destination": "/internals-of-metaflow/technical-overview"},
+        {"source": "/internals/testing-philosophy", "destination": "/internals-of-metaflow/testing-philosophy"},
+        {"source": "/internals/contributing", "destination": "/introduction/contributing-to-metaflow"},
+        {"source": "/introduction/metaflow-resources", "destination": "/introduction/getting-in-touch"},
+        {"source": "/internals/release-notes", "destination": "/introduction/release-notes"},
+        {"source": "/introduction/metaflow-resources", "destination": "/introduction/roadmap"},
+        {"source": "/getting-started/infrastructure", "destination": "/metaflow-on-aws"},
+        {"source": "/getting-started/infrastructure", "destination": "/metaflow-on-aws/deploy-to-aws"},
+        {"source": "/getting-started/infrastructure", "destination": "/metaflow-on-aws/metaflow-sandbox"},
+        {"source": "/scaling/data", "destination": "/metaflow/data"},
+        {"source": "/scaling/dependencies", "destination": "/metaflow/dependencies"},
+        {"source": "/scaling/failures", "destination": "/metaflow/failures"},
+        {"source": "/scaling/introduction", "destination": "/metaflow/scaling-out-and-up"},
+        {"source": "/scaling/introduction", "destination": "/metaflow/scaling-out-and-up/effortless-scaling-with-aws-batch"},
+        {"source": "/scaling/introduction", "destination": "/metaflow/scaling-out-and-up/effortless-scaling-with-kubernetes"},
+        {"source": "/scaling/tagging", "destination": "/metaflow/tagging"},
+        {"source": "/production/scheduling-metaflow-flows/scheduling-with-argo-workflows", "destination": "/production/scheduling-metaflow-flows/introduction/scheduling-with-argo-workflows"},
+        {"source": "/scaling/remote-tasks/kubernetes", "destination": "/scaling/introduction/effortless-scaling-with-kubernetes"}
+    ]
+}
