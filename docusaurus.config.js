@@ -42,6 +42,7 @@ const config = {
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
+
         },
         gtag: {
           trackingID: "G-EYFXNGNGB6",
@@ -55,7 +56,8 @@ const config = {
 
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      image: "img/Metaflow_Logo_Vertical_FullColor_Ribbon_Dark_RGB.png",
+      image: "img/og-metaflow.png",
+      metadata: [{name: "og:width", content: "200"}, {name: "og:height", content: "126"}],
       navbar: {
         logo: {
           alt: "Metaflow Logo",
