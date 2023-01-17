@@ -113,7 +113,7 @@ These attributes are always available in the `current` object.
 
 <DocSection type="property" name="current.parameter_names" module="__main__" show_import="False" heading_level="4">
 
-<Description summary="The names of the Parameters defined in the current flow.\n" />
+<Description summary="The names of the Parameters defined in the flow.\n" />
 <ParamSection name="Returns">
 <Parameter type="List[str]" desc="Parameter names." />
 </ParamSection>
