@@ -208,6 +208,6 @@ This will resume your flow and run every step on AWS Batch. When you are ready t
 python debug.py run --with batch
 ```
 
-Alternatively, you can change the name of the flow temporarily, e.g. from DebugFlow to DebugFlowStaging. Then you can run `step-functions create` with the new name, which will create a separate staging flow on AWS Step Functions. You can also use the [`@project`](../production/coordinating-larger-metaflow-projects.md#the-project-decorator) decorator.
+Alternatively, you can change the name of the flow temporarily, e.g. from DebugFlow to DebugFlowStaging. Then you can run `step-functions create` with the new name, which will create a separate staging flow on AWS Step Functions. You can also use the [`@project`](/production/coordinating-larger-metaflow-projects.md#the-project-decorator) decorator.
 
 You can test the staging flow freely without interfering with the production flow. Once the staging flow runs successfully, you can confidently deploy a new version to production.
