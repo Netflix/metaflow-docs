@@ -3,7 +3,7 @@
 [Apache Airflow](https://airflow.apache.org/) is a popular open-source workflow orchestrator. It has a number of limitations compared to [Argo Workflows](/production/scheduling-metaflow-flows/scheduling-with-argo-workflows) and [AWS Step Functions](/production/scheduling-metaflow-flows/scheduling-with-aws-step-functions), so we mainly recommend it if
 you are an existing Airflow user and you want to avoid introducing a new orchestrator in your environment.
 
-The Metaflow-Airflow integration is a great way to modernize your Airflow deployment. It provides a more user-friendly and productive development API for data scientists and data engineers, without needing to change anything in your existing pipelines or operational playbooks, as described in [its announcement blog post](https://outerbounds.com/blog/better-airflow-with-metaflow/).
+The Metaflow-Airflow integration is a great way to modernize your Airflow deployment. It provides a more user-friendly and productive development API for data scientists and data engineers, without needing to change anything in your existing pipelines or operational playbooks, as described in [its announcement blog post](https://outerbounds.com/blog/better-airflow-with-metaflow/). To learn how to deploy and operate the integration, see [Using Airflow with Metaflow](https://outerbounds.com/engineering/operations/airflow/).
 
 Here are the main benefits of using Metaflow with Airflow:
 
