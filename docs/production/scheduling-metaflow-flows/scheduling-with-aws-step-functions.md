@@ -172,7 +172,8 @@ You can define the schedule with `@schedule` in one of the following ways:
 
 ## Reproducing failed production runs
 
-This is how a failed run on AWS Step Functions UI looks like
+Let's use [`DebugFlow` from the debugging section](/metaflow/debugging#how-to-use-the-resume-command) as an example. The flow contains a bug in the step `b`.
+When you run it, the failed run will look like this on the AWS Step Functions UI:
 
 ![](/assets/image1.png)
 
