@@ -179,6 +179,6 @@ This will resume your flow and run every step on Kubernetes. When you are ready 
 python debug.py run --with kubernetes
 ```
 
-Alternatively, you can change the name of the flow temporarily, e.g. from DebugFlow to DebugFlowStaging. Then you can run `argo-workflows create` with the new name, which will create a separate staging flow on Argo Workflows. You can also use the [`@project`](/production/coordinating-larger-metaflow-projects.md#the-project-decorator) decorator.
+Alternatively, you can change the name of the flow temporarily, e.g. from DebugFlow to DebugFlowStaging. Then you can run `airflow create` with the new name, which will create a separate staging flow on Airflow. You can also use the [`@project`](/production/coordinating-larger-metaflow-projects.md#the-project-decorator) decorator.
 
 You can test the staging flow freely without interfering with the production flow. Once the staging flow runs successfully, you can confidently deploy a new version to production.
