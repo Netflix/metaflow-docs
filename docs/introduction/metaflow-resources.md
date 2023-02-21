@@ -38,6 +38,7 @@ Here's an incomplete overview of Metaflow resources outside this documentation. 
  - Netflix: [Unbundling Data Science Workflows with Metaflow and AWS Step Functions](https://netflixtechblog.com/unbundling-data-science-workflows-with-metaflow-and-aws-step-functions-d454780c6280)
  - Netflix: [Open-Sourcing a Monitoring GUI for Metaflow, Netflix’s ML Platform](https://netflixtechblog.com/open-sourcing-a-monitoring-gui-for-metaflow-75ff465f0d60)
  - Netflix: [Supporting content decision makers with machine learning](https://netflixtechblog.com/supporting-content-decision-makers-with-machine-learning-995b7b76006f)
+ - Netflix: [Scaling Media Machine Learning at Netflix](https://netflixtechblog.com/scaling-media-machine-learning-at-netflix-f19b400243)
  - Outerbounds: [Various articles about Metaflow](https://outerbounds.com/blog/)
  - REA: [Accelerating experimentation with MLOps](https://www.rea-group.com/about-us/news-and-insights/blog/accelerating-experimentation-with-mlops/)
  - Realtor.com: [Improving Data Science Processes to Speed Innovation at Realtor.com](https://medium.com/realtor-com-innovation-blog/improving-data-science-processes-to-speed-innovation-at-realtor-com-b6b90fa530dc)
