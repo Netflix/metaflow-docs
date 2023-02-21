@@ -113,6 +113,12 @@ or on Argo Workflows with
 python production_flow.py argo-workflows create --authorize TOKEN_YOU_SHARED_WITH_THEM
 ```
 
+or on Airflow with
+
+```bash
+python production_flow.py airflow create --authorize TOKEN_YOU_SHARED_WITH_THEM
+```
+
 They need to use the `--authorize` option only once. Metaflow stores the token for them after the first deployment, so they need to do this only once.
 
 ### Resetting a production namespace
@@ -128,6 +134,10 @@ python production_flow.py step-functions create --generate-new-token
 and equivalently for Argo Workflows:
 ```bash
 python production_flow.py argo-workflows create --generate-new-token
+```
+or Airflow:
+```bash
+python production_flow.py airflow create --generate-new-token
 ```
 
 This will deploy a new version in production using a fresh, empty namespace.
