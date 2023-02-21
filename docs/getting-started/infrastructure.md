@@ -9,7 +9,7 @@ deployments. This page provides a quick overview.
 ## Supported infrastructure components
 
 Since modern data science / ML applications are powered by a number of interconnected systems,
- it is useful to organize them as an infrastructure stack like the one illustrated below ([Why? See here](/introduction/why-metaflow).
+ it is useful to organize them as an infrastructure stack like the one illustrated below ([Why? See here](/introduction/why-metaflow)).
 You can see logos of all supported systems which you can use to enable each layer.
 
 Consider this illustration as a menu that allows you to build your own pizza: You get to customize your own crust, sauce, toppings, and cheese. You can make the choices based on your existing business infrastructure and the requirements and preferences
@@ -32,6 +32,7 @@ supported in each. You can choose to deploy Metaflow on:
 | Modeling      | <img src="/assets/infra-python.png" width=" 30" style={{verticalAlign:"middle"}}/> **Python libraries**      | Any Python libraries                               | 🟢         | 🟢  | 🟢    | 🟢 | 🟢  |
 | Deployment    | <img src="/assets/infra-argo.png" width=" 30" style={{verticalAlign:"middle"}}/> **Argo Workflows**          | Open-source production-grade workflow orchestrator |            | 🟢  | 🟢    | 🟢 | 🟢  |
 | Deployment    | <img src="/assets/infra-sfn.png" width=" 30" style={{verticalAlign:"middle"}}/> **Step Functions**           | AWS-managed production-grade workflow orchestrator |            | 🟢  |       |     |     |
+| Deployment    | <img src="/assets/infra-airflow.png" width=" 30" style={{verticalAlign:"middle"}}/> **Apache Airflow**       | Popular open-source workflow orchestrator          |            | 🟢  | 🟢    | 🟢  | 🟢  |
 | Versioning    | <img src="/assets/infra-mflocal.png" width=" 30" style={{verticalAlign:"middle"}}/> **Local Metadata**       | Metaflow's tracking in local files                 | 🟢         | 🟢  | 🟢    | 🟢  | 🟢  |
 | Versioning    | <img src="/assets/infra-metaflow.png" width=" 30" style={{verticalAlign:"middle"}}/> **Metadata Service**    | Metaflow's tracking in a central database          |            | 🟢  | 🟢    | 🟢  | 🟢  |
 | Orchestration | <img src="/assets/infra-mflocal.png" width=" 30" style={{verticalAlign:"middle"}}/> **Local Orchestrator**   | Metaflow's local workflow orchestrator             | 🟢         | 🟢  | 🟢    | 🟢  | 🟢  |

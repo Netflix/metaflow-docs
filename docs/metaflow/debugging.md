@@ -127,93 +127,25 @@ If your flow has [`Parameters`](basics#how-to-define-parameters-for-flows), you 
 
 The `resume` command reuses the parameter values that you set with `run` originally.
 
-## Reproducing production issues locally
+### Reproducing production issues locally
 
-This section shows you how to reproduce a failed Metaflow run on [AWS Step Functions](debugging#reproducing-failed-aws-step-functions-executions) or [Argo Workflows](debugging#reproducing-failed-argo-workflows-executions) locally. 
+The `resume` command can come in handy when debugging failed production runs too. This works exactly the same way as described above: Just specify
+a production run ID as the `--origin-run-id`. Crucially, the resumed producation run executes in your own namespace, so it doesn't affect other
+production runs directly, making it safe to debug, test, and iterate on issues locally.
 
-### Reproducing failed AWS Step Functions executions
+Here's a high-level recipe:
 
-This is how a failed run on AWS Step Functions UI looks like -
+ 1. You deploy a flow to [a production workflow orchestrator](/production/introduction) supported by Metaflow.
+ 2. A production run fails. Note its run ID, `R`.
+ 3. To debug the issue, you resume the failed run locally with `resume --origin-run-id R`.
+ 4. You can repeat (3) until the issue has been fixed.
+ 5. Once the issue has been fixed, you deploy the fixed version to production and restart the production run.
 
-![](/assets/image1.png)
+To apply the above recipe on your orchestrator of choice, see the following sections:
 
-![](</assets/image3_(1).png>)
-
-Notice the execution ID of `5ca85f96-8508-409d-a5f5-b567db1040c5`. When running on AWS Step Functions, Metaflow uses the AWS Step Functions execution ID (prefixed with `sfn-`) as the run id.
-
-The graph visualization shows that step `b` failed, as expected. First, you should inspect the logs of the failed step to get an idea of why it failed. You can access AWS Batch step logs in the AWS Step Functions UI by looking for the `JobId` in the `Error` blob that can be accessed by clicking on the `Exception` pane on the right side of the UI. You can use this `JobId` in the AWS Batch console to check the job logs. This `JobId` is also the metaflow task ID for the step.
-
-Next, we want to reproduce the above error locally. We do this by resuming the specific AWS Step Functions run that failed:
-
-```bash
-python debug.py resume --origin-run-id sfn-5ca85f96-8508-409d-a5f5-b567db1040c5
-```
-
-This will reuse the results of the `start` and `a` step from the AWS Step Functions run. It will try to rerun the step `b` locally, which fails with the same error as it does in production.
-
-You can fix the error locally as above. In the case of this simple flow, you can run the whole flow locally to confirm that the fix works. After validating the results, you would deploy a new version to production with `step-functions create`.
-
-However, this might not be a feasible approach for complex production flow. For instance, the flow might process large amounts of data that can not be handled in your local instance. We have better approaches for staging flows for production:
-
-#### Staging flows for production
-
-The easiest approach to test a demanding flow is to run it with AWS Batch. This works even with resume:
-
-```bash
-python debug.py resume --origin-run-id sfn-5ca85f96-8508-409d-a5f5-b567db1040c5 --with batch
-```
-
-This will resume your flow and run every step on AWS Batch. When you are ready to test a fixed flow end-to-end, just run it as follows:
-
-```bash
-python debug.py run --with batch
-```
-
-Alternatively, you can change the name of the flow temporarily, e.g. from DebugFlow to DebugFlowStaging. Then you can run `step-functions create` with the new name, which will create a separate staging flow on AWS Step Functions. You can also use the [`@project`](../production/coordinating-larger-metaflow-projects.md#the-project-decorator) decorator.
-
-You can test the staging flow freely without interfering with the production flow. Once the staging flow runs successfully, you can confidently deploy a new version to production.
-
-
-### Reproducing failed Argo Workflows executions
-
-This is how a failed run on Argo Workflows UI looks like -
-
-![](/assets/argo-ui-fail.png)
-
-Notice the execution ID of `branchflow-r8qcn`. When running on Argo Workflows, Metaflow uses the Argo Workflows _workflow execution_ name (prefixed with `argo-`) as the run id.
-
-The graph visualization shows that step `b` failed, as expected. First, you should inspect the logs of the failed step to get an idea of why it failed. You can access Kubernetes step logs in the Argo Workflows UI by selecting the failed task and clicking on the logs button. 
-
-Next, we want to reproduce the above error locally. We do this by resuming the specific Argo Workflows run that failed:
-
-```bash
-python debug.py resume --origin-run-id argo-branchflow-r8qcn
-```
-
-This will reuse the results of the `start` and `a` step from the Argo Workflows run. It will try to rerun the step `b` locally, which fails with the same error as it does in production.
-
-You can fix the error locally as above. In the case of this simple flow, you can run the whole flow locally to confirm that the fix works. After validating the results, you would deploy a new version to production with `argo-workflows create`.
-
-However, this might not be a feasible approach for complex production flow. For instance, the flow might process large amounts of data that can not be handled in your local instance. We have better approaches for staging flows for production:
-
-#### Staging flows for production
-
-The easiest approach to test a demanding flow is to run it with Kubernetes. This works even with resume:
-
-```bash
-python debug.py resume --origin-run-id argo-branchflow-r8qcn --with kubernetes
-```
-
-This will resume your flow and run every step on Kubernetes. When you are ready to test a fixed flow end-to-end, just run it as follows:
-
-```bash
-python debug.py run --with kubernetes
-```
-
-Alternatively, you can change the name of the flow temporarily, e.g. from DebugFlow to DebugFlowStaging. Then you can run `argo-workflows create` with the new name, which will create a separate staging flow on Argo Workflows. You can also use the [`@project`](../production/coordinating-larger-metaflow-projects.md#the-project-decorator) decorator.
-
-You can test the staging flow freely without interfering with the production flow. Once the staging flow runs successfully, you can confidently deploy a new version to production.
-
+ - [Resuming with Argo Workflows](/production/scheduling-metaflow-flows/scheduling-with-argo-workflows#reproducing-failed-production-runs)
+ - [Resuming with AWS Step Functions](/production/scheduling-metaflow-flows/scheduling-with-aws-step-functions#reproducing-failed-production-runs)
+ - [Resuming with Apache Airflow](/production/scheduling-metaflow-flows/scheduling-with-airflow#reproducing-failed-production-runs)
 
 ## Inspecting data with a notebook
 

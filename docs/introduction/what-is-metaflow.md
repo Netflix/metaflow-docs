@@ -56,7 +56,7 @@ which can be done using [our Terraform or Cloudformation templates](https://oute
 you want to customize the setup. Take a look at [an overview of Metaflow infrastructure](/getting-started/infrastructure) for more information.
 
 In general, engineering teams like Metaflow as it integrates well with the company's existing infrastructure instead
-of introducing major new components. Metaflow works with all the major cloud providers: AWS, Azure, and GCP. It provides native, thoroughly-tested integrations to popular systems like [AWS Batch](https://aws.amazon.com/batch/), [AWS Step Functions](https://aws.amazon.com/step-functions/), [Kubernetes](https://kubernetes.io/), and [Argo Workflows](https://argoproj.github.io/argo-workflows/).
+of introducing major new components. Metaflow works with all the major cloud providers: AWS, Azure, and GCP. It provides native, thoroughly-tested integrations to popular systems like [AWS Batch](https://aws.amazon.com/batch/), [AWS Step Functions](https://aws.amazon.com/step-functions/), [Kubernetes](https://kubernetes.io/), [Argo Workflows](https://argoproj.github.io/argo-workflows/), and [Apache Airflow](https://airflow.apache.org/).
 
 Many teams find it comforting to know that Metaflow has been used for serious, large-scale production
 use cases involving tens of thousands of flows and millions of runs for more than four years, so the codebase is extremely

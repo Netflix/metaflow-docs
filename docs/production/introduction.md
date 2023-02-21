@@ -38,8 +38,14 @@ Fortunately, a few systems are able to fulfill these requirements, judging by th
 [Argo Workflows](https://argoproj.github.io/argo-workflows/) that runs on Kubernetes and [AWS Step Functions](https://aws.amazon.com/step-functions/),
 a managed service by AWS.
 
-While these systems are quite complex under the hood, Metaflow makes using them trivial:
-You can deploy your flows literally with a single command - no changes in the code required!
+In addition, Metaflow integrates with a popular open-source workflow orchestrator, [Apache Airflow](https://airflow.apache.org/). While Airflow has
+more limitations than the two aforementioned orchestrators, it is a good choice if you have many DAGs deployed on it already and you don't want to 
+introduce a new orchestrator in your environment.
+
+While all of these systems are quite complex under the hood, Metaflow makes using them trivial:
+You can deploy your flows literally with a single command - no changes in the code required. Also, this means that you can switch between schedulers
+easily. For instance, you can start with Apache Airflow to stay compatible with your existing data pipelines and migrate to Argo Workflows over time
+without having to pay any migration tax.
 
 ### Patterns of production deployments
 
@@ -72,6 +78,7 @@ In this section, you will learn how to make your flows run automatically without
 1. [Scheduling Metaflow flows](/production/scheduling-metaflow-flows/introduction).
    - Depending on the [infrastructure you have installed](/getting-started/infrastructure), pick a section below:
       - [Scheduling flows with Argo Workflows](/production/scheduling-metaflow-flows/scheduling-with-argo-workflows) - choose this if running on Kubernetes.
-      - [Scheduling flows with AWS Step Functions](/production/scheduling-metaflow-flows/scheduling-with-aws-step-functions)
+      - [Scheduling flows with AWS Step Functions](/production/scheduling-metaflow-flows/scheduling-with-aws-step-functions) - choose for minimal operational overhead.
+      - [Scheduling flows with Apache Airflow](/production/scheduling-metaflow-flows/scheduling-with-airflow) - choose to stay compatible with your existing Airflow deployment.
  2. [Coordinating larger Metaflow projects](/production/coordinating-larger-metaflow-projects) to enable multiple parallel production deployments.
 
