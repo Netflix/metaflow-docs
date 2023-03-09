@@ -14,9 +14,9 @@ You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/t
 
 **Before playing this episode:**
 
-1. `python -m pip install pandas`
-2. `python -m pip install notebook`
-3. `python -m pip install matplotlib`
+1. `python -m pip install pandas==1.4.2`
+2. `python -m pip install notebook==6.5.3`
+3. `python -m pip install matplotlib==3.7.1`
 
 **To play this episode:**
 

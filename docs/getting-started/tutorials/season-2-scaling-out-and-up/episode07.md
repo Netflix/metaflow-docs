@@ -21,6 +21,6 @@ You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/t
 
 1. `cd metaflow-tutorials`
 2. `jupyter-notebook 07-worldview/worldview.ipynb`
-3. Open _**worldview.ipynb**_ in your remote Sagemaker notebook
+3. Open _**worldview.ipynb**_ in your notebook
 
 <TutorialsLink link="../../tutorials"/>
