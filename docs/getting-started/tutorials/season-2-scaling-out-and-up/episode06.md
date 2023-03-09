@@ -21,7 +21,7 @@ You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/t
 3. `python -m pip install matplotlib==3.7.1`
 4. This tutorial requires access to compute and storage resources on in the cloud, which can be configured by
    1. Following the instructions [here](https://outerbounds.com/docs/engineering-welcome/) or
-   2. Requesting [a sandbox](https://outerbounds.com/docs/sandbox/).
+   2. Requesting [a sandbox](https://outerbounds.com/sandbox/).
 5. This tutorial requires the `conda` package manager to be installed with the conda-forge channel added.
    1. Download Miniconda at [https://docs.conda.io/en/latest/miniconda.html](https://docs.conda.io/en/latest/miniconda.html)
    2. `conda config --add channels conda-forge`

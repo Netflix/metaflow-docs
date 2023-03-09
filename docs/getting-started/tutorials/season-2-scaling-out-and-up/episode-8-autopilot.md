@@ -18,7 +18,7 @@ You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/t
 2. `python -m pip install plotly`
 3. This tutorial requires access to compute and storage resources on AWS, which can be configured by
    1. Following the instructions [here](https://outerbounds.com/docs/engineering-welcome/) or
-   2. Requesting [a sandbox](https://outerbounds.com/docs/sandbox/).
+   2. Requesting [a sandbox](https://outerbounds.com/sandbox/).
 
 **To play this episode:**
 

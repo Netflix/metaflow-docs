@@ -11,7 +11,7 @@ We highly recommend using **Python 3** for new projects. Metaflow supports Pytho
 :::info
 
 If you want to get a feel of Metaflow and the infrastructure behind it without having to install anything locally, you can
-do in the browser by signing up for [a Metaflow Sandbox](https://outerbounds.com/docs/sandbox/).
+do in the browser by signing up for [a Metaflow Sandbox](https://outerbounds.com/sandbox/).
 
 :::
 
