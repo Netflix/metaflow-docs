@@ -23,7 +23,7 @@ You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/t
 **To play this episode:**
 
 1. `cd metaflow-tutorials`
-2. `python 02-statistics/stats.py --environment=conda --with kubernetes argo-workflows create --max-workers 4`
-3. `python 02-statistics/stats.py --environment=conda argo-workflows trigger`
+2. `python 02-statistics/stats.py --with kubernetes argo-workflows create --max-workers 4`
+3. `python 02-statistics/stats.py argo-workflows trigger`
 4. `jupyter-notebook 08-autopilot/autopilot.ipynb`
 5. Open _**autopilot.ipynb**_ in your notebook

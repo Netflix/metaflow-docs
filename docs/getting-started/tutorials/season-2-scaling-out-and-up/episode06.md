@@ -16,23 +16,21 @@ You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/t
 
 **Before playing this episode:**
 
-1. `python -m pip install pandas==1.4.2`
-2. `python -m pip install notebook==6.5.3`
-3. `python -m pip install matplotlib==3.7.1`
-4. This tutorial requires access to compute and storage resources on in the cloud, which can be configured by
+1. `python -m pip install notebook`
+2. `python -m pip install matplotlib`
+3. This tutorial requires access to compute and storage resources on in the cloud, which can be configured by
    1. Following the instructions [here](https://outerbounds.com/docs/engineering-welcome/) or
    2. Requesting [a sandbox](https://outerbounds.com/sandbox/).
-5. This tutorial requires the `conda` package manager to be installed with the conda-forge channel added.
+4. This tutorial requires the `conda` package manager to be installed with the conda-forge channel added.
    1. Download Miniconda at [https://docs.conda.io/en/latest/miniconda.html](https://docs.conda.io/en/latest/miniconda.html)
    2. `conda config --add channels conda-forge`
 
 **To play this episode:**
 
 1. `cd metaflow-tutorials`
-2. Open `02-statistics/stats.py` and uncomment the `@conda_base` decorator
-3. `python 02-statistics/stats.py --environment conda run --with kubernetes --max-workers 4`
-4. `jupyter-notebook 06-statistics-redux/stats.ipynb`
-5. Open _**stats.ipynb**_ in your notebook
+2. `python 02-statistics/stats.py run --with kubernetes --max-workers 4`
+3. `jupyter-notebook 06-statistics-redux/stats.ipynb`
+4. Open _**stats.ipynb**_ in your notebook
 
 :::caution
 
