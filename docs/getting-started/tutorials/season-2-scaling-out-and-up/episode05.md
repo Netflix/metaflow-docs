@@ -8,9 +8,9 @@ You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/t
 
 **Showcasing:**
 
-- [AWS Batch](/scaling/remote-tasks/aws-batch) and the [`@batch`](/scaling/remote-tasks/introduction) decorator.
+- [Kubernetes](https://docs.metaflow.org/scaling/remote-tasks/kubernetes) and the [`@kubernetes`](https://docs.metaflow.org/scaling/remote-tasks/introduction) decorator.
 - Using the [Client API](../../../metaflow/client) to access data artifacts generated remotely in a local notebook.
-- [`@retry`](../../../scaling/failures#retrying-tasks-with-the-retry-decorator)decorator.
+- [`@retry`](https://docs.metaflow.org/scaling/failures#retrying-tasks-with-the-retry-decorator)decorator.
 
 **Before playing this episode:**
 
