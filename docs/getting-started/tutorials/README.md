@@ -36,6 +36,7 @@ metaflow tutorials info 00-helloworld
 - [**Episode 5: Look Mom, We're in the Cloud.**](tutorials/season-2-scaling-out-and-up/episode05)
 - [**Episode 6: Computing in the Cloud.**](tutorials/season-2-scaling-out-and-up/episode06)
 - [**Episode 7: Way up here.**](tutorials/season-2-scaling-out-and-up/episode07)
+- [**Episode 8: Autopilot.**](tutorials/season-2-scaling-out-and-up/episode08)
 
 ### What's next?
 

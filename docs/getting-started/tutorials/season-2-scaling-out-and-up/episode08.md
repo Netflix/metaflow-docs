@@ -2,7 +2,7 @@
 
 ## Scheduling Compute in the Cloud.
 
-This example revisits '[Episode 06-statistics-redux: Computing in the Cloud](episode06.md)'. With Metaflow, you don't need to make any code changes to schedule your flow in the cloud. In this example, we will schedule the `stats.py` workflow using the `argo-workflows create` command-line argument. This instructs Metaflow to schedule your flow on AWS Step Functions without changing any code. You can execute your flow on AWS Step Functions by using the `argo-workflows trigger` command-line argument. You can use a notebook to set up a simple dashboard to monitor all of your Metaflow flows.
+This example revisits [Episode 06-statistics-redux: Computing in the Cloud](episode06.md). Wi th Metaflow, you don't need to make any code changes to schedule your flow in the cloud. In this example, we will schedule the `stats.py` workflow using the `argo-workflows create` command-line argument. This instructs Metaflow to schedule your flow on [Argo Workflows](https://argoproj.github.io/argo-workflows/) without changing any code. You can execute your flow on Argo Workflows by using the `argo-workflows trigger` command-line argument. You can use a notebook to set up a simple dashboard to monitor all of your Metaflow flows.
 
 You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/tree/master/metaflow/tutorials/08-autopilot)
 
