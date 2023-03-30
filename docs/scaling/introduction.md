@@ -53,4 +53,4 @@ In this section, you will learn how to make your flows capable of handling more 
 4. [Loading and storing data efficiently](/scaling/data)
 5. [Organizing results for smoother collaboration](/scaling/tagging)
 
-Before you proceed, make sure to [configure infrastructure for Metaflow](/getting-started/infrastructure) or sign up for a [Metaflow Sandbox](https://outerbounds.com/docs/sandbox/).
+Before you proceed, make sure to [configure infrastructure for Metaflow](/getting-started/infrastructure) or sign up for a [Metaflow Sandbox](https://outerbounds.com/sandbox/).

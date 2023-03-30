@@ -2,21 +2,19 @@
 
 ## Is this Data Science?
 
-Use metaflow to load the movie metadata CSV file into a Pandas Dataframe and compute some movie genre-specific statistics. These statistics are then used in later examples to improve our playlist generator. You can optionally use the Metaflow client to eyeball the results in a Notebook, and make some simple plots using the Matplotlib library.
+Use metaflow to load the movie metadata CSV file into a dataframe and compute some movie genre-specific statistics. These statistics are then used in later examples to improve our playlist generator. You can optionally use the Metaflow client to eyeball the results in a Notebook, and make some simple plots using the Matplotlib library.
 
 You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/tree/master/metaflow/tutorials/02-statistics)
 
 **Showcasing:**
 
 - Fan-out over a set of parameters using Metaflow [foreach](../../../metaflow/basics#foreach).
-- Using external packages like Pandas.
 - Plotting results in a Notebook.
 
 **Before playing this episode:**
 
-1. `python -m pip install pandas`
-2. `python -m pip install notebook`
-3. `python -m pip install matplotlib`
+1. `python -m pip install notebook`
+2. `python -m pip install matplotlib`
 
 **To play this episode:**
 

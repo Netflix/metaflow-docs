@@ -46,7 +46,7 @@ supported in each. You can choose to deploy Metaflow on:
 Note that fast prototyping with the Local Orchestrator is supported in all these options, but the **only local** option doesn't support scalability with an external compute layer, nor production-grade deployments.
 
 :::info
-You can test the AWS/Azure/GCP/Kubernetes stack easily in your browser for free by signing up for a [Metaflow Sandbox](https://outerbounds.com/docs/sandbox/).
+You can test the AWS/Azure/GCP/Kubernetes stack easily in your browser for free by signing up for a [Metaflow Sandbox](https://outerbounds.com/sandbox/).
 :::
 
 ## Example stacks

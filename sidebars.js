@@ -62,7 +62,7 @@ const sidebars = {
                 "getting-started/tutorials/season-2-scaling-out-and-up/episode05",
                 "getting-started/tutorials/season-2-scaling-out-and-up/episode06",
                 "getting-started/tutorials/season-2-scaling-out-and-up/episode07",
-                "getting-started/tutorials/season-2-scaling-out-and-up/episode-8-autopilot",
+                "getting-started/tutorials/season-2-scaling-out-and-up/episode08",
               ],
             },
           ],

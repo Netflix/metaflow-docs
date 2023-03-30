@@ -8,7 +8,7 @@ You can find the tutorial code on [GitHub](https://github.com/Netflix/metaflow/t
 
 **Showcasing:**
 
-- Using the [Client API ](../../../metaflow/client)in a flow to fetch and use data artifacts generated from other flows.
+- Using the [Client API ](../../../metaflow/client) in a flow to fetch and use data artifacts generated from other flows.
 
 **Before playing this episode:**
 
