@@ -81,9 +81,11 @@ line. Choose one of the commands in the tabs below corresponding to whichever yo
 Kubernetes or AWS Batch. This assumes that you have [configured one of these systems
 work with Metaflow](/getting-started/infrastructure).
 
-import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-<Tabs> <TabItem value="k8s" label="Kubernetes">
+<Tabs>
+<TabItem value="k8s" label="Kubernetes">
 
 ```batch
 $ python BigSum.py run --with kubernetes
@@ -97,7 +99,8 @@ $ python BigSum.py run --with kubernetes
 $ python BigSum.py run --with batch
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+</Tabs>
 
 The `--with batch` or `--with kubernetes` option instructs Metaflow to run all tasks as
 separate jobs on the chosen compute platform, instead of using a local process for each
