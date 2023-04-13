@@ -208,7 +208,9 @@ which can help in situations like this.
 This clip (no audio) demonstrates inspecting values in a flow:
 
 <div style={{position: "relative", width: "100%", height: 500}}>
-<iframe src="https://cdn.iframe.ly/3Ffh7OX" style={{top: 0, left: 0, width: "100%", height: "100%", position: "absolute", border: 0}} allowfullscreen="" scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *;"></iframe>
+<iframe src="https://cdn.iframe.ly/3Ffh7OX" style={{top: 0, left: 0, width: "100%", 
+height: "100%", position: "absolute", border: 0}} allowfullscreen="" scrolling="no"
+allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *;"></iframe>
 </div>
 
 In the above clip, you will see:

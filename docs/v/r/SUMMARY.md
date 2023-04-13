@@ -2,8 +2,9 @@
 
 :::caution
 
-Metaflow for R is in *maintenance mode*. It doesn't support the latest features of Metaflow.
-[Reach out to us on Slack if you have questions about R](http://slack.outerbounds.co).
+Metaflow for R is in *maintenance mode*. It doesn't support the latest features of
+Metaflow. [Reach out to us on Slack if you have questions about
+R](http://slack.outerbounds.co).
 
 :::
 
@@ -22,15 +23,24 @@ Metaflow for R is in *maintenance mode*. It doesn't support the latest features 
 - [Installing Metaflow](getting-started/install.md)
 - [Development Environment](getting-started/development-environment.md)
 - [Tutorials](getting-started/tutorials/README.md)
-  - [Season 1: The Local Experience](getting-started/tutorials/season-1-the-local-experience/README.md)
-    - [Episode 0: Hello World](getting-started/tutorials/season-1-the-local-experience/episode00.md)
-    - [Episode 1: Playlist](getting-started/tutorials/season-1-the-local-experience/episode01.md)
-    - [Episode 2: Statistics](getting-started/tutorials/season-1-the-local-experience/episode02.md)
-    - [Episode 3: Playlist Redux](getting-started/tutorials/season-1-the-local-experience/episode03.md)
-  - [Season 2: Scaling Out and Up](getting-started/tutorials/season-2-scaling-out-and-up/README.md)
-    - [Episode 4: Hello AWS](getting-started/tutorials/season-2-scaling-out-and-up/episode04.md)
-    - [Episode 5: Statistics Redux](getting-started/tutorials/season-2-scaling-out-and-up/episode05.md)
-    - [Episode 6: Worldview](getting-started/tutorials/season-2-scaling-out-and-up/episode06.md)
+  - [Season 1: The Local
+    Experience](getting-started/tutorials/season-1-the-local-experience/README.md)
+    - [Episode 0: Hello
+      World](getting-started/tutorials/season-1-the-local-experience/episode00.md)
+    - [Episode 1:
+      Playlist](getting-started/tutorials/season-1-the-local-experience/episode01.md)
+    - [Episode 2:
+      Statistics](getting-started/tutorials/season-1-the-local-experience/episode02.md)
+    - [Episode 3: Playlist
+      Redux](getting-started/tutorials/season-1-the-local-experience/episode03.md)
+  - [Season 2: Scaling Out and
+    Up](getting-started/tutorials/season-2-scaling-out-and-up/README.md)
+    - [Episode 4: Hello
+      AWS](getting-started/tutorials/season-2-scaling-out-and-up/episode04.md)
+    - [Episode 5: Statistics
+      Redux](getting-started/tutorials/season-2-scaling-out-and-up/episode05.md)
+    - [Episode 6:
+      Worldview](getting-started/tutorials/season-2-scaling-out-and-up/episode06.md)
 
 
 ## Developing with Metaflow <a id="metaflow"></a>
@@ -44,4 +54,5 @@ Metaflow for R is in *maintenance mode*. It doesn't support the latest features 
 
 ## GOING TO PRODUCTION WITH METAFLOW
 
-- [Scheduling Metaflow Flows](going-to-production-with-metaflow/scheduling-metaflow-flows.md)
+- [Scheduling Metaflow
+  Flows](going-to-production-with-metaflow/scheduling-metaflow-flows.md)

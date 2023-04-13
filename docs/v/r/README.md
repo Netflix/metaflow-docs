@@ -11,8 +11,9 @@ import Description from "/src/components/Description";
 
 :::caution
 
-Metaflow for R is in *maintenance mode*. It doesn't support the latest features of Metaflow.
-[Reach out to us on Slack if you have questions about R](http://slack.outerbounds.co).
+Metaflow for R is in *maintenance mode*. It doesn't support the latest features of
+Metaflow. [Reach out to us on Slack if you have questions about
+R](http://slack.outerbounds.co).
 
 :::
 
@@ -47,4 +48,5 @@ Metaflow for R is in *maintenance mode*. It doesn't support the latest features 
 
 ## Going to Production with Metaflow
 
-- [Scheduling Metaflow Flows ](r/going-to-production-with-metaflow/scheduling-metaflow-flows)
+- [Scheduling Metaflow Flows
+  ](r/going-to-production-with-metaflow/scheduling-metaflow-flows)

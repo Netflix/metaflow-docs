@@ -42,7 +42,7 @@ The Metaflow 2.6.0 release is a minor release and introduces Metaflow's integrat
 [Kubernetes](https://docs.metaflow.org/scaling/introduction/effortless-scaling-with-kubernetes)
 and [Argo
 Workflows](https://docs.metaflow.org/production/scheduling-metaflow-flows/introduction/scheduling-with-argo-workflows)
-- [Features](#2.6.0_features)
+- Features
   - Add capability to launch Metaflow tasks on Kubernetes and schedule Metaflow flows
     with Argo Workflows.
   - Expose `tags` in `current` object.

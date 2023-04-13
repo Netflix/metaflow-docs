@@ -1,12 +1,17 @@
 # Inspecting Flows and Results
 
-Metaflow provides a client API that is used to inspect results of past runs. It is particularly well suited to being used in notebooks.
+Metaflow provides a client API that is used to inspect results of past runs. It is
+particularly well suited to being used in notebooks.
 
 This document provides an overview of the client API.
 
 ## Object hierarchy
 
-Note that all operations in the Client API are filtered by the current namespace, as explained in [Organizing Results](tagging). If you do not get the results you expect, make sure you are in the correct namespace. The Client API consults the metadata service to gather results, so make sure that the client is properly configured to use the correct [metadata provider](client#metadata-provider).
+Note that all operations in the Client API are filtered by the current namespace, as
+explained in [Organizing Results](tagging). If you do not get the results you expect,
+make sure you are in the correct namespace. The Client API consults the metadata service
+to gather results, so make sure that the client is properly configured to use the
+correct [metadata provider](client#metadata-provider).
 
 ![](/assets/hierarchy.png)
 
@@ -37,7 +42,8 @@ task$artifact("my_var")
 
 ## Navigating the object hierarchy
 
-Every object listed above follows a consistent interface. All the operations below are available in all objects, not just the ones demonstrated.
+Every object listed above follows a consistent interface. All the operations below are
+available in all objects, not just the ones demonstrated.
 
 ### Listing children
 
@@ -69,11 +75,16 @@ run <- helloflow$run("2")
 
 ### Accessing data
 
-One of the most typical use cases of the client API is to access data artifacts produced by runs. Each data artifact is represented by a `DataArtifact` object whose parent is a `Task`.
+One of the most typical use cases of the client API is to access data artifacts produced
+by runs. Each data artifact is represented by a `DataArtifact` object whose parent is a
+`Task`.
 
-`DataArtifact` is a container object for the actual value. Besides the value, `DataArtifact` includes metadata about the artifact, such as its time of creation.
+`DataArtifact` is a container object for the actual value. Besides the value,
+`DataArtifact` includes metadata about the artifact, such as its time of creation.
 
-Often you are only interested in the value of an artifact. For this typical use case we provide a convenience property `$data` in the `Task` object. The `$data` property returns a container which has all artifacts produced by the task as attributes.
+Often you are only interested in the value of an artifact. For this typical use case we
+provide a convenience property `$data` in the `Task` object. The `$data` property
+returns a container which has all artifacts produced by the task as attributes.
 
 For instance, this the shortest way to access a value produced by a step in a run:
 
@@ -82,7 +93,8 @@ task <- task_client$new("DebugFlow/2/compute/123")
 print(task$artifact("my_var"))
 ```
 
-Here, we print the value of `self$my_varx` in the step `compute` of the run `2`, task `123` of the flow `DebugFlow`.
+Here, we print the value of `self$my_varx` in the step `compute` of the run `2`, task
+`123` of the flow `DebugFlow`.
 
 ### Properties of Flow/Run/Step/Task Objects
 
@@ -107,7 +119,9 @@ You can find more details in the object documentation.
 
 ## Metadata provider
 
-The Client API relies on a metadata service to gather results appropriately. Metaflow supports a local mode \(`.metaflow` directory on your filesystem\) and a [remote mode](https://github.com/Netflix/metaflow-service).
+The Client API relies on a metadata service to gather results appropriately. Metaflow
+supports a local mode \(`.metaflow` directory on your filesystem\) and a [remote
+mode](https://github.com/Netflix/metaflow-service).
 
 ```r
 # Fetch currently configured metadata provider
@@ -120,4 +134,5 @@ metaflow::set_metadata('/Users/bob/metaflow')
 metaflow::set_metadata('https://localhost:5000/mymetaflowservice')
 ```
 
-Note that changing the metadata provider is a global operation and all subsequent client operations will use the metadata provider specified.
+Note that changing the metadata provider is a global operation and all subsequent client
+operations will use the metadata provider specified.

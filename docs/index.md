@@ -8,7 +8,8 @@ slug: /
 
 # Welcome to Metaflow
 
-Metaflow makes it easy to build and manage real-life data science and machine learning projects.
+Metaflow makes it easy to build and manage real-life data science and machine learning
+projects.
 
 <div className="tocList">
 
@@ -45,7 +46,8 @@ Metaflow makes it easy to build and manage real-life data science and machine le
 
 - [Introduction to Production Deployments](production/introduction)
 - [Scheduling Metaflow Flows](production/scheduling-metaflow-flows/introduction)
-- [Coordinating Larger Metaflow Projects](production/coordinating-larger-metaflow-projects)
+- [Coordinating Larger Metaflow
+  Projects](production/coordinating-larger-metaflow-projects)
 
 ## API Reference
 

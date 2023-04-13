@@ -1,27 +1,33 @@
 # Episode 2: Statistics
 
-Use Metaflow to load the movie metadata CSV file into a data frame and compute some movie genre-specific statistics. These statistics are then used in later examples to improve our playlist generator.
+Use Metaflow to load the movie metadata CSV file into a data frame and compute some
+movie genre-specific statistics. These statistics are then used in later examples to
+improve our playlist generator.
 
-You can optionally use the Metaflow client to eyeball the results in a Markdown Notebook, and make some simple plots.
+You can optionally use the Metaflow client to eyeball the results in a Markdown
+Notebook, and make some simple plots.
 
 ## Showcasing:
 
-- Fan-out over a set of parameters using [Metaflow foreach](../../../metaflow/basics.md#foreach).
+- Fan-out over a set of parameters using [Metaflow
+  foreach](../../../metaflow/basics.md#foreach).
 - Plotting results in a Markdown Notebook.
 
 ## To play this episode:
 
-If you haven't yet pulled the tutorials to your current working directory, you can follow the instructions [here](../#pull-tutorials).
+If you haven't yet pulled the tutorials to your current working directory, you can
+follow the instructions [here](../#pull-tutorials).
 
 1. `cd tutorials/02-statistics`
 2. `Rscript stats.R show`
 3. `Rscript stats.R run`
 4. Open `stats.Rmd` in RStudio
 
-The dataset `movies.csv` is the same one as in Episode 01, which looks like this The dataset looks like this
+The dataset `movies.csv` is the same one as in Episode 01, which looks like this The
+dataset looks like this
 
 | movie_title                              | title_year | genre    | gross     |
-|:-----------------------------------------|:-----------|:---------|:----------|
+| :--------------------------------------- | :--------- | :------- | :-------- |
 | Avatar                                   | 2009       | Sci-Fi   | 760505847 |
 | Pirates of the Caribbean: At World's End | 2007       | Fantasy  | 309404152 |
 | Spectre                                  | 2015       | Thriller | 200074175 |
