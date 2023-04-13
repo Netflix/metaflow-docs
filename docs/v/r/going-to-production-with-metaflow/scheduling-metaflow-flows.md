@@ -1,4 +1,5 @@
-import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Scheduling Metaflow Flows
 
@@ -70,7 +71,8 @@ will soon introduce a new feature around coordinating larger Metaflow projects.
 Let's use [the flow from the section about
 parameters](../metaflow/basics.md#how-to-define-parameters-for-flows) as an example:
 
-<Tabs> <TabItem label="R" value="R">
+<Tabs>
+<TabItem label="R" value="R">
 
 ```python
 library(metaflow)
@@ -95,7 +97,8 @@ metaflow("ParameterFlow") %>%
     run()
 ```
 
-</TabItem> <TabItem label="RStudio" value="RStudio">
+</TabItem>
+<TabItem label="RStudio" value="RStudio">
 
 ```python
 ...
@@ -104,7 +107,8 @@ metaflow("ParameterFlow") %>%
    run(step_functions = "create")
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+</Tabs>
 
 Save this script to a file `parameter_flow.R`. To deploy a version to AWS Step
 Functions, simply source the `RStudio` version of the code or in a terminal run
@@ -157,13 +161,15 @@ Metaflow](../metaflow/debugging.md).
 
 **You can trigger the workflow through command line as well:**
 
-<Tabs> <TabItem label="Bash" value="Bash">
+<Tabs>
+<TabItem label="Bash" value="Bash">
 
 ```bash
 Rscript parameter_flow.R step-functions trigger --alpha 0.5
 ```
 
-</TabItem> <TabItem label="RStudio" value="RStudio">
+</TabItem>
+<TabItem label="RStudio" value="RStudio">
 
 ```python
 ...
@@ -173,7 +179,8 @@ Rscript parameter_flow.R step-functions trigger --alpha 0.5
        alpha=0.5)
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+</Tabs>
 
 If you run `step-functions create` again, it will create a new version of your flow on
 AWS Step Functions. The newest version becomes the production version automatically

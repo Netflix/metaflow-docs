@@ -1,4 +1,5 @@
-import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Dealing with Failures
 
@@ -73,13 +74,15 @@ It is highly recommended that you use `retry` every time you run your flow on th
 retry decorator, you can also automatically add a retry decorator to all steps that do
 not have one as follows:
 
-<Tabs> <TabItem label="Terminal" value="Terminal">
+<Tabs>
+<TabItem label="Terminal" value="Terminal">
 
 ```r
 Rscript retryflow.R run --with retry
 ```
 
-</TabItem> <TabItem label="RStudio" value="RStudio">
+</TabItem>
+<TabItem label="RStudio" value="RStudio">
 
 ```
 # Replace run() in retryflow.R with
@@ -87,7 +90,8 @@ Rscript retryflow.R run --with retry
 # and execute in RStudio
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+</Tabs>
 
 ### How to Prevent Retries
 
@@ -108,13 +112,15 @@ withdraw_money_from_account <- function(self){
 
 If you run this code with:
 
-<Tabs> <TabItem label="Terminal" value="Terminal">
+<Tabs>
+<TabItem label="Terminal" value="Terminal">
 
 ```r
 Rscript moneyflow.R run --with retry
 ```
 
-</TabItem> <TabItem label="RStudio" value="RStudio">
+</TabItem>
+<TabItem label="RStudio" value="RStudio">
 
 ```
 # Replace run() in moneyflow.R with
@@ -122,7 +128,8 @@ Rscript moneyflow.R run --with retry
 # and execute in RStudio
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+</Tabs>
 
 you may end up withdrawing up to $4000 instead of the intended $1000. To make sure no
 one will accidentally retry a step with _destructive side effects_ like this, you should

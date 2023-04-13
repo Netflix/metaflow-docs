@@ -1,4 +1,5 @@
-import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Scaling Out and Up
 
@@ -103,13 +104,17 @@ or running in the [Metaflow sandbox](../metaflow-on-aws/metaflow-sandbox.md)\)
 
 With the following command, you instruct Metaflow to run all your steps on AWS Batch:
 
-<Tabs> <TabItem label="Terminal" value="Terminal">
+<Tabs>
+
+<TabItem label="Terminal" value="Terminal">
 
 ```bash
 Rscript bigsumflow.R run --with batch
 ```
 
-</TabItem> <TabItem label="RStudio" value="RStudio">
+</TabItem>
+
+<TabItem label="RStudio" value="RStudio">
 
 ```
 # Replace run() in bigsumflow.R with
@@ -117,7 +122,9 @@ Rscript bigsumflow.R run --with batch
 # and execute in RStudio
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+
+</Tabs>
 
 The `--with batch` option instructs Metaflow to run all tasks as separate AWS Batch
 jobs, instead of using a local process for each task. It has the same effect as adding
@@ -186,13 +193,17 @@ disabled in the [Metaflow AWS Sandbox](../metaflow-on-aws/metaflow-sandbox.md).
 
 You can easily see what AWS Batch tasks were launched by your latest run with
 
-<Tabs> <TabItem label="Terminal" value="Terminal">
+<Tabs>
+
+<TabItem label="Terminal" value="Terminal">
 
 ```bash
 Rscript myflow.R batch list
 ```
 
-</TabItem> <TabItem label="RStudio" value="RStudio">
+</TabItem>
+
+<TabItem label="RStudio" value="RStudio">
 
 ```
 # Replace run() in myflow.R with
@@ -200,17 +211,23 @@ Rscript myflow.R batch list
 # and execute in RStudio
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+
+</Tabs>
 
 You can kill the tasks started by the latest run with
 
-<Tabs> <TabItem label="Terminal" value="Terminal">
+<Tabs>
+
+<TabItem label="Terminal" value="Terminal">
 
 ```bash
 Rscript myflow.R batch kill
 ```
 
-</TabItem> <TabItem label="RStudio" value="RStudio">
+</TabItem>
+
+<TabItem label="RStudio" value="RStudio">
 
 ```
 # Replace run() in myflow.R with
@@ -218,18 +235,24 @@ Rscript myflow.R batch kill
 # and execute in RStudio
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+
+</Tabs>
 
 If you have started multiple runs, you can make sure there are no orphaned tasks still
 running with
 
-<Tabs> <TabItem label="Terminal" value="Terminal">
+<Tabs>
+
+<TabItem label="Terminal" value="Terminal">
 
 ```bash
 Rscript myflow.R batch list --my-runs
 ```
 
-</TabItem> <TabItem label="RStudio" value="RStudio">
+</TabItem>
+
+<TabItem label="RStudio" value="RStudio">
 
 ```
 # Replace run() in myflow.R with
@@ -237,17 +260,23 @@ Rscript myflow.R batch list --my-runs
 # and execute in RStudio
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+
+</Tabs>
 
 You can kill the tasks started by the latest run with
 
-<Tabs> <TabItem label="Terminal" value="Terminal">
+<Tabs>
+
+<TabItem label="Terminal" value="Terminal">
 
 ```bash
 Rscript myflow.R batch kill --my-runs
 ```
 
-</TabItem> <TabItem label="RStudio" value="RStudio">
+</TabItem>
+
+<TabItem label="RStudio" value="RStudio">
 
 ```
 # Replace run() in myflow.R with
@@ -255,18 +284,24 @@ Rscript myflow.R batch kill --my-runs
 # and execute in RStudio
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+
+</Tabs>
 
 If you see multiple runs running, you can cherry-pick a specific job, e.g. 456, to be
 killed as follows
 
-<Tabs> <TabItem label="Terminal" value="Terminal">
+<Tabs>
+
+<TabItem label="Terminal" value="Terminal">
 
 ```bash
 Rscript myflow.R batch kill --run-id 456
 ```
 
-</TabItem> <TabItem label="RStudio" value="RStudio">
+</TabItem>
+
+<TabItem label="RStudio" value="RStudio">
 
 ```
 # Replace run() in myflow.R with
@@ -274,18 +309,24 @@ Rscript myflow.R batch kill --run-id 456
 # and execute in RStudio
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+
+</Tabs>
 
 If you are working with another person, you can see and kill their tasks related to this
 flow with
 
-<Tabs> <TabItem label="Terminal" value="Terminal">
+<Tabs>
+
+<TabItem label="Terminal" value="Terminal">
 
 ```bash
 Rscript myflow.R batch kill --user savin
 ```
 
-</TabItem> <TabItem label="RStudio" value="RStudio">
+</TabItem>
+
+<TabItem label="RStudio" value="RStudio">
 
 ```
 Replace run() in myflow.R with
@@ -293,7 +334,9 @@ Replace run() in myflow.R with
 # and execute in RStudio
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+
+</Tabs>
 
 Note that all the above commands only affect the flow defined in your script. You can
 work on many flows in parallel and be confident that `kill` kills tasks only related to
@@ -324,13 +367,17 @@ To safeguard against inadvertent launching of many parallel Batch jobs, the `run
 launch more than 100 splits by default. Use the flag to increase the limit if you
 actually need more tasks.
 
-<Tabs> <TabItem label="Terminal" value="Terminal">
+<Tabs>
+
+<TabItem label="Terminal" value="Terminal">
 
 ```bash
 Rscript myflow.R run --max-num-splits 200
 ```
 
-</TabItem> <TabItem value="RStudio" label="RStudio">
+</TabItem>
+
+<TabItem value="RStudio" label="RStudio">
 
 ```
 # Replace run() in myflow.R with
@@ -338,20 +385,26 @@ Rscript myflow.R run --max-num-splits 200
 # and execute in RStudio
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+
+</Tabs>
 
 Another flag, `--max-workers`, limits the number of tasks run in parallel. Even if a
 foreach launched 100 splits, `--max-workers` would make only 16 \(by default\) of them
 run in parallel at any point in time. If you want more parallelism, increase the value
 of `--max-workers`.
 
-<Tabs> <TabItem label="Terminal" value="Terminal">
+<Tabs>
+
+<TabItem label="Terminal" value="Terminal">
 
 ```bash
 Rscript myflow.R run --max-workers 32
 ```
 
-</TabItem> <TabItem value="RStudio" label="RStudio">
+</TabItem>
+
+<TabItem value="RStudio" label="RStudio">
 
 ```
 # Replace run() in myflow.R with
@@ -359,19 +412,25 @@ Rscript myflow.R run --max-workers 32
 # and execute in RStudio
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+
+</Tabs>
 
 #### **Accessing AWS Batch logs**
 
 As a convenience feature, you can also see the logs of any past step as follows:
 
-<Tabs> <TabItem label="Terminal" value="Terminal">
+<Tabs>
+
+<TabItem label="Terminal" value="Terminal">
 
 ```bash
 Rscript bigsumflow.R logs 15/end
 ```
 
-</TabItem> <TabItem label="RStudio" value="RStudio">
+</TabItem>
+
+<TabItem label="RStudio" value="RStudio">
 
 ```
 # Replace run() in bigsumflow.R with
@@ -379,7 +438,9 @@ Rscript bigsumflow.R logs 15/end
 # and execute in RStudio
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+
+</Tabs>
 
 ### Disk space
 

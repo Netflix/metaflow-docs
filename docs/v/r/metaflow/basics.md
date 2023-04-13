@@ -1,4 +1,5 @@
-import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Basics of Metaflow
 
@@ -67,19 +68,22 @@ metaflow("LinearFlow") %>%
 
 You can execute this directly in your RStudio IDE or via the terminal:
 
-<Tabs> <TabItem value="Terminal" label="Terminal">
+<Tabs>
+<TabItem value="Terminal" label="Terminal">
 
 ```bash
 Rscript myflow.R run
 ```
 
-</TabItem> <TabItem value="RStudio" label="RStudio">
+</TabItem>
+<TabItem value="RStudio" label="RStudio">
 
 ```
 # Execute as is
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+</Tabs>
 
 Besides executing the steps `start`, `a`, and `end` in order, this flow creates **a data
 artifact** called `my_var`. In Metaflow, data artifacts are created simply by assigning
@@ -224,13 +228,15 @@ than an hour to run, preferably much less than that.
 
 Another important consideration is the readability of your code. Try running
 
-<Tabs> <TabItem label="Terminal" value="Terminal">
+<Tabs>
+<TabItem label="Terminal" value="Terminal">
 
 ```bash
 Rscript myflow.R show
 ```
 
-</TabItem> <TabItem label="RStudio" value="RStudio">
+</TabItem>
+<TabItem label="RStudio" value="RStudio">
 
 ```
 # Replace run() in myflow.R with
@@ -238,7 +244,8 @@ Rscript myflow.R show
 # and execute in RStudio
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+</Tabs>
 
 which prints out the steps of your flow. Does the overview give you a good idea of your
 code? If the steps are too broad, it might make sense to split them up just to make the
@@ -276,13 +283,15 @@ automatically available in all steps, like `alpha` above.
 
 You can set the parameter values on the command line as follows:
 
-<Tabs> <TabItem label="Terminal" value="Terminal">
+<Tabs>
+<TabItem label="Terminal" value="Terminal">
 
 ```bash
 Rscript parameter_flow.R run --alpha 0.6
 ```
 
-</TabItem> <TabItem label="RStudio" value="RStudio">
+</TabItem>
+<TabItem label="RStudio" value="RStudio">
 
 ```
 # Replace run() in parameter_flow.R with
@@ -290,17 +299,20 @@ Rscript parameter_flow.R run --alpha 0.6
 # and execute in RStudio
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+</Tabs>
 
 You can see available parameters with:
 
-<Tabs> <TabItem label="Terminal" value="Terminal">
+<Tabs>
+<TabItem label="Terminal" value="Terminal">
 
 ```bash
 Rscript parameter_flow.R run --help
 ```
 
-</TabItem> <TabItem label="RStudio" value="RStudio">
+</TabItem>
+<TabItem label="RStudio" value="RStudio">
 
 ```
 # Replace run() in parameter_flow.R with
@@ -308,7 +320,8 @@ Rscript parameter_flow.R run --help
 # and execute in RStudio
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+</Tabs>
 
 Parameters are typed based on the type of their default value. If there is no meaningful
 default for a parameter, you can define it as follows:

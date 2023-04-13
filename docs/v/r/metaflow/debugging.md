@@ -1,4 +1,5 @@
-import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Debugging with Metaflow
 
@@ -83,19 +84,22 @@ metaflow("DebugFlow") %>%
 
 Run the script with:
 
-<Tabs> <TabItem label="Terminal" value="Terminal">
+<Tabs>
+<TabItem label="Terminal" value="Terminal">
 
 ```bash
 Rscript debugflow.R run
 ```
 
-</TabItem> <TabItem label="RStudio" value="RStudio">
+</TabItem>
+<TabItem label="RStudio" value="RStudio">
 
 ```
 # Execute in RStudio as is
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+</Tabs>
 
 The run should fail. The output should look like:
 
@@ -117,13 +121,15 @@ resuming reuses results of every successful step instead of actually running the
 
 Try it with
 
-<Tabs> <TabItem label="Terminal" value="Terminal">
+<Tabs>
+<TabItem label="Terminal" value="Terminal">
 
 ```bash
 Rscript debugflow.R resume
 ```
 
-</TabItem> <TabItem label="RStudio" value="RStudio">
+</TabItem>
+<TabItem label="RStudio" value="RStudio">
 
 ```
 # Replace run() in debugflow.R with
@@ -131,7 +137,8 @@ Rscript debugflow.R resume
 # and execute in RStudio
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+</Tabs>
 
 Metaflow remembers the run number of the last local run, which in this case is `153`, so
 you should see `resume` reusing results of the run above. Since we have not changed
@@ -141,13 +148,15 @@ You can also resume a specific run using the CLI option `--origin-run-id` if you
 like the default value selected by Metaflow. To get the same behavior as above, you can
 also do:
 
-<Tabs> <TabItem label="Terminal" value="Terminal">
+<Tabs>
+<TabItem label="Terminal" value="Terminal">
 
 ```bash
 Rscript debugflow.R resume --origin-run-id 153
 ```
 
-</TabItem> <TabItem label="RStudio" value="RStudio">
+</TabItem>
+<TabItem label="RStudio" value="RStudio">
 
 ```
 # Replace run() in debugflow.R with
@@ -155,7 +164,8 @@ Rscript debugflow.R resume --origin-run-id 153
 # and execute in RStudio
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+</Tabs>
 
 If you'd like programmatic access to the `origin-run-id` selected for the `resume`
 \(either implicitly selected by Metaflow as last `run` invocation, or explicitly
@@ -193,13 +203,15 @@ the failed step requires re-execution of some steps that precede it.
 
 You can choose the step to resume from by specifying the step name on the command line:
 
-<Tabs> <TabItem label="Terminal" value="Terminal">
+<Tabs>
+<TabItem label="Terminal" value="Terminal">
 
 ```bash
 Rscript debugflow.R resume start
 ```
 
-</TabItem> <TabItem label="RStudio" value="RStudio">
+</TabItem>
+<TabItem label="RStudio" value="RStudio">
 
 ```
 # Replace run() in debugflow.R with
@@ -207,7 +219,8 @@ Rscript debugflow.R resume start
 # and execute in RStudio
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+</Tabs>
 
 This would resume execution from the step `start`. If you specify a step that comes
 after the step that failed, execution resumes from the failed step - you can't skip over
@@ -245,13 +258,15 @@ UI. You can use this `JobId` in the AWS Batch console to check the job logs. Thi
 Next, we want to reproduce the above error locally. We do this by resuming the specific
 AWS Step Functions run that failed:
 
-<Tabs> <TabItem label="Bash" value="Bash">
+<Tabs>
+<TabItem label="Bash" value="Bash">
 
 ```bash
 Rscript debug.R resume --origin-run-id sfn-5ca85f96-8508-409d-a5f5-b567db1040c5
 ```
 
-</TabItem> <TabItem label="RStudio" value="RStudio">
+</TabItem>
+<TabItem label="RStudio" value="RStudio">
 
 ```r
    ...
@@ -261,7 +276,8 @@ Rscript debug.R resume --origin-run-id sfn-5ca85f96-8508-409d-a5f5-b567db1040c5
        origin_run_id="sfn-5ca85f96-8508-409d-a5f5-b567db1040c5")
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+</Tabs>
 
 This will reuse the results of the `start` and `a` step from the AWS Step Functions run.
 It will try to rerun the step `b` locally, which fails with the same error as it does in

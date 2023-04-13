@@ -1,4 +1,5 @@
-import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Organizing Results
 
@@ -168,13 +169,15 @@ should prevent random users from deploying versions to production inadvertently.
 After you have shared the production token with another person, they can deploy a new
 version with
 
-<Tabs> <TabItem label="Bash" value="Bash">
+<Tabs>
+<TabItem label="Bash" value="Bash">
 
 ```bash
 Rscript production_flow.R step-functions create --authorize TOKEN_YOU_SHARED_WITH_THEM
 ```
 
-</TabItem> <TabItem label="RStudio" value="RStudio">
+</TabItem>
+<TabItem label="RStudio" value="RStudio">
 
 ```r
   ...
@@ -185,7 +188,8 @@ Rscript production_flow.R step-functions create --authorize TOKEN_YOU_SHARED_WIT
     authorize = "TOKEN_YOU_SHARED_WITH_THEM")
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+</Tabs>
 
 They need to use the `--authorize` option only once. Metaflow stores the token for them
 after the first deployment, so they need to do this only once.
@@ -198,13 +202,15 @@ code in the existing production namespace of the flow.
 Sometimes the code has changed so drastically that you want to recreate a fresh
 namespace for its results. You can do this as follows:
 
-<Tabs> <TabItem label="Bash" value="Bash">
+<Tabs>
+<TabItem label="Bash" value="Bash">
 
 ```bash
 Rscript production_flow.R step-functions create --generate-new-token
 ```
 
-</TabItem> <TabItem label="RStudio" value="RStudio">
+</TabItem>
+<TabItem label="RStudio" value="RStudio">
 
 ```r
   ...
@@ -215,7 +221,8 @@ Rscript production_flow.R step-functions create --generate-new-token
       generate_new_token = TRUE)
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+</Tabs>
 
 This will deploy a new version in production using a fresh, empty namespace
 
@@ -230,13 +237,15 @@ An easy way to add tags is the `--tag` command line option. You can add multiple
 with multiple `--tag` options. For instance, this will annotate a `HelloFlow` run with a
 tag `crazy_test`.
 
-<Tabs> <TabItem label="Terminal" value="Terminal">
+<Tabs>
+<TabItem label="Terminal" value="Terminal">
 
 ```bash
 Rscript helloworld.R run --tag crazy_test
 ```
 
-</TabItem> <TabItem label="RStudio" value="RStudio">
+</TabItem>
+<TabItem label="RStudio" value="RStudio">
 
 ```
 # Replace run() in helloworld.R with
@@ -244,7 +253,8 @@ Rscript helloworld.R run --tag crazy_test
 # and execute in RStudio
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+</Tabs>
 
 The `--tag` option assigns the specified tag to all objects produced by the run: the run
 itself, its steps, tasks, and data artifacts.
@@ -358,13 +368,15 @@ would reflect that value. Suppose we invoked `resume` for the above script to re
 everything from `start` without explicitly overriding the CLI option `origin-run-id`, we
 can see the value chosen by Metaflow using the `current` singleton:
 
-<Tabs> <TabItem label="Bash" value="Bash">
+<Tabs>
+<TabItem label="Bash" value="Bash">
 
 ```r
 Rscript current_flow.R resume start
 ```
 
-</TabItem> <TabItem label="RStudio" value="RStudio">
+</TabItem>
+<TabItem label="RStudio" value="RStudio">
 
 ```
 # Replace run() in current_flow.R with
@@ -372,7 +384,8 @@ Rscript current_flow.R resume start
 # and execute in RStudio
 ```
 
-</TabItem> </Tabs>
+</TabItem>
+</Tabs>
 
 You should see the `origin_run_id` used by the `resume` in the output \(the exact value
 for you might be different\):
