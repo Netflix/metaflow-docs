@@ -2,7 +2,8 @@
 
 ## Metaflow says Hi!
 
-This flow is a simple linear workflow that verifies your installation by printing out _**Metaflow says: Hi!**_ to the terminal.
+This flow is a simple linear workflow that verifies your installation by printing out
+_**Metaflow says: Hi!**_ to the terminal.
 
 ### Showcasing:
 
@@ -11,7 +12,8 @@ This flow is a simple linear workflow that verifies your installation by printin
 
 ### To play this episode:
 
-If you haven't yet pulled the tutorials to your current working directory, you can follow the instructions [here](../#pull-tutorials).
+If you haven't yet pulled the tutorials to your current working directory, you can
+follow the instructions [here](../#pull-tutorials).
 
 1. `cd tutorials/00-helloworld`
 2. `Rscript helloworld.R show`
@@ -19,7 +21,8 @@ If you haven't yet pulled the tutorials to your current working directory, you c
 
 ![](/assets/tutorial-episode-0.png)
 
-The flow script below prints 'Hi' in Metaflow. Run this flow to validate that Metaflow is installed correctly.
+The flow script below prints 'Hi' in Metaflow. Run this flow to validate that Metaflow
+is installed correctly.
 
 ```r title="helloworld.R"
 library(metaflow)

@@ -1,16 +1,21 @@
 # Episode 1: Playlist
 
-This flow loads a movie metadata CSV file and builds a playlist for your favorite movie genre. Everything in Metaflow is versioned, so you can run it multiple times and view all the historical playlists with the Metaflow client in an R Markdown Notebook.
+This flow loads a movie metadata CSV file and builds a playlist for your favorite movie
+genre. Everything in Metaflow is versioned, so you can run it multiple times and view
+all the historical playlists with the Metaflow client in an R Markdown Notebook.
 
 ## Showcasing:
 
-- Basic [Metaflow Parameters](../../../metaflow/basics#how-to-define-parameters-for-flows).
-- Running workflow [branches](../../../metaflow/basics#branch) in parallel and joining results.
+- Basic [Metaflow
+  Parameters](../../../metaflow/basics#how-to-define-parameters-for-flows).
+- Running workflow [branches](../../../metaflow/basics#branch) in parallel and joining
+  results.
 - Using the [Metaflow client](../../../metaflow/client) in an R Markdown Notebook.
 
 ## To play this episode:
 
-If you haven't yet pulled the tutorials to your current working directory, you can follow the instructions [here](../#pull-tutorials).
+If you haven't yet pulled the tutorials to your current working directory, you can
+follow the instructions [here](../#pull-tutorials).
 
 1. `cd tutorials/01-playlist`
 2. `Rscript playlist.R show`
@@ -23,7 +28,7 @@ If you haven't yet pulled the tutorials to your current working directory, you c
 The dataset `movies.csv` looks like this
 
 | movie_title                              | title_year | genre    | gross     |
-|:-----------------------------------------|:-----------|:---------|:----------|
+| :--------------------------------------- | :--------- | :------- | :-------- |
 | Avatar                                   | 2009       | Sci-Fi   | 760505847 |
 | Pirates of the Caribbean: At World's End | 2007       | Fantasy  | 309404152 |
 | Spectre                                  | 2015       | Thriller | 200074175 |

@@ -1,0 +1,22 @@
+{
+plugins: ["markdownlint"],
+  "overrides": [
+    {
+      "files": [
+        "*.md"
+      ],
+      "parser": "eslint-plugin-markdownlint/parser",
+      "rules": {
+        "markdownlint/md013": [
+          "warn",
+          {
+            "line_length": 100,
+            "tables": false,
+            "code_blocks": false,
+            "headings": false
+          }
+        ],
+      }
+    }
+  ]
+}

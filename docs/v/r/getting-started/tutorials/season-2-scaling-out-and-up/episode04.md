@@ -1,14 +1,18 @@
 # Episode 4: Hello AWS
 
-This flow is a simple linear workflow that verifies your AWS configuration. The `start` and `end` steps will run locally, while the `hello` step will run remotely on AWS batch.
+This flow is a simple linear workflow that verifies your AWS configuration. The `start`
+and `end` steps will run locally, while the `hello` step will run remotely on AWS batch.
 
-After configuring Metaflow to run on AWS, data and metadata about your runs will be stored remotely. This means you can use the client to access information about any flow from anywhere.
+After configuring Metaflow to run on AWS, data and metadata about your runs will be
+stored remotely. This means you can use the client to access information about any flow
+from anywhere.
 
 ## Showcasing:
 
 - AWS [batch decorator](../../../metaflow/scaling.md).
 - Accessing data artifacts generated remotely in a local notebook.
-- [retry decorator](../../../metaflow/failures.md#retrying-tasks-with-the-retry-decorator).
+- [retry
+  decorator](../../../metaflow/failures.md#retrying-tasks-with-the-retry-decorator).
 
 ## Before playing this episode:
 
@@ -16,7 +20,8 @@ Configure your [sandbox](../../../metaflow-on-aws/metaflow-sandbox.md).
 
 ## To play this episode:
 
-If you haven't yet pulled the tutorials to your current working directory, you can follow the instructions [here](../#pull-tutorials).
+If you haven't yet pulled the tutorials to your current working directory, you can
+follow the instructions [here](../#pull-tutorials).
 
 1. `cd tutorials/04-helloaws`
 2. `Rscript helloaws.R run`
