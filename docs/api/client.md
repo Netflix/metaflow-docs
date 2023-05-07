@@ -48,16 +48,16 @@ All objects at the `Run` level and below have the following attributes:
 
 ### Object visibility
 
-Note that only objects in [the current namespace](/scaling/tagging) can be instantiated. See [Namespace functions](#namespace-functions) to see how to switch between namespaces. 
+Note that only objects in [the current namespace](/scaling/tagging) can be instantiated. See [Namespace functions](#namespace) to see how to switch between namespaces. 
 
-This module accesses all objects through the current metadata provider - either Metaflow Service or local metadata. See [Metadata functions](#metadata-functions) for utilities related to metadata provider.
+This module accesses all objects through the current metadata provider - either Metaflow Service or local metadata. See [Metadata functions](#metadata) for utilities related to metadata provider.
 
 ## Object Hierarchy
 
 ### Metaflow
 
 
-<DocSection type="class" name="Metaflow" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L201">
+<DocSection type="class" name="Metaflow" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L2079">
 <SigArgSection>
 
 </SigArgSection>
@@ -71,7 +71,7 @@ This module accesses all objects through the current metadata provider - either 
 ### Flow
 
 
-<DocSection type="class" name="Flow" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1946">
+<DocSection type="class" name="Flow" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L2002">
 <SigArgSection>
 <SigArg name="pathspec" />
 </SigArgSection>
@@ -84,16 +84,16 @@ This module accesses all objects through the current metadata provider - either 
 
 
 
-<DocSection type="method" name="Flow.runs" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1996">
+<DocSection type="method" name="Flow.runs" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L2052">
 <SigArgSection>
-<SigArg name="self" /><SigArg name="*tags" />
+<SigArg name="self" /><SigArg name="*tags: str" type="str" />
 </SigArgSection>
 <Description summary="Returns an iterator over all `Run`s of this flow." extended_summary="An optional filter is available that allows you to filter on tags.\nIf multiple tags are specified, only runs that have all the\nspecified tags are returned." />
 <ParamSection name="Parameters">
-	<Parameter name="tags" type="string" desc="Tags to match." />
+	<Parameter name="tags" type="str" desc="Tags to match." />
 </ParamSection>
 <ParamSection name="Returns">
-	<Parameter type="Iterator[Run]" desc="Iterator over `Run` objects in this flow." />
+	<Parameter type="Iterable[Run]" desc="Iterator over `Run` objects in this flow." />
 </ParamSection>
 </DocSection>
 
@@ -101,15 +101,15 @@ This module accesses all objects through the current metadata provider - either 
 ### Run
 
 
-<DocSection type="class" name="Run" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1671">
+<DocSection type="class" name="Run" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1696">
 <SigArgSection>
 <SigArg name="pathspec" />
 </SigArgSection>
 <Description summary="A `Run` represents an execution of a `Flow`. It is a container of `Step`s." />
 <ParamSection name="Attributes">
 	<Parameter name="data" type="MetaflowData" desc="a shortcut to run['end'].task.data, i.e. data produced by this run." />
-	<Parameter name="successful" type="boolean" desc="True if the run completed successfully." />
-	<Parameter name="finished" type="boolean" desc="True if the run completed." />
+	<Parameter name="successful" type="bool" desc="True if the run completed successfully." />
+	<Parameter name="finished" type="bool" desc="True if the run completed." />
 	<Parameter name="finished_at" type="datetime" desc="Time this run finished." />
 	<Parameter name="code" type="MetaflowCode" desc="Code package for this run (if present). See `MetaflowCode`." />
 	<Parameter name="end_task" type="Task" desc="`Task` for the end step (if it is present already)." />
@@ -118,75 +118,75 @@ This module accesses all objects through the current metadata provider - either 
 
 
 
-<DocSection type="method" name="Run.add_tag" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1829">
+<DocSection type="method" name="Run.add_tag" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1861">
 <SigArgSection>
-<SigArg name="self" /><SigArg name="tag" />
+<SigArg name="self" /><SigArg name="tag" type="str" />
 </SigArgSection>
 <Description summary="Add a tag to this `Run`." extended_summary="Note that if the tag is already a system tag, it is not added as a user tag,\nand no error is thrown." />
 <ParamSection name="Parameters">
-	<Parameter name="tag" type="string" desc="Tag to add." />
+	<Parameter name="tag" type="str" desc="Tag to add." />
 </ParamSection>
 </DocSection>
 
 
 
-<DocSection type="method" name="Run.add_tags" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1851">
+<DocSection type="method" name="Run.add_tags" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1883">
 <SigArgSection>
-<SigArg name="self" /><SigArg name="tags" />
+<SigArg name="self" /><SigArg name="tags" type="Iterable" />
 </SigArgSection>
 <Description summary="Add one or more tags to this `Run`." extended_summary="Note that if any tag is already a system tag, it is not added as a user tag\nand no error is thrown." />
 <ParamSection name="Parameters">
-	<Parameter name="tags" type="Iterable[string]" desc="Tags to add." />
+	<Parameter name="tags" type="Iterable[str]" desc="Tags to add." />
 </ParamSection>
 </DocSection>
 
 
 
-<DocSection type="method" name="Run.remove_tag" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1865">
+<DocSection type="method" name="Run.remove_tag" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1897">
 <SigArgSection>
-<SigArg name="self" /><SigArg name="tag" />
+<SigArg name="self" /><SigArg name="tag" type="str" />
 </SigArgSection>
 <Description summary="Remove one tag from this `Run`." extended_summary="Removing a system tag is an error. Removing a non-existent\nuser tag is a no-op." />
 <ParamSection name="Parameters">
-	<Parameter name="tag" type="string" desc="Tag to remove." />
+	<Parameter name="tag" type="str" desc="Tag to remove." />
 </ParamSection>
 </DocSection>
 
 
 
-<DocSection type="method" name="Run.remove_tags" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1887">
+<DocSection type="method" name="Run.remove_tags" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1919">
 <SigArgSection>
-<SigArg name="self" /><SigArg name="tags" />
+<SigArg name="self" /><SigArg name="tags" type="Iterable" />
 </SigArgSection>
 <Description summary="Remove one or more tags to this `Run`." extended_summary="Removing a system tag will result in an error. Removing a non-existent\nuser tag is a no-op." />
 <ParamSection name="Parameters">
-	<Parameter name="tags" type="Iterable[string]" desc="Tags to remove." />
+	<Parameter name="tags" type="Iterable[str]" desc="Tags to remove." />
 </ParamSection>
 </DocSection>
 
 
 
-<DocSection type="method" name="Run.replace_tag" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1901">
+<DocSection type="method" name="Run.replace_tag" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1933">
 <SigArgSection>
-<SigArg name="self" /><SigArg name="tag_to_remove" /><SigArg name="tag_to_add" />
+<SigArg name="self" /><SigArg name="tag_to_remove" type="str" /><SigArg name="tag_to_add" type="str" />
 </SigArgSection>
 <Description summary="Remove a tag and add a tag atomically. Removal is done first.\nThe rules for `Run.add_tag` and `Run.remove_tag` also apply here." />
 <ParamSection name="Parameters">
-	<Parameter name="tag_to_remove" type="string" desc="Tag to remove." />
-	<Parameter name="tag_to_add" type="string" desc="Tag to add." />
+	<Parameter name="tag_to_remove" type="str" desc="Tag to remove." />
+	<Parameter name="tag_to_add" type="str" desc="Tag to add." />
 </ParamSection>
 </DocSection>
 
 
 
-<DocSection type="method" name="Run.replace_tags" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1925">
+<DocSection type="method" name="Run.replace_tags" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1957">
 <SigArgSection>
-<SigArg name="self" /><SigArg name="tags_to_remove" /><SigArg name="tags_to_add" />
+<SigArg name="self" /><SigArg name="tags_to_remove" type="Iterable" /><SigArg name="tags_to_add" type="Iterable" />
 </SigArgSection>
 <Description summary="Remove and add tags atomically; the removal is done first.\nThe rules for `Run.add_tag` and `Run.remove_tag` also apply here." />
 <ParamSection name="Parameters">
-	<Parameter name="tags_to_remove" type="Iterable[string]" desc="Tags to remove." />
-	<Parameter name="tags_to_add" type="Iterable[string]" desc="Tags to add." />
+	<Parameter name="tags_to_remove" type="Iterable[str]" desc="Tags to remove." />
+	<Parameter name="tags_to_add" type="Iterable[str]" desc="Tags to add." />
 </ParamSection>
 </DocSection>
 
@@ -194,7 +194,7 @@ This module accesses all objects through the current metadata provider - either 
 ### Step
 
 
-<DocSection type="class" name="Step" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1516">
+<DocSection type="class" name="Step" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1535">
 <SigArgSection>
 <SigArg name="pathspec" />
 </SigArgSection>
@@ -202,7 +202,7 @@ This module accesses all objects through the current metadata provider - either 
 <ParamSection name="Attributes">
 	<Parameter name="task" type="Task" desc="The first `Task` object in this step. This is a shortcut for retrieving the only\ntask contained in a non-foreach step." />
 	<Parameter name="finished_at" type="datetime" desc="Time when the latest `Task` of this step finished. Note that in the case of foreaches,\nthis time may change during execution of the step." />
-	<Parameter name="environment_info" type="Dict" desc="Information about the execution environment." />
+	<Parameter name="environment_info" type="Dict[str, Any]" desc="Information about the execution environment." />
 </ParamSection>
 </DocSection>
 
@@ -210,41 +210,41 @@ This module accesses all objects through the current metadata provider - either 
 ### Task
 
 
-<DocSection type="class" name="Task" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L973">
+<DocSection type="class" name="Task" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L984">
 <SigArgSection>
 <SigArg name="pathspec, attempt=None" />
 </SigArgSection>
 <Description summary="A `Task` represents an execution of a `Step`." extended_summary="It contains all `DataArtifact` objects produced by the task as\nwell as metadata related to execution.\n\nNote that the `@retry` decorator may cause multiple attempts of\nthe task to be present. Usually you want the latest attempt, which\nis what instantiating a `Task` object returns by default. If\nyou need to e.g. retrieve logs from a failed attempt, you can\nexplicitly get information about a specific attempt by using the\nfollowing syntax when creating a task:\n\n`Task('flow/run/step/task', attempt=<attempt>)`\n\nwhere `attempt=0` corresponds to the first attempt etc." />
 <ParamSection name="Attributes">
 	<Parameter name="metadata" type="List[Metadata]" desc="List of all metadata events associated with the task." />
-	<Parameter name="metadata_dict" type="Dict" desc="A condensed version of `metadata`: A dictionary where keys\nare names of metadata events and values the latest corresponding event." />
+	<Parameter name="metadata_dict" type="Dict[str, str]" desc="A condensed version of `metadata`: A dictionary where keys\nare names of metadata events and values the latest corresponding event." />
 	<Parameter name="data" type="MetaflowData" desc="Container of all data artifacts produced by this task. Note that this\ncall downloads all data locally, so it can be slower than accessing\nartifacts individually. See `MetaflowData` for more information." />
 	<Parameter name="artifacts" type="MetaflowArtifacts" desc="Container of `DataArtifact` objects produced by this task." />
-	<Parameter name="successful" type="boolean" desc="True if the task successfully completed." />
-	<Parameter name="finished" type="boolean" desc="True if the task completed." />
+	<Parameter name="successful" type="bool" desc="True if the task completed successfully." />
+	<Parameter name="finished" type="bool" desc="True if the task completed." />
 	<Parameter name="exception" type="object" desc="Exception raised by this task if there was one." />
 	<Parameter name="finished_at" type="datetime" desc="Time this task finished." />
-	<Parameter name="runtime_name" type="string" desc="Runtime this task was executed on." />
-	<Parameter name="stdout" type="string" desc="Standard output for the task execution." />
-	<Parameter name="stderr" type="string" desc="Standard error output for the task execution." />
+	<Parameter name="runtime_name" type="str" desc="Runtime this task was executed on." />
+	<Parameter name="stdout" type="str" desc="Standard output for the task execution." />
+	<Parameter name="stderr" type="str" desc="Standard error output for the task execution." />
 	<Parameter name="code" type="MetaflowCode" desc="Code package for this task (if present). See `MetaflowCode`." />
-	<Parameter name="environment_info" type="Dict" desc="Information about the execution environment." />
+	<Parameter name="environment_info" type="Dict[str, str]" desc="Information about the execution environment." />
 </ParamSection>
 </DocSection>
 
 
 
-<DocSection type="method" name="Task.loglines" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1429">
+<DocSection type="method" name="Task.loglines" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1440">
 <SigArgSection>
-<SigArg name="self" /><SigArg name="stream" /><SigArg name="as_unicode" default="True" /><SigArg name="meta_dict" default="None" />
+<SigArg name="self" /><SigArg name="stream" type="str" /><SigArg name="as_unicode" type="bool" default="True" /><SigArg name="meta_dict" type="Dict" default="None" />
 </SigArgSection>
 <Description summary="Return an iterator over (utc_timestamp, logline) tuples." />
 <ParamSection name="Parameters">
-	<Parameter name="stream" type="string" desc="Either 'stdout' or 'stderr'." />
-	<Parameter name="as_unicode" type="boolean" desc="If as_unicode=False, each logline is returned as a byte object. Otherwise,\nit is returned as a (unicode) string." />
+	<Parameter name="stream" type="str" desc="Either 'stdout' or 'stderr'." />
+	<Parameter name="as_unicode" type="bool, default: True" desc="If as_unicode=False, each logline is returned as a byte object. Otherwise,\nit is returned as a (unicode) string." />
 </ParamSection>
 <ParamSection name="Returns">
-	<Parameter type="Iterator[(datetime, string)]" desc="Iterator over timestamp, logline pairs." />
+	<Parameter type="Iterable[(datetime, str)]" desc="Iterator over timestamp, logline pairs." />
 </ParamSection>
 </DocSection>
 
@@ -252,7 +252,7 @@ This module accesses all objects through the current metadata provider - either 
 ### DataArtifact
 
 
-<DocSection type="class" name="DataArtifact" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L850">
+<DocSection type="class" name="DataArtifact" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L851">
 <SigArgSection>
 <SigArg name="pathspec" />
 </SigArgSection>
@@ -270,7 +270,7 @@ This module accesses all objects through the current metadata provider - either 
 ### MetaflowData
 
 
-<DocSection type="class" name="MetaflowData" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L704">
+<DocSection type="class" name="MetaflowData" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L706">
 <SigArgSection>
 <SigArg name="" />
 </SigArgSection>
@@ -282,15 +282,15 @@ This module accesses all objects through the current metadata provider - either 
 ### MetaflowCode
 
 
-<DocSection type="class" name="MetaflowCode" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L748">
+<DocSection type="class" name="MetaflowCode" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L750">
 <SigArgSection>
 <SigArg name="" />
 </SigArgSection>
-<Description summary="Snapshot of the code used to execute this `Run`. Instantiate the object through\n`Run(...).code` (if all steps are executed remotely) or `Task(...).code` for an\nindividual task. The code package is the same for all steps of a `Run`." extended_summary="`MetaflowCode` includes a package of the user-defined `FlowSpec` class and supporting\nfiles, as well as a snapshot of the Metaflow library itself.\n\nCurrently `MetaflowCode` objects are stored only for `Run`s that have at least one `Step`\nexecuting outside the user's local environment.\n\nYou can extract code in the directory `snapshot` like so:\n```\nRun(...).code.extractall(path='snapshot')\n```" />
+<Description summary="Snapshot of the code used to execute this `Run`. Instantiate the object through\n`Run(...).code` (if any step is executed remotely) or `Task(...).code` for an\nindividual task. The code package is the same for all steps of a `Run`." extended_summary="`MetaflowCode` includes a package of the user-defined `FlowSpec` class and supporting\nfiles, as well as a snapshot of the Metaflow library itself.\n\nCurrently, `MetaflowCode` objects are stored only for `Run`s that have at least one `Step`\nexecuting outside the user's local environment.\n\nThe `TarFile` for the `Run` is given by `Run(...).code.tarball`" />
 <ParamSection name="Attributes">
-	<Parameter name="path" type="string" desc="Location (in the datastore provider) of the code package." />
-	<Parameter name="info" type="Dict" desc="Dictionary of information related to this code-package." />
-	<Parameter name="flowspec" type="string" desc="Source code of the file containing the `FlowSpec` in this code package." />
+	<Parameter name="path" type="str" desc="Location (in the datastore provider) of the code package." />
+	<Parameter name="info" type="Dict[str, str]" desc="Dictionary of information related to this code-package." />
+	<Parameter name="flowspec" type="str" desc="Source code of the file containing the `FlowSpec` in this code package." />
 	<Parameter name="tarball" type="TarFile" desc="Python standard library `tarfile.TarFile` archive containing all the code." />
 </ParamSection>
 </DocSection>
@@ -299,40 +299,40 @@ This module accesses all objects through the current metadata provider - either 
 ## Namespace functions
 
 
-<DocSection type="function" name="namespace" module="metaflow" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L145">
+<DocSection type="function" name="namespace" module="metaflow" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L150">
 <SigArgSection>
-<SigArg name="ns" />
+<SigArg name="ns" type="Optional" />
 </SigArgSection>
 <Description summary="Switch namespace to the one provided." extended_summary="This call has a global effect. No objects outside this namespace\nwill be accessible. To access all objects regardless of namespaces,\npass None to this call." />
 <ParamSection name="Parameters">
-	<Parameter name="ns" type="string" desc="Namespace to switch to or None to ignore namespaces." />
+	<Parameter name="ns" type="str, optional" desc="Namespace to switch to or None to ignore namespaces." />
 </ParamSection>
 <ParamSection name="Returns">
-	<Parameter type="string" desc="Namespace set (result of get_namespace())." />
+	<Parameter type="str, optional" desc="Namespace set (result of get_namespace())." />
 </ParamSection>
 </DocSection>
 
 
 
-<DocSection type="function" name="get_namespace" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L168">
+<DocSection type="function" name="get_namespace" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L173">
 <SigArgSection>
 
 </SigArgSection>
 <Description summary="Return the current namespace that is currently being used to filter objects." extended_summary="The namespace is a tag associated with all objects in Metaflow." />
 <ParamSection name="Returns">
-	<Parameter type="string or None" desc="The current namespace used to filter objects." />
+	<Parameter type="str, optional" desc="The current namespace used to filter objects." />
 </ParamSection>
 </DocSection>
 
 
 
-<DocSection type="function" name="default_namespace" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L186">
+<DocSection type="function" name="default_namespace" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L191">
 <SigArgSection>
 
 </SigArgSection>
 <Description summary="Resets the namespace used to filter objects to the default one, i.e. the one that was\nused prior to any `namespace` calls." />
 <ParamSection name="Returns">
-	<Parameter type="string" desc="The result of get_namespace() after the namespace has been reset." />
+	<Parameter type="str" desc="The result of get_namespace() after the namespace has been reset." />
 </ParamSection>
 </DocSection>
 
@@ -340,40 +340,40 @@ This module accesses all objects through the current metadata provider - either 
 ## Metadata functions
 
 
-<DocSection type="function" name="metadata" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L43">
+<DocSection type="function" name="metadata" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L48">
 <SigArgSection>
-<SigArg name="ms" />
+<SigArg name="ms" type="str" />
 </SigArgSection>
 <Description summary="Switch Metadata provider." extended_summary="This call has a global effect. Selecting the local metadata will,\nfor example, not allow access to information stored in remote\nmetadata providers.\n\nNote that you don't typically have to call this function directly. Usually\nthe metadata provider is set through the Metaflow configuration file. If you\nneed to switch between multiple providers, you can use the `METAFLOW_PROFILE`\nenvironment variable to switch between configurations." />
 <ParamSection name="Parameters">
-	<Parameter name="ms" type="string" desc="Can be a path (selects local metadata), a URL starting with http (selects\nthe service metadata) or an explicit specification <metadata_type>@<info>; as an\nexample, you can specify local@<path> or service@<url>." />
+	<Parameter name="ms" type="str" desc="Can be a path (selects local metadata), a URL starting with http (selects\nthe service metadata) or an explicit specification <metadata_type>@<info>; as an\nexample, you can specify local@<path> or service@<url>." />
 </ParamSection>
 <ParamSection name="Returns">
-	<Parameter type="string" desc="The description of the metadata selected (equivalent to the result of\nget_metadata())." />
+	<Parameter type="str" desc="The description of the metadata selected (equivalent to the result of\nget_metadata())." />
 </ParamSection>
 </DocSection>
 
 
 
-<DocSection type="function" name="get_metadata" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L95">
+<DocSection type="function" name="get_metadata" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L100">
 <SigArgSection>
 
 </SigArgSection>
 <Description summary="Returns the current Metadata provider." extended_summary="If this is not set explicitly using `metadata`, the default value is\ndetermined through the Metaflow configuration. You can use this call to\ncheck that your configuration is set up properly.\n\nIf multiple configuration profiles are present, this call returns the one\nselected through the `METAFLOW_PROFILE` environment variable." />
 <ParamSection name="Returns">
-	<Parameter type="string" desc="Information about the Metadata provider currently selected. This information typically\nreturns provider specific information (like URL for remote providers or local paths for\nlocal providers)." />
+	<Parameter type="str" desc="Information about the Metadata provider currently selected. This information typically\nreturns provider specific information (like URL for remote providers or local paths for\nlocal providers)." />
 </ParamSection>
 </DocSection>
 
 
 
-<DocSection type="function" name="default_metadata" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L118">
+<DocSection type="function" name="default_metadata" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L123">
 <SigArgSection>
 
 </SigArgSection>
 <Description summary="Resets the Metadata provider to the default value, that is, to the value\nthat was used prior to any `metadata` calls." />
 <ParamSection name="Returns">
-	<Parameter type="string" desc="The result of get_metadata() after resetting the provider." />
+	<Parameter type="str" desc="The result of get_metadata() after resetting the provider." />
 </ParamSection>
 </DocSection>
 

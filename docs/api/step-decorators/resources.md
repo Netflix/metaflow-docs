@@ -11,12 +11,12 @@ Note that `@resources` takes effect only when combined with another decorator li
 <SigArgSection>
 <SigArg name="..." />
 </SigArgSection>
-<Description summary="Specifies the resources needed when executing this step." extended_summary="Use `@resources` to specify the resource requirements\nindependently from the specific compute layer (`@batch`, `@kubernetes`).\n\nYou can choose the compute layer on the command line by executing e.g.\n```\npython myflow.py run --with batch\n```\nor\n```\npython myflow.py run --with kubernetes\n```\nwhich executes the flow on the desired system using the\nrequirements specified in `@resources`." />
+<Description summary="Specifies the resources needed when executing this step." extended_summary="Use `@resources` to specify the resource requirements\nindependently of the specific compute layer (`@batch`, `@kubernetes`).\n\nYou can choose the compute layer on the command line by executing e.g.\n```\npython myflow.py run --with batch\n```\nor\n```\npython myflow.py run --with kubernetes\n```\nwhich executes the flow on the desired system using the\nrequirements specified in `@resources`." />
 <ParamSection name="Parameters">
-	<Parameter name="cpu" type="int" desc="Number of CPUs required for this step. Defaults to 1." />
-	<Parameter name="gpu" type="int" desc="Number of GPUs required for this step. Defaults to 0." />
-	<Parameter name="memory" type="int" desc="Memory size (in MB) required for this step. Defaults to 4096." />
-	<Parameter name="shared_memory" type="int" desc="The value for the size (in MiB) of the /dev/shm volume for this step.\nThis parameter maps to the `--shm-size` option in Docker." />
+	<Parameter name="cpu" type="int, default: 1" desc="Number of CPUs required for this step." />
+	<Parameter name="gpu" type="int, default: 0" desc="Number of GPUs required for this step." />
+	<Parameter name="memory" type="int, default: 4096" desc="Memory size (in MB) required for this step." />
+	<Parameter name="shared_memory" type="int, optional" desc="The value for the size (in MiB) of the /dev/shm volume for this step.\nThis parameter maps to the `--shm-size` option in Docker." />
 </ParamSection>
 </DocSection>
 

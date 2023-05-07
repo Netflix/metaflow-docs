@@ -515,6 +515,55 @@ yourself, one way to guarantee uniqueness is to use `current.task_id` from [the
 `current` module](/scaling/tagging.md#accessing-current-ids-in-a-flow) as a part of your
 S3 keys.
 
+## Maximizing S3 performance
+
+S3 can provide massive download speeds, tens of gigabits per second on large instances,
+when using `metaflow.S3`. In order to achieve the maximum throughput, pay attention to
+the following dimensions:
+
+- **Same region**: Make sure the EC2 instances hosting the tasks are located in the
+same region as the S3 bucket you are loading data from.
+
+- **File layout**: You need to download multiple files in parallel using e.g.
+[metaflow.S3.get_many](/api/S3#S3.get_many). The files should be
+around 0.1-1GB each. Fortunately, it is easy to produce partitioned outputs like this with
+many query engines.
+
+- **Instance size**: Larger EC2 instances boost higher number of CPU cores, network
+throughput, and memory. 
+
+- **Data fits in RAM**: Crucially, loading data from S3 directly to memory is faster
+than loading data from S3 to an instance volume. If data doesn’t fit in memory,
+performance can be very bad due to slow local disk IO.
+
+Read more about [fast data processing with `metaflow.S3` in this blog post](https://outerbounds.com/blog/metaflow-fast-data/).
+
+### Using `metaflow.S3` for in-memory processing
+
+For maximum performance, ensure that [the `@resources(memory=)` setting](/scaling/remote-tasks/introduction#requesting-resources-with-resources-decorator) is higher than the
+amount of data you are downloading with `metaflow.S3`.
+
+If the amount of data is higher than the available disk space, you can use the
+`use_tmpfs=True` with [`@batch`](/api/step-decorators/batch) and [`@kubernetes`](/api/step-decorators/kubernetes) to create an in-memory filesystem
+which `metaflow.S3` will use automatically.
+
+These options are available for `tmpfs`:
+
+ - `use_tmpfs=True` enabled a `tmpfs` mountpoint and instructs `metaflow.S3` to use it
+   as a destination for downloads. Note that you must ensure that the `tmpfs` size is
+   large enough for all data downloaded.
+
+ - `tmpfs_tempdir=False` will instruct `metaflow.S3` **to not use** the `tmpfs`. Use
+   this option if you want to reserve the `tmpfs` mount for your own use only.
+
+ - `tmpfs_size=N` allocates at most `N` megabytes for `tmpfs`. Note that unused space
+   doesn't count towards actual memory usage, so you can safely overallocate space. By
+   default, 50% of the available memory is made available for `tmpfs`.
+
+ - `tmpfs_path=P` allows you to use an alternative mount point for `tmpfs`.
+
+You can access the current `tmpfs` mountpoint in your tasks with [`current.tempdir`](/api/current#current.tempdir). You can use it as fast temporary disk space for your own needs as well.
+
 ## Data in Local Files
 
 Similarly to [Parameters](/metaflow/basics.md#how-to-define-parameters-for-flows), you
