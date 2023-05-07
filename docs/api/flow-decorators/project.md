@@ -1,7 +1,7 @@
 # @project
 
 The `@project` decorator makes it convenient to create isolated [Metaflow namespaces](/scaling/tagging) and
-corresponding [production deployments](/production/scheduling-metaflow-flows/introduction). When
+corresponding [proudction deployments](/production/scheduling-metaflow-flows/introduction). When
 multiple flows use the same project name, they can fetch data across them safely using [the Client API](/metaflow/client), without interference from other users running the same flows.
 
 By itself, `@project` doesn't change the behavior besides [exposing new attributes in the `current` object](/api/current#project). It alters the flow names when they are deployed in production, allowing multiple parallel deployments.
@@ -15,9 +15,9 @@ For more information, see [Coordinating Larger Metaflow Projects](/production/co
 <SigArgSection>
 <SigArg name="..." />
 </SigArgSection>
-<Description summary="Specifies what projects belong to the same project." extended_summary="A project-specific namespace is created for all flows that\nuse the same `@project(name)`." />
+<Description summary="Specifies what flows belong to the same project." extended_summary="A project-specific namespace is created for all flows that\nuse the same `@project(name)`." />
 <ParamSection name="Parameters">
-	<Parameter name="name" type="str" desc="Project name. Make sure that the name is unique amongst all\nprojects that use the same production scheduler." />
+	<Parameter name="name" type="str" desc="Project name. Make sure that the name is unique amongst all\nprojects that use the same production scheduler. The name may\ncontain only lowercase alphanumeric characters and underscores." />
 </ParamSection>
 </DocSection>
 

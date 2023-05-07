@@ -13,8 +13,8 @@ For more information, see [Dealing with Failures](/scaling/failures).
 </SigArgSection>
 <Description summary="Specifies the number of times the task corresponding\nto a step needs to be retried." extended_summary="This decorator is useful for handling transient errors, such as networking issues.\nIf your task contains operations that can't be retried safely, e.g. database updates,\nit is advisable to annotate it with `@retry(times=0)`.\n\nThis can be used in conjunction with the `@catch` decorator. The `@catch`\ndecorator will execute a no-op task after all retries have been exhausted,\nensuring that the flow execution can continue." />
 <ParamSection name="Parameters">
-	<Parameter name="times" type="int" desc="Number of times to retry this task (Default: 3)." />
-	<Parameter name="minutes_between_retries" type="int" desc="Number of minutes between retries (Default: 2)." />
+	<Parameter name="times" type="int, default: 3" desc="Number of times to retry this task." />
+	<Parameter name="minutes_between_retries" type="int, default: 2" desc="Number of minutes between retries." />
 </ParamSection>
 </DocSection>
 

@@ -25,7 +25,7 @@ These attributes are always available in the `current` object.
 
 <Description summary="The name of the currently executing flow.\n" />
 <ParamSection name="Returns">
-<Parameter type="str" desc="Flow name." />
+<Parameter type="str, optional" desc="Flow name." />
 </ParamSection>
 </DocSection>
 
@@ -35,7 +35,7 @@ These attributes are always available in the `current` object.
 
 <Description summary="The run ID of the currently executing run.\n" />
 <ParamSection name="Returns">
-<Parameter type="str" desc="Run ID." />
+<Parameter type="str, optional" desc="Run ID." />
 </ParamSection>
 </DocSection>
 
@@ -45,7 +45,7 @@ These attributes are always available in the `current` object.
 
 <Description summary="The name of the currently executing step.\n" />
 <ParamSection name="Returns">
-<Parameter type="str" desc="Step name." />
+<Parameter type="str, optional" desc="Step name." />
 </ParamSection>
 </DocSection>
 
@@ -55,7 +55,7 @@ These attributes are always available in the `current` object.
 
 <Description summary="The task ID of the currently executing task.\n" />
 <ParamSection name="Returns">
-<Parameter type="str" desc="Task ID." />
+<Parameter type="str, optional" desc="Task ID." />
 </ParamSection>
 </DocSection>
 
@@ -75,7 +75,7 @@ These attributes are always available in the `current` object.
 
 <Description summary="The run ID of the original run this run was resumed from.\n\nThis property returns None for ordinary runs. If the run\nwas started by the resume command, the property returns\nthe ID of the original run.\n\nYou can use this property to detect if the run is resumed\nor not.\n" />
 <ParamSection name="Returns">
-<Parameter type="str" desc="Run ID of the original run." />
+<Parameter type="str, optional" desc="Run ID of the original run." />
 </ParamSection>
 </DocSection>
 
@@ -83,9 +83,9 @@ These attributes are always available in the `current` object.
 
 <DocSection type="property" name="current.pathspec" module="__main__" show_import="False" heading_level="4">
 
-<Description summary="Pathspec of the current run, i.e. a unique\nidentifier of the current task. The returned\nstring follows this format:\n```\n{flow_name}/{run_id}/{step_name}/{task_id}\n```\n" />
+<Description summary="Pathspec of the current task, i.e. a unique\nidentifier of the current task. The returned\nstring follows this format:\n```\n{flow_name}/{run_id}/{step_name}/{task_id}\n```\n\nThis is a shorthand to `current.task.pathspec`.\n" />
 <ParamSection name="Returns">
-<Parameter type="str" desc="Pathspec." />
+<Parameter type="str, optional" desc="Pathspec." />
 </ParamSection>
 </DocSection>
 
@@ -105,7 +105,17 @@ These attributes are always available in the `current` object.
 
 <Description summary="The name of the user who started the run, if available.\n" />
 <ParamSection name="Returns">
-<Parameter type="str" desc="User name." />
+<Parameter type="str, optional" desc="User name." />
+</ParamSection>
+</DocSection>
+
+
+
+<DocSection type="property" name="current.tempdir" module="__main__" show_import="False" heading_level="4">
+
+<Description summary="Currently configured temporary directory.\n" />
+<ParamSection name="Returns">
+<Parameter type="str, optional" desc="Temporary director." />
 </ParamSection>
 </DocSection>
 
@@ -174,7 +184,7 @@ These attributes are only available when the decorator is present.
 the contents of cards using [card components](/api/cards#Card-components). For an overview of card-related APIs, see [the API reference for cards](/api/cards).
 
 
-<DocSection type="method" name="current.card.__getitem__" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/__main__.py#L27">
+<DocSection type="method" name="current.card.__getitem__" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/__main__.py#L28">
 <SigArgSection>
 <SigArg name="self" />
 </SigArgSection>
@@ -189,7 +199,7 @@ the contents of cards using [card components](/api/cards#Card-components). For a
 
 
 
-<DocSection type="method" name="current.card.__setitem__" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/__main__.py#L29">
+<DocSection type="method" name="current.card.__setitem__" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/__main__.py#L30">
 <SigArgSection>
 <SigArg name="self" />
 </SigArgSection>
@@ -202,7 +212,7 @@ the contents of cards using [card components](/api/cards#Card-components). For a
 
 
 
-<DocSection type="method" name="current.card.append" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/__main__.py#L31">
+<DocSection type="method" name="current.card.append" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/__main__.py#L32">
 <SigArgSection>
 <SigArg name="self" />
 </SigArgSection>
@@ -214,7 +224,7 @@ the contents of cards using [card components](/api/cards#Card-components). For a
 
 
 
-<DocSection type="method" name="current.card.extend" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/__main__.py#L33">
+<DocSection type="method" name="current.card.extend" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/__main__.py#L34">
 <SigArgSection>
 <SigArg name="self" />
 </SigArgSection>

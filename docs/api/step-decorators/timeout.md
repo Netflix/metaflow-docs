@@ -13,9 +13,9 @@ You can use it to handle tasks that may get stuck, or to set a time-budget for a
 </SigArgSection>
 <Description summary="Specifies a timeout for your step." extended_summary="This decorator is useful if this step may hang indefinitely.\n\nThis can be used in conjunction with the `@retry` decorator as well as the `@catch` decorator.\nA timeout is considered to be an exception thrown by the step. It will cause the step to be\nretried if needed and the exception will be caught by the `@catch` decorator, if present.\n\nNote that all the values specified in parameters are added together so if you specify\n60 seconds and 1 hour, the decorator will have an effective timeout of 1 hour and 1 minute." />
 <ParamSection name="Parameters">
-	<Parameter name="seconds" type="int" desc="Number of seconds to wait prior to timing out." />
-	<Parameter name="minutes" type="int" desc="Number of minutes to wait prior to timing out." />
-	<Parameter name="hours" type="int" desc="Number of hours to wait prior to timing out." />
+	<Parameter name="seconds" type="int, default: 0" desc="Number of seconds to wait prior to timing out." />
+	<Parameter name="minutes" type="int, default: 0" desc="Number of minutes to wait prior to timing out." />
+	<Parameter name="hours" type="int, default: 0" desc="Number of hours to wait prior to timing out." />
 </ParamSection>
 </DocSection>
 

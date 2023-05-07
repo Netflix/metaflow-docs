@@ -13,8 +13,8 @@ It is best used in conjunction with the `@retry` decorator: After all retries ha
 </SigArgSection>
 <Description summary="Specifies that the step will success under all circumstances." extended_summary="The decorator will create an optional artifact, specified by `var`, which\ncontains the exception raised. You can use it to detect the presence\nof errors, indicating that all happy-path artifacts produced by the step\nare missing." />
 <ParamSection name="Parameters">
-	<Parameter name="var" type="string" desc="Name of the artifact in which to store the caught exception.\nIf not specified, the exception is not stored." />
-	<Parameter name="print_exception" type="bool" desc="Determines whether or not the exception is printed to\nstdout when caught (Default: True)." />
+	<Parameter name="var" type="str, optional" desc="Name of the artifact in which to store the caught exception.\nIf not specified, the exception is not stored." />
+	<Parameter name="print_exception" type="bool, default: True" desc="Determines whether or not the exception is printed to\nstdout when caught." />
 </ParamSection>
 </DocSection>
 
