@@ -198,7 +198,7 @@ versions -
 Try the following:
 
 ```python
-python project_flow.py --branch better_version --prodduction run
+python project_flow.py --branch better_version --production run
 ```
 
 The flow reports that the branch name is `prod.better_version`. You can deploy the
