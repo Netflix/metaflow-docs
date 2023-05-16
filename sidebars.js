@@ -146,6 +146,20 @@ const sidebars = {
           ],
         },
         "production/coordinating-larger-metaflow-projects",
+        {
+          type: "category",
+          label: "Connecting Flows via Events",
+          link: {
+            type: "doc",
+            id: "production/event-triggering/README",
+          },
+          items: [
+            "production/event-triggering/external-events",
+            "production/event-triggering/flow-events",
+            "production/event-triggering/inspect-events",
+            "production/event-triggering/project-events"
+          ],
+        },
       ],
     },
 
