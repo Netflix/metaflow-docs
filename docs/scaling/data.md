@@ -544,8 +544,9 @@ For maximum performance, ensure that [the `@resources(memory=)` setting](/scalin
 amount of data you are downloading with `metaflow.S3`.
 
 If the amount of data is higher than the available disk space, you can use the
-`use_tmpfs=True` with [`@batch`](/api/step-decorators/batch) and [`@kubernetes`](/api/step-decorators/kubernetes) to create an in-memory filesystem
-which `metaflow.S3` will use automatically.
+`use_tmpfs=True` with [`@batch`](/api/step-decorators/batch) and[`@kubernetes`]
+(/api/step-decorators/kubernetes) to create an in-memory filesystem which
+`metaflow.S3` will use automatically.
 
 These options are available for `tmpfs`:
 
@@ -562,7 +563,9 @@ These options are available for `tmpfs`:
 
  - `tmpfs_path=P` allows you to use an alternative mount point for `tmpfs`.
 
-You can access the current `tmpfs` mountpoint in your tasks with [`current.tempdir`](/api/current#current.tempdir). You can use it as fast temporary disk space for your own needs as well.
+You can access the current `tmpfs` mountpoint in your tasks with
+[`current.tempdir`](/api/current#current.tempdir). You can use it as fast
+temporary disk space for your own needs as well.
 
 ## Data in Local Files
 

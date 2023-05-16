@@ -114,8 +114,9 @@ handy when designing processes around production deployments.
 
 :::info
 
-You can get a feel of all these concepts and test them hands-on without having to install anything
-locally by signing up for [a Metaflow Sandbox](https://outerbounds.com/sandbox/)!
+You can get a feel of all these concepts and test them hands-on without having to
+install anything locally by signing up for
+[a Metaflow Sandbox](https://outerbounds.com/sandbox/)!
 
 :::
 
@@ -134,10 +135,12 @@ human intervention.
       - [Scheduling flows with Apache
         Airflow](/production/scheduling-metaflow-flows/scheduling-with-airflow)
         - Choose to stay compatible with your existing Airflow deployment.
+
  2. [Coordinating larger Metaflow
-    projects](/production/coordinating-larger-metaflow-projects) is a more advanced pattern that enables multiple
-    parallel production deployments.
-3. [Connecting flows via events](/production/event-triggering) shows how you can make workflows start automatically based
-    on real-time events. This pattern allows you to build reactive systems using flows as
-    building blocks.
+    projects](/production/coordinating-larger-metaflow-projects) is a more advanced pattern
+    that enables multiple parallel production deployments.
+
+3. [Connecting flows via events](/production/event-triggering) shows how you can
+   make workflows start automatically based on real-time events. This pattern
+   allows you to build reactive systems using flows as building blocks.
 

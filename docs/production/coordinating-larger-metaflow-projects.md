@@ -211,9 +211,12 @@ python project_flow.py --branch better_version --production step-functions creat
 
 ### `@project` and event triggering
 
-Importantly, workflows connected through [the `@trigger_on_finish` decorator](/production/event-triggering/flow-events) respect the
-`@project` decorator. Besides deploying individual workflows as branches, as shown above,
-you can deploy flows-of-flows as isolated branches. Read more about this pattern in [Deploying Variants of Event-Triggered Flows](/production/event-triggering/project-events).
+Importantly, workflows connected through [the `@trigger_on_finish` decorator]
+(/production/event-triggering/flow-events) respect the `@project` decorator.
+Besides deploying individual workflows as branches, as shown above, you can
+deploy flows-of-flows as isolated branches. Read more about this pattern in
+[Deploying Variants of Event-Triggered Flows]
+(/production/event-triggering/project-events).
 
 ## Summary
 

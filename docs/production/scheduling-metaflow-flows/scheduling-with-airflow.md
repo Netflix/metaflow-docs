@@ -172,9 +172,10 @@ you can create generic deploy-time functions that can be reused by multiple flow
 By default, a flow on Airflow does not run automatically. You need to set up a trigger
 to launch the flow when an event occurs.
 
-On Airflow, Metaflow provides built-in support for triggering Metaflow flows through time-based
-\(cron\) triggers, which, as the name implies, triggers the workflow at a
-certain time. As of today, [event-based triggering](/production/event-triggering) is not supported on Airflow.
+On Airflow, Metaflow provides built-in support for triggering Metaflow flows
+through time-based \(cron\) triggers, which, as the name implies, triggers the
+workflow at a certain time. As of today, [event-based triggering]
+(/production/event-triggering) is not supported on Airflow.
 
 Time-based triggers are implemented at the FlowSpec-level using the `@schedule`
 decorator. This flow is triggered hourly:
