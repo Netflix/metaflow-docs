@@ -1,8 +1,8 @@
 
 # Connecting Flows via Events
 
-Real-world production systems are not islands. They are tightly connected to their surrounding
-environment, reacting changes in real time. Using the *event triggering* pattern described in this section, you can make Metaflow flows start automatically based on external events. Or, you can connect multiple flows together, via events, to create elaborate flows-of-flows.
+Real-world production systems are not islands. They are often tightly connected to their surrounding
+environment, reacting to changes in real time. Using the *event triggering* pattern described in this section, you can make Metaflow flows start automatically based on external events. Or, you can connect multiple flows together, via events, to build arbitrarily complex systems by using workflows as building blocks.
 
 Event triggering is an alternative to time-based scheduling using [the `@schedule` decorator](/production/scheduling-metaflow-flows/scheduling-with-argo-workflows#scheduling-a-flow). Instead of
 flows starting at a specific date and time, they are triggered when a particular *event* is sent
