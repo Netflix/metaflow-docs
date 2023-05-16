@@ -234,3 +234,18 @@ the contents of cards using [card components](/api/cards#Card-components). For a
 </ParamSection>
 </DocSection>
 
+
+### @trigger and @trigger_on_finish
+
+You can inspect event(s) that triggered [an event-triggered](/production/event-triggering) run through `current.trigger` which returns a [`MetaflowTrigger`](/api/client#metaflowtrigger) object, if the run was
+triggered by an event.
+
+
+<DocSection type="property" name="current.trigger" module="__main__" show_import="False" heading_level="4">
+
+<Description summary="Returns `MetaflowTrigger` if the current run is triggered by an event.\n" />
+<ParamSection name="Returns">
+<Parameter type="MetaflowTrigger" desc="`MetaflowTrigger` if triggered by a run." />
+</ParamSection>
+</DocSection>
+

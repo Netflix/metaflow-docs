@@ -9,7 +9,7 @@ import ReactPlayer from 'react-player';
 
 <ReactPlayer playing controls muted loop url='/assets/et-basic-event.mp4' width='100%' height='100%'/>
 
-All you have to do is to add a decorator, `@trigger`, with a desired event name above the flow:
+All you have to do is to add [a decorator, `@trigger`](/api/flow-decorators/trigger), with a desired event name above the flow:
 
 ```python
 from metaflow import FlowSpec, step, trigger

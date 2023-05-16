@@ -2,8 +2,8 @@
 # Triggering Flows Based on Other Flows
 
 Besides triggering flows based on external events, you can trigger a flow when another flow completes.
-Metaflow provides a special decorator to support the pattern, `@trigger_on_finish`, which allows you
-to build arbitrarily complex systems of interconnected flows.
+Metaflow provides a special decorator to support the pattern, [`@trigger_on_finish`](/api/flow-decorators/trigger_on_finish),
+which allows you to build arbitrarily complex systems of interconnected flows.
 
 Here, the completion of `FirstFlow` triggers a run of `SecondFlow`:
 
@@ -90,11 +90,11 @@ we want to use the newly trained model to run inference for the latest data. Thi
 
 <ReactPlayer playing controls muted loop url='/assets/et-combo.mp4' width='100%' height='100%'/>
 
-Whenever a flow is triggered by an event, information about the event is made available through [the MetaflowTrigger object](#) that is accessible at `current.trigger`. See its API documentation for [all available event-related metadata](#).
+Whenever a flow is triggered by an event, information about the event is made available through [the `MetaflowTrigger`object](/api/client#metaflowtrigger) that is accessible at `current.trigger`. See the API documentation for [`MetaflowEvent` for all available event-related metadata](/api/client#metaflowtrigger).
 
 
 When using `@trigger_on_finish`,
-you can access information about the triggering runs through [`current.trigger.run`](#) or [`current.trigger.runs`](#) in the case of multiple flows, which return
+you can access information about the triggering runs through [`current.trigger.run`](/api/current#trigger-and-trigger_on_finish) or [`current.trigger.runs`](/api/current#trigger-and-trigger_on_finish) in the case of multiple flows, which return
 one or more [`Run` objects](/metaflow/client#properties-related-to-runs). Use the `Run` object to access artifacts as you do when [using the Client API directly](/metaflow/client).
 
 In this example, we access the `model` artifact created in `ModelRefreshFlow`:

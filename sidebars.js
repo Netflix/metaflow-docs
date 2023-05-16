@@ -206,7 +206,9 @@ const sidebars = {
           items: [
             "api/flow-decorators/conda_base",
             "api/flow-decorators/project",
-            "api/flow-decorators/schedule"
+            "api/flow-decorators/schedule",
+            "api/flow-decorators/trigger",
+            "api/flow-decorators/trigger_on_finish"
           ]
         }
       ],

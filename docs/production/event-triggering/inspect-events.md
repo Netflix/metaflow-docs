@@ -6,7 +6,7 @@ what was triggered, when, and by whom.
 
 ## Accessing events through Client API
 
-You can inspect the event(s) with the Client API that exposes [the `MetaflowTrigger` object](#) for every event-triggered run.
+You can inspect the event(s) with the Client API that exposes [the `MetaflowTrigger` object](/api/client#metaflowtrigger) for every event-triggered run.
 For instance, we can inspect the event that triggered a production run `ModelRefreshFlow/argo-modelrefreshflow-rlpgc`:
 
 ```python
@@ -23,6 +23,17 @@ MetaflowEvent(name='data_updated',
 ```
 
 Find a description of all fields in [the related API documentation](#).
+
+### Dealing with multiple triggers
+
+If a run was triggered by multiple events, you can [inspect specific `MetaflowEvent` by name](/api/client#Trigger.__getitem__):
+```
+run.trigger['data_updated'].name
+```
+Or, if a run was triggered by multiple flows when using `@trigger_on_finish`, you can inspect a specific triggering `Run` by its flow name:
+```
+run.trigger['FirstFlow'].data.model
+```
 
 ### Following a trail of runs
 
