@@ -31,7 +31,7 @@ if __name__ == '__main__':
     FreshDataFlow()
 ```
 
-You can develop and test the flow locally as usual: `@trigger_on` doesn't have any effect on local runs. To test triggering, deploy the flow to Argo Workflows as usual:
+You can develop and test the flow locally as usual: `@trigger_on` doesn't have any effect on local runs. To test triggering, deploy the flow to Argo Workflows:
 
 ```
 python freshdata.py argo-workflows create
@@ -40,7 +40,8 @@ python freshdata.py argo-workflows create
 The output should state something along the lines of
 ```
 What will trigger execution of the workflow:
-    This workflow triggers automatically when the upstream data_updated event is/are published.
+    This workflow triggers automatically when the upstream
+    data_updated event is/are published.
 ```
 indicating that the deployment has been linked to the desired event. 
 

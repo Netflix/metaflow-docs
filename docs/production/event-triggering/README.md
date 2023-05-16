@@ -16,8 +16,7 @@ which trigger executions of flows deployed [on a production orchestrator](/produ
 2. Deployed flows can also trigger other flows automatically. In this case, `SecondFlow` is configured
 to start automatically when `FirstFlow` finishes.
 
-Event triggering allows you to compose arbitrarily advanced systems using individual workflows as
-building blocks. Events define a clear interface between workflows, which can be developed and operated independently, allowing multiple people to collaborate without friction when building and operating a larger system. For more context about event triggering, [see the announcement blog post](#).
+Events define a clear interface between workflows, which can be developed and operated independently, allowing multiple people to collaborate without friction when building and operating a larger system. For more context about event triggering, [see the announcement blog post](#).
 
 Get started with event triggering by reading the next three sections. The fourth section is relevant for more advanced use cases that leverage [the `@project` decorator](/production/coordinating-larger-metaflow-projects) to deploy multiple concurrent variants of event-triggered flows. 
 
