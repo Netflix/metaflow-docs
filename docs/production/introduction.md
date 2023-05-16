@@ -52,7 +52,10 @@ Such a production-grade orchestrator needs to be
 Fortunately, a few systems are able to fulfill these requirements, judging by their
 track record. Metaflow integrates with two of them: [Argo
 Workflows](https://argoproj.github.io/argo-workflows/) that runs on Kubernetes and [AWS
-Step Functions](https://aws.amazon.com/step-functions/), a managed service by AWS.
+Step Functions](https://aws.amazon.com/step-functions/), a managed service by AWS. As
+of today, Argo Workflows is the only orchestrator that supports
+[Metaflow's powerful event-triggering functionality](/production/event-triggering),
+which makes it a good default choice.
 
 In addition, Metaflow integrates with a popular open-source workflow orchestrator,
 [Apache Airflow](https://airflow.apache.org/). While Airflow has more limitations than
@@ -71,10 +74,12 @@ tax.
 Once flows run reliably, you can leverage the results - like freshly trained models - on
 various systems:
 
-1. You can write fresh predictions or other results in a data warehouse, e.g. to power a
+1. You can use deployed workflows as building blocks to compose larger systems using
+   [event triggering](/production/event-triggering).
+2. You can write fresh predictions or other results in a data warehouse, e.g. to power a
    dashboard.
-2. You can populate fresh results in a cache e.g. for a recommendation system.
-3. You can deploy models on a *model hosting* platform of your choosing, e.g.
+3. You can populate fresh results in a cache e.g. for a recommendation system.
+4. You can deploy models on a *model hosting* platform of your choosing, e.g.
    [Seldon](https://www.seldon.io/) or [AWS
    Sagemaker](https://docs.aws.amazon.com/sagemaker/latest/dg/how-it-works-deployment.html).
 
@@ -110,19 +115,22 @@ handy when designing processes around production deployments.
 In this section, you will learn how to make your flows run automatically without any
 human intervention. 
 
-1. [Scheduling Metaflow flows](/production/scheduling-metaflow-flows/introduction).
+1. The basics of [scheduling Metaflow flows](/production/scheduling-metaflow-flows/introduction):
    - Depending on the [infrastructure you have
      installed](/getting-started/infrastructure), pick a section below:
       - [Scheduling flows with Argo
         Workflows](/production/scheduling-metaflow-flows/scheduling-with-argo-workflows)
-        - choose this if running on Kubernetes.
+        - Choose this if running on Kubernetes.
       - [Scheduling flows with AWS Step
         Functions](/production/scheduling-metaflow-flows/scheduling-with-aws-step-functions)
-        - choose for minimal operational overhead.
+        - Choose for minimal operational overhead.
       - [Scheduling flows with Apache
-        Airflow](/production/scheduling-metaflow-flows/scheduling-with-airflow) - choose
-        to stay compatible with your existing Airflow deployment.
+        Airflow](/production/scheduling-metaflow-flows/scheduling-with-airflow)
+        - Choose to stay compatible with your existing Airflow deployment.
  2. [Coordinating larger Metaflow
-    projects](/production/coordinating-larger-metaflow-projects) to enable multiple
+    projects](/production/coordinating-larger-metaflow-projects) is a more advanced pattern that enables multiple
     parallel production deployments.
+3. [Connecting flows via events](/production/event-triggering) shows how you can make workflows start automatically based
+    on real-time events. This pattern allows you to build reactive systems using flows as
+    building blocks.
 

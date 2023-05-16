@@ -7,6 +7,10 @@ your flow in production, this document contains everything you need to know.
 
 In Metaflow's point of view, the main benefits of Argo Workflows are the following:
 
+- As of today, Argo Workflows is the only production orchestrator supported by Metaflow
+  that supports [Metaflow's event-triggering functionality](/production/event-triggering)
+  through Argo Events. For many users, this by itself is the main reason for choosing Argo
+  Workflows.
 - Argo Workflows orchestrates workflows expressed as directed acyclic graphs. This means
   that we can map Metaflow flows to the corresponding Argo Workflows Workflow Template
   fully automatically. This gives you much more detail about what gets executed and how,
@@ -180,7 +184,13 @@ you can create generic deploy-time functions that can be reused by multiple flow
 ## Scheduling a flow
 
 By default, a flow on Argo Workflows does not run automatically. You need to set up a
-trigger to launch the flow when an event occurs.
+trigger to launch the flow when an event occurs. With Argo Workflows, Metaflow supports
+two kinds of triggering:
+
+1. [Triggering based on events (using `@trigger` and `@trigger_on_finish`)](/production/event-triggering).
+2. Triggering based on time (using `@schedule`), described below.
+
+### Time-based triggering
 
 Metaflow provides built-in support for triggering Metaflow flows through time-based
 \(cron\) triggers. Use a time-based trigger if you want to trigger the workflow at a

@@ -137,6 +137,8 @@ Here are the main reasons for not using this stack:
 - You want to use another cloud besides AWS.
 - You need a more customizable workflow orchestrator and a compute platform than what
   the AWS-managed services can provide.
+- This stack doesn't support [event-triggering](/production/event-triggering). If this
+  feature is important to you, consider using one of the Kubernetes-based stacks.
 
 ### Customizable full stack on AWS, powered by Kubernetes
 

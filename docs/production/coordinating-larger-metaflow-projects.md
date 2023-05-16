@@ -6,7 +6,8 @@ This page applies equally to all [production
 orchestrators](/production/scheduling-metaflow-flows/introduction) supported by
 Metaflow, i.e. AWS Step Functions, Argo Workflows, and Airflow. Examples below mention
 `step-functions` but you can replace `step-functions` with `argo-workflows` or `airflow`
-to get equivalent behavior on your orchestrator of choice.
+to get equivalent behavior on your orchestrator of choice (except the last part about
+event triggering, which applies only to Argo Workflows).
 
 :::
 
@@ -207,6 +208,12 @@ custom branch to AWS Step Functions:
 ```python
 python project_flow.py --branch better_version --production step-functions create
 ```
+
+### `@project` and event triggering
+
+Importantly, workflows connected through [the `@trigger_on_finish` decorator](/production/event-triggering/flow-events) respect the
+`@project` decorator. Besides deploying individual workflows as branches, as shown above,
+you can deploy flows-of-flows as isolated branches. Read more about this pattern in [Deploying Variants of Event-Triggered Flows](/production/event-triggering/project-events).
 
 ## Summary
 
