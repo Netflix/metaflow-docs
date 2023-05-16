@@ -1,9 +1,8 @@
 # Deploying Variants of Event-Triggered Flows
 
 Consider this advanced scenario: You have deployed two flows [linked together
-via `@trigger_on_finish`]
-(/production/event-triggering/flow-events#passing-data-across-flows). The flows
-run happily in production. At some point, you want to experiment with a new
+via `@trigger_on_finish`](/production/event-triggering/flow-events#passing-data-across-flows).
+The flows run happily in production. At some point, you want to experiment with a new
 modeling approach. In order to know if the new approach works better than the
 current production version, you'd like to run them concurrently using the same
 data, maybe powering an A/B test.
@@ -79,8 +78,9 @@ python firstproject.py argo-workflows trigger
 ```
 
 Thanks to `@project`, the flows are deployed with a special name that includes a
-branch prefix. By default, [each user gets their own prefix]
-(/production/coordinating-larger-metaflow-projects#single-flow-multiple-developers),
+branch prefix. By default,
+[each user gets their own
+prefix](/production/coordinating-larger-metaflow-projects#single-flow-multiple-developers),
 so you should the output of the `start` step of `FirstProjectFlow` should look
 like:
 

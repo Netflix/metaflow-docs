@@ -87,9 +87,9 @@ all of the flows need to complete within a configured time windows for the flow 
 
 ## Passing data across flows
 
-Consider an extension of `ModelRefreshFlow` that was featured [on the previous
-page]
-(/production/event-triggering/external-events#passing-parameters-in-events).
+Consider an extension of `ModelRefreshFlow` that was featured
+[on the previous
+page](/production/event-triggering/external-events#passing-parameters-in-events).
 This time, we want to use the newly trained model to run inference for the
 latest data. This requires passing the model object from `TrainingFlow` to
 `InferenceFlow`:
@@ -97,18 +97,20 @@ latest data. This requires passing the model object from `TrainingFlow` to
 <ReactPlayer playing controls muted loop url='/assets/et-combo.mp4' width='100%' height='100%'/>
 
 Whenever a flow is triggered by an event, information about the event is made
-available through [the `MetaflowTrigger`object]
-(/api/client#metaflowtrigger) that is accessible at `current.trigger`. See the
+available through
+[the `MetaflowTrigger`object](/api/client#metaflowtrigger)
+that is accessible at `current.trigger`. See the
 API documentation for [`MetaflowEvent` for all available event-related
-metadata](/api/client#metaflowtrigger).
+metadata](/api/client#metaflowevent).
 
 When using `@trigger_on_finish`, you can access information about the triggering
-runs through [`current.trigger.run`]
-(/api/current#trigger-and-trigger_on_finish) or [`current.trigger.runs`]
-(/api/current#trigger-and-trigger_on_finish) in the case of multiple flows,
-which return one or more [`Run` objects]
-(/metaflow/client#properties-related-to-runs). Use the `Run` object to access
-artifacts as you do when [using the Client API directly](/metaflow/client).
+runs through
+[`current.trigger.run`](/api/current#trigger-and-trigger_on_finish) or
+[`current.trigger.runs`](/api/current#trigger-and-trigger_on_finish) in
+the case of multiple flows, which return one or more
+[`Run` objects](/metaflow/client#properties-related-to-runs). Use the
+`Run` object to access artifacts as you do when
+[using the Client API directly](/metaflow/client).
 
 In this example, we access the `model` artifact created in `ModelRefreshFlow`:
 

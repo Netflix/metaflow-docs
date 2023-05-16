@@ -18,9 +18,10 @@ namespace(None)
 Run('ModelRefreshFlow/argo-modelrefreshflow-rlpgc').trigger.event
 ```
 
-Remember that `namespace(None)` sets [the global namespace]
-(/scaling/tagging#global-namespace) which is required to inspect production
-runs e.g. in a notebook. This will print out metadata about the event:
+Remember that `namespace(None)` sets
+[the global namespace](/scaling/tagging#global-namespace) which is
+required to inspect production runs e.g. in a notebook. This will print
+out metadata about the event:
 
 ```
 MetaflowEvent(name='data_updated',
@@ -66,8 +67,9 @@ etl_run = Flow('PredictionFlow').latest_run.trigger.run.trigger.run
 
 ## Events in the Metaflow UI
 
-If you have deployed [the Metaflow GUI]
-(https://netflixtechblog.com/open-sourcing-a-monitoring-gui-for-metaflow-75ff465f0d60),
+If you have deployed
+[the Metaflow
+GUI](https://netflixtechblog.com/open-sourcing-a-monitoring-gui-for-metaflow-75ff465f0d60),
 you can view metadata about triggers right in the UI. The circles with arrows
 inside indicate event-triggered runs:
 

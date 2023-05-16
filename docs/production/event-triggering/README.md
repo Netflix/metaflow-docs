@@ -9,8 +9,7 @@ multiple flows together, via events, to build arbitrarily complex systems by
 using workflows as building blocks.
 
 Event triggering is an alternative to time-based scheduling using
-[the `@schedule` decorator]
-(/production/scheduling-metaflow-flows/scheduling-with-argo-workflows#scheduling-a-flow).
+[the `@schedule` decorator](/production/scheduling-metaflow-flows/scheduling-with-argo-workflows#scheduling-a-flow).
 Instead of flows starting at a specific date and time, they are triggered when
 a particular *event* is sent to a production orchestrator. This diagram
 illustrates the concept:
@@ -40,9 +39,9 @@ multiple concurrent variants of event-triggered flows.
 
 :::info
 
-As of today, event triggering is only supported on [Argo Workflows]
-(/production/scheduling-metaflow-flows/scheduling-with-argo-workflows). Let us
-know on [Metaflow community Slack](http://slack.outerbounds.co) if you would
+As of today, event triggering is only supported on
+[Argo Workflows](/production/scheduling-metaflow-flows/scheduling-with-argo-workflows).
+Let us know on [Metaflow community Slack](http://slack.outerbounds.co) if you would
 like to see other production orchestrators supported as well.
 
 :::

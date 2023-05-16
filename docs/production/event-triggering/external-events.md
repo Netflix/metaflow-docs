@@ -1,9 +1,9 @@
 
 # Triggering Flows Based on External Events
 
-You can configure flows [deployed on Argo Workflows]
-(/production/scheduling-metaflow-flows/scheduling-with-argo-workflows) start
-automatically when an event occurs in an external system. For instance, you
+You can configure flows
+[deployed on Argo Workflows](/production/scheduling-metaflow-flows/scheduling-with-argo-workflows)
+start automatically when an event occurs in an external system. For instance, you
 could start a flow whenever new data is available in a data warehouse:
 
 ```mdx-code-block
@@ -12,8 +12,8 @@ import ReactPlayer from 'react-player';
 
 <ReactPlayer playing controls muted loop url='/assets/et-basic-event.mp4' width='100%' height='100%'/>
 
-All you have to do is to add [a decorator, `@trigger`]
-(/api/flow-decorators/trigger), with a desired event name above the flow:
+All you have to do is to add [a decorator, `@trigger`](/api/flow-decorators/trigger), with
+a desired event name above the flow:
 
 ```python
 from metaflow import FlowSpec, step, trigger
@@ -61,9 +61,12 @@ event name as *a topic* in these systems.
 ### Depending on multiple events
 
 You can require that multiple events must be present before the flow gets
-triggered. Simply define a list of events: ```python
+triggered. Simply define a list of events:
+
+```python
 @trigger(events=['data_updated', 'phase_of_the_moon'])
 ```
+
 all the events need to be occur within a configured time window for the flow to trigger.
 
 ## Creating events
@@ -99,8 +102,8 @@ Metaflow, make sure that these prerequisites are met.
 ### Advanced case: Publishing events inside a flow
 
 It is not common to publish events inside a Metaflow flow, since
-[the `@trigger_on_finish` decorator]
-(/production/event-triggering/flow-events) takes care of flow-to-flow
+[the `@trigger_on_finish` decorator](/production/event-triggering/flow-events)
+takes care of flow-to-flow
 triggering conveniently. Should you have a more advanced use case that requires
 publishing events inside a flow, it is recommended that you use the
 `ArgoEvent.safe_publish` method:
@@ -119,8 +122,8 @@ unintended side-effects in surrounding systems that may depend on the event.
 ## Passing parameters in events
 
 Besides simply starting runs through events, you can change their behavior on
-the fly by letting the event [define `Parameters` of the flow]
-(/metaflow/basics#how-to-define-parameters-for-flows).
+the fly by letting the event
+[define `Parameters` of the flow](/metaflow/basics#how-to-define-parameters-for-flows).
 
 Consider this typical machine learning system that implements a continuously refreshing model:
 
