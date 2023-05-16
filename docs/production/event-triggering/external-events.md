@@ -31,7 +31,7 @@ if __name__ == '__main__':
     FreshDataFlow()
 ```
 
-You can develop and test the flow locally as usual: `@trigger_on` doesn't have any effect on local runs. To test triggering, deploy the flow to Argo Workflows:
+You can develop and test the flow locally as usual: `@trigger` doesn't have any effect on local runs. To test triggering, deploy the flow to Argo Workflows:
 
 ```
 python freshdata.py argo-workflows create
@@ -82,9 +82,24 @@ if you call `ArgoEvent` many times, you can trigger arbitrarily many runs of con
 
 :::info
 
-Before calling `ArgoEvent` make sure that you have a valid Metaflow configuration and a connection to the Kubernetes cluster set up in the environment where you call `.publish()`. If you call it from systems outside Metaflow, make sure that these prerequisited are met.
+Before calling `ArgoEvent` make sure that you have a valid Metaflow configuration and a connection to the Kubernetes cluster set up in the environment where you call `.publish()`. If you call it from systems outside Metaflow, make sure that these prerequisites are met.
 
 :::
+
+### Advanced case: Publishing events inside a flow
+
+It is not common to publish events inside a Metaflow flow, since [the `@trigger_on_finish` decorator](/production/event-triggering/flow-events) takes care
+of flow-to-flow triggering conveniently. Should you have a more advanced use case that requires publishing events inside a flow, it is recommended
+that you use the `ArgoEvent.safe_publish` method:
+
+```python
+from metaflow.integrations import ArgoEvent
+
+ArgoEvent(name="data_updated").safe_publish()
+```
+
+The only difference to `publish()` is that events won't be created during local runs. This means that you can include `safe_publish()` in your code safely
+and develop and test it locally as usual, knowing that you won't be causing unintended side-effects in surrounding systems that may depend on the event.
 
 ## Passing parameters in events
 

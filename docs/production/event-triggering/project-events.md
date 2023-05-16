@@ -96,7 +96,7 @@ python firstproject.py --branch new_model argo-workflows trigger
 You should see a corresponding output for these runs. Importantly, triggering the `new_model` branch doesn't have any effect on Alice's deployment, which is
 [fully isolated in its own namespace](/scaling/tagging).
 
-## Triggering across branch
+## Triggering across branches
 
 As shown above, `@project` guarantees that all flows linked together within the same project and branch are isolated from other deployments. However, sometimes you may want
 to depend on an upstream flow that is deployed outside of your branch. For instance, you may want to deploy a variant of a downstream workflow, like `SecondProjectFlow` above,
