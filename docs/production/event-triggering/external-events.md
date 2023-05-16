@@ -1,7 +1,10 @@
 
 # Triggering Flows Based on External Events
 
-You can configure flows [deployed on Argo Workflows](/production/scheduling-metaflow-flows/scheduling-with-argo-workflows) start automatically when an event occurs in an external system. For instance, you could start a flow whenever new data is available in a data warehouse:
+You can configure flows [deployed on Argo Workflows]
+(/production/scheduling-metaflow-flows/scheduling-with-argo-workflows) start
+automatically when an event occurs in an external system. For instance, you
+could start a flow whenever new data is available in a data warehouse:
 
 ```mdx-code-block
 import ReactPlayer from 'react-player';
@@ -31,7 +34,8 @@ if __name__ == '__main__':
     FreshDataFlow()
 ```
 
-You can develop and test the flow locally as usual: `@trigger` doesn't have any effect on local runs. To test triggering, deploy the flow to Argo Workflows:
+You can develop and test the flow locally as usual: `@trigger` doesn't have any
+effect on local runs. To test triggering, deploy the flow to Argo Workflows:
 
 ```
 python freshdata.py argo-workflows create
@@ -55,17 +59,19 @@ event name as *a topic* in these systems.
 
 ### Depending on multiple events
 
-You can require that multiple events must be present before the flow gets triggered. Simply define a list of events:
-```python
+You can require that multiple events must be present before the flow gets
+triggered. Simply define a list of events: ```python
 @trigger(events=['data_updated', 'phase_of_the_moon'])
 ```
 all the events need to be occur within a configured time window for the flow to trigger.
 
 ## Creating events
 
-In order to trigger the flow deployed with `@trigger`, we need an event. Metaflow comes with a utility class, `ArgoEvent`, which makes it easy to create suitable events from any environment. You
-can call it as a part of your ETL pipeline running outside Metaflow, in a microservice, or in a
-notebook - wherever and whenever you want to trigger a Metaflow execution.
+In order to trigger the flow deployed with `@trigger`, we need an event.
+Metaflow comes with a utility class, `ArgoEvent`, which makes it easy to create
+suitable events from any environment. You can call it as a part of your ETL
+pipeline running outside Metaflow, in a microservice, or in a notebook -
+wherever and whenever you want to trigger a Metaflow execution.
 
 ```python
 from metaflow.integrations import ArgoEvent
@@ -82,15 +88,21 @@ if you call `ArgoEvent` many times, you can trigger arbitrarily many runs of con
 
 :::info
 
-Before calling `ArgoEvent` make sure that you have a valid Metaflow configuration and a connection to the Kubernetes cluster set up in the environment where you call `.publish()`. If you call it from systems outside Metaflow, make sure that these prerequisites are met.
+Before calling `ArgoEvent` make sure that you have a valid Metaflow
+configuration and a connection to the Kubernetes cluster set up in the
+environment where you call `.publish()`. If you call it from systems outside
+Metaflow, make sure that these prerequisites are met.
 
 :::
 
 ### Advanced case: Publishing events inside a flow
 
-It is not common to publish events inside a Metaflow flow, since [the `@trigger_on_finish` decorator](/production/event-triggering/flow-events) takes care
-of flow-to-flow triggering conveniently. Should you have a more advanced use case that requires publishing events inside a flow, it is recommended
-that you use the `ArgoEvent.safe_publish` method:
+It is not common to publish events inside a Metaflow flow, since
+[the `@trigger_on_finish` decorator]
+(/production/event-triggering/flow-events) takes care of flow-to-flow
+triggering conveniently. Should you have a more advanced use case that requires
+publishing events inside a flow, it is recommended that you use the
+`ArgoEvent.safe_publish` method:
 
 ```python
 from metaflow.integrations import ArgoEvent
@@ -98,12 +110,16 @@ from metaflow.integrations import ArgoEvent
 ArgoEvent(name="data_updated").safe_publish()
 ```
 
-The only difference to `publish()` is that events won't be created during local runs. This means that you can include `safe_publish()` in your code safely
-and develop and test it locally as usual, knowing that you won't be causing unintended side-effects in surrounding systems that may depend on the event.
+The only difference to `publish()` is that events won't be created during local
+runs. This means that you can include `safe_publish()` in your code safely and
+develop and test it locally as usual, knowing that you won't be causing
+unintended side-effects in surrounding systems that may depend on the event.
 
 ## Passing parameters in events
 
-Besides simply starting runs through events, you can change their behavior on the fly by letting the event [define `Parameters` of the flow](/metaflow/basics#how-to-define-parameters-for-flows).
+Besides simply starting runs through events, you can change their behavior on
+the fly by letting the event [define `Parameters` of the flow]
+(/metaflow/basics#how-to-define-parameters-for-flows).
 
 Consider this typical machine learning system that implements a continuously refreshing model:
 
