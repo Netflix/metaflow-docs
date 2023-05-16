@@ -48,6 +48,7 @@ projects.
 - [Scheduling Metaflow Flows](production/scheduling-metaflow-flows/introduction)
 - [Coordinating Larger Metaflow
   Projects](production/coordinating-larger-metaflow-projects)
+- [Connecting Flows via Events](production/event-triggering/) ✨*New*✨
 
 ## API Reference
 

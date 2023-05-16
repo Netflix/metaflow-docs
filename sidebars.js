@@ -146,6 +146,20 @@ const sidebars = {
           ],
         },
         "production/coordinating-larger-metaflow-projects",
+        {
+          type: "category",
+          label: "Connecting Flows via Events",
+          link: {
+            type: "doc",
+            id: "production/event-triggering/README",
+          },
+          items: [
+            "production/event-triggering/external-events",
+            "production/event-triggering/flow-events",
+            "production/event-triggering/inspect-events",
+            "production/event-triggering/project-events"
+          ],
+        },
       ],
     },
 
@@ -192,7 +206,9 @@ const sidebars = {
           items: [
             "api/flow-decorators/conda_base",
             "api/flow-decorators/project",
-            "api/flow-decorators/schedule"
+            "api/flow-decorators/schedule",
+            "api/flow-decorators/trigger",
+            "api/flow-decorators/trigger_on_finish"
           ]
         }
       ],

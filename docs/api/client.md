@@ -57,7 +57,7 @@ This module accesses all objects through the current metadata provider - either 
 ### Metaflow
 
 
-<DocSection type="class" name="Metaflow" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L2079">
+<DocSection type="class" name="Metaflow" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L2081">
 <SigArgSection>
 
 </SigArgSection>
@@ -71,7 +71,7 @@ This module accesses all objects through the current metadata provider - either 
 ### Flow
 
 
-<DocSection type="class" name="Flow" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L2002">
+<DocSection type="class" name="Flow" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L2004">
 <SigArgSection>
 <SigArg name="pathspec" />
 </SigArgSection>
@@ -84,7 +84,7 @@ This module accesses all objects through the current metadata provider - either 
 
 
 
-<DocSection type="method" name="Flow.runs" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L2052">
+<DocSection type="method" name="Flow.runs" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L2054">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="*tags: str" type="str" />
 </SigArgSection>
@@ -112,13 +112,14 @@ This module accesses all objects through the current metadata provider - either 
 	<Parameter name="finished" type="bool" desc="True if the run completed." />
 	<Parameter name="finished_at" type="datetime" desc="Time this run finished." />
 	<Parameter name="code" type="MetaflowCode" desc="Code package for this run (if present). See `MetaflowCode`." />
+	<Parameter name="trigger" type="MetaflowTrigger" desc="Information about event(s) that triggered this run (if present). See `MetaflowTrigger`." />
 	<Parameter name="end_task" type="Task" desc="`Task` for the end step (if it is present already)." />
 </ParamSection>
 </DocSection>
 
 
 
-<DocSection type="method" name="Run.add_tag" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1861">
+<DocSection type="method" name="Run.add_tag" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1863">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="tag" type="str" />
 </SigArgSection>
@@ -130,7 +131,7 @@ This module accesses all objects through the current metadata provider - either 
 
 
 
-<DocSection type="method" name="Run.add_tags" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1883">
+<DocSection type="method" name="Run.add_tags" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1885">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="tags" type="Iterable" />
 </SigArgSection>
@@ -142,7 +143,7 @@ This module accesses all objects through the current metadata provider - either 
 
 
 
-<DocSection type="method" name="Run.remove_tag" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1897">
+<DocSection type="method" name="Run.remove_tag" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1899">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="tag" type="str" />
 </SigArgSection>
@@ -154,7 +155,7 @@ This module accesses all objects through the current metadata provider - either 
 
 
 
-<DocSection type="method" name="Run.remove_tags" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1919">
+<DocSection type="method" name="Run.remove_tags" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1921">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="tags" type="Iterable" />
 </SigArgSection>
@@ -166,7 +167,7 @@ This module accesses all objects through the current metadata provider - either 
 
 
 
-<DocSection type="method" name="Run.replace_tag" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1933">
+<DocSection type="method" name="Run.replace_tag" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1935">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="tag_to_remove" type="str" /><SigArg name="tag_to_add" type="str" />
 </SigArgSection>
@@ -179,7 +180,7 @@ This module accesses all objects through the current metadata provider - either 
 
 
 
-<DocSection type="method" name="Run.replace_tags" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1957">
+<DocSection type="method" name="Run.replace_tags" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1959">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="tags_to_remove" type="Iterable" /><SigArg name="tags_to_add" type="Iterable" />
 </SigArgSection>
@@ -292,6 +293,89 @@ This module accesses all objects through the current metadata provider - either 
 	<Parameter name="info" type="Dict[str, str]" desc="Dictionary of information related to this code-package." />
 	<Parameter name="flowspec" type="str" desc="Source code of the file containing the `FlowSpec` in this code package." />
 	<Parameter name="tarball" type="TarFile" desc="Python standard library `tarfile.TarFile` archive containing all the code." />
+</ParamSection>
+</DocSection>
+
+
+### MetaflowTrigger
+
+`MetaflowTrigger` is returned by `Run.trigger` if the `Run` was [triggered by an event](/production/event-triggering). It is also returned by [`current.trigger`](/api/current) when called from an event-triggered flow.
+
+
+<DocSection type="property" name="Trigger.event" module="metaflow.events" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/">
+<SigArgSection>
+<SigArg name="" />
+</SigArgSection>
+<Description summary="The `MetaflowEvent` object corresponding to the triggering event.\n\nIf multiple events triggered the run, this property is the latest event.\n" />
+<ParamSection name="Returns">
+<Parameter type="MetaflowEvent, optional" desc="The latest event that triggered the run, if applicable." />
+</ParamSection>
+</DocSection>
+
+
+
+<DocSection type="property" name="Trigger.events" module="metaflow.events" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/">
+<SigArgSection>
+<SigArg name="" />
+</SigArgSection>
+<Description summary="The list of `MetaflowEvent` objects correspondings to all the triggering events.\n" />
+<ParamSection name="Returns">
+<Parameter type="List[MetaflowEvent], optional" desc="List of all events that triggered the run" />
+</ParamSection>
+</DocSection>
+
+
+
+<DocSection type="property" name="Trigger.run" module="metaflow.events" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/">
+<SigArgSection>
+<SigArg name="" />
+</SigArgSection>
+<Description summary="The corresponding `Run` object if the triggering event is a Metaflow run.\n\nIn case multiple runs triggered the run, this property is the latest run.\nReturns `None` if none of the triggering events are a `Run`.\n" />
+<ParamSection name="Returns">
+<Parameter type="Run, optional" desc="Latest Run that triggered this run, if applicable." />
+</ParamSection>
+</DocSection>
+
+
+
+<DocSection type="property" name="Trigger.runs" module="metaflow.events" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/">
+<SigArgSection>
+<SigArg name="" />
+</SigArgSection>
+<Description summary="The list of `Run` objects in the triggering events.\nReturns `None` if none of the triggering events are `Run` objects.\n" />
+<ParamSection name="Returns">
+<Parameter type="List[Run], optional" desc="List of runs that triggered this run, if applicable." />
+</ParamSection>
+</DocSection>
+
+
+
+<DocSection type="method" name="Trigger.__getitem__" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/events.py#L139">
+<SigArgSection>
+<SigArg name="" />
+</SigArgSection>
+<Description summary="If triggering events are runs, `key` corresponds to the flow name of the triggering run.\nOtherwise, `key` corresponds to the event name and a `MetaflowEvent` object is returned." />
+<ParamSection name="Returns">
+	<Parameter type="Run or MetaflowEvent" desc="`Run` object if triggered by a run. Otherwise returns a `MetaflowEvent`." />
+</ParamSection>
+</DocSection>
+
+
+### MetaflowEvent
+
+`MetaflowEvent` is returned by `MetaflowTrigger` (see above) for [event-triggered](/production/event-triggering) runs.
+
+
+<DocSection type="class" name="MetaflowEvent" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/">
+<SigArgSection>
+<SigArg name="" />
+</SigArgSection>
+<Description summary="Container of metadata that identifies the event that triggered\nthe `Run` under consideration." />
+<ParamSection name="Attributes">
+	<Parameter name="name" type="str" desc="name of the event." />
+	<Parameter name="id" type="str" desc="unique identifier for the event." />
+	<Parameter name="timestamp" type="datetime" desc="timestamp recording creation time for the event." />
+	<Parameter name="type" type="str" desc="type for the event - one of `event` or `run`" />
 </ParamSection>
 </DocSection>
 

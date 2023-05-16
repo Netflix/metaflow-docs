@@ -234,6 +234,8 @@ information:
 - `code`: In certain circumstances, the code used for this run is saved and persisted;
   this allows you to access this code.
 - `end_task`: A shortcut to the `Task` object of the last step in the run.
+- `trigger`: Information about event(s) that [triggered this run](/production/event-triggering/inspect-events),
+  if available.
 
 ### Properties related to steps
 

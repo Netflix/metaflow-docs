@@ -67,7 +67,7 @@ as you can afford loading extra data. Additional filtering can be performed in y
 Python code. With larger tables this approach is not feasible, so you may need to run an
 extra SQL query to repartition data properly.
 
-### **Use cases**
+### Use cases
 
 * Workflows that need to process large amounts of data.
 * Workflows that build many models in parallel.
@@ -118,7 +118,7 @@ In other words, it is very fast at loading and storing large amounts of data in 
   and it is less suitable for [moving data between Metaflow steps
   reliably](data.md#caution-overwriting-data-in-s3).
 
-### **Use cases**
+### Use cases
 
 * Communication with external systems through files in S3.
 * Special corner cases where you need more control over object serialization than what
@@ -249,7 +249,7 @@ can invoke your `put_*` calls with `overwrite=False`. Refer to [this
 section](data.md#caution-overwriting-data-in-s3) for some of the pitfalls involved with
 overwriting keys in S3.
 
-### **The S3 result object**
+### The S3 result object
 
 All `get` operations return an `S3Object`, backed by a temporary file on local disk,
 which exposes a number of attributes about the object:
@@ -540,12 +540,15 @@ Read more about [fast data processing with `metaflow.S3` in this blog post](http
 
 ### Using `metaflow.S3` for in-memory processing
 
-For maximum performance, ensure that [the `@resources(memory=)` setting](/scaling/remote-tasks/introduction#requesting-resources-with-resources-decorator) is higher than the
-amount of data you are downloading with `metaflow.S3`.
+For maximum performance, ensure that
+[the `@resources(memory=)`
+setting](/scaling/remote-tasks/introduction#requesting-resources-with-resources-decorator)
+is higher than the amount of data you are downloading with `metaflow.S3`.
 
 If the amount of data is higher than the available disk space, you can use the
-`use_tmpfs=True` with [`@batch`](/api/step-decorators/batch) and [`@kubernetes`](/api/step-decorators/kubernetes) to create an in-memory filesystem
-which `metaflow.S3` will use automatically.
+`use_tmpfs=True` with [`@batch`](/api/step-decorators/batch) and[`@kubernetes`]
+(/api/step-decorators/kubernetes) to create an in-memory filesystem which
+`metaflow.S3` will use automatically.
 
 These options are available for `tmpfs`:
 
@@ -562,7 +565,9 @@ These options are available for `tmpfs`:
 
  - `tmpfs_path=P` allows you to use an alternative mount point for `tmpfs`.
 
-You can access the current `tmpfs` mountpoint in your tasks with [`current.tempdir`](/api/current#current.tempdir). You can use it as fast temporary disk space for your own needs as well.
+You can access the current `tmpfs` mountpoint in your tasks with
+[`current.tempdir`](/api/current#current.tempdir). You can use it as fast
+temporary disk space for your own needs as well.
 
 ## Data in Local Files
 
