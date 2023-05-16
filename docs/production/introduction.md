@@ -112,6 +112,13 @@ handy when designing processes around production deployments.
 
 ## What You Will Learn
 
+:::info
+
+You can get a feel of all these concepts and test them hands-on without having to install anything
+locally by signing up for [a Metaflow Sandbox](https://outerbounds.com/sandbox/)!
+
+:::
+
 In this section, you will learn how to make your flows run automatically without any
 human intervention. 
 
