@@ -3,7 +3,7 @@
 
 You can configure flows
 [deployed on Argo Workflows](/production/scheduling-metaflow-flows/scheduling-with-argo-workflows)
-start automatically when an event occurs in an external system. For instance, you
+to start automatically when an event occurs in an external system. For instance, you
 could start a flow whenever new data is available in a data warehouse:
 
 ```mdx-code-block
