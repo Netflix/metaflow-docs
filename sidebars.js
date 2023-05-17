@@ -176,6 +176,7 @@ const sidebars = {
         "api/current",
         "api/S3",
         "api/cards",
+        "api/argoevent",
         {
           type: "category",
           label: "Step Decorators",
