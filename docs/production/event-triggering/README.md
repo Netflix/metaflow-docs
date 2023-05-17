@@ -25,7 +25,8 @@ to start automatically when `FirstFlow` finishes.
 Events define a clear interface between workflows, which can be developed and
 operated independently, allowing multiple people to collaborate without
 friction when building and operating a larger system. For more context about
-event triggering, [see the announcement blog post](#).
+event triggering,
+[see the announcement blog post](https://outerbounds.com/blog/metaflow-event-triggering/).
 
 Get started with event triggering by reading the next three sections. The fourth
 section is relevant for more advanced use cases that leverage [the `@project`
