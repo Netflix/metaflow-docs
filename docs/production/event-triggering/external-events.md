@@ -72,10 +72,10 @@ all the events need to be occur within a configured time window for the flow to 
 ## Creating events
 
 In order to trigger the flow deployed with `@trigger`, we need an event.
-Metaflow comes with a utility class, `ArgoEvent`, which makes it easy to create
-suitable events from any environment. You can call it as a part of your ETL
-pipeline running outside Metaflow, in a microservice, or in a notebook -
-wherever and whenever you want to trigger a Metaflow execution.
+Metaflow comes with a utility class, [`ArgoEvent`](/api/argoevent), which
+makes it easy to create suitable events from any environment. You can call
+it as a part of your ETL pipeline running outside Metaflow, in a microservice,
+or in a notebook - wherever and whenever you want to trigger a Metaflow execution.
 
 ```python
 from metaflow.integrations import ArgoEvent
@@ -105,8 +105,8 @@ It is not common to publish events inside a Metaflow flow, since
 [the `@trigger_on_finish` decorator](/production/event-triggering/flow-events)
 takes care of flow-to-flow
 triggering conveniently. Should you have a more advanced use case that requires
-publishing events inside a flow, it is recommended that you use the
-`ArgoEvent.safe_publish` method:
+publishing events inside a flow, it is recommended that you use [the
+`ArgoEvent.safe_publish` method](/api/argoevent#ArgoEvent.safe_publish):
 
 ```python
 from metaflow.integrations import ArgoEvent

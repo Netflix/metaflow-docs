@@ -25,3 +25,4 @@ Use these to construct flows, access data, and manipulate results.
 - [Current](/api/current) - operating a run.
 - [S3](/api/s3) - accessing data in S3 quickly.
 - [Cards](/api/cards) - visualizing results.
+- [ArgoEvent](/api/argoevent) - triggering runs via events.
