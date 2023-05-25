@@ -33,15 +33,15 @@ section is relevant for more advanced use cases that leverage [the `@project`
 decorator](/production/coordinating-larger-metaflow-projects) to deploy
 multiple concurrent variants of event-triggered flows. 
 
- 1. [Triggering flows based on external events](/production/event-triggering/external-events)
- 2. [Triggering flows based on other flows](/production/event-triggering/flow-events)
- 3. [Inspecting events](/production/event-triggering/inspect-events)
- 4. [Deploying variants of event-triggered flows](/production/event-triggering/project-events)
+ 1. [Triggering flows based on external events](/docs/production/event-triggering/external-events)
+ 2. [Triggering flows based on other flows](/docs/production/event-triggering/flow-events)
+ 3. [Inspecting events](/docs/production/event-triggering/inspect-events)
+ 4. [Deploying variants of event-triggered flows](/docs/production/event-triggering/project-events)
 
 :::info
 
 As of today, event triggering is only supported on
-[Argo Workflows](/production/scheduling-metaflow-flows/scheduling-with-argo-workflows).
+[Argo Workflows](/docs/production/scheduling-metaflow-flows/scheduling-with-argo-workflows).
 Let us know on [Metaflow community Slack](http://slack.outerbounds.co) if you would
 like to see other production orchestrators supported as well.
 
