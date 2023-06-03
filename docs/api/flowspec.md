@@ -160,7 +160,7 @@ The function called gets a parameter `context` that contains attributes about th
 The `IncludeFile` object is a special `Parameter` that reads its value from a local file. For an example, see [Data in Local Files](/scaling/data#data-in-local-files).
 
 
-<DocSection type="class" name="IncludeFile" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/includefile.py#L234">
+<DocSection type="class" name="IncludeFile" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/includefile.py#L237">
 <SigArgSection>
 <SigArg name="name, **kwargs" />
 </SigArgSection>

@@ -40,6 +40,7 @@ projects.
 - [Dealing with Failures](scaling/failures)
 - [Managing External Libraries](scaling/dependencies)
 - [Loading and Storing Data](scaling/data)
+- [Accessing Secrets](scaling/secrets) ✨*New*✨
 - [Organizing Results](scaling/tagging)
 
 ## III. Production Deployments

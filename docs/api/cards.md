@@ -206,69 +206,16 @@ Find detailed instructions, a starter template, and an example of a simple custo
 
 
 
-```python
-ShowDoc(MetaflowCard.render)
-```
+<DocSection type="method" name="MetaflowCard.render" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/card.py#L52">
+<SigArgSection>
+<SigArg name="self" /><SigArg name="task" />
+</SigArgSection>
+<Description summary="Produce custom card contents in HTML." extended_summary="Subclasses override this method to customize the card contents." />
+<ParamSection name="Parameters">
+	<Parameter name="task" type="Task" desc="A `Task` object that allows you to access data from the finished task and tasks\npreceding it." />
+</ParamSection>
+<ParamSection name="Returns">
+	<Parameter type="str" desc="Card contents as an HTML string." />
+</ParamSection>
+</DocSection>
 
-<CodeOutputBlock lang="python">
-
-```
-    ---------------------------------------------------------------------------
-
-    AttributeError                            Traceback (most recent call last)
-
-    File ~/mambaforge/envs/docs/lib/python3.11/site-packages/IPython/core/formatters.py:344, in BaseFormatter.__call__(self, obj)
-        342     method = get_real_method(obj, self.print_method)
-        343     if method is not None:
-    --> 344         return method()
-        345     return None
-        346 else:
-
-
-    File ~/mambaforge/envs/docs/lib/python3.11/site-packages/nbdoc/showdoc.py:218, in ShowDoc._repr_html_(self)
-        216 def _repr_html_(self):
-        217     "This method controls what is displayed in Jupyter Notebooks."
-    --> 218     return f'<HTMLRemove>\n{self.nbhtml}\n</HTMLRemove>\n{self.jsx}'
-
-
-    File ~/mambaforge/envs/docs/lib/python3.11/site-packages/nbdoc/showdoc.py:253, in ShowDoc.jsx(self)
-        251 nm = f'<DocSection type="{self.typ}" name="{self.objnm}" module="{self.modnm}" show_import="{self.show_import}" heading_level="{self.hd_lvl}"{self._src_link_attr}>'
-        252 spoof = '...' if self.decorator else self.spoofstr
-    --> 253 sp = get_sig_section(self.obj, spoofstr=spoof)
-        254 return f'{nm}\n{sp}\n' + self.npdocs + '\n</DocSection>'
-
-
-    File ~/mambaforge/envs/docs/lib/python3.11/site-packages/nbdoc/showdoc.py:115, in get_sig_section(obj, spoofstr)
-        113         return ''
-        114     params = sig.parameters.items()
-    --> 115     jsx_params = [fmt_sig_param(p) for _, p in params]
-        116 else:
-        117     jsx_params = [f'<SigArg name="{spoofstr}" />']
-
-
-    File ~/mambaforge/envs/docs/lib/python3.11/site-packages/nbdoc/showdoc.py:115, in <listcomp>(.0)
-        113         return ''
-        114     params = sig.parameters.items()
-    --> 115     jsx_params = [fmt_sig_param(p) for _, p in params]
-        116 else:
-        117     jsx_params = [f'<SigArg name="{spoofstr}" />']
-
-
-    File ~/mambaforge/envs/docs/lib/python3.11/site-packages/nbdoc/showdoc.py:99, in fmt_sig_param(p)
-         96 prefix = f'<SigArg name="{name}" '
-         98 if p.annotation != inspect._empty:
-    ---> 99     prefix += f'type="{p.annotation.__name__}" '
-        100 if p.default != inspect._empty:
-        101     prefix += f'default="{p.default}" '
-
-
-    AttributeError: 'str' object has no attribute '__name__'
-
-
-
-
-
-    <nbdoc.showdoc.ShowDoc at 0x11c001b50>
-```
-
-</CodeOutputBlock>
