@@ -17,7 +17,7 @@ workflows try to keep the two concerns as separate as possible. In practice, you
 use the solutions presented in this chapter purely to load a clean dataset in your
 workflow. Then, you should perform any model-specific data transformations in your
 Python code. In particular, we recommend that you use SQL only for data access, not for
-model-specific data manipulation.&#x20;
+model-specific data manipulation.
 
 There are multiple benefits in keeping data access separate from model-specific data
 manipulation:
@@ -42,14 +42,21 @@ Keep this guideline in mind when choosing the right data access method below.&#x
 
 Accessing data in tables (most often Hive) is by far the most common way to load input
 data to Metaflow workflows. A common paradigm is to issue arbitrary SQL queries against
-the data warehouse to fetch data. However, depending on the data volume and the
-complexity of the query, queries can be slow to execute and can potentially congest the
-query engine.
+the data warehouse to fetch data.
 
-It is not uncommon for a data science workflow to hit these limitations. Even if your
-data set is not huge, you may want to build multiple models in parallel, e.g. one per
-country. In this case, each model needs to load a shard of data. If you used SQL to load
-the shards, it will very quickly overload your query engine.
+:::info
+
+See [Accessing Secrets](/scaling/secrets) if your database or query engine requires
+authentication.
+
+:::
+
+However, depending on the data volume and the complexity of the query, queries
+can be slow to execute and can potentially congest the query engine. It is not
+uncommon for a data science workflow to hit these limitations. Even if your
+data set is not huge, you may want to build multiple models in parallel, e.g.
+one per country. In this case, each model needs to load a shard of data. If you
+used SQL to load the shards, it will very quickly overload your query engine.
 
 As a solution, [`metaflow.S3`](data.md#data-in-s3-metaflows3) provides a way to load
 data directly from S3, bypassing any query engines such as Spark. Combined with a
@@ -546,9 +553,9 @@ setting](/scaling/remote-tasks/introduction#requesting-resources-with-resources-
 is higher than the amount of data you are downloading with `metaflow.S3`.
 
 If the amount of data is higher than the available disk space, you can use the
-`use_tmpfs=True` with [`@batch`](/api/step-decorators/batch) and[`@kubernetes`]
-(/api/step-decorators/kubernetes) to create an in-memory filesystem which
-`metaflow.S3` will use automatically.
+`use_tmpfs=True` with [`@batch`](/api/step-decorators/batch) an
+[`@kubernetes`](/api/step-decorators/kubernetes) to create an in-memory
+filesystem which `metaflow.S3` will use automatically.
 
 These options are available for `tmpfs`:
 

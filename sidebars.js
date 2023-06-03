@@ -119,6 +119,7 @@ const sidebars = {
         },
         "scaling/failures",
         "scaling/data",
+        "scaling/secrets",
         "scaling/dependencies",
         "scaling/tagging"
       ]
@@ -193,6 +194,7 @@ const sidebars = {
             "api/step-decorators/kubernetes",
             "api/step-decorators/resources",
             "api/step-decorators/retry",
+            "api/step-decorators/secrets",
             "api/step-decorators/step",
             "api/step-decorators/timeout"
           ]

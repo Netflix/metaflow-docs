@@ -21,5 +21,6 @@ attaches a `@retry` and `@batch(cpu=4)` decorators to all steps of the flow.
 - [`@kubernetes`](/api/step-decorators/kubernetes) - run on Kubernetes.
 - [`@resources`](/api/step-decorators/resources) - request resources.
 - [`@retry`](/api/step-decorators/retry) - retry errors.
+- [`@secrets`](/api/step-decorators/secrets) - access secrets.
 - [`@step`](/api/step-decorators/step) - define steps.
 - [`@timeout`](/api/step-decorators/timeout) - avoid getting stuck.
