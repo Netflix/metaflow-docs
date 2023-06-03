@@ -4,7 +4,7 @@
 If your flow needs to access an external service (e.g. a database) that requires
 authentication, you need to supply credentials to the flow. If security wasn't
 a concern, you could easily achieve this using
-[Metaflow parameters](basics#how-to-define-parameters-for-flows). However,
+[Metaflow parameters](/metaflow/basics#how-to-define-parameters-for-flows). However,
 when it comes to credentials and other sensitive information, security is a top concern.
 
 The industry-standard best practice is to store credentials in a secrets
