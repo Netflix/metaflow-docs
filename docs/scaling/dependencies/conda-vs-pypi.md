@@ -83,9 +83,9 @@ guarantee reproducible, reliable exeuction environments. To learn more,
 see [Packaging Internals](/scaling/dependencies/internals).
 
 :::note
-It is rarely necessary to install both PyPI and Conda packages in the same
+It is sometimes necessary to install both PyPI and Conda packages in the same
 environment. This is not supported by the built-in `@pypi` and `@conda` decorators
-currently. Should you come across this requirement, you can try [an experimental `@pypi`
-decorator by Netflix](https://github.com/Netflix/metaflow-nflx-extensions)
+currently. Should you come across this requirement, you can try [an alternative `@pypi`
+decorator by Netflix](/scaling/dependencies/libraries.md#alternative-pypi-and-conda-decorators)
 which supports this feature.
 :::

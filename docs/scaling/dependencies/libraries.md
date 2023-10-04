@@ -33,20 +33,24 @@ examples include both `@pypi` lines as well as `@conda` lines commented out,
 so you can easily test both the decorators. In a real-life setting, you
 would [use either `@conda` or `@pypi`](/scaling/dependencies/conda-vs-pypi).
 
-### An experimental `@pypi` decorator
+### Alternative `@pypi` and `@conda` decorators
 
-As an alternative to the built-in `@pypi` and `@conda`, you can also take
-a look at [an experimental `@pypi` decorator provided by
-Netflix](https://github.com/Netflix/metaflow-nflx-extensions). It works
-similarly as the decorators documented here, but it includes a number of 
-additional features:
+As an alternative to the built-in `@pypi` and `@conda`, you can also use
+the decorators that are used at [Netflix](https://github.com/Netflix/metaflow-nflx-extensions).
+They are fully compatible with the built-in decorators but provide several additional
+features:
+ - Named environments which enables you easy environment saving and sharing.
+ - A more full-fledged `environment` command allowing you to resolve environments
+   using external `requirements.txt` or `environment.yml` files as well as
+   inspect and rehydrate environments used in any previously run step.
+ - More extensive package support (mix and match Conda and Pypi packages, more
+   types of Pypi packages, etc.).
+ - It is generally more efficient with caching and resolving and provides options
+   for faster performance.
 
- - Named environments that you can instantiate outside steps.
- - Support for mixing PyPI and Conda packages in an environment.
- - More extensive caching.
+To use, simply install [this package](https://pypi.org/project/metaflow-netflixext/).
+Documentation can be found
+[here](https://github.com/Netflix/metaflow-nflx-extensions/blob/main/docs/conda.md).
 
 Let us know on the [Metaflow community Slack](http://slack.outerbounds.co) if you
-are curious to test these features!
-
-
-
+find these additional features useful!
