@@ -55,9 +55,9 @@ manually.
 ## Which repository to use?
 
 Why does Python have two repositories in the first place? The crucial difference
-between the repositories is that Conda is not specific to Python - it can handle
+between the repositories is that Conda is not specific to Python: It can handle
 any libraries and packages, even those written in low-level languages like C or
-C++. This is particualy important for ML and AI workloads that depend on
+C++. This is particularly important for ML and AI workloads that depend on
 high-performance libraries.
 
 In contrast, PyPI is the defacto main repository for pure Python packages. It can
