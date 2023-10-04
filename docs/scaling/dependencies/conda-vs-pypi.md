@@ -28,11 +28,10 @@ much fewer and much more stable. This figure illustrates the concepts:
 
 ![package ecosystem](/assets/repositories.png)
 
-Metaflow works with both the *repositories* through the
-[`@pypi`](/scaling/dependencies/pypi) and
-[`@conda`](/scaling/dependencies/conda) decorators. Importantly, when
-using these decorators, you don't need to use *package managers* manually,
-as Metaflow acts as a package manager by itself.
+Metaflow works with both the *repositories* through [the
+`@pypi` and `@conda`](/scaling/dependencies/libraries) decorators.
+Importantly, when using these decorators, you don't need to use
+*package managers* manually as Metaflow acts as a package manager by itself.
 
 ## Virtual environments
 
@@ -68,11 +67,11 @@ Hence the choice is often simple:
  
  - If you can find packages you need at [PyPI](https://pypi.org) and
    you can `pip install` them without trouble,
-   [`@pypi`](/scaling/dependencies/pypi) is a safe bet.
+   `@pypi` is a safe bet.
 
  - If your needs are more complex, possibly including non-Python binaries
    such as [MPI](https://anaconda.org/conda-forge/openmpi-mpifort), go with
-   [`@conda`](/scaling/dependencies/conda).
+   `@conda`.
 
 Both the decorators support private packages published in private software
 repositories, in case you want to access internally published libraries in

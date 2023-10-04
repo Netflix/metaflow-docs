@@ -187,7 +187,7 @@ could be a repository of its own, included as a subtree in every flow project
 that wants to use it.
 
 Alternatively, you can publish the package as a private Python package which
-you can [include with `@pypi`](/scaling/dependencies/pypi).
+you can [include with `@pypi` or `@conda`](/scaling/dependencies/libraries).
 
 
 ## Non-Python dependencies
