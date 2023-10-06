@@ -1,5 +1,5 @@
 
-# Internals
+# Internals of Dependency Management
 
 Behind the scenes, Metaflow does much more than just wrapping CLI commands such as
 `pip install` or `conda install`:
@@ -56,7 +56,7 @@ execute its tasks.
 
 ### Runtime operation
 
-When `@pypi` / `@conda` enabled tasks execute remotely, we start by
+When `@pypi` / `@conda` -enabled tasks execute remotely, we start by
 setting up an empty virtual environment with `mamba`, download the
 cached packages from the datastore, and unpack them in the environment.
 The code package is unpacked to make local dependencies available.
