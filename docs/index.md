@@ -37,7 +37,7 @@ projects.
 
 - [Introduction to Scalable Compute and Data](scaling/introduction)
 - [Executing Tasks remotely](scaling/remote-tasks/introduction)
-- [Managing Libraries](scaling/dependencies) ✨*New*✨
+- [Managing Dependencies](scaling/dependencies) ✨*New*✨
 - [Dealing with Failures](scaling/failures)
 - [Loading and Storing Data](scaling/data)
 - [Accessing Secrets](scaling/secrets)
