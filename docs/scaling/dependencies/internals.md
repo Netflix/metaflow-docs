@@ -1,5 +1,5 @@
 
-# Internals
+# Internals of Dependency Management
 
 Behind the scenes, Metaflow does much more than just wrapping CLI commands such as
 `pip install` or `conda install`:
@@ -16,6 +16,10 @@ Behind the scenes, Metaflow does much more than just wrapping CLI commands such 
 - It snapshots all packages in the datastore, making it possible to rehydrate
   environments in even thousands of parallel containers, which would cause
   hiccups with parallel `pip install`s.
+
+:::note
+For even more features, see [Netflix's Metaflow Extensions](https://github.com/Netflix/metaflow-nflx-extensions) which contain even more featureful `@pypi` and `@conda`.
+:::
 
 ## How `@pypi` and `@conda` work
 
@@ -56,7 +60,7 @@ execute its tasks.
 
 ### Runtime operation
 
-When `@pypi` / `@conda` enabled tasks execute remotely, we start by
+When `@pypi` / `@conda` -enabled tasks execute remotely, we start by
 setting up an empty virtual environment with `mamba`, download the
 cached packages from the datastore, and unpack them in the environment.
 The code package is unpacked to make local dependencies available.

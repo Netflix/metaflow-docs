@@ -124,6 +124,11 @@ $ python fractalflow.py --environment=pypi run
 The `--environment=pypi` option which ensures that every step gets its own isolated environment.
 This option is required whenever you use `@pypi` or `@conda` decorators.
 
+:::tip
+Note that the `--environment` option comes right after the Python file name, not after `run`
+or other commands.
+:::
+
 When you execute the flow for the first time, the environments need to be resolved which can
 take several minutes (see [Internals](/scaling/dependencies/libraries) for more details).
 Subsequent runs will start much faster as cached environments will be available.
@@ -136,3 +141,158 @@ import ReactPlayer from 'react-player';
 
 <ReactPlayer playing controls muted loop url='/assets/fractalflow.mp4' width='100%' height='100%'/>
 
+## `@conda` in action
+
+The `@conda` decorator works similarly to `@pypi`. It supports the same `python` and `packages`
+arguments. For backwards compatibility, `libraries` works as an alias for `packages`.
+
+```python
+from metaflow import FlowSpec, step, conda, card
+
+class ScikitFlow(FlowSpec):
+
+    @conda(python='3.9.13',
+           packages={'scikit-learn': '1.3.1'})
+    @card
+    @step
+    def start(self):
+        # pylint: disable=import-error,no-member
+        from sklearn.datasets import load_iris
+        self.data = load_iris()
+        self.next(self.end)
+
+    @step
+    def end(self):
+        pass
+
+if __name__ == '__main__':
+    ScikitFlow()
+```
+Save the flow as `scikitflow.py` as run it as follows:
+```bash
+$ python scikitflow.py --environment=conda run
+```
+
+:::tip
+You can search all available public Conda packages at [anaconda.org](https://anaconda.org)
+:::
+
+## Using the same packages in all steps
+
+Sometimes you may want to use the same set of packages in all steps. Repeating the same
+`@conda` or `@pypi` line for every step would be redundant.
+
+In this case, you can use the `@conda_base` and `@pypi_base` decorators that are defined
+at the class level, indicating that all steps should use the same environment.
+
+```python
+from metaflow import FlowSpec, step, conda_base
+
+@conda_base(python='3.9.13',
+            packages={'scikit-learn': '1.3.1'})
+class AllScikitFlow(FlowSpec):
+
+    @step
+    def start(self):
+        # pylint: disable=import-error,no-member
+        from sklearn.datasets import load_iris
+        self.data = load_iris()
+        self.next(self.end)
+
+    @step
+    def end(self):
+        print(self.data)
+
+if __name__ == '__main__':
+    AllScikitFlow()
+```
+Save the flow as `allscikitflow.py` as run it as follows:
+```bash
+$ python allscikitflow.py --environment=conda run
+```
+Note that we access a `scikit` object stored in `self.data` in the `end` step. When accessing
+package-specific objects through artifacts, a matching package must be available in every step
+using the artifact. This is the case by default when using the class-level decorators.
+If you tried to do the same in the original `scikitflow.py`, it would fail due to a missing package
+in the `end` step.
+
+## Libraries in remote tasks
+
+A major benefit of `@pypi` and `@conda` is that they allow you to define libraries that will be
+automatically made available when [you execute tasks remotely](/scaling/remote-tasks/introduction)
+on `@kubernetes` or on `@batch`. You don't need to do anything special to make this happen.
+
+If you have `@kubernetes` or `@batch` [configured to work with
+Metaflow](/getting-started/infrastructure), you can try:
+
+```bash
+$ python fractalflow.py --environment=pypi run --with kubernetes
+```
+or `--with batch` correspondingly. Everything should work exactly the same as with
+local runs.
+
+## Libraries in production deployments
+
+Another major benefit of `@pypi` and `@conda` is that the environments they create a guaranteed
+to be stable when [deployed to production](/production/introduction).
+
+For instance, if you deployed `FractalFlow` in production on Argo Workflows like this:
+
+```bash
+$ python fractalflow.py --environment=pypi argo-workflows create
+```
+
+all production runs would be guaranteed to always use exactly the same environment, even
+if new versions of the packages get released or even if old packages get removed. This
+is very desirable for production runs that should be maximally stable and predictable.
+
+## Disabling environments
+
+When using `--environment=conda` or `--environment=pypi` all steps are executed in
+isolated environments. As a result, the steps don't have access to packages that are
+installed system-wide. This is desirable, as it makes the flow more reproducible as it
+doesn't depend on packages that may exist just in your environment.
+
+However, sometimes a need may arise to be able to access a system-wide package in one
+step, while using isolated environments in other steps. For instance, you may use
+[a custom Docker image](/scaling/dependencies/containers) in conjuction with `@pypi`
+or `@conda`, accessing packages directly from the image in a step.
+
+To make this possible, you can set `@conda(disabled=True)` or `@pypi(disabled=True)` at
+the step level. A step with PyPI/Conda disabled behaves as if the flow runs without
+`--environment`.
+
+To demonstrate this, consider this flow, `peekabooflow.py`, that prints out the path
+of the Python interpreter used in each step:
+
+```python
+import sys
+from metaflow import FlowSpec, step, conda_base, conda
+
+@conda_base(python='3.9.13')
+class PeekabooFlow(FlowSpec):
+
+    @step
+    def start(self):
+        print(sys.executable)
+        self.next(self.peekaboo)
+
+    @conda(disabled=True)
+    @step
+    def peekaboo(self):
+        print(sys.executable)
+        self.next(self.end)
+
+    @step
+    def end(self):
+        print(sys.executable)
+
+if __name__ == '__main__':
+    PeekabooFlow()
+```
+Run the flow as usual:
+```bash
+$ python peekabooflow.py --environment=conda run
+```
+Notice how the path is the same in the `start` and `end` steps but different in the
+`peekaboo` step which uses a system-wide Python installation.

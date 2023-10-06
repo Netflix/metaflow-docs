@@ -41,7 +41,8 @@ reproducible execution environments.
 
 Behind the scenes, Metaflow does much more than just `pip install`'ing packages
 on the fly. If you are curious to learn what and why,
-see [Packaging Internals](/scaling/dependencies/internals).
+see [Packaging Internals](/scaling/dependencies/internals) and [the `@pypi`
+announcement blog post](https://outerbounds.com/blog/pypi-announcement/).
 
 ## Unpacking a Metaflow project
 
