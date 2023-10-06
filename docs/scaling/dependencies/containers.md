@@ -1,20 +1,27 @@
 
 # Defining Custom Images
 
-All [tasks executed remotely](/scaling/remote-tasks/introduction) are run in a container,
-both in [Kubernetes](/scaling/remote-tasks/kubernetes) and
-[AWS Batch](/scaling/remote-tasks/aws-batch). Hence, all remote tasks executed with a
-container (Docker) image.
+All [tasks executed remotely](/scaling/remote-tasks/introduction) run in a container,
+both on [Kubernetes](/scaling/remote-tasks/kubernetes) and in
+[AWS Batch](/scaling/remote-tasks/aws-batch). Hence, the default environment for
+remote tasks is defined by the container (Docker) image used.
 
 By default, Metaflow uses [a default Python image](https://hub.docker.com/_/python/)
-which doesn't contain special libraries besides Python itself. When additional libraries
+which doesn't contain any libraries besides Python itself. When additional libraries
 are needed, an easy option is to use [the `@pypi` and `@conda`
-decorators](/scaling/dependencies/libraries) to install them on the fly, on top of the
-base image.
+decorators](/scaling/dependencies/libraries) which install libraries on the fly,
+on top of the base image.
 
-Alternatively, you can use any other image of your choosing. The main requirement
-is to make sure that the image has a `python` version installed. For details,
-see this external howto page about [building custom images](https://outerbounds.com/docs/build-custom-image/).
+Alternatively, you can use any other image of your choosing. Many off-the-shelf
+images work with Metaflow without modifications, or you can build a custom 
+image.
+
+## Building a custom image
+
+The main requirement is to make sure that the image has a `python` version installed.
+
+For more information about building a custom image, see [this external howto
+page](https://outerbounds.com/docs/build-custom-image/).
 
 ## Configuring a custom image
 
