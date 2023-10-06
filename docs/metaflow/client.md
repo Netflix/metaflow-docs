@@ -253,7 +253,7 @@ method. See [Tagging](/scaling/tagging.md#tagging) for more detail.
 - `finished_at`: A datetime object indicating the completion time of the step. A step is
   complete when all its tasks are complete.
 - `environment_info`: A dict object containing metadata for the execution environment.
-  See [Dependencies](/scaling/dependencies.md) for more details.
+  See [Dependencies](/scaling/dependencies/) for more details.
 
 ### Properties related to tasks
 
@@ -273,7 +273,7 @@ richest set of properties:
 - `stderr`: A string containing the standard error of this `Task`.
 - `code`: The code used to execute this `Task`, if available.
 - `environment_info`: A dict object containing metadata for the execution environment.
-  See [Dependencies](/scaling/dependencies.md) for more detail.
+  See [Dependencies](/scaling/dependencies/) for more detail.
 
 Here is an example:
 

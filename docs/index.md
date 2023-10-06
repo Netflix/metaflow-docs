@@ -36,9 +36,9 @@ projects.
 ## II. Scalable Flows
 
 - [Introduction to Scalable Compute and Data](scaling/introduction)
-- [Executing tasks remotely](scaling/remote-tasks/introduction)
+- [Executing Tasks remotely](scaling/remote-tasks/introduction)
+- [Managing Libraries](scaling/dependencies) ✨*New*✨
 - [Dealing with Failures](scaling/failures)
-- [Managing External Libraries](scaling/dependencies)
 - [Loading and Storing Data](scaling/data)
 - [Accessing Secrets](scaling/secrets) ✨*New*✨
 - [Organizing Results](scaling/tagging)
@@ -49,7 +49,7 @@ projects.
 - [Scheduling Metaflow Flows](production/scheduling-metaflow-flows/introduction)
 - [Coordinating Larger Metaflow
   Projects](production/coordinating-larger-metaflow-projects)
-- [Connecting Flows via Events](production/event-triggering/) ✨*New*✨
+- [Connecting Flows via Events](production/event-triggering/)
 
 ## API Reference
 

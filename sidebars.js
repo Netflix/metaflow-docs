@@ -117,10 +117,25 @@ const sidebars = {
             "scaling/remote-tasks/aws-batch",
           ],
         },
+        {
+          type: "category",
+          label: "Managing Dependencies",
+          link: {
+            type: "doc",
+            id: "scaling/dependencies/README",
+          },
+          items: [
+            "scaling/dependencies/project-structure",
+            "scaling/dependencies/libraries",
+            "scaling/dependencies/conda-vs-pypi",
+            "scaling/dependencies/containers",
+            "scaling/dependencies/internals",
+            "scaling/dependencies/faq"
+          ],
+        },
         "scaling/failures",
         "scaling/data",
         "scaling/secrets",
-        "scaling/dependencies",
         "scaling/tagging"
       ]
     },
