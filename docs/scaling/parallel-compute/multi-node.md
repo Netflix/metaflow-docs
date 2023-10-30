@@ -63,14 +63,19 @@ class MPI4PyFlow(FlowSpec):
     def start(self):
         self.next(self.multinode, num_parallel=N_NODES)
 
-    @batch(image="eddieob/mpi-base:1", cpu=N_CPU, memory=MEMORY)
+    @batch(cpu=N_CPU, memory=MEMORY)
     @mpi
     @step
     def multinode(self):
+        # matches command mpiexec command
         current.mpi.exec(
             args=["-n", str(N_CPU * N_NODES), "--allow-run-as-root"],
             program="python mpi_hello_world.py",
         )
+        # others: 
+            # current.mpi.run: matches mpirun command
+            # current.mpi.cc: matches mpicc command
+            # current.mpi.broadcast_file: sends file from control to all others, such as compiled binary.
         self.next(self.join)
 
     @step
@@ -98,7 +103,7 @@ If preferred, you can also use the `@parallel` decorator itself and manually con
 | [`@tensorflow`](https://github.com/outerbounds/metaflow-tensorflow/tree/main) | Put TensorFlow code in a distributed strategy scope, and call it from step function. | Run the `@step` function code on each node. This means the user picks the appropriate [strategy](https://www.tensorflow.org/guide/distributed_training#types_of_strategies) in their code. | [`metaflow-tensorflow`](https://pypi.org/project/metaflow-tensorflow/) |  [Keras Distributed](https://github.com/outerbounds/metaflow-tensorflow/tree/main/examples/multi-node) |
 | [`@metaflow_ray`](https://github.com/outerbounds/metaflow-ray/tree/main) |  Write a Ray program locally or call script from `@step` function, `@metaflow_ray` takes care of forming the Ray cluster. | Forms a [Ray cluster](https://docs.ray.io/en/latest/cluster/getting-started.html) dynamically. Runs the `@step` function code on the control task as Ray’s “head node”. | [`metaflow-ray`](https://pypi.org/project/metaflow-ray/) | [GPT-J](https://github.com/outerbounds/metaflow-ray/tree/main/examples/ray-fine-tuning-gpt-j) & [Distributed XGBoost](https://github.com/outerbounds/metaflow-ray/tree/main/examples/train) |
 | [`@mpi`](https://github.com/outerbounds/metaflow-mpi) |  Exposes `current.mpi.cc`, `current.mpi.broadcast_file`, `current.mpi.run`, `current.mpi.exec`. Cluster SSH config is handled automatically inside the decorator. Requires OpenSSH and an MPI implementation are installed in the Metaflow task container. It was tested against OpenMPI, which you can find a sample Dockerfile for [here](https://github.com/outerbounds/metaflow-mpi/blob/main/examples/Dockerfile). | Forms an MPI cluster with passwordless SSH configured at task runtime. Users can submit a `mpi4py` program or compile, broadcast, and submit a C program. | [`metaflow-mpi`](https://pypi.org/project/metaflow-mpi/) | [Libgrape](https://github.com/outerbounds/metaflow-mpi/tree/main/examples/libgrape-ldbc-graph-benchmark) |
-| [`@deepspeed`](https://github.com/outerbounds/metaflow-deepspeed) | Exposes `current.deepspeed.run` <br/> Requires OpenSSH and OpenMPI installed in the Metaflow task container. | Form MPI cluster on the fly with passwordless SSH configured at task runtime (to reduce the risk of leaking private keys).  Submit the Deepspeed program and run. | [`metaflow-deepspeed`](https://pypi.org/project/metaflow-deepspeed/) | [Bert](https://github.com/outerbounds/metaflow-deepspeed/tree/main/examples/bert) & [Dolly](https://github.com/outerbounds/metaflow-deepspeed/tree/main/examples/dolly) |
+| [`@deepspeed`](https://github.com/outerbounds/metaflow-deepspeed) | Exposes `current.deepspeed.run` <br/> Requires OpenSSH and OpenMPI installed in the Metaflow task container. | Form MPI cluster with passwordless SSH configured at task runtime (to reduce the risk of leaking private keys).  Submit the Deepspeed program and run. | [`metaflow-deepspeed`](https://pypi.org/project/metaflow-deepspeed/) | [Bert](https://github.com/outerbounds/metaflow-deepspeed/tree/main/examples/bert) & [Dolly](https://github.com/outerbounds/metaflow-deepspeed/tree/main/examples/dolly) |
 
 ## Compute environment considerations
 
@@ -116,7 +121,7 @@ The steps are:
     - [Optional] Configure a cluster placement group in one availability zone
 
 #### Security Group for Passwordless SSH
-Multi-node frameworks based on MPI that require passwordless SSH. This requires extra configuration in your AWS Batch compute environment. To do this, go to the EC2 section of the AWS console by creating a security group that you can then attach to your Batch compute environment where you plan to run multi-node jobs, following these steps:
+Multi-node frameworks based on MPI require passwordless SSH. This means extra configuration in your AWS Batch compute environment is required. To enable MPI, go to the EC2 section of the AWS console and create a security group that you can then attach to your Batch compute environment where you plan to run multi-node jobs. Make sure you are in the same AWS region, and follow these steps in your AWS console to make the EC2 security group:
 - Choose `Add rule`
 - For `Type`, choose `All traffic`
 - For `Source type`, choose `Custom` and paste the security group ID
@@ -138,14 +143,13 @@ When you pick the instance types you want in your AWS Batch compute environment,
 The reason to do this is that latency between nodes is much faster when all worker nodes are in the same AWS Availability Zone, which will not necessarily happen without a Cluster Placement Group.
 
 #### Intranode communication with shared memory
-AWS Batch has a parameter called shared_memory that allows multiple processors on the same compute node to communicate using a memory (RAM) portion that is shared. This value can be tuned for your applications, and this [AWS blog](https://aws.amazon.com/blogs/compute/using-shared-memory-for-low-latency-intra-node-communication-in-aws-batch/) suggests a reasonable starting value of 4096 MB for most applications. In Metaflow, you can set this value like any other argument to the batch decorator:
+AWS Batch has a parameter called `shared_memory` that allows multiple processors on the same compute node to communicate using a memory (RAM) portion that is shared. _This feature works independently of the multi-node setting_, but can have additive benefits. This value can be tuned to your applications, and this [AWS blog](https://aws.amazon.com/blogs/compute/using-shared-memory-for-low-latency-intra-node-communication-in-aws-batch/) suggests a reasonable starting value of 4096 MB for most cases. In Metaflow, you can set this value like any other argument to the batch decorator:
 
 ```python
 from metaflow import FlowSpec, step, resources
 
-class BigSum(FlowSpec):
+class SharedMemory(FlowSpec):
 
-    @resources(memory=60000, cpu=1)
     @step
     def start(self):
         self.next(self.train, num_parallel=2)
@@ -153,17 +157,20 @@ class BigSum(FlowSpec):
    @parallel
    @batch(cpu=4, gpu=1, shared_memory=4096)
    @step
-    def end(self):
-        print("The sum is %f." % self.sum)
-        print("Computing it took %dms." % (self.took * 1000))
+    def train(self):
+        ...
+        self.next(self.join)
+
+    @step
+    def join(self, inputs):
+        self.next(self.end)
 
     @step
     def end(self):
-        print("The sum is %f." % self.sum)
-        print("Computing it took %dms." % (self.took * 1000))
+        pass
 
 if __name__ == '__main__':
-    BigSum()
+    SharedMemory()
 ```
 
 ### Kubernetes
