@@ -14,9 +14,9 @@ import ReactPlayer from 'react-player';
 And now note the difference with the `num_parallel` case:
 <ReactPlayer playing controls muted loop url='/assets/parallel-job.mp4' width='100%' height='100%'/>
 
-IPC is needed in cases that require computers on different machines pooling their resources to complete one job, such as a multi-node [all reduce](https://mpitutorial.com/tutorials/mpi-reduce-and-allreduce/). This computation pattern primarily appears in distributed AI training and numerical simulations in traditional HPC contexts. To support these use cases, the `@parallel` decorator provides a Metaflow API to launch `num_parallel` tasks that can communicate directly with each other. 
+IPC is needed in cases that require computers on different machines pooling their resources to complete one job, such as a multi-node process that where each worker does some computing and then results are synced in an [all reduce](https://mpitutorial.com/tutorials/mpi-reduce-and-allreduce/). This computation pattern primarily appears in distributed AI training and numerical simulations in traditional HPC contexts. To support these use cases, the `@parallel` decorator provides a Metaflow API to launch `num_parallel` tasks that can communicate directly with each other. 
 
-The main reason to use Metaflow and the `@parallel` decorator for this style of compute is that the implementation works with standard tools in the distributed computing ecosystem like Ray and PyTorch distributed, and is additive with the typical benefits of Metaflow, for example, handling dependencies across worker nodes and seamlessly moving between compute providers. 
+The main reason to use Metaflow and the `@parallel` decorator for this style of compute is that the implementation works with standard tools in the distributed computing ecosystem like Ray and PyTorch distributed, and is additive with the typical benefits of Metaflow, for example, packaging code and dependencies across worker nodes and seamlessly moving between compute providers. 
 
 To implement the idea, Metaflow has a decorator called `@parallel` that automatically forms a set of [gang-scheduled](https://en.wikipedia.org/wiki/Gang_scheduling) tasks that can coordinate on a single job defined or called in the `@step` function. 
 
