@@ -1,6 +1,6 @@
 # Using GPUs
 
-Metaflow allows access to GPUs on your local workstation, [AWS Batch](/scaling/remote-tasks/aws-batch), or [Kubernetes](/scaling/remote-tasks/kubernetes) cluster with the change of a single command in your step function code. By changing parameters in your Metaflow workflow scripts you can request Metaflow tasks be run on:
+Metaflow allows access to GPUs on your local workstation, [AWS Batch](/scaling/remote-tasks/aws-batch), or [Kubernetes](/scaling/remote-tasks/kubernetes) cluster with the change of a few characters in your Python code or Metaflow run command. By changing parameters in either of these ways, Metaflow tasks can run on:
 - Single GPUs
 - Single instances with many GPUs
 - Many instances with single GPUs (see: [Running Multi-node Tasks](./multi-node.md))
@@ -9,7 +9,7 @@ Metaflow allows access to GPUs on your local workstation, [AWS Batch](/scaling/r
 This page provides a collection of tips for how to do the above, and how to configure your GPU environments to use other Metaflow features that make these workflows more robust and portable. 
 
 ## Requesting GPUs in Metaflow steps
-Whether running in a local workstation or [executing tasks remotely](https://docs.metaflow.org/scaling/remote-tasks/introduction), when requesting resources with Metaflow, you can use the `@resources` decorator to change properties of the compute environment like the number of CPUs, memory, and GPUs (the purpose of this page) contributing resources to the task. 
+Whether running in a local workstation or [executing tasks remotely](https://docs.metaflow.org/scaling/remote-tasks/introduction), when requesting resources with Metaflow, you can use the `@resources` decorator to change properties of the compute environment like the amount of memory and number of CPUs and GPUs (the purpose of this page) contributing to the task. 
 
 Consider this flow, where the start step calls the `my_gpu_routine` function on 1 GPU.
 ```python
@@ -34,6 +34,7 @@ if __name__ == '__main__':
 ```
 
 ## Preparing compute environments for GPU scheduling
+In order to enable the end user experience shown above, the Metaflow admin needs to set up their cluster to run GPU jobs.
 
 ### AWS Batch
 
@@ -41,7 +42,7 @@ This section assumes that you have a basic familiarity with deploying Metaflow. 
 
 To use GPUs in your Metaflow tasks that run on AWS Batch, you need to run the flow in a [Job Queue](https://docs.aws.amazon.com/batch/latest/userguide/job_queues.html) that is attached to a [Compute Environment](https://docs.aws.amazon.com/batch/latest/userguide/compute_environments.html) with GPU instances.
 
-To set this up, you can either modify the allowable instances in a [Metaflow AWS deployment template](https://github.com/outerbounds/metaflow-tools/tree/master/aws) or manually modify the default deployment from the AWS console. The steps are:
+To set this up, you can either modify the allowable instances in a [Metaflow AWS deployment template](https://github.com/outerbounds/metaflow-tools/tree/master/aws) or manually modify an existing deployment from the AWS console. The steps are:
 
 1. Create a compute environment with GPU-enabled EC2 instances.
 2. Attach the compute environment to a new Job Queue - for example named `my-gpu-queue`. 
@@ -57,7 +58,7 @@ This makes it easier to track GPU workflows, which can be costly, independent of
 :::
 
 
-Here is a sample workflow showing how to declare the Batch queue explicitly:
+Here is a sample workflow showing how to declare the Batch queue in the most explicit way:
 ```python
 # gpu_flow_on_aws_batch.py
 from metaflow import FlowSpec, step, batch
@@ -82,12 +83,12 @@ if __name__ == '__main__':
 ### Kubernetes
 Metaflow compute tasks can run on any Kubernetes cluster. You can use this section to help set up GPU nodes in your Kubernetes cluster, but it is not intended to be a complete guide. It is meant to help you:
 1. understand GPU requirements in a Kubernetes cluster and how they relate to how Metaflow users declare a task needs GPUs, and
-2. find resources to guide key decisions around how to configure the nodes in your Kubernetes clusters. 
+2. find resources to guide decisions around configuring nodes in Kubernetes clusters for GPU use. 
 
 #### Device plugins for scheduling GPU pods
 Metaflow tasks that run with Kubernetes as a compute backend are run as Pods. To access GPUs, Kubernetes Pods need to be configured in a special way that allows them to access specific GPU hardware features. 
 
-If you are a Metaflow workflow developer or data scientist, you can skip ahead to the [next section](#what-resources-can-i-declare-in-metaflow-steps) of this page. 
+If you are a Metaflow workflow developer or data scientist, you can skip ahead to the [next section](#what-resources-can-i-declare-in-metaflow-steps) of this page, unless you want to understand what happens behind the scenes. 
 
 If you are the administrator of the Kubernetes cluster powering Metaflow tasks and are looking to enable GPU tasks, the [Kubernetes documentation on Scheduling GPUs](https://kubernetes.io/docs/tasks/manage-gpus/scheduling-gpus/) is a good place to start. The guide explains how to install [Kubernetes Device Plugins](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/device-plugins/) so your cluster exposes a custom schedulable resource such as `amd.com/gpu` or `nvidia.com/gpu`, which Metaflow’s Kubernetes resources integration is already configured to call when a user specifies a decorator like `@kubernetes(..., gpu=1, ...)`. 
 
@@ -104,7 +105,7 @@ Read Azure’s guide about [GPUs on AKS](https://learn.microsoft.com/en-us/azure
 
 ### What resources can I declare in Metaflow steps?
 A potential for end-users to waste time emerges if the workflow developer does not understand what resources their Metaflow steps can declare. 
-For example, you can run into problems like AWS Batch jobs being stuck in a `RUNNABLE` or `STARTING` state or Kubernetes jobs being stuck in `PENDING` state for unclear reasons if you are not aware of what machines are available in your Metaflow deployments compute environment. 
+For example, you can run into problems like AWS Batch jobs being stuck in a `RUNNABLE` or `STARTING` state or Kubernetes jobs being stuck in `PENDING` state for unclear reasons if you are not aware of what machines are available in your Metaflow deployment compute environment. 
 
 Alleviating such issues requires communication between the person who maintains the Metaflow deployment and the person who builds and runs workflows. 
 Of course, these may be the same person 🦄 on smaller projects. 
@@ -133,7 +134,7 @@ This section shares some observations and examples to get you started with each.
 
 ### Conda
 When using `@conda` or `@conda_base` to run GPU Metaflow tasks, you will want to remember that you can declare Conda channels.  
-Often, you will want to request packages from specific channels like the following flow demonstrates:
+Often, you will want to request packages from specific channels like the following flow outline demonstrates:
 ```python
 from metaflow import FlowSpec, step, conda_base
 
@@ -155,7 +156,7 @@ class CondaGPUDependencyFlow(FlowSpec):
         ...
 ```
 
-Remember that if you run workflows from a machine with a different operating system than where remote tasks run, for example launching Metaflow runs that have `@kubernetes` tasks from a Mac, some of the available dependencies and versions may not be the same for each operating system. In this case,
+Remember that if you run workflows from a machine with a different operating system than where remote tasks run, for example launching Metaflow runs that have remote `@kubernetes` tasks from a Mac, some available dependencies and versions may not be the same for each operating system. In this case,
 - you can go to the [conda-forge website](https://conda-forge.org/feedstock-outputs/) and find which package versions are available across each platform, and 
 - it might help to you to use `@conda` localized to Metaflow steps, instead of `@conda_base` applied to all flow steps.
 
@@ -183,4 +184,4 @@ RUN pip install -r /tmp/requirements.txt
 ```
 
 #### Example: AWS Deep Learning Containers (DLCs)
-AWS maintains a [registry of Docker images for deep learning](https://github.com/aws/deep-learning-containers/blob/master/available_images.md), many of which have CPU and GPU versions. These can be helpful guides if your team decides to craft images for deep learning tasks run on Metaflow.
+AWS maintains a [registry of Docker images for deep learning](https://github.com/aws/deep-learning-containers/blob/master/available_images.md), many of which have CPU and GPU versions. These can be helpful guides if your team decides to craft images for deep learning tasks to run on Metaflow.
