@@ -2,6 +2,18 @@
 
 The `@parallel` decorator is like the [foreach](https://docs.metaflow.org/metaflow/basics#foreach) in that it allows Metaflow users to launch multiple runtime tasks based on the same step function process end users write. The primary difference is that `@parallel` enables inter-process communication (IPC) between tasks, often referred to as “multi-node computation” in HPC and deep learning contexts. 
 
+This basic difference is simple to visualize. First consider the embarassingly parallel `foreach`:
+```mdx-code-block
+import ReactPlayer from 'react-player';
+```
+
+<ReactPlayer playing controls muted loop url='/assets/foreach-job.mp4' width='100%' height='100%'/>
+
+<br/>
+
+And now note the difference with the `num_parallel` case:
+<ReactPlayer playing controls muted loop url='/assets/parallel-job.mp4' width='100%' height='100%'/>
+
 IPC is needed in cases that require computers on different machines pooling their resources to complete one job, such as a multi-node [all reduce](https://mpitutorial.com/tutorials/mpi-reduce-and-allreduce/). This computation pattern primarily appears in distributed AI training and numerical simulations in traditional HPC contexts. To support these use cases, the `@parallel` decorator provides a Metaflow API to launch `num_parallel` tasks that can communicate directly with each other. 
 
 The main reason to use Metaflow and the `@parallel` decorator for this style of compute is that the implementation works with standard tools in the distributed computing ecosystem like Ray and PyTorch distributed, and is additive with the typical benefits of Metaflow, for example, handling dependencies across worker nodes and seamlessly moving between compute providers. 
@@ -75,7 +87,7 @@ class MPI4PyFlow(FlowSpec):
         # others: 
             # current.mpi.run: matches mpirun command
             # current.mpi.cc: matches mpicc command
-            # current.mpi.broadcast_file: sends file from control to all others, such as compiled binary.
+            # current.mpi.broadcast_file: sends file from control to all others, such as a compiled binary.
         self.next(self.join)
 
     @step
