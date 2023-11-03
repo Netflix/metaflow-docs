@@ -79,7 +79,7 @@ class MPI4PyFlow(FlowSpec):
     @mpi
     @step
     def multinode(self):
-        # matches command mpiexec command
+        # matches mpiexec command
         current.mpi.exec(
             args=["-n", str(N_CPU * N_NODES), "--allow-run-as-root"],
             program="python mpi_hello_world.py",
