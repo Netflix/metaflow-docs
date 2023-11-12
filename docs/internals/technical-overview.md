@@ -220,11 +220,11 @@ functionality is not required by Metaflow, but it makes the system much more **u
 The service also helps to make data artifacts and other metadata about runs more
 discoverable during result-time, as explained below.
 
-- \`\`[`metadata.py` - base class for metadata
+- [`metadata.py` - base class for metadata
   providers](https://github.com/Netflix/metaflow/blob/master/metaflow/metadata/metadata.py)
-- \`\`[`service.py` - default implementation of the metadata
+- [`service.py` - default implementation of the metadata
   provider](https://github.com/Netflix/metaflow/blob/master/metaflow/plugins/metadata/service.py)
-- \`\`[`local.py` - local implementation of the metadata
+- [`local.py` - local implementation of the metadata
   provider](https://github.com/Netflix/metaflow/blob/master/metaflow/plugins/metadata/local.py)
 
 ## Result-time Components
