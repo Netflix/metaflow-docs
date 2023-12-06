@@ -237,7 +237,7 @@ You can define the schedule with `@schedule` in one of the following ways:
 - `@schedule(weekly=True)` runs the workflow on Sundays at midnight.
 - `@schedule(daily=True)` runs the workflow every day at midnight.
 - `@schedule(hourly=True)` runs the workflow every hour.
-- `@schedule(cron='0 10 * * ? *', timezone='Etc/UTC')` runs the workflow at the given
+- `@schedule(cron='0 10 * * ? *')` runs the workflow at the given
   [Cron](http://en.wikipedia.org/wiki/cron) schedule, in this case at 10am UTC every
   day. You can use the rules defined
   [here](https://docs.aws.amazon.com/eventbridge/latest/userguide/scheduled-events.html)
