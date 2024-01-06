@@ -177,6 +177,18 @@ $ python scikitflow.py --environment=conda run
 You can search all available public Conda packages at [anaconda.org](https://anaconda.org)
 :::
 
+:::tip
+By default, all conda packages are searched in the default channel i.e. [conda-forge](https://conda-forge.org/feedstock-outputs/). However, some packages may exist in other channels. To specify a custom channel for a particular package, use the following syntax: `{channel_name}::{package_name}`.
+
+Example: The package `pytorch` exists in the `pytorch` channel. Thus, the dependency will be specified as follows:
+```
+@conda(
+    python='3.9.13',
+    packages={'pytorch::pytorch': '2.1.2'}
+)
+```
+:::
+
 ## Using the same packages in all steps
 
 Sometimes you may want to use the same set of packages in all steps. Repeating the same
