@@ -178,11 +178,14 @@ You can search all available public Conda packages at [anaconda.org](https://ana
 :::
 
 :::tip
-By default, all conda packages are searched in the default channel i.e. [conda-forge](https://conda-forge.org/feedstock-outputs/). However, some packages may exist in other channels.
+By default, all conda packages are searched in the default channel
+i.e. [conda-forge](https://conda-forge.org/feedstock-outputs/).
+However, some packages may exist in other channels.
 
 To specify a custom channel for a particular package, use the following syntax: `{channel_name}::{package_name}`.
 
-Example: The package `pytorch` exists in the `pytorch` channel. Thus, the dependency will be specified as follows:
+Example: The package `pytorch` exists in the `pytorch` channel.
+Thus, the dependency will be specified as follows:
 ```
 @conda(
     python='3.9.13',
