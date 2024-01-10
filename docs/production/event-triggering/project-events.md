@@ -81,7 +81,7 @@ Thanks to `@project`, the flows are deployed with a special name that includes a
 branch prefix. By default,
 [each user gets their own
 prefix](/production/coordinating-larger-metaflow-projects#single-flow-multiple-developers),
-so you should the output of the `start` step of `FirstProjectFlow` should look
+so the output of the `start` step of `FirstProjectFlow` should look
 like:
 
 ```
