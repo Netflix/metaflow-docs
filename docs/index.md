@@ -71,7 +71,7 @@ projects.
 - [Roadmap](introduction/roadmap)
 - [Get in Touch](introduction/getting-in-touch)
 - [Metaflow on AWS](metaflow-on-aws)
-- [Metaflow Sandbox](sandbox)
+- [Metaflow Sandbox](https://metaflow.org/sandbox)
 - [Deploying to AWS](metaflow-on-aws/deploy-to-aws)
 
 -->
