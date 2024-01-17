@@ -9,7 +9,7 @@ The [Metaflow client API](../../../metaflow/client.md).
 
 ## Before playing this episode:
 
-Configure your [sandbox](../../../metaflow-on-aws/metaflow-sandbox.md).
+Configure your [sandbox](https://metaflow.org/sandbox).
 
 ## To play this episode:
 

@@ -19,7 +19,7 @@ parallel genre-specific statistics computations. You can then access the data ar
 
 ## Before playing this episode:
 
-Configure your [sandbox](../../../metaflow-on-aws/metaflow-sandbox.md).
+Configure your [sandbox](https://metaflow.org/sandbox).
 
 ## To play this episode:
 

@@ -66,7 +66,7 @@ compute layer, nor production-grade deployments.
 :::info
 
 You can test the AWS/Azure/GCP/Kubernetes stack easily in your browser for free
-by signing up for an [Outerbounds Sandbox](../sandbox/).
+by signing up for a [Metaflow Sandbox](https://metaflow.org/sandbox/).
 
 :::
 
