@@ -34,7 +34,7 @@ R](http://slack.outerbounds.co).
 ## Metaflow on AWS
 
 - [Metaflow on AWS](r/metaflow-on-aws)
-- [Outerbounds Sandbox](https://outerbounds.com/sandbox/)
+- [Metaflow Sandbox](../sandbox/)
 - [Deploying to AWS](r/metaflow-on-aws/deploy-to-aws)
 
 ## Developing with Metaflow
