@@ -71,7 +71,7 @@ projects.
 - [Roadmap](introduction/roadmap)
 - [Get in Touch](introduction/getting-in-touch)
 - [Metaflow on AWS](metaflow-on-aws)
-- [Outerbounds Sandbox](https://outerbounds.com/sandbox)
+- [Outerbounds Sandbox](https://outerbounds.com/sandbox/)
 - [Deploying to AWS](metaflow-on-aws/deploy-to-aws)
 
 -->
