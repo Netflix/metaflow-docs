@@ -116,7 +116,7 @@ handy when designing processes around production deployments.
 
 You can get a feel of all these concepts and test them hands-on without having to
 install anything locally by signing up for
-[a Metaflow Sandbox](https://outerbounds.com/sandbox/)!
+[an Outerbounds Sandbox](https://outerbounds.com/sandbox/)!
 
 :::
 
