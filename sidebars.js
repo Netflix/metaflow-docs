@@ -91,6 +91,7 @@ const sidebars = {
           items: [
             "metaflow/visualizing-results/effortless-task-inspection-with-default-cards",
             "metaflow/visualizing-results/easy-custom-reports-with-card-components",
+            "metaflow/visualizing-results/dynamic-cards",
             "metaflow/visualizing-results/advanced-shareable-cards-with-card-templates",
           ],
         }
