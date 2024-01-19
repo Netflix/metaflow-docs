@@ -7,7 +7,7 @@ Metaflow Cards allows you to produce [human readable reports in workflows](/meta
  - **Enable cards** by adding [the `@card` decorator](/api/step-decorators/card) in any step.
  - **Specify card contents** with [card components](#card-components).
  - **Populate card components** with [the `current` object](/api/current#card).
- - **Retrive cards** with [the `get_cards` method](#retrieving-cards) or on the command line with the `card` commands.
+ - **Retrieve cards** with [the `get_cards` method](#retrieving-cards) or on the command line with the `card` commands.
  - **Create fully custom, shareable cards** with custom [`MetaflowCard` classes](#defining-a-custom-card).
 
 ## Retrieving cards
@@ -17,7 +17,7 @@ To retrieve a card after a run has finished, use the `get_cards` function e.g. i
 Since a task can contain multiple cards `get_cards` returns a container object, `CardContainer`, which holds `Card` objects corresponding to individual cards. Notably both `CardContainer` and `Card` objects contain a function that allow them to visualize cards in the notebook output cell automatically, so a single `get_cards` call can be used to show all cards of a step in a notebook.
 
 
-<DocSection type="function" name="get_cards" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_client.py#L207">
+<DocSection type="function" name="get_cards" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_client.py#L216">
 <SigArgSection>
 <SigArg name="task" type="Union" /><SigArg name="id" type="Optional" default="None" /><SigArg name="type" type="Optional" default="None" /><SigArg name="follow_resumed" type="bool" default="True" />
 </SigArgSection>
@@ -35,7 +35,7 @@ Since a task can contain multiple cards `get_cards` returns a container object, 
 
 
 
-<DocSection type="class" name="CardContainer" module="metaflow.cards" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_client.py#L128">
+<DocSection type="class" name="CardContainer" module="metaflow.cards" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_client.py#L137">
 <SigArgSection>
 <SigArg name="" />
 </SigArgSection>
@@ -50,15 +50,12 @@ Since a task can contain multiple cards `get_cards` returns a container object, 
 <SigArg name="" />
 </SigArgSection>
 <Description summary="`Card` represents an individual Metaflow Card, a single HTML file, produced by\nthe card `@card` decorator. `Card`s are contained by `CardContainer`, returned by\n`get_cards`." extended_summary="Note that the contents of the card, an HTML file, is retrieved lazily when you call\n`Card.get` for the first time or when the card is rendered in a notebook." />
-<ParamSection name="Attributes">
-	<Parameter name="id" desc="The ID of the card, if specified with `@card(id=ID)`." />
-	<Parameter name="path" desc="The path of the card in the datastore which uniquely\nidentifies the card.\n\nReturns\n-------\nstr\n    Path to the card" />
-</ParamSection>
+
 </DocSection>
 
 
 
-<DocSection type="method" name="Card.get" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_client.py#L60">
+<DocSection type="method" name="Card.get" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_client.py#L69">
 <SigArgSection>
 <SigArg name="self" />
 </SigArgSection>
@@ -70,7 +67,7 @@ Since a task can contain multiple cards `get_cards` returns a container object, 
 
 
 
-<DocSection type="method" name="Card.view" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_client.py#L98">
+<DocSection type="method" name="Card.view" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_client.py#L107">
 <SigArgSection>
 <SigArg name="self" />
 </SigArgSection>
@@ -88,7 +85,7 @@ The components are added to cards in `@step` methods (or functions called from s
 ### Markdown
 
 
-<DocSection type="class" name="Markdown" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L420">
+<DocSection type="class" name="Markdown" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L659">
 <SigArgSection>
 <SigArg name="text" default="None" />
 </SigArgSection>
@@ -99,25 +96,40 @@ The components are added to cards in `@step` methods (or functions called from s
 </DocSection>
 
 
+
+<DocSection type="method" name="Markdown.update" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L678">
+<SigArgSection>
+<SigArg name="self" /><SigArg name="text" default="None" />
+</SigArgSection>
+<Description summary="Update the markdown content of this component.\nUse this to refresh content of a dynamic card." />
+<ParamSection name="Parameters">
+	<Parameter name="text" type="str" desc="Text formatted in Markdown." />
+</ParamSection>
+</DocSection>
+
+
 ### Image
 
 
-<DocSection type="class" name="Image" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L165">
+<DocSection type="class" name="Image" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L247">
 <SigArgSection>
-<SigArg name="src" default="None" /><SigArg name="label" default="None" />
+<SigArg name="src" default="None" /><SigArg name="label" default="None" /><SigArg name="disable_updates" type="bool" default="True" />
 </SigArgSection>
 <Description summary="An image." extended_summary="`Images can be created directly from PNG/JPG/GIF `bytes`, `PIL.Image`s,\nor Matplotlib figures. Note that the image data is embedded in the card,\nso no external files are required to show the image.\n\nExample: Create an `Image` from bytes:\n```\ncurrent.card.append(\n    Image(\n        requests.get(&#34;https://www.gif-vif.com/hacker-cat.gif&#34;).content,\n        &#34;Image From Bytes&#34;\n    )\n)\n```\n\nExample: Create an `Image` from a Matplotlib figure\n```\nimport pandas as pd\nimport numpy as np\ncurrent.card.append(\n    Image.from_matplotlib(\n        pandas.DataFrame(\n            np.random.randint(0, 100, size=(15, 4)),\n            columns=list(&#34;ABCD&#34;),\n        ).plot()\n    )\n)\n```\n\nExample: Create an `Image` from a [PIL](https://pillow.readthedocs.io/) Image\n```\nfrom PIL import Image as PILImage\ncurrent.card.append(\n    Image.from_pil_image(\n        PILImage.fromarray(np.random.randn(1024, 768), &#34;RGB&#34;),\n        &#34;From PIL Image&#34;\n    )\n)\n```" />
 <ParamSection name="Parameters">
 	<Parameter name="src" type="bytes" desc="The image data in `bytes`." />
 	<Parameter name="label" type="str" desc="Optional label for the image." />
 </ParamSection>
+<ParamSection name="Attributes">
+	<Parameter name="component_id" />
+</ParamSection>
 </DocSection>
 
 
 
-<DocSection type="method" name="Image.from_matplotlib" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L314">
+<DocSection type="method" name="Image.from_matplotlib" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L553">
 <SigArgSection>
-<SigArg name="plot" /><SigArg name="label" type="Optional" default="None" />
+<SigArg name="plot" /><SigArg name="label" type="Optional" default="None" /><SigArg name="disable_updates" type="bool" default="False" />
 </SigArgSection>
 <Description summary="Create an `Image` from a Matplotlib plot." />
 <ParamSection name="Parameters">
@@ -128,9 +140,9 @@ The components are added to cards in `@step` methods (or functions called from s
 
 
 
-<DocSection type="method" name="Image.from_pil_image" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L266">
+<DocSection type="method" name="Image.from_pil_image" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L519">
 <SigArgSection>
-<SigArg name="pilimage" /><SigArg name="label" type="Optional" default="None" />
+<SigArg name="pilimage" /><SigArg name="label" type="Optional" default="None" /><SigArg name="disable_updates" type="bool" default="False" />
 </SigArgSection>
 <Description summary="Create an `Image` from a PIL image." />
 <ParamSection name="Parameters">
@@ -143,7 +155,7 @@ The components are added to cards in `@step` methods (or functions called from s
 ### Artifact
 
 
-<DocSection type="class" name="Artifact" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L20">
+<DocSection type="class" name="Artifact" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L63">
 <SigArgSection>
 <SigArg name="artifact" type="Any" /><SigArg name="name" type="Optional" default="None" /><SigArg name="compressed" type="bool" default="True" />
 </SigArgSection>
@@ -153,26 +165,32 @@ The components are added to cards in `@step` methods (or functions called from s
 	<Parameter name="name" type="str, optional" desc="Optional label for the object." />
 	<Parameter name="compressed" type="bool, default: True" desc="Use a truncated representation." />
 </ParamSection>
+<ParamSection name="Attributes">
+	<Parameter name="component_id" />
+</ParamSection>
 </DocSection>
 
 
 ### Table
 
 
-<DocSection type="class" name="Table" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L58">
+<DocSection type="class" name="Table" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L109">
 <SigArgSection>
-<SigArg name="data" type="Optional" default="None" /><SigArg name="headers" type="Optional" default="None" />
+<SigArg name="data" type="Optional" default="None" /><SigArg name="headers" type="Optional" default="None" /><SigArg name="disable_updates" type="bool" default="False" />
 </SigArgSection>
 <Description summary="A table." extended_summary="The contents of the table can be text or numerical data, a Pandas dataframe,\nor other card components: `Artifact`, `Image`, `Markdown` objects.\n\nExample: Text and artifacts\n```\nfrom metaflow.cards import Table, Artifact\ncurrent.card.append(\n    Table([\n        ['first row', Artifact({'a': 2})],\n        ['second row', Artifact(3)]\n    ])\n)\n```\n\nExample: Table from a Pandas dataframe\n```\nfrom metaflow.cards import Table\nimport pandas as pd\nimport numpy as np\ncurrent.card.append(\n    Table.from_dataframe(\n        pd.DataFrame(\n            np.random.randint(0, 100, size=(15, 4)),\n            columns=list(&#34;ABCD&#34;)\n        )\n    )\n)\n```" />
 <ParamSection name="Parameters">
 	<Parameter name="data" type="List[List[str or MetaflowCardComponent]], optional" desc="List (rows) of lists (columns). Each item can be a string or a `MetaflowCardComponent`." />
 	<Parameter name="headers" type="List[str], optional" desc="Optional header row for the table." />
 </ParamSection>
+<ParamSection name="Attributes">
+	<Parameter name="component_id" />
+</ParamSection>
 </DocSection>
 
 
 
-<DocSection type="method" name="Table.from_dataframe" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L114">
+<DocSection type="method" name="Table.from_dataframe" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L179">
 <SigArgSection>
 <SigArg name="dataframe" default="None" /><SigArg name="truncate" type="bool" default="True" />
 </SigArgSection>
@@ -184,11 +202,87 @@ The components are added to cards in `@step` methods (or functions called from s
 </DocSection>
 
 
+### VegaChart
+
+
+<DocSection type="class" name="VegaChart" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L788">
+<SigArgSection>
+<SigArg name="spec" type="dict" /><SigArg name="show_controls" type="bool" default="False" />
+</SigArgSection>
+<Description summary="Create a chart based on a Vega Lite specification." />
+<ParamSection name="Parameters">
+	<Parameter name="spec" type="dict" desc="Vega Lite chart specification as a dictionary." />
+	<Parameter name="show_controls" type="bool, optional" desc="Show Vega controls for downloading the chart image etc." />
+</ParamSection>
+<ParamSection name="Attributes">
+	<Parameter name="component_id" />
+</ParamSection>
+</DocSection>
+
+
+
+<DocSection type="method" name="VegaChart.from_altair_chart" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L835">
+<SigArgSection>
+<SigArg name="altair_chart" />
+</SigArgSection>
+<Description summary="Create a chart based on an Altair Chart object." />
+<ParamSection name="Parameters">
+	<Parameter name="chart" type="altair.Chart" desc="An Altair Chart object." />
+</ParamSection>
+</DocSection>
+
+
+
+<DocSection type="method" name="VegaChart.update" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L809">
+<SigArgSection>
+<SigArg name="self" /><SigArg name="spec" default="None" />
+</SigArgSection>
+<Description summary="Update the chart specification and data.\nUse this to refresh content of a dynamic card." />
+<ParamSection name="Parameters">
+	<Parameter name="spec" type="dict" desc="The updated chart Vega Lite specifcation" />
+</ParamSection>
+</DocSection>
+
+
+### ProgressBar
+
+
+<DocSection type="class" name="ProgressBar" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L701">
+<SigArgSection>
+<SigArg name="max" type="int" default="100" /><SigArg name="label" type="str" default="None" /><SigArg name="value" type="int" default="0" /><SigArg name="unit" type="str" default="None" /><SigArg name="metadata" type="str" default="None" />
+</SigArgSection>
+<Description summary="A Progress bar for tracking progress of any task." extended_summary="Example:\n```\nprogress_bar = ProgressBar(\n    max=100,\n    label=&#34;Progress Bar&#34;,\n    value=0,\n    unit=&#34;%&#34;,\n    metadata=&#34;0.1 items/s&#34;\n)\ncurrent.card.append(\n    progress_bar\n)\nfor i in range(100):\n    progress_bar.update(i, metadata=&#34;%s items/s&#34; % i)\n\n```" />
+<ParamSection name="Parameters">
+	<Parameter name="max" type="int" desc="The maximum value of the progress bar." />
+	<Parameter name="label" type="str, optional" desc="Optional label for the progress bar." />
+	<Parameter name="value" type="int, optional" desc="Optional initial value of the progress bar." />
+	<Parameter name="unit" type="str, optional" desc="Optional unit for the progress bar." />
+	<Parameter name="metadata" type="str, optional" desc="Optional additional information to show on the progress bar." />
+</ParamSection>
+<ParamSection name="Attributes">
+	<Parameter name="component_id" />
+</ParamSection>
+</DocSection>
+
+
+
+<DocSection type="method" name="ProgressBar.update" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L754">
+<SigArgSection>
+<SigArg name="self" /><SigArg name="new_value" type="int" /><SigArg name="metadata" type="str" default="None" />
+</SigArgSection>
+<Description summary="Update the progress bar status.\nUse this to refresh content of a dynamic card." />
+<ParamSection name="Parameters">
+	<Parameter name="new_value" type="int" desc="Updated value of the progress bar" />
+	<Parameter name="metadata" type="str" desc="Updated additional information" />
+</ParamSection>
+</DocSection>
+
+
 ## Defining a custom card
 
-You can define custom cards types (`T` in `@card(type=T)`) by creating a Python package that includes a class that derives from `MetaflowCard`, documented below.
+You can define custom cards types (`T` in `@card(type=T)`) by creating a Python package that includes a class that derives from `MetaflowCard`, documented below. Read more in [Advanced, Shareable Cards with Card Templates](/metaflow/visualizing-results/advanced-shareable-cards-with-card-templates).
 
-Find detailed instructions, a starter template, and an example of a simple custom card at [https://github.com/outerbounds/metaflow-card-html]( https://github.com/outerbounds/metaflow-card-html).
+Find detailed instructions, a starter template, and an example of a [simple static custom card](https://github.com/outerbounds/metaflow-card-html) and [an example of a dynamic card]( https://github.com/outerbounds/metaflow-card-scatter3d).
 
 
 <DocSection type="class" name="MetaflowCard" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/card.py#L7">
@@ -206,16 +300,48 @@ Find detailed instructions, a starter template, and an example of a simple custo
 
 
 
-<DocSection type="method" name="MetaflowCard.render" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/card.py#L52">
+<DocSection type="method" name="MetaflowCard.render" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/card.py#L80">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="task" />
 </SigArgSection>
-<Description summary="Produce custom card contents in HTML." extended_summary="Subclasses override this method to customize the card contents." />
+<Description summary="Produce custom card contents in HTML. The HTML returned by this method\nrepresents the final card contents." extended_summary="Subclasses override this method to customize the card contents.\n\nNote that dynamic cards can also access an attribute\n`self.runtime_data` inside this method to retrieve the latest user-defined\nruntime data, i.e. the latest `data` object passed in to `render_runtime`\nor `refresh`." />
 <ParamSection name="Parameters">
 	<Parameter name="task" type="Task" desc="A `Task` object that allows you to access data from the finished task and tasks\npreceding it." />
 </ParamSection>
 <ParamSection name="Returns">
 	<Parameter type="str" desc="Card contents as an HTML string." />
+</ParamSection>
+</DocSection>
+
+
+
+<DocSection type="method" name="MetaflowCard.render_runtime" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/card.py#L105">
+<SigArgSection>
+<SigArg name="self" /><SigArg name="task" /><SigArg name="data" />
+</SigArgSection>
+<Description summary="Produce intermediate custom card contents in HTML. The HTML returned by\nthis method represents a runtime snapshot of a dynamic card." extended_summary="Subclasses may override this method to customize the card contents while a\ntask is executing, making the card dynamic.\n\nNote that in contrast to `render`, the `task` object\npassed to this method does not allow you to access artifacts from the\ncurrently running task, since they are not yet available. Instead, you\ncan use the `data` dictionary to retrieve runtime data passed\nin the user-facing `refresh` method." />
+<ParamSection name="Parameters">
+	<Parameter name="task" type="Task" desc="A `Task` object that allows you to access data from tasks\npreceding it the currently running task." />
+	<Parameter name="data" type="dict" desc="A dictionary containing user-defined runtime data." />
+</ParamSection>
+<ParamSection name="Returns">
+	<Parameter type="str" desc="Card contents as an HTML string." />
+</ParamSection>
+</DocSection>
+
+
+
+<DocSection type="method" name="MetaflowCard.refresh" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/card.py#L134">
+<SigArgSection>
+<SigArg name="self" /><SigArg name="task" /><SigArg name="data" />
+</SigArgSection>
+<Description summary="Produce a runtime data JSON that is passed to the card Javascript\non the client-side." extended_summary="Subclasses may override this method to customize the card contents while a\ntask is executing, making the card dynamic.\n\nA JSON-encoded dictionary returned by this method is passed to the\n`metaflow_card_update` Javascript method on the client-side card to\nupdate its contents live. You can perform arbitrary preprocessing\nand refinement of the data passed to Javascript in this method. Or,\nyou may simply return the user-defined `data` as-is.\n\nNote that in contrast to `render`, the `task` object\npassed to this method does not allow you to access artifacts from the\ncurrently running task, since they are not yet available. Instead, you\ncan use the `data` dictionary to retrieve runtime data passed\nin the user-facing `refresh` method." />
+<ParamSection name="Parameters">
+	<Parameter name="task" type="Task" desc="A `Task` object that allows you to access data from tasks\npreceding it the currently running task." />
+	<Parameter name="data" type="dict" desc="A dictionary containing user-defined runtime data." />
+</ParamSection>
+<ParamSection name="Returns">
+	<Parameter type="dict" desc="Dictionary passed to the card on the client-side" />
 </ParamSection>
 </DocSection>
 
