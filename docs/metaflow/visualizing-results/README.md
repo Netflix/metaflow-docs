@@ -22,20 +22,24 @@ can use them to monitor progress and visualize intermediate results of running t
 
 ## What are cards?
 
-To get an idea of how cards can make an ML project observable, take a look at the following short video:
+To get an idea of how cards can make an ML project observable, take a look at the following
+short video:
 
 <ReactPlayer controls url="https://www.youtube.com/watch?v=Sb5GQ-rc4J4" />
 <br/>
 
 Here are some illustrative use cases that cards are a good fit for:
 
-- Creating a report of model performance or data quality every time a task executes, for instance, every time a new model is trained.
+- Creating a report of model performance or data quality every time a task executes, for instance,
+every time a new model is trained.
 - Monitoring progress of a long-running task.
 - Sharing human-readable results with non-technical stakeholders.
 - Debugging task behavior by attaching a suitable card to the flow during development.
 - Experiment tracking: comparing results across multiple runs
 
-In contrast, cards are not meant for building complex, interactive dashboards or for ad-hoc exploration that is a spot-on use case for notebooks. If you are curious, you can read more about the motivation for cards in [the original release blog post](https://outerbounds.com/blog/integrating-pythonic-visual-reports-into-ml-pipelines/) and
+In contrast, cards are not meant for building complex, interactive dashboards or for
+ad-hoc exploration that is a spot-on use case for notebooks. If you are curious, you can read
+more about the motivation for cards in [the original release blog post](https://outerbounds.com/blog/integrating-pythonic-visual-reports-into-ml-pipelines/) and
 [the announcement post for updating cards](https://outerbounds.com/blog/metaflow-dynamic-cards/).
 
 ## How to use cards?
@@ -69,7 +73,8 @@ even in sensitive production deployments.
 Currently, there are three main mechanisms for viewing cards, which are discussed in
 detail below:
 
-1. You can use [the Metaflow CLI](../metaflow/visualizing-results/effortless-task-inspection-with-default-cards#using-local-card-viewer)
+1. You can use [the Metaflow
+   CLI](../metaflow/visualizing-results/effortless-task-inspection-with-default-cards#using-local-card-viewer)
    on the command line to view cards in a browser.
 2. You can use [the `get_cards`
    API](../metaflow/visualizing-results/effortless-task-inspection-with-default-cards#accessing-cards-via-an-api)
@@ -107,7 +112,7 @@ Learn more about these approaches in the following subsections:
 2. [Easy Custom Reports with Card
    Components](../metaflow/visualizing-results/easy-custom-reports-with-card-components)
 3. [Updating Cards During Task
-    Execution](../metaflow/visualizing-results/dynamic-cards)
+   Execution](../metaflow/visualizing-results/dynamic-cards)
 4. [Advanced, Shareable Cards with Card
    Templates](../metaflow/visualizing-results/advanced-shareable-cards-with-card-templates)
 
@@ -117,5 +122,6 @@ which explains the basics of card usage. For technical details, see the API refe
 that contains [a complete guide of all card APIs](/api/cards).
 
 :::tip
-You can test example cards interactively in [Metaflow Sandbox](https://account.outerbounds.dev/account/?workspace=/home/workspace/workspaces/dynamic-cards/workspace.code-workspace), conveniently in the browser.
+You can test example cards interactively in [Metaflow
+Sandbox](https://account.outerbounds.dev/account/?workspace=/home/workspace/workspaces/dynamic-cards/workspace.code-workspace), conveniently in the browser.
 :::
