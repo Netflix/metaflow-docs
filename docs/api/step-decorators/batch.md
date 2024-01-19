@@ -28,6 +28,7 @@ Note that while `@batch` doesn't allow mounting arbitrary disk volumes on the fl
 	<Parameter name="tmpfs_size: int, optional" desc="The value for the size (in MiB) of the tmpfs mount for this step.\nThis parameter maps to the `--tmpfs` option in Docker. Defaults to 50% of the\nmemory allocated for this step." />
 	<Parameter name="tmpfs_path: string, optional" desc="Path to tmpfs mount for this step. Defaults to /metaflow_temp." />
 	<Parameter name="inferentia" type="int, default: 0" desc="Number of Inferentia chips required for this step." />
+	<Parameter name="efa: int, default: 0" desc="Number of elastic fabric adapter network devices to attach to container" />
 </ParamSection>
 </DocSection>
 

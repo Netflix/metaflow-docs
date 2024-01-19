@@ -26,11 +26,15 @@ optionally published to a private or public package repository. By convention, p
 Card Templates have a `metaflow-card` prefix, so you can easily [find public card
 templates on PyPi](https://pypi.org/search/?q=metaflow-card-&o=).
 
-Let’s test a public template,
+Let’s start with a simple starter template,
 [metaflow-card-html](https://github.com/outerbounds/metaflow-card-html), which simply
-converts HTML stored in an artifact to a card. First, install the template using `pip`:
+converts HTML stored in an artifact to a static non-updating card.
 
-`pip install metaflow-card-html`
+First, install the template using `pip`:
+
+```
+pip install metaflow-card-html
+```
 
 Now we can use the card in any flow by adding a decorator, `@card(type=’html’)`. The
 type attribute refers to the template name. Let’s test it:
@@ -60,15 +64,16 @@ if __name__ == "__main__":
     HtmlCardFlow()
 ```
 
-Note that this a just a simple example what a custom template can do. Other custom
+Note that this is a basic example of a custom template. Other custom
 templates don't require writing HTML by hand. Save the flow in `htmlcardflow.py`. Then,
 you can run it
-
-`python htmlcardflow.py run`
-
+```
+python htmlcardflow.py run
+```
 and view the card
-
-`python htmlcardflow.py card view start`
+```
+python htmlcardflow.py card view start
+```
 
 You should see a blank page with a blue “Hello World!” text.
 
@@ -78,31 +83,35 @@ A particularly useful feature of card templates is that they work in any compute
 environment, even when [executing tasks remotely](/scaling/remote-tasks/introduction).
 For instance, if you have AWS Batch set up, you can run the flow as follows:
 
-`python htmlcardflow.py run --with batch`
+```
+python htmlcardflow.py run --with batch
+```
 
 The card will get produced without you having to worry about installing anything on the
 remote instances! You can [deploy flows to
 production](../../production/scheduling-metaflow-flows/introduction/) with custom
 templates too:
 
-`python htmlcardflow.py step-functions create`
+```
+python htmlcardflow.py step-functions create
+```
 
 Now, every time a production run executes, cards will get produced exactly as during
 prototyping. Behind the scenes, Metaflow takes care of packaging any card templates
 whenever you execute code remotely.
 
-## Developing a Card Template
+## Developing a static Card Template
 
 If you want to develop a card template of your own, it is useful to have a mental model
-of how cards work under the hood:
+of how cards work under the hood. Let's start with internals of a static, non-updating card:
 
 ![](</assets/card-docs-template_(1).png>)
 
 The blue box is a Metaflow task executing a step from the user’s flow. It is decorated
 with a `@card` decorator that has a `type` attribute referring to your custom template,
 e.g. `mycard`. The task executes before the card template. After the task has finished,
-a new subprocess is started that executes a card template. This ensures that even if the
-template fails for any reason, it won’t crash the task.
+a new subprocess is started that executes a card template. This ensures that even if
+the template fails for any reason, it won’t crash the task.
 
 The card template is given the Task ID of the task that the card corresponds to. Using
 this Task ID, the template can use [the Client API](../client) to query any information
@@ -146,11 +155,45 @@ can do much more complex processing to produce a suitable HTML page.
 
 To implement and publish a template of your own, take a look at the
 [metaflow-card-html](https://github.com/outerbounds/metaflow-card-html/) repository
-which shows how to structure the package, as well as step-by-step instructions on how to
-create one of your own. If you create a Card Template that other people might benefit
-from, let our [Slack community](http://slack.outerbounds.co) know about it!
+which shows how to structure the package, as well as step-by-step instructions on
+how to create one of your own. If you create a Card Template that other people might
+benefit from, let our [Slack community](http://slack.outerbounds.co) know about it!
 
-#### Managing Dependencies in Card Templates.
+## Developing a dynamic Card Template
+
+Dynamic cards, aka cards that update during task execution, extend the `MetaflowCard`
+class presented above with two new methods: `render_runtime` and `refresh`.
+
+`render_runtime` is called periodically during task execution. It 
+is a close cousin of the `render` method that produces the
+final card HTML. `render_runtime` produces a card HTML as well, but it doesn't
+have access to artifacts produced by the currently executing `Task` as they
+are only available upon task completion. Instead, `render_runtime` produces
+the HTML based on a data object that is passed to it by the user via the
+`refresh` method.
+
+Calling `render_runtime` to re-render the whole HTML every time e.g. a progress
+bar updates would be excessive. Instead, small intermediate updates that don't
+change the page layout are handled by a `refresh` method in `MetaflowCard`, which
+simply converts data passed to it via the task-side `refresh` method
+into a JSON object, which is then sent to the card.
+
+To update the card content on the client side, the viewer calls a function
+`metaflow_card_update` in Javascript, which is responsible for updating the
+card's contents (e.g. moving a progress bar) based on the data it receives.
+
+The following schematic illustrates the process:
+
+![](</assets/rtcard-arch.png>)
+
+If you want to develop a dynamic Card Template of your own, you can [use
+`metaflow-card-scatter3d` as a
+starter template](https://github.com/outerbounds/metaflow-card-scatter3d/tree/main).
+See [`ScatterFlow`](https://github.com/outerbounds/dynamic-card-examples/tree/main/custom-card)
+for an example how to use the custom card. Also don't hesitate to contact
+[Metaflow Slack](http://slack.outerbounds.co) for advice.
+
+## Managing dependencies in Card Templates
 
 Card templates may rely on 3rd party libraries for their functionality, say, to produce
 advanced visualizations. To make sure the card can be rendered in remote environments
@@ -171,6 +214,6 @@ templates:
    them.
 
 If these approaches don’t work, you can instruct users to include the dependencies of
-the template in their [@conda libraries](/scaling/dependencies). For templates shared
-privately, you may also rely on dependencies included in a Docker image shared by all
-users and `@batch` executions.
+the template in their [`@conda` or `@pypi` libraries](/scaling/dependencies). For
+templates shared privately, you may also rely on dependencies included in a common
+Docker image.

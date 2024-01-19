@@ -193,7 +193,7 @@ the contents of cards using [card components](/api/cards#Card-components). For a
 	<Parameter name="key" type="str" desc="Card ID." />
 </ParamSection>
 <ParamSection name="Returns">
-	<Parameter type="CardComponentCollector" desc="An object with `append` and `extend` calls which allow you to\nadd components to the chosen card." />
+	<Parameter type="CardComponentManager" desc="An object with `append` and `extend` calls which allow you to\nadd components to the chosen card." />
 </ParamSection>
 </DocSection>
 
@@ -206,7 +206,7 @@ the contents of cards using [card components](/api/cards#Card-components). For a
 <Description summary="Specify components of the chosen card." extended_summary="Instead of adding components to a card individually with `current.card[ID].append(component)`,\nuse this method to assign a list of components to a card, replacing the existing components:\n```\ncurrent.card[ID] = [FirstComponent, SecondComponent]\n```" />
 <ParamSection name="Parameters">
 	<Parameter name="key: str" desc="Card ID." />
-	<Parameter name="value: List[CardComponent]" desc="List of card components to assign to this card." />
+	<Parameter name="value: List[MetaflowCardComponent]" desc="List of card components to assign to this card." />
 </ParamSection>
 </DocSection>
 
@@ -218,7 +218,7 @@ the contents of cards using [card components](/api/cards#Card-components). For a
 </SigArgSection>
 <Description summary="Appends a component to the current card." />
 <ParamSection name="Parameters">
-	<Parameter name="component" type="CardComponent" desc="Card component to add to this card." />
+	<Parameter name="component" type="MetaflowCardComponent" desc="Card component to add to this card." />
 </ParamSection>
 </DocSection>
 
@@ -230,7 +230,30 @@ the contents of cards using [card components](/api/cards#Card-components). For a
 </SigArgSection>
 <Description summary="Appends many components to the current card." />
 <ParamSection name="Parameters">
-	<Parameter name="component" type="Iterator[CardComponent]" desc="Card components to add to this card." />
+	<Parameter name="component" type="Iterator[MetaflowCardComponent]" desc="Card components to add to this card." />
+</ParamSection>
+</DocSection>
+
+
+
+<DocSection type="method" name="current.card.clear" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/__main__.py#L36">
+<SigArgSection>
+<SigArg name="self" />
+</SigArgSection>
+<Description summary="Clears the list of components in this card." />
+
+</DocSection>
+
+
+
+<DocSection type="method" name="current.card.refresh" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/__main__.py#L38">
+<SigArgSection>
+<SigArg name="self" />
+</SigArgSection>
+<Description summary="Schedule the contents of this dynamic card to be refreshed soon." extended_summary="Call this method after you have modified the list of components or\nchanged their contents with the components' `update` method. This will\ncause the card to update live while the task is executing.\n\nNote that this method is rate-limited, determined by the\n`@card(refresh_interval)` attribute. If you call this method more\nfrequently than what is allowed by `refresh_interval`, some calls\nare ignored causing the card to update more slowly.\n\nIt is advisable not to call this method more often than once\na second, which is the minimum allowed value for `refresh_interval`." />
+<ParamSection name="Parameters">
+	<Parameter name="data" type="dict, optional" desc="Optional user-defined data to be passed to a custom card." />
+	<Parameter name="force" type="bool, optional" desc="Force a full card re-render, not just a data update." />
 </ParamSection>
 </DocSection>
 

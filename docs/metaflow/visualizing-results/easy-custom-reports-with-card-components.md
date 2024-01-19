@@ -6,7 +6,8 @@ progresses, you may want to create a custom card that highlights information spe
 your project.
 
 The easiest way to create a custom card is to use built-in components: _Images_,
-_Tables_, _Artifacts_, and _Markdown_ text. You can construct a report with these
+_Tables_, _Artifacts_, _VegaChart_ charts, _Markdown_ text, and _ProgressBar_ for
+tracking progress. You can construct a report with these
 components in Python without having to worry about HTML or styling in CSS. Rest assured
 that if components ever show their limits, you have an option to customize reports even
 further using [_Card Templates_](advanced-shareable-cards-with-card-templates).
@@ -56,13 +57,16 @@ Currently, the following components are provided:
 
 - **`Markdown`** - output a block of text formatted as
   [Markdown](https://www.markdownguide.org).
-- **`Table` ** - a table of rows and columns. Each cell may include other components.
-- **`Image` ** - an image, constructed from bytes.
-- **`Artifact` ** - pretty-print any Python object.
+- **`Table`** - a table of rows and columns. Each cell may include other components.
+- **`Image`** - an image, constructed from bytes.
+- **`Artifact`** - pretty-print any Python object.
+- **`VegaChart`** - plot charts with [Vega Lite](https://vega.github.io/vega-lite).
+- **`ProgressBar`** - show progress.
 
 The API reference documents [the card components in detail](/api/cards#card-components).
 
-The following example demonstrates all the components in action:
+The following example demonstrates the first four components in action (more
+about `VegaChart` below and `ProgressBar` in [the next chapter](dynamic-cards)):
 
 ```python
 from metaflow import FlowSpec, step, current, card
@@ -118,14 +122,130 @@ becomes unavailable.
 
 ## Showing Plots
 
-A data scientist may care more about showing data visualizations rather than photos of
-cats. Technically there isn’t a huge difference: You can use any existing visualization
+As a developer, you may care more about showing data visualizations rather than
+cat photos. There are two ways to embed visualizations in a card:
+
+1. You can use `VegaChart` to produce a chart on the fly.
+
+2. You can use `Image` to include an image produced by any library.
+
+Let's cover both the approaches.
+
+### Charting with `VegaChart`
+
+:::info
+`VegaChart` was introduced in Metaflow 2.11. Make sure you have a recent
+enough version of Metaflow to use this feature.
+:::
+
+Cards come with built-in support for charts created using [the Vega Lite
+specification](https://vega.github.io/vega-lite/). Vega Lite allows you to
+specify rich visualizations in JSON without having to install any additional
+libraries.
+
+You can navigate to [the gallery of Vega Lite
+examples](https://vega.github.io/vega-lite/examples/) and copy-paste any of the
+JSON specs in the `VegaDemo` below (remember to change `data` URLs as below). For
+instance, [this example shows a simple
+histogram](https://vega.github.io/vega-lite/examples/histogram.html):
+
+```python
+from metaflow import FlowSpec, step, current, card
+from metaflow.cards import VegaChart
+
+SPEC = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {"url": "https://vega.github.io/vega-lite/examples/data/movies.json"},
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "bin": True,
+      "field": "IMDB Rating"
+    },
+    "y": {"aggregate": "count"}
+  }
+}
+
+class VegaDemo(FlowSpec):
+    @card(type="blank")
+    @step
+    def start(self):
+        current.card.append(VegaChart(SPEC))
+        self.next(self.end)
+
+    @step
+    def end(self):
+        pass
+
+if __name__ == "__main__":
+    VegaDemo()
+```
+
+Run the flow to see a histogram like this:
+
+![](/assets/vegademo.png)
+
+You can find many more examples of `VegaChart` in [the Dynamic
+Card gallery](https://github.com/outerbounds/dynamic-card-examples/).
+
+### Using Altair - a Python API for Vega
+
+[The Altair library](https://altair-viz.github.io/) provides a convenient
+Python API for Vega, so you don't have to navigate the JSON specification by hand.
+In particular, it makes it easy to visualize data in Pandas dataframes.
+
+Here is a simple example that plots data from a dataframe using Altair. Note
+that it uses [the `@pypi`
+decorator](/scaling/dependencies/libraries#pypi-in-action) to make sure
+that `pandas` and `altair` are available:
+
+```python
+from metaflow import FlowSpec, step, current, card, pypi
+from metaflow.cards import VegaChart
+
+class AltairDemo(FlowSpec):
+
+    @pypi(packages={"altair": "5.2.0", "pandas": "2.1.4"}, python="3.11.7")
+    @card(type="blank")
+    @step
+    def start(self):
+        import pandas as pd
+        import altair as alt
+        df = pd.DataFrame({'item': ['apple', 'avocado', 'fish'],
+                           'cost': [2, 5, 9]})
+        chart = alt.Chart(df).mark_bar().encode(
+            x='item',
+            y='cost'
+        )
+        current.card.append(VegaChart.from_altair_chart(chart))
+        self.next(self.end)
+
+    @step
+    def end(self):
+        pass
+
+if __name__ == "__main__":
+    AltairDemo()
+```
+
+Run the flow to see a bar chart like this:
+
+![](/assets/altairdemo.png)
+
+You can find more inspiration and examples in [Altair's gallery of
+examples](https://altair-viz.github.io/gallery/index.html) as well as in 
+our [Dynamic Card gallery](https://github.com/outerbounds/dynamic-card-examples/).
+
+
+### Showing an image with `Image`
+
+Besides Vega and Altair, you can use any visualization
 library in Python to produce plots, save the resulting image in a file or an in-memory
 object, and provide the contents of the file (bytes) to the `Image` component.
 
 For convenience, the `Image` component provides a utility method,
 `Image.from_matplotlib`, that extracts bytes from a [Matplotlib](https://matplotlib.org)
-figure automatically. Here’s an example that uses the [@conda
+figure automatically. Here’s an example that uses the [`@conda`
 decorator](/scaling/dependencies) to make sure that Matplotlib is available. If you have
 Matplotlib and Numpy already installed in your environment, you can run the example
 without `@conda_base`.
@@ -136,7 +256,7 @@ from metaflow.cards import Image
 
 @conda_base(python='3.8.1',
             libraries={'numpy':'1.20.3', 'matplotlib':'3.4.2'})
-class PlotDemoFlow(FlowSpec):
+class MatplotlibFlow(FlowSpec):
 
     @card(type='blank')
     @step
@@ -155,7 +275,7 @@ class PlotDemoFlow(FlowSpec):
         pass
 
 if __name__ == '__main__':
-    PlotDemoFlow()
+    MatplotlibFlow()
 ```
 
 The resulting card will look like this:

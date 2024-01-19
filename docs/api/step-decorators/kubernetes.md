@@ -17,9 +17,12 @@ For options related to `tmpfs`, see [Using `metaflow.S3` for in-memory processin
 	<Parameter name="memory" type="int, default: 4096" desc="Memory size (in MB) required for this step. If\n`@resources` is also present, the maximum value from all decorators is\nused." />
 	<Parameter name="disk" type="int, default: 10240" desc="Disk size (in MB) required for this step. If\n`@resources` is also present, the maximum value from all decorators is\nused." />
 	<Parameter name="image" type="str, optional" desc="Docker image to use when launching on Kubernetes. If not specified, and\nMETAFLOW_KUBERNETES_CONTAINER_IMAGE is specified, that image is used. If\nnot, a default Docker image mapping to the current version of Python is used." />
+	<Parameter name="image_pull_policy: str, default: KUBERNETES_IMAGE_PULL_POLICY" desc="If given, the imagePullPolicy to be applied to the Docker image of the step." />
 	<Parameter name="service_account" type="str, default: METAFLOW_KUBERNETES_SERVICE_ACCOUNT" desc="Kubernetes service account to use when launching pod in Kubernetes." />
-	<Parameter name="namespace" type="str, default: METAFLOW_KUBERNETES_NAMESPACE" desc="Kubernetes namespace to use when launching pod in Kubernetes." />
 	<Parameter name="secrets" type="List[str], optional" desc="Kubernetes secrets to use when launching pod in Kubernetes. These\nsecrets are in addition to the ones defined in `METAFLOW_KUBERNETES_SECRETS`\nin Metaflow configuration." />
+	<Parameter name="namespace" type="str, default: METAFLOW_KUBERNETES_NAMESPACE" desc="Kubernetes namespace to use when launching pod in Kubernetes." />
+	<Parameter name="gpu: int, optional" desc="Number of GPUs required for this step. A value of zero implies that\nthe scheduled node should not have GPUs." />
+	<Parameter name="gpu_vendor: str, default: KUBERNETES_GPU_VENDOR" desc="The vendor of the GPUs to be used for this step." />
 	<Parameter name="tolerations" type="List[str], default: METAFLOW_KUBERNETES_TOLERATIONS" desc="Kubernetes tolerations to use when launching pod in Kubernetes." />
 	<Parameter name="use_tmpfs: bool, default: False" desc="This enables an explicit tmpfs mount for this step." />
 	<Parameter name="tmpfs_tempdir: bool, default: True" desc="sets METAFLOW_TEMPDIR to tmpfs_path if set for this step." />

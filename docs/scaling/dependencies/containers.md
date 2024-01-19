@@ -34,7 +34,9 @@ If you want to use an alternative image by default in all remote tasks, specify
 two variables in [the Metaflow configuration
 files](https://outerbounds.com/engineering/operations/configure-metaflow/):
 
-- `METAFLOW_DEFAULT_CONTAINER_REGISTRY` controls which registry Metaflow uses to pick the image. This defaults to DockerHub but could also be a URL to a public or private ECR repository on AWS.
+- `METAFLOW_DEFAULT_CONTAINER_REGISTRY` controls which registry Metaflow uses to pick
+  the image. This defaults to DockerHub but could also be a URL to a public or private ECR
+  repository on AWS.
 
 - `METAFLOW_DEFAULT_CONTAINER_IMAGE` dictates the default container image that Metaflow should use.
 
