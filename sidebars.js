@@ -134,6 +134,18 @@ const sidebars = {
             "scaling/dependencies/faq"
           ],
         },
+        {
+          type: "category",
+          label: "Using Parallelism",
+          link: {
+            type: "doc",
+            id: "scaling/parallel-compute/README",
+          },
+          items: [
+            "scaling/parallel-compute/use-gpus",
+            "scaling/parallel-compute/multi-node"
+          ],
+        },
         "scaling/failures",
         "scaling/data",
         "scaling/secrets",
