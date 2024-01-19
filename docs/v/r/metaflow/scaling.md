@@ -41,7 +41,7 @@ steps over multiple instances. This section requires you to have Metaflow workin
 AWS. See the [AWS section](../metaflow-on-aws/metaflow-on-aws.md) for more information
 on either setting up Metaflow in your [own AWS
 environment](../metaflow-on-aws/deploy-to-aws.md) or using the [provided
-sandbox](../metaflow-on-aws/metaflow-sandbox.md).
+sandbox](https://metaflow.org/sandbox).
 
 This section presents the tools available in Metaflow for scaling up and out.
 
@@ -100,7 +100,7 @@ failed.
 The `resources` decorator gains all its power in collaboration with Batch execution.
 Note that for this section, you will need to have Metaflow working in an AWS cloud
 environment \(either having [deployed it yourself](../metaflow-on-aws/deploy-to-aws.md)
-or running in the [Metaflow sandbox](../metaflow-on-aws/metaflow-sandbox.md)\)
+or running in the [Metaflow sandbox](https://metaflow.org/sandbox)\)
 
 With the following command, you instruct Metaflow to run all your steps on AWS Batch:
 
@@ -189,7 +189,7 @@ an AWS Batch task.
 
 If you want to make sure you have no AWS Batch tasks running, or you want to manage them
 manually, you can use the `batch list` and `batch kill` commands. These commands are
-disabled in the [Metaflow AWS Sandbox](../metaflow-on-aws/metaflow-sandbox.md).
+disabled in the [Metaflow AWS Sandbox](https://metaflow.org/sandbox).
 
 You can easily see what AWS Batch tasks were launched by your latest run with
 

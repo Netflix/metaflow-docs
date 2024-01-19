@@ -151,4 +151,9 @@ This will run the flow as if it was triggered by a run `ModelRefreshFlow/233`.
 This allows you to quickly iterate on the flow locally, testing it with
 different upstream data providers.
 
+:::note
+In order for the trigger to succeed, the run `ModelRefreshFlow/233` must be an actual run that exists.
+Metaflow will raise an error if a nonexistent run is specified.
+:::
+
 

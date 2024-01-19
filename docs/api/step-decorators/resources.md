@@ -15,6 +15,7 @@ Note that `@resources` takes effect only when combined with another decorator li
 <ParamSection name="Parameters">
 	<Parameter name="cpu" type="int, default: 1" desc="Number of CPUs required for this step." />
 	<Parameter name="gpu" type="int, default: 0" desc="Number of GPUs required for this step." />
+	<Parameter name="disk" type="int, optional" desc="Disk size (in MB) required for this step. Only applies on Kubernetes." />
 	<Parameter name="memory" type="int, default: 4096" desc="Memory size (in MB) required for this step." />
 	<Parameter name="shared_memory" type="int, optional" desc="The value for the size (in MiB) of the /dev/shm volume for this step.\nThis parameter maps to the `--shm-size` option in Docker." />
 </ParamSection>

@@ -31,13 +31,13 @@ projects.
 - [Creating Flows](metaflow/basics)
 - [Inspecting Flows and Results](metaflow/client)
 - [Debugging Flows](metaflow/debugging)
-- [Visualizing Results](metaflow/visualizing-results/)
+- [Visualizing Results](metaflow/visualizing-results/) ✨*New Features*✨
 
 ## II. Scalable Flows
 
 - [Introduction to Scalable Compute and Data](scaling/introduction)
 - [Executing Tasks remotely](scaling/remote-tasks/introduction)
-- [Managing Dependencies](scaling/dependencies) ✨*New*✨
+- [Managing Dependencies](scaling/dependencies) 
 - [Dealing with Failures](scaling/failures)
 - [Loading and Storing Data](scaling/data)
 - [Accessing Secrets](scaling/secrets)
@@ -71,7 +71,7 @@ projects.
 - [Roadmap](introduction/roadmap)
 - [Get in Touch](introduction/getting-in-touch)
 - [Metaflow on AWS](metaflow-on-aws)
-- [Metaflow Sandbox](metaflow-on-aws/metaflow-sandbox)
+- [Metaflow Sandbox](https://metaflow.org/sandbox)
 - [Deploying to AWS](metaflow-on-aws/deploy-to-aws)
 
 -->

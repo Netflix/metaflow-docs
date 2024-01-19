@@ -67,7 +67,7 @@ triggered. Simply define a list of events:
 @trigger(events=['data_updated', 'phase_of_the_moon'])
 ```
 
-all the events need to be occur within a configured time window for the flow to trigger.
+all the events need to occur within a configured time window for the flow to trigger.
 
 ## Creating events
 

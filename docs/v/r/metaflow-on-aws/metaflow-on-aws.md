@@ -132,7 +132,7 @@ that many IDEs such as [VSCode](https://code.visualstudio.com/) or
 If your organization doesn't have an AWS account already, we provide a hosted sandbox
 environment where you can test Metaflow using your own code and data, to get a feel of
 the benefits of AWS. Read more in the section about [Metaflow
-Sandbox](metaflow-sandbox.md).
+Sandbox](https://metaflow.org/sandbox).
 
 If your organization has an AWS account already, see our [deployment
 guide](https://outerbounds.com/docs/admin/metaflow-on-aws/deployment-guide) for detailed

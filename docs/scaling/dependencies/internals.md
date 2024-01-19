@@ -18,7 +18,9 @@ Behind the scenes, Metaflow does much more than just wrapping CLI commands such 
   hiccups with parallel `pip install`s.
 
 :::note
-For even more features, see [Netflix's Metaflow Extensions](https://github.com/Netflix/metaflow-nflx-extensions) which contain even more featureful `@pypi` and `@conda`.
+For even more features, see [Netflix's Metaflow
+Extensions](https://github.com/Netflix/metaflow-nflx-extensions) which contain even
+more featureful `@pypi` and `@conda`.
 :::
 
 ## How `@pypi` and `@conda` work

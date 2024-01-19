@@ -1,7 +1,7 @@
 import re, sys
 
 LINKS = {
-    'link_notebook': '/metaflow/intro',
+    'link_notebook': '/metaflow/introduction',
     'link_workflow': '/metaflow/basics',
     'link_track': '/metaflow/basics#artifacts',
     'link_visualize': '/metaflow/visualizing-results',
