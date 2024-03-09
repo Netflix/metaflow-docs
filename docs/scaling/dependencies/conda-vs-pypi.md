@@ -65,9 +65,10 @@ also handle non-Python dependencies but with more limitations compared to Conda.
 
 Hence the choice is often simple:
  
- - If you can find packages you need at [PyPI](https://pypi.org) and
-   you can `pip install` them without trouble,
-   `@pypi` is a safe bet.
+ - If you can find packages you need at [PyPI](https://pypi.org),
+   you can `pip install` them without trouble, and the package is a wheel
+   `@pypi` is a safe bet. To determine if a package is a wheel take a look
+   at [PyPI's API](https://warehouse.pypa.io/api-reference/json.html)
 
  - If your needs are more complex, possibly including non-Python binaries
    such as [MPI](https://anaconda.org/conda-forge/openmpi-mpifort), go with
