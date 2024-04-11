@@ -136,14 +136,14 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Using Parallelism",
+          label: "Compute",
           link: {
             type: "doc",
-            id: "scaling/parallel-compute/README",
+            id: "scaling/compute/README",
           },
           items: [
-            "scaling/parallel-compute/use-gpus",
-            "scaling/parallel-compute/multi-node"
+            "scaling/compute/use-accelerators",
+            "scaling/compute/multi-node"
           ],
         },
         "scaling/failures",
