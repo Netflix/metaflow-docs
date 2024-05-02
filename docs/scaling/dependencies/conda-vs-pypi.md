@@ -65,7 +65,7 @@ also handle non-Python dependencies but with more limitations compared to Conda.
 
 Hence the choice is often simple:
  
- - If you can find packages you need at [PyPI](https://pypi.org) and
+ - If you can find packages you need at [PyPI](https://pypi.org),
    you can `pip install` them without trouble,
    `@pypi` is a safe bet.
 
