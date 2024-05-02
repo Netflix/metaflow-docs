@@ -17,8 +17,8 @@ attaches a `@retry` and `@batch(cpu=4)` decorators to all steps of the flow.
 - [`@batch`](/api/step-decorators/batch) - run on AWS Batch.
 - [`@card`](/api/step-decorators/card) - enable reporting.
 - [`@catch`](/api/step-decorators/catch) - catch errors.
-- [`@conda`](/api/step-decorators/conda) - define packages using conda.
-- [`@pypi`](/api/step-decorators/pypi) - define packages using pypi.
+- [`@conda`](/api/step-decorators/conda) - define Conda dependencies.
+- [`@pypi`](/api/step-decorators/pypi) - define PyPI dependencies.
 - [`@kubernetes`](/api/step-decorators/kubernetes) - run on Kubernetes.
 - [`@resources`](/api/step-decorators/resources) - request resources.
 - [`@retry`](/api/step-decorators/retry) - retry errors.
