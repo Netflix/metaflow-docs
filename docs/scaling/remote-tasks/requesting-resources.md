@@ -242,7 +242,7 @@ class HybridCloudFlow(FlowSpec):
         print('training model...')
         self.score = random.randint(0, 10)
         self.country = self.input
-        self.next(self.postprocess)
+        self.next(self.join)
 
     @batch(memory=16000, queue='cpu-queue')    
     @step
