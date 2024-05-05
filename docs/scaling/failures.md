@@ -52,7 +52,7 @@ sometimes the `start` step raises an exception and needs to be retried. By defau
 always succeed.
 
 It is recommended that you use `retry` every time you [run tasks
-remotely](/scaling/remote-tasks/introduction). Instead of annotating every step with a
+remotely](/scaling/remote-tasks/requesting-resources). Instead of annotating every step with a
 retry decorator, you can also automatically add a retry decorator to all steps that do
 not have one as follows:
 
@@ -104,7 +104,7 @@ can be retried without concern.
 ### Maximizing Safety
 
 By default, `retry` will retry the step for three times before giving up. It waits for 2
-minutes between retries for [remote tasks](/scaling/remote-tasks/introduction). This
+minutes between retries for [remote tasks](/scaling/remote-tasks/requesting-resources). This
 means that if your code fails fast, any transient platform issues need to get resolved
 in less than 10 minutes or the whole run will fail. 10 minutes is typically more than
 enough, but sometimes you want both a belt and suspenders.

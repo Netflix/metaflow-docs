@@ -3,7 +3,7 @@
 
 This page describes how to arrange files in your projects to
 follow software development best practices, which also leads to
-[easy remote execution](/scaling/remote-tasks/introduction).
+[easy remote execution](/scaling/remote-tasks/requesting-resources).
 
 ## Separating code to modules
 
@@ -55,7 +55,7 @@ can run the flow as usual:
 python teaflow.py run
 ``` 
 The `teatime.py` module works out of the box. If you have
-[remote execution](/scaling/remote-tasks/introduction) set up,
+[remote execution](/scaling/remote-tasks/requesting-resources) set up,
 you can run the code `--with batch` or `--with kubernetes` and it works
 equally well!
 

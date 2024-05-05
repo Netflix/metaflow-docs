@@ -29,7 +29,7 @@ manipulation:
   are caused by out-of-sync features.
 * It is quicker to iterate on your model. Testing and debugging Python is easier than
   testing and debugging SQL.
-* You can request [arbitrary amount of resources](/scaling/remote-tasks/introduction)
+* You can request [arbitrary amount of resources](/scaling/remote-tasks/requesting-resources)
   for your data manipulation needs.
 * Instead of having data manipulation code in two places (SQL and Python), all code can
   be clearly laid out in a single place, in a single language, for maximum readability.
@@ -65,7 +65,7 @@ of `metaflow.S3` to directly interface with data files on S3 backing your tables
 data is loaded directly from S3, there is no limitation to the number of parallel
 processes. The size of data is only limited by the size of your instance, which can be
 easily controlled with [the `@resources`
-decorator](/scaling/remote-tasks/introduction#requesting-resources-with-resources-decorator).
+decorator](/scaling/remote-tasks/requesting-resources).
 The best part is that this approach is blazingly fast compared to executing SQL.
 
 The main downside of this approach is that the table needs to have partitions that match
@@ -549,7 +549,7 @@ Read more about [fast data processing with `metaflow.S3` in this blog post](http
 
 For maximum performance, ensure that
 [the `@resources(memory=)`
-setting](/scaling/remote-tasks/introduction#requesting-resources-with-resources-decorator)
+setting](/scaling/remote-tasks/requesting-resources)
 is higher than the amount of data you are downloading with `metaflow.S3`.
 
 If the amount of data is higher than the available disk space, you can use the

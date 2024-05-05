@@ -80,7 +80,7 @@ You should see a blank page with a blue “Hello World!” text.
 ![](</assets/card-docs-html_(2).png>)
 
 A particularly useful feature of card templates is that they work in any compute
-environment, even when [executing tasks remotely](/scaling/remote-tasks/introduction).
+environment, even when [executing tasks remotely](/scaling/remote-tasks/requesting-resources).
 For instance, if you have AWS Batch set up, you can run the flow as follows:
 
 ```

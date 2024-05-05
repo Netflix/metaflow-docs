@@ -236,7 +236,7 @@ in the `end` step.
 ## Libraries in remote tasks
 
 A major benefit of `@pypi` and `@conda` is that they allow you to define libraries that will be
-automatically made available when [you execute tasks remotely](/scaling/remote-tasks/introduction)
+automatically made available when [you execute tasks remotely](/scaling/remote-tasks/requesting-resources)
 on `@kubernetes` or on `@batch`. You don't need to do anything special to make this happen.
 
 If you have `@kubernetes` or `@batch` [configured to work with

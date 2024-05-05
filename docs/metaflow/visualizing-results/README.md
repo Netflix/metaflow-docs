@@ -39,7 +39,8 @@ every time a new model is trained.
 
 In contrast, cards are not meant for building complex, interactive dashboards or for
 ad-hoc exploration that is a spot-on use case for notebooks. If you are curious, you can read
-more about the motivation for cards in [the original release blog post](https://outerbounds.com/blog/integrating-pythonic-visual-reports-into-ml-pipelines/) and
+more about the motivation for cards in [the original release blog
+post](https://outerbounds.com/blog/integrating-pythonic-visual-reports-into-ml-pipelines/) and
 [the announcement post for updating cards](https://outerbounds.com/blog/metaflow-dynamic-cards/).
 
 ## How to use cards?
@@ -85,7 +86,7 @@ detail below:
    above.
 
 Also, crucially, cards work in any compute
-environment such as laptops, [any remote tasks](/scaling/remote-tasks/introduction), or
+environment such as laptops, [any remote tasks](/scaling/remote-tasks/requesting-resources), or
 when the flow is [scheduled to run automatically](/production/introduction). Hence, you
 can use cards to inspect and debug results during prototyping, as well as monitor the
 quality of production runs.

@@ -30,7 +30,7 @@ others.
 to retrieve a flow, rerun it, and get similar results. To make this possible, a
 flow can't depend on libraries that are only available on your laptop.
 
-3. **[Remote execution of tasks](/scaling/remote-tasks/introduction)** requires that
+3. **[Remote execution of tasks](/scaling/remote-tasks/requesting-resources)** requires that
 all dependencies can be reinstantated on the fly in a remote environment.
 Again, this is not possible if the flow depends on libraries that are only
 available on your laptop.
@@ -61,7 +61,7 @@ dependencies like this automatically.
 
 3. Crucially, Metaflow packages Metaflow itself for remote execution so that you
 don't have to install it manually when
-[using `@batch` and `@kubernetes`](/scaling/remote-tasks/introduction). Also, this
+[using `@batch` and `@kubernetes`](/scaling/remote-tasks/requesting-resources). Also, this
 guarantees that all tasks use the same version of Metaflow consistently.
 
 4. External libraries can be included via [the `@pypi` and `@conda`
