@@ -147,28 +147,135 @@ Computing it took 4497ms.
 In addition to `cpu` and `memory` you can specify `gpu=N` to request N GPUs for the
 instance.
 
-### Running only specific steps remotely
+## Moving between compute environments
+
+Metaflow makes it easy to mix and match compute environments. You can move from
+local prototyping to cloud execution easily, but also [mix different cloud 
+compute backends](https://outerbounds.com/blog/metaflow-on-all-major-clouds/) fluidly.
+
+### Mixing local and remote compute
 
 The `resources` decorator is an annotation that signals how much resources are required
 by a step. By itself, it does not force the step to be executed on any particular
 platform. This is convenient as you can make the choice later, executing the same flow
 on different environments without changes.
 
-Sometimes it is useful to make sure that a step always executes on a certain compute
-platform, maybe using a platform-specific configuration. You can achieve this by adding
-either `@batch` or `@kubernetes` above steps that should be executed remotely. The
-decorators accept the same keyword arguments as `@resources` as well as
-platform-specific arguments that you can find listed in [the API
-reference](/api/step-decorators).
+For instance, we can take the above example and replace `@resources` with `@batch`
+(or `@kubernetes`):
 
-For instance, in the example above, replace `@resources` with `@batch` or `@kubernetes`
-and run it as follows:
+```python
+from metaflow import FlowSpec, step, resources
 
-```bash
+class BigSum(FlowSpec):
+
+    @batch(memory=60000, cpu=1)
+    @step
+    def start(self):
+        import numpy
+        import time
+        big_matrix = numpy.random.ranf((80000, 80000))
+        t = time.time()
+        self.sum = numpy.sum(big_matrix)
+        self.took = time.time() - t
+        self.next(self.end)
+
+    @step
+    def end(self):
+        print("The sum is %f." % self.sum)
+        print("Computing it took %dms." % (self.took * 1000))
+
+if __name__ == '__main__':
+    BigSum()
+```
+
+In contrast to `@resources`, the `@batch` decorator (and `@kubernetes`) forces
+the step to be executed remotely. Run the flow without `--with` option:
+
+```
 $ python BigSum.py run
 ```
 
-You will see that the `start` step gets executed on a remote instance but the `end`
-step, which does not need special resources, is executed locally. You could even mix
-decorators so that some steps execute on `@kubernetes`, some on `@batch`, and some
-locally.
+![](/assets/cloud-and-local.png)
+
+You will see that the `start` step gets executed on AWS Batch but the `end` step,
+which does not need special resources, is executed locally.
+
+:::tip
+Mixing local and remote steps can speed up development cycles,
+as you can execute some  steps locally with minimal overhead, even
+accessing local files, while executing only demanding steps in the cloud.
+Metaflow takes care of moving data between the environments automatically.
+:::
+
+### Mixing cloud environments
+
+You can mix and match `@resources`, `@batch`, and `@kubernetes` freely, which makes
+it possible to create advanced workflows that leverage multiple compute environments
+from workstations and on-prem data centers to the public cloud. Just [set up
+your Metaflow stack](/getting-started/infrastructure) to support all the environments you want to use.
+
+As a hypothetical example, consider this flow that mixes local compute, on-prem
+compute, and various forms of cloud compute:
+
+```python
+import random
+from metaflow import FlowSpec, step, resources, kubernetes, card
+
+class HybridCloudFlow(FlowSpec):
+
+    @step
+    def start(self):
+        self.countries = ['US', 'BR', 'IT']
+        self.shards = {country: open(f'{country}.data').read()
+                       for country in self.countries}
+        self.next(self.prepare_data, foreach='countries')
+
+    @kubernetes(memory=16000)
+    @step
+    def prepare_data(self):
+        print('processing a shard of data', self.shards[self.input])
+        self.next(self.train)
+
+    @batch(gpu=2, queue='gpu-queue')
+    @step
+    def train(self):
+        print('training model...')
+        self.score = random.randint(0, 10)
+        self.country = self.input
+        self.next(self.postprocess)
+
+    @batch(memory=16000, queue='cpu-queue')    
+    @step
+    def join(self, inputs):
+        self.best = max(inputs, key=lambda x: x.score).country
+        self.next(self.end)
+
+    @step
+    def end(self):
+        print(self.best, 'produced best results')
+
+if __name__ == '__main__':
+    HybridCloudFlow()
+```
+
+Here's an illustration of the flow:
+
+![](/assets/hybrid_cloud.png)
+
+1. `start` executes locally, loading local files for processing. Data is separated
+   in three shards, one for each country.
+
+2. `prepare_data` leverages an on-prem Kubernetes cluster to preprocess data, say, due
+   to data privacy reasons.
+
+3. `train` uses [cloud GPUs](gpu-compute) to train a model per country in parallel.
+
+4. `join` loads the models in a high-memory cloud instance, evaluates them, and
+   chooses the best performing country.
+
+5. `end` fetches the results back to the local laptop.
+
+Metaflow takes care of [packaging code](/scaling/dependencies) automatically, it
+removes the need to move data manually, and it tracks all metadata consistently, across
+the environments.
+

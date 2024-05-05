@@ -11,6 +11,11 @@ compute power, say to train a model on GPUs or to handle a large dataframe, you 
 job done by adding a line code. Or, you can execute even thousands of such tasks in parallel
 or train a large model, such as an LLM, over many GPUs.
 
+When your needs grow, you can even [mix and match various compute
+environments](/scaling/remote-tasks/requesting-resources#mixing-cloud-environments) to
+create advanced workflows that operate across local, on-premise data centers, and
+various public clouds.
+
 Below, we provide an overview of the patterns of compute that Metaflow supports with pointers
 for more details. Importantly, you can mix and match these patterns freely, even in a single
 flow.
