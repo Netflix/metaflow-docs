@@ -16,8 +16,8 @@ Metaflow features like [dependency management](/scaling/dependencies),
 Typically, this pattern is used through one of the framework-specific decorators like `@torchrun`
 or `@deepspeed`, described below, which make it easy to use a particular framework for distributed
 training. If you need low-level access to the cluster, e.g. to use it with a framework that doesn't
-have a corresponding high-level decorator yet, see the documentation for `@parallel` at the
-end of this article.
+have a corresponding high-level decorator yet, see documentation for low-level access at the
+end of this page.
 
 :::info
 To use distributed computing, follow [set up instructions
