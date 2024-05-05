@@ -25,7 +25,7 @@ changes are required in the code. All data artifacts produced by steps run on Ar
 Workflows are available using the [Client API](../../metaflow/client.md). All tasks are
 run on Kubernetes respecting the `@resources` decorator, as if the `@kubernetes`
 decorator was added to all steps, as explained in [Executing Tasks
-Remotely](/scaling/remote-tasks/introduction#safeguard-flags).
+Remotely](/scaling/remote-tasks/requesting-resources).
 
 This document describes the basics of Argo Workflows scheduling. If your project
 involves multiple people, multiple workflows, or it is becoming business-critical, check
@@ -129,7 +129,7 @@ the default with the `--max-workers` option. For instance, `argo-workflows creat
 --max-workers 500` allows 500 tasks to be executed concurrently for every foreach step.
 
 This option is similar to [`run
---max-workers`](/scaling/remote-tasks/introduction#safeguard-flags) that is used to
+--max-workers`](/scaling/remote-tasks/controlling-parallelism) that is used to
 limit concurrency outside Argo Workflows.
 
 ### Deploy-time parameters

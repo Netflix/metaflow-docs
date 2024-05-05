@@ -9,7 +9,7 @@ optimization](https://xkcd.com/1691/) is probably not the best use of your time.
 
 Instead, you can leverage the cloud to get a bigger laptop or more laptops (virtually,
 not literally). This is the Stage II in Metaflow development: Scaling flows with the
-cloud. Luckily Metaflow makes this trivially easy - no changes in the code required -
+cloud. Metaflow makes this easy - no changes in the code required -
 after you have done the initial legwork to [configure infrastructure for
 Metaflow](/getting-started/infrastructure).
 
@@ -17,9 +17,10 @@ Metaflow](/getting-started/infrastructure).
 
 ## Supersizing Flows
 
-Here's how Metaflow can help make your project more scalable:
+Here's how Metaflow can help make your project more scalable, both tecnically and
+organizationally:
 
-1. You can make your existing flows more scalable just by adding a line of code,
+1. You can make your existing flow scalable just by adding a line of code,
 `@resources`. This way you can request more CPUs, memory, or GPUs in your flows. Or, you
 can parallelize processing over multiple instances, even thousands of them.
 
@@ -28,18 +29,18 @@ attracting interest from colleagues too. Metaflow contains a number of features,
 [namespaces](/scaling/tagging), which make collaboration smoother by allowing many
 people contribute without interfering with each other's work accidentally.
 
-### Toolbox of Scalability
+### Easy patterns for scalable, high-performance code
 
 There is no single magic formula for scalability. Instead of proposing a novel paradigm
-to make your Python code faster, Metaflow provides a set of pragmatic tools, leveraging
-the best off-the-shelf components and services, which help you make code more scalable
-and performant depending on your specific needs. 
+to make your Python code faster, [Metaflow provides a set of
+practical, commonly used patterns](/scaling/remote-tasks/introduction), which help you
+make code more scalable and performant depending on your specific needs. 
 
-The scalability tools fall into three categories:
+The patterns fall into three categories:
 
 - **Performance Optimization**: You can improve performance of your code by utilizing
   off-the-shelf, high-performance libraries such as
-  [XGboost](https://github.com/dmlc/xgboost) or [Tensorflow](https://tensorflow.org).
+  [XGboost](https://github.com/dmlc/xgboost) or [PyTorch](https://pytorch.org/).
   Or, if you need something more custom, you can leverage the vast landscape of data
   tools for Python, including compilers like [Numba](https://numba.pydata.org) to speed
   up your code.
@@ -53,7 +54,9 @@ care of provisioning such machines on demand.
 - **Scaling Out**: Besides executing code on a single instance, Metaflow makes it easy
   to parallelize steps over an arbitrarily large number of instances, leveraging
   Kubernetes and AWS Batch, giving you access to virtually unlimited amount of computing
-  power.
+  power. Besides many independent tasks, you can [create large compute
+  clusters](/scaling/remote-tasks/distributed-computing) too on the fly, e.g.
+  to train large (language) models.
 
 Often an effective recipe for scalability is a combination of these three techniques:
 Start with high-performance Python libraries, run them on large instances, and if
@@ -73,8 +76,7 @@ In this section, you will learn how to make your flows capable of handling more 
 execute faster. You will also learn how to scale projects over multiple people by
 organizing results better. We cover five topics:
 
-1. [Executing tasks remotely with Kubernetes or AWS
-   Batch](/scaling/remote-tasks/introduction)
+1. [Scaling compute in the cloud](/scaling/remote-tasks/introduction)
 2. [Dealing with failures](/scaling/failures)
 3. [Managing execution environments](/scaling/dependencies)
 4. [Loading and storing data efficiently](/scaling/data)

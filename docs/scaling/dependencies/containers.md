@@ -1,7 +1,7 @@
 
 # Defining Custom Images
 
-All [tasks executed remotely](/scaling/remote-tasks/introduction) run in a container,
+All [tasks executed remotely](/scaling/remote-tasks/requesting-resources) run in a container,
 both on [Kubernetes](/scaling/remote-tasks/kubernetes) and in
 [AWS Batch](/scaling/remote-tasks/aws-batch). Hence, the default environment for
 remote tasks is defined by the container (Docker) image used.

@@ -23,7 +23,7 @@ changes are required in the code. All data artifacts produced by steps run on AW
 Functions are available using the [Client API](../../metaflow/client). All tasks are run
 on AWS Batch respecting the `@resources` decorator, as if the `@batch` decorator was
 added to all steps, as explained in [Executing Remote
-Tasks](/scaling/remote-tasks/introduction).
+Tasks](/scaling/remote-tasks/requesting-resources).
 
 This document describes the basics of AWS Step Functions scheduling. If your project
 involves multiple people, multiple workflows, or it is becoming business-critical, check
@@ -146,7 +146,7 @@ the default with the `--max-workers` option. For instance, `step-functions creat
 --max-workers 500` allows 500 tasks to be executed concurrently for every foreach step.
 
 This option is similar to [`run
---max-workers`](/scaling/remote-tasks/introduction#safeguard-flags) that is used to
+--max-workers`](/scaling/remote-tasks/controlling-parallelism) that is used to
 limit concurrency outside AWS Step Functions.
 
 ### Deploy-time parameters

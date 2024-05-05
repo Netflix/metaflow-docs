@@ -31,12 +31,12 @@ projects.
 - [Creating Flows](metaflow/basics)
 - [Inspecting Flows and Results](metaflow/client)
 - [Debugging Flows](metaflow/debugging)
-- [Visualizing Results](metaflow/visualizing-results/) ✨*New Features*✨
+- [Visualizing Results](metaflow/visualizing-results/) 
 
 ## II. Scalable Flows
 
 - [Introduction to Scalable Compute and Data](scaling/introduction)
-- [Executing Tasks remotely](scaling/remote-tasks/introduction)
+- [Computing at Scale](scaling/remote-tasks/introduction) ✨*Updated and Expanded*✨
 - [Managing Dependencies](scaling/dependencies) 
 - [Dealing with Failures](scaling/failures)
 - [Loading and Storing Data](scaling/data)
