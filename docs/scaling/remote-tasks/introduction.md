@@ -38,9 +38,10 @@ outside your workstation.
 
 Running your code as a flow can provide an immediate performance benefit: If your flow has
 [branches](/metaflow/basics#branch) or [foreaches](/metaflow/basics#foreach), 
-Metaflow leverages multiple CPU cores to speed up compute by running parallel tasks as separate processes.
-In addition to Metaflow parallelizing tasks, you can speed up compute by using optimized Python libraries
-such as [PyTorch](https://pytorch.org/) to leverage GPUs or a library like
+Metaflow leverages multiple CPU cores to speed up compute by running parallel tasks as separate
+processes. In addition to Metaflow parallelizing tasks, you can speed up compute by using
+optimized Python libraries such as [PyTorch](https://pytorch.org/) to leverage GPUs or a library
+like
 [XGBoost](https://xgboost.readthedocs.io/en/stable/) that can utilize multiple CPU cores.
 
 ### Parallelizing Python over multiple CPU cores

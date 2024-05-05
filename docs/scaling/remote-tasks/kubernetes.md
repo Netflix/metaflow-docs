@@ -49,13 +49,24 @@ specifies a decorator like `@kubernetes(gpu=1)`.
 For additional information, take a look at cloud-specific documentation:
 
 - **Amazon Web Services EKS**
-Amazon has prepared the [EKS-optimized accelerated Amazon Linux AMIs](https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html#gpu-ami). Read the linked guide to install the hardware dependencies and choose the AMI you want to run on your GPU node group. You will need to make the suggested modifications to the [Kubernetes cluster deployed as part of your Metaflow AWS deployment](https://github.com/outerbounds/terraform-aws-metaflow/blob/master/examples/eks_argo/eks.tf).
+Amazon has prepared the [EKS-optimized accelerated Amazon Linux
+AMIs](https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html#gpu-ami). Read the
+linked guide to install the hardware dependencies and choose the AMI you want to run on your GPU
+node group. You will need to make the suggested modifications to the [Kubernetes cluster deployed
+as part of your Metaflow AWS
+deployment](https://github.com/outerbounds/terraform-aws-metaflow/blob/master/examples/eks_argo/eks.tf).
 
 - **Google Cloud Platform GKE**
-Read GCP’s guide about [GPUs on GKE](https://cloud.google.com/kubernetes-engine/docs/concepts/gpus). You will need to make the suggested modifications to the [Kubernetes cluster deployed as part of your Metaflow GCP deployment](https://github.com/outerbounds/metaflow-tools/blob/master/gcp/terraform/infra/kubernetes.tf).
+Read GCP’s guide about [GPUs on GKE](https://cloud.google.com/kubernetes-engine/docs/concepts/gpus).
+You will need to make the suggested modifications to the [Kubernetes cluster deployed as part of
+your Metaflow GCP
+deployment](https://github.com/outerbounds/metaflow-tools/blob/master/gcp/terraform/infra/kubernetes.tf).
 
 - **Microsoft Azure AKS**
-Read Azure’s guide about [GPUs on AKS](https://learn.microsoft.com/en-us/azure/aks/gpu-cluster). You will need to make the suggested modifications to the [Kubernetes cluster deployed as part of your Metaflow Azure deployment](https://github.com/outerbounds/metaflow-tools/blob/master/azure/terraform/infra/kubernetes.tf).
+Read Azure’s guide about [GPUs on AKS](https://learn.microsoft.com/en-us/azure/aks/gpu-cluster).
+You will need to make the suggested modifications to the [Kubernetes cluster deployed as part of your
+Metaflow Azure 
+deployment](https://github.com/outerbounds/metaflow-tools/blob/master/azure/terraform/infra/kubernetes.tf).
 
 Reach out to [Metaflow Slack channel](http://chat.metaflow.org) if you need help setting up a cluster.
 

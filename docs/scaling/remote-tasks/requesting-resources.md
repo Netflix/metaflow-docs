@@ -21,23 +21,25 @@ $ python hello.py run --with batch
 </TabItem>
 </Tabs>
 
-When you add `--with kubernetes` (for Kubernetes) or `--with batch` (for AWS Batch) on the command line
-([depending on your deployment](/getting-started/infrastructure)), Metaflow runs the flow on the chosen
-compute backend.
+When you add `--with kubernetes` (for Kubernetes) or `--with batch` (for AWS Batch) on the
+command line ([depending on your deployment](/getting-started/infrastructure)), Metaflow
+runs the flow on the chosen compute backend.
 
-Every step gets allocated a modest amount of resources by default - around 1 CPU core and 4GB of RAM. If your step
-needs more CPU cores, memory, disk, or [more GPUs (or other hardware accelerators)](gpu-compute), annotate your
-resource requirements with the [`@resources`](/api/step-decorators/resources) decorator.
+Every step gets allocated a modest amount of resources by default - around 1 CPU core and 4GB of
+RAM. If your step needs more CPU cores, memory, disk, or [more GPUs (or other hardware
+accelerators)](gpu-compute), annotate your resource requirements with the
+[`@resources`](/api/step-decorators/resources) decorator.
 
-Another benefit of `@resources` is that it allows you to move smoothly between local development and the cloud.
-The decorator doesn't have an effect for local runs, but when combined with `--with kubernetes`
-or `--with batch`, you can use the flow to handle bigger models or more data without changing
-anything in the code. Note that [production deployments](/production/introduction) always run in the cloud,
-respecting `@resources` requirements.
+Another benefit of `@resources` is that it allows you to move smoothly between local
+development and the cloud. The decorator doesn't have an effect for local runs, but when
+combined with `--with kubernetes` or `--with batch`, you can use the flow to handle bigger
+models or more data without changing anything in the code. Note that
+[production deployments](/production/introduction) always run in the cloud, respecting
+`@resources` requirements.
 
 :::note
-Note that `@kubernetes` can target any Kubernetes cluster, including on-premise clusters. For brevity,
-we use the term *the cloud* to refer to all compute backends.
+Note that `@kubernetes` can target any Kubernetes cluster, including on-premise clusters.
+For brevity, we use the term *the cloud* to refer to all compute backends.
 :::
 
 ## Example

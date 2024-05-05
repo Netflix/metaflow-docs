@@ -11,7 +11,8 @@ a generic image on the fly using `@conda` or `@pypi` decorators. We cover both t
 ## Using a GPU-ready Docker image
 
 You can use the `image` argument in `@batch` and `@kubernetes` decorators to choose a suitable
-image on the fly, like [an official `pytorch` image](https://hub.docker.com/r/pytorch/pytorch) we use below:
+image on the fly, like [an official `pytorch` image](https://hub.docker.com/r/pytorch/pytorch)
+we use below:
 
 ```python
 from metaflow import FlowSpec, step, kubernetes
@@ -58,18 +59,19 @@ using a GPU-ready image as a base image.
 
 ## Installing libraries with `@conda` and `@pypi`
 
-[The `@conda` and `@pypi` decorators](/scaling/dependencies/libraries) allow you to install packages on
-the fly on top of a default image. This makes it easy to test different libraries quickly without having
-to build custom images.
+[The `@conda` and `@pypi` decorators](/scaling/dependencies/libraries) allow you to install
+packages on the fly on top of a default image. This makes it easy to test different libraries
+quickly without having to build custom images.
 
-The CUDA drivers are hosted at [NVIDIA's official Conda channel](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#conda-installation). Run this command once to include the
-channel in your environment: 
+The CUDA drivers are hosted at [NVIDIA's official Conda
+channel](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#conda-installation).
+Run this command once to include the channel in your environment: 
 ```bash
 conda config --add channels nvidia
 ```
 
-After this, you can install PyTorch and other CUDA-enabled libraries with `@conda` and `@conda_base` as usual.
-Try this:
+After this, you can install PyTorch and other CUDA-enabled libraries with `@conda` and
+`@conda_base` as usual. Try this:
 
 ```python
 from metaflow import FlowSpec, step, resources, conda_base

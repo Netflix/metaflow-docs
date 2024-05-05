@@ -37,9 +37,15 @@ $ python BigSum.py run --with batch:cpu=4,memory=10000,queue=default,image=ubunt
 
 ## Using GPUs and Trainium instances with AWS Batch
 
-To use GPUs in Metaflow tasks that run on AWS Batch, you need to run the flow in a [Job Queue](https://docs.aws.amazon.com/batch/latest/userguide/job_queues.html) that is attached to a [Compute Environment](https://docs.aws.amazon.com/batch/latest/userguide/compute_environments.html) with GPU/Trainium instances.
+To use GPUs in Metaflow tasks that run on AWS Batch, you need to run the flow in a
+[Job Queue](https://docs.aws.amazon.com/batch/latest/userguide/job_queues.html) that
+is attached to a [Compute
+Environment](https://docs.aws.amazon.com/batch/latest/userguide/compute_environments.html)
+with GPU/Trainium instances.
 
-To set this up, you can either modify the allowable instances in a [Metaflow AWS deployment template](https://github.com/outerbounds/metaflow-tools/tree/master/aws) or manually add such a compute environment from the AWS console. The steps are:
+To set this up, you can either modify the allowable instances in a [Metaflow AWS deployment
+template](https://github.com/outerbounds/metaflow-tools/tree/master/aws) or manually add such a
+compute environment from the AWS console. The steps are:
 
 1. Create a compute environment with GPU-enabled EC2 instances or Trainium instances.
 2. Attach the compute environment to a new Job Queue - for example named `my-gpu-queue`. 
@@ -48,8 +54,9 @@ To set this up, you can either modify the allowable instances in a [Metaflow AWS
     - setting the `METAFLOW_BATCH_JOB_QUEUE` value in your Metaflow config, or 
     - (most explicit) setting the `queue` parameter in the `@batch` decorator.
 
-It is a good practice to separate the job queues that you run GPU tasks on from those that do not require GPUs
-(or Trainium instances). This makes it easier to track hardware-accelerated workflows, which can be costly, independent of other workflows. Just add a line like
+It is a good practice to separate the job queues that you run GPU tasks on from those that do not
+require GPUs (or Trainium instances). This makes it easier to track hardware-accelerated workflows,
+which can be costly, independent of other workflows. Just add a line like
 ```python
 @batch(gpu=1, queue='my-gpu-queue')
 ```
@@ -139,8 +146,8 @@ Environment with a custom AMI.
 
 ## How to configure AWS Batch for distributed computing?
 
-[See these instructions](https://outerbounds.com1/engineering/operations/distributed-computing/) if you want to use
-AWS Batch for [distributed computing](/scaling/remote-tasks/distributed-computing).
+[See these instructions](https://outerbounds.com1/engineering/operations/distributed-computing/)
+if you want to use AWS Batch for [distributed computing](/scaling/remote-tasks/distributed-computing).
 
 
 
