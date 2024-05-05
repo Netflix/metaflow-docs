@@ -36,11 +36,16 @@ resource that should be listed here 🤗
 
 ## Videos
 
+ - [Metaflow Office Hours](https://www.youtube.com/watch?v=76k5r6s6M1Q&list=PLUsOvkBBnJBcdF7SScDIndbnkMnFOoskA) - 
+   cool stories from companies using Metaflow.
  - [Metaflow on YouTube](https://www.youtube.com/results?search_query=metaflow+ml).
  - You can start with [this recent
    overview](https://www.youtube.com/watch?v=gZnhSHvhuFQ).
 
 ## Blogs
+
+Find [a more comprehensive list of Metaflow users and posts here](https://outerbounds.com/stories/). Here's
+a small sample:
 
  - 23andMe: [Developing safe and reliable ML products at
    23andMe](https://medium.com/23andme-engineering/machine-learning-eeee69d40736)
@@ -50,6 +55,7 @@ resource that should be listed here 🤗
    CNN](https://medium.com/cnn-digital/accelerating-ml-within-cnn-983f6b7bd2eb)
  - Latana: [Brand Tracking with Bayesian Statistics and AWS
    Batch](https://aws.amazon.com/blogs/startups/brand-tracking-with-bayesian-statistics-and-aws-batch/)
+ - Netflix: [Supporting Diverse ML Systems at Netflix](https://netflixtechblog.com/supporting-diverse-ml-systems-at-netflix-2d2e6b6d205d)
  - Netflix: [Open-Sourcing Metaflow, a Human-Centric Framework for Data
    Science](https://netflixtechblog.com/open-sourcing-metaflow-a-human-centric-framework-for-data-science-fa72e04a5d9)
  - Netflix: [Unbundling Data Science Workflows with Metaflow and AWS Step
