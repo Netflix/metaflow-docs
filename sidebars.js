@@ -108,12 +108,18 @@ const sidebars = {
       items: [
         {
           type: "category",
-          label: "Executing Tasks Remotely",
+          label: "Computing at Scale",
           link: {
             type: "doc",
             id: "scaling/remote-tasks/introduction",
           },
           items: [
+            "scaling/remote-tasks/requesting-resources",
+            "scaling/remote-tasks/multicore",
+            "scaling/remote-tasks/controlling-parallelism",
+            "scaling/remote-tasks/gpu-compute",
+            "scaling/remote-tasks/installing-drivers-and-frameworks",
+            "scaling/remote-tasks/distributed-computing",
             "scaling/remote-tasks/kubernetes",
             "scaling/remote-tasks/aws-batch",
           ],
@@ -132,18 +138,6 @@ const sidebars = {
             "scaling/dependencies/containers",
             "scaling/dependencies/internals",
             "scaling/dependencies/faq"
-          ],
-        },
-        {
-          type: "category",
-          label: "Compute",
-          link: {
-            type: "doc",
-            id: "scaling/compute/README",
-          },
-          items: [
-            "scaling/compute/use-accelerators",
-            "scaling/compute/multi-node"
           ],
         },
         "scaling/failures",

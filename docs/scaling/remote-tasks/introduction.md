@@ -1,252 +1,135 @@
 
-# Executing Tasks Remotely
+# Computing at Scale
 
-There are two ways to handle larger amounts of data and compute:
+Metaflow makes it easy to run compute in the cloud. Instead of prescribing one paradigm for all
+compute needs, Metaflow allows you to mix and match various patterns of scalable compute,
+keeping simple things simple while making advanced use cases possible.
 
-1. _Scale up_ by running your code on a larger machine with more memory, CPU cores, and
-   GPUs, or
-2. _Scale out_ by using more machines in parallel.
+When your needs are modest, you can
+run Metaflow as any Python code, such as a notebook or a local script. When you need more
+compute power, say to train a model on GPUs or to handle a large dataframe, you can get the
+job done by adding a line code. Or, you can execute even thousands of such tasks in parallel
+or train a large model, such as an LLM, over many GPUs.
 
-As described below, Metaflow supports the former through the `@resources` decorator and
-the latter through [foreach](/metaflow/basics#foreach) when flows are run on Kubernetes
-or AWS Batch.
+Below, we provide an overview of the patterns of compute that Metaflow supports with pointers
+for more details. Importantly, you can mix and match these patterns freely, even in a single
+flow.
 
-Everything described on this page applies to all compute platforms supported by
-Metaflow. The data scientist can write their flows using foreaches and the `@resource`
-decorator knowing that the code will execute on any supported platforms. For additional
-tips and tricks related to specific systems, see [Using AWS Batch](aws-batch) and [Using
-Kubernetes](kubernetes).
+:::note
+To enable the cloud computing capabilities of Metaflow - `@batch` and `@kubernetes` - you need to
+[deploy a Metaflow stack](/getting-started/infrastructure) first. To test these concepts
+before deploying, [try the Metaflow Sandbox](https://outerbounds.com/sandbox/).
+:::
 
-## Requesting resources with `resources` decorator
-
-Consider the following example:
-
-```python
-from metaflow import FlowSpec, step, resources
-
-class BigSum(FlowSpec):
-
-    @resources(memory=60000, cpu=1)
-    @step
-    def start(self):
-        import numpy
-        import time
-        big_matrix = numpy.random.ranf((80000, 80000))
-        t = time.time()
-        self.sum = numpy.sum(big_matrix)
-        self.took = time.time() - t
-        self.next(self.end)
-
-    @step
-    def end(self):
-        print("The sum is %f." % self.sum)
-        print("Computing it took %dms." % (self.took * 1000))
-
-if __name__ == '__main__':
-    BigSum()
+```mdx-code-block
+import ReactPlayer from 'react-player';
 ```
 
-This example creates a huge 80000x80000 random matrix, `big_matrix`. The matrix requires
-about 80000^2 \* 8 bytes = 48GB of memory. 
+## Rapid development with local execution
 
-If you attempt to run this on your local machine, it is likely that the following will
-happen:
+When you run a flow without special decorators, e.g.
+[run `LinearFlow` by typing `python linear.py run`](/metaflow/basics#linear),
+the flow runs locally on your computer like any Python script or a notebook.
 
-```bash
-$ python BigSum.py run
+<ReactPlayer playing controls muted loop url='/assets/compute1.mp4' width='100%' height='100%'/>
 
-2019-11-29 02:43:39.689 [5/start/21975 (pid 83812)] File "BugSum.py", line 11, in start
-2018-11-29 02:43:39.689 [5/start/21975 (pid 83812)] big_matrix = numpy.random.ranf((80000, 80000))
-2018-11-29 02:43:39.689 [5/start/21975 (pid 83812)] File "mtrand.pyx", line 856, in mtrand.RandomState.random_sample
-2018-11-29 02:43:39.689 [5/start/21975 (pid 83812)] File "mtrand.pyx", line 167, in mtrand.cont0_array
-2018-11-29 02:43:39.689 [5/start/21975 (pid 83812)] MemoryError
-2018-11-29 02:43:39.689 [5/start/21975 (pid 83812)]
-2018-11-29 02:43:39.844 [5/start/21975 (pid 83812)] Task failed.
-2018-11-29 02:43:39.844 Workflow failed.
-    Step failure:
-    Step start (task-id 21975) failed.
-```
+This allows you to develop and test code rapidly without having to rely on any infrastructure
+outside your workstation.
 
-This fails quickly due to a `MemoryError` on most laptops as we are unable to allocate
-48GB of memory. 
+Running your code as a flow can provide an immediate performance benefit: If your flow has
+[branches](/metaflow/basics#branch) or [foreaches](/metaflow/basics#foreach), 
+Metaflow leverages multiple CPU cores to speed up compute by running parallel tasks as separate processes.
+In addition to Metaflow parallelizing tasks, you can speed up compute by using optimized Python libraries
+such as [PyTorch](https://pytorch.org/) to leverage GPUs or a library like
+[XGBoost](https://xgboost.readthedocs.io/en/stable/) that can utilize multiple CPU cores.
 
-The `@resources` decorator suggests resource requirements for a step. The `memory`
-argument specifies the amount of RAM in megabytes and `cpu` the number of CPU cores
-requested. It does not produce the resources magically, which is why the run above
-failed. The `@resources` decorator takes effect only when combined with another
-decorator that describes what compute platform, like Kubernetes or AWS Batch, to use.
+### Parallelizing Python over multiple CPU cores
 
-Let's use the `--with` option to attach a desired decorator to all steps on the command
-line. Choose one of the commands in the tabs below corresponding to whichever you use-
-Kubernetes or AWS Batch. This assumes that you have [configured one of these systems
-work with Metaflow](/getting-started/infrastructure).
+If you need to execute a medium amount of compute - too much to handle in sequential Python
+code but not enough to warrant parallel tasks using `foreach` - [Metaflow provides a helper function,
+`parallel_map`](multicore) that parallelizes execution of a Python function over multiple CPU cores.
+For instance, you can use `parallel_map` to process a list of 10M items in batches of 1M items 
+in parallel.
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+## Requesting compute `@resources`
 
-<Tabs>
-<TabItem value="k8s" label="Kubernetes">
+If your job requires more resources than what is available on your workstation, e.g. more
+memory or more GPUs, Metaflow makes it easy to run the task remotely on a cloud instance:
+[Simply annotate the step with the `@resources` decorator](requesting-resources).
 
-```batch
-$ python BigSum.py run --with kubernetes
-```
+<ReactPlayer playing controls muted loop url='/assets/compute2.mp4' width='100%' height='100%'/>
 
-</TabItem>
+In this case, Metaflow executes the task remotely in the cloud using [one of the supported compute
+backends](/getting-started/infrastructure), AWS Batch or Kubernetes.
 
-<TabItem value="batch" label="AWS Batch">
+This is often the easiest way
+to scale up compute to handle larger datasets or models. It is like getting a bigger computer with
+a line of code. While larger cloud instances cost more, they are only needed for as long as a
+`@step` executes, so this approach can be cost-effective as well. This manner of scaling is called
+[*vertical scaling*](https://en.wikipedia.org/wiki/Scalability#Vertical_or_scale_up).
 
-```k8s
-$ python BigSum.py run --with batch
-```
+### Requesting GPUs and other hardware accelerators
 
-</TabItem>
-</Tabs>
+ML/AI workloads often require hardware acceleration such as GPUs. Learn more on [a dedicated
+page about hardware-accelerated compute](gpu-compute).
 
-The `--with batch` or `--with kubernetes` option instructs Metaflow to run all tasks as
-separate jobs on the chosen compute platform, instead of using a local process for each
-task. It has the same effect as adding the decorator above all steps in the source code.
+## Executing steps in parallel
 
-This time the run should succeed thanks to the large enough instance, assuming a large
-enough instance is available in your compute environment. In this case the `resources`
-decorator is used as a prescription for the size of the instance that the job should run
-on. Make sure that this resource requirement can be met. If a large enough instance is
-not available, the task won't start executing.
+If you want to execute two or more `@step`s in parallel, [make them `branch`](/metaflow/basics#branch).
 
-You should see an output like this:
+<ReactPlayer playing controls muted loop url='/assets/compute3.mp4' width='100%' height='100%'/>
 
-```bash
-The sum is 3200003911.795288.
-Computing it took 4497ms.
-```
+When you run a flow with branches locally, each `@step` is run in a process of its own, taking
+advantage of multiple CPU cores in your workstation to speed up processing. When you [execute the
+flow (or some of its steps) remotely](requesting-resources), each `@step` is
+run in a separate container, allowing you to run even thousands of steps in parallel.
 
-In addition to `cpu` and `memory` you can specify `gpu=N` to request N GPUs for the
-instance.
+Branches come in handy in two scenarios:
 
-### Running only specific steps remotely
+1. You have separate operations that can be executed independently.
 
-The `resources` decorator is an annotation that signals how much resources are required
-by a step. By itself, it does not force the step to be executed on any particular
-platform. This is convenient as you can make the choice later, executing the same flow
-on different environments without changes.
+2. You want to allocate separate `@resources` (or other decorators) for different sets of data, e.g.
+   to build a small model with CPUs and a large one with GPUs. Just create branches, each with their
+   own set of decorators.
 
-Sometimes it is useful to make sure that a step always executes on a certain compute
-platform, maybe using a platform-specific configuration. You can achieve this by adding
-either `@batch` or `@kubernetes` above steps that should be executed remotely. The
-decorators accept the same keyword arguments as `@resources` as well as
-platform-specific arguments that you can find listed in [the API
-reference](/api/step-decorators).
+## Running many tasks in parallel with `foreach`
 
-For instance, in the example above, replace `@resources` with `@batch` or `@kubernetes`
-and run it as follows:
+A very common scenario in ML, AI, and data processing is to run the same operation, e.g. data
+transformation or model training, for each shard of data or a set of parameters.
 
-```bash
-$ python BigSum.py run
-```
+<ReactPlayer playing controls muted loop url='/assets/compute4.mp4' width='100%' height='100%'/>
 
-You will see that the `start` step gets executed on a remote instance but the `end`
-step, which does not need special resources, is executed locally. You could even mix
-decorators so that some steps execute on `@kubernetes`, some on `@batch`, and some
-locally.
+Metaflow's [`foreach`](/metaflow/basics#foreach) is similar to
+[Python's built-in `map` function](https://realpython.com/python-map-function/) which allows
+you to apply a function - or in the case of Metaflow, a `@step` - to all elements in a list.
 
-### Parallelization over multiple cores
+The difference to `branch` is that `foreach` applies **the same operation** to all elements,
+utilizing [*data parallelism*](https://en.wikipedia.org/wiki/Data_parallelism), whereas `branch`
+applies **a different operation** to each, utilizing
+[*task parallelism*](https://en.wikipedia.org/wiki/Task_parallelism).
 
-When running locally, tasks are executed as separate processes. The operating system
-takes care of allocating them to separate CPU cores, so they will actually execute in
-parallel assuming that enough CPU cores are available. Hence, your flow can utilize
-multiple cores without you having to do anything special besides defining branches in
-the flow.
+The superpower of Metaflow is that you can [run these tasks in parallel](requesting-resources),
+processing even thousands of items concurrently in the cloud. Hence you can use foreaches to
+process large datasets, train many models, or run hyperparameter searches in parallel, that is,
+execute any [*embarrassingly parallel*](https://en.wikipedia.org/wiki/Embarrassingly_parallel)
+operations that can benefit from
+[*horizontal scaling*](https://en.wikipedia.org/wiki/Scalability#Horizontal_or_scale_out).
 
-When running remotely on `@batch` or `@kubernetes`, branches are mapped to separate jobs
-that are executed in parallel, allowing you to *scale horizontally* to any number of
-parallel tasks. In addition, you may take advantage of multiple CPU cores inside a task.
-This may happen automatically if you use a modern ML library like PyTorch or Scikit
-Learn, or you may parallelize functions explicitly, as explained below.
+### Options for controlling parallelism
 
-#### Parallel map
+Note that regardless of the size of your list to `foreach` over, you can control the number
+of tasks actually run in parallel with [the `--max-workers` flag](#). Also you will want to
+[increase `--max-num-splits` when you list is long](#).
 
-Metaflow provides a utility function called `parallel_map` that helps take advantage of
-multiple CPU cores. This function is almost equivalent to `Pool().map` in the Python's
-built-in
-[multiprocessing](https://docs.python.org/2/library/multiprocessing.html#multiprocessing.pool.multiprocessing.Pool.map)
-library. The main differences are the following:
+## Distributed computing with ephemeral compute clusters
 
-* `parallel_map` supports lambdas and any other callables of Python.
-* `parallel_map` does not suffer from bugs present in `multiprocessing`.
-* `parallel_map` can handle larger amounts of data.
+The most advanced pattern of compute that Metaflow supports is distributed computing. In
+this case, Metaflow sets up a cluster of instances on the fly which can communicate with
+each other, e.g. to train a Large Language Model (LLM) over many GPU instances.
 
-You may also use `parallel_map` to parallelize simple operations that might be too
-cumbersome to implement as separate steps.
+<ReactPlayer playing controls muted loop url='/assets/compute5.mp4' width='100%' height='100%'/>
 
-Here is an extension of our previous example that implements a multicore `sum()` by
-partitioning the matrix by row:
-
-```python
-from metaflow import FlowSpec, step, batch, parallel_map
-
-class BigSum(FlowSpec):
-
-    @resources(memory=60000, cpu=8)
-    @step
-    def start(self):
-        import numpy
-        import time
-        big_matrix = numpy.random.ranf((80000, 80000))
-        t = time.time()
-        parts = parallel_map(lambda i: big_matrix[i:i+10000].sum(),
-                             range(0, 80000, 10000))
-        self.sum = sum(parts)
-        self.took = time.time() - t
-        self.next(self.end)
-
-    @step
-    def end(self):
-        print("The sum is %f." % self.sum)
-        print("Computing it took %dms." % (self.took * 1000))
-
-if __name__ == '__main__':
-    BigSum()
-```
-
-Note that we use `cpu=8` to request enough CPU cores, so our `parallel_map` can benefit
-from optimal parallelism. Disappointingly, in this case the parallel `sum` is not faster
-than the original simple implementation due to the overhead of launching separate
-processes in `parallel_map`. A less trivial operation might see a much larger
-performance boost.
-
-## **Safeguard flags**
-
-It is almost too easy to execute tasks remotely using Metaflow. Consider a foreach loop
-defined as follows:
-
-```python
-self.params = range(1000)
-self.next(self.fanned_out, foreach='params')
-```
-
-When run with `--with batch` or `--with kubernetes`, this code would launch up to 1000
-parallel instances which may turn out to be quite expensive.
-
-To safeguard against inadvertent launching of many parallel jobs, the `run` and `resume`
-commands have a flag `--max-num-splits` which fails the task if it attempts to launch
-more than 100 splits by default. Use the flag to increase the limit if you actually need
-more tasks.
-
-```bash
-$ python myflow.py run --max-num-splits 200
-```
-
-Another flag, `--max-workers`, limits the number of tasks run in parallel. Even if a
-foreach launched 100 splits, `--max-workers` would make only 16 \(by default\) of them
-run in parallel at any point in time. If you want more parallelism, increase the value
-of `--max-workers`.
-
-```bash
-$ python myflow.py run --max-workers 32
-```
-
-## Big Data
-
-Thus far, we have focused on CPU and memory-bound steps. Loading and processing big data
-is often an IO-bound operation which requires a different approach. Read [Loading and
-Storing Data](/scaling/data) for more details about how to build efficient data
-pipelines in Metaflow.
+While there are many other ways to set up such clusters, a major benefit of Metaflow is
+that you can *embed an ephemeral cluster* as a part of a larger workflow, instead of having
+to maintain the cluster separately. Learn more on [a dedicated page about distributed
+computing](distributed-computing).
