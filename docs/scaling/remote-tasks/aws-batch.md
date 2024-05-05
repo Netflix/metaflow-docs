@@ -146,7 +146,7 @@ Environment with a custom AMI.
 
 ## How to configure AWS Batch for distributed computing?
 
-[See these instructions](https://outerbounds.com1/engineering/operations/distributed-computing/)
+[See these instructions](https://outerbounds.com/engineering/operations/distributed-computing/)
 if you want to use AWS Batch for [distributed computing](/scaling/remote-tasks/distributed-computing).
 
 
