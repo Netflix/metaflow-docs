@@ -8,7 +8,8 @@ a concern, you could easily achieve this using
 when it comes to credentials and other sensitive information, security is a top concern.
 
 The industry-standard best practice is to store credentials in a secrets
-manager, such as [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/).
+manager, such as [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) or
+[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/).
 Once secrets are managed by such a system, Metaflow provides a decorator, `@secrets`,
 which makes it easy to access them securely in a flow.
 
@@ -17,7 +18,7 @@ Also, take a look at [the API docs for `@secrets`](/api/step-decorators/secrets)
 
 :::info
 
-Currently, `@secrets` supports only AWS Secrets Manager. Contact us on
+Currently, `@secrets` supports AWS Secrets Manager and Azure Key Vault. Contact us on
 [Metaflow support Slack](http://chat.metaflow.org) if you are interested in
 using another secrets manager.
 
@@ -68,13 +69,18 @@ sets is exposed through environment variables.
 ### Configuring a secrets backend
 
 To use `@secrets`, you need to inform Metaflow which secrets manager you want to
-use. Currently, the choice is easy since the only supported backend is AWS
-Secrets Manager.
-
-Make sure your Metaflow configuration contains the following line:
+use. If you are using AWS Secrets Manager, make sure your Metaflow configuration
+contains the following line:
 
 ```json
 "METAFLOW_DEFAULT_SECRETS_BACKEND_TYPE": "aws-secrets-manager"
+```
+
+If you are using Azure Key Vault, make sure your Metaflow configuration contains 
+the following line:
+
+```json
+"METAFLOW_DEFAULT_SECRETS_BACKEND_TYPE": "az-key-vault"
 ```
 
 ### Defining secrets on the command line
@@ -183,3 +189,43 @@ AWS Secrets Manager console) as a source:
 @secrets(sources=['arn:aws:secretsmanager:us-west-2:001234556000:secret:some-secret'])
 ```
 
+### Accessing secrets in Azure
+
+Azure Key Vault is an account specific service, managed via Azure
+Resource Manager. Currently, only `Secret` object types are supported. You can specify 
+secrets in the `sources` list or dictionary object as shown below. 
+
+The following formats of secrets are supported. 
+
+Fully qualified Key Vault Id:
+
+```python
+@secrets(sources=['https://az-key-vault.vault.azure.net/secrets/secretkey/2260d88aca504269999c5f9413c3abcd'])
+```
+
+Key Vault Id without version:
+
+```python
+@secrets(sources=['https://az-key-vault.vault.azure.net/secrets/secretkey'])
+```
+
+Key Vault Object Name with version:
+
+```python
+@secrets(sources=['secretkey/2260d88aca504269999c5f9413c3abcd'])
+```
+
+Key Vault Object Name:
+
+```python
+@secrets(sources=['secretkey'])
+```
+
+:::info
+
+If the Azure Key Vault URL is not specified in the sources attribute, it must be set in 
+the metaflow configuration as:
+
+"METAFLOW_AZURE_KEY_VAULT_PREFIX": "https://az-key-vault.vault.azure.net/"
+
+:::
