@@ -191,9 +191,10 @@ AWS Secrets Manager console) as a source:
 
 ### Accessing secrets in Azure
 
-Starting 2.11.16 Metaflow supports Azure Key Vault as a secrets backend. Azure Key Vault is an 
+Starting 2.11.16, metaflow supports Azure Key Vault as a secrets backend. Azure Key Vault is an 
 account specific service, managed via Azure Resource Manager. 
-Currently, only `Secret` object types are supported. You can specify secrets in the `sources` list or dictionary object as shown below. 
+Currently, only `Secret` object types are supported. You can specify secrets in the `sources` 
+list or dictionary object as shown below.
 
 The following formats of secrets are supported. 
 
