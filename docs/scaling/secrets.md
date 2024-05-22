@@ -191,9 +191,9 @@ AWS Secrets Manager console) as a source:
 
 ### Accessing secrets in Azure
 
-Azure Key Vault is an account specific service, managed via Azure
-Resource Manager. Currently, only `Secret` object types are supported. You can specify 
-secrets in the `sources` list or dictionary object as shown below. 
+Azure Key Vault is an account specific service, managed via Azure Resource Manager. 
+Currently, only `Secret` object types are supported. You can specify secrets in the `sources` 
+list or dictionary object as shown below.
 
 The following formats of secrets are supported. 
 
@@ -221,11 +221,19 @@ Key Vault Object Name:
 @secrets(sources=['secretkey'])
 ```
 
+Using a dictionary to specify the arguments to the sources attribute can be done as follows:
+
+```python
+@secrets(sources=[{"type": "az-key-vault", "id":"https://az-key-vault.vault.azure.net/secrets/secretkey/2260d88aca504269999c5f9413c3ddcd"}])
+```
+
 :::info
 
 If the Azure Key Vault URL is not specified in the sources attribute, it must be set in 
 the metaflow configuration as:
 
+```json
 "METAFLOW_AZURE_KEY_VAULT_PREFIX": "https://az-key-vault.vault.azure.net/"
+```
 
 :::
