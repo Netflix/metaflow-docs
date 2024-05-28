@@ -4,15 +4,15 @@
 The Runner API allows you to start and manage Metaflow runs and other operations programmatically,
 for instance, to run flows in a script. 
 
-The `Runner` class exposes both a blocking API, which waits for operations
-to complete, as well as a non-blocking (asynchronous) APIs, prefixed with `async`, which execute
+The `Runner` class exposes a blocking API, which waits for operations
+to complete, as well as a non-blocking (asynchronous) APIs, prefixed with `async` which execute
 operations in the background. This document provides an overview of common patterns. For
 detailed API documentation, see  [the Runner API reference](/api/runner).
 
 :::tip
-Equivalent to local runs started on the command line, the `Runner` API orchestrates flows
-locally. To trigger runs in production, orchestrated by a production scheduler, take a
-look at [event triggering](/production/event-triggering).
+The `Runner` API orchestrates flows locally, equivalent to local runs started
+on the command line. To trigger runs in production, orchestrated by a production
+scheduler, take a look at [event triggering](/production/event-triggering).
 :::
 
 ---
@@ -60,8 +60,9 @@ execution automatically. Otherwise you should call `runner.cleanup()` once
 you are done with the object to make sure no temporary files are left behind.
 :::
 
-Besides the `run` object, [the `ExecutingRun` object](/api/runner#executingrun) exposes metadata
-about the run, such as its `status`, and output in `stdout` and `stderr`:
+All methods that start a run return [an `ExecutingRun` object](/api/runner#executingrun)
+which contains [the `Run` started](/api/client#run) as well as metadata about the corresponding
+subprocess such as its `status`, and output in `stdout` and `stderr`:
 
 ```python
 from metaflow import Runner
@@ -79,11 +80,13 @@ with Runner('slowflow.py', show_output=False).run(seconds=SECONDS) as running:
     print(f'⏰ The flow waited for {running.run.data.secs} seconds')
 ```
 
-Pass parameters to the run through the keyword arguments in `run`, such as `seconds` above. Note that the
-parameter values are type-checked automatically, ensuring that the types match with the actual types expected
-by each `Parameter`.
-
 Note that we set `show_output=False` to hide the output of the run while it executes.
+
+### Passing parameters
+
+You can pass parameters to the run through the keyword arguments in `run`, such as `seconds` above.
+Note that the parameter values are type-checked automatically, ensuring that the types match with
+the actual types expected by each `Parameter`.
 
 ## Setting options
 
@@ -192,8 +195,8 @@ asyncio.run(main())
 
 ### Managing concurrent runs
 
-A key benefit of the asynchronous API is that it allows many operations to be performed concurrently.
-For instance, you can execute many runs in parallel, each with a different set of parameters.
+A key benefit of the asynchronous API is that it allows multiple operations to run at the same time.
+For example, you can execute many runs in parallel, each with its own set of parameters.
 
 This snippet demonstrates the pattern: It starts five concurrent runs, each with a different value of
 the `seconds` parameter, and shows the values one by one as the runs complete.

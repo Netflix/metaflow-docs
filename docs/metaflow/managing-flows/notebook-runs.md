@@ -1,8 +1,8 @@
 
 # Running in a Notebook
 
-For the quickest way to execute a flow defined in a cell, add [the `NBRunner` object](/api/runner#nbrunner)
-on the last line of the cell:
+To execute a flow defined in a cell, just add [a `NBRunner` one-liner](/api/runner#nbrunner)
+on the last line of the same cell:
 
 ```mdx-code-block
 import ReactPlayer from 'react-player';
@@ -10,7 +10,7 @@ import ReactPlayer from 'react-player';
 
 <ReactPlayer playing controls muted playsinline loop url='/assets/nbrun1.mp4' width='100%' height='100%'/>
 
-If the flow finishes successfully, it returns [a `Run` object](/api/client#run) which you can use
+Once the flow finishes successfully, it will return [a `Run` object](/api/client#run) which you can use
 to [inspect the results](/metaflow/client).
 
 :::note
@@ -37,25 +37,27 @@ Importantly, the parameter values may be variables defined in other cells, like 
 
 A major benefit of Metaflow is that it gives you easy access to [scalable compute
 resources](/scaling/remote-tasks/introduction). To run a flow in the cloud instead of the notebook instance,
-[request cloud resources as usual](/scaling/remote-tasks/requesting-resources).
+just [request cloud resources](/scaling/remote-tasks/requesting-resources).
 
-You can pass any command-line options to `NBRunner` as keyword arguments, replacing `--with` with `decospecs`
-as `with` is a reserved keyword in Python. For instance, `NBRunner(MyFlow, decospecs=['kubernetes']` would
-be equal to `run --with kubernetes`:
+You can pass any command-line options to `NBRunner` as keyword arguments. Note any `--with` options
+are aliased as `decospecs`, as `with` is a reserved keyword in Python. For instance,
+`NBRunner(MyFlow, decospecs=['kubernetes']` would be equal to `run --with kubernetes`, running the
+flow remotely in a Kubernetes cluster:
 
 <ReactPlayer playing controls muted playsinline loop url='/assets/nbrun-k8s.mp4' width='100%' height='100%'/>
 
 :::tip
-With Metaflow, you can execute a cell with massive amounts of compute resources, including
-[GPUs and other accelerators](/scaling/remote-tasks/gpu-compute), and retrieve results easily back to the
-notebook.
+
+With Metaflow, you can use powerful compute resources, like [GPUs and other
+accelerators](/scaling/remote-tasks/gpu-compute), to run a cell and easily get the results
+back in the notebook.
 :::
 
 ## Non-blocking runs
 
 The `NBRunner(FlowName).nbrun()` one-liner is convenient for running a flow, waiting for it to complete, and
 returning its results. However, especially with long-running runs, you may want to start a run in the
-background and monitor its progress and outputs as its executing.
+background, monitoring its progress and outputs live while the run is executing.
 
 You can do this with `NBRunner.async_run()` which leverages [the non-blocking
 Runner API](/metaflow/managing-flows/runner#non-blocking-api):
