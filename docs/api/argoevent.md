@@ -44,7 +44,7 @@ Read more in [Triggering Flows Based on External Events](/production/event-trigg
 <Description summary="Publishes an event." extended_summary="Note that the function returns immediately after the event has been sent. It\ndoes not wait for flows to start, nor it guarantees that any flows will start." />
 <ParamSection name="Parameters">
 	<Parameter name="payload" type="dict" desc="Additional key-value pairs to add to the payload." />
-	<Parameter name="ignore_errors" type="bool, default: True" desc="If True, events are created on a best effort basis - errors are silently ignored." />
+	<Parameter name="ignore_errors" type="bool, default True" desc="If True, events are created on a best effort basis - errors are silently ignored." />
 </ParamSection>
 </DocSection>
 
@@ -57,7 +57,7 @@ Read more in [Triggering Flows Based on External Events](/production/event-trigg
 <Description summary="Publishes an event when called inside a deployed workflow. Outside a deployed workflow\nthis function does nothing." extended_summary="Use this function inside flows to create events safely. As this function is a no-op\nfor local runs, you can safely call it during local development without causing unintended\nside-effects. It takes effect only when deployed on Argo Workflows." />
 <ParamSection name="Parameters">
 	<Parameter name="payload" type="dict" desc="Additional key-value pairs to add to the payload." />
-	<Parameter name="ignore_errors" type="bool, default: True" desc="If True, events are created on a best effort basis - errors are silently ignored." />
+	<Parameter name="ignore_errors" type="bool, default True" desc="If True, events are created on a best effort basis - errors are silently ignored." />
 </ParamSection>
 </DocSection>
 

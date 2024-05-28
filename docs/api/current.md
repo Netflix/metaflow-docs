@@ -240,7 +240,7 @@ the contents of cards using [card components](/api/cards#Card-components). For a
 <SigArgSection>
 <SigArg name="self" />
 </SigArgSection>
-<Description summary="Clears the list of components in this card." />
+
 
 </DocSection>
 
@@ -250,11 +250,8 @@ the contents of cards using [card components](/api/cards#Card-components). For a
 <SigArgSection>
 <SigArg name="self" />
 </SigArgSection>
-<Description summary="Schedule the contents of this dynamic card to be refreshed soon." extended_summary="Call this method after you have modified the list of components or\nchanged their contents with the components' `update` method. This will\ncause the card to update live while the task is executing.\n\nNote that this method is rate-limited, determined by the\n`@card(refresh_interval)` attribute. If you call this method more\nfrequently than what is allowed by `refresh_interval`, some calls\nare ignored causing the card to update more slowly.\n\nIt is advisable not to call this method more often than once\na second, which is the minimum allowed value for `refresh_interval`." />
-<ParamSection name="Parameters">
-	<Parameter name="data" type="dict, optional" desc="Optional user-defined data to be passed to a custom card." />
-	<Parameter name="force" type="bool, optional" desc="Force a full card re-render, not just a data update." />
-</ParamSection>
+
+
 </DocSection>
 
 

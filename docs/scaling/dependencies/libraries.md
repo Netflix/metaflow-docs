@@ -139,7 +139,7 @@ This short clip shows a run in action, showing also a resulting card:
 import ReactPlayer from 'react-player';
 ```
 
-<ReactPlayer playing controls muted loop url='/assets/fractalflow.mp4' width='100%' height='100%'/>
+<ReactPlayer playsinline playing controls muted loop url='/assets/fractalflow.mp4' width='100%' height='100%'/>
 
 ## `@conda` in action
 

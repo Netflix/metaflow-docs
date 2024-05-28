@@ -11,11 +11,10 @@ Creates a report card after the step completes. For more information, see [Visua
 </SigArgSection>
 <Description summary="Creates a human-readable report, a Metaflow Card, after this step completes." extended_summary="Note that you may add multiple `@card` decorators in a step with different parameters." />
 <ParamSection name="Parameters">
-	<Parameter name="type" type="str, default: 'default'" desc="Card type." />
-	<Parameter name="id" type="str, optional, default: None" desc="If multiple cards are present, use this id to identify this card." />
-	<Parameter name="options" type="Dict[str, Any], default: {}" desc="Options passed to the card. The contents depend on the card type." />
-	<Parameter name="timeout" type="int, default: 45" desc="Interrupt reporting if it takes more than this many seconds." />
-	<Parameter name="refresh_interval" type="int, default 5" desc="The minimum time allowed between `refresh` calls. Determines\nhow often a dynamic card updates." />
+	<Parameter name="type" type="str, default 'default'" desc="Card type." />
+	<Parameter name="id" type="str, optional, default None" desc="If multiple cards are present, use this id to identify this card." />
+	<Parameter name="options" type="Dict[str, Any], default {}" desc="Options passed to the card. The contents depend on the card type." />
+	<Parameter name="timeout" type="int, default 45" desc="Interrupt reporting if it takes more than this many seconds." />
 </ParamSection>
 </DocSection>
 

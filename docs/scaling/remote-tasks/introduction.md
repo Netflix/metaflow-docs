@@ -36,7 +36,7 @@ When you run a flow without special decorators, e.g.
 [run `LinearFlow` by typing `python linear.py run`](/metaflow/basics#linear),
 the flow runs locally on your computer like any Python script or a notebook.
 
-<ReactPlayer playing controls muted loop url='/assets/compute1.mp4' width='100%' height='100%'/>
+<ReactPlayer playsinline laying controls muted loop url='/assets/compute1.mp4' width='100%' height='100%'/>
 
 This allows you to develop and test code rapidly without having to rely on any infrastructure
 outside your workstation.
@@ -63,7 +63,7 @@ If your job requires more resources than what is available on your workstation, 
 memory or more GPUs, Metaflow makes it easy to run the task remotely on a cloud instance:
 [Simply annotate the step with the `@resources` decorator](requesting-resources).
 
-<ReactPlayer playing controls muted loop url='/assets/compute2.mp4' width='100%' height='100%'/>
+<ReactPlayer playsinline playing controls muted loop url='/assets/compute2.mp4' width='100%' height='100%'/>
 
 In this case, Metaflow executes the task remotely in the cloud using [one of the supported compute
 backends](/getting-started/infrastructure), AWS Batch or Kubernetes.
@@ -83,7 +83,7 @@ page about hardware-accelerated compute](gpu-compute).
 
 If you want to execute two or more `@step`s in parallel, [make them `branch`](/metaflow/basics#branch).
 
-<ReactPlayer playing controls muted loop url='/assets/compute3.mp4' width='100%' height='100%'/>
+<ReactPlayer playsinline playing controls muted loop url='/assets/compute3.mp4' width='100%' height='100%'/>
 
 When you run a flow with branches locally, each `@step` is run in a process of its own, taking
 advantage of multiple CPU cores in your workstation to speed up processing. When you [execute the
@@ -103,7 +103,7 @@ Branches come in handy in two scenarios:
 A very common scenario in ML, AI, and data processing is to run the same operation, e.g. data
 transformation or model training, for each shard of data or a set of parameters.
 
-<ReactPlayer playing controls muted loop url='/assets/compute4.mp4' width='100%' height='100%'/>
+<ReactPlayer playsinline playing controls muted loop url='/assets/compute4.mp4' width='100%' height='100%'/>
 
 Metaflow's [`foreach`](/metaflow/basics#foreach) is similar to
 [Python's built-in `map` function](https://realpython.com/python-map-function/) which allows
@@ -133,7 +133,7 @@ The most advanced pattern of compute that Metaflow supports is distributed compu
 this case, Metaflow sets up a cluster of instances on the fly which can communicate with
 each other, e.g. to train a Large Language Model (LLM) over many GPU instances.
 
-<ReactPlayer playing controls muted loop url='/assets/compute5.mp4' width='100%' height='100%'/>
+<ReactPlayer playsinline playing controls muted loop url='/assets/compute5.mp4' width='100%' height='100%'/>
 
 While there are many other ways to set up such clusters, a major benefit of Metaflow is
 that you can *embed an ephemeral cluster* as a part of a larger workflow, instead of having

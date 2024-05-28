@@ -80,6 +80,18 @@ const sidebars = {
       items: [
         "metaflow/basics",
         "metaflow/client",
+        {
+          type: "category",
+          label: "Managing Flows",          
+          link: {
+            type: "doc",
+            id: "metaflow/managing-flows/introduction",
+          },
+          items: [
+            "metaflow/managing-flows/notebook-runs",
+            "metaflow/managing-flows/runner",
+          ],           
+        },
         "metaflow/debugging",
         {
           type: "category",
@@ -197,6 +209,7 @@ const sidebars = {
         "api/client",
         "api/flowspec",
         "api/current",
+        "api/runner",
         "api/S3",
         "api/cards",
         "api/argoevent",

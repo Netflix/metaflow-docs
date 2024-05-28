@@ -12,7 +12,7 @@ Here, the completion of `FirstFlow` triggers a run of `SecondFlow`:
 import ReactPlayer from 'react-player';
 ```
 
-<ReactPlayer playing controls muted loop url='/assets/et-flows.mp4' width='100%' height='100%'/>
+<ReactPlayer playsinline playing controls muted loop url='/assets/et-flows.mp4' width='100%' height='100%'/>
 
 Let's demonstrate the case with two simple flows:
 
@@ -94,7 +94,7 @@ This time, we want to use the newly trained model to run inference for the
 latest data. This requires passing the model object from `TrainingFlow` to
 `InferenceFlow`:
 
-<ReactPlayer playing controls muted loop url='/assets/et-combo.mp4' width='100%' height='100%'/>
+<ReactPlayer playsinline playing controls muted loop url='/assets/et-combo.mp4' width='100%' height='100%'/>
 
 Whenever a flow is triggered by an event, information about the event is made
 available through
