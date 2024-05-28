@@ -8,7 +8,7 @@ works.
 :::tip
 The examples below show how to execute flows on the command line. If you want to
 develop flows in a notebook, take a quick look at [how to run flows in a
-notebook](/metaflow/executing-flows/notebook-runs).
+notebook](/metaflow/managing-flows/notebook-runs).
 :::
 
 ## The Structure of Metaflow Code
