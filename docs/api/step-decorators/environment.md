@@ -19,7 +19,7 @@ To set credentials and other secret as environment variables, [see the `@secrets
 </SigArgSection>
 <Description summary="Specifies environment variables to be set prior to the execution of a step." />
 <ParamSection name="Parameters">
-	<Parameter name="vars" type="Dict[str, str], default: {}" desc="Dictionary of environment variables to set." />
+	<Parameter name="vars" type="Dict[str, str], default {}" desc="Dictionary of environment variables to set." />
 </ParamSection>
 </DocSection>
 

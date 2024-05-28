@@ -13,11 +13,11 @@ For more information, see [Scheduling Metaflow Flows](/production/scheduling-met
 </SigArgSection>
 <Description summary="Specifies the times when the flow should be run when running on a\nproduction scheduler." />
 <ParamSection name="Parameters">
-	<Parameter name="hourly" type="bool, default: False" desc="Run the workflow hourly." />
-	<Parameter name="daily" type="bool, default: True" desc="Run the workflow daily." />
-	<Parameter name="weekly" type="bool, default: False" desc="Run the workflow weekly." />
-	<Parameter name="cron" type="str, optional" desc="Run the workflow at [a custom Cron schedule](https://docs.aws.amazon.com/eventbridge/latest/userguide/scheduled-events.html#cron-expressions)\nspecified by this expression." />
-	<Parameter name="timezone" type="str, optional" desc="Timezone on which the schedule runs (default: None). Currently supported only for Argo workflows,\nwhich accepts timezones in [IANA format](https://nodatime.org/TimeZones)." />
+	<Parameter name="hourly" type="bool, default False" desc="Run the workflow hourly." />
+	<Parameter name="daily" type="bool, default True" desc="Run the workflow daily." />
+	<Parameter name="weekly" type="bool, default False" desc="Run the workflow weekly." />
+	<Parameter name="cron" type="str, optional, default None" desc="Run the workflow at [a custom Cron schedule](https://docs.aws.amazon.com/eventbridge/latest/userguide/scheduled-events.html#cron-expressions)\nspecified by this expression." />
+	<Parameter name="timezone" type="str, optional, default None" desc="Timezone on which the schedule runs (default: None). Currently supported only for Argo workflows,\nwhich accepts timezones in [IANA format](https://nodatime.org/TimeZones)." />
 </ParamSection>
 </DocSection>
 
