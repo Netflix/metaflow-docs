@@ -1,7 +1,8 @@
 # Inspecting Flows and Results
 
 Metaflow provides a client API that is used to inspect results of past runs. It is
-particularly well suited to being used in notebooks.
+particularly well suited to being used in notebooks. If you want to run flows in
+notebooks or in other apps, see [Executing Flows](executing-flows).
 
 This document provides an overview of the client API. See the complete API in [the
 Client API reference page](/api/client).

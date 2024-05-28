@@ -30,6 +30,7 @@ projects.
 - [Introduction to Developing with Metaflow](metaflow/introduction)
 - [Creating Flows](metaflow/basics)
 - [Inspecting Flows and Results](metaflow/client)
+- [Managing Flows in Notebooks and Scripts](metaflow/managing-flows/introduction) ✨*New*✨
 - [Debugging Flows](metaflow/debugging)
 - [Visualizing Results](metaflow/visualizing-results/) 
 

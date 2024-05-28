@@ -5,6 +5,12 @@ Metaflow in practice, you can start with the [tutorial](../getting-started/tutor
 After the tutorial, you can return to this document to learn more about how Metaflow
 works.
 
+:::tip
+The examples below show how to execute flows on the command line. If you want to
+develop flows in a notebook, take a quick look at [how to run flows in a
+notebook](/metaflow/executing-flows/notebook-runs).
+:::
+
 ## The Structure of Metaflow Code
 
 Metaflow follows [the dataflow
