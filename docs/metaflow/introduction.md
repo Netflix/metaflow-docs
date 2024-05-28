@@ -27,7 +27,7 @@ happens in the early phases of a project:
 1. Many data scientists are familiar with notebooks that shine at open-ended exploration
    and quick sketching of solutions. When developing with Metaflow, it is totally ok
    (although not required) to use notebooks for analysis. You can [execute flows in
-   notebook](/metaflow/managing-flows/notebook-runs) and use the [Metaflow Client
+   a notebook](/metaflow/managing-flows/notebook-runs) and use the [Metaflow Client
    API](/metaflow/client) to inspect the results.
 
 2. Once you have a rough idea for the first version of your project, it is useful to
