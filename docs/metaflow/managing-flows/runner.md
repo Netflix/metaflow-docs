@@ -105,7 +105,7 @@ which is equivalent to running
 ```
 python slowflow.py --no-pylint --with kubernetes --with retry run
 ```
-on the command line. Also, you can options to the `run` command, such as `max_workers` or `tags`:
+on the command line. Also, you can pass options to the `run` command, such as `max_workers` or `tags`:
 
 ```python
 from metaflow import Runner
