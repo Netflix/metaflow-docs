@@ -26,8 +26,9 @@ happens in the early phases of a project:
 
 1. Many data scientists are familiar with notebooks that shine at open-ended exploration
    and quick sketching of solutions. When developing with Metaflow, it is totally ok
-   (although not required) to use notebooks for analysis. Use the [Metaflow Client
-   API](/metaflow/client) to access and organize results of Metaflow runs in a notebook.
+   (although not required) to use notebooks for analysis. You can [execute flows in
+   notebook](/metaflow/managing-flows/notebook-runs) and use the [Metaflow Client
+   API](/metaflow/client) to inspect the results.
 
 2. Once you have a rough idea for the first version of your project, it is useful to
 structure it as a workflow, or *flows* in Metaflow parlance. Metaflow makes this easy:
@@ -44,13 +45,14 @@ functionality in the next phases of the project.
 
 ## What You Will Learn
 
-Let's go ahead and learn how to create and test Metaflow flows. This stage covers four
+Let's go ahead and learn how to create and test Metaflow flows. This stage covers five
 core topics:
 
  1. [Creating flows](/metaflow/basics)
  2. [Inspecting results of flows](/metaflow/client)
- 3. [Visualizing results](/metaflow/visualizing-results)
- 4. [Debugging flows](/metaflow/debugging)
+ 3. [Managing flows programmatically](/metaflow/managing-flows/introduction)
+ 4. [Visualizing results](/metaflow/visualizing-results)
+ 5. [Debugging flows](/metaflow/debugging)
 
 These topics work locally on your workstation without any additional infrastructure, so
 it is easy to get started.
