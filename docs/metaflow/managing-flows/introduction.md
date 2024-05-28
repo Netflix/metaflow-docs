@@ -1,6 +1,11 @@
 
 # Managing Flows in Notebooks and Scripts
 
+:::info
+This is a new feature in Metaflow 2.12. Make sure you have a recent enough version of
+Metaflow to use this feature.
+:::
+
 Besides executing flows on the command line, Metaflow provides an API for starting
 runs and other operations programmatically. This feature comes in handy when you want
 to, for instance
