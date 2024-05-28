@@ -77,4 +77,4 @@ inside indicate event-triggered runs:
 import ReactPlayer from 'react-player';
 ```
 
-<ReactPlayer playing controls muted loop url='/assets/mfgui-event.mp4' width='100%' height='100%'/>
+<ReactPlayer playsinline playing controls muted loop url='/assets/mfgui-event.mp4' width='100%' height='100%'/>

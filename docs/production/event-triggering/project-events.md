@@ -15,7 +15,7 @@ deployments like here:
 import ReactPlayer from 'react-player';
 ```
 
-<ReactPlayer playing controls muted loop url='/assets/et-variants.mp4' width='100%' height='100%'/>
+<ReactPlayer playsinline playing controls muted loop url='/assets/et-variants.mp4' width='100%' height='100%'/>
 
 Fortunately, you can achieve such isolated deployments by using [the `@project`
 decorator](/production/coordinating-larger-metaflow-projects) in conjunction

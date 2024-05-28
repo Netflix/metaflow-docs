@@ -10,7 +10,7 @@ could start a flow whenever new data is available in a data warehouse:
 import ReactPlayer from 'react-player';
 ```
 
-<ReactPlayer playing controls muted loop url='/assets/et-basic-event.mp4' width='100%' height='100%'/>
+<ReactPlayer playsinline playing controls muted loop url='/assets/et-basic-event.mp4' width='100%' height='100%'/>
 
 All you have to do is to add [a decorator, `@trigger`](/api/flow-decorators/trigger), with
 a desired event name above the flow:
@@ -127,7 +127,7 @@ the fly by letting the event
 
 Consider this typical machine learning system that implements a continuously refreshing model:
 
-<ReactPlayer playing controls muted loop url='/assets/et-model.mp4' width='100%' height='100%'/>
+<ReactPlayer playsinline playing controls muted loop url='/assets/et-model.mp4' width='100%' height='100%'/>
 
 1. An event is created whenever new data is available in the data warehouse.
 2. The event contains information about the latest data available in the warehouse.
