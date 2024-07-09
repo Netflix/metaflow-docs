@@ -8,8 +8,9 @@ a concern, you could easily achieve this using
 when it comes to credentials and other sensitive information, security is a top concern.
 
 The industry-standard best practice is to store credentials in a secrets
-manager, such as [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) or
-[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/).
+manager, such as [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/), 
+[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/) or
+[GCP Secret Manager](https://cloud.google.com/security/products/secret-manager).
 Once secrets are managed by such a system, Metaflow provides a decorator, `@secrets`,
 which makes it easy to access them securely in a flow.
 
@@ -247,6 +248,8 @@ Metaflow supports integration with GCP Secret Manager - to store and retrieve se
 Pre-requisites:
 1. Enable the Secrets Manager API in your GCP Project
 2. In order to access a Secret in GCP, you should have at least Secret Manager Secret Accessor role on the secret.
+
+:::
 
 You can specify secrets in the `sources` list or dictionary object as shown below. The following formats of secrets are supported. 
 
