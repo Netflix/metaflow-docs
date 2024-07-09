@@ -18,7 +18,7 @@ Also, take a look at [the API docs for `@secrets`](/api/step-decorators/secrets)
 
 :::info
 
-Currently, `@secrets` supports AWS Secrets Manager and Azure Key Vault. Contact us on
+Currently, `@secrets` supports AWS Secrets Manager, Azure Key Vault and GCP Secrets Manager. Contact us on
 [Metaflow support Slack](http://chat.metaflow.org) if you are interested in
 using another secrets manager.
 
