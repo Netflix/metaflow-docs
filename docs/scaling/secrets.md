@@ -8,8 +8,9 @@ a concern, you could easily achieve this using
 when it comes to credentials and other sensitive information, security is a top concern.
 
 The industry-standard best practice is to store credentials in a secrets
-manager, such as [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) or
-[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/).
+manager, such as [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/), 
+[Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/) or
+[GCP Secret Manager](https://cloud.google.com/security/products/secret-manager).
 Once secrets are managed by such a system, Metaflow provides a decorator, `@secrets`,
 which makes it easy to access them securely in a flow.
 
@@ -18,7 +19,7 @@ Also, take a look at [the API docs for `@secrets`](/api/step-decorators/secrets)
 
 :::info
 
-Currently, `@secrets` supports AWS Secrets Manager and Azure Key Vault. Contact us on
+Currently, `@secrets` supports AWS Secrets Manager, Azure Key Vault and GCP Secrets Manager. Contact us on
 [Metaflow support Slack](http://chat.metaflow.org) if you are interested in
 using another secrets manager.
 
@@ -237,3 +238,47 @@ the metaflow configuration as:
 ```
 
 :::
+ 
+### Accessing secrets in GCP
+
+Metaflow supports integration with GCP Secret Manager - to store and retrieve secrets securely. The secrets are retrieved and made available through environment variables. 
+
+:::info
+
+Pre-requisites:
+1. Enable the Secrets Manager API in your GCP Project
+2. In order to access a Secret in GCP, you should have at least Secret Manager Secret Accessor role on the secret.
+
+:::
+
+You can specify secrets in the `sources` list or dictionary object as shown below. The following formats of secrets are supported. 
+
+Fully qualified Path to Secret:
+
+```python
+@secrets(sources=["projects/1234567890/mysecret"]) 
+```
+
+Secret name:
+
+```python
+@secrets(sources=['mysecret'])
+```
+
+Using a dictionary to specify the environment variable name using options as follows:
+
+```python
+@secrets(sources=[{"id": "mysecret", {"options": {"env_var_name": "MY_SECRET"}}])
+```
+
+:::info
+
+If the fully qualified GCP Secret Path is not specified in the sources attribute, it must be set in 
+the metaflow configuration as:
+
+```json
+"METAFLOW_GCP_SECRET_MANAGER_PREFIX": "projects/1234567890"
+```
+
+:::
+ 
