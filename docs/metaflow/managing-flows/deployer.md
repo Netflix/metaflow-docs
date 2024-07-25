@@ -1,7 +1,7 @@
 
 # Deploying Flows Programmatically
 
-Besides running flows programmatically, you can deploy flows to
+Besides running flows via an API, you can deploy flows to
 [one of the production orchestrators supported by Metaflow](/production/scheduling-metaflow-flows/introduction)
 programmatically. For instance, you can use this feature to create a deployment script running
 as [a part of your CI/CD system](https://outerbounds.com/blog/continuous-delivery-of-ml-ai/),
