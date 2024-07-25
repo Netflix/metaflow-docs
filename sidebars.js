@@ -90,6 +90,7 @@ const sidebars = {
           items: [
             "metaflow/managing-flows/notebook-runs",
             "metaflow/managing-flows/runner",
+            "metaflow/managing-flows/deployer",
           ],           
         },
         "metaflow/debugging",
@@ -210,6 +211,7 @@ const sidebars = {
         "api/flowspec",
         "api/current",
         "api/runner",
+        "api/deployer",
         "api/S3",
         "api/cards",
         "api/argoevent",

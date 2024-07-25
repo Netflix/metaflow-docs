@@ -57,7 +57,7 @@ This module accesses all objects through the current metadata provider - either 
 ### Metaflow
 
 
-<DocSection type="class" name="Metaflow" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L2228">
+<DocSection type="class" name="Metaflow" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L2268">
 <SigArgSection>
 
 </SigArgSection>
@@ -71,7 +71,7 @@ This module accesses all objects through the current metadata provider - either 
 ### Flow
 
 
-<DocSection type="class" name="Flow" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L2115">
+<DocSection type="class" name="Flow" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L2155">
 <SigArgSection>
 <SigArg name="pathspec" />
 </SigArgSection>
@@ -84,7 +84,7 @@ This module accesses all objects through the current metadata provider - either 
 
 
 
-<DocSection type="method" name="Flow.runs" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L2165">
+<DocSection type="method" name="Flow.runs" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L2205">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="*tags: str" type="str" />
 </SigArgSection>
@@ -101,7 +101,7 @@ This module accesses all objects through the current metadata provider - either 
 ### Run
 
 
-<DocSection type="class" name="Run" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1774">
+<DocSection type="class" name="Run" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1814">
 <SigArgSection>
 <SigArg name="pathspec" />
 </SigArgSection>
@@ -119,7 +119,7 @@ This module accesses all objects through the current metadata provider - either 
 
 
 
-<DocSection type="method" name="Run.add_tag" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1941">
+<DocSection type="method" name="Run.add_tag" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1981">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="tag" type="str" />
 </SigArgSection>
@@ -131,7 +131,7 @@ This module accesses all objects through the current metadata provider - either 
 
 
 
-<DocSection type="method" name="Run.add_tags" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1963">
+<DocSection type="method" name="Run.add_tags" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L2003">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="tags" type="Iterable" />
 </SigArgSection>
@@ -143,7 +143,7 @@ This module accesses all objects through the current metadata provider - either 
 
 
 
-<DocSection type="method" name="Run.remove_tag" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1977">
+<DocSection type="method" name="Run.remove_tag" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L2017">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="tag" type="str" />
 </SigArgSection>
@@ -155,7 +155,7 @@ This module accesses all objects through the current metadata provider - either 
 
 
 
-<DocSection type="method" name="Run.remove_tags" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1999">
+<DocSection type="method" name="Run.remove_tags" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L2039">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="tags" type="Iterable" />
 </SigArgSection>
@@ -167,7 +167,7 @@ This module accesses all objects through the current metadata provider - either 
 
 
 
-<DocSection type="method" name="Run.replace_tag" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L2013">
+<DocSection type="method" name="Run.replace_tag" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L2053">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="tag_to_remove" type="str" /><SigArg name="tag_to_add" type="str" />
 </SigArgSection>
@@ -180,7 +180,7 @@ This module accesses all objects through the current metadata provider - either 
 
 
 
-<DocSection type="method" name="Run.replace_tags" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L2037">
+<DocSection type="method" name="Run.replace_tags" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L2077">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="tags_to_remove" type="Iterable" /><SigArg name="tags_to_add" type="Iterable" />
 </SigArgSection>
@@ -195,7 +195,7 @@ This module accesses all objects through the current metadata provider - either 
 ### Step
 
 
-<DocSection type="class" name="Step" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1584">
+<DocSection type="class" name="Step" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1624">
 <SigArgSection>
 <SigArg name="pathspec" />
 </SigArgSection>
@@ -211,7 +211,7 @@ This module accesses all objects through the current metadata provider - either 
 ### Task
 
 
-<DocSection type="class" name="Task" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L997">
+<DocSection type="class" name="Task" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1037">
 <SigArgSection>
 <SigArg name="pathspec, attempt=None" />
 </SigArgSection>
@@ -235,7 +235,7 @@ This module accesses all objects through the current metadata provider - either 
 
 
 
-<DocSection type="method" name="Task.loglines" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1453">
+<DocSection type="method" name="Task.loglines" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L1493">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="stream" type="str" /><SigArg name="as_unicode" type="bool" default="True" /><SigArg name="meta_dict" type="Optional" default="None" />
 </SigArgSection>
@@ -253,7 +253,7 @@ This module accesses all objects through the current metadata provider - either 
 ### DataArtifact
 
 
-<DocSection type="class" name="DataArtifact" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L820">
+<DocSection type="class" name="DataArtifact" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L860">
 <SigArgSection>
 <SigArg name="pathspec" />
 </SigArgSection>
@@ -271,7 +271,7 @@ This module accesses all objects through the current metadata provider - either 
 ### MetaflowData
 
 
-<DocSection type="class" name="MetaflowData" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L953">
+<DocSection type="class" name="MetaflowData" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L993">
 <SigArgSection>
 <SigArg name="" />
 </SigArgSection>
@@ -283,7 +283,7 @@ This module accesses all objects through the current metadata provider - either 
 ### MetaflowCode
 
 
-<DocSection type="class" name="MetaflowCode" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L719">
+<DocSection type="class" name="MetaflowCode" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/client/core.py#L759">
 <SigArgSection>
 <SigArg name="" />
 </SigArgSection>
