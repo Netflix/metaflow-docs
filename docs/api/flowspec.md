@@ -33,7 +33,7 @@ To query and manipulate the currently executing run inside your flow, see the [`
 Annotate methods that are a part of your Metaflow workflow with [the `@step` decorator](/api/step-decorators/step). Use `FlowSpec.next` to define transitions between steps:
 
 
-<DocSection type="method" name="FlowSpec.next" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/flowspec.py#L538">
+<DocSection type="method" name="FlowSpec.next" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/flowspec.py#L544">
 <SigArgSection>
 <SigArg name="*dsts, foreach=None" />
 </SigArgSection>
@@ -72,7 +72,7 @@ Use the operations below, `FlowSpec.input`, `FlowSpec.index`, and `FlowSpec.fore
 
 
 
-<DocSection type="method" name="FlowSpec.foreach_stack" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/flowspec.py#L283">
+<DocSection type="method" name="FlowSpec.foreach_stack" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/flowspec.py#L289">
 <SigArgSection>
 <SigArg name="self" />
 </SigArgSection>
@@ -84,7 +84,7 @@ Use the operations below, `FlowSpec.input`, `FlowSpec.index`, and `FlowSpec.fore
 
 
 
-<DocSection type="method" name="FlowSpec.merge_artifacts" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/flowspec.py#L367">
+<DocSection type="method" name="FlowSpec.merge_artifacts" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/flowspec.py#L373">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="inputs" type="Inputs" /><SigArg name="exclude" type="Optional" default="None" /><SigArg name="include" type="Optional" default="None" />
 </SigArgSection>
@@ -109,7 +109,7 @@ The `Parameter` class is used to define parameters for a flow.
 The `Parameter` objects must be defined as class variables inside a flow. The parameter values are available as read-only artifacts in all steps of the flow. For instructions, see [How to define parameters for flows](/metaflow/basics#how-to-define-parameters-for-flows).
 
 
-<DocSection type="class" name="Parameter" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/parameters.py#L212">
+<DocSection type="class" name="Parameter" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/parameters.py#L249">
 <SigArgSection>
 <SigArg name="name" type="str" /><SigArg name="default" type="Union" default="None" /><SigArg name="type" type="Union" default="None" /><SigArg name="help" type="Optional" default="None" /><SigArg name="required" type="bool" default="False" /><SigArg name="show_default" type="bool" default="True" /><SigArg name="**kwargs: Dict[str, Any]" type="Dict" />
 </SigArgSection>

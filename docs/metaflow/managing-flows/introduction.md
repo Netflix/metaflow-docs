@@ -14,11 +14,11 @@ to, for instance
 
  - Create your own wrapper scripts to [launchs flows programmatically](runner).
 
+ - [Deploy flows programmatically](deployer) in a CI/CD system like
+   GitHub Actions.
+
  - Create a UI for executing and inspecting Metaflow runs locally with
    [the asynchronous runner API](runner#non-blocking-api).
-
- - Run tests and [deploy flows to production in CI/CD
-   systems](https://outerbounds.com/blog/continuous-delivery-of-ml-ai/) like GitHub Actions.
 
 In cases like this [the Runner API](/api/runner) allows you to run flows and perform other actions
 locally, similar to running the flow manually on the command line. After you have [deployed

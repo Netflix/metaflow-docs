@@ -27,3 +27,8 @@ following subsections:
 - [Scheduling with AWS Step
   Functions](../scheduling-metaflow-flows/scheduling-with-aws-step-functions)
 - [Scheduling with Airflow](../scheduling-metaflow-flows/scheduling-with-airflow)
+
+:::tip
+Note that you can [manage production deployments programmatically](/metaflow/managing-flows/deployer)
+through [the `Deployer` API](/api/deployer).
+:::

@@ -1,5 +1,5 @@
 
-# Managing Flows Programmatically
+# Running Flows Programmatically
 
 The Runner API allows you to start and manage Metaflow runs and other operations programmatically,
 for instance, to run flows in a script. 

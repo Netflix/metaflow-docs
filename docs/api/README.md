@@ -22,7 +22,8 @@ Use these to construct flows, access data, and manipulate results.
 
 - [Client API](/api/client) - accessing past results.
 - [FlowSpec](/api/flowspec) - constructing flows.
-- [Runner](/api/runner) - managing flows.
+- [Runner](/api/runner) - running flows.
+- [Deployer](/api/deployer) - deploying flows.
 - [Current](/api/current) - operating a run.
 - [S3](/api/s3) - accessing data in S3 quickly.
 - [Cards](/api/cards) - visualizing results.
