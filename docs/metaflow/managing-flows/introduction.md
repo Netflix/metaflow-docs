@@ -21,6 +21,5 @@ to, for instance
    [the asynchronous runner API](runner#non-blocking-api).
 
 In cases like this [the Runner API](/api/runner) allows you to run flows and perform other actions
-locally, similar to running the flow manually on the command line. After you have [deployed
-a flow in production](/production/introduction), you can use the command line or
-[event-triggering](/production/event-triggering) to execute flows in the production environment.
+locally, similar to running the flow manually on the command line. Once you are happy with the
+results, you can deploy the flow to production with [the Deployer API](/api/deployer).

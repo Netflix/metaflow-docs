@@ -32,6 +32,11 @@ involves multiple people, multiple workflows, or it is becoming business-critica
 out the section around [coordinating larger Metaflow
 projects](../coordinating-larger-metaflow-projects.md).
 
+:::tip
+You can interact with Argo Workflows programmatically using the `Deployer` API - [read
+more about it here](/metaflow/managing-flows/deployer).
+:::
+
 ## Pushing a flow to production
 
 Let's use [the flow from the section about
