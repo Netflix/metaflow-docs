@@ -295,6 +295,3 @@ These calls block until the command completes.
 	<Parameter type="Tuple[int, str]" desc="A tuple containing the position in the log file and the line read. The\nposition returned can be used to feed into another `stream_logs` call\nfor example." />
 </ParamSection>
 </DocSection>
-
-
-## Deployer
