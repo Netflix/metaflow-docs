@@ -33,7 +33,7 @@ To query and manipulate the currently executing run inside your flow, see the [`
 Annotate methods that are a part of your Metaflow workflow with [the `@step` decorator](/api/step-decorators/step). Use `FlowSpec.next` to define transitions between steps:
 
 
-<DocSection type="method" name="FlowSpec.next" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/flowspec.py#L544">
+<DocSection type="method" name="FlowSpec.next" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/flowspec.py#L556">
 <SigArgSection>
 <SigArg name="*dsts, foreach=None" />
 </SigArgSection>
@@ -72,7 +72,7 @@ Use the operations below, `FlowSpec.input`, `FlowSpec.index`, and `FlowSpec.fore
 
 
 
-<DocSection type="method" name="FlowSpec.foreach_stack" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/flowspec.py#L289">
+<DocSection type="method" name="FlowSpec.foreach_stack" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/flowspec.py#L301">
 <SigArgSection>
 <SigArg name="self" />
 </SigArgSection>
@@ -84,7 +84,7 @@ Use the operations below, `FlowSpec.input`, `FlowSpec.index`, and `FlowSpec.fore
 
 
 
-<DocSection type="method" name="FlowSpec.merge_artifacts" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/flowspec.py#L373">
+<DocSection type="method" name="FlowSpec.merge_artifacts" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/flowspec.py#L385">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="inputs" type="Inputs" /><SigArg name="exclude" type="Optional" default="None" /><SigArg name="include" type="Optional" default="None" />
 </SigArgSection>
@@ -160,7 +160,7 @@ The function called gets a parameter `context` that contains attributes about th
 The `IncludeFile` object is a special `Parameter` that reads its value from a local file. For an example, see [Data in Local Files](/scaling/data#data-in-local-files).
 
 
-<DocSection type="class" name="IncludeFile" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/includefile.py#L237">
+<DocSection type="class" name="IncludeFile" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/includefile.py#L231">
 <SigArgSection>
 <SigArg name="name, **kwargs" />
 </SigArgSection>

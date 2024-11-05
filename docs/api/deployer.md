@@ -48,6 +48,7 @@ In addition to this basic functionality, each implementation-specific object exp
 	<Parameter name="profile" type="Optional[str], default None" desc="Metaflow profile to use for the deployment. If not specified, the default\nprofile is used." />
 	<Parameter name="env" type="Optional[Dict[str, str]], default None" desc="Additional environment variables to set for the deployment." />
 	<Parameter name="cwd" type="Optional[str], default None" desc="The directory to run the subprocess in; if not specified, the current\ndirectory is used." />
+	<Parameter name="file_read_timeout" type="int, default 3600" desc="The timeout until which we try to read the deployer attribute file." />
 	<Parameter name="**kwargs" type="Any" desc="Additional arguments that you would pass to `python myflow.py` before\nthe deployment command." />
 </ParamSection>
 </DocSection>
@@ -80,19 +81,32 @@ In addition to this basic functionality, each implementation-specific object exp
 ## Deploy Argo Workflows with `ArgoWorkflowsDeployer`
 
 
-<DocSection type="method" name="ArgoWorkflowsDeployer.create" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/__main__.py#L52">
+<DocSection type="method" name="ArgoWorkflowsDeployer.create" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/argo/argo_workflows_deployer.py#L49">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="**kwargs" />
 </SigArgSection>
-<Description summary="Create a deployed flow using the deployer implementation." />
+<Description summary="Create a new ArgoWorkflow deployment." />
 <ParamSection name="Parameters">
-	<Parameter name="**kwargs" type="Any" desc="Additional arguments to pass to `create` corresponding to the\ncommand line arguments of `create`" />
+	<Parameter name="authorize" type="str, optional, default None" desc="Authorize using this production token. Required when re-deploying an existing flow\nfor the first time. The token is cached in METAFLOW_HOME." />
+	<Parameter name="generate_new_token" type="bool, optional, default False" desc="Generate a new production token for this flow. Moves the production flow to a new namespace." />
+	<Parameter name="given_token" type="str, optional, default None" desc="Use the given production token for this flow. Moves the production flow to the given namespace." />
+	<Parameter name="tags" type="List[str], optional, default None" desc="Annotate all objects produced by Argo Workflows runs with these tags." />
+	<Parameter name="user_namespace" type="str, optional, default None" desc="Change the namespace from the default (production token) to the given tag." />
+	<Parameter name="only_json" type="bool, optional, default False" desc="Only print out JSON sent to Argo Workflows without deploying anything." />
+	<Parameter name="max_workers" type="int, optional, default 100" desc="Maximum number of parallel processes." />
+	<Parameter name="workflow_timeout" type="int, optional, default None" desc="Workflow timeout in seconds." />
+	<Parameter name="workflow_priority" type="int, optional, default None" desc="Workflow priority as an integer. Higher priority workflows are processed first\nif Argo Workflows controller is configured to process limited parallel workflows." />
+	<Parameter name="auto_emit_argo_events" type="bool, optional, default True" desc="Auto emits Argo Events when the run completes successfully." />
+	<Parameter name="notify_on_error" type="bool, optional, default False" desc="Notify if the workflow fails." />
+	<Parameter name="notify_on_success" type="bool, optional, default False" desc="Notify if the workflow succeeds." />
+	<Parameter name="notify_slack_webhook_url" type="str, optional, default ''" desc="Slack incoming webhook url for workflow success/failure notifications." />
+	<Parameter name="notify_pager_duty_integration_key" type="str, optional, default ''" desc="PagerDuty Events API V2 Integration key for workflow success/failure notifications." />
+	<Parameter name="enable_heartbeat_daemon" type="bool, optional, default False" desc="Use a daemon container to broadcast heartbeats." />
+	<Parameter name="deployer_attribute_file" type="str, optional, default None" desc="Write the workflow name to the specified file. Used internally for Metaflow's Deployer API." />
+	<Parameter name="enable_error_msg_capture" type="bool, optional, default True" desc="Capture stack trace of first failed task in exit hook." />
 </ParamSection>
 <ParamSection name="Returns">
-	<Parameter type="DeployedFlow" desc="DeployedFlow object representing the deployed flow." />
-</ParamSection>
-<ParamSection name="Raises">
-	<Parameter type="Exception" desc="If there is an error during deployment." />
+	<Parameter type="ArgoWorkflowsDeployedFlow" desc="The Flow deployed to Argo Workflows." />
 </ParamSection>
 </DocSection>
 
@@ -100,7 +114,7 @@ In addition to this basic functionality, each implementation-specific object exp
 ### Manage a flow deployed on Argo Workflows with `ArgoWorkflowsDeployedFlow`
 
 
-<DocSection type="property" name="ArgoWorkflowsDeployedFlow.production_token" module="__main__" show_import="False" heading_level="4">
+<DocSection type="property" name="ArgoWorkflowsDeployedFlow.production_token" module="metaflow.plugins.argo.argo_workflows_deployer_objects" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/">
 
 <Description summary="Get the production token for the deployed flow.\n" />
 <ParamSection name="Returns">
@@ -110,13 +124,13 @@ In addition to this basic functionality, each implementation-specific object exp
 
 
 
-<DocSection type="method" name="ArgoWorkflowsDeployedFlow.trigger" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/__main__.py#L40">
+<DocSection type="method" name="ArgoWorkflowsDeployedFlow.trigger" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/argo/argo_workflows_deployer_objects.py#L307">
 <SigArgSection>
-<SigArg name="self" />
+<SigArg name="self" /><SigArg name="**kwargs" />
 </SigArgSection>
 <Description summary="Trigger a new run for the deployed flow." />
 <ParamSection name="Parameters">
-	<Parameter name="**kwargs" type="Any" desc="Additional arguments to pass to the trigger command, `Parameters` in particular" />
+	<Parameter name="**kwargs" type="Any" desc="Additional arguments to pass to the trigger command,\n`Parameters` in particular." />
 </ParamSection>
 <ParamSection name="Returns">
 	<Parameter type="ArgoWorkflowsTriggeredRun" desc="The triggered run instance." />
@@ -128,13 +142,13 @@ In addition to this basic functionality, each implementation-specific object exp
 
 
 
-<DocSection type="method" name="ArgoWorkflowsDeployedFlow.delete" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/__main__.py#L43">
+<DocSection type="method" name="ArgoWorkflowsDeployedFlow.delete" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/argo/argo_workflows_deployer_objects.py#L276">
 <SigArgSection>
-<SigArg name="self" />
+<SigArg name="self" /><SigArg name="**kwargs" />
 </SigArgSection>
-<Description summary="Delete the deployed flow." />
+<Description summary="Delete the deployed workflow template." />
 <ParamSection name="Parameters">
-	<Parameter name="**kwargs" type="Any" desc="Additional arguments to pass to the delete command." />
+	<Parameter name="authorize" type="str, optional, default None" desc="Authorize the deletion with a production token." />
 </ParamSection>
 <ParamSection name="Returns">
 	<Parameter type="bool" desc="True if the command was successful, False otherwise." />
@@ -145,7 +159,7 @@ In addition to this basic functionality, each implementation-specific object exp
 ### Manage a run triggered on Argo Workflows with `ArgoWorkflowsTriggeredRun`
 
 
-<DocSection type="property" name="ArgoWorkflowsTriggeredRun.run" module="__main__" show_import="False" heading_level="4">
+<DocSection type="property" name="TriggeredRun.run" module="metaflow.runner.deployer" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/">
 
 <Description summary="Retrieve the `Run` object for the triggered run.\n\nNote that Metaflow `Run` becomes available only when the `start` task\nhas started executing.\n" />
 <ParamSection name="Returns">
@@ -155,13 +169,13 @@ In addition to this basic functionality, each implementation-specific object exp
 
 
 
-<DocSection type="method" name="ArgoWorkflowsTriggeredRun.terminate" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/__main__.py#L15">
+<DocSection type="method" name="ArgoWorkflowsTriggeredRun.terminate" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/argo/argo_workflows_deployer_objects.py#L136">
 <SigArgSection>
-<SigArg name="self" />
+<SigArg name="self" /><SigArg name="**kwargs" />
 </SigArgSection>
 <Description summary="Terminate the running workflow." />
 <ParamSection name="Parameters">
-	<Parameter name="**kwargs" type="Any" desc="Additional arguments to pass to the terminate command." />
+	<Parameter name="authorize" type="str, optional, default None" desc="Authorize the termination with a production token." />
 </ParamSection>
 <ParamSection name="Returns">
 	<Parameter type="bool" desc="True if the command was successful, False otherwise." />
@@ -170,13 +184,13 @@ In addition to this basic functionality, each implementation-specific object exp
 
 
 
-<DocSection type="method" name="ArgoWorkflowsTriggeredRun.suspend" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/__main__.py#L18">
+<DocSection type="method" name="ArgoWorkflowsTriggeredRun.suspend" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/argo/argo_workflows_deployer_objects.py#L68">
 <SigArgSection>
-<SigArg name="self" />
+<SigArg name="self" /><SigArg name="**kwargs" />
 </SigArgSection>
 <Description summary="Suspend the running workflow." />
 <ParamSection name="Parameters">
-	<Parameter name="**kwargs" type="Any" desc="Additional arguments to pass to the suspend command." />
+	<Parameter name="authorize" type="str, optional, default None" desc="Authorize the suspension with a production token." />
 </ParamSection>
 <ParamSection name="Returns">
 	<Parameter type="bool" desc="True if the command was successful, False otherwise." />
@@ -185,13 +199,13 @@ In addition to this basic functionality, each implementation-specific object exp
 
 
 
-<DocSection type="method" name="ArgoWorkflowsTriggeredRun.unsuspend" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/__main__.py#L21">
+<DocSection type="method" name="ArgoWorkflowsTriggeredRun.unsuspend" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/argo/argo_workflows_deployer_objects.py#L102">
 <SigArgSection>
-<SigArg name="self" />
+<SigArg name="self" /><SigArg name="**kwargs" />
 </SigArgSection>
 <Description summary="Unsuspend the suspended workflow." />
 <ParamSection name="Parameters">
-	<Parameter name="**kwargs" type="Any" desc="Additional arguments to pass to the unsuspend command." />
+	<Parameter name="authorize" type="str, optional, default None" desc="Authorize the unsuspend with a production token." />
 </ParamSection>
 <ParamSection name="Returns">
 	<Parameter type="bool" desc="True if the command was successful, False otherwise." />
@@ -200,33 +214,35 @@ In addition to this basic functionality, each implementation-specific object exp
 
 
 
-<DocSection type="method" name="ArgoWorkflowsTriggeredRun.status" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/__main__.py#L24">
-<SigArgSection>
-<SigArg name="self" />
-</SigArgSection>
-<Description summary="Get the status of the triggered run." />
-<ParamSection name="Returns">
-	<Parameter type="str, optional" desc="The status of the workflow considering the run object, or None if the status could not be retrieved." />
-</ParamSection>
+<DocSection type="property" name="ArgoWorkflowsTriggeredRun.status" module="metaflow.plugins.argo.argo_workflows_deployer_objects" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/">
+
+<Description summary="Get the status of the triggered run.\n" />
 </DocSection>
 
 
 ## Deploy Step Functions with `StepFunctionsDeployer`
 
 
-<DocSection type="method" name="StepFunctionsDeployer.create" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/__main__.py#L42">
+<DocSection type="method" name="StepFunctionsDeployer.create" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/aws/step_functions/step_functions_deployer.py#L49">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="**kwargs" />
 </SigArgSection>
-<Description summary="Create a deployed flow using the deployer implementation." />
+<Description summary="Create a new AWS Step Functions State Machine deployment." />
 <ParamSection name="Parameters">
-	<Parameter name="**kwargs" type="Any" desc="Additional arguments to pass to `create` corresponding to the\ncommand line arguments of `create`" />
+	<Parameter name="authorize" type="str, optional, default None" desc="Authorize using this production token. Required when re-deploying an existing flow\nfor the first time. The token is cached in METAFLOW_HOME." />
+	<Parameter name="generate_new_token" type="bool, optional, default False" desc="Generate a new production token for this flow. Moves the production flow to a new namespace." />
+	<Parameter name="given_token" type="str, optional, default None" desc="Use the given production token for this flow. Moves the production flow to the given namespace." />
+	<Parameter name="tags" type="List[str], optional, default None" desc="Annotate all objects produced by AWS Step Functions runs with these tags." />
+	<Parameter name="user_namespace" type="str, optional, default None" desc="Change the namespace from the default (production token) to the given tag." />
+	<Parameter name="only_json" type="bool, optional, default False" desc="Only print out JSON sent to AWS Step Functions without deploying anything." />
+	<Parameter name="max_workers" type="int, optional, default 100" desc="Maximum number of parallel processes." />
+	<Parameter name="workflow_timeout" type="int, optional, default None" desc="Workflow timeout in seconds." />
+	<Parameter name="log_execution_history" type="bool, optional, default False" desc="Log AWS Step Functions execution history to AWS CloudWatch Logs log group." />
+	<Parameter name="use_distributed_map" type="bool, optional, default False" desc="Use AWS Step Functions Distributed Map instead of Inline Map for defining foreach\ntasks in Amazon State Language." />
+	<Parameter name="deployer_attribute_file" type="str, optional, default None" desc="Write the workflow name to the specified file. Used internally for Metaflow's Deployer API." />
 </ParamSection>
 <ParamSection name="Returns">
-	<Parameter type="DeployedFlow" desc="DeployedFlow object representing the deployed flow." />
-</ParamSection>
-<ParamSection name="Raises">
-	<Parameter type="Exception" desc="If there is an error during deployment." />
+	<Parameter type="StepFunctionsDeployedFlow" desc="The Flow deployed to AWS Step Functions." />
 </ParamSection>
 </DocSection>
 
@@ -234,7 +250,7 @@ In addition to this basic functionality, each implementation-specific object exp
 ### Manage a flow deployed on Step Functions with `StepFunctionsDeployedFlow`
 
 
-<DocSection type="property" name="StepFunctionsDeployedFlow.production_token" module="__main__" show_import="False" heading_level="4">
+<DocSection type="property" name="StepFunctionsDeployedFlow.production_token" module="metaflow.plugins.aws.step_functions.step_functions_deployer_objects" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/">
 
 <Description summary="Get the production token for the deployed flow.\n" />
 <ParamSection name="Returns">
@@ -244,13 +260,13 @@ In addition to this basic functionality, each implementation-specific object exp
 
 
 
-<DocSection type="method" name="StepFunctionsDeployedFlow.trigger" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/__main__.py#L27">
+<DocSection type="method" name="StepFunctionsDeployedFlow.trigger" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/aws/step_functions/step_functions_deployer_objects.py#L171">
 <SigArgSection>
-<SigArg name="self" />
+<SigArg name="self" /><SigArg name="**kwargs" />
 </SigArgSection>
 <Description summary="Trigger a new run for the deployed flow." />
 <ParamSection name="Parameters">
-	<Parameter name="**kwargs" type="Any" desc="Additional arguments to pass to the trigger command, `Parameters` in particular" />
+	<Parameter name="**kwargs" type="Any" desc="Additional arguments to pass to the trigger command,\n`Parameters` in particular" />
 </ParamSection>
 <ParamSection name="Returns">
 	<Parameter type="StepFunctionsTriggeredRun" desc="The triggered run instance." />
@@ -262,13 +278,13 @@ In addition to this basic functionality, each implementation-specific object exp
 
 
 
-<DocSection type="method" name="StepFunctionsDeployedFlow.delete" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/__main__.py#L30">
+<DocSection type="method" name="StepFunctionsDeployedFlow.delete" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/aws/step_functions/step_functions_deployer_objects.py#L140">
 <SigArgSection>
-<SigArg name="self" />
+<SigArg name="self" /><SigArg name="**kwargs" />
 </SigArgSection>
-<Description summary="Delete the deployed flow." />
+<Description summary="Delete the deployed state machine." />
 <ParamSection name="Parameters">
-	<Parameter name="**kwargs" type="Any" desc="Additional arguments to pass to the delete command." />
+	<Parameter name="authorize" type="str, optional, default None" desc="Authorize the deletion with a production token." />
 </ParamSection>
 <ParamSection name="Returns">
 	<Parameter type="bool" desc="True if the command was successful, False otherwise." />
@@ -277,16 +293,16 @@ In addition to this basic functionality, each implementation-specific object exp
 
 
 
-<DocSection type="method" name="StepFunctionsDeployedFlow.list_runs" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/__main__.py#L33">
+<DocSection type="method" name="StepFunctionsDeployedFlow.list_runs" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/aws/step_functions/step_functions_deployer_objects.py#L83">
 <SigArgSection>
-<SigArg name="self" /><SigArg name="states" />
+<SigArg name="self" /><SigArg name="states" type="Optional" default="None" />
 </SigArgSection>
 <Description summary="List runs of the deployed flow." />
 <ParamSection name="Parameters">
-	<Parameter name="states" type="Optional[List[str]], optional" desc="A list of states to filter the runs by. Allowed values are:\nRUNNING, SUCCEEDED, FAILED, TIMED_OUT, ABORTED.\nIf not provided, all states will be considered." />
+	<Parameter name="states" type="List[str], optional, default None" desc="A list of states to filter the runs by. Allowed values are:\nRUNNING, SUCCEEDED, FAILED, TIMED_OUT, ABORTED.\nIf not provided, all states will be considered." />
 </ParamSection>
 <ParamSection name="Returns">
-	<Parameter type="List[TriggeredRun]" desc="A list of TriggeredRun objects representing the runs of the deployed flow." />
+	<Parameter type="List[StepFunctionsTriggeredRun]" desc="A list of TriggeredRun objects representing the runs of the deployed flow." />
 </ParamSection>
 <ParamSection name="Raises">
 	<Parameter type="ValueError" desc="If any of the provided states are invalid or if there are duplicate states." />
@@ -297,7 +313,7 @@ In addition to this basic functionality, each implementation-specific object exp
 ### Manage a run triggered on Step Functions with `StepFunctionsTriggeredRun`
 
 
-<DocSection type="property" name="StepFunctionsTriggeredRun.run" module="__main__" show_import="False" heading_level="4">
+<DocSection type="property" name="TriggeredRun.run" module="metaflow.runner.deployer" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/">
 
 <Description summary="Retrieve the `Run` object for the triggered run.\n\nNote that Metaflow `Run` becomes available only when the `start` task\nhas started executing.\n" />
 <ParamSection name="Returns">
@@ -307,13 +323,13 @@ In addition to this basic functionality, each implementation-specific object exp
 
 
 
-<DocSection type="method" name="StepFunctionsTriggeredRun.terminate" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/__main__.py#L13">
+<DocSection type="method" name="StepFunctionsTriggeredRun.terminate" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/aws/step_functions/step_functions_deployer_objects.py#L17">
 <SigArgSection>
-<SigArg name="self" />
+<SigArg name="self" /><SigArg name="**kwargs" />
 </SigArgSection>
-<Description summary="Terminate the running workflow." />
+<Description summary="Terminate the running state machine execution." />
 <ParamSection name="Parameters">
-	<Parameter name="**kwargs" type="Any" desc="Additional arguments to pass to the terminate command." />
+	<Parameter name="authorize" type="str, optional, default None" desc="Authorize the termination with a production token." />
 </ParamSection>
 <ParamSection name="Returns">
 	<Parameter type="bool" desc="True if the command was successful, False otherwise." />
