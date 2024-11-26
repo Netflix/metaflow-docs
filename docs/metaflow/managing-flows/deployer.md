@@ -45,6 +45,40 @@ You can trigger a deployed flow explicitly by calling `trigger()`
 ```python
 triggered_run = deployed_flow.trigger()
 ```
+
+:::tip
+The `deployed_flow` object which is needed, so as to create a `triggered_run` object via the `trigger()` method
+can also be fetched using the `from_deployment` method. This is useful if we want to reference a flow which has
+been deployed previously. Thus, we need not call `create()` again to create a fresh new deployed flow.
+
+An `identifier` is needed so as to reference the previously deployed flow. An optional `metadata` can also be used.
+
+```py
+from metaflow import Deployer
+
+deployer = Deployer('helloflow.py')
+deployed_flow = deployer.argo_workflows().create()
+
+# save this for later use...
+identifier = deployed_flow.name
+metadata = deployed_flow.metadata
+```
+
+Assuming the `identifier` was saved when the flow was deployed, we can now use the `from_deployment` method as follows:
+
+```py
+from metaflow import DeployedFlow
+
+# use the identifier and metadata saved above..
+deployed_flow = DeployedFlow.from_deployment(identifier=identifier, metadata=metadata)
+triggered_run = deployed_flow.trigger()
+```
+:::
+
+:::note
+The `from_deployment` method is only available for argo-workflows.
+:::
+
 You can specify any [`Parameters`](/metaflow/basics#how-to-define-parameters-for-flows)
 in `trigger`, e.g.
 ```python
@@ -57,11 +91,9 @@ becomes accessible. This may take a while, for instance, if a new
 cloud instance needs to start to execute the task:
 
 ```python
-import time
-while triggered_run.run is None:
-    print(f'Waiting for the run to start')
-    time.sleep(1)
-print('Run started', triggered_run.run)
+# wait for the run object to be available, timeout None means wait forever
+run_obj = triggered_run.wait_for_run(timeout=None)
+print('Run started', run_obj)
 ```
 
 ### Terminating a triggered run
