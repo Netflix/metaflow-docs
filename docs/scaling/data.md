@@ -358,7 +358,7 @@ maximum level of parallelism when retrieving data under multiple prefixes.
 If you have specified a custom `s3root`, you can use `get_all()` to get all files
 recursively under the given prefix.
 
-#### Loading parts of files
+#### **Loading parts of files**
 
 A performance-sensitive application may want to read only a part of a large file.
 Instead of a string, the `get` and `get_many` calls also accept an object with `key`,
