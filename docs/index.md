@@ -8,8 +8,7 @@ slug: /
 
 # Welcome to Metaflow
 
-Metaflow makes it easy to build and manage real-life data science and machine learning
-projects.
+Metaflow makes it easy to build and manage real-life data science, AI, and ML projects.
 
 <div className="tocList">
 
@@ -25,26 +24,27 @@ projects.
 - [Deploying Infrastructure for Metaflow](getting-started/infrastructure)
 - [Quickstart Tutorial](getting-started/tutorials/)
 
-## I. Local Development
+## I. Flow Development
 
 - [Introduction to Developing with Metaflow](metaflow/introduction)
 - [Creating Flows](metaflow/basics)
 - [Inspecting Flows and Results](metaflow/client)
-- [Managing Flows in Notebooks and Scripts](metaflow/managing-flows/introduction) ✨*New*✨
+- [Managing Flows in Notebooks and Scripts](metaflow/managing-flows/introduction) 
 - [Debugging Flows](metaflow/debugging)
 - [Visualizing Results](metaflow/visualizing-results/) 
+- [Configuring Flows](metaflow/configuring-flows/introduction) ✨*New*✨
 
-## II. Scalable Flows
+## II. Scaling Flows
 
 - [Introduction to Scalable Compute and Data](scaling/introduction)
-- [Computing at Scale](scaling/remote-tasks/introduction) ✨*Updated and Expanded*✨
+- [Computing at Scale](scaling/remote-tasks/introduction) 
 - [Managing Dependencies](scaling/dependencies) 
 - [Dealing with Failures](scaling/failures)
 - [Loading and Storing Data](scaling/data)
 - [Accessing Secrets](scaling/secrets)
 - [Organizing Results](scaling/tagging)
 
-## III. Production Deployments
+## III. Deploying to Production
 
 - [Introduction to Production Deployments](production/introduction)
 - [Scheduling Metaflow Flows](production/scheduling-metaflow-flows/introduction)
