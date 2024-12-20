@@ -86,6 +86,12 @@ the following line:
 
 ### Defining secrets on the command line
 
+:::tip
+You can configure `@secrets` also through config files. Take
+a look at [Configuring Flows](/metaflow/configuring-flows/introduction) 
+for more information.
+:::
+
 Note that you can define `@secrets` on the command line using the `--with`
 option like any other decorator. This comes especially handy when moving
 between prototype and production: For instance, you can access a different

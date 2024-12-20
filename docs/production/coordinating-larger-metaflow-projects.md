@@ -218,6 +218,17 @@ as shown above, you can deploy flows-of-flows as isolated branches. Read more ab
 this pattern in
 [Deploying Variants of Event-Triggered Flows](/production/event-triggering/project-events).
 
+### `@project` and configs
+
+Often, larger Metaflow projects spanning multiple branches and flows benefit from
+shared configuration files. For instance, your project can have a configuration
+file (or multiple) which parametrizie the project separately in each Git branch that
+in turn map to project `--branch`'es. 
+
+Take a look at
+[Configuring Flows](/metaflow/configuring-flows/introduction) for more information
+how to leverage `Config`s in your projects.
+
 ## Summary
 
 The `@project` decorator makes available three classes of namespaces that will affect
