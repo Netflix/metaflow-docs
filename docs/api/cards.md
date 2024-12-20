@@ -236,15 +236,15 @@ The components are added to cards in `@step` methods (or functions called from s
 
 <DocSection type="class" name="ProgressBar" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L692">
 <SigArgSection>
-<SigArg name="max" type="int" default="100" /><SigArg name="label" type="str" default="None" /><SigArg name="value" type="int" default="0" /><SigArg name="unit" type="str" default="None" /><SigArg name="metadata" type="str" default="None" />
+<SigArg name="max" type="int" default="100" /><SigArg name="label" type="Optional" default="None" /><SigArg name="value" type="int" default="0" /><SigArg name="unit" type="Optional" default="None" /><SigArg name="metadata" type="Optional" default="None" />
 </SigArgSection>
 <Description summary="A Progress bar for tracking progress of any task." extended_summary="Example:\n```\nprogress_bar = ProgressBar(\n    max=100,\n    label=&#34;Progress Bar&#34;,\n    value=0,\n    unit=&#34;%&#34;,\n    metadata=&#34;0.1 items/s&#34;\n)\ncurrent.card.append(\n    progress_bar\n)\nfor i in range(100):\n    progress_bar.update(i, metadata=&#34;%s items/s&#34; % i)\n\n```" />
 <ParamSection name="Parameters">
-	<Parameter name="max" type="int" desc="The maximum value of the progress bar." />
-	<Parameter name="label" type="str, optional" desc="Optional label for the progress bar." />
-	<Parameter name="value" type="int, optional" desc="Optional initial value of the progress bar." />
-	<Parameter name="unit" type="str, optional" desc="Optional unit for the progress bar." />
-	<Parameter name="metadata" type="str, optional" desc="Optional additional information to show on the progress bar." />
+	<Parameter name="max" type="int, default 100" desc="The maximum value of the progress bar." />
+	<Parameter name="label" type="str, optional, default None" desc="Optional label for the progress bar." />
+	<Parameter name="value" type="int, default 0" desc="Optional initial value of the progress bar." />
+	<Parameter name="unit" type="str, optional, default None" desc="Optional unit for the progress bar." />
+	<Parameter name="metadata" type="str, optional, default None" desc="Optional additional information to show on the progress bar." />
 </ParamSection>
 <ParamSection name="Attributes">
 	<Parameter name="component_id" />
@@ -255,7 +255,7 @@ The components are added to cards in `@step` methods (or functions called from s
 
 <DocSection type="method" name="ProgressBar.update" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L745">
 <SigArgSection>
-<SigArg name="self" /><SigArg name="new_value" type="int" /><SigArg name="metadata" type="str" default="None" />
+<SigArg name="self" /><SigArg name="new_value" type="int" /><SigArg name="metadata" type="Optional" default="None" />
 </SigArgSection>
 <Description summary="#FIXME document" />
 
@@ -295,7 +295,7 @@ ShowDoc(MetaflowCard.render)
 
     AttributeError                            Traceback (most recent call last)
 
-    File ~/mambaforge/envs/docs/lib/python3.11/site-packages/IPython/core/formatters.py:344, in BaseFormatter.__call__(self, obj)
+    File ~/mambaforge/envs/metaflow-oss-docs/lib/python3.10/site-packages/IPython/core/formatters.py:344, in BaseFormatter.__call__(self, obj)
         342     method = get_real_method(obj, self.print_method)
         343     if method is not None:
     --> 344         return method()
@@ -303,20 +303,20 @@ ShowDoc(MetaflowCard.render)
         346 else:
 
 
-    File ~/mambaforge/envs/docs/lib/python3.11/site-packages/nbdoc/showdoc.py:218, in ShowDoc._repr_html_(self)
+    File ~/mambaforge/envs/metaflow-oss-docs/lib/python3.10/site-packages/nbdoc/showdoc.py:218, in ShowDoc._repr_html_(self)
         216 def _repr_html_(self):
         217     "This method controls what is displayed in Jupyter Notebooks."
     --> 218     return f'<HTMLRemove>\n{self.nbhtml}\n</HTMLRemove>\n{self.jsx}'
 
 
-    File ~/mambaforge/envs/docs/lib/python3.11/site-packages/nbdoc/showdoc.py:253, in ShowDoc.jsx(self)
+    File ~/mambaforge/envs/metaflow-oss-docs/lib/python3.10/site-packages/nbdoc/showdoc.py:253, in ShowDoc.jsx(self)
         251 nm = f'<DocSection type="{self.typ}" name="{self.objnm}" module="{self.modnm}" show_import="{self.show_import}" heading_level="{self.hd_lvl}"{self._src_link_attr}>'
         252 spoof = '...' if self.decorator else self.spoofstr
     --> 253 sp = get_sig_section(self.obj, spoofstr=spoof)
         254 return f'{nm}\n{sp}\n' + self.npdocs + '\n</DocSection>'
 
 
-    File ~/mambaforge/envs/docs/lib/python3.11/site-packages/nbdoc/showdoc.py:115, in get_sig_section(obj, spoofstr)
+    File ~/mambaforge/envs/metaflow-oss-docs/lib/python3.10/site-packages/nbdoc/showdoc.py:115, in get_sig_section(obj, spoofstr)
         113         return ''
         114     params = sig.parameters.items()
     --> 115     jsx_params = [fmt_sig_param(p) for _, p in params]
@@ -324,7 +324,7 @@ ShowDoc(MetaflowCard.render)
         117     jsx_params = [f'<SigArg name="{spoofstr}" />']
 
 
-    File ~/mambaforge/envs/docs/lib/python3.11/site-packages/nbdoc/showdoc.py:115, in <listcomp>(.0)
+    File ~/mambaforge/envs/metaflow-oss-docs/lib/python3.10/site-packages/nbdoc/showdoc.py:115, in <listcomp>(.0)
         113         return ''
         114     params = sig.parameters.items()
     --> 115     jsx_params = [fmt_sig_param(p) for _, p in params]
@@ -332,7 +332,7 @@ ShowDoc(MetaflowCard.render)
         117     jsx_params = [f'<SigArg name="{spoofstr}" />']
 
 
-    File ~/mambaforge/envs/docs/lib/python3.11/site-packages/nbdoc/showdoc.py:99, in fmt_sig_param(p)
+    File ~/mambaforge/envs/metaflow-oss-docs/lib/python3.10/site-packages/nbdoc/showdoc.py:99, in fmt_sig_param(p)
          96 prefix = f'<SigArg name="{name}" '
          98 if p.annotation != inspect._empty:
     ---> 99     prefix += f'type="{p.annotation.__name__}" '
@@ -346,7 +346,7 @@ ShowDoc(MetaflowCard.render)
 
 
 
-    <nbdoc.showdoc.ShowDoc at 0x11365a650>
+    <nbdoc.showdoc.ShowDoc at 0x108457400>
 ```
 
 </CodeOutputBlock>
