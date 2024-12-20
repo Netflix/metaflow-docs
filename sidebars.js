@@ -72,7 +72,7 @@ const sidebars = {
 
     {
       type: "category",
-      label: "Developing with Metaflow",
+      label: "Developing Flows",
       link: {
             type: "doc",
             id: "metaflow/introduction",
@@ -107,13 +107,27 @@ const sidebars = {
             "metaflow/visualizing-results/dynamic-cards",
             "metaflow/visualizing-results/advanced-shareable-cards-with-card-templates",
           ],
-        }
+        },
+        {
+          type: "category",
+          label: "Configuring Flows",          
+          link: {
+            type: "doc",
+            id: "metaflow/configuring-flows/introduction",
+          },
+          items: [
+            "metaflow/configuring-flows/basic-configuration",
+            "metaflow/configuring-flows/parsing-configs",
+            "metaflow/configuring-flows/custom-parsers",
+            "metaflow/configuring-flows/config-driven-experimentation"
+          ],           
+        },
       ],
     },
 
     {
       type: "category",
-      label: "Scalable Flows",
+      label: "Scaling Flows",
       link: {
             type: "doc",
             id: "scaling/introduction",
@@ -162,7 +176,7 @@ const sidebars = {
 
     {
       type: "category",
-      label: "Production Deployments",
+      label: "Deploying to Production",
       link: {
             type: "doc",
             id: "production/introduction",
