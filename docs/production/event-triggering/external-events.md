@@ -58,6 +58,14 @@ can choose the name freely. By using different names, you can make flows react t
 If you are familiar with streaming systems like Kafka or queues like AWS SQS, you can think of the
 event name as *a topic* in these systems.
 
+:::tip
+You can also define an event name through a configuration file,
+e.g. `@trigger(event=config.upstream_event)` instead of
+specifying the name in the decorator directly.
+Take a look at [Configuring Flows](/metaflow/configuring-flows/introduction) 
+for more information.
+:::
+
 ### Depending on multiple events
 
 You can require that multiple events must be present before the flow gets

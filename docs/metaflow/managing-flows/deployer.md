@@ -8,6 +8,12 @@ as [a part of your CI/CD system](https://outerbounds.com/blog/continuous-deliver
 e.g. on GitHub Actions, to deploy a flow to production automatically after a pull request
 has been approved.
 
+:::tip
+For a practical example of `Deployer` in action, see
+[the `sweep` example in Config-Driven
+Experimentation](/metaflow/configuring-flows/config-driven-experimentation#sweep-orchestrating-and-observing-experiments-at-scale).
+:::
+
 ## Deploying to production with the `Deployer` API
 
 Deployments are handled through [the `Deployer` API](/api/deployer) which follows closely the

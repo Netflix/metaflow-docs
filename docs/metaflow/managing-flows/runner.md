@@ -15,6 +15,12 @@ on the command line. To trigger runs in production, orchestrated by a production
 scheduler, take a look at [event triggering](/production/event-triggering).
 :::
 
+:::tip
+For a practical example of `Runner` in action, see
+[the `benchmark` example in Config-Driven
+Experimentation](/metaflow/configuring-flows/config-driven-experimentation#benchmark-a-templatized-flow-with-pluggable-modules).
+:::
+
 ---
 
 To execute the examples below, save this flow in `slowflow.py`:

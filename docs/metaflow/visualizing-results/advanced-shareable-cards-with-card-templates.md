@@ -149,6 +149,11 @@ template. You can choose another artifact by specifying an artifact name in the
 _options_ dictionary that is passed to the template: `@card(type='html',
 options={'artifact': 'other_html')`.
 
+:::tip
+You can read card options from a config file, e.g. `@card(options=config.card_options)`
+Learn more in [Configuring Flows](/metaflow/configuring-flows/introduction).
+:::
+
 The _render_ method needs to return a self-contained HTML as a string. This template has
 it easy, since all it has to do is to return the user-defined artifact. Other templates
 can do much more complex processing to produce a suitable HTML page.

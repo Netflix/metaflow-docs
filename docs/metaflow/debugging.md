@@ -144,7 +144,7 @@ Resuming uses the flow and step names to decide what results can be reused. This
 that the results of previously successful steps will get reused even if you change their
 step code. You can add new steps and alter code of failed steps safely with `resume`
 
-#### Resuming from an arbitrary step
+### Resuming from an arbitrary step
 
 By default, `resume` resumes from the step that failed, like `b` above. Sometimes fixing
 the failed step requires re-execution of some steps that precede it.
@@ -159,14 +159,24 @@ This would resume execution from the step `start`. If you specify a step that co
 after the step that failed, execution resumes from the failed step - you can't skip over
 steps.
 
-#### Resume and parameters
+### Resume and parameters and configs
 
 If your flow has [`Parameters`](basics#how-to-define-parameters-for-flows), you can't
 change their values when resuming. Changing parameter values could change the results of
 any steps, including those that `resume` skips over, which could result to unexpected
 behavior in subsequent steps.
 
-The `resume` command reuses the parameter values that you set with `run` originally.
+The `resume` command reuses the parameter values that you set with `run` originally. The
+same logic applies for [`Configs`](/metaflow/configuring-flows/introduction) - when
+resuming, the configs included in the original run are used instead of the latest files.
+
+This helps reproduce issues in the original run, even if you don't remember
+(or have access to) the original configs used.
+
+:::info
+Note that changes in config files are not applied in `resume`d runs. Original
+configs assigned to the run specified by `--origin-run-id` are used instead.
+:::
 
 ### Reproducing production issues locally
 

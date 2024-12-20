@@ -139,6 +139,13 @@ limit concurrency outside Argo Workflows.
 
 ### Deploy-time parameters
 
+:::tip
+Since Metaflow 2.13, Metaflow provides a new construct, `Config`, that
+offer more versatile approach to configuration than deploy-time parameters.
+Take a look at [Configuring Flows](/metaflow/configuring-flows/introduction) 
+for more information.
+:::
+
 You can customize Argo Workflows deployments through Parameters that are evaluated at
 the deployment time, i.e. when `argo-workflows create` is executed.
 

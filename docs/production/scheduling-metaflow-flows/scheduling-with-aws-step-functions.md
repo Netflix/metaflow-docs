@@ -156,6 +156,13 @@ limit concurrency outside AWS Step Functions.
 
 ### Deploy-time parameters
 
+:::tip
+Since Metaflow 2.13, Metaflow provides a new construct, `Config`, that
+offer more versatile approach to configuration than deploy-time parameters.
+Take a look at [Configuring Flows](/metaflow/configuring-flows/introduction) 
+for more information.
+:::
+
 You can customize AWS Step Functions deployments through Parameters that are evaluated
 at the deployment time, i.e. when `step-functions create` is executed.
 

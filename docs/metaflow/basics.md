@@ -306,6 +306,11 @@ information.
 
 ### Advanced parameters
 
+:::tip
+For even more versatile ways to configure flows, take a look at
+[Configuring Flows](/metaflow/configuring-flows/introduction).
+:::
+
 In the example above, `Parameters` took simple scalar values, such as integers or
 floating point values. To support more complex values for `Parameter`, Metaflow allows
 you to specify the value as JSON. This feature comes in handy if your `Parameter` is a
@@ -344,9 +349,6 @@ Execute the code as follows:
 ```bash
 python parameter_flow.py run --gdp '{"US": 1}'
 ```
-
-Parameters can also be used to include local files. See the section on
-[IncludeFile](/scaling/data#data-in-local-files) for more information.
 
 ## Data flow through the graph
 

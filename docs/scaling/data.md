@@ -256,6 +256,12 @@ can invoke your `put_*` calls with `overwrite=False`. Refer to [this
 section](data.md#caution-overwriting-data-in-s3) for some of the pitfalls involved with
 overwriting keys in S3.
 
+:::tip
+Instead of hardcoding an S3 URL in your code, you can read `s3root` from a `Parameter`
+or a `Config` file. Learn more in [Configuring Flows](/metaflow/configuring-flows/introduction).
+:::
+
+
 ### The S3 result object
 
 All `get` operations return an `S3Object`, backed by a temporary file on local disk,
