@@ -6,7 +6,7 @@ laptop, the main benefits of Metaflow lie in its ability to [scale out to extern
 compute clusters](/scaling/introduction) and to [deploy to production-grade workflow
 orchestrators](/production/introduction). To benefit from these features, you need to
 configure Metaflow and the infrastructure behind it appropriately. A separate guide,
-[Metaflow Resources for Engineers](https://outerbounds.com/engineering/welcome/) covers
+[Metaflow Resources for Engineers](https://docs.outerbounds.com/engineering/welcome/) covers
 everything related to such deployments. This page provides a quick overview.
 
 ## Supported infrastructure components
@@ -32,15 +32,15 @@ components of the stack are supported in each. You can choose to deploy Metaflow
 1. **Only local** environment - [just `pip install metaflow` on any
    workstation](/getting-started/install).
 2. **AWS** either on [EKS as a Kubernetes
-   platform](https://outerbounds.com/engineering/deployment/aws-k8s/deployment/) or
+   platform](https://docs.outerbounds.com/engineering/deployment/aws-k8s/deployment/) or
    [using AWS-managed
-   services](https://outerbounds.com/engineering/deployment/aws-managed/introduction/).
+   services](https://docs.outerbounds.com/engineering/deployment/aws-managed/introduction/).
 3. **Azure** on [AKS as a Kubernetes
-   platform](https://outerbounds.com/engineering/deployment/azure-k8s/deployment/).
+   platform](https://docs.outerbounds.com/engineering/deployment/azure-k8s/deployment/).
 4. **Google Cloud** on [GKE as a Kubernetes
-   platform](https://outerbounds.com/engineering/deployment/gcp-k8s/deployment/).
+   platform](https://docs.outerbounds.com/engineering/deployment/gcp-k8s/deployment/).
 4. [Any **Kubernetes**
-   cluster](https://outerbounds.com/engineering/deployment/aws-k8s/deployment/)
+   cluster](https://docs.outerbounds.com/engineering/deployment/aws-k8s/deployment/)
    including on-premise deployments.
 
 | Layer         | Component                                                                                                    | Description                                        | Only Local | AWS | Azure | GCP | K8s |
@@ -94,7 +94,7 @@ look into more featureful stacks below.
 ### Low-maintenance scalable prototyping, powered by AWS
 
 **[Click here to deploy this
-stack](https://outerbounds.com/engineering/deployment/aws-managed/introduction/)**
+stack](https://docs.outerbounds.com/engineering/deployment/aws-managed/introduction/)**
 
 If you are looking for the easiest and the most affordable way to scale out compute to
 the cloud, including cloud-based GPUs, this stack is a great option. Consider the
@@ -120,7 +120,7 @@ Kubernetes-based stacks.
 ### Low-maintenance full stack, powered by AWS
 
 **[Click here to deploy this
-stack](https://outerbounds.com/engineering/deployment/aws-managed/introduction/)**
+stack](https://docs.outerbounds.com/engineering/deployment/aws-managed/introduction/)**
 
 If you need the full stack of data science/ML infrastructure but want to spend a minimal
 amount of effort to set up and manage it, choose this option. You get all the benefits
@@ -143,7 +143,7 @@ Here are the main reasons for not using this stack:
 ### Customizable full stack on AWS, powered by Kubernetes
 
 **[Click here to deploy this
-stack](https://outerbounds.com/engineering/deployment/aws-k8s/deployment/)**
+stack](https://docs.outerbounds.com/engineering/deployment/aws-k8s/deployment/)**
 
 If your engineering team has prior experience with Kubernetes, they might prefer a
 familiar stack that works with their existing security policies, observability tools,
@@ -152,7 +152,7 @@ on Kubernetes and deployments on reliable, scalable, open-source [Argo
 Workflows](https://argoproj.github.io/argo-workflows/) is a good option.
 
 This stack can be [easily deployed on EKS on
-AWS](https://outerbounds.com/engineering/deployment/aws-k8s/deployment/), leveraging S3
+AWS](https://docs.outerbounds.com/engineering/deployment/aws-k8s/deployment/), leveraging S3
 as the datastore. Alternatively, some companies run this stack on-premise using
 [Minio](https://min.io/) as an S3-compatible datastore.
 
@@ -165,7 +165,7 @@ setup is quite manageable if your organization is already familiar with Kubernet
 ### Customizable full stack on Azure, powered by Kubernetes
 
 **[Click here to deploy this
-stack](https://outerbounds.com/engineering/deployment/azure-k8s/deployment/)**
+stack](https://docs.outerbounds.com/engineering/deployment/azure-k8s/deployment/)**
 
 If you need a full-stack DS/ML platform on Azure, this Kubernetes-based stack is a good
 option. It is the same stack as the one running on EKS on AWS, with the S3-based
@@ -180,7 +180,7 @@ which shouldn't add much burden if your organization uses AKS already.
 ### Customizable full stack on Google Cloud, powered by Kubernetes
 
 **[Click here to deploy this
-stack](https://outerbounds.com/engineering/deployment/gcp-k8s/deployment/)**
+stack](https://docs.outerbounds.com/engineering/deployment/gcp-k8s/deployment/)**
 
 If you need a full-stack DS/ML platform on Google Cloud, this Kubernetes-based stack is
 a good option. It is the same stack as the one running on EKS on AWS, with the S3-based
