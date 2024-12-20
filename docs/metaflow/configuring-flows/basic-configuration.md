@@ -69,8 +69,9 @@ This will output a dictionary, `{'timeout': 5}`.
 
 :::info
 Regardless of their original format, configs are parsed and used as nested dictionaries.
-Keys need to be strings that can be parsed as valid Python identifiers - use only 
-alphanumeric characters and underscores - so you can access them through the dot notation.
+If you want to use the dot notation to access keys, ensure that your keys are valid
+Python identifiers, i.e. they contain only alphanumberic characters and underscores. Otherwise
+you can access keys using the usual square brackets, e.g. `config['my special value!']`.
 :::
 
 ### Defining config files
@@ -200,8 +201,8 @@ BASE = "https://picsum.photos/id"
 
 class ConfigurablePhotoFlow(FlowSpec):
     cfg = Config("config", default="photo_config.json")
-    id = Parameter("id", default=cfg.id, type=int)
-    size = Parameter("size", default=cfg.size, type=int)
+    id = Parameter("id", default=cfg.id)
+    size = Parameter("size", default=cfg.size)
 
     @card
     @step
@@ -258,7 +259,7 @@ When you deploy the flow to production, the difference between `Config` and `Par
 python photo_config.py argo-workflows create
 ```
 You can now start a production run, either through the CLI or on the UI, but you can only change `Parameter`s,
-here `id` and `size`, nothing in the deplyoment-time `Config`, as shown in this screencast:
+here `id` and `size`, nothing in the deployment-time `Config`, as shown in this screencast:
 
 ```mdx-code-block
 import ReactPlayer from 'react-player';

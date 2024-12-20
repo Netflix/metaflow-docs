@@ -2,7 +2,7 @@
 # Config-Driven Experimentation
 
 Usually, a `Config` determines *how* a run should behave. It is also possible to use configs, in
-conjuction with a configuration manager such as [Hydra](https://hydra.cc), to use configs to define
+conjunction with a configuration manager such as [Hydra](https://hydra.cc), to use configs to define
 *what* should be run.
 
 Hydra enables you to define and generate configuration sets that parameterize an entire suite of
@@ -111,7 +111,7 @@ generates a set of configurations on the fly, sweeping over a grid of quantitati
 Typically, you would use a `foreach` to sweep over a parameter grid, but if the experiments
 require changes in decorators, Hydra comes in handy again, thanks to its native support for
 [sweeping over experiments](https://hydra.cc/docs/patterns/configuring_experiments/#sweeping-over-experiments).
-Since parameter grid can be large, it is not convenient to run experiments sequentially as with `hydra-benchmark`.
+Since the parameter grid can be large, it is not convenient to run experiments sequentially as with `hydra-benchmark`.
 While we could parallelize experiments in a limited fashion on our local workstation, a more robust solution
 for large-scale experimentation is to deploy experiments to one of the [production
 orchestrators supported by Metaflow](/production/scheduling-metaflow-flows/introduction), which allows us
@@ -126,7 +126,7 @@ so multiple sets of experiments can be run concurrently.
 We attach a unique tag to all runs, which allows us to fetch all results for analysis and visualization.
 This is done by
 [`SweepAnalyticsFlow`](https://github.com/outerbounds/config-examples/blob/main/hydra-sweep/sweep_analytics.py)
-which updates its results automatically through a `@trigger` every time an experiment run finishes successfully.
+which updates its results automatically through a `@trigger` every time an experiment finishes successfully.
 
 The setup looks like this:
 

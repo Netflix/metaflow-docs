@@ -3,7 +3,8 @@
 
 :::info
 This is a new feature in Metaflow 2.13. Make sure you have a recent enough version of
-Metaflow to use this feature.
+Metaflow to use this feature. For more background, read
+[an announcement blog post about configs here](https://netflixtechblog.medium.com/d2fb8e9ba1c6).
 :::
 
 At this point, you have learned how you can [pass data through a flow with
@@ -26,14 +27,29 @@ has started executing? For instance, you may want to
 
 ### Introducing `Config`
 
-For *flow-level* use cases like this which require altering the behavior of the flow at the high level,
-its decorators in particular,
-Metaflow supports an object called `Config`. It complements artifacts and `Parameters` by allowing
+For use cases that require modifying the flow's behavior — particularly its decorators — Metaflow provides
+an object called `Config`. It complements artifacts and `Parameters` by allowing
 you to configure nearly everything about a flow before it starts executing:
 
 ![](/assets/config-scope.png)
 
-Use these questions during development to determine which construct to choose:
+The objects differ in their scope, in particular, when they are evaluated and persisted:
+
+- **An artifact** is persisted at the end of *a task*. A step can yield one or more tasks.
+
+- **A parameter** is persisted at the start of *a run*. A common use case is to use CLI options, UIs,
+  or triggers to pass values to a run right before executing. Parameters can only be used within your step code.
+
+- **A config** is persisted when the flow is *deployed*. When using [a production scheduler such as
+Argo Workflows](/production/introduction), deployment happens when you call `create`. In the case of a
+local run, “deployment” happens just prior to the execution of the run. Think of “deployment” here as
+gathering all that is needed to run the flow.
+
+Unlike parameters, configs can be used more widely in your flow code, particularly, they can be used in step or flow level decorators as well as to set defaults for `Parameters`.
+
+### Which construct should I use?
+
+Here's an easy decision tree for choosing between artifacts, parameters, and configs:
 
  1. Do you want to alter the behavior of [a production deployment](/production/introduction)
     through a config file, disabling run-level changes ⟶ use `Config`.
