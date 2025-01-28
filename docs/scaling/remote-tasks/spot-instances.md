@@ -12,13 +12,6 @@ Spot instance support is currently only available with `@kubernetes` decorator o
 
 When running on spot instances, your code should be designed to handle potential interruptions gracefully. Metaflow provides built-in support for detecting spot instance termination notices through the `current.spot_termination_notice` path. When the cloud provider decides to reclaim the spot instance, Metaflow will create this file, giving your task time to clean up before the instance is terminated.
 
-Further, the following Metadata is also populated by Metaflow when a termination notice is received.
-
-| Field | Example Value |
-|----------|---------|
-| spot-termination-received-at | 2025-01-16T22:15:50Z |
-| spot-termination-time | 2025-01-16T22:17:47Z |
-
 Here's an example that demonstrates how to implement a long-running task that gracefully handles spot instance interruptions:
 
 ```python
@@ -67,3 +60,12 @@ In this example, we use the `@kubernetes` decorator with a `node_selector: {"nod
 You can use the AWS FIS (Fault Injection Service) to test how your tasks handle spot instance interruptions. The AWS console provides an interface to initiate spot instance interruptions for testing purposes.
 
 ![](/assets/aws-spot-interruption.png)
+
+## Spot Instance Metadata
+
+When a termination notice is received, Metaflow populates the following metadata fields:
+
+| Field | Example Value |
+|----------|---------|
+| spot-termination-received-at | 2025-01-16T22:15:50Z |
+| spot-termination-time | 2025-01-16T22:17:47Z |
