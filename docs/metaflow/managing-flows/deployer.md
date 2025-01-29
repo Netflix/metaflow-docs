@@ -47,7 +47,7 @@ triggered_run = deployed_flow.trigger()
 ```
 
 ## Accessing Previously Deployed Flows
-You can retrieve an existing `deployed_flow object` using the 
+You can retrieve an existing `deployed_flow` object using the 
 `from_deployment` method instead of creating a new deployment. This allows 
 you to work with flows that were previously deployed without having to call 
 create() again.
