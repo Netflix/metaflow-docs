@@ -74,7 +74,7 @@ from metaflow import DeployedFlow
 deployed_flow = DeployedFlow.from_deployment(identifier=identifier)
 triggered_run = deployed_flow.trigger()
 ```
-:::
+
 
 :::note
 The `from_deployment` method is only available for argo-workflows at the moment.
