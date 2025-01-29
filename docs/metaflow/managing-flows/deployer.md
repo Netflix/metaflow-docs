@@ -46,12 +46,16 @@ You can trigger a deployed flow explicitly by calling `trigger()`
 triggered_run = deployed_flow.trigger()
 ```
 
-:::tip
-The `deployed_flow` object which is needed, so as to create a `triggered_run` object via the `trigger()` method
-can also be fetched using the `from_deployment` method. This is useful if we want to reference a flow which has
-been deployed previously. Thus, we need not call `create()` again to create a fresh new deployed flow.
+## Accessing Previously Deployed Flows
+You can retrieve an existing `deployed_flow object` using the 
+`from_deployment` method instead of creating a new deployment. This allows 
+you to work with flows that were previously deployed without having to call 
+create() again.
 
-An `identifier` is needed so as to reference the previously deployed flow. An optional `metadata` can also be used.
+Once you have the deployed_flow object, you can use its trigger() method to 
+create a `triggered_run` object and execute the flow. This approach is 
+particularly useful when you need to reference and run existing deployments 
+rather than creating fresh ones.
 
 ```py
 from metaflow import Deployer
@@ -61,22 +65,19 @@ deployed_flow = deployer.argo_workflows().create()
 
 # save this for later use...
 identifier = deployed_flow.name
-metadata = deployed_flow.metadata
 ```
-
-Assuming the `identifier` was saved when the flow was deployed, we can now use the `from_deployment` method as follows:
 
 ```py
 from metaflow import DeployedFlow
 
-# use the identifier and metadata saved above..
-deployed_flow = DeployedFlow.from_deployment(identifier=identifier, metadata=metadata)
+# use the identifier saved above..
+deployed_flow = DeployedFlow.from_deployment(identifier=identifier)
 triggered_run = deployed_flow.trigger()
 ```
 :::
 
 :::note
-The `from_deployment` method is only available for argo-workflows.
+The `from_deployment` method is only available for argo-workflows at the moment.
 :::
 
 You can specify any [`Parameters`](/metaflow/basics#how-to-define-parameters-for-flows)
