@@ -143,6 +143,7 @@ const sidebars = {
           items: [
             "scaling/remote-tasks/requesting-resources",
             "scaling/remote-tasks/multicore",
+            "scaling/remote-tasks/spot-instances",
             "scaling/remote-tasks/controlling-parallelism",
             "scaling/remote-tasks/gpu-compute",
             "scaling/remote-tasks/installing-drivers-and-frameworks",
