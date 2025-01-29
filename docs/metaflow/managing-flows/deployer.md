@@ -46,6 +46,31 @@ You can trigger a deployed flow explicitly by calling `trigger()`
 triggered_run = deployed_flow.trigger()
 ```
 
+You can specify any [`Parameters`](/metaflow/basics#how-to-define-parameters-for-flows)
+in `trigger`, e.g.
+```python
+triggered_run = deployed_flow.trigger(alpha=5, algorithm='cubic')
+```
+Triggering returns a `TriggeredRun` object, representing a run that is
+about to get scheduled by the orchestrator. Only when the `start`
+step starts executing, a corresponding [`Run` object](/metaflow/client)
+becomes accessible. This may take a while, for instance, if a new
+cloud instance needs to start to execute the task:
+
+```python
+# wait for the run object to be available, timeout None means wait forever
+run_obj = triggered_run.wait_for_run(timeout=None)
+print('Run started', run_obj)
+```
+
+### Terminating a triggered run
+
+You may terminate a triggered run at any time by calling
+```python
+triggered_run.terminate()
+```
+
+
 ## Accessing Previously Deployed Flows
 You can retrieve an existing `deployed_flow` object using the 
 `from_deployment` method instead of creating a new deployment. This allows 
@@ -75,34 +100,9 @@ deployed_flow = DeployedFlow.from_deployment(identifier=identifier)
 triggered_run = deployed_flow.trigger()
 ```
 
-
 :::note
 The `from_deployment` method is only available for argo-workflows at the moment.
 :::
-
-You can specify any [`Parameters`](/metaflow/basics#how-to-define-parameters-for-flows)
-in `trigger`, e.g.
-```python
-triggered_run = deployed_flow.trigger(alpha=5, algorithm='cubic')
-```
-Triggering returns a `TriggeredRun` object, representing a run that is
-about to get scheduled by the orchestrator. Only when the `start`
-step starts executing, a corresponding [`Run` object](/metaflow/client)
-becomes accessible. This may take a while, for instance, if a new
-cloud instance needs to start to execute the task:
-
-```python
-# wait for the run object to be available, timeout None means wait forever
-run_obj = triggered_run.wait_for_run(timeout=None)
-print('Run started', run_obj)
-```
-
-### Terminating a triggered run
-
-You may terminate a triggered run at any time by calling
-```python
-triggered_run.terminate()
-```
 
 ## Orchestrator-specific methods
 
