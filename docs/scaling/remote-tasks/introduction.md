@@ -79,6 +79,13 @@ a line of code. While larger cloud instances cost more, they are only needed for
 ML/AI workloads often require hardware acceleration such as GPUs. Learn more on [a dedicated
 page about hardware-accelerated compute](gpu-compute).
 
+### Saving money with spot instances
+
+You can reduce your cloud costs by utilizing spot instances. Besides [retrying tasks
+automatically](/scaling/failures#retrying-tasks-with-the-retry-decorator) when spot instances
+are terminated, Metaflow allows you to [exit and clean up tasks gracefully](/scaling/remote-tasks/spot-instances)
+before termination.
+
 ## Executing steps in parallel
 
 If you want to execute two or more `@step`s in parallel, [make them `branch`](/metaflow/basics#branch).
