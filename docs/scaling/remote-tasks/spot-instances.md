@@ -2,15 +2,31 @@
 
 # Using Spot Instances
 
-Metaflow supports running tasks on spot instances, which can significantly reduce compute costs. Spot instances are spare compute capacity offered at a discounted price compared to on-demand instances. However, these instances can be interrupted with a short notice when the cloud provider needs the capacity back.
+Metaflow supports running tasks on spot instances, which can significantly
+reduce compute costs. Spot instances are spare compute capacity offered at a
+discounted price compared to on-demand instances. However, these instances can
+be interrupted with a short notice when the cloud provider needs the capacity
+back.
 
 :::info
 Spot instance support is currently only available with `@kubernetes` decorator on AWS.
 :::
 
-## Handling Spot Instance Interruptions
+## Retrying tasks running on spot instances
 
-When running on spot instances, your code should be designed to handle potential interruptions gracefully. Metaflow provides built-in support for detecting spot instance termination notices through the `current.spot_termination_notice` path. When the cloud provider decides to reclaim the spot instance, Metaflow will create this file, giving your task time to clean up before the instance is terminated.
+Spot instances are inherently unpredictable and may be terminated at any time. To
+ensure automatic recovery from failures, use [the `@retry`
+decorator](/scaling/failures#retrying-tasks-with-the-retry-decorator) when working
+with spot instances.
+
+## Graceful handling of spot instance interruptions
+
+When running on spot instances, your code should be designed to handle
+potential interruptions gracefully. Metaflow provides built-in support for
+detecting spot instance termination notices through the
+`current.spot_termination_notice` path. When the cloud provider decides to
+reclaim the spot instance, Metaflow will create this file, giving your task
+time to clean up before the instance is terminated.
 
 Here's an example that demonstrates how to implement a long-running task that gracefully handles spot instance interruptions:
 
@@ -53,11 +69,19 @@ if __name__ == '__main__':
     SpotInterruptionFlow()
 ```
 
-In this example, we use the `@kubernetes` decorator with a `node_selector: {"node_type": "spot"}` to schedule our task on spot instances. Note that this requires a spot node group labeled with `node_type: spot` to already exist in your Kubernetes cluster. The code periodically checks for the existence of a termination notice file using `current.spot_termination_notice`. When a termination notice is detected, the task can perform any necessary cleanup and checkpointing before the instance is reclaimed.
+In this example, we use the `@kubernetes` decorator with a `node_selector:
+{"node_type": "spot"}` to schedule our task on spot instances. Note that this
+requires a spot node group labeled with `node_type: spot` to already exist in
+your Kubernetes cluster. The code periodically checks for the existence of a
+termination notice file using `current.spot_termination_notice`. When a
+termination notice is detected, the task can perform any necessary cleanup and
+checkpointing before the instance is reclaimed.
 
 ## Testing Spot Instance Interruptions
 
-You can use the AWS FIS (Fault Injection Service) to test how your tasks handle spot instance interruptions. The AWS console provides an interface to initiate spot instance interruptions for testing purposes.
+You can use the AWS FIS (Fault Injection Service) to test how your tasks handle spot instance
+interruptions. The AWS console provides an interface to initiate spot instance interruptions for
+testing purposes.
 
 ![](/assets/aws-spot-interruption.png)
 
