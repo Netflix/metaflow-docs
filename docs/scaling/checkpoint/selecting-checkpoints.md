@@ -23,9 +23,10 @@ automatically upon `@retry`. Checkpoints are not loaded across runs. This behavi
 flows, which should be able to recover from unexpected failures while remaining isolated from any other concurrent
 runs.
 
-:::info Checkpoints are scoped to a task based on the flow name, step name, and foreach index. This ensures that you can
-   use `@checkpoint` in foreach tasks, e.g. when running a hyperparameter search, training multiple models in parallel.
-   Each model gets a dedicated set of checkpoints without interference from concurrent tasks.
+:::info
+Checkpoints are scoped to a task based on the flow name, step name, and foreach index. This ensures that you can
+use `@checkpoint` in foreach tasks, e.g. when running a hyperparameter search, training multiple models in parallel.
+Each model gets a dedicated set of checkpoints without interference from concurrent tasks.
 :::
 
 ### `load_policy='eager'` - make progress incrementally across runs
