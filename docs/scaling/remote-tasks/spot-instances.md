@@ -12,12 +12,17 @@ back.
 Spot instance support is currently only available with `@kubernetes` decorator on AWS.
 :::
 
-## Retrying tasks running on spot instances
+## Retrying and resuming tasks running on spot instances
 
 Spot instances are inherently unpredictable and may be terminated at any time. To
 ensure automatic recovery from failures, use [the `@retry`
 decorator](/scaling/failures#retrying-tasks-with-the-retry-decorator) when working
 with spot instances.
+
+Also take a look how [`@checkpoint` can help you to resume interrupted
+computation](/scaling/checkpoint/introduction). The `@checkpoint` [announcement blog
+post](https://outerbounds.com/blog/indestructible-training-with-checkpoint) includes
+an example showing how to use `@checkpoint` effectively on spot instaces.
 
 ## Graceful handling of spot instance interruptions
 

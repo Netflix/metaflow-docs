@@ -46,6 +46,12 @@ or `@conda`/`@pypi`. Also note that the extensions are not part of [the stable M
 they are subject to change.
 :::
 
+:::tip
+When running demanding training workload, it is advisable to use [the `@checkpoint`
+decorator](/scaling/checkpoint/introduction) to ensure that no progress is lost even if a
+task hits a spurious failure.
+:::
+
 ## Low-level access
 
 Under the hood, Metaflow guarantees that you get a desired kind and number of compute nodes running
