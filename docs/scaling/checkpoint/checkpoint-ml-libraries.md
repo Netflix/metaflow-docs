@@ -159,6 +159,6 @@ race conditions that could arise from multiple instances attempting to save prog
 example](https://github.com/outerbounds/metaflow-checkpoint-examples/tree/master/cifar_distributed) that uses [PyTorch Data Distributed Parallel (DDP)](https://pytorch.org/tutorials/intermediate/ddp_tutorial.html) mode to train a vision model on CIFAR-10 dataset, checkpointing progress with `@checkpoint`.
 
 :::info
-Large-scale distributed computing can be challenging. If you need help setting up @checkpoint in distributed setups, don’t hesitate to [ask for guidance on Metaflow Slack](http://slack.outerbounds.org).
+Large-scale distributed computing can be challenging. If you need help setting up `@checkpoint` in distributed setups, don’t hesitate to [ask for guidance on Metaflow Slack](http://slack.outerbounds.co).
 :::
 
