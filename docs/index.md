@@ -40,9 +40,10 @@ Metaflow makes it easy to build and manage real-life data science, AI, and ML pr
 - [Computing at Scale](scaling/remote-tasks/introduction) 
 - [Managing Dependencies](scaling/dependencies) 
 - [Dealing with Failures](scaling/failures)
+- [Checkpointing Progress](scaling/checkpoint/introduction) ✨*New*✨
 - [Loading and Storing Data](scaling/data)
-- [Accessing Secrets](scaling/secrets)
 - [Organizing Results](scaling/tagging)
+- [Accessing Secrets](scaling/secrets)
 
 ## III. Deploying to Production
 

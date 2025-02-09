@@ -60,6 +60,12 @@ not have one as follows:
 python RetryFlow.py run --with retry
 ```
 
+:::tip
+The `@retry` decorator restarts a task after a failure. If you want to avoid losing progress
+made within a task, take a look at [the `@checkpoint` decorator](/scaling/checkpoint/introduction)
+that allows you to save and load progress easily.
+:::
+
 ### How to Prevent Retries
 
 If retries are such a good idea, why not enable them by default for all steps? First,

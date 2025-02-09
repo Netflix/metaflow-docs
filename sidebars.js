@@ -169,9 +169,22 @@ const sidebars = {
           ],
         },
         "scaling/failures",
+        {
+          type: "category",
+          label: "Checkpointing Progress",
+          link: {
+            type: "doc",
+            id: "scaling/checkpoint/introduction",
+          },
+          items: [
+            "scaling/checkpoint/checkpoint-ml-libraries",
+            "scaling/checkpoint/selecting-checkpoints",
+            
+          ],
+        },
         "scaling/data",
-        "scaling/secrets",
-        "scaling/tagging"
+        "scaling/tagging",
+        "scaling/secrets"
       ]
     },
 

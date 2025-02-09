@@ -74,13 +74,14 @@ large-scale projects, Metaflow helps manage them too.
 
 In this section, you will learn how to make your flows capable of handling more data and
 execute faster. You will also learn how to scale projects over multiple people by
-organizing results better. We cover five topics:
+organizing results better. We will cover six topics:
 
 1. [Scaling compute in the cloud](/scaling/remote-tasks/introduction)
-2. [Dealing with failures](/scaling/failures)
-3. [Managing execution environments](/scaling/dependencies)
-4. [Loading and storing data efficiently](/scaling/data)
-5. [Organizing results for smoother collaboration](/scaling/tagging)
+2. [Managing execution environments](/scaling/dependencies)
+3. [Dealing with failures](/scaling/failures)
+4. [Checkpointing progress](/scaling/checkpoint/introduction)
+5. [Loading and storing data efficiently](/scaling/data)
+6. [Organizing results for smoother collaboration](/scaling/tagging)
 
 Before you proceed, make sure to [configure infrastructure for
 Metaflow](/getting-started/infrastructure) or sign up for a [Metaflow
