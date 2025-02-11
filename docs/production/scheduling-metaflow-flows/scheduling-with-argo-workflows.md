@@ -303,3 +303,37 @@ decorator.
 You can test the staging flow freely without interfering with the production flow. Once
 the staging flow runs successfully, you can confidently deploy a new version to
 production.
+
+## Notifications on flow success or error
+
+On Argo Workflows we support sending notifications on a successful or failed flow. To enable notifications, supply the `--notify-on-success/--notify-on-error` flags while deploying your flow. You must also configure the notification provider. The ones currently supported are
+
+### Slack notifications
+
+In order to enable Slack notifications, we need to first create a webhook endpoing that Metaflow can send the notifications to by following the instructions at https://api.slack.com/messaging/webhooks
+
+When this is done, a flow can be deployed with
+```bash
+python debug.py --notify-on-success --notify-on-error --notify-slack-webhook-url url-that-we-created
+```
+
+### PagerDuty notifications
+
+For notifications through PagerDuty, we need to generate an integration key by following the instructions at https://support.pagerduty.com/docs/services-and-integrations#create-a-generic-events-api-integration
+
+Then the flow can be deployed with 
+```bash
+python debug --notify-on-success --notify-on-error --notify-pager-duty-integration-key key-that-we-generated
+```
+
+### Incident.io alerts
+
+For notifications through Incident.io, generate an API key with a permission to *create incidents* on the websites *settings* page.
+
+As Incident.io deals with incidents, every notification requires a severity. These can be supplied with the `--incident-io-success-severity-id/--incident-io-error-severity-id` options.
+
+Once you have gathered all the necessary information, the flow can be deployed with
+
+```bash
+python debug.py argo-workflows --notify-on-error --incident-io-error-severity-id severity-id-for-errors --notify-incident-io-api-key key-that-we-generated
+```
