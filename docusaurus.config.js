@@ -71,14 +71,14 @@ const config = {
             type: "doc",
             position: "left",
             docId: "index",
-            label: "Python Docs",
+            label: "User  Docs",
           },
-          {
-            type: "doc",
-            position: "left",
-            docId: "v/r/README",
-            label: "R Docs",
-          },
+          // {
+          //   type: "doc",
+          //   position: "left",
+          //   docId: "v/r/README",
+          //   label: "R Docs",
+          // },
           {
             href: "https://outerbounds.com/docs/admin",
             position: "left",
