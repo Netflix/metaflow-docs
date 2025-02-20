@@ -77,17 +77,7 @@ const config = {
             href: "https://outerbounds.com/docs/admin",
             position: "left",
             label: "Deployment Guide",
-          },
-          {
-            href: "http://slack.outerbounds.co/",
-            position: "right",
-            label: "Slack",
-          },
-          {
-            href: "https://github.com/Netflix/metaflow",
-            position: "right",
-            label: "GitHub",
-          },
+          }
         ],
         hideOnScroll: true,
       },
