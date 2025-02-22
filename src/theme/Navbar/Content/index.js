@@ -67,11 +67,11 @@ export default function NavbarContent() {
           }}
         >
             <div
+              className={styles.responsivePadding}
               style={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.75rem',
-                paddingRight: '1rem'
               }}
             >
               <a
