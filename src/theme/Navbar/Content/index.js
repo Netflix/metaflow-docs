@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import {useThemeConfig, useColorMode} from '@docusaurus/theme-common';
+import React from 'react';
+import {useThemeConfig} from '@docusaurus/theme-common';
 
 import {
   splitNavbarItems,
@@ -42,13 +42,6 @@ export default function NavbarContent() {
   const [leftItems, rightItems] = splitNavbarItems(items);
   const searchBarItem = items.find((item) => item.type === 'search');
 
-  const {colorMode, setColorMode} = useColorMode();
-  const [currentColorMode, setCurrentColorMode] = useState(colorMode);
-
-  useEffect(() => {
-    setCurrentColorMode(colorMode);
-  }, [colorMode]);
-
   return (
     <NavbarContentLayout
       left={
@@ -80,15 +73,8 @@ export default function NavbarContent() {
                 rel="noopener noreferrer"
                 aria-label="GitHub"
               >
-                <img
-                  src={
-                    currentColorMode === 'dark'
-                      ? '/img/github-dark.svg'
-                      : '/img/github.svg'
-                  }
-                  alt="GitHub"
-                  className={styles.logo}
-                />
+                <img src="/img/github.svg" alt="GitHub" className={`${styles.logo} githubLogo`}/>
+
               </a>
               <a
                 href="http://slack.outerbounds.co/"
