@@ -6,3 +6,16 @@ Hide color mode toggle in small viewports
     display: none;
   }
 }
+
+.logo {
+  display: block;
+  width: 20px;
+  height: 20px;
+  opacity: 0.75;
+}
+
+.logo:hover {
+  width: 24px;
+  height: 24px;
+  opacity: 1;
+}

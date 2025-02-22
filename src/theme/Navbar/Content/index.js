@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {useThemeConfig, useColorMode} from '@docusaurus/theme-common';
 
 import {
@@ -12,10 +12,6 @@ import NavbarMobileSidebarToggle from '@theme/Navbar/MobileSidebar/Toggle';
 import NavbarLogo from '@theme/Navbar/Logo';
 import NavbarSearch from '@theme/Navbar/Search';
 import styles from './styles.module.css';
-
-// Import the images
-import slackLogo from '/img/slack.svg';
-import githubLogo from '/img/github.svg';
 
 function useNavbarItems() {
   // TODO temporary casting until ThemeConfig type is improved
@@ -47,7 +43,11 @@ export default function NavbarContent() {
   const searchBarItem = items.find((item) => item.type === 'search');
 
   const {colorMode, setColorMode} = useColorMode();
-  console.log(colorMode);
+  const [currentColorMode, setCurrentColorMode] = useState(colorMode);
+
+  useEffect(() => {
+    setCurrentColorMode(colorMode);
+  }, [colorMode]);
 
   return (
     <NavbarContentLayout
@@ -60,31 +60,62 @@ export default function NavbarContent() {
       }
       right={
         <>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <div style={{ paddingRight: '20px', display: 'flex', alignItems: 'center', opacity: 0.75 }}> 
-            
-            <div style={{ display: 'flex', alignItems: 'baseline' }}>
-              <a href="https://github.com/Netflix/metaflow" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                <img 
-                  src={colorMode === 'dark' ? '/img/github-dark.svg' : '/img/github.svg'} 
-                  alt="GitHub" 
-                  style={{ height: '20px', width: '20px', margin: '0 12px' }} 
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                paddingRight: '1rem'
+              }}
+            >
+              <a
+                href="https://github.com/Netflix/metaflow"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+              >
+                <img
+                  src={
+                    currentColorMode === 'dark'
+                      ? '/img/github-dark.svg'
+                      : '/img/github.svg'
+                  }
+                  alt="GitHub"
+                  className={styles.logo}
                 />
               </a>
-              <div style={{ borderRight: '1px solid #ccc', height: '20px' }} />
-              <a href="http://slack.outerbounds.co/" target="_blank" rel="noopener noreferrer" aria-label="Slack">
-                <img src="/img/slack.svg" alt="Slack" style={{ height: '20px', width: '20px', margin: '0 12px' }} />
+              <a
+                href="http://slack.outerbounds.co/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Slack"
+              >
+                <img
+                  className={styles.logo}
+                  src="/img/slack.svg"
+                  alt="Slack"
+                />
               </a>
-              </div>
+            </div>
+
+            {/* Color mode toggle */}
+            <NavbarColorModeToggle className={styles.colorModeToggle} />
+
+            {/* Search bar (if no search item in config) */}
+            {!searchBarItem && (
+              <NavbarSearch>
+                <SearchBar />
+              </NavbarSearch>
+            )}
+
           </div>
 
-          <NavbarColorModeToggle className={styles.colorModeToggle} />
-          {!searchBarItem && (
-            <NavbarSearch>
-              <SearchBar />
-            </NavbarSearch>
-          )}
-           </div>
         </>
         
       }
