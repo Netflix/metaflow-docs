@@ -71,19 +71,13 @@ const config = {
             type: "doc",
             position: "left",
             docId: "index",
-            label: "Python Docs",
-          },
-          {
-            type: "doc",
-            position: "left",
-            docId: "v/r/README",
-            label: "R Docs",
+            label: "Documentation",
           },
           {
             href: "https://outerbounds.com/docs/admin",
             position: "left",
-            label: "Admin Docs",
-          },
+            label: "Deployment Guide",
+          }
         ],
         hideOnScroll: true,
       },
