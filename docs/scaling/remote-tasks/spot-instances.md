@@ -9,7 +9,7 @@ be interrupted with a short notice when the cloud provider needs the capacity
 back.
 
 :::info
-Spot instance support is currently only available with `@kubernetes` decorator on AWS.
+Spot instance support is currently available with `@kubernetes` and `@batch` decorator on AWS.
 :::
 
 ## Retrying and resuming tasks running on spot instances
