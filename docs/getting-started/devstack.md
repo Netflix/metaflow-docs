@@ -32,7 +32,7 @@ The `metaflow-dev` stack comes in handy in a few scenarios:
  2. You can use it **in your CI/CD workflows to test flows** in a fully isolated, ephemeral environment.
 
  3. If you want to **contribute extensions for Metaflow**, or make changes in the core Metaflow, the stack
-    provides you a compelte development and testing environment.
+    provides you a complete development and testing environment.
 
 ## How to set up the dev stack
 
