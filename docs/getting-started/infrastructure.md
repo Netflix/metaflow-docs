@@ -2,7 +2,7 @@
 # Deploying Infrastructure for Metaflow
 
 Use [the local dev stack](/getting-started/devstack) to explore how Metaflow integrates
-with underlying infrastructure. When you're ready for a production deployment, you'll need
+with underlying infrastructure. When you are ready for a production deployment, you will need
 to set up infrastructure in your own cloud account, as detailed on this page. For further
 information, see [Metaflow Resources for Engineers](https://docs.outerbounds.com/engineering/welcome/).
 
