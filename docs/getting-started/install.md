@@ -16,8 +16,9 @@ Sandbox](https://docs.outerbounds.com/sandbox/).
 
 :::
 
-
-Now you are ready to get your hands dirty with the [Tutorials](tutorials/).
+Now you are ready to get your hands dirty with the [Tutorials](tutorials/). Or, if you want
+to take a step further and test the full power of Metaflow, you can [easily setup a
+Minikube-based dev stack](/getting-started/devstack) locally.
 
 ## Upgrading Metaflow
 

@@ -21,6 +21,7 @@ Metaflow makes it easy to build and manage real-life data science, AI, and ML pr
 ## Getting Started
 
 - [Installing Metaflow locally](getting-started/install)
+- [Setting Up the Dev Stack](getting-started/devstack) ✨*New*✨
 - [Deploying Infrastructure for Metaflow](getting-started/infrastructure)
 - [Quickstart Tutorial](getting-started/tutorials/)
 

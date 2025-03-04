@@ -1,13 +1,10 @@
 
 # Deploying Infrastructure for Metaflow
 
-While you can [get started with Metaflow easily](/getting-started/install) on your
-laptop, the main benefits of Metaflow lie in its ability to [scale out to external
-compute clusters](/scaling/introduction) and to [deploy to production-grade workflow
-orchestrators](/production/introduction). To benefit from these features, you need to
-configure Metaflow and the infrastructure behind it appropriately. A separate guide,
-[Metaflow Resources for Engineers](https://docs.outerbounds.com/engineering/welcome/) covers
-everything related to such deployments. This page provides a quick overview.
+Use [the local dev stack](/getting-started/devstack) to explore how Metaflow integrates
+with underlying infrastructure. When you are ready for a production deployment, you will need
+to set up infrastructure in your own cloud account, as detailed on this page. For further
+information, see [Metaflow Resources for Engineers](https://docs.outerbounds.com/engineering/welcome/).
 
 ## Supported infrastructure components
 
@@ -15,13 +12,6 @@ Since modern data science / ML applications are powered by a number of interconn
  systems, it is useful to organize them as an infrastructure stack like the one
 illustrated below ([Why? See here](/introduction/why-metaflow)). You can see logos of
 all supported systems which you can use to enable each layer.
-
-Consider this illustration as a menu that allows you to build your own pizza: You get to
-customize your own crust, sauce, toppings, and cheese. You can make the choices based on
-your existing business infrastructure and the requirements and preferences of your
-organization. Fortunately, Metaflow provides a consistent API for all these
-combinations, so you can even change the choices later without having to rewrite your
-flows.
 
 <object style={{width: 700}} type="image/svg+xml"
 data="/assets/infra-stack.svg"></object>
@@ -193,8 +183,3 @@ This stack incurs a typical maintenance overhead of an GKE-based Kubernetes clus
 which shouldn't add much burden if your organization uses GKE already.
 
 
----
-
-If you are unsure about the stacks, just run `pip install metaflow` to install the local
-stack and move on to [the tutorials](/getting-started/tutorials). Flows you create will
-work without changes on any of these stacks.
