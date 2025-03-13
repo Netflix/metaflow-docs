@@ -328,12 +328,22 @@ python debug --notify-on-success --notify-on-error --notify-pager-duty-integrati
 
 ### Incident.io alerts
 
-For notifications through Incident.io, generate an API key with a permission to *create incidents* on the websites *settings* page.
-
-As Incident.io deals with incidents, every notification requires a severity. These can be supplied with the `--incident-io-success-severity-id/--incident-io-error-severity-id` options.
+For notifications through Incident.io, we need to create an alert source configuration HTTP endpoint. After creating this, grab the provided `authorization token`, and the `alert source config ID` as we will need these when deploying our flow.
 
 Once you have gathered all the necessary information, the flow can be deployed with
 
 ```bash
-python debug.py argo-workflows --notify-on-error --incident-io-error-severity-id severity-id-for-errors --notify-incident-io-api-key key-that-we-generated
+python debug.py argo-workflows --notify-on-success --notify-on-error --notify-incident-io-api-key token --incident-io-alert-source-config-id source-config-id
+```
+
+Metaflow sets the following metadata for the alert payload so that the consumption can be customized on the Incident.io side.
+
+```python
+{
+    "metadata": {
+        "run_status": "failed or succeeded",
+        "flow_name": "HelloFlow"
+        "run_id": "run-123"
+    }
+}
 ```
