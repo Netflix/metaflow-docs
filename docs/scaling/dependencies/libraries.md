@@ -6,12 +6,21 @@ packages](/scaling/dependencies/project-structure), this page covers handling
 of 3rd party dependencies that are published as installable Python packages.
 
 Metaflow supports installation of external packages from two Python package
-repositories: [PyPI](https://pypi.org/) and [Conda](https://conda-forge.org/),
-using `@pypi` and `@conda` decorators. If you wonder why we need two
-decorators and when to use which, see
-[Conda vs. PyPI](/scaling/dependencies/conda-vs-pypi). To learn why you
-should use the decorators and not install packages 
-manually, see [Packaging Internals](/scaling/dependencies/internals).
+repositories: [PyPI](https://pypi.org/) and [Conda](https://conda-forge.org/) - learn
+more about their relative benefits in [Conda vs. PyPI](/scaling/dependencies/conda-vs-pypi).
+You can access these package repositories using `@pypi` and `@conda`
+decorators, or you can use [the `uv` package manager](https://github.com/astral-sh/uv)
+to manage PyPI dependencies in a Metaflow project similar to any other Python project.
+
+Currently, the `@pypi` and `@conda` decorators provide the strongest guarantees
+on stability, scalability, and reproducibility of environments, as they snapshot
+all dependencies in the object store, as described in
+[Packaging Internals](/scaling/dependencies/internals). Also, they allow
+each step to specify a separate set of dependencies. However, you can get started
+easily with `uv` - in particular if you are already using it for other Python projects.
+
+This page focuses on the Metaflow's `@pypi` and `@conda` decorators. If you want to
+use `uv` instead, see [using `uv`](/scaling/dependencies/uv).
 
 ## The `@pypi` and `@conda` decorators
 

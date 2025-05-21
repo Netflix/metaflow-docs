@@ -19,7 +19,7 @@ Let's start by outlining the two major components of the package ecosystem:
 
 2. **A package manager** - a tool that downloads packages from a
    repository and installs them locally. The tools are often specific
-   to a repository. For instance, `pip`, `poetry` and `pipenv` work
+   to a repository. For instance, `uv`, `pip`, `poetry` and `pipenv` work
    with PyPI and `mamba` and `conda` with Conda.
 
 Much confusion arises from the fact that there are many *package managers*,
@@ -32,6 +32,9 @@ Metaflow works with both the *repositories* through [the
 `@pypi` and `@conda`](/scaling/dependencies/libraries) decorators.
 Importantly, when using these decorators, you don't need to use
 *package managers* manually as Metaflow acts as a package manager by itself.
+Alternatively, an increasily popular approach in the Python ecosystem is
+to use `uv` as a package and project manager - and [Metaflow
+integrates with this approach natively](/scaling/dependencies/uv).
 
 ## Virtual environments
 
@@ -43,7 +46,7 @@ are a concept closely related to package managers. In
  environment.
 
 Some package managers like `pip` don't manage virtual environments but they rely
-on another tool, such as `venv` or `pyenv`, to do the job. Others like
+on another tool, such as `uv`, `venv` or `pyenv`, to do the job. Others like
  `poetry` and `mamba` handle virtual environments natively, allowing you to
  create and delete environments as needed.
 
