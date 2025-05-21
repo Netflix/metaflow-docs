@@ -33,13 +33,13 @@ Metaflow makes it easy to build and manage real-life data science, AI, and ML pr
 - [Managing Flows in Notebooks and Scripts](metaflow/managing-flows/introduction) 
 - [Debugging Flows](metaflow/debugging)
 - [Visualizing Results](metaflow/visualizing-results/) 
-- [Configuring Flows](metaflow/configuring-flows/introduction) ✨*New*✨
+- [Configuring Flows](metaflow/configuring-flows/introduction)
 
 ## II. Scaling Flows
 
 - [Introduction to Scalable Compute and Data](scaling/introduction)
 - [Computing at Scale](scaling/remote-tasks/introduction) 
-- [Managing Dependencies](scaling/dependencies) 
+- [Managing Dependencies](scaling/dependencies) ✨*New support for `uv`*✨
 - [Dealing with Failures](scaling/failures)
 - [Checkpointing Progress](scaling/checkpoint/introduction) ✨*New*✨
 - [Loading and Storing Data](scaling/data)

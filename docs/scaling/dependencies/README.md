@@ -7,8 +7,13 @@ If you are in a hurry:
 - Want to use your own modules and packages in a flow?
   See [Structuring Projects](/scaling/dependencies/project-structure).
 - Want to use a Python library in a flow? See [Managing Libraries](/scaling/dependencies/libraries).
+- Want to use `uv` with Metaflow? See [using `uv`](/scaling/dependencies/uv)
 - Want to use or build a specific Docker image?
   See [Defining Custom Containers](/scaling/dependencies/containers).
+:::
+
+:::info
+New in Metaflow 2.15.8: You can [use `uv` to manage dependencies](/scaling/dependencies/uv).
 :::
 
 A Metaflow flow is defined in a single Python file. Besides the flow code
@@ -98,9 +103,10 @@ python myflow.py package list
 By the default, the package only includes local Python files, not libraries you
 have installed e.g. with `pip install` manually. To include external libraries,
 you need to include them either in [a custom Docker
-image](/scaling/dependencies/containers) or [specify them in a `@pypi` or `@conda`
-decorator](/scaling/dependencies/conda-vs-pypi). This figure illustrates the
-idea:
+image](/scaling/dependencies/containers), [specify them in a `@pypi` or `@conda`
+decorator](/scaling/dependencies/conda-vs-pypi), or [use `uv`](/scaling/dependencies/uv).
+
+This figure illustrates the idea:
 
 ![Remote dependencies](/assets/dependencies-remote.png)
 

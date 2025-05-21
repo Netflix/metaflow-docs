@@ -163,6 +163,7 @@ const sidebars = {
           items: [
             "scaling/dependencies/project-structure",
             "scaling/dependencies/libraries",
+            "scaling/dependencies/uv",
             "scaling/dependencies/conda-vs-pypi",
             "scaling/dependencies/containers",
             "scaling/dependencies/internals",
@@ -257,6 +258,7 @@ const sidebars = {
             "api/step-decorators/card",
             "api/step-decorators/catch",
             "api/step-decorators/conda",
+            "api/step-decorators/pypi",
             "api/step-decorators/kubernetes",
             "api/step-decorators/resources",
             "api/step-decorators/retry",
