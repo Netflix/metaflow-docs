@@ -88,3 +88,27 @@ $ python bigsum.py logs 15/end
 
 You can request higher disk space for pods by using the `disk` attribute of
 `@kubernetes`.
+
+## How to list running pods?
+
+You can list running tasks with the following command from the directory containing a flow running Metaflow tasks on Kubernetes:
+```bash
+python flow.py kubernetes list --help
+```
+
+**Options**
+- `--my-runs`      List all my unfinished tasks.
+- `--user TEXT`    List unfinished tasks for the given user.
+- `--run-id TEXT`  List unfinished tasks corresponding to the run id.
+
+## How to terminate running pods?
+
+You can terminate running tasks with the following command from the directory containing a flow running Metaflow tasks on Kubernetes:
+```bash
+python flow.py kubernetes kill --help
+```
+
+**Options**
+- `--my-runs`      Kill all my unfinished tasks.
+- `--user TEXT`    Terminate unfinished tasks for the given user.
+- `--run-id TEXT`  Terminate unfinished tasks corresponding to the run id.
