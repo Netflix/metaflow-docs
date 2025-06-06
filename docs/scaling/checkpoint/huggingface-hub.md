@@ -2,6 +2,14 @@
 
 Metaflow includes a wrapper around `@checkpoint` specific to assets in the [HuggingFace Hub](https://huggingface.co/), a popular platform for sharing and discovering machine learning models and datasets. The `@huggingface_hub` decorator simplifies the process of downloading, caching, and managing models from the HuggingFace Hub within your Metaflow workflows.
 
+:::info
+The `@huggingface_hub` decorator is part of the `metaflow-checkpoint` extension, 
+so developers who self-manage Metaflow and its plugins have to install it separately as
+described in [installing `@checkpoint`](/scaling/checkpoint/introduction#installing-checkpoint).
+Also, the APIs may change in the future, in contrast to the APIs of core Metaflow which are
+guaranteed to stay backwards compatible. Please share your feedback on
+[Metaflow Slack](http://slack.outerbounds.co)!
+:::
 
 ## Understanding `@huggingface_hub`
 
