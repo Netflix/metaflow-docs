@@ -181,7 +181,18 @@ const sidebars = {
           items: [
             "scaling/checkpoint/checkpoint-ml-libraries",
             "scaling/checkpoint/selecting-checkpoints",
-            
+            "scaling/checkpoint/huggingface-hub",
+          ],
+        },
+        {
+          type: "category",
+          label: "Managing Model Lifecycle",
+          link: {
+            type: "doc",
+            id: "scaling/model-lifecycle-management/introduction",
+          },
+          items: [
+        
           ],
         },
         "scaling/data",
