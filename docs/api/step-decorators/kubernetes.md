@@ -20,6 +20,7 @@ For options related to `tmpfs`, see [Using `metaflow.S3` for in-memory processin
 	<Parameter name="image_pull_policy: str, default KUBERNETES_IMAGE_PULL_POLICY" desc="If given, the imagePullPolicy to be applied to the Docker image of the step." />
 	<Parameter name="service_account" type="str, default METAFLOW_KUBERNETES_SERVICE_ACCOUNT" desc="Kubernetes service account to use when launching pod in Kubernetes." />
 	<Parameter name="secrets" type="List[str], optional, default None" desc="Kubernetes secrets to use when launching pod in Kubernetes. These\nsecrets are in addition to the ones defined in `METAFLOW_KUBERNETES_SECRETS`\nin Metaflow configuration." />
+	<Parameter name="node_selector: Union[Dict[str,str], str], optional, default None" desc="Kubernetes node selector(s) to apply to the pod running the task.\nCan be passed in as a comma separated string of values e.g.\n'kubernetes.io/os=linux,kubernetes.io/arch=amd64' or as a dictionary\n{'kubernetes.io/os': 'linux', 'kubernetes.io/arch': 'amd64'}" />
 	<Parameter name="namespace" type="str, default METAFLOW_KUBERNETES_NAMESPACE" desc="Kubernetes namespace to use when launching pod in Kubernetes." />
 	<Parameter name="gpu" type="int, optional, default None" desc="Number of GPUs required for this step. A value of zero implies that\nthe scheduled node should not have GPUs." />
 	<Parameter name="gpu_vendor" type="str, default KUBERNETES_GPU_VENDOR" desc="The vendor of the GPUs to be used for this step." />
@@ -31,6 +32,8 @@ For options related to `tmpfs`, see [Using `metaflow.S3` for in-memory processin
 	<Parameter name="persistent_volume_claims" type="Dict[str, str], optional, default None" desc="A map (dictionary) of persistent volumes to be mounted to the pod for this step. The map is from persistent\nvolumes to the path to which the volume is to be mounted, e.g., `{'pvc-name': '/path/to/mount/on'}`." />
 	<Parameter name="shared_memory: int, optional" desc="Shared memory size (in MiB) required for this step" />
 	<Parameter name="port: int, optional" desc="Port number to specify in the Kubernetes job object" />
+	<Parameter name="compute_pool" type="str, optional, default None" desc="Compute pool to be used for for this step.\nIf not specified, any accessible compute pool within the perimeter is used." />
+	<Parameter name="hostname_resolution_timeout: int, default 10 * 60" desc="Timeout in seconds for the workers tasks in the gang scheduled cluster to resolve the hostname of control task.\nOnly applicable when @parallel is used." />
 </ParamSection>
 </DocSection>
 
