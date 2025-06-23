@@ -347,3 +347,67 @@ Metaflow sets the following metadata for the alert payload so that the consumpti
     }
 }
 ```
+
+## Custom Exit Hooks
+
+Argo Workflows supports custom lifecycle hooks that can be executed on flow success or failure. You can define a custom function in your flow file and configure this to be executed with the `@exit_hook` flow decorator
+
+### Features and Limitations
+
+The defined function should either take no arguments, or a single `run=` kwarg which will be populated by Metaflow
+with a `Run` object if a run exists, otherwise this will be `None`.
+
+
+
+### Example hooks flow
+
+The following example flow uses both success and error hooks
+
+```python
+from time import sleep
+from typing import Optional
+from metaflow import step, FlowSpec, Parameter, exit_hook, Run
+
+
+def success_print():
+    print("Flow completed successfully. Performing some success related notifications.")
+
+
+def failure_print(run: Optional[Run]):
+    print("Flow failed.")
+
+    if run is not None:
+        print("No run was registered.")
+        return
+
+    print("failed run id:", run.id)
+    print(
+        "Failed tasks:\n",
+        "\n".join(
+            [task.pathspec for step in run for task in step if not task.successful]
+        ),
+    )
+
+
+@exit_hook(on_success=[success_print])
+@exit_hook(on_error=[failure_print])
+class ExitHookFlow(FlowSpec):
+    should_fail = Parameter(name="should_fail", default=False)
+
+    @step
+    def start(self):
+        print("Starting 👋")
+        print("Should fail?", self.should_fail)
+        if self.should_fail:
+            sleep(60)
+            raise Exception("failing as expected")
+        self.next(self.end)
+
+    @step
+    def end(self):
+        print("Done! 🏁")
+
+
+if __name__ == "__main__":
+    ExitHookFlow()
+```
