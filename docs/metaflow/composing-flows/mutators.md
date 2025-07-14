@@ -122,6 +122,8 @@ You can test the effect of the options with `@robust_flow` above. You can see th
 python failflow.py dump RUN_ID/start
 ```
 
+Note that the same options apply to adding flow-level decorators as well.
+
 ## Introspecting a flow and applying configs
 
 Let's walk through a more advanced mutator that shows how you can

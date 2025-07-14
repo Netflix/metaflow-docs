@@ -107,7 +107,9 @@ python waiterflow.py run --with myprofiler.my_profile
 
 Custom decorators don't require special treatment when [executing tasks in
 the cloud](/scaling/remote-tasks/introduction) or when [deploying flows to production](/production/introduction) -
-they will get [packaged automatically by Metaflow](/scaling/dependencies#unpacking-a-metaflow-project). Try it:
+they will get [packaged automatically by Metaflow](/scaling/dependencies#unpacking-a-metaflow-project). You don't
+even need to `import` the decorators if you add them with `--with`. Try it:
+
 ```
 python waiterflow.py run --with myprofiler.my_profile --with kubernetes
 ```
