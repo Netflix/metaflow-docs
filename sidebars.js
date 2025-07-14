@@ -123,6 +123,21 @@ const sidebars = {
             "metaflow/configuring-flows/config-driven-experimentation"
           ],           
         },
+        {
+          type: "category",
+          label: "Composing Flows",          
+          link: {
+            type: "doc",
+            id: "metaflow/composing-flows/introduction",
+          },
+          items: [
+             "metaflow/composing-flows/custom-decorators",
+             "metaflow/composing-flows/advanced-custom-decorators",
+             "metaflow/composing-flows/mutators",
+             "metaflow/composing-flows/baseflow"
+
+          ] 
+        },
       ],
     },
 

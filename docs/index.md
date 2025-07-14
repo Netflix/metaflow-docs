@@ -34,6 +34,7 @@ Metaflow makes it easy to build and manage real-life data science, AI, and ML pr
 - [Debugging Flows](metaflow/debugging)
 - [Visualizing Results](metaflow/visualizing-results/) 
 - [Configuring Flows](metaflow/configuring-flows/introduction)
+- [Composing Flows with Custom Decorators](metaflow/composing-flows/introduction) ✨*New*✨
 
 ## II. Scaling Flows
 
