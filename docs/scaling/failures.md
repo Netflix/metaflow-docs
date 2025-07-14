@@ -383,6 +383,15 @@ if __name__ == "__main__":
 Note that when deployed on Argo Workflows, exit hook functions execute as separate
 containers (pods), so they will execute even if steps fail e.g. due to out of memory condition.
 
+### Custom dependencies in exit hooks
+
+Since exit hook functions are not steps, you can't use `@pypi` or `@conda` to manage
+their dependencies.
+Instead, you can provide a custom image in `options={'image': ...}` like here:
+```
+@exit_hook(on_error=[failure_print], options={"image": URL_TO_AN_IMAGE})
+```
+
 ## Summary
 
 Here is a quick summary of failure handling in Metaflow:
