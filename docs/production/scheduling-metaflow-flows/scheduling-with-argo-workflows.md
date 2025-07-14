@@ -308,6 +308,14 @@ production.
 
 On Argo Workflows we support sending notifications on a successful or failed flow. To enable notifications, supply the `--notify-on-success/--notify-on-error` flags while deploying your flow. You must also configure the notification provider. The ones currently supported are
 
+### Custom notifications
+
+:::info
+New in Metaflow 2.16
+:::
+
+You can set up a custom function to be called on success or failure on Argo Workflows using [exit hooks](/scaling/failures#exit-hooks-executing-a-function-upon-success-or-failure).
+
 ### Slack notifications
 
 In order to enable Slack notifications, we need to first create a webhook endpoing that Metaflow can send the notifications to by following the instructions at https://api.slack.com/messaging/webhooks
