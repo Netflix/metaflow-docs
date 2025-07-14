@@ -77,7 +77,7 @@ Note the following details:
 
 Another common pattern is to include metadata, [such as Git
 information](/metaflow/configuring-flows/custom-parsers#including-default-configs-in-flows), in flows
-automatically. Depending on your needs, your `BaseFlow` can grow arbitrarly complex and capable. 
+automatically. Depending on your needs, your `BaseFlow` can grow arbitrarily feature-rich. 
 
 ## Using a base flow
 
