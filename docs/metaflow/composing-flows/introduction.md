@@ -59,7 +59,9 @@ to feature-specific pages below.
 
 **Custom decorators** allow you to lift common logic to custom step- and flow-level decorators
 which behave similarly to decorators provided by Metaflow. You can add logic to be executed before,
-after, and instead of the user-defined step code. [Read more about custom decorators](#).
+after, and instead of the user-defined step code. [Read more about custom decorators](
+/metaflow/composing-flows/custom-decorators) and [advanced decorator
+patterns](/metaflow/composing-flows/advanced-custom-decorators).
 
 ![](/assets/custom-decos-1.png)
 
@@ -68,7 +70,8 @@ after, and instead of the user-defined step code. [Read more about custom decora
 **Mutators** allow you to add and remove decorators (including custom ones),
 [`Config`s](/metaflow/configuring-flows/introduction) and
 [`Parameter`s](metaflow/basics#how-to-define-parameters-for-flows)
-in flows programmatically. [Read more about mutators](#).
+in flows programmatically. [Read more about
+mutators](/metaflow/composing-flows/mutators).
 
 ![](/assets/custom-decos-2.png)
 
@@ -82,6 +85,7 @@ but this feature is on the roadmap.
 **The `BaseFlow` pattern** allows you apply mutators, `Config`s, and `Parameter`s automatically
 to all flows derived from the `BaseFlow`. This allows you to templatize flows according to your
 project’s best practices, ensuring that all relevant decorators are applied automatically -
-without requiring users to remember to add them manually. [Read more about the `BaseFlow` pattern](#).
+without requiring users to remember to add them manually. [Read more about
+the `BaseFlow` pattern](/metaflow/composing-flows/baseflow).
 
 ![](/assets/custom-decos-3.png)
