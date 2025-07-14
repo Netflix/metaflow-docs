@@ -13,7 +13,8 @@ steps and flows. For example, you might define shared, project-specific patterns
  - Tracking data and model lineage,
  - Performing feature engineering and transformations,
  - Training and evaluating a model,
- - Accessing an external service, e.g. an LLM endpoint through a model router.
+ - Accessing an external service, e.g. an LLM endpoint through a model router,
+ - Making tools available for agentic workflows.
 
 You can handle cases like these by developing a shared library that encapsulates
 the logic and importing it in your steps. Metaflow will [package the

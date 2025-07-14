@@ -329,6 +329,60 @@ if __name__ == '__main__':
 
 This example handles a timeout in `start` gracefully without showing any exceptions.
 
+## Exit hooks: Executing a function upon success or failure
+
+:::info
+This is a new feature in Metaflow 2.16. Exit hooks work with local runs and when
+[deployed on Argo Workflows](/production/scheduling-metaflow-flows/scheduling-with-argo-workflows).
+:::
+
+Exit hooks let you define a special function that runs at the end of a flow, regardless
+of whether the flow succeeds or fails. Unlike the end step, which is skipped if the flow
+fails, exit hooks always run. This makes them suitable for tasks like sending notifications
+or cleaning up resources. However, since they run outside of steps, they cannot be used to
+produce artifacts.
+
+You can attach one or more exit hook functions to a flow using the `@exit_hook` decorator. For example:
+
+```python
+from metaflow import step, FlowSpec, Parameter, exit_hook, Run
+
+def success_print():
+    print("✅ Flow completed successfully!")
+
+def failure_print(run):
+    if run:
+        print(f"💥 Run {run.pathspec} failed. Failed tasks:")
+        for step in run:
+            for task in step:
+                if not task.successful:
+                    print(f"  →  {task.pathspec}")
+    else:
+        print(f"💥 Run failed during initialization")
+
+@exit_hook(on_error=[failure_print], on_success=[success_print])
+class ExitHookFlow(FlowSpec):
+    should_fail = Parameter(name="should-fail", default=False)
+
+    @step
+    def start(self):
+        print("Starting 👋")
+        print("Should fail?", self.should_fail)
+        if self.should_fail:
+            raise Exception("failing as expected")
+        self.next(self.end)
+
+    @step
+    def end(self):
+        print("Done! 🏁")
+
+if __name__ == "__main__":
+    ExitHookFlow()
+```
+
+Note that when deployed on Argo Workflows, exit hook functions execute as separate
+containers (pods), so they will execute even if steps fail e.g. due to out of memory condition.
+
 ## Summary
 
 Here is a quick summary of failure handling in Metaflow:
@@ -341,4 +395,5 @@ Here is a quick summary of failure handling in Metaflow:
   safely](failures.md#how-to-prevent-retries). It is a good idea to use `times=0` for
   `retry` in this case.
 * Use `timeout` with any of the above if your code can get stuck.
+* Use `@exit_hook` to execute custom functions upon success or failure.
 
