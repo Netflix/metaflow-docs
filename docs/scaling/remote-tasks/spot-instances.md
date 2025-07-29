@@ -8,9 +8,6 @@ discounted price compared to on-demand instances. However, these instances can
 be interrupted with a short notice when the cloud provider needs the capacity
 back.
 
-:::info
-Spot instance support is currently available with `@kubernetes` and `@batch` decorator on AWS.
-:::
 
 ## Retrying and resuming tasks running on spot instances
 
@@ -81,6 +78,10 @@ your Kubernetes cluster. The code periodically checks for the existence of a
 termination notice file using `current.spot_termination_notice`. When a
 termination notice is detected, the task can perform any necessary cleanup and
 checkpointing before the instance is reclaimed.
+
+:::info
+Spot termination notice support is currently available with `@kubernetes` and `@batch` decorator on AWS.
+:::
 
 ## Testing Spot Instance Interruptions
 
