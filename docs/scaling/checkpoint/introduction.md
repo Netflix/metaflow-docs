@@ -28,7 +28,12 @@ guaranteed to stay backwards compatible. Please share your feedback on
 
 ## Installing `@checkpoint`
 
-To use the `@checkpoint` extension, install it with
+If you use Metaflow through Outerbounds, this functionality is installed by default when you run 
+```
+pip install outerbounds
+```
+
+To use the `@checkpoint` extension with a self-managed Metaflow deployment, install it with
 ```
 pip install metaflow-checkpoint
 ```

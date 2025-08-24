@@ -43,6 +43,7 @@ Metaflow makes it easy to build and manage real-life data science, AI, and ML pr
 - [Managing Dependencies](scaling/dependencies) ✨*New: support for `uv`*✨
 - [Dealing with Failures](scaling/failures) ✨*New: support for `@exit_hook`*✨
 - [Checkpointing Progress](scaling/checkpoint/introduction) ✨*New*✨
+- [Managing Model Lifecycle](scaling/model-lifecycle-management/introduction) ✨*New*✨
 - [Loading and Storing Data](scaling/data)
 - [Organizing Results](scaling/tagging)
 - [Accessing Secrets](scaling/secrets)
