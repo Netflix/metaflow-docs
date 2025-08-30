@@ -38,7 +38,7 @@ another one.
 
 Here is a graph with two linear transitions:
 
-![](/assets/graph_linear.png)
+![](/assets/dag-linear.png)
 
 The corresponding Metaflow script looks like this:
 
@@ -109,7 +109,7 @@ transitions to two parallel steps, `a` and `b`. Any number of parallel steps are
 allowed. A benefit of a branch like this is performance: Metaflow can execute `a` and
 `b` over multiple CPU cores or over multiple instances in the cloud.
 
-![](/assets/graph_branch.png)
+![](/assets/dag-branch.png)
 
 ```python
 from metaflow import FlowSpec, step
@@ -169,7 +169,7 @@ methods, many parallel copies of steps inside a foreach loop are executed.
 
 A foreach loop can iterate over any list like `titles` below.
 
-![](/assets/graph_foreach.png)
+![](/assets/dag-foreach.png)
 
 ```python
 from metaflow import FlowSpec, step
@@ -216,6 +216,138 @@ assign a value to an instance variable in a foreach step which helps you to iden
 task.
 
 You can nest foreaches and combine them with branches and linear steps arbitrarily.
+
+### Conditionals
+
+:::info 
+This is a new feature in Metaflow 2.18.
+:::
+
+Conditional branches allow you to choose *one* branch among multiple
+options, based on the value of an artifact. Similar to `foreach`, you
+pass a `condition` keyword argument to `self.next`, pointing to an artifact
+that determines which branch to follow. Unlike regular branches, where
+multiple paths can run in parallel, conditional branching ensures that
+exactly one branch is executed.
+
+![](/assets/dag-conditional.png)
+
+Specify the candidate branches as a Python dictionary, similar to a
+`switch` statement in many languages. Dictionary keys can be any valid type
+(e.g. strings, integers, booleans), and the values must be valid `@step` methods.
+The keys may be specified
+via [a `Config` file](/metaflow/configuring-flows/introduction),
+e.g. `{cfg.first_choice: self.head}`. Note that you must specify a key for
+every possible value of the `condition` artifact.
+
+This flow flips a coin and executes a heads or tails branch accordingly: 
+
+```python
+from metaflow import FlowSpec, step
+import random
+
+class CoinFlipFlow(FlowSpec):
+
+    @step
+    def start(self):
+        self.choice = random.choice(['head', 'tails'])
+        self.next({"head": self.head, "tails": self.tails}, condition='choice')
+
+    @step
+    def head(self):
+        print('Head!')
+        self.next(self.end)
+
+    @step
+    def tails(self):
+        print('Tails!')
+        self.next(self.end)
+
+    @step
+    def end(self):
+        print("This is the end")
+
+if __name__ == '__main__':
+    CoinFlipFlow()
+```
+
+Note that you don't need a join step with conditionals, since only
+one branch is execution so there are no multiple sets of artifacts
+to be merged.
+
+### Recursion
+
+:::info 
+This is a new feature in Metaflow 2.18.
+:::
+
+While Metaflow doesn't support arbitrary loops across the flow - 
+the flows are *Directed* **Acyclic** *Graphs* after all - as a special
+case, you can execute a single step multiple times recursively.
+
+![](/assets/dag-recursion.png)
+
+Similar to `foreach`, this construct causes a single step to spawn multiple tasks,
+each producing its own artifacts. Recursion is particularly useful when you want
+to *snapshot and persist artifacts* before continuing processing.
+
+If the flow
+fails during recursion, you can use the
+[`resume` command](/metaflow/debugging#how-to-use-the-resume-command) to pick up
+from the latest successful iteration instead of starting over. And, you are able
+to use [the Client API](/metaflow/client) to inspect any iteration afterwards - 
+for instance, a particular parametrization of a hyperparameter optimization loop.
+
+Define recursion simply by creating a conditional where one of the branches points
+at the step itself. For instance, the example below implements the
+following `while` loop 
+
+```python
+x = 1
+while x < 5:
+   x += 1
+```
+
+...as the `loop` step:
+
+```python
+from metaflow import FlowSpec, step
+
+class WhileFlow(FlowSpec):
+
+    @step
+    def start(self):
+        self.next(self.loop)
+
+    @step
+    def loop(self):
+        self.x = getattr(self, 'x', 0) + 1
+        print('X is', self.x)
+        self.again = self.x < 5
+        self.next({True: self.loop, False: self.end}, condition='again')
+
+    @step
+    def end(self):
+        print("The final X is", self.x)
+
+if __name__ == '__main__':
+    WhileFlow()
+```
+
+You can interrupt the flow mid-execution and try `python while.py resume` to observe
+how the execution resumes from the latest successful iteration instead of starting
+again.
+
+### Nesting constructs
+
+You can combine and nest the above constructs almost arbitrarily.  
+
+For example, the following flow orchestrates [multiple agents working in
+parallel](https://outerbounds.com/blog/agentic-metaflow) using a **foreach**.  
+The agent state is persisted through **recursive steps**, and the agent can
+continue along a suitable path through **a conditional**.
+
+![](/assets/dag-nested.png)
 
 ## What should be a step?
 
