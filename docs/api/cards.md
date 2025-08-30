@@ -85,7 +85,7 @@ The components are added to cards in `@step` methods (or functions called from s
 ### Markdown
 
 
-<DocSection type="class" name="Markdown" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L659">
+<DocSection type="class" name="Markdown" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L647">
 <SigArgSection>
 <SigArg name="text" default="None" />
 </SigArgSection>
@@ -97,7 +97,7 @@ The components are added to cards in `@step` methods (or functions called from s
 
 
 
-<DocSection type="method" name="Markdown.update" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L678">
+<DocSection type="method" name="Markdown.update" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L666">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="text" default="None" />
 </SigArgSection>
@@ -109,7 +109,7 @@ The components are added to cards in `@step` methods (or functions called from s
 ### Image
 
 
-<DocSection type="class" name="Image" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L247">
+<DocSection type="class" name="Image" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L235">
 <SigArgSection>
 <SigArg name="src" default="None" /><SigArg name="label" default="None" /><SigArg name="disable_updates" type="bool" default="True" />
 </SigArgSection>
@@ -125,7 +125,7 @@ The components are added to cards in `@step` methods (or functions called from s
 
 
 
-<DocSection type="method" name="Image.from_matplotlib" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L553">
+<DocSection type="method" name="Image.from_matplotlib" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L541">
 <SigArgSection>
 <SigArg name="plot" /><SigArg name="label" type="Optional" default="None" /><SigArg name="disable_updates" type="bool" default="False" />
 </SigArgSection>
@@ -138,7 +138,7 @@ The components are added to cards in `@step` methods (or functions called from s
 
 
 
-<DocSection type="method" name="Image.from_pil_image" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L519">
+<DocSection type="method" name="Image.from_pil_image" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L507">
 <SigArgSection>
 <SigArg name="pilimage" /><SigArg name="label" type="Optional" default="None" /><SigArg name="disable_updates" type="bool" default="False" />
 </SigArgSection>
@@ -153,7 +153,7 @@ The components are added to cards in `@step` methods (or functions called from s
 ### Artifact
 
 
-<DocSection type="class" name="Artifact" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L63">
+<DocSection type="class" name="Artifact" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L51">
 <SigArgSection>
 <SigArg name="artifact" type="Any" /><SigArg name="name" type="Optional" default="None" /><SigArg name="compressed" type="bool" default="True" />
 </SigArgSection>
@@ -169,7 +169,7 @@ The components are added to cards in `@step` methods (or functions called from s
 ### Table
 
 
-<DocSection type="class" name="Table" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L109">
+<DocSection type="class" name="Table" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L97">
 <SigArgSection>
 <SigArg name="data" type="Optional" default="None" /><SigArg name="headers" type="Optional" default="None" /><SigArg name="disable_updates" type="bool" default="False" />
 </SigArgSection>
@@ -185,7 +185,7 @@ The components are added to cards in `@step` methods (or functions called from s
 
 
 
-<DocSection type="method" name="Table.from_dataframe" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L179">
+<DocSection type="method" name="Table.from_dataframe" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L167">
 <SigArgSection>
 <SigArg name="dataframe" default="None" /><SigArg name="truncate" type="bool" default="True" />
 </SigArgSection>
@@ -200,7 +200,7 @@ The components are added to cards in `@step` methods (or functions called from s
 ### VegaChart
 
 
-<DocSection type="class" name="VegaChart" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L768">
+<DocSection type="class" name="VegaChart" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L756">
 <SigArgSection>
 <SigArg name="spec" type="dict" /><SigArg name="show_controls" type="bool" default="False" />
 </SigArgSection>
@@ -210,7 +210,7 @@ The components are added to cards in `@step` methods (or functions called from s
 
 
 
-<DocSection type="method" name="VegaChart.from_altair_chart" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L803">
+<DocSection type="method" name="VegaChart.from_altair_chart" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L791">
 <SigArgSection>
 <SigArg name="altair_chart" />
 </SigArgSection>
@@ -220,7 +220,7 @@ The components are added to cards in `@step` methods (or functions called from s
 
 
 
-<DocSection type="method" name="VegaChart.update" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L778">
+<DocSection type="method" name="VegaChart.update" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L766">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="spec" default="None" />
 </SigArgSection>
@@ -234,17 +234,17 @@ The components are added to cards in `@step` methods (or functions called from s
 ### ProgressBar
 
 
-<DocSection type="class" name="ProgressBar" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L692">
+<DocSection type="class" name="ProgressBar" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L680">
 <SigArgSection>
-<SigArg name="max" type="int" default="100" /><SigArg name="label" type="str" default="None" /><SigArg name="value" type="int" default="0" /><SigArg name="unit" type="str" default="None" /><SigArg name="metadata" type="str" default="None" />
+<SigArg name="max" type="int" default="100" /><SigArg name="label" type="Optional" default="None" /><SigArg name="value" type="int" default="0" /><SigArg name="unit" type="Optional" default="None" /><SigArg name="metadata" type="Optional" default="None" />
 </SigArgSection>
 <Description summary="A Progress bar for tracking progress of any task." extended_summary="Example:\n```\nprogress_bar = ProgressBar(\n    max=100,\n    label=&#34;Progress Bar&#34;,\n    value=0,\n    unit=&#34;%&#34;,\n    metadata=&#34;0.1 items/s&#34;\n)\ncurrent.card.append(\n    progress_bar\n)\nfor i in range(100):\n    progress_bar.update(i, metadata=&#34;%s items/s&#34; % i)\n\n```" />
 <ParamSection name="Parameters">
-	<Parameter name="max" type="int" desc="The maximum value of the progress bar." />
-	<Parameter name="label" type="str, optional" desc="Optional label for the progress bar." />
-	<Parameter name="value" type="int, optional" desc="Optional initial value of the progress bar." />
-	<Parameter name="unit" type="str, optional" desc="Optional unit for the progress bar." />
-	<Parameter name="metadata" type="str, optional" desc="Optional additional information to show on the progress bar." />
+	<Parameter name="max" type="int, default 100" desc="The maximum value of the progress bar." />
+	<Parameter name="label" type="str, optional, default None" desc="Optional label for the progress bar." />
+	<Parameter name="value" type="int, default 0" desc="Optional initial value of the progress bar." />
+	<Parameter name="unit" type="str, optional, default None" desc="Optional unit for the progress bar." />
+	<Parameter name="metadata" type="str, optional, default None" desc="Optional additional information to show on the progress bar." />
 </ParamSection>
 <ParamSection name="Attributes">
 	<Parameter name="component_id" />
@@ -253,9 +253,9 @@ The components are added to cards in `@step` methods (or functions called from s
 
 
 
-<DocSection type="method" name="ProgressBar.update" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L745">
+<DocSection type="method" name="ProgressBar.update" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/components.py#L733">
 <SigArgSection>
-<SigArg name="self" /><SigArg name="new_value" type="int" /><SigArg name="metadata" type="str" default="None" />
+<SigArg name="self" /><SigArg name="new_value" type="int" /><SigArg name="metadata" type="Optional" default="None" />
 </SigArgSection>
 <Description summary="#FIXME document" />
 
@@ -269,7 +269,7 @@ You can define custom cards types (`T` in `@card(type=T)`) by creating a Python 
 Find detailed instructions, a starter template, and an example of a [simple static custom card](https://github.com/outerbounds/metaflow-card-html) and [an example of a dynamic card]( https://github.com/outerbounds/metaflow-card-scatter3d).
 
 
-<DocSection type="class" name="MetaflowCard" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/card.py#L7">
+<DocSection type="class" name="MetaflowCard" module="metaflow.cards" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/card.py#L8">
 <SigArgSection>
 <SigArg name="options" />
 </SigArgSection>
@@ -346,13 +346,13 @@ ShowDoc(MetaflowCard.render)
 
 
 
-    <nbdoc.showdoc.ShowDoc at 0x11365a650>
+    <nbdoc.showdoc.ShowDoc at 0x10a0ccb10>
 ```
 
 </CodeOutputBlock>
 
 
-<DocSection type="method" name="MetaflowCard.render_runtime" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/card.py#L100">
+<DocSection type="method" name="MetaflowCard.render_runtime" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/card.py#L101">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="task" /><SigArg name="data" />
 </SigArgSection>
@@ -362,7 +362,7 @@ ShowDoc(MetaflowCard.render)
 
 
 
-<DocSection type="method" name="MetaflowCard.refresh" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/card.py#L104">
+<DocSection type="method" name="MetaflowCard.refresh" module="metaflow.cards" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/cards/card_modules/card.py#L105">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="task" /><SigArg name="data" />
 </SigArgSection>

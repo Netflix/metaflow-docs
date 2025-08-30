@@ -33,11 +33,11 @@ To query and manipulate the currently executing run inside your flow, see the [`
 Annotate methods that are a part of your Metaflow workflow with [the `@step` decorator](/api/step-decorators/step). Use `FlowSpec.next` to define transitions between steps:
 
 
-<DocSection type="method" name="FlowSpec.next" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/flowspec.py#L544">
+<DocSection type="method" name="FlowSpec.next" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/flowspec.py#L791">
 <SigArgSection>
-<SigArg name="*dsts, foreach=None" />
+<SigArg name="*dsts, foreach=None, condition=None" />
 </SigArgSection>
-<Description summary="Indicates the next step to execute after this step has completed." extended_summary="This statement should appear as the last statement of each step, except\nthe end step.\n\nThere are several valid formats to specify the next step:\n\n- Straight-line connection: `self.next(self.next_step)` where `next_step` is a method in\n  the current class decorated with the `@step` decorator.\n\n- Static fan-out connection: `self.next(self.step1, self.step2, ...)` where `stepX` are\n  methods in the current class decorated with the `@step` decorator.\n\n- Foreach branch:\n  ```\n  self.next(self.foreach_step, foreach='foreach_iterator')\n  ```\n  In this situation, `foreach_step` is a method in the current class decorated with the\n  `@step` decorator and `foreach_iterator` is a variable name in the current class that\n  evaluates to an iterator. A task will be launched for each value in the iterator and\n  each task will execute the code specified by the step `foreach_step`." />
+<Description summary="Indicates the next step to execute after this step has completed." extended_summary="This statement should appear as the last statement of each step, except\nthe end step.\n\nThere are several valid formats to specify the next step:\n\n- Straight-line connection: `self.next(self.next_step)` where `next_step` is a method in\n  the current class decorated with the `@step` decorator.\n\n- Static fan-out connection: `self.next(self.step1, self.step2, ...)` where `stepX` are\n  methods in the current class decorated with the `@step` decorator.\n\n- Foreach branch:\n  ```\n  self.next(self.foreach_step, foreach='foreach_iterator')\n  ```\n  In this situation, `foreach_step` is a method in the current class decorated with the\n  `@step` decorator and `foreach_iterator` is a variable name in the current class that\n  evaluates to an iterator. A task will be launched for each value in the iterator and\n  each task will execute the code specified by the step `foreach_step`.\n\n- Switch statement:\n  ```\n  self.next({&#34;case1&#34;: self.step_a, &#34;case2&#34;: self.step_b}, condition='condition_variable')\n  ```\n  In this situation, `step_a` and `step_b` are methods in the current class decorated\n  with the `@step` decorator and `condition_variable` is a variable name in the current\n  class. The value of the condition variable determines which step to execute. If the\n  value doesn't match any of the dictionary keys, a RuntimeError is raised." />
 <ParamSection name="Parameters">
 	<Parameter name="dsts" type="Callable[..., None]" desc="One or more methods annotated with `@step`." />
 </ParamSection>
@@ -72,7 +72,7 @@ Use the operations below, `FlowSpec.input`, `FlowSpec.index`, and `FlowSpec.fore
 
 
 
-<DocSection type="method" name="FlowSpec.foreach_stack" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/flowspec.py#L289">
+<DocSection type="method" name="FlowSpec.foreach_stack" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/flowspec.py#L536">
 <SigArgSection>
 <SigArg name="self" />
 </SigArgSection>
@@ -84,7 +84,7 @@ Use the operations below, `FlowSpec.input`, `FlowSpec.index`, and `FlowSpec.fore
 
 
 
-<DocSection type="method" name="FlowSpec.merge_artifacts" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/flowspec.py#L373">
+<DocSection type="method" name="FlowSpec.merge_artifacts" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/flowspec.py#L620">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="inputs" type="Inputs" /><SigArg name="exclude" type="Optional" default="None" /><SigArg name="include" type="Optional" default="None" />
 </SigArgSection>
@@ -109,18 +109,18 @@ The `Parameter` class is used to define parameters for a flow.
 The `Parameter` objects must be defined as class variables inside a flow. The parameter values are available as read-only artifacts in all steps of the flow. For instructions, see [How to define parameters for flows](/metaflow/basics#how-to-define-parameters-for-flows).
 
 
-<DocSection type="class" name="Parameter" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/parameters.py#L249">
+<DocSection type="class" name="Parameter" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/parameters.py#L276">
 <SigArgSection>
-<SigArg name="name" type="str" /><SigArg name="default" type="Union" default="None" /><SigArg name="type" type="Union" default="None" /><SigArg name="help" type="Optional" default="None" /><SigArg name="required" type="bool" default="False" /><SigArg name="show_default" type="bool" default="True" /><SigArg name="**kwargs: Dict[str, Any]" type="Dict" />
+<SigArg name="name" type="str" /><SigArg name="default" type="Union" default="None" /><SigArg name="type" type="Union" default="None" /><SigArg name="help" type="Optional" default="None" /><SigArg name="required" type="Optional" default="None" /><SigArg name="show_default" type="Optional" default="None" /><SigArg name="**kwargs: Dict[str, Any]" type="Dict" />
 </SigArgSection>
 <Description summary="Defines a parameter for a flow." extended_summary="Parameters must be instantiated as class variables in flow classes, e.g.\n```\nclass MyFlow(FlowSpec):\n    param = Parameter('myparam')\n```\nin this case, the parameter is specified on the command line as\n```\npython myflow.py run --myparam=5\n```\nand its value is accessible through a read-only artifact like this:\n```\nprint(self.param == 5)\n```\nNote that the user-visible parameter name, `myparam` above, can be\ndifferent from the artifact name, `param` above.\n\nThe parameter value is converted to a Python type based on the `type`\nargument or to match the type of `default`, if it is set." />
 <ParamSection name="Parameters">
 	<Parameter name="name" type="str" desc="User-visible parameter name." />
-	<Parameter name="default" type="str or float or int or bool or `JSONType` or a function." desc="Default value for the parameter. Use a special `JSONType` class to\nindicate that the value must be a valid JSON object. A function\nimplies that the parameter corresponds to a *deploy-time parameter*.\nThe type of the default value is used as the parameter `type`." />
+	<Parameter name="default" type="Union[str, float, int, bool, Dict[str, Any]," desc="        Callable[\n            [ParameterContext], Union[str, float, int, bool, Dict[str, Any]]\n        ],\n    ], optional, default None\nDefault value for the parameter. Use a special `JSONType` class to\nindicate that the value must be a valid JSON object. A function\nimplies that the parameter corresponds to a *deploy-time parameter*.\nThe type of the default value is used as the parameter `type`." />
 	<Parameter name="type" type="Type, default None" desc="If `default` is not specified, define the parameter type. Specify\none of `str`, `float`, `int`, `bool`, or `JSONType`. If None, defaults\nto the type of `default` or `str` if none specified." />
-	<Parameter name="help" type="str, optional" desc="Help text to show in `run --help`." />
-	<Parameter name="required" type="bool, default False" desc="Require that the user specified a value for the parameter.\n`required=True` implies that the `default` is not used." />
-	<Parameter name="show_default" type="bool, default True" desc="If True, show the default value in the help text." />
+	<Parameter name="help" type="str, optional, default None" desc="Help text to show in `run --help`." />
+	<Parameter name="required" type="bool, optional, default None" desc="Require that the user specifies a value for the parameter. Note that if\na default is provide, the required flag is ignored.\nA value of None is equivalent to False." />
+	<Parameter name="show_default" type="bool, optional, default None" desc="If True, show the default value in the help text. A value of None is equivalent\nto True." />
 </ParamSection>
 </DocSection>
 
@@ -160,7 +160,7 @@ The function called gets a parameter `context` that contains attributes about th
 The `IncludeFile` object is a special `Parameter` that reads its value from a local file. For an example, see [Data in Local Files](/scaling/data#data-in-local-files).
 
 
-<DocSection type="class" name="IncludeFile" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/includefile.py#L237">
+<DocSection type="class" name="IncludeFile" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/includefile.py#L233">
 <SigArgSection>
 <SigArg name="name, **kwargs" />
 </SigArgSection>
@@ -168,11 +168,11 @@ The `IncludeFile` object is a special `Parameter` that reads its value from a lo
 <ParamSection name="Parameters">
 	<Parameter name="name" type="str" desc="User-visible parameter name." />
 	<Parameter name="default" type="Union[str, Callable[ParameterContext, str]]" desc="Default path to a local file. A function\nimplies that the parameter corresponds to a *deploy-time parameter*." />
-	<Parameter name="is_text" type="bool, default True" desc="Convert the file contents to a string using the provided `encoding`.\nIf False, the artifact is stored in `bytes`." />
-	<Parameter name="encoding" type="str, optional, default 'utf-8'" desc="Use this encoding to decode the file contexts if `is_text=True`." />
-	<Parameter name="required" type="bool, default False" desc="Require that the user specified a value for the parameter.\n`required=True` implies that the `default` is not used." />
+	<Parameter name="is_text" type="bool, optional, default None" desc="Convert the file contents to a string using the provided `encoding`.\nIf False, the artifact is stored in `bytes`. A value of None is equivalent to\nTrue." />
+	<Parameter name="encoding" type="str, optional, default None" desc="Use this encoding to decode the file contexts if `is_text=True`. A value of None\nis equivalent to utf-8." />
+	<Parameter name="required" type="bool, optional, default None" desc="Require that the user specified a value for the parameter.\n`required=True` implies that the `default` is not used. A value of None is\nequivalent to False" />
 	<Parameter name="help" type="str, optional" desc="Help text to show in `run --help`." />
-	<Parameter name="show_default" type="bool, default True" desc="If True, show the default value in the help text." />
+	<Parameter name="show_default" type="bool, default True" desc="If True, show the default value in the help text. A value of None is equivalent\nto True." />
 </ParamSection>
 </DocSection>
 

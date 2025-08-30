@@ -7,7 +7,7 @@ The `@batch` decorator sends a step for execution on the [AWS Batch](https://aws
 Note that while `@batch` doesn't allow mounting arbitrary disk volumes on the fly, you can create in-memory filesystems easily with `tmpfs` options. For more details, see [using `metaflow.S3` for in-memory processing](/scaling/data#using-metaflows3-for-in-memory-processing).
 
 
-<DocSection type="decorator" name="batch" module="metaflow" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/aws/batch/batch_decorator.py#L34">
+<DocSection type="decorator" name="batch" module="metaflow" show_import="True" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/plugins/aws/batch/batch_decorator.py#L31">
 <SigArgSection>
 <SigArg name="..." />
 </SigArgSection>

@@ -18,6 +18,8 @@ For more information, see [Coordinating Larger Metaflow Projects](/production/co
 <Description summary="Specifies what flows belong to the same project." extended_summary="A project-specific namespace is created for all flows that\nuse the same `@project(name)`." />
 <ParamSection name="Parameters">
 	<Parameter name="name" type="str" desc="Project name. Make sure that the name is unique amongst all\nprojects that use the same production scheduler. The name may\ncontain only lowercase alphanumeric characters and underscores." />
+	<Parameter name="branch" type="Optional[str], default None" desc="The branch to use. If not specified, the branch is set to\n`user.<username>` unless `production` is set to `True`. This can\nalso be set on the command line using `--branch` as a top-level option.\nIt is an error to specify `branch` in the decorator and on the command line." />
+	<Parameter name="production" type="bool, default False" desc="Whether or not the branch is the production branch. This can also be set on the\ncommand line using `--production` as a top-level option. It is an error to specify\n`production` in the decorator and on the command line.\nThe project branch name will be:\n  - if `branch` is specified:\n    - if `production` is True: `prod.<branch>`\n    - if `production` is False: `test.<branch>`\n  - if `branch` is not specified:\n    - if `production` is True: `prod`\n    - if `production` is False: `user.<username>`" />
 </ParamSection>
 </DocSection>
 
