@@ -24,24 +24,25 @@ with await Runner(...).async_run() as running:
 If you don't use `Runner` as a context manager, remember to call `Runner.cleanup()` to remove any leftover temp files.
 
 
-<DocSection type="class" name="Runner" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/metaflow_runner.py#L181">
+<DocSection type="class" name="Runner" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/metaflow_runner.py#L230">
 <SigArgSection>
 <SigArg name="flow_file, show_output=True, profile=None, env=None, cwd=None, **kwargs" />
 </SigArgSection>
 <Description summary="Metaflow's Runner API that presents a programmatic interface\nto run flows and perform other operations either synchronously or asynchronously.\nThe class expects a path to the flow file along with optional arguments\nthat match top-level options on the command-line." extended_summary="This class works as a context manager, calling `cleanup()` to remove\ntemporary files at exit.\n\nExample:\n```python\nwith Runner('slowflow.py', pylint=False) as runner:\n    result = runner.run(alpha=5, tags=[&#34;abc&#34;, &#34;def&#34;], max_workers=5)\n    print(result.run.finished)\n```" />
 <ParamSection name="Parameters">
-	<Parameter name="flow_file" type="str" desc="Path to the flow file to run" />
+	<Parameter name="flow_file" type="str" desc="Path to the flow file to run, relative to current directory." />
 	<Parameter name="show_output" type="bool, default True" desc="Show the 'stdout' and 'stderr' to the console by default,\nOnly applicable for synchronous 'run' and 'resume' functions." />
-	<Parameter name="profile" type="Optional[str], default None" desc="Metaflow profile to use to run this run. If not specified, the default\nprofile is used (or the one already set using `METAFLOW_PROFILE`)" />
-	<Parameter name="env" type="Optional[Dict], default None" desc="Additional environment variables to set for the Run. This overrides the\nenvironment set for this process." />
-	<Parameter name="cwd" type="Optional[str], default None" desc="The directory to run the subprocess in; if not specified, the current\ndirectory is used." />
+	<Parameter name="profile" type="str, optional, default None" desc="Metaflow profile to use to run this run. If not specified, the default\nprofile is used (or the one already set using `METAFLOW_PROFILE`)" />
+	<Parameter name="env" type="Dict[str, str], optional, default None" desc="Additional environment variables to set for the Run. This overrides the\nenvironment set for this process." />
+	<Parameter name="cwd" type="str, optional, default None" desc="The directory to run the subprocess in; if not specified, the current\ndirectory is used." />
+	<Parameter name="file_read_timeout" type="int, default 3600" desc="The timeout until which we try to read the runner attribute file (in seconds)." />
 	<Parameter name="**kwargs" type="Any" desc="Additional arguments that you would pass to `python myflow.py` before\nthe `run` command." />
 </ParamSection>
 </DocSection>
 
 
 
-<DocSection type="method" name="Runner.cleanup" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/metaflow_runner.py#L433">
+<DocSection type="method" name="Runner.cleanup" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/metaflow_runner.py#L519">
 <SigArgSection>
 <SigArg name="self" />
 </SigArgSection>
@@ -55,7 +56,7 @@ If you don't use `Runner` as a context manager, remember to call `Runner.cleanup
 These calls block until the command completes.
 
 
-<DocSection type="method" name="Runner.run" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/metaflow_runner.py#L289">
+<DocSection type="method" name="Runner.run" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/metaflow_runner.py#L363">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="**kwargs" />
 </SigArgSection>
@@ -70,7 +71,7 @@ These calls block until the command completes.
 
 
 
-<DocSection type="method" name="Runner.resume" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/metaflow_runner.py#L323">
+<DocSection type="method" name="Runner.resume" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/metaflow_runner.py#L400">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="**kwargs" />
 </SigArgSection>
@@ -87,7 +88,7 @@ These calls block until the command completes.
 ### Non-Blocking API
 
 
-<DocSection type="method" name="Runner.async_run" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/metaflow_runner.py#L357">
+<DocSection type="method" name="Runner.async_run" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/metaflow_runner.py#L437">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="**kwargs" />
 </SigArgSection>
@@ -102,7 +103,7 @@ These calls block until the command completes.
 
 
 
-<DocSection type="method" name="Runner.async_resume" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/metaflow_runner.py#L392">
+<DocSection type="method" name="Runner.async_resume" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/metaflow_runner.py#L475">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="**kwargs" />
 </SigArgSection>
@@ -121,7 +122,7 @@ These calls block until the command completes.
 `NBRunner` is a wrapper over `Runner` which allows you to refer to a flow defined in a notebook cell instead of a file. For examples, see [Running flows in a notebook](/metaflow/managing-flows/notebook-runs).
 
 
-<DocSection type="class" name="NBRunner" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/nbrun.py#L17">
+<DocSection type="class" name="NBRunner" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/nbrun.py#L15">
 <SigArgSection>
 <SigArg name="flow, show_output=True, profile=None, env=None, base_dir=None, **kwargs" />
 </SigArgSection>
@@ -129,9 +130,10 @@ These calls block until the command completes.
 <ParamSection name="Parameters">
 	<Parameter name="flow" type="FlowSpec" desc="Flow defined in the same cell" />
 	<Parameter name="show_output" type="bool, default True" desc="Show the 'stdout' and 'stderr' to the console by default,\nOnly applicable for synchronous 'run' and 'resume' functions." />
-	<Parameter name="profile" type="Optional[str], default None" desc="Metaflow profile to use to run this run. If not specified, the default\nprofile is used (or the one already set using `METAFLOW_PROFILE`)" />
-	<Parameter name="env" type="Optional[Dict], default None" desc="Additional environment variables to set for the Run. This overrides the\nenvironment set for this process." />
-	<Parameter name="base_dir" type="Optional[str], default None" desc="The directory to run the subprocess in; if not specified, a temporary\ndirectory is used." />
+	<Parameter name="profile" type="str, optional, default None" desc="Metaflow profile to use to run this run. If not specified, the default\nprofile is used (or the one already set using `METAFLOW_PROFILE`)" />
+	<Parameter name="env" type="Dict[str, str], optional, default None" desc="Additional environment variables to set for the Run. This overrides the\nenvironment set for this process." />
+	<Parameter name="base_dir" type="str, optional, default None" desc="The directory to run the subprocess in; if not specified, the current\nworking directory is used." />
+	<Parameter name="file_read_timeout" type="int, default 3600" desc="The timeout until which we try to read the runner attribute file (in seconds)." />
 	<Parameter name="**kwargs" type="Any" desc="Additional arguments that you would pass to `python myflow.py` before\nthe `run` command." />
 </ParamSection>
 </DocSection>
@@ -140,7 +142,7 @@ These calls block until the command completes.
 ### Blocking API
 
 
-<DocSection type="method" name="NBRunner.nbrun" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/nbrun.py#L110">
+<DocSection type="method" name="NBRunner.nbrun" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/nbrun.py#L113">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="**kwargs" />
 </SigArgSection>
@@ -155,7 +157,7 @@ These calls block until the command completes.
 
 
 
-<DocSection type="method" name="NBRunner.nbresume" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/nbrun.py#L135">
+<DocSection type="method" name="NBRunner.nbresume" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/nbrun.py#L138">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="**kwargs" />
 </SigArgSection>
@@ -172,7 +174,7 @@ These calls block until the command completes.
 ### Non-Blocking API
 
 
-<DocSection type="method" name="NBRunner.async_run" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/nbrun.py#L173">
+<DocSection type="method" name="NBRunner.async_run" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/nbrun.py#L176">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="**kwargs" />
 </SigArgSection>
@@ -187,7 +189,7 @@ These calls block until the command completes.
 
 
 
-<DocSection type="method" name="NBRunner.async_resume" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/nbrun.py#L194">
+<DocSection type="method" name="NBRunner.async_resume" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/nbrun.py#L197">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="**kwargs" />
 </SigArgSection>
@@ -202,7 +204,7 @@ These calls block until the command completes.
 
 
 
-<DocSection type="method" name="NBRunner.cleanup" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/nbrun.py#L214">
+<DocSection type="method" name="NBRunner.cleanup" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/nbrun.py#L217">
 <SigArgSection>
 <SigArg name="self" />
 </SigArgSection>
@@ -214,7 +216,7 @@ These calls block until the command completes.
 ## ExecutingRun
 
 
-<DocSection type="class" name="ExecutingRun" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/metaflow_runner.py#L13">
+<DocSection type="class" name="ExecutingRun" module="metaflow" show_import="False" heading_level="3" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/metaflow_runner.py#L24">
 <SigArgSection>
 <SigArg name="" />
 </SigArgSection>
@@ -236,7 +238,7 @@ These calls block until the command completes.
 
 <DocSection type="property" name="ExecutingRun.status" module="metaflow.runner.metaflow_runner" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/">
 
-<Description summary="Returns the status of the underlying subprocess that is responsible\nfor executing the run.\n\nThe return value is one of the following strings:\n- `running` indicates a currently executing run.\n- `failed` indicates a failed run.\n- `successful` a successful run.\n" />
+<Description summary="Returns the status of the underlying subprocess that is responsible\nfor executing the run.\n\nThe return value is one of the following strings:\n- `timeout` indicates that the run timed out.\n- `running` indicates a currently executing run.\n- `failed` indicates a failed run.\n- `successful` indicates a successful run.\n" />
 <ParamSection name="Returns">
 <Parameter type="str" desc="The current status of the run." />
 </ParamSection>
@@ -266,14 +268,14 @@ These calls block until the command completes.
 ### Non-Blocking API
 
 
-<DocSection type="method" name="ExecutingRun.wait" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/metaflow_runner.py#L57">
+<DocSection type="method" name="ExecutingRun.wait" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/metaflow_runner.py#L68">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="timeout" type="Optional" default="None" /><SigArg name="stream" type="Optional" default="None" />
 </SigArgSection>
 <Description summary="Wait for this run to finish, optionally with a timeout\nand optionally streaming its output." extended_summary="Note that this method is asynchronous and needs to be `await`ed." />
 <ParamSection name="Parameters">
-	<Parameter name="timeout" type="Optional[float], default None" desc="The maximum time to wait for the run to finish.\nIf the timeout is reached, the run is terminated" />
-	<Parameter name="stream" type="Optional[str], default None" desc="If specified, the specified stream is printed to stdout. `stream` can\nbe one of `stdout` or `stderr`." />
+	<Parameter name="timeout" type="float, optional, default None" desc="The maximum time, in seconds, to wait for the run to finish.\nIf the timeout is reached, the run is terminated. If not specified, wait\nforever." />
+	<Parameter name="stream" type="str, optional, default None" desc="If specified, the specified stream is printed to stdout. `stream` can\nbe one of `stdout` or `stderr`." />
 </ParamSection>
 <ParamSection name="Returns">
 	<Parameter type="ExecutingRun" desc="This object, allowing you to chain calls." />
@@ -282,16 +284,17 @@ These calls block until the command completes.
 
 
 
-<DocSection type="method" name="ExecutingRun.stream_log" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/metaflow_runner.py#L153">
+<DocSection type="method" name="ExecutingRun.stream_log" module="metaflow" show_import="False" heading_level="4" link="https://github.com/Netflix/metaflow/tree/master/metaflow/runner/metaflow_runner.py#L168">
 <SigArgSection>
 <SigArg name="self" /><SigArg name="stream" type="str" /><SigArg name="position" type="Optional" default="None" />
 </SigArgSection>
 <Description summary="Asynchronous iterator to stream logs from the subprocess line by line." extended_summary="Note that this method is asynchronous and needs to be `await`ed." />
 <ParamSection name="Parameters">
 	<Parameter name="stream" type="str" desc="The stream to stream logs from. Can be one of `stdout` or `stderr`." />
-	<Parameter name="position" type="Optional[int], default None" desc="The position in the log file to start streaming from. If None, it starts\nfrom the beginning of the log file. This allows resuming streaming from\na previously known position" />
+	<Parameter name="position" type="int, optional, default None" desc="The position in the log file to start streaming from. If None, it starts\nfrom the beginning of the log file. This allows resuming streaming from\na previously known position" />
 </ParamSection>
 <ParamSection name="Yields">
 	<Parameter type="Tuple[int, str]" desc="A tuple containing the position in the log file and the line read. The\nposition returned can be used to feed into another `stream_logs` call\nfor example." />
 </ParamSection>
 </DocSection>
+

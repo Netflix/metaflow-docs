@@ -43,6 +43,13 @@ multiple people, multiple workflows, or it is becoming business-critical, check 
 section around [coordinating larger Metaflow
 projects](../coordinating-larger-metaflow-projects.md).
 
+:::info Note
+[Conditional and recursive steps](/metaflow/basics#conditionals)
+introduced in Metaflow 2.18, are not yet supported
+on Airflow deployments. Contact [the Metaflow Slack](http://slack.outerbounds.co) if
+you have a use case for this feature.
+:::
+
 ## Pushing a flow to production
 
 Let's use [the flow from the section about

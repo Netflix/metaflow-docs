@@ -21,14 +21,14 @@ Metaflow makes it easy to build and manage real-life data science, AI, and ML pr
 ## Getting Started
 
 - [Installing Metaflow locally](getting-started/install)
-- [Setting Up the Dev Stack](getting-started/devstack) ✨*New*✨
+- [Setting Up the Dev Stack](getting-started/devstack)
 - [Deploying Infrastructure for Metaflow](getting-started/infrastructure)
 - [Quickstart Tutorial](getting-started/tutorials/)
 
 ## I. Flow Development
 
 - [Introduction to Developing with Metaflow](metaflow/introduction)
-- [Creating Flows](metaflow/basics)
+- [Creating Flows](metaflow/basics) ✨*New: support for conditional and recursive steps*✨
 - [Inspecting Flows and Results](metaflow/client)
 - [Managing Flows in Notebooks and Scripts](metaflow/managing-flows/introduction) 
 - [Debugging Flows](metaflow/debugging)

@@ -35,6 +35,14 @@ You can interact with Step Functions programmatically using the `Deployer` API -
 more about it here](/metaflow/managing-flows/deployer).
 :::
 
+:::info Note
+[Conditional and recursive steps](/metaflow/basics#conditionals)
+introduced in Metaflow 2.18, are not yet supported
+on Step Functions deployments. Contact
+[the Metaflow Slack](http://slack.outerbounds.co) if
+you have a use case for this feature.
+:::
+
 ## Pushing a flow to production
 
 Let's use [the flow from the section about
