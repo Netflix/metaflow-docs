@@ -204,8 +204,8 @@ supports using a local disk as a data store, which is mainly useful during the
 development of Metaflow itself.
 
 An important feature of Metaflow is that the data store is used as a content-addressed
-storage. Both code and data are identified by a hash of their contents, similar to Git,
-so equal copies of data are deduplicated automatically. Note that this deduplication is
+storage. Both code and data are identified by a hash of their contents, similar to Git.
+So equal copies of data are deduplicated automatically. Note that this deduplication is
 limited in scope however; data across different flows will not be deduplicated.
 
 - [`datastore.py` - base class for data
