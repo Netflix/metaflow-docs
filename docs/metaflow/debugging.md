@@ -159,6 +159,43 @@ This would resume execution from the step `start`. If you specify a step that co
 after the step that failed, execution resumes from the failed step - you can't skip over
 steps.
 
+### Using `resume` beyond failures
+
+While `resume` is most often used to recover from failures, it is equally useful for
+fast iteration when nothing has failed. Typical patterns include:
+
+- Iterate on downstream logic while reusing upstream results. For example, after editing
+  `join`, you can re-run only downstream work by resuming from an earlier step:
+
+  ```bash
+  python debug.py resume start
+  ```
+
+- Try a different compute backend without re-running upstream steps. You can combine
+  `resume` with an execution decorator:
+
+  ```bash
+  python debug.py resume --origin-run-id <RUN_ID> --with batch
+  # or
+  python debug.py resume --origin-run-id <RUN_ID> --with kubernetes
+  ```
+
+- Reproduce and extend a production run locally. Resuming a production run with
+  `--origin-run-id` executes in your personal namespace, so it’s safe to experiment
+  without affecting production.
+
+- Detect resumed runs inside your code when you need conditional behavior:
+
+  ```python
+  from metaflow import current
+
+  if current.origin_run_id:
+      print(f"Resumed from run {current.origin_run_id}")
+  ```
+
+For programmatic control, see [Runner.resume](/metaflow/managing-flows/runner#programmatic-resume),
+which offers synchronous and async variants for notebooks and scripts.
+
 ### Resume and parameters and configs
 
 If your flow has [`Parameters`](basics#how-to-define-parameters-for-flows), you can't
