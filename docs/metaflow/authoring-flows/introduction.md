@@ -86,4 +86,8 @@ or sample sizes, you can `spin` the step against each one to see how it behaves 
 diverse inputs.
 :::
 
+:::note
+Spin may not work properly on certain flows with conditionals. We are working on
+improving this support.
+:::
 
