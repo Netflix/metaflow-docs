@@ -38,7 +38,8 @@ Flows](/metaflow/basics).
 
 3. Flows are living and dynamic
 entities that you should be able to execute locally and improve gradually. This is where
-[`spin`](/metaflow/authoring-flows/introduction) and [`resume`](/metaflow/debugging#how-to-use-the-resume-command) come in handy. The
+[`spin`](/metaflow/authoring-flows/introduction) and
+[`resume`](/metaflow/debugging#how-to-use-the-resume-command) come in handy. The
 workflow becomes the backbone of your application - in particular helping with [data
 flow through artifacts](/metaflow/basics#artifacts) - which enables much of the
 functionality in the next phases of the project.
