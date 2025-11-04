@@ -1,3 +1,5 @@
+import ReactPlayer from 'react-player'
+
 # Effortless Task Inspection with Default Cards
 
 Metaflow comes with a built-in _Default Card_ that shows all artifacts produced by a
@@ -86,6 +88,25 @@ open on the side, as you develop your flows in another window. Importantly,
 the local viewer allows you to view [updating cards in real-time](dynamic-cards),
 similar to Metaflow UI, while the `card view` command only shows a card that was
 available at the time when you executed the command.
+
+### Developing Cards Quickly with `spin`
+
+You can develop cards quickly by using [the
+`spin` command](/metaflow/authoring-flows/introduction) together with the local
+card viewer, as shown in this short video:
+
+<ReactPlayer controls url="https://youtu.be/hoRO5eePjqo" />
+<br/>
+
+Run the local card viewer in a terminal using `--mode spin` to watch
+ephemeral spin results instead of the standard, persistent cards:
+```
+python defaultcard.py --mode spin card server
+```
+
+You can then use spin in another terminal to iterate on a step, viewing the results as cards in real time. Build the card content incrementally by adding artifacts and 
+[card components](/metaflow/visualizing-results/easy-custom-reports-with-card-components), and quickly inspect your progress by running `spin` after each change.
+
 
 ## Visualizing Artifacts with the Default Card
 

@@ -37,8 +37,9 @@ why this is a good idea and how to create flows in practice, see [Creating
 Flows](/metaflow/basics).
 
 3. Flows are living and dynamic
-entities that you should be able to execute locally and improve gradually (this is where
-[`resume` comes in handy!](/metaflow/debugging#how-to-use-the-resume-command)). The
+entities that you should be able to execute locally and improve gradually. This is where
+[`spin`](/metaflow/authoring-flows/introduction) and
+[`resume`](/metaflow/debugging#how-to-use-the-resume-command) come in handy. The
 workflow becomes the backbone of your application - in particular helping with [data
 flow through artifacts](/metaflow/basics#artifacts) - which enables much of the
 functionality in the next phases of the project.
@@ -54,10 +55,13 @@ core topics:
 
  1. [Creating flows](/metaflow/basics)
  2. [Inspecting results of flows](/metaflow/client)
- 3. [Managing flows programmatically](/metaflow/managing-flows/introduction)
- 4. [Visualizing results](/metaflow/visualizing-results)
- 5. [Debugging flows](/metaflow/debugging)
- 6. [Configuring flows](/metaflow/configuring-flows/introduction)
+ 3. [Authoring flows incrementally](/metaflow/authoring-flows/introduction)
+ 4. [Managing flows programmatically](/metaflow/managing-flows/introduction)
+ 5. [Visualizing results](/metaflow/visualizing-results)
+ 6. [Debugging flows](/metaflow/debugging)
+ 7. [Configuring flows](/metaflow/configuring-flows/introduction)
+ 8. [Composing flows](/metaflow/composing-flows/introduction)
+
 
 These topics work locally on your workstation without any additional infrastructure, so
 it is easy to get started.

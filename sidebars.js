@@ -83,6 +83,17 @@ const sidebars = {
         "metaflow/client",
         {
           type: "category",
+          label: "Authoring Flows Incrementally",          
+          link: {
+            type: "doc",
+            id: "metaflow/authoring-flows/introduction",
+          },
+          items: [
+            "metaflow/authoring-flows/spin-input-output"
+          ]
+        },
+        {
+          type: "category",
           label: "Managing Flows",          
           link: {
             type: "doc",

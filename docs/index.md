@@ -30,6 +30,7 @@ Metaflow makes it easy to build and manage real-life data science, AI, and ML pr
 - [Introduction to Developing with Metaflow](metaflow/introduction)
 - [Creating Flows](metaflow/basics) ✨*New: support for conditional and recursive steps*✨
 - [Inspecting Flows and Results](metaflow/client)
+- [Authoring Flows Incrementally](metaflow/authoring-flows/introduction) ✨*New: `spin` command*✨
 - [Managing Flows in Notebooks and Scripts](metaflow/managing-flows/introduction) 
 - [Debugging Flows](metaflow/debugging)
 - [Visualizing Results](metaflow/visualizing-results/) 
@@ -42,7 +43,7 @@ Metaflow makes it easy to build and manage real-life data science, AI, and ML pr
 - [Computing at Scale](scaling/remote-tasks/introduction) 
 - [Managing Dependencies](scaling/dependencies) ✨*New: support for `uv`*✨
 - [Dealing with Failures](scaling/failures) ✨*New: support for `@exit_hook`*✨
-- [Checkpointing Progress](scaling/checkpoint/introduction) ✨*New*✨
+- [Checkpointing Progress](scaling/checkpoint/introduction)
 - [Loading and Storing Data](scaling/data)
 - [Organizing Results](scaling/tagging)
 - [Accessing Secrets](scaling/secrets)
