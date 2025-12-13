@@ -322,7 +322,10 @@ In order to enable Slack notifications, we need to first create a webhook endpoi
 
 When this is done, a flow can be deployed with
 ```bash
-python debug.py --notify-on-success --notify-on-error --notify-slack-webhook-url url-that-we-created
+python debug.py argo-workflows create \
+    --notify-on-success \
+    --notify-on-error \
+    --notify-slack-webhook-url url-that-we-created
 ```
 
 ### PagerDuty notifications
@@ -331,7 +334,10 @@ For notifications through PagerDuty, we need to generate an integration key by f
 
 Then the flow can be deployed with 
 ```bash
-python debug --notify-on-success --notify-on-error --notify-pager-duty-integration-key key-that-we-generated
+python debug.py argo-workflows create \
+    --notify-on-success \
+    --notify-on-error \
+    --notify-pager-duty-integration-key key-that-we-generated
 ```
 
 ### Incident.io alerts
@@ -341,7 +347,11 @@ For notifications through Incident.io, we need to create an alert source configu
 Once you have gathered all the necessary information, the flow can be deployed with
 
 ```bash
-python debug.py argo-workflows --notify-on-success --notify-on-error --notify-incident-io-api-key token --incident-io-alert-source-config-id source-config-id
+python debug.py argo-workflows create \
+    --notify-on-success \
+    --notify-on-error \
+    --notify-incident-io-api-key token \
+    --incident-io-alert-source-config-id source-config-id
 ```
 
 Metaflow sets the following metadata for the alert payload so that the consumption can be customized on the Incident.io side.
