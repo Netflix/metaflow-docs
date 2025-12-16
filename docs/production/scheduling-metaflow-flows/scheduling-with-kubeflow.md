@@ -142,7 +142,7 @@ python parameter_flow.py kubeflow-pipelines trigger --alpha 0.5 --experiment new
 By default, the latest version of the flow is triggered. You can trigger an
 older version by specifying `--version-name`:
 ```
-python parameter_flow.py kubeflow-pipelines trigger --alpha 0.5 --verion-name 20251216021104161376
+python parameter_flow.py kubeflow-pipelines trigger --alpha 0.5 --version-name 20251216021104161376
 ```
 
 :::info Note
