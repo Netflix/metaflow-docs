@@ -135,6 +135,9 @@ human intervention.
       - [Scheduling flows with Apache
         Airflow](/production/scheduling-metaflow-flows/scheduling-with-airflow)
         - Choose to stay compatible with your existing Airflow deployment.
+      - [Scheduling flows with
+        Kubeflow](/production/scheduling-metaflow-flows/scheduling-with-kubeflow)
+        - Choose to stay compatible with your existing Kubeflow deployment.
 
  2. [Coordinating larger Metaflow
     projects](/production/coordinating-larger-metaflow-projects) is a more advanced pattern

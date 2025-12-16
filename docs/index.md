@@ -51,7 +51,7 @@ Metaflow makes it easy to build and manage real-life data science, AI, and ML pr
 ## III. Deploying to Production
 
 - [Introduction to Production Deployments](production/introduction)
-- [Scheduling Metaflow Flows](production/scheduling-metaflow-flows/introduction)
+- [Scheduling Metaflow Flows](production/scheduling-metaflow-flows/introduction) ✨*New: support for Kubeflow*✨
 - [Coordinating Larger Metaflow
   Projects](production/coordinating-larger-metaflow-projects)
 - [Connecting Flows via Events](production/event-triggering/)
