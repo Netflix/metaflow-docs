@@ -235,6 +235,7 @@ const sidebars = {
             "production/scheduling-metaflow-flows/scheduling-with-argo-workflows",
             "production/scheduling-metaflow-flows/scheduling-with-aws-step-functions",
             "production/scheduling-metaflow-flows/scheduling-with-airflow",
+            "production/scheduling-metaflow-flows/scheduling-with-kubeflow"
           ],
         },
         "production/coordinating-larger-metaflow-projects",
