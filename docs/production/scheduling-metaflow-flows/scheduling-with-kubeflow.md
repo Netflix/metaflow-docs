@@ -64,7 +64,7 @@ containers executing tasks.
 :::info Note
 In order to be able to deploy to Kubeflow, you need to be able to connect to
 Kubeflow. In case you don't have connectivity already set up, [see this README
-for suggestions](#).
+for suggestions](https://github.com/outerbounds/metaflow-kubeflow).
 :::
 
 You can specify the Kubeflow endpoint address every time you deploy, or you can
@@ -120,6 +120,13 @@ The pipeline name matches the flow name. Each deployment created with
 named using the current timestamp, unless you explicitly override the version name
 with the `--version-name` option.
 
+:::info Note
+[Conditional and recursive steps](/metaflow/basics#conditionals)
+introduced in Metaflow 2.18, are not yet supported
+on Kubeflow deployments. Contact [the Metaflow Slack](http://slack.outerbounds.co) if
+you have a use case for this feature.
+:::
+
 ## Triggering a Kubeflow run
 
 You can trigger a deployed flow to run on Kubeflow pipelines with the `trigger`
@@ -172,4 +179,3 @@ print(f'Alpha is {run.data.alpha}')
 Metaflow Run IDs corresponding to Kubeflows runs match their Kubeflow
 run IDs, prefixed with `kfp-` (e.g. `kfp-066dcf8a-61dd-4f61-b652-e161124bc3b3`) so you can easily identify and track lineage of runs between Metaflow and Kubeflow.
 :::
-
