@@ -43,10 +43,10 @@ The video highlights the main benefits of the integration:
 - **Deploy to Kubeflow Pipelines with a single command**, no changes
   in the Metaflow code required.
 
-Note that Kubeflow Pipelines is built on top of Argo Workflows, so its
-scalability and high-availability characteristics are identical to those 
-of Metaflow’s native [Argo Workflows
-integration](/production/scheduling-metaflow-flows/scheduling-with-argo-workflows).
+Note that Kubeflow Pipelines is built on top of Argo Workflows, so its scalability and
+high-availability characteristics closely mirror those of Metaflow’s native
+[Argo Workflows integration](/production/scheduling-metaflow-flows/scheduling-with-argo-workflows), with potential additional overhead
+introduced by the Kubeflow components.
 
 ## Setting up the Kubeflow-Metaflow integration
 
