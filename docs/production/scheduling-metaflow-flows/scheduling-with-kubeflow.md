@@ -139,17 +139,16 @@ Specify `--url` as above, unless the URL is specified in the config.
 You can also trigger a run as a specific [Kubeflow
 Experiment](https://www.kubeflow.org/docs/components/pipelines/concepts/experiment/):
 ```
-python parameter_flow.py kubeflow-pipelines trigger --experiment new_moddel
+python parameter_flow.py kubeflow-pipelines trigger --experiment new_model
 ```
 By default, the latest version of the flow is triggered. You can trigger an
 older version by specifying `--version-name`:
 ```
 python parameter_flow.py kubeflow-pipelines trigger --version-name 20251216021104161376
 ```
+
 :::info Note
-Currently you can trigger a Kubeflow run on the CLI with `trigger` or through
-the Kubeflow UI. If you are interested
-in [scheduled](/api/flow-decorators/schedule) or
+Currently you can trigger a Kubeflow run on the CLI with trigger or through the Kubeflow UI. If you are interested in [scheduled](/api/flow-decorators/schedule) or
 [event-triggered runs](/production/event-triggering),
 reach out to us on [Metaflow Slack](http://slack.outerbounds.co)
 :::
