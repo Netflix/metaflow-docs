@@ -144,7 +144,7 @@ python parameter_flow.py kubeflow-pipelines trigger --alpha 0.5
 You can also trigger a run as a specific [Kubeflow
 Experiment](https://www.kubeflow.org/docs/components/pipelines/concepts/experiment/):
 ```
-python parameter_flow.py kubeflow-pipelines trigger --alpha 0.5 --experiment new_moddel
+python parameter_flow.py kubeflow-pipelines trigger --alpha 0.5 --experiment new_model
 ```
 By default, the latest version of the flow is triggered. You can trigger an
 older version by specifying `--version-name`:
