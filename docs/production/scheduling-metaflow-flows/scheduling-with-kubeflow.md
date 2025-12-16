@@ -136,28 +136,37 @@ python parameter_flow.py kubeflow-pipelines trigger
 ```
 Specify `--url` as above, unless the URL is specified in the config.
 
-You can pass parameters to a run as usual:
-```
-python parameter_flow.py kubeflow-pipelines trigger --alpha 0.5
-```
-
 You can also trigger a run as a specific [Kubeflow
 Experiment](https://www.kubeflow.org/docs/components/pipelines/concepts/experiment/):
 ```
-python parameter_flow.py kubeflow-pipelines trigger --alpha 0.5 --experiment new_model
+python parameter_flow.py kubeflow-pipelines trigger --experiment new_model
 ```
+
 By default, the latest version of the flow is triggered. You can trigger an
 older version by specifying `--version-name`:
 ```
-python parameter_flow.py kubeflow-pipelines trigger --alpha 0.5 --version-name 20251216021104161376
+python parameter_flow.py kubeflow-pipelines trigger --version-name 20251216021104161376
 ```
 
 :::info Note
-Currently only manual triggering with `trigger` is supported. If you are interested
-in [scheduled](/api/flow-decorators/schedule) or
+Currently you can trigger a Kubeflow run on the CLI with trigger or through the Kubeflow UI. If you are interested in [scheduled](/api/flow-decorators/schedule) or
 [event-triggered runs](/production/event-triggering),
 reach out to us on [Metaflow Slack](http://slack.outerbounds.co)
 :::
+
+## Passing parameters
+
+You can pass [parameters](/metaflow/basics#how-to-define-parameters-for-flows) to a
+Kubeflow run either on the command line:
+```
+python parameter_flow.py kubeflow-pipelines trigger --alpha 0.5
+```
+Or through the Kubeflow UI when creating a new run:
+
+![](/assets/kubeflow-params.png)
+
+Note how the `alpha` Parameter defined in the flow above maps to the corresponding
+parameter in the UI.
 
 ## Inspecting the results of a Kubeflow run
 
