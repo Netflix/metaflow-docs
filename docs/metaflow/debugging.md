@@ -217,11 +217,11 @@ which can help in situations like this.
 
 This clip (no audio) demonstrates inspecting values in a flow:
 
-<div style={{position: "relative", width: "100%", height: 500}}>
-<iframe src="https://cdn.iframe.ly/3Ffh7OX" style={{top: 0, left: 0, width: "100%", 
-height: "100%", position: "absolute", border: 0}} allowfullscreen="" scrolling="no"
-allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *;"></iframe>
-</div>
+<video controls muted width="100%" style={{maxHeight: 500}}>
+  <source src="https://p66.f3.n0.cdn.zight.com/items/X6uDx9KB/playlist_example.mov" type="video/quicktime" />
+  <source src="https://p66.f3.n0.cdn.zight.com/items/X6uDx9KB/playlist_example.mov" type="video/mp4" />
+  Your browser does not support the video tag. <a href="https://share.zight.com/X6uDx9KB">View the video here</a>.
+</video>
 
 In the above clip, you will see:
 
