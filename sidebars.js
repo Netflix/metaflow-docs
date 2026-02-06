@@ -320,6 +320,14 @@ const sidebars = {
         "internals/testing-philosophy",
         "internals/contributing"
       ],
+    },
+    {
+      type: "category",
+      label: "GSoC 2026",
+      items: [
+        "internals/gsoc-2026",
+        "internals/gsoc-2026-contributor-guide"
+      ],
     }
   ],
 
