@@ -108,7 +108,7 @@ python parameter_flow.py kubeflow-pipelines create
 Or, if you haven't specified `METAFLOW_KUBEFLOW_PIPELINES_URL` in your Metaflow
 config, specify a Kubeflow URL on the command line:
 ```
-python parameter_flow.py kubeflow-pipelines create --url http://my-kubeflow
+python parameter_flow.py kubeflow-pipelines --url http://my-kubeflow create
 ```
 
 This command will [package the flow and its execution
