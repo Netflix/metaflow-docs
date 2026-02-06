@@ -78,6 +78,7 @@ triggered_run.terminate()
 
 
 ## Accessing Previously Deployed Flows
+
 You can retrieve an existing `deployed_flow` object using the 
 `from_deployment` method instead of creating a new deployment. This allows 
 you to work with flows that were previously deployed without having to call 
@@ -108,6 +109,52 @@ triggered_run = deployed_flow.trigger()
 
 :::note
 The `from_deployment` method is only available for argo-workflows at the moment.
+:::
+
+## Listing deployed flows
+
+You can list all deployed flows using the `list_deployed_flows` class method. This is useful for discovering existing deployments, performing cleanup operations, etc.
+
+```py
+from metaflow import DeployedFlow
+
+# List all deployed flows
+for df in DeployedFlow.list_deployed_flows():
+    print(f"Found deployment: {df.name}")
+```
+
+You can also filter by flow name to find all deployments of a specific flow by passing in the `flow_name` parameter.
+
+### Example: Cleaning up old deployments
+
+A common use case is to clean up deployments that haven't been used recently. Here's an example that deletes templates that haven't run in the last 90 days:
+
+```py
+from datetime import datetime, timedelta
+from metaflow import Flow, DeployedFlow, namespace
+
+# Delete templates that haven't run in the last 90 days
+cutoff_date = datetime.now() - timedelta(days=90)
+
+for df in DeployedFlow.list_deployed_flows():
+    try:
+        namespace(None)
+        argo_runs = Flow(df.flow_name).runs("runtime:argo-workflows")
+        latest_run = next(argo_runs, None)
+
+        if latest_run and latest_run.created_at >= cutoff_date:
+            print(f"Keeping recent template: {df.name} (last run: {latest_run.created_at})")
+        else:
+            reason = "no Argo runs" if not latest_run else f"last run: {latest_run.created_at}"
+            print(f"Deleting old template: {df.name} ({reason})")
+            df.delete()
+
+    except Exception as e:
+        print(f"Error processing {df.name}: {e}")
+```
+
+:::note
+The `list_deployed_flows` method is only available for argo-workflows at the moment.
 :::
 
 ## Orchestrator-specific methods
