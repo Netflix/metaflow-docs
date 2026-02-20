@@ -42,6 +42,14 @@ On top of the above, we expect the following from applicants:
 - **A solid proposal**:
   Put real thought into your proposal. We read them carefully, and a well-designed one stands out.
 
+- **Read the contributing guide**:
+  Before opening any PR, read the
+  [Metaflow Contributing Guide](https://github.com/Netflix/metaflow/blob/master/CONTRIBUTING.md)
+  in full. Pay particular attention to the **AI tool usage policy** — if you use
+  AI tools (LLMs, code generators, copilots, etc.) for any part of your
+  contribution, you must disclose it and be able to explain every change you
+  submit. PRs that appear to be unreviewed AI output will be closed.
+
 - **A starter PR**:
   Open a pull request on a good starter issue on the [Metaflow GitHub repo](https://github.com/Netflix/metaflow). If it gets merged,
   that's a strong signal.
