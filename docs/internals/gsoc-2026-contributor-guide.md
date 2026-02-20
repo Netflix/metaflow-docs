@@ -33,8 +33,11 @@ On top of the above, we expect the following from applicants:
   is a good way to do this.
 
 - **Community engagement**:
-  Join the [Metaflow Slack channel](http://slack.outerbounds.co/) and look through the [project ideas page](/internals/gsoc-2026). That's where you'll
-  find mentors and discuss potential projects.
+  Join the [Metaflow Slack](http://slack.outerbounds.co/) and post in the
+  **#gsoc** channel for all GSoC-related questions and discussions. Please do
+  not post GSoC questions in other channels. Look through the
+  [project ideas page](/internals/gsoc-2026) and discuss potential projects
+  with mentors in #gsoc.
 
 - **A solid proposal**:
   Put real thought into your proposal. We read them carefully, and a well-designed one stands out.
