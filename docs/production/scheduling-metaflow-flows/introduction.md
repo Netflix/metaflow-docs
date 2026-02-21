@@ -13,7 +13,7 @@ multiple commands so that their mutual dependencies are handled correctly?
 Metaflow currently integrates with a number of production orchestrators which can answer
 these questions:
 
-- [Argo Workflows](https://argoproj.github.io/workflows) - [a modern,
+- [Argo Workflows](https://argoproj.github.io/workflows) - a modern,
 Kubernetes-native workflow orchestrator,
 - [AWS Step Functions](https://aws.amazon.com/step-functions/) - a managed general-purpose orchestrator,
 - [Apache Airflow](https://airflow.apache.org/) - a
