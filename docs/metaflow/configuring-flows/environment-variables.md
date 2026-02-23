@@ -56,9 +56,10 @@ export METAFLOW_PRODUCTION_TOKEN=<token>
 
 #### METAFLOW_DEFAULT_ENVIRONMENT
 Specifies the default execution environment.
+Valid values: `local`, `conda`, `pypi`, `uv`.
 Default: `local`
 ```bash
-export METAFLOW_DEFAULT_ENVIRONMENT=local
+export METAFLOW_DEFAULT_ENVIRONMENT=pypi
 ```
 
 
@@ -70,12 +71,19 @@ export METAFLOW_DEFAULT_DATASTORE=s3
 ```
 
 ### Metadata Service
+#### METAFLOW_DEFAULT_METADATA
+Specifies the metadata provider to use.
+Valid values: `local`, `service`.
+Default: `local`
+```bash
+export METAFLOW_DEFAULT_METADATA=service
+```
+
 #### METAFLOW_SERVICE_URL
 Base URL for the Metaflow metadata service.
 ```bash
 export METAFLOW_SERVICE_URL=https://metaflow.example.com
 ```
-
 
 #### METAFLOW_SERVICE_AUTH_KEY
 Authentication key used when connecting to the metadata service.
@@ -143,31 +151,18 @@ METAFLOW_DEBUG_<NAME>
 ```
 Examples:
 ```bash
-export METAFLOW_DEBUG_S3CLIENT=True
-export METAFLOW_DEBUG_TRACING=True
+export METAFLOW_DEBUG_S3CLIENT=1
+export METAFLOW_DEBUG_TRACING=1
 ```
 
-### Naming Rule
-Every configuration defined as:
-```python
-SOME_NAME = from_conf("SOME_NAME", default)
-```
-can be overridden using:
-```
-METAFLOW_SOME_NAME
-```
-Refer to `metaflow/metaflow_config.py`
-for the authoritative and complete list of configuration values.
-
-
-### Troubleshooting
-#### "Unknown user" error
+## Troubleshooting
+### "Unknown user" error
 If you encounter an **"unknown user"** error:
 ```bash
 export METAFLOW_USER=your_username
 ```
 
-#### Environment variable not taking effect
+### Environment variable not taking effect
 1. Ensure the variable is exported in your shell.
 2. Restart your shell session if necessary.
 3. Confirm it is set:
@@ -179,7 +174,7 @@ env | grep METAFLOW
 METAFLOW_<CONFIG_NAME>
 ```
 
-### Notes
+## Notes
 - Environment variables override configuration files.
 - Configuration files override internal defaults.
 - Some runtime-specific variables (e.g., `METAFLOW_RUNTIME_NAME`, `METAFLOW_PRODUCTION_TOKEN`) are read directly from the environment and are not defined via `from_conf()` in `metaflow_config.py`.
