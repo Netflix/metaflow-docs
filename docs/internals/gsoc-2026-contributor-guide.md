@@ -191,17 +191,46 @@ Your PR does not have to be merged — what matters is that it demonstrates you
 can read the codebase, write reasonable code, and engage with code review
 feedback.
 
-### What makes a good starter PR
+### Finding an issue to work on
 
-Start with an existing issue — look through the
-[open issues](https://github.com/Netflix/metaflow/issues) for ones tagged
-`good first issue`, or ask in #gsoc if you're having trouble finding one that
-fits. A well-scoped bug fix or small improvement tied to a real issue tells us
-far more than a large, unsolicited feature.
+**Do not create new issues** without discussing them with the team in #gsoc
+first. We want to make sure any new issue is worth tackling before effort goes
+into it.
 
-**Before you start coding**, check whether someone else is already working on
-the issue (look for linked PRs or comments claiming it). If there's no
-activity, leave a comment saying you plan to work on it.
+**Only work on issues tagged `gsoc`.** These are issues we've vetted as
+meaningful, appropriately scoped, and ready for contribution. If you're not
+sure what to pick, ask in #gsoc and we'll point you to something that fits
+your skills.
+
+Multiple people may work on the same issue — this is expected. The best PR
+wins. If you want to mention in #gsoc that you're working on something,
+that's fine for coordination, but it doesn't reserve the issue.
+
+### Working on bug fixes
+
+When you pick up a bug fix, **reproduce the issue first.** Write a test that
+demonstrates the bug exists under real-world circumstances — not just a
+contrived edge case. If you can't reproduce it, comment on the issue and ask for
+clarification before writing a fix.
+
+Your test should be a real **end-to-end test**, not just a unit test. Unit
+tests that mock out the system under test don't give us confidence that the
+fix actually works in practice. Look at the
+[test suite](https://github.com/Netflix/metaflow/blob/master/test/unit/spin/test_spin.py#L17)
+for examples of the level of testing we expect — your fix should include a
+test at this level that fails before the fix and passes after.
+
+### Review burden
+
+Every PR takes mentor time to review. We want to spend that time where it
+counts — actually helping you do meaningful work, not triaging PRs we can't
+use.
+
+**A contribution should be worth more to the project than the time it takes to
+review it.** Maintainer bandwidth is finite. PRs where the review effort
+exceeds the benefit to the project — bulk low-quality submissions, verbose
+AI-generated walls of text, or drive-by fixes — shift the validation burden
+onto us, and that's not sustainable.
 
 ### What to avoid
 
@@ -219,6 +248,11 @@ activity, leave a comment saying you plan to work on it.
   has an open PR for it. Multiple people independently building the same
   feature wastes everyone's time.
 
+- **Unit-test-only PRs.** A fix accompanied only by unit tests that mock
+  the internals does not demonstrate that the fix works. Include an
+  end-to-end test using the
+  [test suite](https://github.com/Netflix/metaflow/blob/master/test/unit/spin/test_spin.py#L17).
+
 - **Docs PRs to the wrong repo.** Documentation lives in
   [metaflow-docs](https://github.com/Netflix/metaflow-docs), not the main
   Metaflow repo.
@@ -233,6 +267,16 @@ that you can collaborate effectively — which is itself a strong signal.
 If you use AI tools (LLMs, code generators, copilots, etc.) for any part of
 your contribution or proposal, you must disclose it and be able to explain
 every line you submit. This applies to both code and written proposals.
+
+**Human in the loop.** You must review and fully understand every line before
+submitting. You need to be able to explain and defend your changes
+independently.
+
+**Do not use an LLM to respond to review feedback.** When we ask a question
+about your code, we are evaluating whether *you* understand it. Responses that
+are clearly LLM-generated — whether copied verbatim or lightly edited — tell
+us you don't. If you can't engage with review feedback in your own words, the
+PR is not ready and will be closed.
 
 Proposals or PRs that appear to be unreviewed AI output will be rejected.
 Using AI to assist your work is fine; using it to replace your understanding
