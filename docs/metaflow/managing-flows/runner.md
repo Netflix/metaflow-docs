@@ -88,6 +88,26 @@ with Runner('slowflow.py', show_output=False).run(seconds=SECONDS) as running:
 
 Note that we set `show_output=False` to hide the output of the run while it executes.
 
+### Getting the run ID
+
+To get the run ID of a completed (or in-progress) run, use `running.run.id`. The full pathspec
+(`FlowName/RunID`) is available via `running.run.pathspec`:
+
+```python
+from metaflow import Runner
+with Runner('slowflow.py').run() as running:
+    print(running.run.id)        # e.g. "12345"
+    print(running.run.pathspec)  # e.g. "SlowFlow/12345"
+```
+
+This is the same `Run` object you would get from [the Client API](/metaflow/client), so you can
+pass the ID directly to `Run` to retrieve the run later:
+
+```python
+from metaflow import Run
+run = Run(f'SlowFlow/{run_id}')
+```
+
 ### Passing parameters
 
 You can pass parameters to the run through the keyword arguments in `run`, such as `seconds` above.
