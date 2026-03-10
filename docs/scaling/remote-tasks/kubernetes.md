@@ -6,7 +6,7 @@ Kubernetes for Metaflow](https://outerbounds.com/docs/engineering-welcome/).
 
 ## What value of `@timeout` should I set?
 
-Metaflow sets a default timeout of 5 days so that you tasks don't get stuck infinitely
+Metaflow sets a default timeout of 5 days so that your tasks don't get stuck infinitely
 while running on Kubernetes. For more details on how to use `@timeout` please read
 [this.](../failures.md#timing-out-with-the-timeout-decorator)
 
