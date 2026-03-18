@@ -121,8 +121,7 @@ Being transparent about this helps you focus your effort:
 
 ## Your proposal
 
-Submit your application to `help@metaflow.org` with the subject
-**\[GSOC 2026 Proposal\]: Your Name**.
+Submit your application through the official [GSoC website](https://summerofcode.withgoogle.com/)
 
 If you're applying to one of our listed project ideas, structure your proposal
 with the sections below. If you're proposing your own idea, talk to mentors
