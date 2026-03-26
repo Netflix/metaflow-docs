@@ -97,7 +97,7 @@ const config = {
         // Public API key: it is safe to commit it
         apiKey: "246d8e1f6a4c455ba30172edcd0399d5",
 
-        indexName: "metataflow",
+        indexName: "metaflow",
 
         // Optional: see doc section below
         contextualSearch: true,
