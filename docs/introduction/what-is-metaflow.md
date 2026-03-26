@@ -75,7 +75,7 @@ A typical project advances through these three stages:
  require no changes in the code. Also, the team needs to be able to continue development
  of [new versions of the project alongside any production
  deployments](/production/coordinating-larger-metaflow-projects) and be able to A/B test
- them easily. And, as you needs grow, you may want to start building larger, [reactive
+ them easily. And, as your needs grow, you may want to start building larger, [reactive
  systems using individual flows as building blocks](/production/event-triggering).
 
 You can assess the value of the project at every stage before deciding to invest more. A
