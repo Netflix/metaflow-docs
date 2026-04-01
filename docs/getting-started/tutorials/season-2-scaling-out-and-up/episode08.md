@@ -3,7 +3,7 @@
 ## Scheduling Compute in the Cloud.
 
 This example revisits [Episode 06-statistics-redux: Computing in the
-Cloud](episode06.md). Wi th Metaflow, you don't need to make any code changes to
+Cloud](episode06.md). With Metaflow, you don't need to make any code changes to
 schedule your flow in the cloud. In this example, we will schedule the `stats.py`
 workflow using the `argo-workflows create` command-line argument. This instructs
 Metaflow to schedule your flow on [Argo
