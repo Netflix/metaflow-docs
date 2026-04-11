@@ -29,9 +29,11 @@ components of the stack are supported in each. You can choose to deploy Metaflow
    platform](https://docs.outerbounds.com/engineering/deployment/azure-k8s/deployment/).
 4. **Google Cloud** on [GKE as a Kubernetes
    platform](https://docs.outerbounds.com/engineering/deployment/gcp-k8s/deployment/).
-4. [Any **Kubernetes**
-   cluster](https://docs.outerbounds.com/engineering/deployment/aws-k8s/deployment/)
-   including on-premise deployments.
+5. Any **Kubernetes** cluster including on-premise deployments. For cloud-hosted
+   clusters, see the [EKS](https://docs.outerbounds.com/engineering/deployment/aws-k8s/deployment/),
+   [AKS](https://docs.outerbounds.com/engineering/deployment/azure-k8s/deployment/), or
+   [GKE](https://docs.outerbounds.com/engineering/deployment/gcp-k8s/deployment/) guides.
+   For on-premise clusters, see the [on-premise setup notes](#on-premise-kubernetes) below.
 
 | Layer         | Component                                                                                                    | Description                                        | Only Local | AWS | Azure | GCP | K8s |
 | ------------- | ------------------------------------------------------------------------------------------------------------ | -------------------------------------------------- | ---------- | --- | ----- | --- | --- |
@@ -181,5 +183,25 @@ data="/assets/infra-stack-gcp.svg"></object>
 
 This stack incurs a typical maintenance overhead of an GKE-based Kubernetes cluster,
 which shouldn't add much burden if your organization uses GKE already.
+
+### On-premise Kubernetes
+
+**Deploy the same stack as EKS, but replace S3 with MinIO**
+
+Metaflow can run on a fully on-premise Kubernetes cluster (such as RKE2, k3s, or
+bare-metal kubeadm). The stack is identical to the [Kubernetes-native EKS
+stack](https://docs.outerbounds.com/engineering/deployment/aws-k8s/deployment/), with
+one substitution: replace AWS S3 with
+[MinIO](https://min.io/), an open-source, S3-compatible object store you can
+self-host.
+
+Key components for a fully on-prem setup:
+- **Compute**: Kubernetes (`@kubernetes` decorator)
+- **Datastore**: MinIO (configure `METAFLOW_S3_ENDPOINT_URL` to point to your MinIO instance)
+- **Orchestration**: Argo Workflows (self-hosted)
+- **Metadata**: Metaflow metadata service (self-hosted via Docker or Helm)
+
+See [issue #682](https://github.com/Netflix/metaflow/issues/682) for community
+discussion on on-premise deployments.
 
 
