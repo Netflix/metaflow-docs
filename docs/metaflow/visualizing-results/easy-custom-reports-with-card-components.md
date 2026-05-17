@@ -7,10 +7,11 @@ your project.
 
 The easiest way to create a custom card is to use built-in components: _Images_,
 _Tables_, _Artifacts_, _VegaChart_ charts, _Markdown_ text, and _ProgressBar_ for
-tracking progress. You can construct a report with these
-components in Python without having to worry about HTML or styling in CSS. Rest assured
-that if components ever show their limits, you have an option to customize reports even
-further using [_Card Templates_](advanced-shareable-cards-with-card-templates).
+tracking progress, or _BokehEmbed_ for visualizations, widgets and dashboards.
+You can construct a report with these components in Python without having to
+worry about HTML or styling in CSS. Rest assured that if components ever show
+their limits, you have an option to customize reports even further using
+[_Card Templates_](advanced-shareable-cards-with-card-templates).
 
 Let’s start with a simple example:
 
@@ -61,6 +62,7 @@ Currently, the following components are provided:
 - **`Image`** - an image, constructed from bytes.
 - **`Artifact`** - pretty-print any Python object.
 - **`VegaChart`** - plot charts with [Vega Lite](https://vega.github.io/vega-lite).
+- **`BokehEmbed`** - create visualizations, widgets, dashboards with [Bokeh](https://bokeh.org).
 - **`ProgressBar`** - show progress.
 
 The API reference documents [the card components in detail](/api/cards#card-components).
@@ -127,9 +129,11 @@ cat photos. There are two ways to embed visualizations in a card:
 
 1. You can use `VegaChart` to produce a chart on the fly.
 
-2. You can use `Image` to include an image produced by any library.
+2. You can use `BokehEmbed` to create visualizations, widgets and dashboards.
 
-Let's cover both the approaches.
+3. You can use `Image` to include an image produced by any library.
+
+Let's cover each of these approaches.
 
 ### Charting with `VegaChart`
 
@@ -233,15 +237,121 @@ Run the flow to see a bar chart like this:
 ![](/assets/altairdemo.png)
 
 You can find more inspiration and examples in [Altair's gallery of
-examples](https://altair-viz.github.io/gallery/index.html) as well as in 
+examples](https://altair-viz.github.io/gallery/index.html) as well as in
 our [Dynamic Card gallery](https://github.com/outerbounds/dynamic-card-examples/).
 
+### Using Bokeh for visualizations, UIs and dashboards
+
+:::info
+`BokehEmbed` was introduced in Metaflow 2.??. Make sure you have a recent
+enough version of Metaflow to use this feature.
+:::
+
+[The Bokeh framework](https://bokeh.org/) provides a convenient Python API for
+creating rich, interactive and performant visualizations, UIs, dashboards and
+complex data applications.
+
+Here is an example of a simple scatter plot of NumPy arrays with a UI that
+allows to interactively change, via a select widget, the type of markers used:
+
+```python
+from metaflow import FlowSpec, step, current, card, conda_base
+from metaflow.cards import BokehEmbed
+
+@conda_base(python="3.14", libraries={"bokeh": "3.9"})
+class BokehFlow(FlowSpec):
+
+    @card(type="blank")
+    @step
+    def start(self):
+        import numpy as np
+        from bokeh.core.enums import MarkerType
+        from bokeh.layouts import column, row
+        from bokeh.models import CustomJS, Div, Select
+        from bokeh.plotting import figure
+
+        N = 4000
+        x = np.random.random(size=N) * 100
+        y = np.random.random(size=N) * 100
+        sizes = np.random.random(size=N) * 15
+        colors = np.array([(r, g, 150) for r, g in zip(50+2*x, 30+2*y)], dtype=np.uint8)
+
+        label = Div(text="<b>Select marker type:</b>", align="center")
+        select = Select(value="circle", options=[*MarkerType])
+
+        plot = figure(tools=["pan,box_select,wheel_zoom,save,reset"])
+        scatter = plot.scatter(x, y, marker=select.value, size=sizes, color=colors, fill_alpha=0.4)
+
+        select.js_on_change("value", CustomJS(args=dict(scatter=scatter), code="""
+        const marker = {value: this.value}
+        scatter.glyph.marker = marker
+        """))
+
+        layout = column([row([label, select]), plot])
+        current.card.append(BokehEmbed(layout))
+
+        self.next(self.end)
+
+    @step
+    def end(self):
+        pass
+
+if __name__ == '__main__':
+    BokehFlow()
+```
+
+The resulting card will look like this:
+
+![](/assets/card-docs-bokeh.png)
+
+Any aspect of a Bokeh visualization can be changed from Python, by modifying
+properties of models and, to an extent, mutating data structures like `list`,
+`dict`, etc.
+
+In the previous example, we could have added:
+```py
+scatter.glyph.marker = "diamond_pin"
+current.card.refresh()
+```
+to change the marker type from Python. See [chapter](dynamic-cards) for details.
+
+Bokeh's UI components can work together with Metaflow's components. For example,
+we can add Bokeh's `Select` widget to a table like this:
+
+```python
+from metaflow import FlowSpec, step, current, card, conda_base
+from metaflow.cards import BokehEmbed, Table
+
+@conda_base(python="3.14", libraries={"bokeh": "3.9"})
+class BokehFlow(FlowSpec):
+
+    @card(type="blank")
+    @step
+    def start(self):
+        from bokeh.models import Select
+        colors = Select(value="red", options=["red", "green", "blue"])
+
+        table = Table([
+            ["first row", Artifact({"a": 2})],
+            ["second row", BokehEmbed(colors)],
+        ])
+        current.card.append(table)
+
+        self.next(self.end)
+
+    @step
+    def end(self):
+        pass
+
+if __name__ == '__main__':
+    BokehFlow()
+```
 
 ### Showing an image with `Image`
 
-Besides Vega and Altair, you can use any visualization
-library in Python to produce plots, save the resulting image in a file or an in-memory
-object, and provide the contents of the file (bytes) to the `Image` component.
+Besides Vega, Altair and Bokeh, you can use any visualization library in Python to
+produce plots, save the resulting image in a file or an in-memory object, and provide
+the contents of the file (bytes) to the `Image` component.
 
 For convenience, the `Image` component provides a utility method,
 `Image.from_matplotlib`, that extracts bytes from a [Matplotlib](https://matplotlib.org)
