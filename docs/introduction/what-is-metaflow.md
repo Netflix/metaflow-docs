@@ -91,7 +91,7 @@ lifecycle, production issues in particular.
 
 ## Is Metaflow easy to deploy and operate?
 
-You can get started with local development [by `pip` installing
+You can get started with local development [by `conda` or `pip` installing
 Metaflow](/getting-started/install) like any other Python library. To benefit from
 scaling and production features of Metaflow, you need to [deploy Metaflow to your cloud
 account or Kubernetes cluster](/getting-started/infrastructure) which can be done using
