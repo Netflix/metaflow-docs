@@ -146,6 +146,10 @@ AWS](https://docs.outerbounds.com/engineering/deployment/aws-k8s/deployment/), l
 as the datastore. Alternatively, some companies run this stack on-premise using
 [Minio](https://min.io/) as an S3-compatible datastore.
 
+Any S3-compatible object store works the same way. Setting `METAFLOW_S3_ENDPOINT_URL` to
+the store's endpoint, for example `https://your-s3-endpoint.example.com`, points the
+datastore at that store instead of Amazon S3.
+
 <object style={{width: 700}} type="image/svg+xml"
 data="/assets/infra-stack-aws-k8s.svg"></object>
 
