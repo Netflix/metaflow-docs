@@ -22,14 +22,15 @@ We call the graph of operations **a flow**. You define the operations, called **
 which are nodes of the graph and contain transitions to the next steps, which serve as
 edges.
 
-Metaflow sets some constraints on the structure of the graph. For starters, every flow
-needs a step called `start` and a step called `end`. An execution of the flow, which we
-call **a run**, starts at `start`. The run is successful if the final `end` step
-finishes successfully.
+Metaflow requires every flow to have an entry step and a terminal step. By default,
+Metaflow looks for steps named `start` and `end`, which is what most flows use. If you
+prefer different names, mark the steps explicitly with `@step(start=True)` and
+`@step(end=True)`. A single step may serve as both the entry and terminal step, as
+described in [Single-step flows](#single-step-flows) below.
 
-What happens between `start` and `end` is up to you. You can construct the graph in
-between using an arbitrary combination of the following three types of transitions
-supported by Metaflow:
+An execution of the flow, which we call **a run**, starts at the entry step. The run is
+successful if the terminal step finishes successfully. Multi-step flows can construct
+the graph between these steps using the transitions described below.
 
 ### Linear
 
@@ -74,6 +75,61 @@ python linear.py run
 
 Whenever you see a flow like this in the documentation, just save it in a file and
 execute it like above.
+
+### Custom step names
+
+By default, the entry step is named `start` and the terminal step is named `end`. You
+can use different names by marking the steps explicitly:
+
+```python
+from metaflow import FlowSpec, step
+
+
+class CustomStepsFlow(FlowSpec):
+
+    @step(start=True)
+    def ingest(self):
+        self.rows = list(range(10))
+        self.next(self.report)
+
+    @step(end=True)
+    def report(self):
+        print("processed %d rows" % len(self.rows))
+
+
+if __name__ == "__main__":
+    CustomStepsFlow()
+```
+
+Exactly one step in the flow must be the entry step and exactly one must be the
+terminal step.
+
+### Single-step flows
+
+A flow containing one step is valid. Metaflow automatically treats that step as both
+the entry and terminal step, so it does not need separate `start` and `end` methods.
+
+![A single step named run serving as both the entry and terminal node](/assets/dag-single-step.svg)
+
+```python
+from metaflow import FlowSpec, step
+
+
+class SingleStepFlow(FlowSpec):
+
+    @step
+    def run(self):
+        self.result = 42
+        print("hello from a single-step flow")
+
+
+if __name__ == "__main__":
+    SingleStepFlow()
+```
+
+A single-step flow does not call `self.next(...)`. You may annotate the method with
+`@step(start=True, end=True)` if you prefer to make both roles explicit; the two forms
+are equivalent for a single-step flow.
 
 ### Artifacts
 
