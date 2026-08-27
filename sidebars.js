@@ -160,6 +160,7 @@ const sidebars = {
             id: "scaling/introduction",
       },
       items: [
+        "scaling/project-structure",
         {
           type: "category",
           label: "Computing at Scale",
@@ -187,7 +188,6 @@ const sidebars = {
             id: "scaling/dependencies/README",
           },
           items: [
-            "scaling/dependencies/project-structure",
             "scaling/dependencies/libraries",
             "scaling/dependencies/uv",
             "scaling/dependencies/conda-vs-pypi",

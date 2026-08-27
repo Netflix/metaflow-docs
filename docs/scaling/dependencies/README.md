@@ -5,7 +5,7 @@
 :::tip
 If you are in a hurry:
 - Want to use your own modules and packages in a flow?
-  See [Structuring Projects](/scaling/dependencies/project-structure).
+  See [Structuring Projects](/scaling/project-structure).
 - Want to use a Python library in a flow? See [Managing Libraries](/scaling/dependencies/libraries).
 - Want to use `uv` with Metaflow? See [using `uv`](/scaling/dependencies/uv)
 - Want to use or build a specific Docker image?
@@ -60,7 +60,7 @@ file may contain arbitrary user-defined code, making it easy to get started
 just with a single file.
 
 2. As the project grows, it is convenient to [structure the project as multiple
-modules and packages](/scaling/dependencies/project-structure), instead of
+modules and packages](/scaling/project-structure), instead of
 including hundreds of lines in a single file. Metaflow packages local Python
 dependencies under the flow file directory automatically. Use
 [`@package_sources`](/api/flow-decorators/package_sources) for source roots

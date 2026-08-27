@@ -34,7 +34,7 @@ this diagram:
 Let's go over the operation following the blue steps, starting at the top:
 
 1. Local `.py` files and others specified by `--package-suffixes` are [packaged
-   in a code package as usual](/scaling/dependencies/project-structure).
+   in a code package as usual](/scaling/project-structure).
 
 2. When using `@pypi` or `@conda`, every step gets its own virtual environment.
    
@@ -69,5 +69,4 @@ The code package is unpacked to make local dependencies available.
 
 After this, the task is executed in an environment that contains
 exactly the specified packages. Nothing more, nothing less.
-
 
