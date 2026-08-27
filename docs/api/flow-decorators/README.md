@@ -17,6 +17,8 @@ class MyFlow(FlowSpec):
 ## Index
 
  - [`@conda_base`](/api/flow-decorators/conda_base) - set libraries used by all steps.
+ - [`@package_sources`](/api/flow-decorators/package_sources) - include additional local
+   source roots in the code package.
  - [`@project`](/api/flow-decorators/project) - create isolated namespaces around flows.
  - [`@schedule`](/api/flow-decorators/schedule) - define when to run flows in production.
  - [`@trigger`](/api/flow-decorators/trigger) - trigger a deployed flow when an event occurs.

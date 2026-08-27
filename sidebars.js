@@ -303,6 +303,7 @@ const sidebars = {
           },
           items: [
             "api/flow-decorators/conda_base",
+            "api/flow-decorators/package_sources",
             "api/flow-decorators/project",
             "api/flow-decorators/schedule",
             "api/flow-decorators/trigger",

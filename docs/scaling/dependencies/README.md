@@ -62,7 +62,9 @@ just with a single file.
 2. As the project grows, it is convenient to [structure the project as multiple
 modules and packages](/scaling/dependencies/project-structure), instead of
 including hundreds of lines in a single file. Metaflow packages local Python
-dependencies like this automatically.
+dependencies under the flow file directory automatically. Use
+[`@package_sources`](/api/flow-decorators/package_sources) for source roots
+outside that directory, such as sibling packages shared by multiple flows.
 
 3. Crucially, Metaflow packages Metaflow itself for remote execution so that you
 don't have to install it manually when
@@ -100,9 +102,11 @@ package by executing
 python myflow.py package list
 ```
 
-By the default, the package only includes local Python files, not libraries you
-have installed e.g. with `pip install` manually. To include external libraries,
-you need to include them either in [a custom Docker
+By default, the package only includes local Python files under the flow file
+directory, not libraries you have installed e.g. with `pip install` manually.
+Use [`@package_sources`](/api/flow-decorators/package_sources) for additional
+local source roots. To include external libraries, you need to include them
+either in [a custom Docker
 image](/scaling/dependencies/containers), [specify them in a `@pypi` or `@conda`
 decorator](/scaling/dependencies/conda-vs-pypi), or [use `uv`](/scaling/dependencies/uv).
 
@@ -116,7 +120,7 @@ Let's say your team has a common module `special_module.py` that is used by
 many flows. You could include it in any of the three layers. You could
 
 1. Include it next to `flow.py` as a local dependency which Metaflow packages
-automatically.
+automatically, or include a sibling source root with `@package_sources`.
 2. Publish it as a Python package and include it with `@pypi`.
 3. Include it in a custom Docker image.
 
