@@ -133,58 +133,184 @@ As a project grows, it may become desirable to separate each flow in a
 subdirectory of its own, so each person or a team can manage their
 files independently. All of them may share one or more common packages.
 
-For instance, we can have two flows, `crumpetflow` and `teatimeflow` as
-independent subdirectories with their own READMEs, as well as a shared
-`crumpet` package:
+For instance, we can have two flows, `crumpetflow` and `teatimeflow`, in
+independent subdirectories with their own READMEs. Both flows import a shared
+package named `crumpet` that lives next to the flow directories:
 
-```
-crumpetflow/flow.py
-crumpetflow/README.md
-teatimeflow/flow.py
-teatimeflow/README.md
-crumpet/__init__.py
-crumpet/teatime.py
-crumpet/raisin.py
+```text
+my-repo/
+|-- crumpetflow/
+|   |-- flow.py
+|   `-- README.md
+|-- teatimeflow/
+|   |-- flow.py
+|   `-- README.md
+`-- crumpet/
+    |-- __init__.py
+    |-- teatime.py
+    `-- raisin.py
 ```
 
-Unfortunately this wouldn't work out of the box since Metaflow packages
-only the files under the `crumpetflow` and `teatimeflow` directory, ignoring
-`crumpet` by default.
+Metaflow packages files under the flow file directory by default. In this
+layout, a run of `crumpetflow/flow.py` would include files under
+`crumpetflow/`, but it would not include the sibling `crumpet/` package unless
+you ask for it explicitly.
 
-The solution is to including a symbolic link (*symlink*) in each flow directory, pointing
-at the common package that should be included. You can create a symlink as follows
-```
-cd crumpetflow
-ln -s ../crumpet .
-```
-With symlinks included the hierarchy looks like this:
+Add `@package_sources("../crumpet")` to each flow that needs the shared
+package:
 
+```python
+from metaflow import FlowSpec, package_sources, step
+
+
+@package_sources("../crumpet")
+class CrumpetFlow(FlowSpec):
+
+    @step
+    def start(self):
+        from crumpet import raisin, teatime
+
+        self.tea_time = teatime.is_tea_time()
+        self.is_dry = raisin.is_dry()
+        self.next(self.end)
+
+    @step
+    def end(self):
+        pass
 ```
-crumpetflow/flow.py
-crumpetflow/README.md
-crumpetflow/crumpet -> ../crumpet
-teatimeflow/flow.py
-teatimeflow/README.md
-teatimeflow/crumpet -> ../crumpet
-crumpet/__init__.py
-crumpet/teatime.py
-crumpet/raisin.py
+
+Use the same decorator in `teatimeflow/flow.py`; from that file,
+`../crumpet` still points at the shared package. Relative source paths are
+resolved from the directory containing the flow file, not from the current
+working directory.
+
+By default, the source is stored in the code package under its basename. In
+this case, `../crumpet` becomes `crumpet/`, so remote tasks can import it as
+`from crumpet import teatime`.
+
+The decorator controls the code package used for remote execution. It does not
+modify Python's local import path. If you launch these flows from the repository
+root, make the root importable locally too:
+
+```bash
+PYTHONPATH=. python crumpetflow/flow.py run
+PYTHONPATH=. python teatimeflow/flow.py run
 ```
+
+You can verify that the shared package is included before launching a run:
+
+```bash
+PYTHONPATH=. python crumpetflow/flow.py package list
+```
+
+### Projects using a `src` layout
+
+A common project layout keeps flow definitions and reusable Python packages in
+separate directories:
+
+```text
+my-project/
+|-- flows/
+|   |-- train.py
+|   `-- score.py
+|-- src/
+|   |-- forecasting/
+|   |   |-- __init__.py
+|   |   |-- features.py
+|   |   `-- model.py
+|   `-- common/
+|       `-- __init__.py
+`-- tests/
+```
+
+To preserve a top-level `import forecasting` during remote execution, select
+the importable package directory itself:
+
+```python
+@package_sources("../src/forecasting")
+class TrainFlow(FlowSpec):
+    ...
+```
+
+This places `forecasting/` at the root of the code package. Selecting
+`../src` instead would place the package under `src/forecasting/`, which does
+not provide a top-level `forecasting` import.
+
+For multiple packages under `src/`, pass each package explicitly:
+
+```python
+@package_sources([
+    "../src/forecasting",
+    "../src/common",
+])
+class TrainFlow(FlowSpec):
+    ...
+```
+
+When launching from the project root, make `src/` importable locally:
+
+```bash
+PYTHONPATH=src python flows/train.py run
+```
+
+### Other `@package_sources` forms
+
+Package more than one shared root by passing a list:
+
+```python
+@package_sources(["../crumpet", "../shared_models"])
+class CrumpetFlow(FlowSpec):
+    ...
+```
+
+Use `arcname` when a single source should appear under a different path inside
+the code package:
+
+```python
+@package_sources("../crumpet", arcname="vendor/crumpet")
+class CrumpetFlow(FlowSpec):
+    ...
+```
+
+The archive path affects imports: the example above packages the module as
+`vendor/crumpet`, rather than as a top-level `crumpet` package.
+
+For multiple sources with explicit archive paths, use `(source, arcname)`
+pairs:
+
+```python
+@package_sources([
+    ("../crumpet", "vendor/crumpet"),
+    ("../shared_models", "models"),
+])
+class CrumpetFlow(FlowSpec):
+    ...
+```
+
+Single files can be packaged too:
+
+```python
+@package_sources("../config/settings.py", arcname="config/settings.py")
+class CrumpetFlow(FlowSpec):
+    ...
+```
+
+Archive paths must be relative paths inside the code package. For non-Python
+files under an extra source root, set `suffixes` as shown in the
+[Non-Python dependencies](#non-python-dependencies) section below.
+
+For the full decorator contract, see
+[`@package_sources`](/api/flow-decorators/package_sources).
 
 ### Using common packages from other Git repositories
 
-The above hierarchy works well when everything is stored in a single Git
-repository. Technically, you could have `crumpetflow`, `teatimeflow`, and
-`crumpet` as separate repositories as well, but you would need to ensure
-that symlinks stay valid between repositories. This can be fragile.
+`@package_sources` packages files that are already available locally; it does
+not clone or download another repository.
 
 If you want to include a package from a separate repository, a better approach
-is to use [the `git subtree`
-command](https://www.atlassian.com/git/tutorials/git-subtree), which is an enhanced
-version of Git submodules. With `git subtree` you can nest a repository as
-a subdirectory of another repository. For instance, the `crumpet` package
-could be a repository of its own, included as a subtree in every flow project
-that wants to use it.
+is to vendor it into the project with a mechanism such as [Git
+subtree](https://www.atlassian.com/git/tutorials/git-subtree) or a Git
+submodule, then point `@package_sources` at the resulting local directory.
 
 Alternatively, you can publish the package as a private Python package which
 you can [include with `@pypi` or `@conda`](/scaling/dependencies/libraries).
@@ -192,9 +318,9 @@ you can [include with `@pypi` or `@conda`](/scaling/dependencies/libraries).
 
 ## Non-Python dependencies
 
-By default, Metaflow packages `.py` files in the flow's directory hierarchy.
-You can also include arbitrary files in the package for remote execution by
-including their file suffices in the `--package-suffixes` option.
+By default, Metaflow packages Python files in the flow's directory hierarchy.
+You can include other file types from the same hierarchy with the
+`--package-suffixes` option.
 
 For instance, the example below shows how to include SQL files but you could
 also include custom binaries or configuration files.
@@ -248,14 +374,38 @@ Execute the code as follows:
 ```
 python moviesqlflow.py --package-suffixes .sql run
 ```
-Locally, it would work without `--package-suffixes` but when running remotely
-`--with batch` or `--with kubernetes`, it would complain about missing `.sql` files
-unless `--package-suffixes` is specified.
+Locally, it would work without `--package-suffixes` because the files are
+already on disk. When running remotely with `--with batch` or
+`--with kubernetes`, the task only sees the code package, so it would complain
+about missing `.sql` files unless `--package-suffixes` is specified. Metaflow
+still includes the default Python and R suffixes when you add extra suffixes
+this way.
 
 You can confirm that all dependencies are included properly by executing
 ```
 python moviesqlflow.py --package-suffixes .sql package list
 ```
 
+If the non-Python files live outside the flow directory, package that source
+root with `@package_sources` and set `suffixes` on the decorator:
 
+```python
+from metaflow import FlowSpec, package_sources
+
+
+@package_sources("../shared_assets", suffixes=[".py", ".sql", ".json"])
+class MovieSQLFlow(FlowSpec):
+    ...
+```
+
+When `suffixes` is provided to `@package_sources`, that list replaces the
+default suffix list for the extra source root. Include `.py` explicitly if the
+source root also contains Python modules. You can inspect the result with:
+
+```bash
+python moviesqlflow.py package list
+```
+
+For the full decorator contract, see
+[`@package_sources`](/api/flow-decorators/package_sources).
 

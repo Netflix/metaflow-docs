@@ -114,7 +114,7 @@ even need to `import` the decorators if you add them with `--with`. Try it:
 python waiterflow.py run --with myprofiler.my_profile --with kubernetes
 ```
 or equally `--with batch`. Notably, the decorators don't have to exist in the same [directory
-hierarchy as your flow code](/scaling/dependencies/project-structure), nor you have to include them with `@pypi`.
+hierarchy as your flow code](/scaling/project-structure), nor you have to include them with `@pypi`.
 
 If your custom decorator is part of a Python package with multiple modules, Metaflow will automatically package the entire package. This allows you to implement advanced decorators as well-structured Python packages, which can be distributed internally via your internal package repository or published to PyPI. If your decorator requires third-party dependencies, you can include them using a bundled `@pypi` decorator, as shown in
 [this example](/metaflow/composing-flows/mutators#applying-multiple-decorators-with-a-step-mutator).

@@ -1,0 +1,13 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="2322"
+  height="636"
+  viewBox="0 0 2322 636"
+>
+  <rect width="2322" height="636" fill="#fff"/>
+  <circle cx="1161" cy="321" r="137"
+          fill="#edf1fc" stroke="#b6b6b6" stroke-width="4"/>
+  <text x="1161" y="321" dominant-baseline="middle" text-anchor="middle"
+        fill="#000" font-family="Arial, Helvetica, sans-serif"
+        font-size="56" font-weight="700">run</text>
+</svg>

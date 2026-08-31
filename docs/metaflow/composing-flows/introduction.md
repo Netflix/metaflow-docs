@@ -18,7 +18,7 @@ steps and flows. For example, you might define shared, project-specific patterns
 
 You can handle cases like these by developing a shared library that encapsulates
 the logic and importing it in your steps. Metaflow will [package the
-library](/scaling/dependencies/project-structure) automatically for remote execution,
+library](/scaling/project-structure) automatically for remote execution,
 ensuring the logic works seamlessly from local development to production deployments.
 
 This section introduces a powerful Metaflow feature: **custom decorators and mutators**.
@@ -39,7 +39,7 @@ common logic in a decorator offers several key advantages:
 
 - **Reusable and portable**: Distribute decorators as installable packages, whether private or public.
   Metaflow packages them for remote execution automatically, even if they live outside 
-  [your project directory structure](/scaling/dependencies/project-structure).
+  [your project directory structure](/scaling/project-structure).
 
 
 :::note

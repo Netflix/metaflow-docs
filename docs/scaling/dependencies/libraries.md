@@ -2,7 +2,7 @@
 # Managing Libraries
 
 Whereas the previous page covered [packaging of your own Python modules and
-packages](/scaling/dependencies/project-structure), this page covers handling
+packages](/scaling/project-structure), this page covers handling
 of 3rd party dependencies that are published as installable Python packages.
 
 Metaflow supports installation of external packages from two Python package
@@ -27,7 +27,7 @@ use `uv` instead, see [using `uv`](/scaling/dependencies/uv).
 The `@pypi` and `@conda` decorators allow you to make arbitrary packages
 available to Metaflow steps, as if you were installing them manually with
 `pip install` or `conda install`. This functionality works in conjuction
-with [local code packaging](/scaling/dependencies/project-structure), so
+with [local code packaging](/scaling/project-structure), so
 steps can execute in safely isolated, remote-execution friendly environments
 that contain all dependencies they need.
 
