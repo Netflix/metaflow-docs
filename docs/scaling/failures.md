@@ -392,6 +392,124 @@ Instead, you can provide a custom image in `options={'image': ...}` like here:
 @exit_hook(on_error=[failure_print], options={"image": URL_TO_AN_IMAGE})
 ```
 
+## Resuming work inside a retried task
+
+When `@retry` retries a task, the task starts again from the beginning. That is fine
+for short steps, but if a step loops over many slow items, such as calling an external
+API for each record, a failure near the end of the loop means redoing all the work
+that already succeeded.
+
+You can avoid this by checkpointing each finished item while the loop runs, and
+skipping those items when the task is retried. Artifacts are only saved when a task
+finishes, so they can't be used for this. Instead, write each result to S3 with
+[the `S3` client](data.md#data-in-s3-metaflows3) under a prefix that is unique
+to the task, `current.pathspec`. Retries of the same task share the same pathspec,
+so a retry can see what the earlier attempts stored.
+
+Here is a small decorator that implements the pattern:
+
+```python
+import pickle
+from functools import wraps
+
+from metaflow import FlowSpec, step, retry, current, S3
+
+
+class resumable_processing:
+    """
+    Process the items in the artifact `process` one by one, saving each
+    result to S3 so that a retried task skips items that are already done.
+    The results end up in the artifact `results`, in the original order.
+    """
+
+    def __init__(self, process="items", results="output"):
+        self.process = process
+        self.results = results
+
+    def __call__(self, f):
+        @wraps(f)
+        def func(flow):
+            prefix = "resumable-processing/%s/" % current.pathspec
+            inputs = getattr(flow, self.process)
+
+            # count items that earlier attempts of this task finished
+            with S3(run=flow) as s3:
+                done = sum(1 for _ in s3.list_recursive([prefix]))
+
+            index = done
+
+            def append_item(obj):
+                nonlocal index
+                with S3(run=flow) as s3:
+                    s3.put("%s%012d" % (prefix, index), pickle.dumps(obj))
+                index += 1
+
+            # expose the remaining items and the checkpoint function
+            flow.iter_items = iter(inputs[done:])
+            flow.append_item = append_item
+            f(flow)
+            # don't persist these helpers as artifacts
+            del flow.iter_items
+            del flow.append_item
+
+            # collect all results, including those from earlier attempts
+            with S3(run=flow) as s3:
+                objs = s3.get_recursive([prefix])
+                out = [pickle.loads(obj.blob) for obj in sorted(objs, key=lambda o: o.key)]
+            if len(out) != len(inputs):
+                raise Exception(
+                    "Expected %d results but found %d" % (len(inputs), len(out))
+                )
+            setattr(flow, self.results, out)
+
+        return func
+
+
+class ResumingFlow(FlowSpec):
+    @step
+    def start(self):
+        self.items = list(range(10))
+        self.next(self.process)
+
+    @retry(times=2)
+    @resumable_processing(process="items", results="output")
+    @step
+    def process(self):
+        for item in self.iter_items:
+            # simulate a failure halfway through the first attempt
+            if item == 5 and current.retry_count == 0:
+                raise Exception("Failed while processing item %d" % item)
+            print("processing item", item)
+            self.append_item(item * 10)
+        self.next(self.end)
+
+    @step
+    def end(self):
+        print("results", self.output)
+
+
+if __name__ == "__main__":
+    ResumingFlow()
+```
+
+The first attempt of `process` handles items 0 to 4 and then fails. The retry
+finds the five stored results, starts from item 5, and `end` prints all ten
+results. Note that `resumable_processing` has to be placed between `@retry` and
+`@step`.
+
+A few things to keep in mind:
+
+* The step must process items in a fixed order, and the input list must be the
+  same on every attempt. Items are matched to stored results by position.
+* Call `append_item` only after an item is fully processed. An item that fails
+  midway is processed again on the next attempt, so processing should be safe to
+  repeat for a single item.
+* The checkpoints are tied to one task. If you start a new run, or use
+  `resume`, the task gets a new pathspec and processing starts from scratch.
+* The example needs a datastore that supports the `S3` client, i.e. `--datastore=s3`.
+  On other clouds, you can implement the same idea with the corresponding storage
+  client.
+
 ## Summary
 
 Here is a quick summary of failure handling in Metaflow:
@@ -404,5 +522,7 @@ Here is a quick summary of failure handling in Metaflow:
   safely](failures.md#how-to-prevent-retries). It is a good idea to use `times=0` for
   `retry` in this case.
 * Use `timeout` with any of the above if your code can get stuck.
+* Checkpoint progress to S3 inside a step if a retry should continue where the
+  previous attempt left off, instead of starting over.
 * Use `@exit_hook` to execute custom functions upon success or failure.
 
